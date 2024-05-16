@@ -77,41 +77,48 @@ export const bettingKiron = createAsyncThunk(
 );
 
 const findPostableSlip = () => {
-    let betslips = getBetslip() || {};
-    var values = Object.keys(betslips).map(function (key) {
-      return betslips[key];
-    });
-    return values;
-  };
-const findPostableReduxSlip = (betslips={}) => {
-    
-    var values = Object.keys(betslips).map(function (key) {
-      return betslips[key];
-    });
-    console.log("values information")
-    return values;
-  };
+  let betslips = getBetslip() || {};
+  var values = Object.keys(betslips).map(function (key) {
+    return betslips[key];
+  });
+  return values;
+};
+const findPostableReduxSlip = (betslips = {}) => {
+  var values = Object.keys(betslips).map(function (key) {
+    return betslips[key];
+  });
+  console.log("values information");
+  return values;
+};
 
-  export const betslipValidation = createAsyncThunk(
-    "betting/betslipValidation",
-    async ({ endpoint, method, payload }, { getState }) => {
-        const state = getState();
-        let dataToSend = payload && payload.length > 0 ? payload : findPostableReduxSlip(state.betting.betslip)  || {};
+export const betslipValidation = createAsyncThunk(
+  "betting/betslipValidation",
+  async ({ endpoint, method, payload }, { getState, dispatch }) => {
+    const state = getState();
+    let dataToSend =
+      payload && payload.length > 0
+        ? payload
+        : findPostableReduxSlip(state.betting.betslip) || {};
 
-        const [status, response] = await makeRequest({
-            url: endpoint,
-            method: method,
-            data: dataToSend,
-        });
-        if (status === 200) {
-            return response;
-        } else {
-            throw new Error(response?.error || "BetslipValidation failed");
-        }
+    console.log("call betlipvalidation", dataToSend);
+
+    if (dataToSend.length === 0) {
+      dispatch(stopBetslipValidation());
+      // stopBetslipValidation()
     }
-);
 
-  
+    const [status, response] = await makeRequest({
+      url: endpoint,
+      method: method,
+      data: dataToSend,
+    });
+    if (status === 200) {
+      return response;
+    } else {
+      throw new Error(response?.error || "BetslipValidation failed");
+    }
+  }
+);
 
 // Your regular action creator (if needed)
 export const matchSelector = (matchId, matchSelector, ucn) => ({
@@ -150,9 +157,21 @@ export const resetStateBetslip = createAction(
 
 let fetchInterval; // Declare the interval variable outside the action creator
 
+
+export const stopBetslipValidation = () => async (dispatch) => {
+  console.log("call stop betlslip validation", fetchInterval)
+
+  if (fetchInterval) {
+    clearInterval(fetchInterval);
+    fetchInterval = null; // Clear the reference to avoid potential issues
+  }
+  console.log("call stop betlslip validation")
+  dispatch(stopBetslipValidationAction());
+  
+};
+
 export const startBetslipValidation =
-  ({ endpoint, method, interval, data = {}}) =>
-  async (dispatch) => {
+  ({ endpoint, method, interval, data = {} }) =>async (dispatch) => {
     // Dispatch the initial fetch
     const payload = { endpoint, method, data };
 
@@ -162,15 +181,19 @@ export const startBetslipValidation =
     }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
   };
 
-export const stopBetslipValidation = () => () => {
-  if (fetchInterval) {
-    clearInterval(fetchInterval);
-  }
-};
+// export const stopBetslipValidation = () => () => {
+//   if (fetchInterval) {
+//     clearInterval(fetchInterval);
+//   }
+// };
+
+
 
 export const setState = createAction("betting/set", (stateToSet, data) => {
   return { payload: { stateToSet, data } };
 });
+
+
 export const getSelected = (reference) => {
   return (dispatch, getState) => {
     const state = getState();
@@ -178,6 +201,13 @@ export const getSelected = (reference) => {
     return referencedState;
   };
 };
+
+export const stopBetslipValidationAction = createAction(
+  "betting/stopBetslipValidation"
+);
+
+
+
 
 export const removeSelected = createAction(
   "betting/removeSelected",
@@ -226,6 +256,10 @@ const bettingSlice = createSlice({
         }
         state.error = null;
       })
+      .addCase(stopBetslipValidationAction, (state) => {
+        // state.isValidating = false;
+      })
+      
       .addCase(bettingMatchesGames.pending, (state) => {
         state.loading = true;
         state.bet_placement_message = null;

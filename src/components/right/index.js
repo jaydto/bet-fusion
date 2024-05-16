@@ -21,7 +21,7 @@ import {
   startBetslipValidation,
   stopBetslipValidation,
 } from "../../redux/bettingSlice";
-import { getBetslip } from "../utils/betslip";
+import { findPostableSlip, getBetslip } from "../utils/betslip";
 
 const AlertMessage = React.memo((props) => {
   return (
@@ -59,9 +59,13 @@ const Right = React.memo((props) => {
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
   const dispatchRedux = useDispatch();
   const stake_value = useSelector((state) => state.data.stake_value);
+  //   const betslipData = useSelector((state) => state.betting.betslip);
   const betslipLength = useSelector((state) => state.betting.betslipLength);
   const slip_validated_data = useSelector(
     (state) => state.betting.slip_validation_data
+  );
+  const betslip_validation_status = useSelector(
+    (state) => state.betting.betslip_validation_status
   );
   useEffect(() => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
@@ -96,26 +100,15 @@ const Right = React.memo((props) => {
     }
   }, [settings]);
 
-  const findPostableSlip = () => {
-    let betslips = getBetslip() || {};
-    var values = Object.keys(betslips).map(function (key) {
-      return betslips[key];
-    });
-    return values;
-  };
-
   const fetchData = async () => {
     let betslip = findPostableSlip();
 
-    if (betslip.length === 0) {
-      console.log("Betslip is empty. Skipping validation.");
-      return;
-    }
+    
     let endpoint = "v1/betslip-validation";
 
     const hasLiveInterval = betslip.some((item) => item.live);
 
-    console.log("has live data ", hasLiveInterval);
+    console.log("call has live data ", hasLiveInterval);
 
     // Define the interval duration based on whether any betslip has a live interval
     const interval = hasLiveInterval ? 10000 : 20000;
@@ -143,12 +136,12 @@ const Right = React.memo((props) => {
 
   useEffect(() => {
     // stop the fetchInterva;
-    if ((!kiron||slipPage)&&width>991) {
+    if ((!kiron || slipPage) && (width > 991) && betslip_validation_status) {
       dispatchRedux(stopBetslipValidation());
       // Start betslip validation
       fetchData();
     }
-  }, []);
+  }, [betslip_validation_status]);
 
   const CountBadge = React.memo(() => {
     return (

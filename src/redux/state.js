@@ -58,6 +58,7 @@ const initialState = {
         jackpot: null,
         kiron: null,
         picked:"",
+        betslip_validation_status:false,
         slip:null,
         slip_validation_data:null,
         betslip:null,

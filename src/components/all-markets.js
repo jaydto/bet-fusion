@@ -41,12 +41,7 @@ const AllMarkets = React.memo(
             setMatches(moreMatches)
         },[moreMatches])
 
-        const findPostableSlip = () => {
-            let betslips = getBetslip() || {};
-            return Object.keys(betslips).map(function (key) {
-                return betslips[key];
-            });
-        };
+       
         const clean = (str) => {
             return str.replace(/\s/g, "");
         }

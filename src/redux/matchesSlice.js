@@ -4,14 +4,19 @@ import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
 import {setLocalStorage} from "../components/utils/local-storage";
 import {addToJackpotSlip, addToSlip} from "../components/utils/betslip";
+import { setState as setMatchBetslipOptions } from "./bettingSlice";
+
 // Async thunk for matches
 export const matchesPrematch =
     createAsyncThunk("matches/prematch",
-        async ({endpoint, method, data, search=false, active_sport='Soccer', active_sub_type=null}, {getState}) => {
+        async ({endpoint, method, data, search=false, active_sport='Soccer', active_sub_type=null}, {getState, dispatch}) => {
+            if(data.length===1){
+                dispatch(setMatchBetslipOptions("betslip_validation_status", true))
+            }
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
-                data: data,
+                data: [],
             });
             const state = getState();
             const searched_data = state.matchesData.searched_matches;
@@ -26,11 +31,14 @@ export const matchesPrematch =
         });
 export const matchesLive =
     createAsyncThunk("matches/live",
-        async ({endpoint, method, data, search=false, active_sport=null}) => {
+        async ({endpoint, method, data, search=false, active_sport=null}, { dispatch }) => {
+            if(data.length===1){
+                dispatch(setMatchBetslipOptions("betslip_validation_status", true))
+            }
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
-                data: data,
+                data: [],
             });
             if (status === 200) {
                 return {search,  active_sport, response}
@@ -44,7 +52,7 @@ export const matchesCompetition =
             const [status, response] = await makeRequest({
                 url: endpoint,
                 method: method,
-                data: data,
+                data: [],
             });
             if (status === 200) {
                 return {response, search, active_sport, active_sub_type};

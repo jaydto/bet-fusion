@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState} from "react";
 import { useParams} from 'react-router-dom';
-import {getBetslip} from './utils/betslip';
+import {findPostableSlip, getBetslip} from './utils/betslip';
 import './test.css'
 import "../assets/css/bottomSheet.css"
 import SkeletonLoaderMobile from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
@@ -43,14 +43,7 @@ const CompetitionMatches = React.memo(
             return
         }
 
-        const findPostableSlip = () => {
-
-            let betslips = getBetslip() || {};
-            var values = Object.keys(betslips).map(function (key) {
-                return betslips[key];
-            });
-            return values;
-        };
+        
         let c_pathname = url.pathname;
 
         let parts = c_pathname.split("/competition/");

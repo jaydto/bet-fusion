@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../../redux/dataSlice";
-import { getBetslip } from "../../utils/betslip";
+import { findPostableSlip, getBetslip } from "../../utils/betslip";
 import {
   betslipValidation,
   startBetslipValidation,
@@ -35,7 +35,10 @@ const BetslipPage = React.memo(() => {
   const slip_validated_data = useSelector(
     (state) => state.betting.slip_validation_data
   );
-  const slip_data = useSelector((state) => state.betting.betslip);
+  const betslip_validation_status = useSelector(
+    (state) => state.betting.betslip_validation_status
+  );
+  // const slip_data = useSelector((state) => state.betting.betslip);
   const dispatchRedux = useDispatch();
 
   const [settings] = useState(getFromLocalStorage("settings"));
@@ -52,13 +55,7 @@ const BetslipPage = React.memo(() => {
     }
   }, [settings]);
 
-  const findPostableSlip = () => {
-    let betslips = getBetslip() || {};
-    var values = Object.keys(betslips).map(function (key) {
-      return betslips[key];
-    });
-    return values;
-  };
+ 
 
   const fetchData = async () => {
     let betslip = findPostableSlip();
@@ -99,12 +96,12 @@ const BetslipPage = React.memo(() => {
 
   useEffect(() => {
     // stop the fetchInterva;
-    if (!nare_league) {
+    if (!nare_league&&betslip_validation_status) {
       dispatchRedux(stopBetslipValidation());
       // Start betslip validation
       fetchData();
     }
-  }, [window.location.href]);
+  }, [betslip_validation_status]);
 
   const betslipValidationData =
     slipParam && JSON.parse(decodeURIComponent(slipParam));

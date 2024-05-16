@@ -2875,6 +2875,7 @@ nav .mobi {
 
 .bet-option .row .warn {
     color: var(--red);
+    font-size: 10px;;
 }
 
 .bet-option form {

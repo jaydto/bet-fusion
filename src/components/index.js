@@ -70,7 +70,7 @@ const Index = React.memo(
             let tabInfo = window.location.pathname
             tabInfo = tabInfo.substring(tabInfo.lastIndexOf('/') + 1).trim()
 
-            let betslip = findPostableSlip();
+            // let betslip = findPostableSlip();
 
             let endpoint = "/v1/matches?page="+(page || 1) +`&limit=${newLimit}`;
             let url = new URL(window.location.href)
@@ -99,10 +99,10 @@ const Index = React.memo(
             let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(sport_id))
             const sport_type=sport != null ? sport?.[0]?.sport_name||'Soccer':search?"":'Soccer';
 
-            dispatchRedux(matchesPrematch({endpoint,method:"POST",data:betslip, search:search, active_sport:sport_type, active_sub_type:market_name})); // Dispatch matchesPrematch with the updated fetchParams
+            dispatchRedux(matchesPrematch({endpoint,method:"POST",data:[], search:search, active_sport:sport_type, active_sub_type:market_name})); // Dispatch matchesPrematch with the updated fetchParams
 
             // Clear the interval when fetchParams change
-            dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:betslip, interval:20000, prematch:true, search:search, active_sport:sport_type, active_sub_type:market_name}));
+            dispatchRedux(startFetchingMatches({endpoint,method:"POST",data:[], interval:20000, prematch:true, search:search, active_sport:sport_type, active_sub_type:market_name}));
 
         };
 

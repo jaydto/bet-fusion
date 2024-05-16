@@ -474,24 +474,10 @@ const matchesSlice = createSlice({
                 state.search=search
 
 
-                // const mergedMatches = newMatches.length > 0 ? {...action.payload.matches_data, ...newMatches} : newMatches;
-                // if(search){
-                //     state.matches=newMatches
-                // }else if(active_sport!=='Soccer'){
-                // }
-                // else{
-                //     if(search_data){
-                //         state.matches=newMatches
-                //         state.searched_matches=null
-                //     }else{
-                //         state.matches = mergedMatches;
-                //
-                //     }
-                // }
                 state.matches=newMatches
 
-                if (newMatches.slip_data) {
-                    state.user_slip_validation = newMatches.slip_data
+                if (newMatches?.slip_data) {
+                    state.user_slip_validation = newMatches?.slip_data
                 }
                 state.producer_down = action.payload.response.producer_status === 1
                 // Reset initialLoading flag after initial fetch
@@ -527,8 +513,8 @@ const matchesSlice = createSlice({
 
                 const newMatches = action.payload?.response.data;
                 state.searched_matches = newMatches;
-                if (newMatches.slip_data) {
-                    state.user_slip_validation = newMatches.slip_data
+                if (newMatches?.slip_data) {
+                    state.user_slip_validation = newMatches?.slip_data
                 }
                 state.producer_down = action.payload.response.producer_status === 1
                 // Reset initialLoading flag after initial fetch
@@ -562,8 +548,8 @@ const matchesSlice = createSlice({
 
                 state.live_matches = newMatches;
 
-                if (newMatches.slip_data) {
-                    state.live_user_slip_validation = newMatches.slip_data
+                if (newMatches?.slip_data) {
+                    state.live_user_slip_validation = newMatches?.slip_data
                 }
                 state.live_producer_down = action.payload.response?.producer_status === 1
                 // Reset initialLoading flag after initial fetch
@@ -790,8 +776,8 @@ const matchesSlice = createSlice({
 
                 state.matches = newMatches;
 
-                if (newMatches.slip_data) {
-                    state.user_slip_validation = newMatches.slip_data
+                if (newMatches?.slip_data) {
+                    state.user_slip_validation = newMatches?.slip_data
                 }
                 state.producer_down = action.payload.producer_status === 1
                 // Reset initialLoading flag after initial fetch
@@ -823,7 +809,7 @@ const matchesSlice = createSlice({
                 const mergedMatches = more_matches.length > 0 ? {...more_matches_data , ...more_matches } : more_matches ;
 
                 state.more_matches = mergedMatches
-                state.user_slip_validation = action.payload?.response.slip_data
+                state.user_slip_validation = action.payload?.response?.slip_data
                 state.producer_down = action.payload?.response.producer_status === 1
                 state.error = null;
             })
@@ -842,7 +828,7 @@ const matchesSlice = createSlice({
                 state.fetching = false;
                 state.initialLoading = false
                 state.loading = false;
-                state.user_slip_validation = action.payload.response.slip_data
+                state.user_slip_validation = action.payload.response?.slip_data
                 state.producer_down = action.payload.response.producer_status === 1
                 state.error = null;
                 const more_matches_data=action.payload.more_matches

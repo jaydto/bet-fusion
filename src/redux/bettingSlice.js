@@ -2,7 +2,7 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
-import { getBetslip, getJackpotBetslip } from "../components/utils/betslip"; // Import the makeRequest function
+import { findPostableReduxSlip, getBetslip, getJackpotBetslip } from "../components/utils/betslip"; // Import the makeRequest function
 // Async thunk for matches
 
 export const bettingMatchesGames = createAsyncThunk(
@@ -76,20 +76,7 @@ export const bettingKiron = createAsyncThunk(
   }
 );
 
-const findPostableSlip = () => {
-  let betslips = getBetslip() || {};
-  var values = Object.keys(betslips).map(function (key) {
-    return betslips[key];
-  });
-  return values;
-};
-const findPostableReduxSlip = (betslips = {}) => {
-  var values = Object.keys(betslips).map(function (key) {
-    return betslips[key];
-  });
-  console.log("values information");
-  return values;
-};
+
 
 export const betslipValidation = createAsyncThunk(
   "betting/betslipValidation",

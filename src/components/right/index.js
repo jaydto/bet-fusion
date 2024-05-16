@@ -21,7 +21,12 @@ import {
   startBetslipValidation,
   stopBetslipValidation,
 } from "../../redux/bettingSlice";
-import { findPostableSlip, getBetslip } from "../utils/betslip";
+import {
+  findPostableReduxSlip,
+  findPostableSlip,
+  getBetslip,
+} from "../utils/betslip";
+import { setState as setMatchBetslipOptions } from "../../redux/bettingSlice";
 
 const AlertMessage = React.memo((props) => {
   return (
@@ -56,6 +61,7 @@ const Right = React.memo((props) => {
   const pathname = window.location.pathname;
   const { state, dispatch } = useContext(StoreContext);
   const appConfigs = useSelector((state) => state.data.app_config);
+  const slip_data = useSelector((state) => state.betting.betslip);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
   const dispatchRedux = useDispatch();
   const stake_value = useSelector((state) => state.data.stake_value);
@@ -103,7 +109,6 @@ const Right = React.memo((props) => {
   const fetchData = async () => {
     let betslip = findPostableSlip();
 
-    
     let endpoint = "v1/betslip-validation";
 
     const hasLiveInterval = betslip.some((item) => item.live);
@@ -135,8 +140,14 @@ const Right = React.memo((props) => {
   };
 
   useEffect(() => {
+    if (findPostableReduxSlip(slip_data ?? {}).length === 0) {
+      dispatchRedux(setMatchBetslipOptions("betslip_validation_status", false));
+    }
+  }, [slip_data]);
+
+  useEffect(() => {
     // stop the fetchInterva;
-    if ((!kiron || slipPage) && (width > 991) && betslip_validation_status) {
+    if ((!kiron || slipPage) && width > 991 && betslip_validation_status) {
       dispatchRedux(stopBetslipValidation());
       // Start betslip validation
       fetchData();

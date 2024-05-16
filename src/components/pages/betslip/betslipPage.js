@@ -94,6 +94,8 @@ const BetslipPage = React.memo(() => {
     // Clear the interval when fetchParams change
   };
 
+  
+
   useEffect(() => {
     // stop the fetchInterva;
     if (!nare_league&&betslip_validation_status) {

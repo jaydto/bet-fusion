@@ -144,24 +144,24 @@ const BetslipSubmitForm = React.memo((props) => {
 
   
 
-  useEffect(() => {
-    // stop the fetchInterva;
-    console.log("call page is mounted");
+//   useEffect(() => {
+//     // stop the fetchInterva;
+//     console.log("call page is mounted");
 
-    const abortController = new AbortController();
-    dispatchRedux(setMatchBetslipOptions("betslip_validation_status", true));
-    console.log("call betslip validation status", betslip_validation_status);
+//     const abortController = new AbortController();
+//     dispatchRedux(setMatchBetslipOptions("betslip_validation_status", true));
+//     console.log("call betslip validation status", betslip_validation_status);
 
-    return () => {
-      if (betslip_validation_status) {
-        dispatchRedux(
-          setMatchBetslipOptions("betslip_validation_status", false)
-        );
-        dispatchRedux(stopBetslipValidation());
-        abortController.abort();
-      }
-    };
-  }, [betslip_validation_status]);
+//     return () => {
+//       if (betslip_validation_status) {
+//         dispatchRedux(
+//           setMatchBetslipOptions("betslip_validation_status", false)
+//         );
+//         dispatchRedux(stopBetslipValidation());
+//         abortController.abort();
+//       }
+//     };
+//   }, [betslip_validation_status]);
 
   useEffect(() => {
     if (userData) {

@@ -25,7 +25,7 @@ export const matchesPrematch = createAsyncThunk(
     { getState, dispatch }
   ) => {
     const state = getState();
-    const betslip = findPostableReduxSlip(state.betting.betslip) || data;
+    const betslip = findPostableReduxSlip(state.betting.betslip??{}) || data;
 
     const slip_validation = state.betting.betslip_validation_status;
 
@@ -66,7 +66,7 @@ export const matchesLive = createAsyncThunk(
   ) => {
     const state = getState();
 
-    const betslip = findPostableReduxSlip(state.betting.betslip) ?? data;
+    const betslip = findPostableReduxSlip(state.betting.betslip??{}) ?? data;
 
     const slip_validation = state.betting.betslip_validation_status;
 

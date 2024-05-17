@@ -58,7 +58,6 @@ export const findPostableSlip = () => {
     var values = Object.keys(betslips).map(function (key) {
       return betslips[key];
     });
-    console.log("values information");
     return values;
   };
 

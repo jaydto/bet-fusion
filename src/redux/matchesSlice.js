@@ -8,7 +8,12 @@ import {
   addToSlip,
   findPostableReduxSlip,
 } from "../components/utils/betslip";
-import { setState as setMatchBetslipOptions } from "./bettingSlice";
+import {
+  betslipValidation,
+  setState as setMatchBetslipOptions,
+  startBetslipValidation,
+  stopBetslipValidation,
+} from "./bettingSlice";
 
 // Async thunk for matches
 export const matchesPrematch = createAsyncThunk(
@@ -25,15 +30,42 @@ export const matchesPrematch = createAsyncThunk(
     { getState, dispatch }
   ) => {
     const state = getState();
-    const betslip = findPostableReduxSlip(state.betting.betslip??{}) || data;
+    const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
 
     const slip_validation = state.betting.betslip_validation_status;
+    let endpoint1 = "v1/betslip-validation";
+
+    if (betslip.length > 0) {
+      const hasLiveInterval = betslip.some((item) => item.live);
+      if (hasLiveInterval && !slip_validation) {
+        const interval = 6000;
+        dispatch(
+          startBetslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            interval: interval,
+          })
+        );
+      } else {
+        dispatch(stopBetslipValidation());
+        dispatch(
+          betslipValidation({
+            endpoint:endpoint1,
+            method: "POST",
+            data: betslip,
+            payload: betslip,
+          })
+        );
+      }
+      dispatch(setMatchBetslipOptions("betslip_validation_status", true));
+    }
 
     // console.log("call data games", betslip.length);
 
     // console.log("slipvalidation", slip_validation);
 
-    if (betslip.length >0 && !slip_validation) {
+    if (betslip.length > 0 && !slip_validation) {
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }
     const [status, response] = await makeRequest({
@@ -66,17 +98,32 @@ export const matchesLive = createAsyncThunk(
   ) => {
     const state = getState();
 
-    const betslip = findPostableReduxSlip(state.betting.betslip??{}) ?? data;
+    const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) ?? data;
 
     const slip_validation = state.betting.betslip_validation_status;
 
-    console.log("call live games", betslip.length);
 
-    console.log("slipvalidation", slip_validation);
+    if (betslip.length > 0) {
+      let endpoint1 = "v1/betslip-validation";
+      const hasLiveInterval = betslip.some((item) => item.live);
 
-    if (betslip.length > 0 && !slip_validation) {
+      if (hasLiveInterval) {
+        dispatch(stopBetslipValidation());
+
+        dispatch(
+          betslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            payload: betslip,
+          })
+        );
+      }
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }
+    // else {
+    //   dispatch(stopBetslipValidation());
+    // }
     const [status, response] = await makeRequest({
       url: endpoint,
       method: method,

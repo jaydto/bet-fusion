@@ -70,9 +70,9 @@ const Right = React.memo((props) => {
   const slip_validated_data = useSelector(
     (state) => state.betting.slip_validation_data
   );
-  const betslip_validation_status = useSelector(
-    (state) => state.betting.betslip_validation_status
-  );
+  // const betslip_validation_status = useSelector(
+  //   (state) => state.betting.betslip_validation_status
+  // );
   useEffect(() => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
   }, [appConfigs]);
@@ -106,38 +106,6 @@ const Right = React.memo((props) => {
     }
   }, [settings]);
 
-  const fetchData = async () => {
-    let betslip = findPostableSlip();
-
-    let endpoint = "v1/betslip-validation";
-
-    const hasLiveInterval = betslip.some((item) => item.live);
-
-    // console.log("call has live data ", hasLiveInterval);
-
-    // Define the interval duration based on whether any betslip has a live interval
-    const interval = hasLiveInterval ? 10000 : 20000;
-
-    // Dispatch the action with the appropriate interval duration
-    dispatchRedux(
-      betslipValidation({
-        endpoint,
-        method: "POST",
-        data: betslip,
-        payload: betslip,
-      })
-    );
-    dispatchRedux(
-      startBetslipValidation({
-        endpoint,
-        method: "POST",
-        data: betslip,
-        interval,
-      })
-    );
-
-    // Clear the interval when fetchParams change
-  };
 
   useEffect(() => {
     if (findPostableReduxSlip(slip_data ?? {}).length === 0) {
@@ -145,14 +113,7 @@ const Right = React.memo((props) => {
     }
   }, [slip_data]);
 
-  useEffect(() => {
-    // stop the fetchInterva;
-    if ((!kiron || slipPage) && width > 991 && betslip_validation_status) {
-      dispatchRedux(stopBetslipValidation());
-      // Start betslip validation
-      fetchData();
-    }
-  }, [betslip_validation_status]);
+  
 
   const CountBadge = React.memo(() => {
     return (

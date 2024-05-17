@@ -14,7 +14,7 @@ import {
     stopFetchingMatches
 } from "../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {setMatchBetslip} from "../redux/bettingSlice";
+import {setMatchBetslip, stopBetslipValidation, setState as setMatchBetslipOptions} from "../redux/bettingSlice";
 import {MatchHeaderRow} from "./matches";
 import {getFromLocalStorage} from "./utils/local-storage";
 
@@ -84,6 +84,19 @@ const Live = React.memo(
                 setSportID(new_sport_id)
             }
         },[spid])
+
+        useEffect(()=>{
+
+            const abort=new AbortController()
+
+            return ()=>{
+                abort.abort()
+                dispatchRedux(stopBetslipValidation())
+                dispatchRedux(setMatchBetslipOptions("betslip_validation_status", false));
+
+            }
+
+        },[])
 
 
         const fetchAdditionalData=()=>{

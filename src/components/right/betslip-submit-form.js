@@ -109,9 +109,9 @@ const BetslipSubmitForm = React.memo((props) => {
   const slip_data = useSelector((state) => state.betting.betslip);
   const [settings] = useState(getFromLocalStorage("settings"));
   const stake_value = useSelector((state) => state.data.stake_value);
-  const betslip_validation_status = useSelector(
-    (state) => state.betting.betslip_validation_status
-  );
+  // const betslip_validation_status = useSelector(
+  //   (state) => state.betting.betslip_validation_status
+  // );
   const [stake, setStake] = useState(
     jackpot
       ? parseInt(jackpotData?.bet_amount)

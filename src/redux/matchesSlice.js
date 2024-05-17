@@ -156,12 +156,49 @@ export const matchesCompetition = createAsyncThunk(
     search = false,
     active_sport = null,
     active_sub_type = null,
-  }) => {
+  }, { getState, dispatch }) => {
     const [status, response] = await makeRequest({
       url: endpoint,
       method: method,
       data: [],
     });
+    const state = getState();
+    const slip_validation = state.betting.betslip_validation_status;
+    const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
+
+
+    if (betslip.length > 0) {
+      const hasLiveInterval = betslip.some((item) => item.live);
+      let endpoint1 = "v1/betslip-validation";
+
+      if (hasLiveInterval) {
+        dispatch(stopBetslipValidation());
+
+        const interval = 6000;
+        dispatch(
+          startBetslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            interval: interval,
+          })
+        );
+      }else if(!slip_validation){
+        dispatch(stopBetslipValidation());
+
+        const interval = 20000;
+        dispatch(
+          startBetslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            interval: interval,
+          })
+        );
+
+      }
+      dispatch(setMatchBetslipOptions("betslip_validation_status", true));
+    }
     if (status === 200) {
       return { response, search, active_sport, active_sub_type };
     } else {
@@ -430,13 +467,50 @@ export const matchesDecodeBet = createAsyncThunk(
 // Async thunk for matches
 export const matchesMoreLiveMarkets = createAsyncThunk(
   "matches/moreLiveMatches",
-  async ({ endpoint, method, data }, { getState }) => {
+  async ({ endpoint, method, data }, { dispatch,getState }) => {
     const [status, response] = await makeRequest({
       url: endpoint,
       method: method,
-      data: data,
+      data: [],
     });
     const state = getState();
+
+    const slip_validation = state.betting.betslip_validation_status;
+    const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
+
+
+    if (betslip.length > 0) {
+      const hasLiveInterval = betslip.some((item) => item.live);
+      let endpoint1 = "v1/betslip-validation";
+
+      if (hasLiveInterval) {
+        dispatch(stopBetslipValidation());
+
+        const interval = 6000;
+        dispatch(
+          startBetslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            interval: interval,
+          })
+        );
+      }else if(!slip_validation){
+        dispatch(stopBetslipValidation());
+
+        const interval = 20000;
+        dispatch(
+          startBetslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            interval: interval,
+          })
+        );
+
+      }
+      dispatch(setMatchBetslipOptions("betslip_validation_status", true));
+    }
     const more_matches = state.matchesData.more_matches;
     if (status === 200) {
       return { response, more_matches };
@@ -448,13 +522,49 @@ export const matchesMoreLiveMarkets = createAsyncThunk(
 // Async thunk for more Markets
 export const matchesMorePrematchMarkets = createAsyncThunk(
   "matches/morePrematchMatches",
-  async ({ endpoint, method, data }, { getState }) => {
+  async ({ endpoint, method, data }, { dispatch,getState }) => {
     const [status, response] = await makeRequest({
       url: endpoint,
       method: method,
       data: data,
     });
     const state = getState();
+    const slip_validation = state.betting.betslip_validation_status;
+    const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
+
+
+    if (betslip.length > 0) {
+      const hasLiveInterval = betslip.some((item) => item.live);
+      let endpoint1 = "v1/betslip-validation";
+
+      if (hasLiveInterval) {
+        dispatch(stopBetslipValidation());
+
+        const interval = 6000;
+        dispatch(
+          startBetslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            interval: interval,
+          })
+        );
+      }else if(!slip_validation){
+        dispatch(stopBetslipValidation());
+
+        const interval = 20000;
+        dispatch(
+          startBetslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            interval: interval,
+          })
+        );
+
+      }
+      dispatch(setMatchBetslipOptions("betslip_validation_status", true));
+    }
     const more_matches = state.matchesData.more_matches;
 
     if (status === 200) {

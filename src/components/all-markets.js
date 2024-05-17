@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./test.css";
 import { useParams } from "react-router-dom";
-import { getBetslip } from "./utils/betslip";
-
+import { findPostableSlip, getBetslip } from "./utils/betslip";
+import { setState as setMatchBetslipOptions} from '../redux/bettingSlice'
 import { MarketList } from "./matches";
 
 import {
@@ -15,7 +15,7 @@ import {
   stopFetchingMoreMatches,
 } from "../redux/matchesSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setMatchBetslip, setSelected } from "../redux/bettingSlice";
+import { setMatchBetslip, setSelected, stopBetslipValidation } from "../redux/bettingSlice";
 import { getFromLocalStorage } from "./utils/local-storage";
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 
@@ -66,21 +66,21 @@ const AllMarkets = React.memo((props) => {
 
   const fetchPagedData = async () => {
     if (!isNaN(id)) {
-      // let betslip = findPostableSlip();
+      let betslip = findPostableSlip();
       let endpoint = pathname.includes("live")
         ? "/v2/matches/live?id=" + id
         : "/v2/matches?id=" + id;
       setInitialData();
       if (live) {
         dispatchRedux(
-          matchesMoreLiveMarkets({ endpoint, method: "POST", data: [] })
+          matchesMoreLiveMarkets({ endpoint, method: "POST", data: [betslip] })
         );
         dispatchRedux(
           startFetchingMoreMatches({
             endpoint,
             method: "POST",
-            data: [],
-            interval: 5000,
+            data: betslip,
+            interval: 6000,
             more_live: true,
           })
         );
@@ -104,6 +104,19 @@ const AllMarkets = React.memo((props) => {
   const getFavoriteMarkets = useCallback(async () => {
     dispatchRedux(favoriteMarkets());
   }, [id]);
+
+  useEffect(()=>{
+
+    const abort=new AbortController()
+
+    return ()=>{
+        abort.abort()
+        dispatchRedux(stopBetslipValidation())
+        dispatchRedux(setMatchBetslipOptions("betslip_validation_status", false));
+
+    }
+
+},[id])
 
   useEffect(() => {
     const abortController = new AbortController();

@@ -14,6 +14,7 @@ import {
 } from "../redux/matchesSlice";
 import {getFromLocalStorage} from "./utils/local-storage";
 import {setState} from "../redux/dataSlice";
+import { stopBetslipValidation, setState as setMatchBetslipOptions } from "../redux/bettingSlice";
 
 
 const CarouselLoader = React.lazy(() => import('./carousel/index'));
@@ -126,6 +127,19 @@ const CompetitionMatches = React.memo(
             }
             dispatchRedux(setInitialLoadingState(data))
         }, [sport_league]);
+
+        useEffect(()=>{
+
+            const abort=new AbortController()
+        
+            return ()=>{
+                abort.abort()
+                dispatchRedux(stopBetslipValidation())
+                dispatchRedux(setMatchBetslipOptions("betslip_validation_status", false));
+        
+            }
+        
+        },[competitionid])
 
 
 

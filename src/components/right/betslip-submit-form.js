@@ -55,14 +55,14 @@ const Float = (equation, precision = 4) => {
 };
 
 export const SubmitButton = (props) => {
-  const { title, button_size, disabled,expired, ...rest } = props;
+  const { title, button_size, disabled, expired, ...rest } = props;
   const { isSubmitting } = useFormikContext();
 
   return (
     <button
       type={button_size ? "button" : "submit"}
       {...rest}
-      id={`${expired?'remove_expired_btn':'place_bet_button'}`}
+      id={`${expired ? "remove_expired_btn" : "place_bet_button"}`}
       style={
         button_size
           ? {
@@ -545,7 +545,7 @@ const BetslipSubmitForm = React.memo((props) => {
   const validate = (values) => {
     let errors = {};
 
-    if (!values.user_id) {
+    if (!values.user_id && !hasExpiredItems) {
       // errors.user_id = "Kindly login to proceed";
       // setMessage({status: 400, message: errors.user_id});
       // return errors;
@@ -834,7 +834,7 @@ const BetslipSubmitForm = React.memo((props) => {
     };
 
     dispatchRedux(setMatchBetslip(betslip_data));
-    setHasExpiredItems(false)
+    setHasExpiredItems(false);
 
     // Update the betslip with the filtered data
   };
@@ -845,8 +845,8 @@ const BetslipSubmitForm = React.memo((props) => {
     );
     if (hasExpired) {
       setHasExpiredItems(true);
-    }else{
-        setHasExpiredItems(false)
+    } else {
+      setHasExpiredItems(false);
     }
   }, [slip_data]);
 
@@ -1228,7 +1228,11 @@ const BetslipSubmitForm = React.memo((props) => {
                           style={{ whiteSpace: "nowrap" }}
                           id="place_bet_button_submit"
                           expired={hasExpiredItems}
-                          className={`${hasExpiredItems?'remove_expired_btn':'place-bet-btn '} bold `}
+                          className={`${
+                            hasExpiredItems
+                              ? "remove_expired_btn"
+                              : "place-bet-btn "
+                          } bold `}
                           disabled={loading}
                           title={
                             loading ? (
@@ -1244,7 +1248,7 @@ const BetslipSubmitForm = React.memo((props) => {
                               <span>
                                 {hasExpiredItems
                                   ? "REMOVE EXPIRED"
-                                  : " PLACE BET"} {" "}
+                                  : " PLACE BET"}{" "}
                                 <FontAwesomeIcon icon={faFireAlt} />
                               </span>
                             )

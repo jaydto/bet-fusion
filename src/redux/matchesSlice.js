@@ -104,8 +104,8 @@ export const matchesLive = createAsyncThunk(
 
 
     if (betslip.length > 0) {
-      let endpoint1 = "v1/betslip-validation";
       const hasLiveInterval = betslip.some((item) => item.live);
+      let endpoint1 = "v1/betslip-validation";
 
       if (hasLiveInterval) {
         dispatch(stopBetslipValidation());
@@ -118,6 +118,17 @@ export const matchesLive = createAsyncThunk(
             payload: betslip,
           })
         );
+      }else if(!slip_validation){
+        const interval = 20000;
+        dispatch(
+          startBetslipValidation({
+            endpoint: endpoint1,
+            method: "POST",
+            data: betslip,
+            interval: interval,
+          })
+        );
+
       }
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }

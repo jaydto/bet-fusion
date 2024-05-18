@@ -21,6 +21,7 @@ import { setState } from "../redux/dataSlice";
 import {
   stopBetslipValidation,
   setState as setMatchBetslipOptions,
+  betslipValidation,
 } from "../redux/bettingSlice";
 
 const CarouselLoader = React.lazy(() => import("./carousel/index"));
@@ -98,6 +99,19 @@ const CompetitionMatches = React.memo((props) => {
         active_sub_type: market_name,
       })
     ); // Dispatch matchesCompetition with the updated fetchParams
+
+    if (betslip.length > 0) {
+      let endpoint1 = "v1/betslip-validation";
+
+      dispatchRedux(
+        betslipValidation({
+          endpoint: endpoint1,
+          method: "POST",
+          data: betslip,
+          payload: betslip,
+        })
+      );
+    }
 
     // Clear the interval when fetchParams change
     dispatchRedux(

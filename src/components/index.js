@@ -21,9 +21,11 @@ import {
   setMatchBetslip,
   stopBetslipValidation,
   setState as setMatchBetslipOptions,
+  betslipValidation,
 } from "../redux/bettingSlice";
 
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
+import betslip from "./right/betslip";
 
 const Index = React.memo((props) => {
   const { tab } = props;
@@ -112,19 +114,32 @@ const Index = React.memo((props) => {
       matchesPrematch({
         endpoint,
         method: "POST",
-        data: [],
+        data: betslip,
         search: search,
         active_sport: sport_type,
         active_sub_type: market_name,
       })
     ); // Dispatch matchesPrematch with the updated fetchParams
 
+    if (betslip.length > 0) {
+      let endpoint1 = "v1/betslip-validation";
+
+      dispatchRedux(
+        betslipValidation({
+          endpoint: endpoint1,
+          method: "POST",
+          data: betslip,
+          payload: betslip,
+        })
+      );
+    }
+
     // Clear the interval when fetchParams change
     dispatchRedux(
       startFetchingMatches({
         endpoint,
         method: "POST",
-        data: [],
+        data: betslip,
         interval: 20000,
         prematch: true,
         search: search,

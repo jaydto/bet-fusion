@@ -167,11 +167,11 @@ export const matchesCompetition = createAsyncThunk(
     const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
 
 
-    if (betslip.length > 0 && !slip_validation) {
+    if (betslip.length > 0 ) {
       const hasLiveInterval = betslip.some((item) => item.live);
       let endpoint1 = "v1/betslip-validation";
 
-      if (hasLiveInterval) {
+      if (hasLiveInterval && !slip_validation) {
         dispatch(stopBetslipValidation());
 
         const interval = 6000;
@@ -478,11 +478,13 @@ export const matchesMoreLiveMarkets = createAsyncThunk(
     const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
 
 
+
     if (betslip.length > 0) {
       const hasLiveInterval = betslip.some((item) => item.live);
+
       let endpoint1 = "v1/betslip-validation";
 
-      if (hasLiveInterval && !slip_validation) {
+      if (hasLiveInterval && slip_validation) {
         dispatch(stopBetslipValidation());
 
         dispatch(
@@ -493,7 +495,7 @@ export const matchesMoreLiveMarkets = createAsyncThunk(
             payload: betslip,
           })
         );
-      }else{
+      }else if(!slip_validation){
         dispatch(stopBetslipValidation());
 
         const interval = 20000;
@@ -531,11 +533,11 @@ export const matchesMorePrematchMarkets = createAsyncThunk(
     const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
 
 
-    if (betslip.length > 0 && !slip_validation) {
+    if (betslip.length > 0) {
       const hasLiveInterval = betslip.some((item) => item.live);
       let endpoint1 = "v1/betslip-validation";
 
-      if (hasLiveInterval) {
+      if (hasLiveInterval && !slip_validation) {
         dispatch(stopBetslipValidation());
 
         const interval = 6000;

@@ -24,6 +24,7 @@ const AllMarkets = React.memo((props) => {
   const params = useParams();
   const dispatchRedux = useDispatch();
   const { live } = props;
+
   const id = params.id;
   // const [userSlipsValidation, setUserSlipsValidation] = useState();
   const mkGroup = useSelector((state) => state.matchesData.market_groups);
@@ -71,9 +72,10 @@ const AllMarkets = React.memo((props) => {
         ? "/v2/matches/live?id=" + id
         : "/v2/matches?id=" + id;
       setInitialData();
+      console.log("live now is ", live)
       if (live) {
         dispatchRedux(
-          matchesMoreLiveMarkets({ endpoint, method: "POST", data: [betslip] })
+          matchesMoreLiveMarkets({ endpoint, method: "POST", data:betslip })
         );
         dispatchRedux(
           startFetchingMoreMatches({
@@ -86,13 +88,13 @@ const AllMarkets = React.memo((props) => {
         );
       } else {
         dispatchRedux(
-          matchesMorePrematchMarkets({ endpoint, method: "POST", data: [] })
+          matchesMorePrematchMarkets({ endpoint, method: "POST", data: betslip })
         );
         dispatchRedux(
           startFetchingMoreMatches({
             endpoint,
             method: "POST",
-            data: [],
+            data: betslip,
             interval: 20000,
             more_prematch: true,
           })

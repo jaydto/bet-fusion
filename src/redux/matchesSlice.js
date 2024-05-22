@@ -186,13 +186,12 @@ export const matchesCompetition = createAsyncThunk(
       }else {
         dispatch(stopBetslipValidation());
 
-        const interval = 20000;
         dispatch(
-          startBetslipValidation({
+          betslipValidation({
             endpoint: endpoint1,
             method: "POST",
             data: betslip,
-            interval: interval,
+            payload: betslip,
           })
         );
 
@@ -486,13 +485,12 @@ export const matchesMoreLiveMarkets = createAsyncThunk(
       if (hasLiveInterval && !slip_validation) {
         dispatch(stopBetslipValidation());
 
-        const interval = 6000;
         dispatch(
-          startBetslipValidation({
+          betslipValidation({
             endpoint: endpoint1,
             method: "POST",
             data: betslip,
-            interval: interval,
+            payload: betslip,
           })
         );
       }else{
@@ -552,16 +550,14 @@ export const matchesMorePrematchMarkets = createAsyncThunk(
       }else {
         dispatch(stopBetslipValidation());
 
-        const interval = 20000;
         dispatch(
-          startBetslipValidation({
+          betslipValidation({
             endpoint: endpoint1,
             method: "POST",
             data: betslip,
-            interval: interval,
+            payload: betslip,
           })
         );
-
       }
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }

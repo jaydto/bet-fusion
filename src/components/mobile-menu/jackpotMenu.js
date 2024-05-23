@@ -267,7 +267,7 @@ const JackpotMenu = React.memo(
                     </div>
                 </div>
 
-                <table className="mobile-menu jackpot-menu jp-placebet-container">
+                <table className="mobile-menu mobile-menu-jackpot jackpot-menu jp-placebet-container">
                     <tbody>
                     <tr className={"info-slip-bets d-flex w-100 justify-content-between px-3"}>
 

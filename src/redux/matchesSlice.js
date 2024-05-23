@@ -51,7 +51,7 @@ export const matchesPrematch = createAsyncThunk(
         dispatch(stopBetslipValidation());
         dispatch(
           betslipValidation({
-            endpoint:endpoint1,
+            endpoint: endpoint1,
             method: "POST",
             data: betslip,
             payload: betslip,
@@ -102,7 +102,6 @@ export const matchesLive = createAsyncThunk(
 
     const slip_validation = state.betting.betslip_validation_status;
 
-
     if (betslip.length > 0) {
       const hasLiveInterval = betslip.some((item) => item.live);
       let endpoint1 = "v1/betslip-validation";
@@ -118,7 +117,7 @@ export const matchesLive = createAsyncThunk(
             payload: betslip,
           })
         );
-      }else if(!slip_validation){
+      } else if (!slip_validation) {
         const interval = 20000;
         dispatch(
           startBetslipValidation({
@@ -128,7 +127,6 @@ export const matchesLive = createAsyncThunk(
             interval: interval,
           })
         );
-
       }
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }
@@ -149,25 +147,22 @@ export const matchesLive = createAsyncThunk(
 );
 export const matchesCompetition = createAsyncThunk(
   "matches/competition",
-  async ({
-    endpoint,
-    method,
-    data,
-    search = false,
-    active_sport = null,
-    active_sub_type = null,
-  }, { getState, dispatch }) => {
-    const [status, response] = await makeRequest({
-      url: endpoint,
-      method: method,
-      data: [],
-    });
+  async (
+    {
+      endpoint,
+      method,
+      data,
+      search = false,
+      active_sport = null,
+      active_sub_type = null,
+    },
+    { getState, dispatch }
+  ) => {
     const state = getState();
     const slip_validation = state.betting.betslip_validation_status;
     const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
 
-
-    if (betslip.length > 0 ) {
+    if (betslip.length > 0) {
       const hasLiveInterval = betslip.some((item) => item.live);
       let endpoint1 = "v1/betslip-validation";
 
@@ -183,7 +178,7 @@ export const matchesCompetition = createAsyncThunk(
             interval: interval,
           })
         );
-      }else {
+      } else {
         dispatch(stopBetslipValidation());
 
         dispatch(
@@ -194,10 +189,14 @@ export const matchesCompetition = createAsyncThunk(
             payload: betslip,
           })
         );
-
       }
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }
+    const [status, response] = await makeRequest({
+      url: endpoint,
+      method: method,
+      data: [],
+    });
     if (status === 200) {
       return { response, search, active_sport, active_sub_type };
     } else {
@@ -466,18 +465,11 @@ export const matchesDecodeBet = createAsyncThunk(
 // Async thunk for matches
 export const matchesMoreLiveMarkets = createAsyncThunk(
   "matches/moreLiveMatches",
-  async ({ endpoint, method, data }, { dispatch,getState }) => {
-    const [status, response] = await makeRequest({
-      url: endpoint,
-      method: method,
-      data: [],
-    });
+  async ({ endpoint, method, data }, { dispatch, getState }) => {
     const state = getState();
 
     const slip_validation = state.betting.betslip_validation_status;
     const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
-
-
 
     if (betslip.length > 0) {
       const hasLiveInterval = betslip.some((item) => item.live);
@@ -495,7 +487,7 @@ export const matchesMoreLiveMarkets = createAsyncThunk(
             payload: betslip,
           })
         );
-      }else if(!slip_validation){
+      } else if (!slip_validation) {
         dispatch(stopBetslipValidation());
 
         const interval = 20000;
@@ -507,11 +499,15 @@ export const matchesMoreLiveMarkets = createAsyncThunk(
             interval: interval,
           })
         );
-
       }
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }
     const more_matches = state.matchesData.more_matches;
+    const [status, response] = await makeRequest({
+      url: endpoint,
+      method: method,
+      data: [],
+    });
     if (status === 200) {
       return { response, more_matches };
     } else {
@@ -522,16 +518,10 @@ export const matchesMoreLiveMarkets = createAsyncThunk(
 // Async thunk for more Markets
 export const matchesMorePrematchMarkets = createAsyncThunk(
   "matches/morePrematchMatches",
-  async ({ endpoint, method, data }, { dispatch,getState }) => {
-    const [status, response] = await makeRequest({
-      url: endpoint,
-      method: method,
-      data: data,
-    });
+  async ({ endpoint, method, data }, { dispatch, getState }) => {
     const state = getState();
     const slip_validation = state.betting.betslip_validation_status;
     const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) || data;
-
 
     if (betslip.length > 0) {
       const hasLiveInterval = betslip.some((item) => item.live);
@@ -549,7 +539,7 @@ export const matchesMorePrematchMarkets = createAsyncThunk(
             interval: interval,
           })
         );
-      }else {
+      } else {
         dispatch(stopBetslipValidation());
 
         dispatch(
@@ -564,7 +554,11 @@ export const matchesMorePrematchMarkets = createAsyncThunk(
       dispatch(setMatchBetslipOptions("betslip_validation_status", true));
     }
     const more_matches = state.matchesData.more_matches;
-
+    const [status, response] = await makeRequest({
+      url: endpoint,
+      method: method,
+      data: data,
+    });
     if (status === 200) {
       return { response, more_matches };
     } else {

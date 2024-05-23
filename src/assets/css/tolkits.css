@@ -4,6 +4,12 @@
     text-decoration: none;
 
 }
+/* html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+} */
+
 input, select, textarea {
     font-size: 16px;
 }
@@ -125,6 +131,9 @@ input, select, textarea {
     display: flex;
     justify-content: space-around;
 }
+
+
+
 .mobile-menu tbody{
     width:100%;
 }
@@ -5011,6 +5020,20 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 992px) {
+    .mobile-menu.mobile-menu-jackpot {
+        background-color: #16202C !important;
+        position: -webkit-sticky;
+        position: sticky!important;
+        /* position: fixed; */
+        bottom: 0;
+        visibility: visible;
+        height: 100px;
+        width: 100%;
+        z-index: 2000 !important;
+        font-size: 13px !important;
+        display: flex;
+        justify-content: space-around;
+    }
     .opacity-reduce-txt.vs-styling {
         font-size: var(--font-size-large);}
     .container-size{

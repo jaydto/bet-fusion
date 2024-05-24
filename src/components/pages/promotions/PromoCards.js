@@ -184,7 +184,7 @@ const PromoCards = () => {
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/Pambazuka.webp"}
+              src={"https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp"}
               className={"rounded promo-image "}
             />
             <h5
@@ -202,9 +202,9 @@ const PromoCards = () => {
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
                 onClick={() => {
-                  gaEventTracker("pambazuka_na_jogoo");
+                  gaEventTracker("pambazuka_na_jogoo_3");
                   navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo");
+                  setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo_3");
                 }}
               >
                 Bet Now!

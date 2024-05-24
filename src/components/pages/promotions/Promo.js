@@ -122,7 +122,7 @@ const Promo = () => {
       id: 35,
     },
     {
-      src: "https://cdn.betnare.com/carousel/Pambazuka.webp",
+      src: "https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp",
       id: 36,
     }, {
       src: "https://cdn.betnare.com/carousel/GoalRushNew.webp",

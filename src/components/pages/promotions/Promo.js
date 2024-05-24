@@ -131,6 +131,14 @@ const Promo = () => {
       src: "https://cdn.betnare.com/carousel/WeekendBonanzawebnew.webp",
       id: 38,
     },
+    {
+      src: "https://cdn.betnare.com/carousel/QuarterWeb.webp",
+      id: 39,
+    }
+    ,{
+      src: "https://cdn.betnare.com/carousel/FlightofFortuneWeb.webp",
+      id: 40,
+    },
     
   ];
 

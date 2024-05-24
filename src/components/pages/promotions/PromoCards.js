@@ -146,7 +146,7 @@ const PromoCards = () => {
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              KAQUARTER KA KUFUNGS SEASON!
+              KAQUARTER KA KUFUNGA SEASON!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
               
@@ -159,9 +159,9 @@ const PromoCards = () => {
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
                 onClick={() => {
-                  gaEventTracker("kaquarter_ka_fungs_season");
+                  gaEventTracker("kaquarter_ka_funga_season");
                   navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("kaquarter_ka_fungs_season");
+                  setUtmSouceCampaignOnPromotions("kaquarter_ka_funga_season");
                 }}
               >
                 Bet Now!

@@ -57,53 +57,56 @@ const BetslipPage = React.memo(() => {
 
  
 
-  // const fetchData = async () => {
-  //   let betslip = findPostableSlip();
+  const fetchData = async () => {
+    let betslip = findPostableSlip();
 
-  //   if (betslip.length === 0) {
-  //     console.log("Betslip is empty. Skipping validation.");
-  //     return;
-  //   }
-  //   let endpoint = "v1/betslip-validation";
+    if (betslip.length === 0) {
+      console.log("Betslip is empty. Skipping validation.");
+      return;
+    }
+    let endpoint = "v1/betslip-validation";
 
-  //   const hasLiveInterval = betslip.some((item) => item.live);
+    const hasLiveInterval = betslip.some((item) => item.live);
 
-  //   console.log("has live data ", hasLiveInterval);
+    console.log("has live data ", hasLiveInterval);
 
-  //   // Define the interval duration based on whether any betslip has a live interval
-  //   const interval = hasLiveInterval ? 10000 : 20000;
+    // Define the interval duration based on whether any betslip has a live interval
+    const interval = hasLiveInterval ? 6000 : 20000;
 
-  //   // Dispatch the action with the appropriate interval duration
-  //   dispatchRedux(
-  //     betslipValidation({
-  //       endpoint,
-  //       method: "POST",
-  //       data: betslip,
-  //       payload: betslip,
-  //     })
-  //   );
-  //   dispatchRedux(
-  //     startBetslipValidation({
-  //       endpoint,
-  //       method: "POST",
-  //       data: betslip,
-  //       interval,
-  //     })
-  //   );
+    // Dispatch the action with the appropriate interval duration
+    dispatchRedux(
+      betslipValidation({
+        endpoint,
+        method: "POST",
+        data: betslip,
+        payload: betslip,
+      })
+    );
+    dispatchRedux(
+      startBetslipValidation({
+        endpoint,
+        method: "POST",
+        data: betslip,
+        interval,
+      })
+    );
 
-  //   // Clear the interval when fetchParams change
-  // };
+    // Clear the interval when fetchParams change
+  };
 
   
 
-  // useEffect(() => {
-  //   // stop the fetchInterva;
-  //   if (!nare_league&&betslip_validation_status) {
-  //     dispatchRedux(stopBetslipValidation());
-  //     // Start betslip validation
-  //     fetchData();
-  //   }
-  // }, [betslip_validation_status]);
+  useEffect(() => {
+    // stop the fetchInterva;
+    if (!nare_league) {
+      dispatchRedux(stopBetslipValidation());
+      // Start betslip validation
+      fetchData();
+    }
+    return () => {
+      dispatchRedux(stopBetslipValidation());
+    }
+  }, []);
 
   const betslipValidationData =
     slipParam && JSON.parse(decodeURIComponent(slipParam));

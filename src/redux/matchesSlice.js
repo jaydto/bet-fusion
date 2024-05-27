@@ -14,6 +14,7 @@ import {
   startBetslipValidation,
   stopBetslipValidation,
 } from "./bettingSlice";
+import { truncate } from "lodash";
 
 // Async thunk for matches
 export const matchesPrematch = createAsyncThunk(
@@ -101,9 +102,22 @@ export const matchesLive = createAsyncThunk(
     const betslip = findPostableReduxSlip(state.betting.betslip ?? {}) ?? data;
 
     const slip_validation = state.betting.betslip_validation_status;
+    const slip_has_live_interval = state.betting.slip_has_live_interval;
 
     if (betslip.length > 0) {
       const hasLiveInterval = betslip.some((item) => item.live);
+      console.log("hasLiveInterval", hasLiveInterval);
+      console.log("sliphasLiveInterval", slip_has_live_interval);
+
+      if (!slip_has_live_interval && hasLiveInterval) {
+        console.log("live information");
+        dispatch(setMatchBetslipOptions("slip_has_live_interval", true));
+
+      } else if (!hasLiveInterval && slip_validation) {
+        dispatch(setMatchBetslipOptions("slip_has_live_interval", false));
+
+      }
+
       let endpoint1 = "v1/betslip-validation";
 
       if (hasLiveInterval) {
@@ -118,6 +132,8 @@ export const matchesLive = createAsyncThunk(
           })
         );
       } else if (!slip_validation) {
+        // dispatch(stopBetslipValidation());
+
         const interval = 20000;
         dispatch(
           startBetslipValidation({

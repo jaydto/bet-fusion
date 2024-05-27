@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import BetslipSubmitForm from "./betslip-submit-form";
 import { StoreContext } from "../../context/store";
 import {
+    findPostableSlip,
   getBetslip,
   getJackpotBetslip,
   removeFromJackpotSlip,
@@ -16,6 +17,8 @@ import {
   removePickedData,
   removeSelected,
   setMatchBetslip,
+  startBetslipValidation,
+  stopBetslipValidation,
 } from "../../redux/bettingSlice";
 
 const clean_rep = (str) => {
@@ -36,7 +39,9 @@ const BetSlip = React.memo((props) => {
 
   const [betslipsData, setBetslipsData] = useState(getBetslip());
 
+
   const slip_data = useSelector((state) => state.betting.betslip);
+  const slip_has_live_interval = useSelector((state) => state.betting.slip_has_live_interval);
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
   useEffect(() => {
@@ -182,6 +187,31 @@ const BetSlip = React.memo((props) => {
   useEffect(() => {
     updateBetslip();
   }, [updateBetslip]);
+
+
+  useEffect(()=>{
+    const betslipData=findPostableSlip()
+    
+    if (!slip_has_live_interval){
+        if (betslipData.length>0){
+            dispatchRedux(startBetslipValidation({
+                endpoint: "v1/betslip-validation",
+                method: "POST",
+                interval: 20000,
+                data: findPostableSlip(),
+              }))
+            
+        }
+        
+    }
+    return ()=>{
+        stopBetslipValidation()
+    }
+
+  },[slip_has_live_interval])
+
+
+
 
   const navigate = useNavigate();
 

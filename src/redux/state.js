@@ -59,6 +59,7 @@ const initialState = {
         kiron: null,
         picked:"",
         betslip_validation_status:false,
+        slip_has_live_interval:false,
         slip:null,
         slip_validation_data:null,
         betslip:null,

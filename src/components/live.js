@@ -3,7 +3,7 @@ import './test.css'
 import {useParams} from "react-router-dom";
 import useWindowDimensions from "./header/Dimensions";
 import {StoreContext} from "../context/store"
-import {getBetslip} from "./utils/betslip";
+import {findPostableSlip, getBetslip} from "./utils/betslip";
 import LiveSideBar from "./sidebar/live-sidebar";
 import {ToastContainer} from "react-toastify";
 import SkeletonMobileLive from "./pages/skeletonLoadersWeb/SkeletonLoaderMobile";
@@ -14,7 +14,7 @@ import {
     stopFetchingMatches
 } from "../redux/matchesSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {setMatchBetslip} from "../redux/bettingSlice";
+import {setMatchBetslip, stopBetslipValidation, setState as setMatchBetslipOptions} from "../redux/bettingSlice";
 import {MatchHeaderRow} from "./matches";
 import {getFromLocalStorage} from "./utils/local-storage";
 
@@ -35,14 +35,7 @@ const Live = React.memo(
             setMatches(liveMatches)
         },[liveMatches])
 
-        const findPostableSlip = () => {
-            let betslips = getBetslip() || {};
-            var values = Object.keys(betslips).map(function (key) {
-                return betslips[key];
-            });
-            return values;
-        };
-
+       
         useEffect(() => {
             window.scrollTo({
                 top: 0,
@@ -60,7 +53,8 @@ const Live = React.memo(
             let search = (url.searchParams.get('search') ||false)
 
             let betslip = findPostableSlip();
-            let method_type = betslip ? "POST" : "GET";
+            // let method_type = betslip ? "POST" : "GET";
+            let method_type ="POST";
             const categories = getFromLocalStorage('sport_categories')
             let sport = categories?.all_sports?.filter((category) => Number(category.sport_id) === Number(spid||79))
             const sport_type=sport != null ? sport?.[0]?.sport_name || 'Soccer' : "";
@@ -90,6 +84,19 @@ const Live = React.memo(
                 setSportID(new_sport_id)
             }
         },[spid])
+
+        useEffect(()=>{
+
+            const abort=new AbortController()
+
+            return ()=>{
+                abort.abort()
+                dispatchRedux(stopBetslipValidation())
+                dispatchRedux(setMatchBetslipOptions("betslip_validation_status", false));
+
+            }
+
+        },[])
 
 
         const fetchAdditionalData=()=>{

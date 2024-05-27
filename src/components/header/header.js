@@ -279,7 +279,7 @@ const Header = React.memo((props) => {
     dispatchRedux(setState("call_to_action",true));
   };
 
-  console.log("notshowHeader", notShowHeaderNav)
+  // console.log("notshowHeader", notShowHeaderNav)
 
   return (
     <>

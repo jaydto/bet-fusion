@@ -9,6 +9,23 @@ body {
   background: var(--betslip-list);
 }
 
+/* slip suspension options */
+.slip-optional-statuses{
+
+}
+.bet-option.warn {
+  /* background: var(--suspended)!important;
+  opacity: 0.7; */
+  color:white!important;
+}
+.slip-optional-statuses.warn{
+  background: var(--suspended)!important;
+  opacity: 0.7;
+  color:white!important;
+  margin: auto;
+  border-radius: 3px!important;
+}
+
 /* self-exclusion */
 .rdrDefinedRangesWrapper{
   display: none;

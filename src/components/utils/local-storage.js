@@ -1,3 +1,4 @@
+
 const now = () => (new Date()).getTime();
 
 export const getFromLocalStorage = (key) => {
@@ -25,6 +26,7 @@ export const setLocalStorage = (key, value, ttl) => {
 export const removeItem = (key) => {
     window.localStorage.removeItem(key);
 }
+
 
 export const setTrackingData = (data) => {
 

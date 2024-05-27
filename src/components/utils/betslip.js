@@ -47,6 +47,20 @@ export const getBetslip = () => {
     return getFromLocalStorage('betslip');
 }
 
+export const findPostableSlip = () => {
+    let betslips = getBetslip() || {};
+    var values = Object.keys(betslips).map(function (key) {
+      return betslips[key];
+    });
+    return values;
+  };
+  export const findPostableReduxSlip = (betslips = {}) => {
+    var values = Object.keys(betslips).map(function (key) {
+      return betslips[key];
+    });
+    return values;
+  };
+
 export const getJackpotBetslip =  () =>{
     return  getFromLocalStorage('jackpotbetslip');
 }

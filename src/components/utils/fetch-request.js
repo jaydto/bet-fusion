@@ -56,7 +56,7 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const status = error.response?.status;
-    console.log("response_data", status);
+    // console.log("response_data", status);
 
     if (status === 401) {
       // Clear user data from local storage

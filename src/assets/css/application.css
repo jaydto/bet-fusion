@@ -527,7 +527,7 @@ li.bet-option {
 .bet-option-list li {
     padding-bottom: 3px !important;
     padding-top: 3px !important;
-    background: var(--betslip-list);
+    /* background: var(--betslip-list); */
     color: var(--light);
     padding: 4px;
     text-shadow: none;
@@ -594,7 +594,7 @@ li.bet-option {
 
 .slip-bg {
     border-bottom: thin solid var(--slip-separator-color) !important;
-    height: 7rem;
+    height: 7.9rem;
 }
 
 .picks-user-slip {
@@ -629,6 +629,7 @@ li.bet-option {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis " [..]";
+    margin: auto;
 }
 
 .bet-cancel input {
@@ -740,6 +741,11 @@ li.bet-option {
     background: var(--light);
     color: #000;
     border-radius: 0.7rem !important;
+}
+
+.remove_expired_btn, #remove_expired_btn{
+    background: #ffc428 !important;
+    border-radius: 7px!important;
 }
 
 #jp-nare-pick-button {

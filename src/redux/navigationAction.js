@@ -9,7 +9,7 @@ export const shouldShowMobileNav = (pathname) => (dispatch, getState)=>{
 export const shouldShowSearch = (pathname) => (dispatch, getState)=>{
     const state=getState()
     const navigationConfig=state.navigations.notShowSearch
-    console.log("navigation for showing", !navigationConfig?.some(path => pathname.includes(path)))
+    // console.log("navigation for showing", !navigationConfig?.some(path => pathname.includes(path)))
     return !navigationConfig?.some(path => pathname.includes(path));
 };
 export const shouldShowHeader = (pathname) => (dispatch, getState)=>{

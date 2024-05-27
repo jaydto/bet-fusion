@@ -116,6 +116,7 @@ const BetSlip = React.memo((props) => {
               "Suspended",
               "Deacticated",
               "Ended",
+              "Expired",
               "Abandoned",
               "Finished",
             ].includes(slipdata.event_status)

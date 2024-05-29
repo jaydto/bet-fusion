@@ -551,6 +551,9 @@ const BetslipSubmitForm = React.memo((props) => {
       // return errors;
       navigate("/login");
     }
+    if (hasExpiredItems) {
+      return;
+    }
 
     if (!values.bet_amount || values.bet_amount < 1) {
       errors.bet_amount = "Enter valid bet amount";

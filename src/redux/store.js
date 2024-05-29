@@ -7,6 +7,7 @@ import rootReducer from './reducers'
 const store = configureStore({
     reducer: rootReducer,
     preloadedState: initialState,
+    devTools:false,
 });
 
 export default store;

@@ -138,9 +138,7 @@ const BetSlip = React.memo((props) => {
               disable: true,
             }; // Create a new object with updated properties
           } else if (slip.odd_value !== slipdata.odd_value) {
-            console.log(
-              `slip odd value ${slip.odd_value}   slip valid${slipdata.odd_value}`
-            );
+           
             slip = {
               ...slip,
               prev_odds: slip.odd_value,

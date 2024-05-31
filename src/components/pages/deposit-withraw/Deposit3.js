@@ -442,7 +442,7 @@ const DepositConfirmFormFields = (props) => {
                         value={values?.confirmation_code || ''}
                         placeholder='Enter Transactional Code'
                     />
-                    {errors.confirmation_code && <div className='text-danger'> {errors.confirmation_code} </div>}
+                    {errors?.confirmation_code && <div className='text-danger'> {errors?.confirmation_code} </div>}
                 </div>
             </div>
             <div className="form-group w-100 d-flex justify-content-left mb-4 ">
@@ -506,7 +506,7 @@ const DepositFormFields = (props) => {
                         value={values.msisdn}
                         placeholder='Enter Phone Number'
                     />}
-                    {errors.msisdn && <div className='text-danger'> {errors.msisdn} </div>}
+                    {errors?.msisdn && <div className='text-danger'> {errors?.msisdn} </div>}
                 </div>
             </div>
             {user && <hr/>}
@@ -540,7 +540,7 @@ const DepositFormFields = (props) => {
                         value={(values.amount == '' ? state?.depositValues || currentDepositValue : currentDepositValue || values.amount)}
                         placeholder='Enter Amount'
                     />
-                    {errors.amount && <div className='text-danger'> {errors.amount} </div>}
+                    {errors?.amount && <div className='text-danger'> {errors.amount} </div>}
                 </div>
             </div>
             <div className="form-group W-100 d-flex justify-content-left mb-4">

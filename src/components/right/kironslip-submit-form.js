@@ -501,7 +501,7 @@ const KironslipSubmitForm = React.memo(
                 return navigate('/login');
             }
 
-            if (!values.bet_amount || values.bet_amount < 1) {
+            if (!values.bet_amount || values.bet_amount < 10) {
                 errors.bet_amount = "Enter valid bet amount";
                 setMessage({status: 400, message: errors.bet_amount});
                 return errors;
@@ -560,6 +560,8 @@ const KironslipSubmitForm = React.memo(
 
             let giftQualificationOdds = odds.length;
 
+            console.log("information oon nare boost is here ")
+
 
             let awardGifts =
                 Number(settings?.kironGifts?.awardGiftBoost) === 1 &&
@@ -596,7 +598,9 @@ const KironslipSubmitForm = React.memo(
 
             }
             else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
-                boost = Math.round(((Number(settings?.kironGifts?.giftBoostPercentage)||20)/ 100) * stake);
+                boost = ((Number(settings?.kironGifts?.giftBoostPercentage)||20)/ 100) * stake;
+                console.log("boost information", boost)
+
                 if(isNaN(boost)){
                     boost=0
                 }
@@ -607,6 +611,7 @@ const KironslipSubmitForm = React.memo(
                 if (boost >= 1) {
                     setMultiBoostAmount(boost);
                     setHasMultiBetBoost(true);
+                    console.log("boost information", boost)
 
                     let boostedStake = Number(stake) + Number(boost);
                     boostedStake = formatNumber(boostedStake);

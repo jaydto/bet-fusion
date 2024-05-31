@@ -122,7 +122,7 @@ const Promo = () => {
       id: 35,
     },
     {
-      src: "https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp",
+      src: "https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp",
       id: 36,
     }, {
       src: "https://cdn.betnare.com/carousel/GoalRushNew.webp",
@@ -138,6 +138,12 @@ const Promo = () => {
     ,{
       src: "https://cdn.betnare.com/carousel/FlightofFortuneWeb.webp",
       id: 40,
+    },{
+      src: "https://cdn.betnare.com/carousel/AltitudePromo.webp",
+      id: 41,
+    },{
+      src: "https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp",
+      id: 42,
     },
     
   ];

@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import BetslipSubmitForm from "./betslip-submit-form";
 import { StoreContext } from "../../context/store";
 import {
-    findPostableSlip,
+  findPostableSlip,
   getBetslip,
   getJackpotBetslip,
   removeFromJackpotSlip,
@@ -26,6 +26,52 @@ const clean_rep = (str) => {
   return str.replace(/-+/g, "-");
 };
 
+
+const SlipLink2 = ({ slip }) => {
+  const isDisabled = slip?.disable;
+  const linkTo =
+    slip?.bet_type === "0"
+      ? `/match/${slip?.match_id}`
+      : `/match/live/${slip?.parent_match_id}`;
+  return (
+    <Link
+      to={isDisabled ? "#" : linkTo}
+      style={{ color: "inherit", fontStyle: "inherit" }}
+      className={"g url-link"}
+    >
+      <div className="bet-value">
+        <b>
+          {
+            <span className={"team-info-slip-list text-ellipsis"}>
+              <span className={"slip-team text-ellipsis"}>
+                {slip.home_team} &nbsp; Vs.&nbsp; {slip.away_team}
+              </span>
+            </span>
+          }
+        </b>
+      </div>
+      <div className={"d-flex w-100 slip-dim-color-selections"}>
+        <div className="row d-flex flex-column">
+          <div className="bet-value picks-user-slip">
+            {" "}
+            {slip.odd_type} -
+            <span className={"pick-user-match"}>{slip.bet_pick}</span>
+            &nbsp;
+            <span style={{ color: "var(--red)" }}>
+              {Number(slip.bet_type) === 1 ? " Live'" : ""}
+            </span>
+          </div>
+          <div className="bet-value time-slip-value"> {slip?.start_time}</div>
+        </div>
+        <br />
+      </div>
+      <div className="row">
+        <div className="warn">{slip?.comment} </div>
+      </div>
+    </Link>
+  );
+};
+
 const BetSlip = React.memo((props) => {
   const { jackpot, betslipValidationData, jackpotData, live } = props;
   const [message, setMessage] = useState(null);
@@ -39,9 +85,10 @@ const BetSlip = React.memo((props) => {
 
   const [betslipsData, setBetslipsData] = useState(getBetslip());
 
-
   const slip_data = useSelector((state) => state.betting.betslip);
-  const slip_has_live_interval = useSelector((state) => state.betting.slip_has_live_interval);
+  const slip_has_live_interval = useSelector(
+    (state) => state.betting.slip_has_live_interval
+  );
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
   useEffect(() => {
@@ -138,7 +185,6 @@ const BetSlip = React.memo((props) => {
               disable: true,
             }; // Create a new object with updated properties
           } else if (slip.odd_value !== slipdata.odd_value) {
-           
             slip = {
               ...slip,
               prev_odds: slip.odd_value,
@@ -186,30 +232,25 @@ const BetSlip = React.memo((props) => {
     updateBetslip();
   }, [updateBetslip]);
 
+  useEffect(() => {
+    const betslipData = findPostableSlip();
 
-  useEffect(()=>{
-    const betslipData=findPostableSlip()
-    
-    if (!slip_has_live_interval){
-        if (betslipData.length>0){
-            dispatchRedux(startBetslipValidation({
-                endpoint: "v1/betslip-validation",
-                method: "POST",
-                interval: 20000,
-                data: findPostableSlip(),
-              }))
-            
-        }
-        
+    if (!slip_has_live_interval) {
+      if (betslipData.length > 0) {
+        dispatchRedux(
+          startBetslipValidation({
+            endpoint: "v1/betslip-validation",
+            method: "POST",
+            interval: 20000,
+            data: findPostableSlip(),
+          })
+        );
+      }
     }
-    return ()=>{
-        stopBetslipValidation()
-    }
-
-  },[slip_has_live_interval])
-
-
-
+    return () => {
+      stopBetslipValidation();
+    };
+  }, [slip_has_live_interval]);
 
   const navigate = useNavigate();
 
@@ -400,61 +441,8 @@ const BetSlip = React.memo((props) => {
                           key={match_id}
                           style={{ background: no_odd_bg }}
                         >
-                          <Link
-                            to={`${
-                              slip?.bet_type === "0"
-                                ? "/match/" + slip?.match_id
-                                : "/match/live/" + slip?.parent_match_id
-                            }`}
-                            style={{ color: "inherit", fontStyle: "inherit" }}
-                            className={"g url-link"}
-                          >
-                            <div className="bet-value">
-                              <b>
-                                {
-                                  <span
-                                    className={
-                                      "team-info-slip-list text-ellipsis"
-                                    }
-                                  >
-                                    <span className={"slip-team text-ellipsis"}>
-                                      {slip.home_team} &nbsp; Vs.&nbsp;{" "}
-                                      {slip.away_team}
-                                    </span>
-                                  </span>
-                                }
-                              </b>
-                            </div>
-                            <div
-                              className={
-                                "d-flex w-100 slip-dim-color-selections"
-                              }
-                            >
-                              <div className="row d-flex flex-column">
-                                <div className="bet-value picks-user-slip">
-                                  {" "}
-                                  {slip.odd_type} -
-                                  <span className={"pick-user-match"}>
-                                    {slip.bet_pick}
-                                  </span>
-                                  &nbsp;
-                                  <span style={{ color: "var(--red)" }}>
-                                    {Number(slip.bet_type) === 1
-                                      ? " Live'"
-                                      : ""}
-                                  </span>
-                                </div>
-                                <div className="bet-value time-slip-value">
-                                  {" "}
-                                  {slip?.start_time}
-                                </div>
-                              </div>
-                              <br />
-                            </div>
-                            <div className="row">
-                              <div className="warn">{slip?.comment} </div>
-                            </div>
-                          </Link>
+                         
+                          <SlipLink2 slip={slip} />
                         </li>
                       </div>
                       <div className="d-flex align-items-center">

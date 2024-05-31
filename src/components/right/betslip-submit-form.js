@@ -320,6 +320,7 @@ const BetslipSubmitForm = React.memo((props) => {
             let match_selector = match.match_id + "_selected";
 
             dispatchRedux(resetStateBetslip("betslip"));
+            dispatchRedux(resetStateBetslip("picked"));
             dispatchRedux(removeSelected(match_selector));
           });
           clearSlip();
@@ -589,6 +590,7 @@ const BetslipSubmitForm = React.memo((props) => {
     let settings = getFromLocalStorage("settings");
 
     let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs);
+    console.log("toatal games", totalGames)
 
     if (totalGames < giftMinGames) {
       setHasMultiBetBoost(false);
@@ -607,7 +609,7 @@ const BetslipSubmitForm = React.memo((props) => {
 
     let odds = Object.values(betslips || [])?.filter(
       (slip) =>
-        slip.bet_type !== "1" &&
+        // slip.bet_type !== "1" &&
         Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds
     );
 
@@ -651,10 +653,8 @@ const BetslipSubmitForm = React.memo((props) => {
 
       setMultiBoostAmount(0);
     } else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
-      boost = Math.round(
-        ((Number(settings?.betnareGifts?.giftBoostPercentage) || 20) / 100) *
-          stake
-      );
+      boost = ((Number(settings?.betnareGifts?.giftBoostPercentage) || 20) / 100) * stake
+      
       if (isNaN(boost)) {
         boost = 0;
       }
@@ -667,7 +667,7 @@ const BetslipSubmitForm = React.memo((props) => {
         setMultiBoostAmount(boost);
         setHasMultiBetBoost(true);
 
-        let boostedStake = Number(stake) + Number(boost);
+        let boostedStake = Number(stake) +boost;
         boostedStake = formatNumber(boostedStake);
         dispatchRedux(
           setMatchBetslipOptions("betslip_options", {

@@ -29,10 +29,10 @@ const PromoCards = () => {
   // const games = virtualGameChoiceOptions('morning_glory');
   const [games, setGames] = useState([]);
 
-
   let ids = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29,30, 31, 32,33,34,35,36,37, 38,39, 40, 41
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+    41, 42, 43,
   ];
   const navigate = useNavigate();
 
@@ -93,19 +93,20 @@ const PromoCards = () => {
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/FlightofFortuneWeb.webp"}
+              src={"https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              FLIGHT OF FORTUNE!
+              MBUZI YA MADARAKA!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-              
-            stake a minimum of 20 Kenyan Shillings on Aviator between 10am to midnight and win cash prizes
-                                  </p>
+              Deposit 100 shillings and place a bet of 100 bob or more on all
+              the games on Betnare Platform between 6:00 AM and 10:00 AM and win
+              jogoo(2000)...{" "}
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -113,9 +114,54 @@ const PromoCards = () => {
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
                 onClick={() => {
-                  gaEventTracker("flight_of_fortune");
+                  gaEventTracker("mbuzi_ya_madaraka");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("mbuzi_ya_madaraka");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[41]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/AltitudePromo.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              AVIATOR ALTITUDE!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Stake a minimum of 20 Kenyan Shillings on Aviator , get highest
+              in-game multiplier(s) and win amazing prizes
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("aviator_altitude");
                   navigate(`/nare-games/aviator?status=live`);
-                  setUtmSouceCampaignOnPromotions("flight_of_fortune");
+                  setUtmSouceCampaignOnPromotions("aviator_altitude");
                 }}
               >
                 Play Aviator!
@@ -126,7 +172,7 @@ const PromoCards = () => {
                 }
                 style={{ color: "#ea5d0b" }}
                 onClick={() => {
-                  navigate(`/promo?id=${ids[39]}`);
+                  navigate(`/promo?id=${ids[40]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
                 }}
               >
@@ -136,6 +182,7 @@ const PromoCards = () => {
           </div>
         </div>
        
+
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
@@ -149,9 +196,9 @@ const PromoCards = () => {
               KAQUARTER KA KUFUNGA SEASON!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-              
-            Stake a minimum of 49 Kenyan Shillings from 00:00hrs to 23:59hrs everyday and win a shopping worth 5,000 shillings
-                      </p>
+              Stake a minimum of 49 Kenyan Shillings from 00:00hrs to 23:59hrs
+              everyday and win a shopping worth 5,000 shillings
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -181,50 +228,7 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              PAMBAZUKA NA JOGOO!
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-            Deposit 100 shillings and place a bet of 100 bob or more on all the games on Betnare Platform between 6:00 AM and 10:00 AM and win jogoo(2000)...           </p>
-            <hr />
 
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("pambazuka_na_jogoo_3");
-                  navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo_3");
-                }}
-              >
-                Bet Now!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[35]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
-         
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
@@ -368,6 +372,99 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion d-none">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/FlightofFortuneWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              FLIGHT OF FORTUNE!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              stake a minimum of 20 Kenyan Shillings on Aviator between 10am to
+              midnight and win cash prizes
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("flight_of_fortune");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("flight_of_fortune");
+                }}
+              >
+                Play Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[39]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion d-none">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              PAMBAZUKA NA JOGOO!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Deposit 100 shillings and place a bet of 100 bob or more on all
+              the games on Betnare Platform between 6:00 AM and 10:00 AM and win
+              jogoo(2000)...{" "}
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("pambazuka_na_jogoo_3");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo_3");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[35]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img
@@ -381,8 +478,9 @@ const PromoCards = () => {
               END MONTH BONANZA !
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Stake a minimum of 20 Kenyan Shillings on Aviator and win big prizes with the highest multiplier...
-                             </p>
+              Stake a minimum of 20 Kenyan Shillings on Aviator and win big
+              prizes with the highest multiplier...
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -412,7 +510,7 @@ const PromoCards = () => {
               </div>
             </div>
           </div>
-        </div>  
+        </div>
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img
@@ -426,7 +524,10 @@ const PromoCards = () => {
               GOAL RUSH!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Stake a minimum of 49 Kenyan Shillings on a multi-bet comprising of at least 3 games  and be among the 20 winners being awarded 500 kes daily...          </p>
+              Stake a minimum of 49 Kenyan Shillings on a multi-bet comprising
+              of at least 3 games and be among the 20 winners being awarded 500
+              kes daily...{" "}
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -456,7 +557,7 @@ const PromoCards = () => {
               </div>
             </div>
           </div>
-        </div> 
+        </div>
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img
@@ -470,7 +571,9 @@ const PromoCards = () => {
               MZINGA YA MBOGI!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Mzinga worth 5,000 Kenyan Shillings (KES) if their betslip is shared with at least 5 friends.   </p>
+              Mzinga worth 5,000 Kenyan Shillings (KES) if their betslip is
+              shared with at least 5 friends.{" "}
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -501,7 +604,7 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
-         <div className="col-md-2 promo-styling shadow-lg promotion">
+        <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img
               src={"https://cdn.betnare.com/carousel/RaukaBonusWeb.webp"}
@@ -514,7 +617,9 @@ const PromoCards = () => {
               RAUKA BONUS!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Deposit of at least 100 Kenyan Shillings (KES) into their Betnare account between 6:00 AM and 9:00 AM ...   </p>
+              Deposit of at least 100 Kenyan Shillings (KES) into their Betnare
+              account between 6:00 AM and 9:00 AM ...{" "}
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -558,7 +663,9 @@ const PromoCards = () => {
               PULL-OUT KICHAMPE!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Stake a minimum of 20 Kenyan Shillings (KES) on both the JETX and Aviator games during the Promotion Period..   </p>
+              Stake a minimum of 20 Kenyan Shillings (KES) on both the JETX and
+              Aviator games during the Promotion Period..{" "}
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -569,7 +676,7 @@ const PromoCards = () => {
                 onClick={() => {
                   gaEventTracker("pull_out_kichampe");
                   // navigate(`/deposit`);
-                  showBottomSheet('pull_out');
+                  showBottomSheet("pull_out");
                   setUtmSouceCampaignOnPromotions("pull_out_kichampe");
                 }}
               >
@@ -580,7 +687,6 @@ const PromoCards = () => {
                   "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
                 }
                 style={{ color: "#ea5d0b" }}
-                
                 onClick={() => {
                   navigate(`/promo?id=${ids[32]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
@@ -604,8 +710,9 @@ const PromoCards = () => {
               DONDOKA NA FREE BETS!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Win up to 1000 free bets every hour between 6:00 AM to 6:00 PM awards random it could be you ...
-               </p>
+              Win up to 1000 free bets every hour between 6:00 AM to 6:00 PM
+              awards random it could be you ...
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -649,8 +756,9 @@ const PromoCards = () => {
               MIDNIGHT RAINS!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Engage in betting activities on Betnare during the Promotion Period and win free bets ...
-               </p>
+              Engage in betting activities on Betnare during the Promotion
+              Period and win free bets ...
+            </p>
             <hr />
 
             <div className="d-flex justify-content-between my-2 mx-2">
@@ -694,7 +802,8 @@ const PromoCards = () => {
               RASHA RASHA ZA AVIATOR!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-              Play with a minimum of KES 20 between 12:00 AM and 6:00 AM and receive kenyan shillings 500 airtime...{" "}
+              Play with a minimum of KES 20 between 12:00 AM and 6:00 AM and
+              receive kenyan shillings 500 airtime...{" "}
             </p>
             <hr />
 
@@ -739,8 +848,8 @@ const PromoCards = () => {
               MORNING GLORY
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-              Play with a minimum of KES 100  between 6:00 AM and 9:00 AM and stand a chance to
-              be awarded cash worth 1000 Kenyan shillings...{" "}
+              Play with a minimum of KES 100 between 6:00 AM and 9:00 AM and
+              stand a chance to be awarded cash worth 1000 Kenyan shillings...{" "}
             </p>
             <hr />
 
@@ -752,7 +861,7 @@ const PromoCards = () => {
                 onClick={() => {
                   gaEventTracker("morning_glory");
                   // navigate(`/nare-games/aviator?status=live`);
-                  showBottomSheet('morning_glory');
+                  showBottomSheet("morning_glory");
                   setUtmSouceCampaignOnPromotions("morning_glory");
                 }}
               >
@@ -786,7 +895,9 @@ const PromoCards = () => {
               MBUZI YA MBOGI!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Place a bet on sportsbook with a minimum stake of 50 bob share with 5 friends and stand a chance to win a live goat(mbuzi ya mbogi) !{" "}
+              Place a bet on sportsbook with a minimum stake of 50 bob share
+              with 5 friends and stand a chance to win a live goat(mbuzi ya
+              mbogi) !{" "}
             </p>
             <hr />
 

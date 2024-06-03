@@ -161,7 +161,10 @@ const Jackpot = React.memo(() => {
     );
   };
 
+  const [activeResult, setActiveResult] = useState({});
+
   const loadJPResults = (jackpot) => {
+    setActiveResult(jackpot)
     fetchJackpotById(
       jackpot?.value?.jackpot_event_id,
       jackpot?.value?.jackpot_status
@@ -287,42 +290,31 @@ const Jackpot = React.memo(() => {
                     <h4 className={"text-white"}>Jackpot Results</h4>
                     <Select
                       options={jackpot_history}
-                      className={"bg-secondary"}
+                    //   className={"bg-secondary"}
                       menuPortalTarget={document.body}
                       menuPosition="fixed"
                       isSearchable={true}
+                      defaultValue={activeResult}
                       styles={{
                         menuPortal: (provided) => ({
                           ...provided,
                           zIndex: 9999,
+                          border: "none",
                         }),
-                        menu: (provided) => ({ ...provided, zIndex: 9999 }),
+                        container: (provided) => ({
+                            border:"none"
+                            
+                        }),
+                       
+                        menu: (provided) => ({ ...provided, zIndex: 9999, border:"none" }),
                       }}
                       onChange={loadJPResults}
                     />
                   </div>
 
-                  {/*<JackpotHeader jackpot={matches?.meta}/>*/}
-                  {console.log("match results", jackpot_by_id)}
-                  {console.log("match data", jackpot_data)}
+            
 
-                  {/* <div className="matches full-mobile sticky-top container w-00">
-                                            <div
-                                                className="top-matches d-flex position-sticky shadow-lg p-4 mt-5 text-white w-100">
-                                                <div className="col-md-3 col-sm-3 bold">
-                                                    TIME
-                                                </div>
-                                                <div className="col-md-3 col-sm-4 bold jackpot-game-header-info-games">
-                                                    GAME
-                                                </div>
-                                                <div className="col-md-3 col-sm-3 bold ">
-                                                    OUTCOME
-                                                </div>
-                                                <div className="col-md-2 col-sm-4 bold ">
-                                                    RESULT
-                                                </div>
-                                            </div>
-                                        </div> */}
+                  
                   {loading ? (
                     jackpot_by_id?.data?.map((match, index) => (
                       <SkeletonLoaderMore />

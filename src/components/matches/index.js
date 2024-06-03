@@ -2301,8 +2301,7 @@ export const JackpotMatchResultList = React.memo((props) => {
           match?.sub_type_id.toString() +
           (match?.outcome || "")
       );
-      console.log("uc information", uc);
-      console.log("uc information matchId", matchId);
+     
       const reference = "jpResult_" + match?.match_id.toString() + "_selected";
       dispatchRedux(setSelected(reference, uc));
     });

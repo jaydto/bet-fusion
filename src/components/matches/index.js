@@ -2303,6 +2303,8 @@ export const JackpotMatchResultList = React.memo((props) => {
       );
      
       const reference = "jpResult_" + match?.match_id.toString() + "_selected";
+      console.log("reference information", reference)
+      console.log("uc information",uc)
       dispatchRedux(setSelected(reference, uc));
     });
   }, []);
@@ -2313,7 +2315,7 @@ export const JackpotMatchResultList = React.memo((props) => {
       <div className={"row d-flex flex-row justify-content-between"}>
         <div className="col-md-12 text-center">
           <div className={"text-white col text-header-jackpot"}>
-            <p>JP EVENT {matches?.meta?.name}</p>
+            <p> {matches?.meta?.name ?"JP EVENT "+matches?.meta?.name: "PLEASE MAKE A SELECTION FOR JP EVENT"}</p>
           </div>
         </div>
       </div>

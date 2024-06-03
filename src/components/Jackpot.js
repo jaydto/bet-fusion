@@ -25,6 +25,8 @@ import {
   matchesJackpot,
 } from "../redux/matchesSlice";
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
+import { removeFromJackpotSlip } from "./utils/betslip";
+import { removeSelected, stopBetslipValidation, setState as setMatchBetslipOptions } from "../redux/bettingSlice";
 
 const Right = React.lazy(() => import("./right"));
 const Jackpot = React.memo(() => {
@@ -165,17 +167,63 @@ const Jackpot = React.memo(() => {
 
   const loadJPResults = (jackpot) => {
     setActiveResult(jackpot)
+    Object.entries(jackpot_by_id?.data || {}).map(([match_id, match]) => {
+        // let slip=
+  
+        let match_selector = "jpResult_" + match.match_id + "_selected";
+  
+        dispatchRedux(removeSelected(match_selector));
+      });
+
     fetchJackpotById(
       jackpot?.value?.jackpot_event_id,
       jackpot?.value?.jackpot_status
     );
   };
 
+
+
   const [activeTab, setActiveTab] = useState("home"); // Set the initially active tab here
 
   const handleTabSelect = (eventKey) => {
     setActiveTab(eventKey);
   };
+
+
+
+  useEffect(()=>{
+
+    if(activeTab==="results"){
+        const jackpot_match=jackpot_history[0]
+        setActiveResult(jackpot_match)
+
+        Object.entries(jackpot_by_id?.data || {}).map(([match_id, match]) => {
+            // let slip=
+      
+            let match_selector = "jpResult_" + match.match_id + "_selected";
+      
+            dispatchRedux(removeSelected(match_selector));
+          });
+
+        fetchJackpotById(
+            jackpot_match?.value?.jackpot_event_id,
+            jackpot_match?.value?.jackpot_status
+          );
+    }
+
+  }, [activeTab])
+
+  useEffect(() => {
+    const abort = new AbortController();
+
+    return () => {
+      abort.abort();
+      dispatchRedux(stopBetslipValidation());
+
+      dispatchRedux(setMatchBetslipOptions("betslip_validation_status", false));
+    };
+  }, []);
+
 
   return (
     <div className={"flex-item jackpot-container"}>
@@ -311,8 +359,6 @@ const Jackpot = React.memo(() => {
                       onChange={loadJPResults}
                     />
                   </div>
-
-            
 
                   
                   {loading ? (

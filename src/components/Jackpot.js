@@ -5,7 +5,6 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {
   FormatDate,
-  FormatDate2,
   JackpotMatchList,
   JackpotMatchResultList,
 } from "./matches";
@@ -26,7 +25,11 @@ import {
 } from "../redux/matchesSlice";
 import SkeletonLoaderMore from "./pages/skeletonLoadersWeb/SkeletonLoaderMore";
 import { removeFromJackpotSlip } from "./utils/betslip";
-import { removeSelected, stopBetslipValidation, setState as setMatchBetslipOptions } from "../redux/bettingSlice";
+import {
+  removeSelected,
+  stopBetslipValidation,
+  setState as setMatchBetslipOptions,
+} from "../redux/bettingSlice";
 
 const Right = React.lazy(() => import("./right"));
 const Jackpot = React.memo(() => {
@@ -166,22 +169,21 @@ const Jackpot = React.memo(() => {
   const [activeResult, setActiveResult] = useState({});
 
   const loadJPResults = (jackpot) => {
-    setActiveResult(jackpot)
+    setActiveResult(jackpot);
     Object.entries(jackpot_by_id?.data || {}).map(([match_id, match]) => {
-        // let slip=
-  
-        let match_selector = "jpResult_" + match.match_id + "_selected";
-  
-        dispatchRedux(removeSelected(match_selector));
-      });
+      // let slip=
 
-    fetchJackpotById(
-      jackpot?.value?.jackpot_event_id,
-      jackpot?.value?.jackpot_status
-    );
+      let match_selector = "jpResult_" + match.match_id + "_selected";
+
+      dispatchRedux(removeSelected(match_selector));
+    });
+    
+      fetchJackpotById(
+        jackpot?.value?.jackpot_event_id,
+        jackpot?.value?.jackpot_status
+      );
+   
   };
-
-
 
   const [activeTab, setActiveTab] = useState("home"); // Set the initially active tab here
 
@@ -189,29 +191,20 @@ const Jackpot = React.memo(() => {
     setActiveTab(eventKey);
   };
 
-
-
-  useEffect(()=>{
-
-    if(activeTab==="results"){
-        const jackpot_match=jackpot_history[0]
-        setActiveResult(jackpot_match)
-
-        Object.entries(jackpot_by_id?.data || {}).map(([match_id, match]) => {
-            // let slip=
-      
-            let match_selector = "jpResult_" + match.match_id + "_selected";
-      
-            dispatchRedux(removeSelected(match_selector));
-          });
-
+useEffect(() => {
+    if (activeTab === "results" ) {
+      const jackpot_match = jackpot_history[0];
+      setActiveResult(jackpot_match);
+      Object.entries(jackpot_by_id?.data || {}).forEach(([match_id, match]) => {
+        let match_selector = "jpResult_" + match.match_id + "_selected";
+        dispatchRedux(removeSelected(match_selector));
+      });
         fetchJackpotById(
-            jackpot_match?.value?.jackpot_event_id,
-            jackpot_match?.value?.jackpot_status
-          );
+                      jackpot_match?.value?.jackpot_event_id,
+                      jackpot_match?.value?.jackpot_status
+                    );      
     }
-
-  }, [activeTab])
+  }, [activeTab]);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -223,7 +216,6 @@ const Jackpot = React.memo(() => {
       dispatchRedux(setMatchBetslipOptions("betslip_validation_status", false));
     };
   }, []);
-
 
   return (
     <div className={"flex-item jackpot-container"}>
@@ -309,10 +301,11 @@ const Jackpot = React.memo(() => {
                     <>
                       {jackpot_data && jackpot_data?.data?.length > 0 ? (
                         <JackpotMatchList
-                          matches={jackpot_data}
-                          jackpot={true}
-                        />
+                        matches={jackpot_data}
+                        jackpot={true}
+                      />
                       ) : (
+                        
                         <div
                           className={
                             "text-white col-md-12 text-center background-primary shadow mt-2 p-3 d-flex flex-column  align-items-center justify-content-center"
@@ -338,35 +331,58 @@ const Jackpot = React.memo(() => {
                     <h4 className={"text-white"}>Jackpot Results</h4>
                     <Select
                       options={jackpot_history}
-                    //   className={"bg-secondary"}
-                      menuPortalTarget={document.body}
-                      menuPosition="fixed"
+                      className="basic-single"
+                      classNamePrefix
+                      name="jackpot_history_selector"
+                      //   className={"bg-secondary"}
+                      // menuPortalTarget={document.body}
+                      // menuPosition="fixed"
                       isSearchable={true}
+                      // isClearable={true}
                       defaultValue={activeResult}
                       styles={{
+                        
                         menuPortal: (provided) => ({
                           ...provided,
                           zIndex: 9999,
                           border: "none",
                         }),
-                        container: (provided) => ({
-                            border:"none"
-                            
+                        placeholder: (provided) => ({
+                          ...provided,
+                          color: "#000",
                         }),
-                       
-                        menu: (provided) => ({ ...provided, zIndex: 9999, border:"none" }),
+
+                        menu: (provided) => ({
+                          ...provided,
+                          zIndex: 9999,
+                          border: "none",
+                        }),
+                        input: (provided) => ({
+                          ...provided,
+                          border: "none",
+                          zIndex: 9999,
+                          color: "grey",
+                        }),
                       }}
                       onChange={loadJPResults}
                     />
                   </div>
-
-                  
                   {loading ? (
-                    jackpot_by_id?.data?.map((match, index) => (
-                      <SkeletonLoaderMore />
-                      // implement jackpot results matchList here
-                    ))
+                    // Show skeleton loaders or loading indicators while data is being fetched
+                    <>
+                      {width < 1259 ? (
+                        <SkeletonMobileJackpot />
+                      ) : (
+                        <SkeletonJackpot />
+                      )}
+                    </>
                   ) : (
+
+                //   {loading ? (
+                //     jackpot_by_id?.data?.map((match, index) => (
+                //       <SkeletonLoaderMore />
+                //     ))
+                //   ) : (
                     <JackpotMatchResultList
                       matches={jackpot_by_id}
                       jackpot={true}

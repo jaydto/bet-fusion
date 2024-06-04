@@ -72,7 +72,6 @@ const AllMarkets = React.memo((props) => {
         ? "/v2/matches/live?id=" + id
         : "/v2/matches?id=" + id;
       setInitialData();
-      console.log("live now is ", live)
       if (live) {
         dispatchRedux(
           matchesMoreLiveMarkets({ endpoint, method: "POST", data:betslip })

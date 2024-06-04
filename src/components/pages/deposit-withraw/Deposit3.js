@@ -131,7 +131,6 @@ const Deposit3 = React.memo(
             ()=>{
             return (
                 <ul className={'paybill-offers-list-items'}>
-                    {console.log('depositdata', settings.betnareDeposit)}
                 { settings?.betnareDeposit?.map((deposit, index) => {
                     return (
                         <li key={index}>{index + 1}.

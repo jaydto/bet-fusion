@@ -606,11 +606,9 @@ const ReferalForm = React.memo((props) => {
         // Redirect the user as needed
       })
       .catch((error) => {
-        console.error("Error in handleSubmit:", error);
       });
   };
 
-  console.log("appconfig", settings?.accountConfiguration?.verificationEnabled);
 
   useEffect(() => {
     let message = "";

@@ -60,6 +60,7 @@ import {
 } from "../../redux/matchesSlice";
 import {
   getSelected,
+  getSelectedResult,
   removePickedData,
   removeSelected,
   setMatchBetslip,
@@ -68,6 +69,7 @@ import {
 } from "../../redux/bettingSlice";
 import { setState } from "../../redux/dataSlice";
 import useWindowDimensions from "../header/Dimensions";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const clean = (_str) => {
   _str = _str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -2301,10 +2303,9 @@ export const JackpotMatchResultList = React.memo((props) => {
           match?.sub_type_id.toString() +
           (match?.outcome || "")
       );
-     
+
       const reference = "jpResult_" + match?.match_id.toString() + "_selected";
-      console.log("reference information", reference)
-      console.log("uc information",uc)
+
       dispatchRedux(setSelected(reference, uc));
     });
   }, []);
@@ -2315,7 +2316,12 @@ export const JackpotMatchResultList = React.memo((props) => {
       <div className={"row d-flex flex-row justify-content-between"}>
         <div className="col-md-12 text-center">
           <div className={"text-white col text-header-jackpot"}>
-            <p> {matches?.meta?.name ?"JP EVENT "+matches?.meta?.name: "PLEASE MAKE A SELECTION FOR JP EVENT"}</p>
+            <p>
+              {" "}
+              {matches?.meta?.name
+                ? "JP EVENT " + matches?.meta?.name
+                : "PLEASE MAKE A SELECTION FOR JP EVENT"}
+            </p>
           </div>
         </div>
       </div>
@@ -2506,8 +2512,7 @@ const JpMatchRow = React.memo((props) => {
                   match?.odds?.home_odd &&
                   match?.odds.home_odd !== "NaN" &&
                   match?.market_active == 1 &&
-                  match?.odds.home_odd_active == 1 &&
-                  !(live && match?.event_status === "NotStarted")) ||
+                  match?.odds.home_odd_active == 1) ||
                   jackpot) ? (
                   <JpOddButton
                     match={{
@@ -2542,8 +2547,7 @@ const JpMatchRow = React.memo((props) => {
                   match?.odds?.neutral_odd &&
                   match.odds.neutral_odd !== "NaN" &&
                   match?.market_active == 1 &&
-                  match.odds.neutral_odd_active == 1 &&
-                  !(live && match?.event_status === "NotStarted")) ||
+                  match.odds.neutral_odd_active == 1) ||
                 jackpot ? (
                   <JpOddButton
                     match={{
@@ -2574,8 +2578,7 @@ const JpMatchRow = React.memo((props) => {
                   match?.odds?.away_odd &&
                   match?.odds.away_odd !== "NaN" &&
                   match.market_active == 1 &&
-                  match?.odds.away_odd_active == 1 &&
-                  !(live && match?.event_status === "NotStarted")) ||
+                  match?.odds.away_odd_active == 1) ||
                   jackpot) ? (
                   <JpOddButton
                     match={{
@@ -2613,63 +2616,49 @@ const JpMatchRow = React.memo((props) => {
   );
 });
 const JpOddButton = React.memo((props) => {
-  const { match, mkt, detail, live, jackpot, marketKey, allMarkets } = props;
-  // const {ucn}=match
+  const { match, mkt, detail, live, jackpot, allMarkets } = props;
   const [picked, setPicked] = useState("");
 
   const dispatchRedux = useDispatch();
-  const settings = getFromLocalStorage("settings");
   const ref = useRef();
-  const betslip_data_item = useSelector((state) => state.betting.betslip);
-  const jackpot_slip_data_item = useSelector(
-    (state) => state.betting.jackpotbestlip
-  );
-  let reference = jackpot
-    ? "jpResult_" + match.match_id + "_selected"
-    : match.match_id + "_selected";
 
-  const updatePicked = () => {
-    const referencedState = dispatchRedux(getSelected(reference));
+  let reference = "jpResult_" + match.match_id + "_selected";
+
+  const updatePicked = useCallback(async () => {
+
+    const referencedValue = dispatchRedux(getSelected(reference));
+    // const referencedState=unwrapResult(referencedValue)
+    const referencedState=referencedValue
+
+    console.log("referencedStateValue", referencedState)
+
 
     if (typeof referencedState === "string") {
-      // Check if referencedState is a string
+    let uc = clear_rep(
+      match.match_id +
+        "" +
+        match.sub_type_id +
+        (match?.[mkt] || match?.odd_key || "draw")
+    );
 
-      let uc = clear_rep(
-        match.match_id +
-          "" +
-          match.sub_type_id +
-          (match?.[mkt] || match?.odd_key || "draw")
-      );
-      if (jackpot) {
-        uc = "jpResult_" + uc;
-      }
-
-      if (referencedState === uc) {
-        setPicked("picked");
-      } else {
-        setPicked("");
-      }
-    } else if (typeof referencedState !== "string") {
-      setPicked("");
-    } else {
-      setPicked("");
-    }
-  };
+    uc="jpResult_" + uc;
+    if (referencedState === uc) {
+            setPicked("picked");
+          } else {
+            setPicked("");
+          }
+        } else if (typeof referencedState !== "string") {
+          setPicked("");
+        }
+  }, [reference, match, jackpot, mkt]);
 
   useEffect(() => {
-    updatePicked();
-  }, [betslip_data_item, jackpot_slip_data_item, match]);
+    setTimeout(()=>{
+      updatePicked();
+    },50)
+    
+  }, [updatePicked]);
 
-  const maxPickReached = () => {
-    // console.log("max_pick_reached")
-    setPicked("");
-    // dispatchRedux(removePickedData(""));
-    Notify({
-      status: 401,
-      message: "Maximum selections reached",
-      token: "",
-    });
-  };
 
   return (
     <button

@@ -187,7 +187,6 @@ const BetHistory = () => {
 
     const cashoutRequest = (e, bet_id, amount, possible_win) => {
       e.stopPropagation();
-      console.log("cashout_request", cashout);
       dispatchRedux(resetState("loading_cashout"));
 
       const cashout_payload = {

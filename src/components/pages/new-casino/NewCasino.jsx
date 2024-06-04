@@ -317,7 +317,6 @@ const NewCasino = () => {
 
   const handleCategoryClick = (title) => {
     setActiveCategoryLink(title); // Set the active category when clicked
-    console.log("we called this");
     setActiveItem(null);
   };
   const bottomSheetRef = useRef();
@@ -1270,12 +1269,8 @@ const GameChoice = ({ title, games, user, provider }) => {
         // Fetch updated favorite markets from the API if needed
         dispatchRedux(favoriteCasinoApi()).then((response) => {
           if (favoriteCasinoApi.fulfilled.match(response)) {
-            console.log("what is my provider", type);
             if (type === "favorites") {
-              console.log(
-                "we are checking how favorites work",
-                response.payload.data
-              );
+             
 
               dispatchRedux(
                 setVirtualGame("casino_games", [

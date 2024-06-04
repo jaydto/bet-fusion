@@ -63,7 +63,6 @@ const SelfExclusion = () => {
   });
 
   const handleDateRangeChange = (ranges) => {
-    console.log("ranges data", ranges)
     const elements = document.querySelectorAll(
         '.rdrStaticRangeLabel[tabindex="-1"]'
       );
@@ -82,13 +81,7 @@ const SelfExclusion = () => {
                     const key = "selection";
                     setDateRange({ startDate, endDate, key });
 
-                    // Handle onClick behavior for '6 months' here
-                    console.log("Clicked on '6 months' element");
-                    console.log("Start Date:", startDate);
-                    console.log("End Date:", endDate);
-                    console.log("Key:", key);
-                // Handle onClick behavior for 'Last Week' here
-                console.log("Clicked on '6 months' element");
+                  
 
         //   element.style.display = "none"; // Hide the element
         }
@@ -106,13 +99,7 @@ const SelfExclusion = () => {
                 const key = "selection";
                             setDateRange({ startDate, endDate, key });
 
-                // Handle onClick behavior for '3 months' here
-                console.log("Clicked on '3 months' element");
-                console.log("Start Date:", startDate);
-                console.log("End Date:", endDate);
-                console.log("Key:", key);
-                // Handle onClick behavior for 'Last Week' here
-                console.log("Clicked on '3 months' element");
+               
 
         }
         else{
@@ -139,7 +126,6 @@ const SelfExclusion = () => {
       reason_for_self_exclusion: formik.values.reason_for_self_exclusion,
     };
 
-    console.log("data now", data);
 
     if(user){
         dispatchRedux(userSelfExclusion(data)).then((response)=>{
@@ -150,7 +136,6 @@ const SelfExclusion = () => {
                     //   message: "Self Excluded",
                     //   description: response.message
                     // });
-                    console.log("respponse data", response.payload)
                     // message={
                     //     status: 200,
                     //     message: response.payload.success

@@ -578,7 +578,7 @@ const BetSlip = React.memo(
                                 <Link
                                   to={`${
                                     slip?.bet_type === "0"
-                                      ? "/match/" + slip?.match_id
+                                      ? "/match/" + slip?.parent_match_id
                                       : "/match/live/" + slip?.parent_match_id
                                   }`}
                                   style={{

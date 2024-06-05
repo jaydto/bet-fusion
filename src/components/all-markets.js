@@ -77,7 +77,7 @@ const AllMarkets = React.memo(
                 let betslip = findPostableSlip();
                 let endpoint = pathname.includes('live')
                     ? "/v3/matches/live?id=" + id
-                    : "/32/matches?id=" + id;
+                    : "/v3/matches?id=" + id;
                 setInitialData()
                 if(live){
                     dispatchRedux(matchesMoreLiveMarkets({endpoint,method:"POST",data:betslip}))

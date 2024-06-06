@@ -47,60 +47,46 @@ const AllMarkets = React.memo((props) => {
     return str.replace(/\s/g, "");
   };
 
-  const setInitialData = () => {
-    const betslip = getBetslip();
-    const betslip_data = {
-      betslip_type: "betslip",
-      data: betslip,
-    };
-    Object.entries(betslip || {}).map(([matchId, match]) => {
-      let uc = clean(
-        match.match_id + "" + match.sub_type_id + (match?.bet_pick || "draw")
-      );
-      const reference = matchId + "_selected";
-      dispatchRedux(setSelected(reference, uc));
-    });
+        const setInitialData=()=>{
+            const betslip = getBetslip()
+            const betslip_data = {
+                betslip_type: 'betslip',
+                data: betslip
+            }
+            Object.entries(betslip || {}).map(([matchId, match]) => {
+                let uc = clean(
+                    match.parent_match_id +
+                    "" +
+                    match.sub_type_id +
+                    (match?.bet_pick || "draw")
+                );
+                const reference = matchId + "_selected";
+                dispatchRedux(setSelected(reference, uc));
+            });
 
     dispatchRedux(setMatchBetslip(betslip_data));
   };
   const pathname = window.location.pathname;
 
-  const fetchPagedData = async () => {
-    if (!isNaN(id)) {
-      let betslip = findPostableSlip();
-      let endpoint = pathname.includes("live")
-        ? "/v2/matches/live?id=" + id
-        : "/v2/matches?id=" + id;
-      setInitialData();
-      if (live) {
-        dispatchRedux(
-          matchesMoreLiveMarkets({ endpoint, method: "POST", data:betslip })
-        );
-        dispatchRedux(
-          startFetchingMoreMatches({
-            endpoint,
-            method: "POST",
-            data: betslip,
-            interval: 6000,
-            more_live: true,
-          })
-        );
-      } else {
-        dispatchRedux(
-          matchesMorePrematchMarkets({ endpoint, method: "POST", data: betslip })
-        );
-        dispatchRedux(
-          startFetchingMoreMatches({
-            endpoint,
-            method: "POST",
-            data: betslip,
-            interval: 20000,
-            more_prematch: true,
-          })
-        );
-      }
-    }
-  };
+        const fetchPagedData = async () => {
+            if (!isNaN(id)) {
+                let betslip = findPostableSlip();
+                let endpoint = pathname.includes('live')
+                    ? "/v3/matches/live?id=" + id
+                    : "/v3/matches?id=" + id;
+                setInitialData()
+                if(live){
+                    dispatchRedux(matchesMoreLiveMarkets({endpoint,method:"POST",data:betslip}))
+                    dispatchRedux(startFetchingMoreMatches({endpoint,method:"POST",data:betslip, interval:6000, more_live:true}));
+
+                }else{
+                    dispatchRedux(matchesMorePrematchMarkets({endpoint,method:"POST",data:betslip}))
+                    dispatchRedux(startFetchingMoreMatches({endpoint,method:"POST",data:betslip, interval:20000, more_prematch:true}));
+
+                }
+
+            }
+        };
 
   const getFavoriteMarkets = useCallback(async () => {
     dispatchRedux(favoriteMarkets());

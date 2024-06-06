@@ -77,10 +77,11 @@ const Right = React.memo((props) => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
   }, [appConfigs]);
 
-  const fetchLiveData = () => {
-    dispatchRedux(sportLiveCount());
-    dispatchRedux(startFetchingLiveCount({ interval: 30000 }));
-  };
+        const fetchLiveData = () => {
+            dispatchRedux(sportLiveCount())
+            dispatchRedux(startFetchingLiveCount({interval:30000}) )
+
+        };
 
   useEffect(() => {
     const abortController = new AbortController();

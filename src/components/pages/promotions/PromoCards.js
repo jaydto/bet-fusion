@@ -90,17 +90,17 @@ const PromoCards = () => {
       <div
         className={`row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"`}
       >
-        <div className="col-md-2 promo-styling shadow-lg promotion">
+         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp"}
+              src={"https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              MBUZI YA MADARAKA!
+              PAMBAZUKA NA JOGOO!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
               Deposit 100 shillings and place a bet of 100 bob or more on all
@@ -114,9 +114,9 @@ const PromoCards = () => {
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
                 onClick={() => {
-                  gaEventTracker("mbuzi_ya_madaraka");
+                  gaEventTracker("pambazuka_na_jogoo_3");
                   navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("mbuzi_ya_madaraka");
+                  setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo_3");
                 }}
               >
                 Bet Now!
@@ -127,7 +127,7 @@ const PromoCards = () => {
                 }
                 style={{ color: "#ea5d0b" }}
                 onClick={() => {
-                  navigate(`/promo?id=${ids[41]}`);
+                  navigate(`/promo?id=${ids[35]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
                 }}
               >
@@ -136,6 +136,7 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
+       
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
@@ -183,51 +184,7 @@ const PromoCards = () => {
         </div>
        
 
-        <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/QuarterWeb.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              KAQUARTER KA KUFUNGA SEASON!
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              Stake a minimum of 49 Kenyan Shillings from 00:00hrs to 23:59hrs
-              everyday and win a shopping worth 5,000 shillings
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("kaquarter_ka_funga_season");
-                  navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("kaquarter_ka_funga_season");
-                }}
-              >
-                Bet Now!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[38]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
@@ -417,17 +374,17 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-2 promo-styling shadow-lg promotion d-none">
+        <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">
             <img
-              src={"https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp"}
+              src={"https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              PAMBAZUKA NA JOGOO!
+              MBUZI YA MADARAKA!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
               Deposit 100 shillings and place a bet of 100 bob or more on all
@@ -442,9 +399,9 @@ const PromoCards = () => {
                 style={{ background: "#ea5d0b" }}
                 disabled={true}
                 onClick={() => {
-                  gaEventTracker("pambazuka_na_jogoo_3");
+                  gaEventTracker("mbuzi_ya_madaraka");
                   navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo_3");
+                  setUtmSouceCampaignOnPromotions("mbuzi_ya_madaraka");
                 }}
               >
                 Bet Now!
@@ -455,7 +412,7 @@ const PromoCards = () => {
                 }
                 style={{ color: "#ea5d0b" }}
                 onClick={() => {
-                  navigate(`/promo?id=${ids[35]}`);
+                  navigate(`/promo?id=${ids[41]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
                 }}
               >
@@ -464,6 +421,53 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/QuarterWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              KAQUARTER KA KUFUNGA SEASON!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Stake a minimum of 49 Kenyan Shillings from 00:00hrs to 23:59hrs
+              everyday and win a shopping worth 5,000 shillings
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                disabled={true}
+                onClick={() => {
+                  gaEventTracker("kaquarter_ka_funga_season");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("kaquarter_ka_funga_season");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[38]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+       
 
         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner promo-inactive">

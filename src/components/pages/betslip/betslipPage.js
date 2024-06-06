@@ -68,7 +68,6 @@ const BetslipPage = React.memo(() => {
 
     const hasLiveInterval = betslip.some((item) => item.live);
 
-    console.log("has live data ", hasLiveInterval);
 
     // Define the interval duration based on whether any betslip has a live interval
     const interval = hasLiveInterval ? 6000 : 20000;

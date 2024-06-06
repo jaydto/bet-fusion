@@ -180,11 +180,31 @@ export const setState = createAction("betting/set", (stateToSet, data) => {
   return { payload: { stateToSet, data } };
 });
 
+export const getSelectedResult = createAsyncThunk(
+  'betting/getSelectedResult',
+  async (reference, { getState, rejectWithValue }) => {
+    try {
+      const state = getState();
+      console.log("reference in redux state", reference);
+      const referencedState = state.betting[reference];
+      console.log("referencedState", referencedState);
+
+      if (!referencedState) {
+        throw new Error('Reference not found');
+      }
+
+      return referencedState;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const getSelected = (reference) => {
   return (dispatch, getState) => {
     const state = getState();
     const referencedState = state.betting[reference]; // Assuming 'betting' is your slice name
+
     return referencedState;
   };
 };
@@ -243,6 +263,7 @@ const bettingSlice = createSlice({
         }
         state.error = null;
       })
+      
       .addCase(stopBetslipValidationAction, (state) => {
         // state.isValidating = false;
       })

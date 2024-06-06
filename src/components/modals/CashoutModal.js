@@ -55,7 +55,6 @@ const CashoutModal = React.memo((props) => {
   };
 
   const handleSubmit = (values) => {
-    console.log("called_submit");
     const cashout_data = {
       bet_id: payload?.bet_id,
     };

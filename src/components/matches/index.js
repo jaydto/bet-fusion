@@ -60,6 +60,7 @@ import {
 } from "../../redux/matchesSlice";
 import {
   getSelected,
+  getSelectedResult,
   removePickedData,
   removeSelected,
   setMatchBetslip,
@@ -68,6 +69,7 @@ import {
 } from "../../redux/bettingSlice";
 import { setState } from "../../redux/dataSlice";
 import useWindowDimensions from "../header/Dimensions";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const clean = (_str) => {
   _str = _str.replace(/[^A-Za-z0-9\-]/g, "");
@@ -1911,7 +1913,9 @@ const MatchRow = React.memo((props) => {
                                 <div className=" c-btn-group  align-self-center">
                                   {odd_data?.odd_active == 1 &&
                                   odd_data.market_active == 1 &&
-                                  !(live && match?.event_status === "NotStarted") ? (
+                                  !(
+                                    live && match?.event_status === "NotStarted"
+                                  ) ? (
                                     <OddButton
                                       match={getUpdatedMatchFromOdds({
                                         match,
@@ -2285,6 +2289,438 @@ export const JackpotMatchList = React.memo((props) => {
         )}
       </div>
     </div>
+  );
+});
+
+export const JackpotMatchResultList = React.memo((props) => {
+  const { matches } = props;
+  const dispatchRedux = useDispatch();
+  useEffect(() => {
+    Object.entries(matches?.data || {}).map(([matchId, match]) => {
+      let uc = clear_rep(
+        "jpResult_" +
+          match?.match_id.toString() +
+          match?.sub_type_id.toString() +
+          (match?.outcome || "")
+      );
+
+      const reference = "jpResult_" + match?.match_id.toString() + "_selected";
+
+      dispatchRedux(setSelected(reference, uc));
+    });
+  }, []);
+
+  return (
+    <div className="matches full-width mt-1 ">
+      <MatchHeaderRow jackpot={true} first_match={matches ? matches[0] : []} />
+      <div className={"row d-flex flex-row justify-content-between"}>
+        <div className="col-md-12 text-center">
+          <div className={"text-white col text-header-jackpot"}>
+            <p>
+              {" "}
+              {matches?.meta?.name
+                ? "JP EVENT " + matches?.meta?.name
+                : "PLEASE MAKE A SELECTION FOR JP EVENT"}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="web-element jackpot-page top-login-background-img-bg w-100">
+        {matches ? (
+          Object.entries(matches?.data).map(([key, match], index) => (
+            <JpMatchRow match={match} jackpot key={index} />
+          ))
+        ) : (
+          <></>
+        )}
+        {matches !== null && matches?.length === 0 && (
+          <div className="top-matches row  mx-2">No events found.</div>
+        )}
+      </div>
+    </div>
+  );
+});
+
+const JpMatchRow = React.memo((props) => {
+  const { match, jackpot, live, pdown } = props;
+  let url = new URL(window.location);
+
+  let sub_types = (url.searchParams.get("sub_type_id") || "1")?.split(",");
+  const [totalMarkets] = useState(sub_types.length);
+  let append = totalMarkets - Object.keys(match?.extra_odds || {}).length - 1;
+  let loops = [];
+  for (let i = 0; i < append; i++) {
+    loops.push(i);
+  }
+
+  return (
+    <div className="top-matches d-flex flex-sm-column flex-lg-row  styling-matches px-lg-2">
+      <div className="to-deskview to-block to-tabview  mx-lg-0 px-sm-4 px-md-2 px-lg-0 py-md-4 py-lg-0 mt-2 container-size-match ">
+        <div className="size-info mobile-for-desktop d-flex col-xs-12 pad left-text flex-row live-col border-0">
+          <div
+            className={`d-flex flex-column px-1 justify-content-sm-center justify-content-md-start change-date1 mobile-remove display-ipad-remove-id ${
+              jackpot ? "jackpot-width" : ""
+            }`}
+          >
+            <span
+              className={
+                "date-size wrapping px-sm-3 px-md-0 date-remove display-ipad-remove-id"
+              }
+            >
+              <>
+                <>
+                  {match?.event_status == undefined ? (
+                    ""
+                  ) : (
+                    <div className={"d-flex align-items-center gap-4"}>
+                      <span className={"match-status"}>
+                        {match?.match_status}'
+                      </span>
+                      <span className={"live-status"}>
+                        {match?.event_status}'
+                      </span>
+                    </div>
+                  )}
+
+                  <span
+                    className={"d-flex align-items-center"}
+                    style={live ? { color: "var(--red)" } : {}}
+                  >
+                    <FormatDate2
+                      live={live}
+                      start_time={match?.start_time}
+                      match_time={match?.match_time}
+                    />
+                  </span>
+                </>
+              </>
+            </span>
+            <>ID: {match?.game_id}</>
+          </div>
+          <div
+            className={`col align-items-center col-xs-12 match-detail-container px-2 change-match only-mobile ${
+              jackpot ? "align-self-center" : ""
+            }`}
+          >
+            <Link
+              className={"odds-container-size"}
+              to={
+                jackpot
+                  ? "#"
+                  : `/match/${
+                      live ? "live/" + match?.parent_match_id : match?.match_id
+                    }`
+              }
+            >
+              <div className="d-flex flex-column">
+                <div className="compt-detail overflow-ellipsis team_category_game d-flex gap-2 align-items-center">
+                  <LazyLoadImage
+                    src={getSportImageIcon(match.sport_name || "Soccer")}
+                    effect={"blur"}
+                    style={{
+                      maxWidth: "var(--icon-size)",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  />
+                  <small className={"d-flex align-items-center"}>
+                    {match?.category} | {match?.competition_name}
+                  </small>
+                </div>
+                <div className="compt-teams d-flex flex-xl-column flex-column flex-md-row">
+                  <div className={"bold compt-teams-item"}>
+                    <span className="opacity-reduce-txt vs-styling">
+                      {}
+                      {match?.winning_outcome?.split(":")[0] ?? "-"}
+                    </span>
+                    {match?.home_team}
+                  </div>
+                  <div className={"bold compt-teams-item"}>
+                    <span className="opacity-reduce-txt vs-styling">
+                      {match?.winning_outcome?.split(":")[1] ?? "-"}
+                    </span>
+                    {match?.away_team}
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <div className={"tag_container"}>
+              {match?.tags?.length
+                ? match?.tags.map((tag, index) => (
+                    <span
+                      className="tag"
+                      key={index}
+                      style={{
+                        backgroundColor: `${tag.background_color}`,
+                        color: `${tag.color}`,
+                      }}
+                    >
+                      {tag.name}
+                    </span>
+                  ))
+                : ""}
+            </div>
+          </div>
+        </div>
+        <hr className={"to-block m-sm-1 m-md-1 m-lg-0"} />
+        <div
+          className={`col d-flex  space-bets justify-content-lg-between  justify-spacing-ipad card-small`}
+        >
+          <div className={`d-flex to-flex-1 ${jackpot ? "w-100" : " "}`}>
+            <div className="c-btn-group align-self-center to-flex-1 to-tabview">
+              <div className="d-flex flex-row ">
+                <div className="d-flex flex-column text-center text-white fit-ipad w-100 align-items-end">
+                  <div className="d-flex flex-row px-1 justify-content-end change-date1 mobile-only display-ipad-dates">
+                    <div className={"px-1 wrapping mobile-display-game-id"}>
+                      ID: {match?.game_id}
+                    </div>
+                    <span className={"date-size wrapping px-3"}>
+                      <>
+                        <>
+                          {match?.event_status === undefined ? (
+                            ""
+                          ) : (
+                            <div className={"d-flex align-items-center gap-4"}>
+                              <span className={"match-status"}>
+                                {match?.match_status}'
+                              </span>
+                              <span className={"live-status"}>
+                                {match?.event_status}'
+                              </span>
+                            </div>
+                          )}
+                          <FormatDate2
+                            live={live}
+                            start_time={match?.start_time}
+                            match_time={match?.match_time}
+                          />
+                        </>
+                      </>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className={`c-btn-group align-self-center checking ${
+                jackpot ? "w-100" : ""
+              }`}
+            >
+              {match?.odds?.home_odd ? (
+                match?.odds?.home_odd &&
+                ((!pdown &&
+                  match?.odds?.home_odd &&
+                  match?.odds.home_odd !== "NaN" &&
+                  match?.market_active == 1 &&
+                  match?.odds.home_odd_active == 1) ||
+                  jackpot) ? (
+                  <JpOddButton
+                    match={{
+                      ...match,
+                      ucn: clear_rep(
+                        jackpot
+                          ? "jpResult_" +
+                              match.match_id +
+                              "" +
+                              match.sub_type_id +
+                              match?.home_team
+                          : match.match_id +
+                              "" +
+                              match.sub_type_id +
+                              match?.home_team
+                      ),
+                    }}
+                    mkt="home_team"
+                    live={live}
+                    jackpot={jackpot}
+                  />
+                ) : (
+                  <EmptyTextRow odd_key={match?.odd_key} live={live} />
+                )
+              ) : match?.odds?.home_odd ? (
+                <EmptyTextRow odd_key={match?.odd_key} live={live} />
+              ) : (
+                ""
+              )}
+              {match?.odds?.neutral_odd ? (
+                (!pdown &&
+                  match?.odds?.neutral_odd &&
+                  match.odds.neutral_odd !== "NaN" &&
+                  match?.market_active == 1 &&
+                  match.odds.neutral_odd_active == 1) ||
+                jackpot ? (
+                  <JpOddButton
+                    match={{
+                      ...match,
+                      ucn: clear_rep(
+                        jackpot
+                          ? "jpResult_" +
+                              match.match_id +
+                              "" +
+                              match.sub_type_id +
+                              "draw"
+                          : match.match_id + "" + match.sub_type_id + "draw"
+                      ),
+                    }}
+                    mkt="draw"
+                    live={live}
+                    jackpot={jackpot}
+                  />
+                ) : (
+                  <EmptyTextRow odd_key={match?.odd_key} live={live} />
+                )
+              ) : (
+                ""
+              )}
+              {match?.odds?.away_odd ? (
+                match?.odds?.away_odd &&
+                ((!pdown &&
+                  match?.odds?.away_odd &&
+                  match?.odds.away_odd !== "NaN" &&
+                  match.market_active == 1 &&
+                  match?.odds.away_odd_active == 1) ||
+                  jackpot) ? (
+                  <JpOddButton
+                    match={{
+                      ...match,
+                      ucn: clear_rep(
+                        jackpot
+                          ? "jpResult_" +
+                              match.match_id +
+                              "" +
+                              match.sub_type_id +
+                              match?.away_team
+                          : match.match_id +
+                              "" +
+                              match.sub_type_id +
+                              match?.away_team
+                      ),
+                    }}
+                    mkt="away_team"
+                    live={live}
+                    jackpot={jackpot}
+                  />
+                ) : (
+                  <EmptyTextRow odd_key={match?.odd_key} live={live} />
+                )
+              ) : match?.odds?.away_odd ? (
+                <EmptyTextRow odd_key={match?.odd_key} live={live} />
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+const JpOddButton = React.memo((props) => {
+  const { match, mkt, detail, live, jackpot, allMarkets } = props;
+  const [picked, setPicked] = useState("");
+
+  const dispatchRedux = useDispatch();
+  const ref = useRef();
+
+  let reference = "jpResult_" + match.match_id + "_selected";
+
+  const updatePicked = useCallback(async () => {
+
+    const referencedValue = dispatchRedux(getSelected(reference));
+    // const referencedState=unwrapResult(referencedValue)
+    const referencedState=referencedValue
+
+    console.log("referencedStateValue", referencedState)
+
+
+    if (typeof referencedState === "string") {
+    let uc = clear_rep(
+      match.match_id +
+        "" +
+        match.sub_type_id +
+        (match?.[mkt] || match?.odd_key || "draw")
+    );
+
+    uc="jpResult_" + uc;
+    if (referencedState === uc) {
+            setPicked("picked");
+          } else {
+            setPicked("");
+          }
+        } else if (typeof referencedState !== "string") {
+          setPicked("");
+        }
+  }, [reference, match, jackpot, mkt]);
+
+  useEffect(() => {
+    setTimeout(()=>{
+      updatePicked();
+    },50)
+    
+  }, [updatePicked]);
+
+
+  return (
+    <button
+      ref={ref}
+      className={`home-team ${
+        allMarkets ? "all-markets" : jackpot ? " jackpot-buttons-size" : ""
+      } ${match.match_id} ${match?.ucn} ${picked} c-btn`}
+      home_team={match.home_team}
+      odd_type={match?.name || match?.market_name || "1X2"}
+      bet_type={live ? 1 : 0}
+      start_time={match?.start_time}
+      away_team={match.away_team}
+      market_active={match.market_active}
+      odd_value={
+        mkt === "home_team"
+          ? match?.odds?.home_odd
+          : mkt === "away_team"
+          ? match?.odds?.away_odd
+          : mkt === "draw"
+          ? match?.odds?.neutral_odd || match?.odd_key
+          : match?.odd_value
+      }
+      odd_key={match?.[mkt] || match?.odd_key || "draw"}
+      parent_match_id={match.parent_match_id}
+      match_id={match.match_id}
+      custom={match?.ucn}
+      id={match?.ucn}
+      sport_name={match?.sport_name}
+      sport_id={match.sport_id}
+      sub_type_id={match.sub_type_id}
+      special_bet_value={match?.special_bet_value || ""}
+    >
+      <>
+        {!detail && (
+          <span className="theodds odd-fix">
+            {mkt === "home_team"
+              ? match?.odds?.home_odd
+              : mkt === "away_team"
+              ? match?.odds?.away_odd
+              : mkt === "draw"
+              ? match?.odds?.neutral_odd || match?.odd_key
+              : match?.odd_value}
+          </span>
+        )}
+        {detail && (
+          <>
+            <span className="label label-inverse blueish">
+              {match.display_name}
+            </span>
+            <span className="label label-inverse blueish odd-value">
+              {mkt == "home_team"
+                ? match?.odds?.home_odd
+                : mkt == "away_team"
+                ? match?.odds?.away_odd
+                : mkt == "draw"
+                ? match?.odds?.neutral_odd || match?.odd_key
+                : match?.odd_value}
+            </span>
+          </>
+        )}
+      </>
+    </button>
   );
 });
 

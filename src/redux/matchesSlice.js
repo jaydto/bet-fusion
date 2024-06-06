@@ -1158,13 +1158,14 @@ const matchesSlice = createSlice({
         state.jackpot_loading = true;
       })
       .addCase(jackpotById.fulfilled, (state, action) => {
-        state.jackpot_loading = false;
         state.error = null;
         state.jackpot_by_id = action.payload;
+        state.jackpot_loading = false;
       })
       .addCase(jackpotById.rejected, (state, action) => {
-        state.jackpot_loading = false;
         state.error = action.error.message;
+        state.jackpot_loading = false;
+
       })
       .addCase(setInitialLoadingState, (state, action) => {
         const {

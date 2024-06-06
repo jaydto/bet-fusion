@@ -90,7 +90,7 @@ const PromoCards = () => {
       <div
         className={`row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"`}
       >
-         <div className="col-md-2 promo-styling shadow-lg promotion d-none">
+         <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
               src={"https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp"}

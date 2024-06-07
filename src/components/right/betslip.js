@@ -504,7 +504,7 @@ const BetSlip = React.memo((props) => {
       changeCallback && changeCallback(betSlipState);
 
       let cstm = clear_rep(
-        attributes.match_id + "" + attributes.sub_type_id + attributes.odd_key
+        attributes.parent_match_id + "" + attributes.sub_type_id + attributes.odd_key
         //  +
         // (marketKey !== undefined ? marketKey : "")
       );
@@ -555,9 +555,10 @@ const BetSlip = React.memo((props) => {
 
       // if (cstm === match?.ucn) {
       let betslip;
+      console.log("parent_match_id", event.externalEvent.id)
       const updateRedux = () => {
         betslip = addToSlip(slip);
-        dispatchRedux(setSelected(event.externalEvent.id + "_selected", cstm));
+        dispatchRedux(setSelected(attributes.parent_match_id + "_selected", cstm));
         dispatchRedux(setPickedData(cstm));
       };
 

@@ -52,6 +52,9 @@ body {
 
 }
 /* end self excluison */
+.sr-bb .sr-br-cards-container__wrapper.srm-padding-top{
+  padding-top: 8px!important;
+}
 
 .link-color {
   color: var(--link-color) !important;

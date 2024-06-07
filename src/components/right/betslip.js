@@ -504,7 +504,10 @@ const BetSlip = React.memo((props) => {
       changeCallback && changeCallback(betSlipState);
 
       let cstm = clear_rep(
-        attributes.parent_match_id + "" + attributes.sub_type_id + attributes.odd_key
+        attributes.parent_match_id +
+          "" +
+          attributes.sub_type_id +
+          attributes.odd_key
         //  +
         // (marketKey !== undefined ? marketKey : "")
       );
@@ -526,7 +529,7 @@ const BetSlip = React.memo((props) => {
       //   priority = Math.max(...Object.values(betItems).map(item => item.priority)) + 1;
       // }
 
-      const priority = Object.keys(betItems|| {}).length + 1; // Incremental priority
+      const priority = Object.keys(betItems || {}).length + 1; // Incremental priority
       const slip = {
         match_id: attributes.match_id ?? attributes.parent_match_id,
         parent_match_id: attributes.parent_match_id,
@@ -555,10 +558,12 @@ const BetSlip = React.memo((props) => {
 
       // if (cstm === match?.ucn) {
       let betslip;
-      console.log("parent_match_id", event.externalEvent.id)
+      console.log("parent_match_id", event.externalEvent.id);
       const updateRedux = () => {
         betslip = addToSlip(slip);
-        dispatchRedux(setSelected(attributes.parent_match_id + "_selected", cstm));
+        dispatchRedux(
+          setSelected(attributes.parent_match_id + "_selected", cstm)
+        );
         dispatchRedux(setPickedData(cstm));
       };
 
@@ -680,6 +685,10 @@ const BetSlip = React.memo((props) => {
             ) : (
               <div className="widgets mt-3 mobile-widget-position">
                 <div>
+                 { <h4 className="px-4 mb-0 mt-5" style={{ color: "var(--grey)" }}>
+                    Recommended Picks
+                  </h4>}
+
                   <div className="sr-widget sr-widget-bets"></div>
                 </div>
                 {/* <div>

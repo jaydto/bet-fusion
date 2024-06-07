@@ -413,8 +413,6 @@ const BetSlip = React.memo((props) => {
     combinedOddsValue: undefined,
   };
 
-
-
   useEffect(() => {
     // Extract all keys from betslipsData and reverse the array
     const allKeys = Object.keys(betslipsData || []).reverse();
@@ -474,6 +472,7 @@ const BetSlip = React.memo((props) => {
     console.log("checking what is the data", event);
     if (target === "externalOutcome") {
       // console.log("target data", event.externalMarket.status.isActive)
+
       const attributes = {
         parent_match_id: event?.externalEvent?.id,
         // match_id: event.currentTarget.getAttribute("match_id"),
@@ -520,6 +519,14 @@ const BetSlip = React.memo((props) => {
         });
       };
       const betItems = getBetslip();
+      // let priority = 1; // Initialize priority value
+
+      // // Calculate the next priority value by finding the maximum priority currently in the betslip and adding one
+      // if (Object.keys(betItems).length > 0) {
+      //   priority = Math.max(...Object.values(betItems).map(item => item.priority)) + 1;
+      // }
+
+      const priority = Object.keys(betItems).length + 1; // Incremental priority
       const slip = {
         match_id: attributes.match_id ?? attributes.parent_match_id,
         parent_match_id: attributes.parent_match_id,
@@ -542,6 +549,7 @@ const BetSlip = React.memo((props) => {
         ),
         market_active: attributes.market_active,
         position: 0,
+        priority: priority, // Assign priority
       };
       console.log("target data", slip);
 
@@ -611,8 +619,9 @@ const BetSlip = React.memo((props) => {
                 <DecodeCode />
               )
             ) : (
-              Object.entries(betslipsData || {}).map(
-                ([match_id, slip], index) => {
+              Object.entries(betslipsData || {})
+                .sort(([, slipA], [, slipB]) => slipA.priority - slipB.priority)
+                .map(([match_id, slip], index) => {
                   let odd = slip.odd_value;
                   let no_odd_bg = odd === 1 ? "#f29f7a" : "";
                   // console.log(slip)
@@ -662,8 +671,7 @@ const BetSlip = React.memo((props) => {
                       </div>
                     </div>
                   );
-                }
-              )
+                })
             )}
             {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
             betslipsData == null ? (

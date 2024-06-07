@@ -291,7 +291,7 @@ const BetslipSubmitForm = React.memo((props) => {
       msisdn: user?.msisdn,
       accept_all_odds_change: values.accept_all_odds_change,
     };
-    let endpoint = "/v2/bet";
+    let endpoint = "/v3/bet";
     let method = "POST";
     let use_jwt = true;
     dispatchRedux(setState("deposits_message", null));
@@ -301,6 +301,7 @@ const BetslipSubmitForm = React.memo((props) => {
     //     data: payload
     // }
     // gaEventTracker("Bet Placed", data)
+    if (values.user_id === undefined) return;
     dispatchRedux(
       bettingMatchesGames({
         endpoint: endpoint,
@@ -317,7 +318,7 @@ const BetslipSubmitForm = React.memo((props) => {
           setMessage(response?.payload);
           let betslips = getBetslip();
           Object.entries(betslips).map(([match_id, match]) => {
-            let match_selector = match.match_id + "_selected";
+            let match_selector = match.parent_match_id + "_selected";
 
             dispatchRedux(resetStateBetslip("betslip"));
             dispatchRedux(resetStateBetslip("picked"));
@@ -546,7 +547,12 @@ const BetslipSubmitForm = React.memo((props) => {
   const validate = (values) => {
     let errors = {};
 
-    if (!values.user_id && !hasExpiredItems) {
+    if (
+      (!values.user_id ||
+        values.user_id?.length === 0 ||
+        values.user_id === undefined) &&
+      !hasExpiredItems
+    ) {
       // errors.user_id = "Kindly login to proceed";
       // setMessage({status: 400, message: errors.user_id});
       // return errors;
@@ -590,7 +596,7 @@ const BetslipSubmitForm = React.memo((props) => {
     let settings = getFromLocalStorage("settings");
 
     let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs);
-    console.log("toatal games", totalGames)
+    console.log("toatal games", totalGames);
 
     if (totalGames < giftMinGames) {
       setHasMultiBetBoost(false);
@@ -653,8 +659,10 @@ const BetslipSubmitForm = React.memo((props) => {
 
       setMultiBoostAmount(0);
     } else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
-      boost = ((Number(settings?.betnareGifts?.giftBoostPercentage) || 20) / 100) * stake
-      
+      boost =
+        ((Number(settings?.betnareGifts?.giftBoostPercentage) || 20) / 100) *
+        stake;
+
       if (isNaN(boost)) {
         boost = 0;
       }
@@ -667,7 +675,7 @@ const BetslipSubmitForm = React.memo((props) => {
         setMultiBoostAmount(boost);
         setHasMultiBetBoost(true);
 
-        let boostedStake = Number(stake) +boost;
+        let boostedStake = Number(stake) + boost;
         boostedStake = formatNumber(boostedStake);
         dispatchRedux(
           setMatchBetslipOptions("betslip_options", {
@@ -792,9 +800,9 @@ const BetslipSubmitForm = React.memo((props) => {
       // let slip=
       jackpot ? removeFromJackpotSlip(match_id) : removeFromSlip(match_id);
 
-      let match_selector = match.match_id + "_selected";
+      let match_selector = match.parent_match_id + "_selected";
       let ucn = clean_rep(
-        match.match_id + "" + match.sub_type_id + match.bet_pick
+        match.parent_match_id + "" + match.sub_type_id + match.bet_pick
       );
 
       // dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
@@ -803,7 +811,13 @@ const BetslipSubmitForm = React.memo((props) => {
       //     ucn:"remove." + ucn
       // }
       // dispatchRedux(removeSlipSelection(match_items));
-      dispatchRedux(removeSelected(match_selector));
+      // dispatchRedux(removeSelected(match_selector))
+      const betslip_data = {
+        betslip_type: "betslip",
+        data: [],
+      };
+
+      dispatchRedux(setMatchBetslip(betslip_data));
       dispatchRedux(removeSelected(match_selector));
       dispatchRedux(setMatchBetslipOptions("betslipLength", 0));
     });

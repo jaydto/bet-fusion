@@ -52,6 +52,9 @@ body {
 
 }
 /* end self excluison */
+.sr-bb .sr-br-cards-container__wrapper.srm-padding-top{
+  padding-top: 8px!important;
+}
 
 .link-color {
   color: var(--link-color) !important;
@@ -182,8 +185,13 @@ input.text-white {
 .text-white {
   color: var(--footer-color) !important;
 }
+<<<<<<< HEAD
+/* todo check on this  */
+/* .styling-matches {
+=======
 
 /* . styling-matches {
+>>>>>>> origin/main
   -webkit-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   -moz-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
   box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
@@ -1482,7 +1490,13 @@ img.nare-league {
     display: grid;
     align-items: flex-start;
     height: 90vh !important;
+    max-width: 991px;
+    margin: auto;
   }
+  /* .slip-max-height div{
+    
+    width: 100%;
+  } */
 
   .share-button-styling {
     white-space: nowrap;
@@ -1940,6 +1954,39 @@ img.nare-league {
     margin-top: 98px;
   }
 } */
+
+@media (min-width:992px) and (max-width:1080px){
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 45vh;
+  }
+
+}
+@media (min-width: 1081px) and (max-width: 1280px) {
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 50vh;
+  }
+}
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 55vh;
+  }
+}
+@media (min-width: 1441px) and (max-width: 1680px) {
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 57vh;
+  }
+}
+@media (min-width: 1681px) {
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+}
+
 @media (min-width: 992px) {
   .ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
         top: 100px!important;
@@ -2189,18 +2236,14 @@ img.nare-league {
 
   .slip-top {
     overflow-y: auto;
-    max-height: 50vh;
+    /* max-height: 50vh; */
   }
 
   .slip-height {
     overflow-y: auto;
-    max-height: 50vh;
+    /* max-height: 50vh; */
   }
 
-  .slip-log-max {
-    overflow-y: auto;
-    max-height: 40vh;
-  }
 
   .size-all-markets {
     width: 110% !important;
@@ -2340,6 +2383,12 @@ button#countryCode {
   transition: display linear 0.7s;
 }
 @media (max-width: 991px) {
+
+  .mobile-widget-position{
+    /* position:absolute; */
+    width: 100%;
+  }
+
   /* notification antd */
 .ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper
 {  top:119px!important;
@@ -3075,11 +3124,12 @@ button#countryCode {
   .bottom {
     position: sticky;
     bottom: 18rem;
+    background: var(--betnare-body-bg);
   }
 
   .slip-bottom-betlip-active {
     margin-bottom: 21rem !important;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     position: sticky;
     top: 0px;
     width: 100%;
@@ -3160,7 +3210,7 @@ button#countryCode {
 
   .slip-bottom-betlip {
     margin-bottom: var(--slip-bottom) !important;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     position: sticky;
     top: 0px;
     width: 100%;
@@ -3168,7 +3218,7 @@ button#countryCode {
 
   .slip-bottom-betlip-active {
     margin-bottom: var(--slip-bottom-space) !important;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     position: sticky;
     top: 0px;
     width: 100%;
@@ -3741,14 +3791,23 @@ button#countryCode {
     right: -13rem;
   }
 
-  .slip-top {
+  /* .slip-top {
     top: 9rem;
     height: 75vh;
     overflow: auto;
     position: absolute;
     width: 100vw;
     margin-right: 2rem;
-  }
+  } */
+  .slip-top {
+    top: 3rem;
+    /* height: 84vh; */
+    height: 80vh;
+    overflow: auto;
+    position: absolute;
+    width: 100vw;
+    margin-right: 2rem;
+}
 
   .bloc-icon {
     width: 20%;

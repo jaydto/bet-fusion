@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import './assets/css/application.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/tolkits.css';
+import './assets/css/viax.css';
 import './assets/css/sidebar-menu.css';
 import './index.css';
 import './assets/css/newCss.css'

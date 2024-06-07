@@ -3,9 +3,9 @@ import {getFromLocalStorage, removeItem, setLocalStorage} from './local-storage'
 export const   addToSlip = (slip) => {
     let current_slip = getFromLocalStorage('betslip');
     if(current_slip){
-        current_slip[slip.match_id] = slip;
+        current_slip[slip.parent_match_id] = slip;
     } else {
-        current_slip = {[slip.match_id] : slip};
+        current_slip = {[slip.parent_match_id] : slip};
     }
     setLocalStorage('betslip', current_slip, 1*60*60*1000);
     return current_slip;

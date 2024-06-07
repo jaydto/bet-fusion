@@ -1,7 +1,14 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import BetslipSubmitForm from "./betslip-submit-form";
 import { StoreContext } from "../../context/store";
 import {
+  addToSlip,
   findPostableSlip,
   getBetslip,
   getJackpotBetslip,
@@ -17,21 +24,24 @@ import {
   removePickedData,
   removeSelected,
   setMatchBetslip,
+  removeSlipSelection,
+  setPickedData,
+  setSelected,
   startBetslipValidation,
   stopBetslipValidation,
 } from "../../redux/bettingSlice";
+import Notify from "../utils/Notify";
 
 const clean_rep = (str) => {
   str = str.replace(/[^A-Za-z0-9\-]/g, "");
   return str.replace(/-+/g, "-");
 };
 
-
 const SlipLink2 = ({ slip }) => {
   const isDisabled = slip?.disable;
   const linkTo =
     slip?.bet_type === "0"
-      ? `/match/${slip?.match_id}`
+      ? `/match/${slip?.parent_match_id}`
       : `/match/live/${slip?.parent_match_id}`;
   return (
     <Link
@@ -79,6 +89,10 @@ const BetSlip = React.memo((props) => {
   const [settings] = useState(getFromLocalStorage("settings"));
   const { height } = useWindowDimensions();
   const dispatchRedux = useDispatch();
+  const widgetRef = useRef(null);
+  const prevKeysRef = useRef([]);
+
+  // const [similarEventIds, setSimilarEventIds] = useState([]);
 
   const [, setPopUpHeight] = useState(0);
   const [totalOdds, setTotalOdds] = useState(1);
@@ -120,7 +134,7 @@ const BetSlip = React.memo((props) => {
       let clone_slip = { ...betslipsData }; // Create a shallow clone of betslipsData
 
       Object.entries(betslipValidationData)?.forEach(([key, slipdata]) => {
-        let match_id = slipdata.match_id;
+        let match_id = slipdata.parent_match_id;
         let slip = clone_slip[match_id];
         if (slip) {
           console.log(" odd active values ", slipdata.odd_active);
@@ -257,10 +271,12 @@ const BetSlip = React.memo((props) => {
   const handledRemoveSlip = (match) => {
     let betslip =
       jackpot !== true
-        ? removeFromSlip(match.match_id)
+        ? removeFromSlip(match.parent_match_id)
         : removeFromJackpotSlip(match.match_id);
 
-    let match_selector = match.match_id + "_selected";
+    let match_selector = jackpot
+      ? match.match_id + "_selected"
+      : match.parent_match_id + "_selected";
     let ucn = clean_rep(
       match.match_id + "" + match.sub_type_id + match.bet_pick
     );
@@ -382,6 +398,202 @@ const BetSlip = React.memo((props) => {
     // Set the pop up component height to be 20% of the remaining screen height
     setPopUpHeight(remainingScreenHeight);
   }, []);
+
+  let changeCallback = undefined;
+
+  // Function to register a callback for bet slip changes
+  function onBetSlipChanged(callback) {
+    changeCallback = callback;
+    changeCallback && changeCallback(betSlipState);
+  }
+
+  // Initialize the betSlipState object
+  let betSlipState = {
+    betslip: [],
+    combinedOddsValue: undefined,
+  };
+
+  useEffect(() => {
+    // Extract all keys from betslipsData and reverse the array
+    const allKeys = Object.keys(betslipsData || []).reverse();
+
+    // Check if there is a new key added
+    const isNewKeyAdded = allKeys.some(
+      (key) => !prevKeysRef.current.includes(key)
+    );
+
+    // Check if any key is removed
+    const isKeyRemoved = prevKeysRef.current.some(
+      (key) => !allKeys.includes(key)
+    );
+
+    console.log("is New Key added", isNewKeyAdded);
+    console.log("is Key removed", isKeyRemoved);
+
+    if (isNewKeyAdded || isKeyRemoved) {
+      // Update prevKeysRef with current keys
+      prevKeysRef.current = allKeys;
+
+      // Set similarEventIds with the reversed array of keys
+      // setSimilarEventIds(allKeys);
+
+      // Configure SIR and add Widget 1 with updated similarEventIds
+      window.SIR("registerAdapter", "betnare", {
+        onBetSlipChanged: onBetSlipChanged,
+      });
+      window.SIR(
+        "addWidget",
+        ".sr-widget-bets",
+        "betRecommendation.similarBets",
+        {
+          maxRows: 1,
+          cardsLayout: "horizontal",
+          similarEventIds: allKeys, // Pass the reversed array directly
+          onItemClick: handleButtonOnClick,
+          user: user ? user.profile_id : null,
+          sportsMapping: {
+            172: 10,
+          },
+        }
+      );
+    }
+
+    return () => {
+      // Clean up code here if needed
+    };
+  }, [betslipsData]);
+
+  const clear_rep = (str) => {
+    return str.replace(/\s/g, "");
+  };
+
+  const handleButtonOnClick = (target, event) => {
+    console.log("checking what is the target", target);
+    console.log("checking what is the data", event);
+    if (target === "externalOutcome") {
+      // console.log("target data", event.externalMarket.status.isActive)
+
+      const attributes = {
+        parent_match_id: event?.externalEvent?.id,
+        // match_id: event.currentTarget.getAttribute("match_id"),
+        sub_type_id: event?.externalMarket?.id,
+        // special_bet_value: event.currentTarget.getAttribute("special_bet_value"),
+        odd_key: event?.externalOutcome?.name,
+        odd_value: event?.externalOutcome?.odds,
+        bet_type: event?.externalEvent?.isLive === false ? "0" : "1",
+        odd_type: event?.externalMarket?.name,
+        start_time: event?.externalEvent?.date,
+        home_team: event?.externalEvent?.teams[0]?.name,
+        away_team: event?.externalEvent?.teams[1]?.name,
+        sport_name: event?.externalEvent?.sport.name,
+        market_active: event?.externalMarket?.status.isActive,
+      };
+
+      const newBet = {
+        externalEventId: event?.externalEvent.id,
+        externalMarketId: event?.externalMarket.id,
+        externalOutcomeId: event?.externalOutcome.id,
+      };
+
+      betSlipState = {
+        betslip: [...betSlipState.betslip, newBet],
+        // combinedOddsValue: '14.52' // Just an example, replace with your actual calculation
+      };
+
+      // Update the betSlipState by adding the new bet and the combinedOddsValue
+      changeCallback && changeCallback(betSlipState);
+
+      let cstm = clear_rep(
+        attributes.parent_match_id +
+          "" +
+          attributes.sub_type_id +
+          attributes.odd_key
+        //  +
+        // (marketKey !== undefined ? marketKey : "")
+      );
+      const maxPickReached = () => {
+        // console.log("max_pick_reached")
+        dispatchRedux(removePickedData(" "));
+        // dispatchRedux(removePickedData(""));
+        Notify({
+          status: 401,
+          message: "Maximum selections reached",
+          token: "",
+        });
+      };
+      const betItems = getBetslip();
+      // let priority = 1; // Initialize priority value
+
+      // // Calculate the next priority value by finding the maximum priority currently in the betslip and adding one
+      // if (Object.keys(betItems).length > 0) {
+      //   priority = Math.max(...Object.values(betItems).map(item => item.priority)) + 1;
+      // }
+
+      const priority = Object.keys(betItems || {}).length + 1; // Incremental priority
+      const slip = {
+        match_id: attributes.match_id ?? attributes.parent_match_id,
+        parent_match_id: attributes.parent_match_id,
+        special_bet_value: "",
+        sub_type_id: attributes.sub_type_id,
+        bet_pick: attributes.odd_key,
+        start_time: attributes.start_time,
+        odd_value: attributes.odd_value,
+        home_team: attributes.home_team,
+        away_team: attributes.away_team,
+        bet_type: attributes.bet_type,
+        odd_type: attributes.odd_type,
+        sport_name: attributes.sport_name,
+        live: live,
+        ucn: clear_rep(
+          `${attributes.match_id ?? attributes.parent_match_id}${
+            attributes.sub_type_id
+          }${attributes.odd_key}
+                    `
+        ),
+        market_active: attributes.market_active,
+        position: 0,
+        priority: priority, // Assign priority
+      };
+      console.log("target data", slip);
+
+      // if (cstm === match?.ucn) {
+      let betslip;
+      console.log("parent_match_id", event.externalEvent.id);
+      const updateRedux = () => {
+        betslip = addToSlip(slip);
+        dispatchRedux(
+          setSelected(attributes.parent_match_id + "_selected", cstm)
+        );
+        dispatchRedux(setPickedData(cstm));
+      };
+
+      updateRedux();
+
+      if (
+        Object.keys(betItems || {}).length ===
+        Number(settings?.sportsBookLimits?.multiBetMaxSelections)
+      ) {
+        maxPickReached();
+      } else {
+        updateRedux();
+      }
+
+      const betslip_data = {
+        betslip_type: "betslip",
+        data: betslip,
+      };
+
+      dispatchRedux(setMatchBetslip(betslip_data));
+    }
+  };
+
+  useEffect(() => {
+    // Scroll to the widget element when the component mounts
+    if (widgetRef.current) {
+      widgetRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, []);
+
   const pathLocation = window.location.pathname;
   return (
     <div className="bet-body text-white">
@@ -413,8 +625,9 @@ const BetSlip = React.memo((props) => {
                 <DecodeCode />
               )
             ) : (
-              Object.entries(betslipsData || {}).map(
-                ([match_id, slip], index) => {
+              Object.entries(betslipsData || {})
+                .sort(([, slipA], [, slipB]) => slipA.priority - slipB.priority)
+                .map(([match_id, slip], index) => {
                   let odd = slip.odd_value;
                   let no_odd_bg = odd === 1 ? "#f29f7a" : "";
                   // console.log(slip)
@@ -441,7 +654,6 @@ const BetSlip = React.memo((props) => {
                           key={match_id}
                           style={{ background: no_odd_bg }}
                         >
-                         
                           <SlipLink2 slip={slip} />
                         </li>
                       </div>
@@ -465,12 +677,30 @@ const BetSlip = React.memo((props) => {
                       </div>
                     </div>
                   );
-                }
-              )
+                })
+            )}
+            {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
+            betslipsData == null ? (
+              ""
+            ) : (
+              <div className="widgets mt-3 mobile-widget-position">
+                <div>
+                 { <h4 className="px-4 mb-0 mt-5" style={{ color: "var(--grey)" }}>
+                    Recommended Picks
+                  </h4>}
+
+                  <div className="sr-widget sr-widget-bets"></div>
+                </div>
+                {/* <div>
+                                    <div className="sr-widget sr-widget-2"></div>
+                                  </div> */}
+              </div>
             )}
           </ul>
         </div>
       </div>
+      <div ref={widgetRef}></div>
+
       <div className="bottom">
         <BetslipSubmitForm
           jackpotData={jackpotData}

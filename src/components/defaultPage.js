@@ -13,7 +13,7 @@ import { Button } from "react-bootstrap";
 import { setState } from "../redux/dataSlice";
 import {
   setInitialLoadingState,
-  stopFetchingMatches,
+
 } from "../redux/matchesSlice";
 import Right from "./right";
 import useWindowDimensions from "./header/Dimensions";
@@ -55,19 +55,19 @@ const DefaultPage = React.memo(() => {
 
   let c_pathname = url.pathname;
 
-  let sub_type = url.searchParams.get("sub_type_id") || "1";
-  const [tab, setTab] = useState("highlights");
-  const [sportID, setSportID] = useState(79);
-  const [sportLeague, setSportLeague] = useState("");
+        let sub_type = (url.searchParams.get("sub_type_id") || "1")
+        const [tab, setTab] = useState('highlights');
+        // const [sportID, setSportID] = useState(79);
+        // const [sportLeague, setSportLeague] = useState('');
 
-  const { state, dispatch } = useContext(StoreContext);
-  const dispatchRedux = useDispatch();
-  const markets = marketChoiceOptions();
-  let sportId =
-    new URLSearchParams(window.location.search).get("sport_id") || "79";
-  let sportValue = new URL(window.location).searchParams.get("sport_id");
-  const userData = useSelector((state) => state.auth.user);
-  const [user, setUser] = useState(getFromLocalStorage("user"));
+        const {state, dispatch} = useContext(StoreContext);
+        const dispatchRedux = useDispatch()
+        const markets = marketChoiceOptions();
+        let sportId = new URLSearchParams(window.location.search).get('sport_id') || '79'
+        let sportValue = new URL(window.location).searchParams.get('sport_id')
+        const userData = useSelector((state) => state.auth.user)
+        const [user, setUser] = useState(getFromLocalStorage("user"))
+
 
   useEffect(() => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
@@ -214,124 +214,125 @@ const DefaultPage = React.memo(() => {
     dispatch({ type: "SET", key: "active_sport_name", payload: sportName });
   };
 
-  useEffect(() => {
-    updateSearchTerm();
-    updateSearchSport();
-  }, [sportValue]);
-  // Split the pathname by "/competition/"
-  let parts = c_pathname.split("/competition/");
-  let competitionpath;
-  let competition_filter;
-  // If there are parts after "/competition/", reconstruct the modified URL
-  if (parts.length > 1) {
-    competitionpath = "/competition/" + parts[1];
-    competition_filter = parts[0];
-  }
-  const close_call_to_action = useSelector(
-    (state) => state.data.call_to_action
-  );
-  const location = useLocation();
-  const user_slip_validation_live = useSelector(
-    (state) => state.matchesData.live_user_slip_validation
-  );
+        useEffect(() => {
+            updateSearchTerm();
+            updateSearchSport();
+        }, [sportValue]);
+        // Split the pathname by "/competition/"
+        let parts = c_pathname.split("/competition/");
+        let competitionpath
+        // let competition_filter;
+// If there are parts after "/competition/", reconstruct the modified URL
+        if (parts.length > 1) {
+            competitionpath = "/competition/" + parts[1];
+            // competition_filter = parts[0]
 
-  return (
-    <div className={"flex-item"}>
-      <div className={bottom_sheet ? "pointer-event-handler item4" : "item4"}>
-        <ToastContainer />
-      </div>
-      <div
-        className={`flex-container ${
-          pathname.includes("match") ? " top-spacing-page-no-download" : ""
-        }`}
-      >
-        <div className={bottom_sheet ? "pointer-event-handler item1" : "item1"}>
-          {pathname.includes("live") ? (
-            <LiveSideBar spid={spid} />
-          ) : (
-            <SideBar loadCompetitions />
-          )}
-        </div>
-        <div
-          className={
-            bottom_sheet
-              ? `pointer-event-handler item2`
-              : `item2 ${
-                  pathname.includes("match")
-                    ? " size-all-markets"
-                    : pathname.includes("live")
-                    ? " live-top"
-                    : ""
-                }  ${
-                  close_call_to_action
-                    ? pathname.includes("competition")
-                      ? ""
-                      : settings?.active_promotion?.app_promo?.promo_active ===
-                        "0"
-                      ? "top-position-mobile-view active"
-                      : "top-position-mobile-view active"
-                    : pathname.includes("competition")
-                    ? ""
-                    : settings?.active_promotion?.app_promo?.promo_active ===
-                      "0"
-                    ? "top-position-mobile-view active"
-                    : pathname.includes("match")
-                    ? ""
-                    : "top-position-mobile-view"
-                }`
-          }
-          style={bottom_sheet ? { opacity: "0.5", background: "#13171c" } : {}}
-        >
+        }
+        const close_call_to_action = useSelector(
+            (state) => state.data.call_to_action
+          );
+        const location = useLocation();
+        const user_slip_validation_live=useSelector((state)=>state.matchesData.live_user_slip_validation)
+
+
+    
+        return (
+          <div className={"flex-item"}>
+          <div className={bottom_sheet ? "pointer-event-handler item4" : "item4"}>
+            <ToastContainer />
+          </div>
           <div
-            className={`gz home match-overflow ${
-              competitionpath && "competition-mobile-top"
-            } `}
+            className={`flex-container ${
+              pathname.includes("match") ? " top-spacing-page-no-download" : ""
+            }`}
           >
+            <div className={bottom_sheet ? "pointer-event-handler item1" : "item1"}>
+              {pathname.includes("live") ? (
+                <LiveSideBar spid={spid} />
+              ) : (
+                <SideBar loadCompetitions />
+              )}
+            </div>
             <div
-              className={`homepage mobile-full-height ${
-                pathname.includes("match") ? " all-markets" : ""
-              }`}
-              ref={homePageRef}
-              style={
-                width < 991 ? { height: `${height}px`, overflowY: "auto" } : {}
+              className={
+                bottom_sheet
+                  ? `pointer-event-handler item2`
+                  : `item2 ${
+                      pathname.includes("match")
+                        ? " size-all-markets"
+                        : pathname.includes("live")
+                        ? " live-top"
+                        : ""
+                    }  ${
+                      close_call_to_action
+                        ? pathname.includes("competition")
+                          ? ""
+                          : settings?.active_promotion?.app_promo?.promo_active ===
+                            "0"
+                          ? "top-position-mobile-view active"
+                          : "top-position-mobile-view active"
+                        : pathname.includes("competition")
+                        ? ""
+                        : settings?.active_promotion?.app_promo?.promo_active ===
+                          "0"
+                        ? "top-position-mobile-view active"
+                        : pathname.includes("match")
+                        ? ""
+                        : "top-position-mobile-view"
+                    }`
               }
+              style={bottom_sheet ? { opacity: "0.5", background: "#13171c" } : {}}
             >
-              {!pathname.includes("live") && !pathname.includes("match") && (
+              <div
+                className={`gz home match-overflow ${
+                  competitionpath && "competition-mobile-top"
+                } `}
+              >
                 <div
-                  className={
-                    "filters-navigation gap-3 d-flex justify-content-between align-items-center"
+                  className={`homepage mobile-full-height ${
+                    pathname.includes("match") ? " all-markets" : ""
+                  }`}
+                  ref={homePageRef}
+                  style={
+                    width < 991 ? { height: `${height}px`, overflowY: "auto" } : {}
                   }
                 >
-                  <MainTabs
-                    tab={
-                      competitionpath
-                        ? pathname.includes("upcoming")
-                          ? "upcoming"
-                          : pathname.includes("tomorrow")
-                          ? "tomorrow"
-                          : pathname.includes("countries")
-                          ? "countries"
-                          : "highlights"
-                        : location.pathname.replace("/", "")
-                    }
-                    competition={competitionpath}
-                  />
-
-                  <div
-                    className={
-                      "d-flex justify-content-between my-3 my-filter-button"
-                    }
-                  >
-                    {filteredMarkets?.default_markets.length > 0 && (
+                  {!pathname.includes("live") && !pathname.includes("match") && (
+                    <div
+                      className={
+                        "filters-navigation gap-3 d-flex justify-content-between align-items-center"
+                      }
+                    >
+                      <MainTabs
+                        tab={
+                          competitionpath
+                            ? pathname.includes("upcoming")
+                              ? "upcoming"
+                              : pathname.includes("tomorrow")
+                              ? "tomorrow"
+                              : pathname.includes("countries")
+                              ? "countries"
+                              : "highlights"
+                            : location.pathname.replace("/", "")
+                        }
+                        competition={competitionpath}
+                      />
+    
                       <div
-                        className="myButton markets-button"
-                        onClick={() => showBottomSheet()}
+                        className={
+                          "d-flex justify-content-between my-3 my-filter-button"
+                        }
                       >
-                        {" "}
-                        {marketName || "1x2"}
+                        {filteredMarkets?.default_markets.length > 0 && (
+                          <div
+                            className="myButton markets-button"
+                            onClick={() => showBottomSheet()}
+                          >
+                            {" "}
+                            {marketName || "1x2"}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
                 </div>
               )}
               {!pathname.includes("match") && <CarouselLoader />}

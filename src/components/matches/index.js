@@ -135,7 +135,7 @@ export const marketChoiceOptions = () => {
         },
         {
           id: "29",
-          name: "BTS",
+          name: "BTTS",
           market_name: "Both Teams To Score",
         },
         {

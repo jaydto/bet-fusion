@@ -526,7 +526,7 @@ const BetSlip = React.memo((props) => {
       //   priority = Math.max(...Object.values(betItems).map(item => item.priority)) + 1;
       // }
 
-      const priority = Object.keys(betItems).length + 1; // Incremental priority
+      const priority = Object.keys(betItems|| {}).length + 1; // Incremental priority
       const slip = {
         match_id: attributes.match_id ?? attributes.parent_match_id,
         parent_match_id: attributes.parent_match_id,

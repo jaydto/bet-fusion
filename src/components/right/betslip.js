@@ -592,7 +592,10 @@ const BetSlip = React.memo((props) => {
     if (widgetRef.current) {
       widgetRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
     }
+    
   }, []);
+
+
 
   const pathLocation = window.location.pathname;
   return (
@@ -616,7 +619,7 @@ const BetSlip = React.memo((props) => {
               : "slip-bottom-space"
           }`}
         >
-          <ul className={"slip-bottom-space-list"}>
+          <ul className={"slip-bottom-space-list"} >
             {(betslipsData && Object.keys(betslipsData)?.length == 0) ||
             betslipsData == null ? (
               jackpot ? (
@@ -683,7 +686,7 @@ const BetSlip = React.memo((props) => {
             betslipsData == null ? (
               ""
             ) : (
-              <div className="widgets mt-3 mobile-widget-position">
+              <div className="widgets mt-3 mobile-widget-position" >
                 <div>
                  { <h4 className="px-4 mb-0 mt-5" style={{ color: "var(--grey)" }}>
                     Recommended Picks

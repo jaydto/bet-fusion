@@ -769,7 +769,7 @@ const SideBets = React.memo((props) => {
             style={{ whiteSpace: "nowrap" }}
             title={"More Markets"}
             to={`/match/${live ? "live/" : ""}${
-              live ? match.parent_match_id : match?.match_id
+               match?.parent_match_id
             }`}
           >
             <strong className="more-options-font bold">

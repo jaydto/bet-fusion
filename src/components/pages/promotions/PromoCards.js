@@ -441,8 +441,10 @@ const PromoCards = () => {
               <button
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
+                disabled={true}
+
                 onClick={() => {
-                  disabled={true}
+                  
                   gaEventTracker("pambazuka_na_jogoo_3");
                   navigate(`/`);
                   setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo_3");

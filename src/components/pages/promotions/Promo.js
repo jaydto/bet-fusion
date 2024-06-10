@@ -145,6 +145,18 @@ const Promo = () => {
       src: "https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp",
       id: 42,
     },
+    {
+      src: "https://cdn.betnare.com/carousel/MechiSafiWeb.webp",
+      id: 43,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/Rise&ShineWeb.webp",
+      id: 44,
+    },
+    {
+      src: "https://cdn.betnare.com/carousel/BurukaWeb.webp",
+      id: 45,
+    },
     
   ];
 

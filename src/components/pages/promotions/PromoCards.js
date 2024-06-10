@@ -32,7 +32,7 @@ const PromoCards = () => {
   let ids = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    41, 42, 43,
+    41, 42, 43,44,45,46
   ];
   const navigate = useNavigate();
 
@@ -90,6 +90,139 @@ const PromoCards = () => {
       <div
         className={`row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"`}
       >
+          <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/BurukaWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              BURUKA NA AVIATOR PROMOTION!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Stake a minimum of 20 Kenyan Shillings, customers with the highest in-game multiplier(s) will stand a chance to get amazing prizes
+              
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("buruka_na_aviator_promotion");
+                  navigate(`/nare-games/aviator?status=live`);
+                  setUtmSouceCampaignOnPromotions("buruka_na_aviator_promotion");
+                }}
+              >
+                Play  Aviator!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[44]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/Rise&ShineWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              RISE AND SHINE PROMOTION!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+            Players must Deposit 100 shillings and place a bet of 100 bob or more on bets placed and settled between 6:00 AM and 10:00 AM and stand a chance to win daily prizes
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("rise_and_shine_promotion");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("rise_and_shine_promotion");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[43]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner">
+            <img
+              src={"https://cdn.betnare.com/carousel/MechiSafiWeb.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              MECHI SAFI HULAST 3 MINUTES PROMOTION !
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+             Stake a minimum of 20 Kenyan Shillings on a single bet or multi-bet on Nare League around 00:00hrs to 23:59hrs everyday and be among the 48 winners to be awarded
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  gaEventTracker("mechi_safi_hulast_3_minutes");
+                  navigate(`/nare-league`);
+                    setUtmSouceCampaignOnPromotions("mechi_safi_hulast_3_minutes");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[42]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
          <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img

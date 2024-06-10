@@ -223,52 +223,7 @@ const PromoCards = () => {
             </div>
           </div>
         </div>
-         <div className="col-md-2 promo-styling shadow-lg promotion">
-          <div className="d-flex flex-column promo-inner">
-            <img
-              src={"https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp"}
-              className={"rounded promo-image "}
-            />
-            <h5
-              className="bold d-flex justify-content-center h4 pt-2"
-              style={{ color: "#ea5d0b" }}
-            >
-              PAMBAZUKA NA JOGOO!
-            </h5>
-            <p className="container-profile mx-1 px-2 text-data-promotions">
-              Deposit 100 shillings and place a bet of 100 bob or more on all
-              the games on Betnare Platform between 6:00 AM and 10:00 AM and win
-              jogoo(2000)...{" "}
-            </p>
-            <hr />
-
-            <div className="d-flex justify-content-between my-2 mx-2">
-              <button
-                className={"profile-button border-0 h-25 rounded promo-button"}
-                style={{ background: "#ea5d0b" }}
-                onClick={() => {
-                  gaEventTracker("pambazuka_na_jogoo_3");
-                  navigate(`/`);
-                  setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo_3");
-                }}
-              >
-                Bet Now!
-              </button>
-              <div
-                className={
-                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                }
-                style={{ color: "#ea5d0b" }}
-                onClick={() => {
-                  navigate(`/promo?id=${ids[35]}`);
-                  window.scrollTo(0, 0); // Scroll to the top of the page
-                }}
-              >
-                Read More
-              </div>
-            </div>
-          </div>
-        </div>
+     
        
     
        
@@ -455,6 +410,53 @@ const PromoCards = () => {
                 style={{ color: "#ea5d0b" }}
                 onClick={() => {
                   navigate(`/promo?id=${ids[39]}`);
+                  window.scrollTo(0, 0); // Scroll to the top of the page
+                }}
+              >
+                Read More
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-2 promo-styling shadow-lg promotion">
+          <div className="d-flex flex-column promo-inner promo-inactive">
+            <img
+              src={"https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp"}
+              className={"rounded promo-image "}
+            />
+            <h5
+              className="bold d-flex justify-content-center h4 pt-2"
+              style={{ color: "#ea5d0b" }}
+            >
+              PAMBAZUKA NA JOGOO!
+            </h5>
+            <p className="container-profile mx-1 px-2 text-data-promotions">
+              Deposit 100 shillings and place a bet of 100 bob or more on all
+              the games on Betnare Platform between 6:00 AM and 10:00 AM and win
+              jogoo(2000)...{" "}
+            </p>
+            <hr />
+
+            <div className="d-flex justify-content-between my-2 mx-2">
+              <button
+                className={"profile-button border-0 h-25 rounded promo-button"}
+                style={{ background: "#ea5d0b" }}
+                onClick={() => {
+                  disabled={true}
+                  gaEventTracker("pambazuka_na_jogoo_3");
+                  navigate(`/`);
+                  setUtmSouceCampaignOnPromotions("pambazuka_na_jogoo_3");
+                }}
+              >
+                Bet Now!
+              </button>
+              <div
+                className={
+                  "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+                }
+                style={{ color: "#ea5d0b" }}
+                onClick={() => {
+                  navigate(`/promo?id=${ids[35]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
                 }}
               >

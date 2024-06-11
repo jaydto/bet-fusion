@@ -628,7 +628,7 @@ const BetSlip = React.memo((props) => {
 
   const pathLocation = window.location.pathname;
   return (
-    <div className="bet-body text-white" ref={scrollableContainerRef}>
+    <div className="bet-body text-white" >
       {!jackpot && <BonusAlert />}
       <div 
         className={`flow  slip-top ${

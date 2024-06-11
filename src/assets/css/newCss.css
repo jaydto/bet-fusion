@@ -1483,7 +1483,7 @@ img.nare-league {
   }
 
   .slip-max {
-    max-height: 53vh !important;
+    max-height: 51vh !important;
   }
 
   .slip-max-height {
@@ -1960,30 +1960,57 @@ img.nare-league {
     overflow-y: auto;
     max-height: 45vh;
   }
+  .slip-max {
+    max-height: 45vh !important;
+  }
+
 
 }
-@media (min-width: 1081px) and (max-width: 1280px) {
+@media (min-width: 1081px) and (max-width: 1124px){
+  .slip-max {
+    max-height: 47vh !important;
+  }
   .slip-log-max {
     overflow-y: auto;
-    max-height: 50vh;
+    max-height: 45vh;
   }
 }
+@media (min-width: 1125px) and (max-width: 1280px){
+  .slip-max {
+    max-height: 47vh !important;
+  }
+  .slip-log-max {
+    overflow-y: auto;
+    max-height: 47vh;
+  }
+}
+
+
 @media (min-width: 1281px) and (max-width: 1440px) {
   .slip-log-max {
     overflow-y: auto;
-    max-height: 55vh;
+    max-height: 53vh;
+  }
+  .slip-max {
+    max-height: 53vh !important;
   }
 }
 @media (min-width: 1441px) and (max-width: 1680px) {
   .slip-log-max {
     overflow-y: auto;
-    max-height: 57vh;
+    max-height: 55vh;
+  }
+  .slip-max {
+    max-height: 55vh !important;
   }
 }
 @media (min-width: 1681px) {
   .slip-log-max {
     overflow-y: auto;
     max-height: 60vh;
+  }
+  .slip-max {
+    max-height: 60vh !important;
   }
 }
 
@@ -2230,9 +2257,7 @@ img.nare-league {
     width: 40px;
   }
 
-  .slip-max {
-    max-height: 53vh !important;
-  }
+  
 
   .slip-top {
     overflow-y: auto;

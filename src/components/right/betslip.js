@@ -717,7 +717,7 @@ const BetSlip = React.memo((props) => {
             ) : (
               <div>
 
-             <Widget refValue={widgetContainerRef}/>
+             <Widget/>
              </div>
             )}
           </ul>

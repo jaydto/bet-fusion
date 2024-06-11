@@ -82,6 +82,19 @@ const SlipLink2 = ({ slip }) => {
   );
 };
 
+const Widget=()=>{
+  return  <div className="widgets mt-3 mobile-widget-position" >
+  <div>
+   { <h4 className="px-4 mb-0 mt-5" style={{ color: "var(--grey)" }}>
+      Recommended Picks
+    </h4>}
+
+    <div className="sr-widget sr-widget-bets"></div>
+  </div>
+  
+</div>
+}
+
 const BetSlip = React.memo((props) => {
   const { jackpot, betslipValidationData, jackpotData, live } = props;
   const [message, setMessage] = useState(null);
@@ -91,6 +104,8 @@ const BetSlip = React.memo((props) => {
   const dispatchRedux = useDispatch();
   const widgetRef = useRef(null);
   const prevKeysRef = useRef([]);
+  // const widgetContainerRef = useRef(null); // Define a ref for the widget container
+
 
   // const [similarEventIds, setSimilarEventIds] = useState([]);
 
@@ -431,6 +446,13 @@ const BetSlip = React.memo((props) => {
     console.log("is Key removed", isKeyRemoved);
 
     if (isNewKeyAdded || isKeyRemoved) {
+      // scrolling this widget to the top
+      // if (widgetContainerRef.current && scrollableContainerRef.current) {
+      //   console.log("we are working on this item")
+      //   const widgetOffsetTop = widgetContainerRef.current.offsetTop;
+      //   console.log(" we are working on this item widgetOffsetTop", widgetOffsetTop);
+      //   widgetContainerRef.current.scrollIntoView = 0;
+      // }
       // Update prevKeysRef with current keys
       prevKeysRef.current = allKeys;
 
@@ -462,6 +484,12 @@ const BetSlip = React.memo((props) => {
       // Clean up code here if needed
     };
   }, [betslipsData]);
+
+  // const scrollableContainerRef = useRef(null); // Define a ref for the scrollable container
+
+
+
+  
 
   const clear_rep = (str) => {
     return str.replace(/\s/g, "");
@@ -585,20 +613,24 @@ const BetSlip = React.memo((props) => {
 
       dispatchRedux(setMatchBetslip(betslip_data));
     }
+    if (target=="externalEvent"){
+      navigate("match/"+event?.externalEvent?.id)
+
+    }
   };
 
   useEffect(() => {
     // Scroll to the widget element when the component mounts
     if (widgetRef.current) {
-      widgetRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      widgetRef.current.scrollIntoView({ behavior: "smooth"});
     }
   }, []);
 
   const pathLocation = window.location.pathname;
   return (
-    <div className="bet-body text-white">
+    <div className="bet-body text-white" >
       {!jackpot && <BonusAlert />}
-      <div
+      <div 
         className={`flow  slip-top ${
           user
             ? jackpot
@@ -683,18 +715,10 @@ const BetSlip = React.memo((props) => {
             betslipsData == null ? (
               ""
             ) : (
-              <div className="widgets mt-3 mobile-widget-position">
-                <div>
-                 { <h4 className="px-4 mb-0 mt-5" style={{ color: "var(--grey)" }}>
-                    Recommended Picks
-                  </h4>}
+              <div>
 
-                  <div className="sr-widget sr-widget-bets"></div>
-                </div>
-                {/* <div>
-                                    <div className="sr-widget sr-widget-2"></div>
-                                  </div> */}
-              </div>
+             <Widget/>
+             </div>
             )}
           </ul>
         </div>

@@ -157,6 +157,10 @@ const Promo = () => {
       src: "https://cdn.betnare.com/carousel/BurukaWeb.webp",
       id: 45,
     },
+    {
+      src: "https://cdn.betnare.com/carousel/GoalRushEUROSWeb.webp",
+      id: 46,
+    },
     
   ];
 

@@ -32,7 +32,7 @@ const PromoCards = () => {
   let ids = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    41, 42, 43,44,45,46
+    41, 42, 43,44,45,46, 47
   ];
   const navigate = useNavigate();
 
@@ -93,18 +93,17 @@ const PromoCards = () => {
           <div className="col-md-2 promo-styling shadow-lg promotion">
           <div className="d-flex flex-column promo-inner">
             <img
-              src={"https://cdn.betnare.com/carousel/BurukaWeb.webp"}
+              src={"https://cdn.betnare.com/carousel/GoalRushEUROSWeb.webp"}
               className={"rounded promo-image "}
             />
             <h5
               className="bold d-flex justify-content-center h4 pt-2"
               style={{ color: "#ea5d0b" }}
             >
-              BURUKA NA AVIATOR PROMOTION!
+              EURO GOAL RUSH PROMOTION!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Stake a minimum of 20 Kenyan Shillings, customers with the highest in-game multiplier(s) will stand a chance to get amazing prizes
-              
+            Place a bet of minimum 49 KES and be among the  20 winners to be a warded 500 shillings each daily              
             </p>
             <hr />
 
@@ -113,12 +112,12 @@ const PromoCards = () => {
                 className={"profile-button border-0 h-25 rounded promo-button"}
                 style={{ background: "#ea5d0b" }}
                 onClick={() => {
-                  gaEventTracker("buruka_na_aviator_promotion");
-                  navigate(`/nare-games/aviator?status=live`);
-                  setUtmSouceCampaignOnPromotions("buruka_na_aviator_promotion");
+                  gaEventTracker("euro_goal_rush");
+                  navigate(`/competition/79/8085/30144?competition_league=UEFA%20Euro&sub_type_id=1&sport_id=79`);
+                  setUtmSouceCampaignOnPromotions("euro_goal_rush");
                 }}
               >
-                Play  Aviator!
+                Play  Euro League!
               </button>
               <div
                 className={
@@ -126,7 +125,7 @@ const PromoCards = () => {
                 }
                 style={{ color: "#ea5d0b" }}
                 onClick={() => {
-                  navigate(`/promo?id=${ids[44]}`);
+                  navigate(`/promo?id=${ids[45]}`);
                   window.scrollTo(0, 0); // Scroll to the top of the page
                 }}
               >

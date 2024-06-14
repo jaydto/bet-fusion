@@ -103,7 +103,7 @@ const PromoCards = () => {
               EURO GOAL RUSH PROMOTION!
             </h5>
             <p className="container-profile mx-1 px-2 text-data-promotions">
-            Place a bet of minimum 49 KES and be among the  20 winners to be a warded 500 shillings each daily              
+            Place a minimum bet of 49 KES and be among the  20 winners to be a warded 500 shillings each daily              
             </p>
             <hr />
 

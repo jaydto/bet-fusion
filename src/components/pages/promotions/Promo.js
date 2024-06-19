@@ -223,7 +223,7 @@ const Promo = () => {
                         )}
 
                         <div className="col-md-12">
-                          <div className="d-flex justify-content-between my-2 mx-2">
+                          <div className="d-flex justify-content-center mb-4 mx-2">
                             <button
                               className={
                                 "profile-button border-0 h-25 rounded promo-button"

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import twentyPercentDepositBonus from "../../../assets/img/banner/products/Bet_Nare_gift_Mobile.webp";
-import firstDeposit from "../../../assets/img/banner/products/Firstdeposit.jpeg";
-import multibetCashback from "../../../assets/img/banner/products/Bet_Nare_100_Cashback_Mobile.webp";
-import DepositBonus from "../../../assets/img/banner/products/365.webp";
-import mia_sita_hamsini from "../../../assets/img/banner/products/FreeKickBonanzaWeb.webp";
-
 import { Table } from "react-bootstrap";
 import PromoCards from "./PromoCards";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
+import {
+  getFromLocalStorage,
+} from "../../utils/local-storage";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import { checkIfUser, setUtmSouceCampaignOnPromotions } from "../../utils/utils";
 
 const Header = React.lazy(() => import("../../header/header"));
 
@@ -21,144 +20,8 @@ const Promo = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const banners = [
-    { src: twentyPercentDepositBonus, id: 3 },
-    { src: firstDeposit, id: 2 },
-    { src: multibetCashback, id: 4 },
-    { src: "https://cdn.betnare.com/carousel/LuckyHourv2.webp", id: 5 },
-    { src: "https://cdn.betnare.com/carousel/Mbuzi.webp", id: 6 },
-    { src: "https://cdn.betnare.com/carousel/DepositBonus.webp", id: 7 },
-    { src: "https://cdn.betnare.com/carousel/30kStakeBoosterWeb.webp", id: 1 },
-    { src: DepositBonus, id: 9 },
-    { src: mia_sita_hamsini, id: 10 },
-    { src: "https://cdn.betnare.com/carousel/chomokananduthi.webp", id: 12 },
-    {
-      src: "https://cdn.betnare.com/carousel/Mega%20Match%20Bonus%20Web.webp",
-      id: 11,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/AfconPromoBanner.webp",
-      id: 15,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Pepea.webp",
-      id: 16,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/ValentinesnaJETX.webp",
-      id: 17,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/14DaysofloveWeb.webp",
-      id: 18,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/LastPromoFeb.webp",
-      id: 19,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/ClimaxWeb.webp",
-      id: 20,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Mshipi.webp",
-      id: 21,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Spin&WIn.webp",
-      id: 22,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp",
-      id: 23,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/TheBigLeagueWeb.webp",
-      id: 24,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Kienyeji.webp",
-      id: 25,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/PunchyaSare.webp",
-      id: 26,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/GoldRush.webp",
-      id: 27,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Morningglory.webp",
-      id: 29,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Rasha.webp",
-      id: 28,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Mbuziyambogi.webp",
-      id: 30,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Mzinga.webp",
-      id: 31,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/RaukaBonusWeb.webp",
-      id: 32,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/PullOutWebNew.webp",
-      id: 33,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/DondokaWeb.jpeg",
-      id: 34,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
-      id: 35,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp",
-      id: 36,
-    }, {
-      src: "https://cdn.betnare.com/carousel/GoalRushNew.webp",
-      id: 37,
-    },{
-      src: "https://cdn.betnare.com/carousel/WeekendBonanzawebnew.webp",
-      id: 38,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/QuarterWeb.webp",
-      id: 39,
-    }
-    ,{
-      src: "https://cdn.betnare.com/carousel/FlightofFortuneWeb.webp",
-      id: 40,
-    },{
-      src: "https://cdn.betnare.com/carousel/AltitudePromo.webp",
-      id: 41,
-    },{
-      src: "https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp",
-      id: 42,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/MechiSafiWeb.webp",
-      id: 43,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/Rise&ShineWeb.webp",
-      id: 44,
-    },
-    {
-      src: "https://cdn.betnare.com/carousel/BurukaWeb.webp",
-      id: 45,
-    },
-    
-  ];
+  const user = getFromLocalStorage("user");
+  const gaEventTracker = useAnalyticsEventTracker("Promotions");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -188,6 +51,8 @@ const Promo = () => {
   }
 
   const item = data;
+
+
 
   return (
     <>
@@ -231,12 +96,13 @@ const Promo = () => {
                         >
                           {item?.name}
                         </h5>
-                        {banners.map(
+                        {/* {banners.map(
                           (banner) =>
                             banner.id === parseInt(id) && (
                               <img src={banner.src} className={"rounded  "} />
                             )
-                        )}
+                        )} */}
+                        <img src={item?.src} className={"rounded  "} />
                         <ul>
                           {item?.instructions && (
                             <p
@@ -357,6 +223,26 @@ const Promo = () => {
                         )}
 
                         <div className="col-md-12">
+                          <div className="d-flex justify-content-between my-2 mx-2">
+                            <button
+                              className={
+                                "profile-button border-0 h-25 rounded promo-button"
+                              }
+                              onClick={() => {
+                                if (item?.actions[0].name === "Sign Up") {
+                                  checkIfUser(user, navigate);
+                                } else {
+                                  navigate(item?.actions[0].url);
+                                }
+                                gaEventTracker(`${item?.eventTracking}`);
+                                setUtmSouceCampaignOnPromotions(
+                                  `${item?.eventTracking}`
+                                );
+                              }}
+                            >
+                              {item?.actions[0].name}
+                            </button>
+                          </div>
                           <span>
                             <u
                               className="bold border-bottom d-flex justify-content-center"
@@ -396,160 +282,6 @@ const Promo = () => {
                     </div>
 
                     <PromoCards />
-
-                    <div className="col-md-2  d-flex flex-row shadow-lg mt-2 promotion d-none">
-                      <div className="col-md-12 promo-inner">
-                        <div className="d-flex flex-column">
-                          <h5>BETNARE NGWARE</h5>
-                          {/*<img src={ngware} className={'rounded '}/>*/}
-                          <span>
-                            Monday promotion. BetNare Ngware, anzisha Wiki na
-                            Thao.
-                          </span>
-
-                          <div className="col-md-12">
-                            <span>
-                              <u>Entry Requirements</u>
-                            </span>
-                            <ol>
-                              ✅ This promotion will be running every Monday for
-                              the Month Of October 2022.
-                              <br />
-                              ✅ Place a bet with 50/= or more between 6am and
-                              12 pm.
-                              <br />
-                              ✅ Like the social media post in any of our
-                              channels.
-                              <br />
-                              <strong>
-                                <span>
-                                  <u
-                                    className="bold "
-                                    style={{ color: "#ea5d0b" }}
-                                  >
-                                    {" "}
-                                    NB:
-                                  </u>
-                                </span>
-                                Kindly NOTE that the WINS will be credited on
-                                your BetNare Account. You can Play with or
-                                Withdraw the Funds.
-                              </strong>
-                            </ol>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-2  d-flex flex-row shadow-lg mt-2 promotion d-none">
-                      <div className="col-md-12 promo-inner">
-                        <div className="d-flex flex-column">
-                          <h5>LALA KICHAMPE</h5>
-                          {/*<img src={lala} className={'rounded '}/>*/}
-                          <span>
-                            This promotion will run on every Wednesday of the
-                            Month of October, 8pm to 10pm.
-                          </span>
-
-                          <div className="col-md-12">
-                            <span>
-                              <u>Entry Requirements</u>
-                            </span>
-                            <ol>
-                              ✅ BetNare will Award 4 lucky winners with Ksh.
-                              2000 each, 2 winners each hour from 8 pm to 10 pm.{" "}
-                              <br />
-                              ✅ Place a bet with 50/= or more between 8pm and
-                              10 pm
-                              <br />✅ Like the social media post in any of our
-                              channels
-                              <strong>
-                                <span>
-                                  <u
-                                    className="bold "
-                                    style={{ color: "#ea5d0b" }}
-                                  >
-                                    {" "}
-                                    NB:
-                                  </u>
-                                </span>
-                                Kindly NOTE that the WINS will be credited on
-                                your BetNare accounts. You can Play with or
-                                Withdraw the Funds
-                              </strong>
-                            </ol>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-2  d-flex flex-row shadow-lg mt-2 promotion d-none">
-                      <div className="col-md-12 promo-inner">
-                        <div className="d-flex flex-column">
-                          <h5>Furahia Rush Hour kiBetNare</h5>
-                          {/*<img src={rushHour} className={'rounded '}/>*/}
-                          <div className="col-md-12">
-                            ✅ This promotion will run every Friday for the
-                            Month Of October 2022, 3pm to 7pm
-                            <br />
-                            ✅Award 3 Lucky winners with Ksh. 3000 each.
-                            <br />
-                            ✅Award a winner every two hours from 3pm to 7pm.
-                            <br />
-                          </div>
-
-                          <div className="col-md-12">
-                            <span>
-                              <u>Entry Requirements</u>
-                            </span>
-                            <ol>
-                              ✅Entry requirements:
-                              <br />
-                              ✅ Place a bet with 50/= or more between 3pm and
-                              7pm
-                              <br />
-                              ✅ Like the social media post in any of our
-                              channels
-                              <br />
-                              <strong>
-                                Kindly NOTE that the WINS will be credited on
-                                your BetNare accounts. You can Play with or
-                                Withdraw the Funds
-                              </strong>
-                            </ol>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-2  d-flex flex-row shadow-lg mt-2 promotion d-none">
-                      <div className="col-md-12 promo-inner">
-                        <div className="d-flex flex-column">
-                          <h5 className={"text-uppercase"}>Angukia Rent</h5>
-                          {/*<img src={rent} className={'rounded '}/>*/}
-                          <div className="col-md-12">
-                            ✅ The Angukia rent draw will be conducted on Monday
-                            31st October.
-                            <br />
-                            ✅BetNare will Award 1 lucky winner with KSh. 30,000
-                            who’d participated in any of the running October
-                            Promotions.
-                            <br />
-                            <strong className={"text-uppercase"}>
-                              Entry requirements:
-                            </strong>
-                            <br />
-                            ✅ Place a bet with 50/= or more between 3rd October
-                            and 31st October at 12noon
-                            <br />
-                            ✅ Follow/Like any of our social media channels
-                            <br />✅
-                            <strong>
-                              Kindly NOTE that the WINS will be credited on your
-                              BetNare accounts. You can Play with or Withdraw
-                              the Funds
-                            </strong>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

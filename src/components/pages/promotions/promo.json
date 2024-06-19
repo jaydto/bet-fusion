@@ -1,136 +1,6 @@
 [
   {
     "id": 1,
-    "name": "KARIBU STAKE BOOSTER BONUS",
-    "heading": "HOW TO PLAY",
-    "intro": "1.1 Register and Get the BetNare Bet Booster of UPTO 30,000/= FREE \nor \n1.2 Get UPTO 30,000 of registration as Free Stake Booster to be used on BetNare when placing bets (in the Betslip) \n1.3 Start using your BOOSTERS immediately on your 1st Cash Bet",
-    "instructions": "HOW TO GET THE  Stake Booster GIFT",
-    "description": "✅REGISTER on BetNare.\n ✅Get UPTO 30,000 of registration as Free Stake Booster to be used on BetNare when placing bets (in the Betslip)\n✅Start using your BOOSTERS immediately on your 1 st Cash Bet.",
-    "headingBooster": "HOW TO USE THE BOOSTERS",
-    "boosterDescription": "✅Place a bet with a minimum of odds of 1.5 per leg\n✅A minimum of 4 games on a Multi Bet.\n✅BetNare will top up your stake by 20% of the stake used. e.g., When you stake 50/= BetNare will boost your stake by 20% meaning your stake will be 60/=, if you place a Stake of 200/=, BetNare will boost it to 240/=",
-    "nb": "  - Kindly Note that the Maximum Gift Bonus One can be topped up with is 40/= PER TICKET.  - Kindly Note that the BOOSTER wallet funds Do Not have an expiry date",
-    "termsHeading": "TERMS AND CONDITIONS",
-    "termsContent": "✅ One account one Stake Booster. Accounts with the same IP address and same Password will be regarded as the same customer and will not be able to claim the Booster Gift. First Deposit Gifts would be available only if the user makes a deposit within the first 3 months of account opening. \n✅ Once you REGISTER you get Stake Booster in total value of up to KES.30,000. \n✅ You will receive all the gifts once you REGISTER . The gifts will become valid only on cash bets. \n✅ The Gifts can only be used for &quot;Real Sports&quot; and no on Virtuals , Jackpot an Casino. \n✅ These Free Bet Gifts can only be used to place bets with 4+ selections with at least 4 selections having Odds &gt; 1.5. \n✅ Only 1 Booster Gift can be used in 1 Betslip. \n✅ In this promotion, BetNare only allows one chance to award Gifts per person / mobile number/ IP address/device number. \n✅ Duplicate accounts will be closed and will not qualify for this offer. Any winnings obtained unlawfully from this bonus will be removed. Promotion and Gifts ar created in order to reward our most valued customers.",
-    "active": true,
-    "position": 1,
-    "action": {
-      "title": "Deposit",
-      "url": "/deposit",
-      "utm_source": "lucky_hour"
-    },
-    "read_info": { "title": "Read More", "url": "/promo?id=1" }
-  },
-  {
-    "id": 10,
-    "name": "650 FOR 650 PROMOTION TERMS AND CONDITIONS",
-    "heading": "HOW TO PLAY",
-    "intro": "✅Place a Cash Sports bet on BetNare\n✅Place a bet of equivalent amount using the Bonus.\n✅Enjoy your winnings",
-    "instructions": "HOW TO GET BONUS",
-    "description": "✅Deposit 650/= in your BetNare Account.\n✅Get 650 FREE Sports Bet Bonus Instantly.\n✅Start using your deposit bonus immediately",
-    "termsHeading": "TERMS AND CONDITIONS",
-    "termsContent": "1.\tThe bonus will be credited to the customer's account automatically once they have made their deposit.\n2.\tThe Bonus will be Awarded to any Deposit of the Day which will be an equivalent amount of 650/=.\n3.\tThe Bonus SHOULD be used within 13 days after depositing. All Bonuses and Bonus winnings accumulated during the Bonus Promotion period will be revoked at the end of the campaign period.\n4.\tTo use the bonus the customer will be required to have placed an equivalent Sports Cash Bet on Minimum odds of 1.9\n5.\tThe Bonus can only be used to place a Sports bet on a Minimum of 4 Games with a Minimum odd of 2.1 on each leg.\n6.\tThe Maximum Bonus Gross Winnings are 10,000 Kenya Shillings Less Initial Stake.\n7.\tCash Bet Cancellation will NOT be allowed when the customer has an ACTIVE bonus bet during this promotion.\n8.\tBetNare may limit or refuse to allow customers to take part in this or any other offer.\n9.\tBetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the bonus program and void their bonus and or winnings.\n10.\tOnly ONE bonus is allowed per customer, family, address, shared computer, shared IP address. Any misuse of this bonus offer will lead to an account being closed.\n",
-    "nb": "\uD83C\uDF87\tWithin the next 14 days, ONCE you DEPOSIT 650/=, BetNare Rewards you 650/= BONUS INSTANTLY.\nBetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.\nCustomers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeit of any bonuses/winnings.\nIf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\n",
-    "active": false,
-    "position": 2,
-    "action": {
-      "title": "Deposit",
-      "url": "/deposit",
-      "utm_source": "650_ROMOTION"
-    },
-    "read_info": { "title": "Read More", "url": "/promo?id=2" }
-  },
-  {
-    "id": 11,
-    "name": "500 FOR 500 PROMOTION TERMS AND CONDITIONS",
-    "heading": "HOW TO PLAY",
-    "intro": "✅Place a Cash Sports bet on BetNare\n✅Place a bet of equivalent amount using the Bonus.\n✅Enjoy your winnings",
-    "instructions": "HOW TO GET BONUS",
-    "description": "✅Deposit 500/= in your BetNare Account.\n✅Get 500/= FREE Sports Bet Bonus Instantly.\n✅Start using your deposit bonus immediately",
-    "termsHeading": "TERMS AND CONDITIONS",
-    "termsContent": "1.\tThe bonus will be credited to the customer's account automatically once they have made their deposit.\n2.\tThe Bonus will be Awarded ONLY on Deposits which HAVE be of an equivalent amount of 500/=.\n3.\tThe Bonus SHOULD be used within 13 days after depositing. All Bonuses and Bonus winnings accumulated during the Bonus Promotion period will be revoked at the end of the campaign period.\n4.\tTo use the bonus the customer will be required to have placed an equivalent Sports Cash Bet on Minimum odds of 1.9\n5.\tThe Bonus can only be used to place a Sports bet on a Minimum of 4 Games with a Minimum odd of 2.1 on each leg.\n6.\tThe Maximum Bonus Gross Winnings are 10,000 Kenya Shillings Less Initial Stake.\n7.\tCash Bet Cancellation will NOT be allowed when the customer has an ACTIVE bonus bet during this promotion.\n8.\tBetNare may limit or refuse to allow customers to take part in this or any other offer.\n9.\tBetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the bonus program and void their bonus and or winnings.\n10.\tOnly ONE bonus is allowed per customer, family, address, shared computer, shared IP address. Any misuse of this bonus offer will lead to an account being closed.\n",
-    "nb": "\uD83C\uDF87\tWithin the next 14 days, ONCE you DEPOSIT 500/=, BetNare Rewards you 500/= BONUS INSTANTLY.\nBetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.\nCustomers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeit of any bonuses/winnings.\nIf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\n",
-    "active": false
-  },
-  {
-    "id": 12,
-    "name": "CHOMOKA NA NDUTHI ",
-    "heading": "HOW TO PLAY",
-    "intro": "✅Place a valid cash bet of KES 49/= and above on Sportsbook matches, to get an entry.\n✅The more the entries, the higher your chances of winning.\n✅The promotion will run from 27/10/2023 to 27/11/2023.\n",
-    "instructions": "PRIZES\n",
-    "description": "✅1. BetNare will be giving out 1 MOTORBIKE weekly, for the next 8 weeks.\n✅2. BetNare will also be awarding customers on a daily basis who participate in the promotion with various prizes like;\n\t-Playstations.\n\t-Customized Soccer Jerseys.\n\t-Shopping vouchers.\n\t-Cash prizes.\n",
-    "termsHeading": "TERMS AND CONDITIONS",
-    "termsContent": "1.\tEvery cash stake of KES 49/= on Sportsbook matches is equivalent to 1 entry. \nDaily and weekly Winners will be announced on our social media pages and will also be contacted by a member of the BetNare Staff.\nBetNare will display your total entries on the website, under your profile page .\nCanceled cash bets, Virtual bets and bonus bets will not count in this promotion.\nBetNare reserves the right to use the names, radio recordings, motion and still images of the winners for purposes of publicity, marketing campaigns and administering this promotion.\nBetNare may limit or refuse to allow customers to take part in this or any other promotion.\nBetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the promotion.\nOnly one mobile number per customer is allowed to participate in the promotion.Any misuse of this promotion will lead to disqualification.\n\n",
-    "nb": "\uD83C\uDF87\t\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.\nCustomers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nIf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\n\nBetNare General terms and conditions apply in this promotion .\n",
-    "active": false
-  },
-
-  {
-    "id": 14,
-    "name": "Gurumisha Mamili na Aviator",
-    "heading": "HOW TO PLAY",
-    "intro": "Fly Aviator to WIN Upto 2,000,000/= Daily. Choose your bet amount and press confirm. Use AUTO-BET function for a guaranteed WIN. Minimum Bet – KSH 10. Maximum Bet – KSH 10,000. Maximum Win per Bet is KSH 2,000,000. Maximize your Winnings with the Double Bet feature by adding another bet anytime and set different values.\nOnce the countdown expires, the Aviator will take flight and start collecting a growing WIN multiplier. Press the “Cashout” button at any point to claim your winnings.\nWhen using the “AUTO CASHOUT”, money will be withdrawn when the MULTIPLIER exceeds the chosen AUTO-CASHOUT index. Example; If you had chosen 1.5X Index, it will cashout automatically at 1.5X and WINNINGS credited in your account.",
-    "instructions": "How to Win Aviator",
-    "description": "Press the Cashout button before the Aviator Plane flies away.\nAviator features a Double Bet Feature that allows a second bet during play. The second bet is set and activated independently of the first one and can be cashed out without cashing the initial set bet.",
-    "headingBooster": "Aviator Freebets",
-    "active": false,
-    "boosterDescription": "Play Aviator on BetNare & Get Freebets every time.\nRegister now on https://betnare.com/nare-games/aviator and become a potential winner.\nSign Up to play Aviator here https://betnare.com/nare-games/aviator ."
-  },
-  {
-    "id": 13,
-    "name": "Pepea Angani na SpaceMan",
-    "heading": "HOW TO PLAY",
-    "intro": "Playing Spaceman is very thrilling and fun.\nWin big cash prizes when you hit the top spot and collect UPTO x5000. The multiplier always starts from 1X and goes UPTO a maximum of 5,000X.\nMinimum Bet – KSH10, Maximum Bet – KSH5000, Maximum Win Per Spaceman Bet is KES 2,500,000.\nCashOut before the spaceman crashes. Get high profits the longer Spaceman flies.\nYou can also cashout 50% of your bet and leaving the remaining 50% in play as long as you desire. The Auto CashOut and the 50% Auto Cashout as additional options. The Auto Cash-out feature finishes the game completely crediting you with the current level of winnings. The 50% Auto Cashout feature cashes out half of your stake, allowing you to continue with the remaining half to try and win a bigger prize. Get speedy outcomes whenever you play SpaceMan. Utilize the individual betting strategies using Auto",
-    "instructions": "CashOut and Auto Play",
-    "active": false,
-    "description": "Interact with a detailed bet history, statistics with a leader board showing actual Stakes and Wins. The Live chat indicates real time conversation amongst all the SpaceMan players. See up to 500 last results with each round details.\nPlay Spaceman only on BetNare. Click here to play https://betnare.com/gameplay/1301/1\nSpaceMan is available to NEW and EXISTING customers on the platfor"
-  },
-  {
-    "id": 8,
-    "name": "JetX the Money Multiplier daily",
-    "heading": "HOW TO PLAY",
-    "intro": "When playing JetX, you can put more than one bet on each round to predict which multiplier the plane will crash. The longer the plane flies, the higher the multiplier. Attain high multipliers and win Big by cashing out before the Jet goes up in flames.\nPlay JetX only on BetNare. Click here to play https://betnare.com/smart-play?game=JetX&category=JetX\nCashing out on JetX is Easy. You can Cash-Out by clicking the cashout button or by using the auto-withdraw option. With the Auto-CashOut option, you are able to set the Multiplier to Auto-Collect your winnings\nCashOut has never been easier as it is possible to withdraw manually while using the auto-withdraw feature. Maximize your Winnings and Minimize loses by using the auto-withdraw feature on JetX.",
-    "instructions": "Winnings",
-    "active": false,
-    "description": "Minimum Bet – KSH10, Maximum Stake per Bet is KES12,000. Maximum Win per Bet is KES 2,500,000.\nGame on real-time events, Fast Plays for High and instant Pay-outs on every successful cashout.\nThe Auto-Bet feature allows players to automatically place the bets based on their preferred betting strategy as the Auto-Cashout feature automatically Pays Out your Winnings when you reach the predefined multiplier.\nJetX offers live statistics on running live bets in the statistics section"
-  },
-  {
-    "id": 9,
-    "name": "Deposit 365/= get 365/= Free",
-    "heading": "HOW TO PLAY",
-    "intro": "Deposit 365/= to get 365/= Free Bonus for any deposit.\n Within the next 7 days, ONCE you DEPOSIT 365/=, BetNare Rewards you 365/= as a BONUS INSTANTLY.\nBetNare is also giving away 1000/= Cash Gifts every hour between 6 am and 6 pm DAILY for the next 7 days to customers with the highest entries! \nUnlike other Betting sites, BetNare offers lucrative bonuses so that the players can keep enjoying various features on the website without any risk and increase earnings.",
-    "instructions": "Winnings",
-    "active": false,
-    "termsHeading": "The 365 DABO DABO Bonus Terms and Conditions are as follow",
-    "termsContent": "✅The Bonus total Odds should be EQUAL or GREATER THAN 7.99 per selection\n✅No Maximum Odds\n✅No Minimum bonus bet amount.\n✅The Maximum bonus bet amount is 1,000/=\n✅You can only Use the Bonus when your cash balance is less than 1/=\n✅Total Winnings = Total Winnings less the Initial stake.\n✅The 365 DABO DABO Bonus will EXPIRE automatically at the end of the campaign\n ",
-    "description": "Once you deposit 365/=, Betnare will match your deposit of 365/= with a bonus of 365/= which can be used to place bets on the platform.\n The bonus rules will apply for the bonus accrued.\n Please note that the 365/= will not be withdrawable on depositing.Kindly note that you will be UNABLE to WITHDRAW ANY DEPOSIT of 365/= ONCE Awarded the 365 DABO DABO BONUS\nNote that to enjoy the BONUS , you must have placed a CASH Bet of 365 or MORE on Pre-Match or Live with Minimum Odds of 1.5.\n"
-  },
-  {
-    "id": 2,
-    "name": "1500% FIRST DEPOSIT BOOSTER",
-    "intro": "✅ A client receives 1500% BONUS on the FIRST ever deposit.",
-    "heading": "HOW TO PLAY",
-    "termsHeading": "TERMS AND CONDITIONS",
-    "termsContent": "✅ Make a single first deposit of any AMOUNT on BetNare.\n✅Get 1500% of your first deposit value as Free Stake Booster to be used at BetNare when placing bets (in the Betslip)\n✅ Start using your BOOSTERS immediately on your 1st Cash Bet. day.\n ✅This offer ONLY applies to your first ever deposit from November 25th\n✅The BOOSTER wallet funds Do Not have an expiry date.",
-    "headingBooster": "",
-    "active": false,
-    "nd": "",
-    "boosterDescription": ""
-  },
-  {
-    "id": 3,
-    "name": "20% FIRST DAILY DEPOSIT BONUS",
-    "heading": "HOW TO PLAY",
-    "intro": "✅ Get 20% daily deposit Boost on your 1st deposit of the day.\n✅ E.g., When you make a deposit of 100/=, BetNare will boost your deposit by 20% which is 20/=. The 20/= will be Topped up into your BOOSTER walle\n",
-    "description": "",
-    "termsHeading": "TERMS AND CONDITIONS",
-    "termsContent": "✅ Deposit any AMOUNT to GET the 20% DAILY BOOSTER \n✅ The GIFT is ONLY to be issued ONCE per player, per account, per day. \n✅ Kindly Note that the Stake Booster funds Do Not have an expiry date.",
-    "headingBooster": "",
-    "active": false,
-    "nd": "",
-    "boosterDescription": ""
-  },
-  {
-    "id": 4,
     "name": "100% MULTIBET LOST BONUS",
     "heading": "HOW TO PLAY",
     "intro": " Place a pre-match Multibet/ accumulator of 5 or MORE selections.\n✅ If your bet is unsuccessful from 1 loss out of the accumulator, BetNare will refund a bonus of a set percentage based on the matrix set on your stake. i.e. The bonus amount is dependent on the number of selections.",
@@ -139,6 +9,7 @@
     "termsContent": " This offer ONLY applies to returns on Pre-Match accumulators \n✅ The MAXIMUM BONUS that you can receive is KES250. \n✅ BetNare may, at any time reclaim any bonus amount; Free Bets, Nare Points and enhanced payments that you may have been awarded in error. \n✅ BetNare may at any time make minor amendments to this promotion to correct typographical errors or to improve on clarity of customer experience and may CANCEL this promotion for legal or regulatory reasons. \n✅ Bets placed with Bonuses DO NOT apply/qualify for this offer \n✅ The refund is paid in BONUS and BONUS RULES apply \n✅ Jackpot bets will not apply/ be considered for this promotion \n✅ Voided bets will not apply / be considered.",
     "exampleHeading": "EXAMPLE",
     "active": true,
+    "show": true,
     "position": 3,
     "action": { "title": "Bet Now", "url": "/", "utm_source": "multibet" },
     "read_info": { "title": "Read More", "url": "/promo?id=4" },
@@ -156,23 +27,53 @@
         ["7", "1/11 folds", "60% bonus"],
         ["8", "1/12 folds", "get 100% bonus"]
       ]
-    }
+    },
+    "src": "../assets/Bet_Nare_100_Cashback_Mobile.webp",
+    "summary": "Place a pre-match Multibet of 5 or MORE selections...",
+    "eventTracking": "promo_100_MULTIBET_LOST_BONUS",
+    "actions": [
+      {
+        "name": "Bet Now",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=1"
+      }
+    ]
   },
   {
-    "id": 5,
-    "name": "LUCKY HOUR BONUS",
-    "heading": "",
-    "intro": "✅1. The Lucky Hour Bonus applies to new and existing customers who Deposit and place a bet..\n✅2. Deposit and stake Ksh 100 or more from 6am to 9am and 4pm to 7pm to stand a chance to win Ksh 250 cash credited direct to your Betnare Account.\n✅3. Winners to be chosen randomly..\n✅4. 200 winners chosen daily chosen between 6am and 9am and 4pm to 7pm.\n✅5. This promotion starts from 10th February to 17th February 2024 subject to extension",
-    "description": "",
-    "termsHeading": "",
-    "termsContent": "",
-    "headingBooster": "",
-    "active": false,
-    "nb": "Betnare’s terms and conditions apply",
-    "boosterDescription": ""
+    "id": 2,
+    "name": "KARIBU STAKE BOOSTER BONUS",
+    "heading": "HOW TO PLAY",
+    "intro": "1.1 Register and Get the BetNare Bet Booster of UPTO 30,000/= FREE \nor \n1.2 Get UPTO 30,000 of registration as Free Stake Booster to be used on BetNare when placing bets (in the Betslip) \n1.3 Start using your BOOSTERS immediately on your 1st Cash Bet",
+    "instructions": "HOW TO GET THE  Stake Booster GIFT",
+    "description": "✅REGISTER on BetNare.\n ✅Get UPTO 30,000 of registration as Free Stake Booster to be used on BetNare when placing bets (in the Betslip)\n✅Start using your BOOSTERS immediately on your 1 st Cash Bet.",
+    "headingBooster": "HOW TO USE THE BOOSTERS",
+    "boosterDescription": "✅Place a bet with a minimum of odds of 1.5 per leg\n✅A minimum of 4 games on a Multi Bet.\n✅BetNare will top up your stake by 20% of the stake used. e.g., When you stake 50/= BetNare will boost your stake by 20% meaning your stake will be 60/=, if you place a Stake of 200/=, BetNare will boost it to 240/=",
+    "nb": "  - Kindly Note that the Maximum Gift Bonus One can be topped up with is 40/= PER TICKET.  - Kindly Note that the BOOSTER wallet funds Do Not have an expiry date",
+    "termsHeading": "TERMS AND CONDITIONS",
+    "termsContent": "✅ One account one Stake Booster. Accounts with the same IP address and same Password will be regarded as the same customer and will not be able to claim the Booster Gift. First Deposit Gifts would be available only if the user makes a deposit within the first 3 months of account opening. \n✅ Once you REGISTER you get Stake Booster in total value of up to KES.30,000. \n✅ You will receive all the gifts once you REGISTER . The gifts will become valid only on cash bets. \n✅ The Gifts can only be used for &quot;Real Sports&quot; and no on Virtuals , Jackpot an Casino. \n✅ These Free Bet Gifts can only be used to place bets with 4+ selections with at least 4 selections having Odds &gt; 1.5. \n✅ Only 1 Booster Gift can be used in 1 Betslip. \n✅ In this promotion, BetNare only allows one chance to award Gifts per person / mobile number/ IP address/device number. \n✅ Duplicate accounts will be closed and will not qualify for this offer. Any winnings obtained unlawfully from this bonus will be removed. Promotion and Gifts ar created in order to reward our most valued customers.",
+    "active": true,
+    "show": true,
+    "position": 1,
+    "read_info": { "title": "Read More", "url": "/promo?id=1" },
+    "src": "https://cdn.betnare.com/carousel/30kStakeBoosterWeb.webp",
+    "summary": "Get Up to 30,000/= FREE Bet Booster once you register as a Free Stake Booster...",
+    "eventTracking": "promo_Stake_Booster",
+    "actions": [
+      {
+        "name": "Sign Up",
+        "url": "/signup"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=2"
+      }
+    ]
   },
   {
-    "id": 6,
+    "id": 3,
     "name": "SHINDA MBUZI YA KRISI NA BETNARE!",
     "heading": "",
     "intro": "✅ •Open to all new and existing customers.\n✅•Customers will be required to place a cash bet (single or multibet) using a stake of 99/= or more. They will automatically enter into the draw to win various prizes.\n✅•Cash bets are placed on Prematch, Live or Virtual events.\n✅•Winners are chosen randomly by the Betnare promotion systems.Prizes:\n✅•2 daily winners of a mbuzi worth upto Ksh. 5,000 each.\n✅•Promo runs from 4th December 2023 to 4th Jan 2024✅\nBonus terms and conditions apply.✅\nGeneral Betnare T&Cs apply✅\nBETNARE.✅\nBet ni moto!",
@@ -181,11 +82,25 @@
     "termsContent": "",
     "headingBooster": "",
     "active": false,
+    "show": false,
     "nd": "",
-    "boosterDescription": ""
+    "boosterDescription": "",
+    "src": "https://cdn.betnare.com/carousel/Mbuzi.webp",
+    "summary": "Stake a minimum of 20 Kenyan Shillings, customers with the highest in-game multiplier(s) will stand a chance to get amazing prizes",
+    "eventTracking": "buruka_na_aviator_promotion",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=3"
+      }
+    ]
   },
   {
-    "id": 7,
+    "id": 4,
     "name": "FREE  DEPOSIT OF ALL DEPOSITS!",
     "heading": "FREE  DEPOSIT ON ALL DEPOSITS",
     "intro": "All new and existing customers get to enjoy a free deposit bonus on your  all your deposits from 20bob and above!   ",
@@ -194,40 +109,298 @@
     "boosterDescription": "✅ •Deposit a valid amount of KES 20/= and above to get an entry.\n✅ •The more higher the entry, the higher the  bonus.\n✅ •All transactional charges will ge refunded\n✅ •Higher deposits higher bonus entries for higher chances of winning",
     "termsHeading": "Terms of the promotion",
     "active": true,
+    "show": true,
     "nd": "",
     "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
-    "termsContent": "\n✅•Every cash deposit of KES 20/= is equivalent to 1 entry.."
+    "termsContent": "\n✅•Every cash deposit of KES 20/= is equivalent to 1 entry..",
+    "src": "https://cdn.betnare.com/carousel/DepositBonus.webp",
+    "summary": "All new and existing customers get to enjoy a free deposit bonus on your all your deposit from 20bob and above!",
+    "eventTracking": "free_deposit_bonus",
+    "actions": [
+      {
+        "name": "Deposit",
+        "url": "/deposit"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=4"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "JET-X THE MONEY MULTIPLIER DAILY",
+    "heading": "HOW TO PLAY",
+    "intro": "When playing JetX, you can put more than one bet on each round to predict which multiplier the plane will crash. The longer the plane flies, the higher the multiplier. Attain high multipliers and win Big by cashing out before the Jet goes up in flames.\nPlay JetX only on BetNare. Click here to play https://betnare.com/smart-play?game=JetX&category=JetX\nCashing out on JetX is Easy. You can Cash-Out by clicking the cashout button or by using the auto-withdraw option. With the Auto-CashOut option, you are able to set the Multiplier to Auto-Collect your winnings\nCashOut has never been easier as it is possible to withdraw manually while using the auto-withdraw feature. Maximize your Winnings and Minimize loses by using the auto-withdraw feature on JetX.",
+    "instructions": "Winnings",
+    "active": false,
+    "show": false,
+    "description": "Minimum Bet – KSH10, Maximum Stake per Bet is KES12,000. Maximum Win per Bet is KES 2,500,000.\nGame on real-time events, Fast Plays for High and instant Pay-outs on every successful cashout.\nThe Auto-Bet feature allows players to automatically place the bets based on their preferred betting strategy as the Auto-Cashout feature automatically Pays Out your Winnings when you reach the predefined multiplier.\nJetX offers live statistics on running live bets in the statistics section",
+    "src": "",
+    "summary": "Stake a minimum of 20 Kenyan Shillings, customers with the highest in-game multiplier(s) will stand a chance to get amazing prizes",
+    "eventTracking": "buruka_na_aviator_promotion",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=5"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "500 FOR 500 PROMOTION TERMS AND CONDITIONS",
+    "heading": "HOW TO PLAY",
+    "intro": "✅Place a Cash Sports bet on BetNare\n✅Place a bet of equivalent amount using the Bonus.\n✅Enjoy your winnings",
+    "instructions": "HOW TO GET BONUS",
+    "description": "✅Deposit 500/= in your BetNare Account.\n✅Get 500/= FREE Sports Bet Bonus Instantly.\n✅Start using your deposit bonus immediately",
+    "termsHeading": "TERMS AND CONDITIONS",
+    "termsContent": "1.\tThe bonus will be credited to the customer's account automatically once they have made their deposit.\n2.\tThe Bonus will be Awarded ONLY on Deposits which HAVE be of an equivalent amount of 500/=.\n3.\tThe Bonus SHOULD be used within 13 days after depositing. All Bonuses and Bonus winnings accumulated during the Bonus Promotion period will be revoked at the end of the campaign period.\n4.\tTo use the bonus the customer will be required to have placed an equivalent Sports Cash Bet on Minimum odds of 1.9\n5.\tThe Bonus can only be used to place a Sports bet on a Minimum of 4 Games with a Minimum odd of 2.1 on each leg.\n6.\tThe Maximum Bonus Gross Winnings are 10,000 Kenya Shillings Less Initial Stake.\n7.\tCash Bet Cancellation will NOT be allowed when the customer has an ACTIVE bonus bet during this promotion.\n8.\tBetNare may limit or refuse to allow customers to take part in this or any other offer.\n9.\tBetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the bonus program and void their bonus and or winnings.\n10.\tOnly ONE bonus is allowed per customer, family, address, shared computer, shared IP address. Any misuse of this bonus offer will lead to an account being closed.\n",
+    "nb": "\uD83C\uDF87\tWithin the next 14 days, ONCE you DEPOSIT 500/=, BetNare Rewards you 500/= BONUS INSTANTLY.\nBetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.\nCustomers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeit of any bonuses/winnings.\nIf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\n",
+    "active": false,
+    "src": "https://cdn.betnare.com/carousel/Mega%20Match%20Bonus%20Web.webp",
+    "summary": "Stake a minimum of 20 Kenyan Shillings, customers with the highest in-game multiplier(s) will stand a chance to get amazing prizes",
+    "eventTracking": "buruka_na_aviator_promotion",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=6"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "PEPEA ANGANI NA SPACEMAN",
+    "heading": "HOW TO PLAY",
+    "intro": "Playing Spaceman is very thrilling and fun.\nWin big cash prizes when you hit the top spot and collect UPTO x5000. The multiplier always starts from 1X and goes UPTO a maximum of 5,000X.\nMinimum Bet – KSH10, Maximum Bet – KSH5000, Maximum Win Per Spaceman Bet is KES 2,500,000.\nCashOut before the spaceman crashes. Get high profits the longer Spaceman flies.\nYou can also cashout 50% of your bet and leaving the remaining 50% in play as long as you desire. The Auto CashOut and the 50% Auto Cashout as additional options. The Auto Cash-out feature finishes the game completely crediting you with the current level of winnings. The 50% Auto Cashout feature cashes out half of your stake, allowing you to continue with the remaining half to try and win a bigger prize. Get speedy outcomes whenever you play SpaceMan. Utilize the individual betting strategies using Auto",
+    "instructions": "CashOut and Auto Play",
+    "active": false,
+    "show": false,
+    "description": "Interact with a detailed bet history, statistics with a leader board showing actual Stakes and Wins. The Live chat indicates real time conversation amongst all the SpaceMan players. See up to 500 last results with each round details.\nPlay Spaceman only on BetNare. Click here to play https://betnare.com/gameplay/1301/1\nSpaceMan is available to NEW and EXISTING customers on the platfor",
+    "src": "",
+    "summary": "Stake a minimum of 20 Kenyan Shillings, customers with the highest in-game multiplier(s) will stand a chance to get amazing prizes",
+    "eventTracking": "buruka_na_aviator_promotion",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=7"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "GURUMISHA MAMILI NA AVIATOR",
+    "heading": "HOW TO PLAY",
+    "intro": "Fly Aviator to WIN Upto 2,000,000/= Daily. Choose your bet amount and press confirm. Use AUTO-BET function for a guaranteed WIN. Minimum Bet – KSH 10. Maximum Bet – KSH 10,000. Maximum Win per Bet is KSH 2,000,000. Maximize your Winnings with the Double Bet feature by adding another bet anytime and set different values.\nOnce the countdown expires, the Aviator will take flight and start collecting a growing WIN multiplier. Press the “Cashout” button at any point to claim your winnings.\nWhen using the “AUTO CASHOUT”, money will be withdrawn when the MULTIPLIER exceeds the chosen AUTO-CASHOUT index. Example; If you had chosen 1.5X Index, it will cashout automatically at 1.5X and WINNINGS credited in your account.",
+    "instructions": "How to Win Aviator",
+    "description": "Press the Cashout button before the Aviator Plane flies away.\nAviator features a Double Bet Feature that allows a second bet during play. The second bet is set and activated independently of the first one and can be cashed out without cashing the initial set bet.",
+    "headingBooster": "Aviator Freebets",
+    "active": false,
+    "show": false,
+    "boosterDescription": "Play Aviator on BetNare & Get Freebets every time.\nRegister now on https://betnare.com/nare-games/aviator and become a potential winner.\nSign Up to play Aviator here https://betnare.com/nare-games/aviator .",
+    "src": "",
+    "summary": "Stake a minimum of 20 Kenyan Shillings, customers with the highest in-game multiplier(s) will stand a chance to get amazing prizes",
+    "eventTracking": "buruka_na_aviator_promotion",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=8"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "FLIGHT OF FORTUNE",
+    "heading": "FLIGHT OF FORTUNE \n",
+    "intro": "1. Eligibility\n\n• To participate in the Kaquarter ka Kufunga Season promotional offer, customers must place a single bet or a multi-bet with a minimum stake of 49 Kenyan Shillings on Sportsbook or Nare League (virtual bet).\n• Only cash bets placed within this period are eligible for the promotion.\n• The promotional period will start 1st June 2024 to 7th June 2024 subject to extension at BetNare's own discretion.\n• The promotion start time will be from 00:00hrs to 23:59hrs everyday during the campaign period.\nHow it works\n\n2. Prizes\n\n5 winners will be awarded a shopping worth 5,000 shillings each daily after placing a qualifying bet\n 10 winners will be a warded 2,500 shillings each daily after placing a qualifying bet.\n 35 winners will be a warded Kaquarter worth 500 shillings each daily after placing a qualifying bet.\nJackpot bets, Live games and Casino will not be valid during this promotion.\nOnly bets placed on football, basketball and Nare League (virtual) will be eligible.\n4. Notification of Winners:\n\n- Daily winners will be notified through their registered accounts or contact information.\n- Winners will be published on the social media pages everyday at 2pm\n",
+    "description": "",
+    "termsHeading": "Terms and Conditions",
+    "termsContent": "- The Campaign is subject to the terms and conditions of BetNare, which can be found on the BetNare website.\n- BetNare reserves the right to amend, suspend, or terminate the Campaign at any time and without prior notice.\n- In the event of any dispute regarding the eligibility, participation, or prize allocation, BetNare's decision shall be final and binding.\n- By participating in the Campaign, players agree to abide by these terms and conditions and any decisions made by BetNare regarding the Campaign.\n",
+    "headingBooster": "",
+    "tableData": {
+      "headings": ["Winnners", "Amount"],
+      "rows": [
+        ["5 players", "10,000"],
+        ["20 players", "5,000"],
+        ["20 players", "2,000"],
+        ["20 players", "1,000"],
+        ["20 players", "500"],
+        ["Total", "200,000"]
+      ]
+    },
+    "boosterDescription": "",
+    "active": false,
+    "show": false,
+    "nd": "",
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/FlightofFortuneWeb.webp",
+    "summary": "Stake a minimum of 20 Kenyan Shillings on Aviator between 10am to midnight and win cash prizes",
+    "eventTracking": "flight_of_fortune",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=9"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "20% FIRST DAILY DEPOSIT BONUS",
+    "heading": "HOW TO PLAY",
+    "intro": "✅ Get 20% daily deposit Boost on your 1st deposit of the day.\n✅ E.g., When you make a deposit of 100/=, BetNare will boost your deposit by 20% which is 20/=. The 20/= will be Topped up into your BOOSTER walle\n",
+    "description": "",
+    "termsHeading": "TERMS AND CONDITIONS",
+    "termsContent": "✅ Deposit any AMOUNT to GET the 20% DAILY BOOSTER \n✅ The GIFT is ONLY to be issued ONCE per player, per account, per day. \n✅ Kindly Note that the Stake Booster funds Do Not have an expiry date.",
+    "headingBooster": "",
+    "active": false,
+    "show": true,
+    "nd": "",
+    "boosterDescription": "",
+    "src": "../assets/Bet_Nare_gift_Mobile.webp",
+    "summary": "Get 20% daily deposit Boost on your 1st deposit of the day...",
+    "eventTracking": "promo_20_deposit_Boost",
+    "actions": [
+      {
+        "name": "Deposit!",
+        "url": "/deposit"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=10"
+      }
+    ]
   },
   {
     "id": 11,
-    "name": "FIKA USHAGO NA MBAO",
-    "heading": "Tufike Ushago na Mbao Christmas Campaign",
-    "intro": "For the next 30 days, every valid cash bet worth KES 20/= or more on Real Sports Will earn you one entry into the promotion .You will then automatically enter into the draw to win Bus tickets daily",
-    "description": "",
-    "headingBooster": "\nHow to participate",
-    "boosterDescription": "✅ •Place a valid cash bet of KES 20/= and above on Sportsbook matches, to get an entry.\n✅ •The more the entries, the higher your chances of winning. \n✅•The promotion will run from 27/9/2023 to 27/10/2023.Prizes\n✅ •BetNare will be giving out Kes 2000/= Bus tickets Daily to 10 winners , for the next 4 weeks.\n✅",
-    "termsHeading": "Terms of the promotion",
+    "name": "FIRST DEPOSIT BOOSTER",
+    "intro": "✅ A client receives 1500% BONUS on the FIRST ever deposit.",
+    "heading": "HOW TO PLAY",
+    "termsHeading": "TERMS AND CONDITIONS",
+    "termsContent": "✅ Make a single first deposit of any AMOUNT on BetNare.\n✅Get 1500% of your first deposit value as Free Stake Booster to be used at BetNare when placing bets (in the Betslip)\n✅ Start using your BOOSTERS immediately on your 1st Cash Bet. day.\n ✅This offer ONLY applies to your first ever deposit from November 25th\n✅The BOOSTER wallet funds Do Not have an expiry date.",
+    "headingBooster": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
-    "termsContent": "\n✅•Every cash stake of KES 20/= on Sportsbook matches  is equivalent to 1 entry.\n✅•Daily Winners will be announced on our social media pages and will also be contacted by a member of the BetNare Staff.\n✅•BetNare will display your total entries on the website, under your profile page .\n✅•Canceled cash bets, Virtual bets and bonus bets will not count in this promotion.\n✅•BetNare reserves the right to use the names, radio recordings , motion and still images of the winners for purposes of publicity , marketing campaigns and administering this promotion.\n✅•BetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the promotion.\n✅•Only one mobile number per customer is allowed to participate in the promotion.Any misuse of this promotion will lead to disqualification."
+    "boosterDescription": "",
+    "src": "../assets/Firstdeposit.jpeg",
+    "summary": "Get 1500% BONUS on the FIRST ever deposit as Free Stake Booster now...",
+    "eventTracking": "promo_FIRST_DEPOSIT_BOOSTER",
+    "actions": [
+      {
+        "name": "Deposit",
+        "url": "/deposit"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=11"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "365 DEPOSIT BONUS",
+    "heading": "HOW TO PLAY",
+    "intro": "Deposit 365/= to get 365/= Free Bonus for any deposit.\n Within the next 7 days, ONCE you DEPOSIT 365/=, BetNare Rewards you 365/= as a BONUS INSTANTLY.\nBetNare is also giving away 1000/= Cash Gifts every hour between 6 am and 6 pm DAILY for the next 7 days to customers with the highest entries! \nUnlike other Betting sites, BetNare offers lucrative bonuses so that the players can keep enjoying various features on the website without any risk and increase earnings.",
+    "instructions": "Winnings",
+    "active": false,
+    "show": true,
+    "termsHeading": "The 365 DABO DABO Bonus Terms and Conditions are as follow",
+    "termsContent": "✅The Bonus total Odds should be EQUAL or GREATER THAN 7.99 per selection\n✅No Maximum Odds\n✅No Minimum bonus bet amount.\n✅The Maximum bonus bet amount is 1,000/=\n✅You can only Use the Bonus when your cash balance is less than 1/=\n✅Total Winnings = Total Winnings less the Initial stake.\n✅The 365 DABO DABO Bonus will EXPIRE automatically at the end of the campaign\n ",
+    "description": "Once you deposit 365/=, Betnare will match your deposit of 365/= with a bonus of 365/= which can be used to place bets on the platform.\n The bonus rules will apply for the bonus accrued.\n Please note that the 365/= will not be withdrawable on depositing.Kindly note that you will be UNABLE to WITHDRAW ANY DEPOSIT of 365/= ONCE Awarded the 365 DABO DABO BONUS\nNote that to enjoy the BONUS , you must have placed a CASH Bet of 365 or MORE on Pre-Match or Live with Minimum Odds of 1.5.\n",
+    "src": "../assets/365.webp",
+    "summary": "Get 365/= Free When you deposit 365/=",
+    "eventTracking": "promo_365_deposit_bonus",
+    "actions": [
+      {
+        "name": "Deposit Now",
+        "url": "/deposit"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=12"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "650 FOR 650 PROMOTION TERMS AND CONDITIONS",
+    "heading": "HOW TO PLAY",
+    "intro": "✅Place a Cash Sports bet on BetNare\n✅Place a bet of equivalent amount using the Bonus.\n✅Enjoy your winnings",
+    "instructions": "HOW TO GET BONUS",
+    "description": "✅Deposit 650/= in your BetNare Account.\n✅Get 650 FREE Sports Bet Bonus Instantly.\n✅Start using your deposit bonus immediately",
+    "termsHeading": "TERMS AND CONDITIONS",
+    "termsContent": "1.\tThe bonus will be credited to the customer's account automatically once they have made their deposit.\n2.\tThe Bonus will be Awarded to any Deposit of the Day which will be an equivalent amount of 650/=.\n3.\tThe Bonus SHOULD be used within 13 days after depositing. All Bonuses and Bonus winnings accumulated during the Bonus Promotion period will be revoked at the end of the campaign period.\n4.\tTo use the bonus the customer will be required to have placed an equivalent Sports Cash Bet on Minimum odds of 1.9\n5.\tThe Bonus can only be used to place a Sports bet on a Minimum of 4 Games with a Minimum odd of 2.1 on each leg.\n6.\tThe Maximum Bonus Gross Winnings are 10,000 Kenya Shillings Less Initial Stake.\n7.\tCash Bet Cancellation will NOT be allowed when the customer has an ACTIVE bonus bet during this promotion.\n8.\tBetNare may limit or refuse to allow customers to take part in this or any other offer.\n9.\tBetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the bonus program and void their bonus and or winnings.\n10.\tOnly ONE bonus is allowed per customer, family, address, shared computer, shared IP address. Any misuse of this bonus offer will lead to an account being closed.\n",
+    "nb": "\uD83C\uDF87\tWithin the next 14 days, ONCE you DEPOSIT 650/=, BetNare Rewards you 650/= BONUS INSTANTLY.\nBetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.\nCustomers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeit of any bonuses/winnings.\nIf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\n",
+    "active": false,
+    "show": true,
+    "position": 2,
+    "action": {
+      "title": "Deposit",
+      "url": "/deposit",
+      "utm_source": "650_ROMOTION"
+    },
+    "read_info": { "title": "Read More", "url": "/promo?id=2" },
+    "src": "../assets/FreeKickBonanzaWeb.webp",
+    "summary": "Deposit 650 and Get 650 free bonus for your first and second deposit of the day",
+    "eventTracking": "mia-sita-hamusini",
+    "actions": [
+      {
+        "name": "Deposit now",
+        "url": "/deposit"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=13"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "CHOMOKA NA NDUTHI",
+    "heading": "HOW TO PLAY",
+    "intro": "✅Place a valid cash bet of KES 49/= and above on Sportsbook matches, to get an entry.\n✅The more the entries, the higher your chances of winning.\n✅The promotion will run from 27/10/2023 to 27/11/2023.\n",
+    "instructions": "PRIZES\n",
+    "description": "✅1. BetNare will be giving out 1 MOTORBIKE weekly, for the next 8 weeks.\n✅2. BetNare will also be awarding customers on a daily basis who participate in the promotion with various prizes like;\n\t-Playstations.\n\t-Customized Soccer Jerseys.\n\t-Shopping vouchers.\n\t-Cash prizes.\n",
+    "termsHeading": "TERMS AND CONDITIONS",
+    "termsContent": "1.\tEvery cash stake of KES 49/= on Sportsbook matches is equivalent to 1 entry. \nDaily and weekly Winners will be announced on our social media pages and will also be contacted by a member of the BetNare Staff.\nBetNare will display your total entries on the website, under your profile page .\nCanceled cash bets, Virtual bets and bonus bets will not count in this promotion.\nBetNare reserves the right to use the names, radio recordings, motion and still images of the winners for purposes of publicity, marketing campaigns and administering this promotion.\nBetNare may limit or refuse to allow customers to take part in this or any other promotion.\nBetNare reserves the right to review customer transaction records and logs for any reason. If, upon such review, it appears that a customer is using strategies which BetNare, at its sole discretion, deems to be abusive, BetNare reserves the right to revoke that customer's right to participate in the promotion.\nOnly one mobile number per customer is allowed to participate in the promotion.Any misuse of this promotion will lead to disqualification.\n\n",
+    "nb": "\uD83C\uDF87\t\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.\nCustomers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nIf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\n\nBetNare General terms and conditions apply in this promotion .\n",
+    "active": false,
+    "show": true,
+    "src": "https://cdn.betnare.com/carousel/chomokananduthi.webp",
+    "summary": "Place a cash bet of KES 49/= and above on Sportsbook matches...",
+    "eventTracking": "promo_nduthika",
+    "actions": [
+      {
+        "name": "Bet now",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=14"
+      }
+    ]
   },
   {
     "id": 15,
-    "name": "MAMILLI YA NJAANUARY NA AFCON",
-    "heading": "MAMILLI YA NJAANUARY NA AFCON",
-    "intro": "\nOpen to all new and existing customers. \n\n1.Customers will be required to place a cash bet on sports book (single or multibet) using a stake of 99/= or more.\n2.They (customers)  will automatically be awarded 1 AFCON points into the draw to win cash bonus deposited to their Betnare account and other prizes.\n3.Winners are chosen randomly by the Betnare promotion systems.   ",
-    "description": "",
-    "headingBooster": "\nPrizes\n",
-    "boosterDescription": "✅ •20 daily winners of 200/= each..\n✅ •African National team jerseys. \n✅•Shopping vouchers.\n✅ •Dstv subscription to enjoy the AFCON live.\n✅ •A 75’ television to watch the AFCON Final game\n✅ •Grand prize of 1M",
-    "termsHeading": "Terms and Conditions",
-    "active": true,
-    "nd": "",
-    "nb": "\nNB:Promo runs from 13th January 2024 to 11 February 2024.\nBonus terms and conditions apply.\n General Betnare terms and conditions apply. .",
-    "termsContent": ""
-  },
-  {
-    "id": 16,
     "name": "RUBANI CHALLENGE",
     "heading": "RUBANI CHALLENGE\n",
     "intro": "\nAim for a spot in the top to grab a share of the Ksh. 500,000 cash prizes daily by getting the highest in-game multiplier. \nWeka ndege mafuta, Pepea, and Win!\nThe Promotion will start from 24.1.2024 to 6.2.2024",
@@ -260,12 +433,26 @@
     },
     "termsHeading": "Terms and Conditions",
     "boostDescription": "• The daily prize winners will be announced every day on Betnare social media pages.\n• A week will run from 0000hrs to 2359hrs daily.\n• Where there is a dispute regarding the selection of winners, the adjudication and decision of the Betnare management will be final.\n• Free bets, cancelled and voided bets will not be eligible for this Promotion.\n• The Pepea game terms and conditions shall apply in the administration of this Promotion.\n• Where the system erroneously generates winnings in excess of the allowed maximum limit, any amount above this limit will be regarded as void and not validly due and payable.\n• Betnare reserves the right to conduct due diligence checks on Customer’s account activity and verify, with the relevant authorities, any identification document presented, before awarding any winnings.\n• Betnare reserves the right to void any winnings, at its sole discretion, and take any and all remedial action in instances including:\n  a. System or software malfunction or error; or\n  b. Suspicion that there are Prohibited Activities being undertaken.\n• Betnare does not guarantee the availability of the Promotion on all devices and channels or its availability all the time.\n• The Promotion terms may be amended from time to time by Betnare at its sole discretion.\n• The Promotion is subject to the General Terms and Conditions",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/Pepea.webp",
+    "summary": "Grab a share of the Ksh. 500,000 cash prizes daily by getting the highest in-game multiplier",
+    "eventTracking": "rubani_challenge",
+    "actions": [
+      {
+        "name": "Play Aviator",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=15"
+      }
+    ]
   },
   {
-    "id": 17,
+    "id": 16,
     "name": "VALENTINES NA JET-X",
     "heading": "VALENTINES NA JET-X\n",
     "intro": "\nAim for a spot in the top to grab a share of the Ksh. 100,000 cash prizes daily by getting the highest in-game multiplier on Jet X.\nSet bet, watch the jet fly and Win Big!\nThe Promotion will start from 27.1.2024 to 14.2.2024\n",
@@ -285,11 +472,25 @@
     "termsHeading": "Terms and Conditions",
     "termsContent": "•\n The daily prize winners will be announced every day on Betnare's social media pages. \n • A day will run from 0000hrs to 2359hrs daily. \n • Where there is a dispute regarding the selection of winners, the adjudication and decision of the Betnare management will be final. \n • Free bets, cancelled and voided bets will not be eligible for this Promotion. \n • The Valentine Na Jet X challenge terms and conditions shall apply in the administration of this Promotion. \n • Where the system erroneously generates winnings in excess of the allowed maximum limit, any amount above this limit will be regarded as void and not validly due and payable. \n • Betnare reserves the right to conduct due diligence checks on Customer’s account activity and verify, with the relevant authorities, any identification document presented, before awarding any winnings. \n • Betnare reserves the right to void any winnings, at its sole discretion, and take any and all remedial action in instances including: \n   a. System or software malfunction or error; or \n   b. Suspicion that there are Prohibited Activities being undertaken. \n • Betnare does not guarantee the availability of the Promotion on all devices and channels or its availability all the time. \n • The Promotion terms may be amended from time to time by Betnare at its sole discretion. \n • The Promotion is subject to the General Terms and Conditions",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/ValentinesnaJETX.webp",
+    "summary": "Aim for a spot in the top to grab a share of the Ksh. 100,000 cash prizes daily by getting the highest in-game multiplier on Jet X.",
+    "eventTracking": "valentine_jetx",
+    "actions": [
+      {
+        "name": "Play JetX",
+        "url": "/smart-play?game=JetX&category=JetX"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=16"
+      }
+    ]
   },
   {
-    "id": 18,
+    "id": 17,
     "name": "FOURTEEN DAYS OF LOVE NA BETNARE PROMOTION.",
     "heading": "FOURTEEN DAYS OF LOVE NA BETNARE PROMOTION.\n",
     "intro": "\nThe aim is to place a multi bet of 5 games or more, with a stake of over Ksh 14 to stand a chance of winning Ksh 100 daily.\nThe Promotion runs for fourteen (14) days and will start from 01.2.2024 to 15.2.2024\n",
@@ -298,13 +499,27 @@
     "boosterDescription": "\nEvery day, 20 customers will be awarded sh100 randomly until the promotion ends.\n",
     "termsHeading": "Terms and Conditions",
     "termsContent": "\n•The daily prize winners will be announced every day on Betnare social media pages.\n• Where there is a dispute regarding the selection of winners, the adjudication and decision of the Betnare management will be final.\n• Free bets, cancelled and voided bets will not be eligible for this Promotion.\n• The Fourteen Days of Love Na Betnare Promotion terms and conditions shall apply in the administration of this Promotion.\n• Where the system erroneously generates winnings in excess of the allowed maximum limit, any amount above this limit will be regarded as void and not validly due and payable.\n• Betnare reserves the right to conduct due diligence checks on Customers' account activity and verify, with the relevant authorities, any identification document presented, before awarding any winnings\n• Betnare reserves the right to void any winnings, at its sole discretion, and take any and all remedial action in instances including:\na. System or software malfunction or error; or\nb. Suspicion that there are Prohibited Activities being undertaken.\n• Betnare does not guarantee the availability of the Promotion on all devices and channels or its availability all the time.\n• The Promotion terms may be amended from time to time by Betnare at its sole discretion.\n• The Promotion is subject to the General Terms and Conditions",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/14DaysofloveWeb.webp",
+    "summary": "The aim is to place a multi bet of 5 games or more, with a stake of over Ksh 14 to stand a chance of winning Ksh 100 daily.",
+    "eventTracking": "14_days_of_love",
+    "actions": [
+      {
+        "name": "Play Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=17"
+      }
+    ]
   },
   {
-    "id": 19,
-    "name": "HOW LONG CAN YOU LAST.",
+    "id": 18,
+    "name": "HOW LONG CAN YOU LAST",
     "heading": "HOW LONG CAN YOU LAST.\n",
     "intro": "\nThis promotion shall run daily for seven days from 08 February to 14th February 2024 any extension will be communicated through our various platforms.\nKsh 1.2  Million is up for grabs. Highest Multiplier for the Qualifying day will win Ksh. 15,000.  Check other winnings in table below.\n",
     "description": "",
@@ -341,13 +556,55 @@
     },
     "termsHeading": "Terms and Conditions",
     "termsContent": "\n•",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/LastPromoFeb.webp",
+    "summary": "This promotion shall run daily for seven days from 08 February to 15th February 2024 any extension ...",
+    "eventTracking": "how_long_can_you_last",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=18"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "MAMILLI YA NJAANUARY NA AFCON",
+    "heading": "MAMILLI YA NJAANUARY NA AFCON",
+    "intro": "\nOpen to all new and existing customers. \n\n1.Customers will be required to place a cash bet on sports book (single or multibet) using a stake of 99/= or more.\n2.They (customers)  will automatically be awarded 1 AFCON points into the draw to win cash bonus deposited to their Betnare account and other prizes.\n3.Winners are chosen randomly by the Betnare promotion systems.   ",
+    "description": "",
+    "headingBooster": "\nPrizes\n",
+    "boosterDescription": "✅ •20 daily winners of 200/= each..\n✅ •African National team jerseys. \n✅•Shopping vouchers.\n✅ •Dstv subscription to enjoy the AFCON live.\n✅ •A 75’ television to watch the AFCON Final game\n✅ •Grand prize of 1M",
+    "termsHeading": "Terms and Conditions",
+    "active": false,
+    "show": true,
+    "nd": "",
+    "nb": "\nNB:Promo runs from 13th January 2024 to 11 February 2024.\nBonus terms and conditions apply.\n General Betnare terms and conditions apply. .",
+    "termsContent": "",
+    "src": "https://cdn.betnare.com/carousel/AfconPromoBanner.webp",
+    "summary": "Customers will be required to place a cash bet on sports book (single or multibet) using a stake of 99/= or more",
+    "eventTracking": "mamili_afcon",
+    "actions": [
+      {
+        "name": "Place Bets",
+        "url": "/competition/79/8085/21843?sport_id=79&sub_type_id=1"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=19"
+      }
+    ]
   },
   {
     "id": 20,
-    "name": "CLIMAX NA AVIATOR",
+    "name": "CLIMAX NA AVIATOR!",
     "heading": "CLIMAX NA AVIATOR\n",
     "intro": "\nThe aim of this promotion is to get the highest odds from winners. Those with the highest in-game multiplier(s) to be awarded various cash prizes as stipulated below. \nThis Promotion runs for one week from 20th February to 27th February 2024 subject to extension and amendments.\n",
     "description": "",
@@ -370,13 +627,27 @@
     },
     "termsHeading": "Terms and Conditions",
     "termsContent": "• The daily prize winners will be announced every day on Betnare social media pages.\n• A week will run from 0000hrs to 2359hrs daily.\n• Where there is a dispute regarding the selection of winners, the adjudication and decision of the Betnare management will be final.\n• Free bets, cancelled and voided bets will not be eligible for this Promotion.\n• The Pepea game terms and conditions shall apply in the administration of this Promotion.\n• Where the system erroneously generates winnings in excess of the allowed maximum limit, any amount above this limit will be regarded as void and not validly due and payable.\n• Betnare reserves the right to conduct due diligence checks on Customer’s account activity and verify, with the relevant authorities, any identification document presented, before awarding any winnings.\n• Betnare reserves the right to void any winnings, at its sole discretion, and take any and all remedial action in instances including:\n  a. System or software malfunction or error; or\n  b. Suspicion that there are Prohibited Activities being undertaken.\n• Betnare does not guarantee the availability of the Promotion on all devices and channels or its availability all the time.\n• The Promotion terms may be amended from time to time by Betnare at its sole discretion.\n• The Promotion is subject to the General Terms and Conditions",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/ClimaxWeb.webp",
+    "summary": "The aim of this promotion is to get the highest odds from winners. Those with the highest in-game multiplier(s) to be awarded ...",
+    "eventTracking": "climax_na_aviator",
+    "actions": [
+      {
+        "name": "Play Aviator",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=20"
+      }
+    ]
   },
   {
     "id": 21,
-    "name": "MSHIPI",
+    "name": "NIPOA KUFUNGA MSHIPI!",
     "heading": "NIPOA KUFUNGA MSHIPI\n",
     "intro": " \n1. Eligibility\n\n- To participate in the promotional offer, customers must stake a minimum of 50 Kenyan Shillings on a multi-bet comprising at least 5 games.\n- The promotional period starts on 5th March 2023 and ends on 30th March 2023.\n- Only bets placed within this period are eligible for the promotion.",
     "description": "",
@@ -385,12 +656,80 @@
     "headingBooster": "\nHow it works",
     "boosterDescription": "\n2. Prizes\n\n- Participants have the chance to win up to 50,000 Kenyan Shillings daily if their multi-bet of 5 games is successful.\n- The prize amount is capped at 50,000 Kenyan Shillings per day.\n\n3. Promotion Mechanics:\n\n- To qualify, participants must place a multi-bet with a stake of at least 50 Kenyan Shillings.\n- The multi-bet must consist of a minimum of 5 games.\n- Winnings will be calculated based on the odds of the selected games.\n- Daily winners will be determined based on the successful multi-bets placed on that specific day.\n\n4. Exclusions:\n\n- Low tier leagues are excluded from this promotion.\n- Only bets on eligible leagues and matches will be considered for the promotion.\n\n5. Notification of Winners:\n\n- Daily winners will be notified through their registered accounts or contact information.\n- Winners will be published on the social media pages",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/Mshipi.webp",
+    "summary": "Participants have the chance to win up to 50,000 Kenyan Shillings daily if their multi-bet of 5 games is successful.",
+    "eventTracking": "mshipi",
+    "actions": [
+      {
+        "name": "Play Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=21"
+      }
+    ]
   },
-
+  {
+    "id": 22,
+    "name": "LUCKY HOUR BONUS!",
+    "heading": "",
+    "intro": "✅1. The Lucky Hour Bonus applies to new and existing customers who Deposit and place a bet..\n✅2. Deposit and stake Ksh 100 or more from 6am to 9am and 4pm to 7pm to stand a chance to win Ksh 250 cash credited direct to your Betnare Account.\n✅3. Winners to be chosen randomly..\n✅4. 200 winners chosen daily chosen between 6am and 9am and 4pm to 7pm.\n✅5. This promotion starts from 10th February to 17th February 2024 subject to extension",
+    "description": "",
+    "termsHeading": "",
+    "termsContent": "",
+    "headingBooster": "",
+    "active": false,
+    "show": true,
+    "nb": "Betnare’s terms and conditions apply",
+    "boosterDescription": "",
+    "src": "https://cdn.betnare.com/carousel/LuckyHourv2.webp",
+    "summary": "The Lucky Hour Bonus applies to new and existing customers who Deposit and place a bet",
+    "eventTracking": "lucky_hour_2",
+    "actions": [
+      {
+        "name": "Deposit",
+        "url": "/deposit"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=22"
+      }
+    ]
+  },
   {
     "id": 23,
+    "name": "THE BIG LEAGUE",
+    "heading": "THE BIG LEAGUE\n",
+    "intro": "\n\nEligibility\n1.To participate in the promotional offer, customers must stake a minimum of 49 Kenya Shillings on Nare league and play at least 3 bets between 6pm and 9pm \n2.The promotional period starts on 19th March, 2024 and ends on 25th March, 2024 subject to extension and amendments.\n3.Only bets between 6pm and 9pm are eligible for this promotion.\n\nPrize\n1.Participants have the chance to win up to 49,000 Kenya Shillings daily if they play 3 bets on Nare league between 6pm and 9 pm \n2.The prize amount is capped at 49,000 Kenya Shillings per day.\n\n\nNotification of Winners:\n1.Daily winners will be notified through their registered accounts or contact information.\n2.Winners will be published on the social media pages",
+    "description": "",
+    "termsHeading": "Terms and Conditions",
+    "termsContent": "1.To qualify, participants must play 3 bets on Nare league with a stake of at least 49 Kenya Shillings.\n2.The 3 bets must be placed between 6pm and 9pm \n3.Winnings will be calculated based on the odds of the selected games.\n4.Daily winners will be determined based on the successful Nare league games placed on that specific day and that specific period of time (6pm to 9pm)\n",
+    "headingBooster": "",
+    "boosterDescription": "",
+    "active": false,
+    "show": true,
+    "nd": "",
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/TheBigLeagueWeb.webp",
+    "summary": "Participants have the chance to win up to 49,000 Kenya Shillings daily if they play 3 games ...",
+    "eventTracking": "big_league",
+    "actions": [
+      {
+        "name": "Play NareLeague!",
+        "url": "/nare-league"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=23"
+      }
+    ]
+  },
+  {
+    "id": 24,
     "name": "SHIKISHA NA AVIATOR",
     "heading": "SHIKISHA NA AVIATOR\n",
     "intro": "Every day, 15 customers with the highest in-game multiplier(s) will be awarded prizes as set out in the table below.\n",
@@ -417,25 +756,53 @@
       ]
     },
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
-  },
-  {
-    "id": 24,
-    "name": "THE BIG LEAGUE",
-    "heading": "THE BIG LEAGUE\n",
-    "intro": "\n\nEligibility\n1.To participate in the promotional offer, customers must stake a minimum of 49 Kenya Shillings on Nare league and play at least 3 bets between 6pm and 9pm \n2.The promotional period starts on 19th March, 2024 and ends on 25th March, 2024 subject to extension and amendments.\n3.Only bets between 6pm and 9pm are eligible for this promotion.\n\nPrize\n1.Participants have the chance to win up to 49,000 Kenya Shillings daily if they play 3 bets on Nare league between 6pm and 9 pm \n2.The prize amount is capped at 49,000 Kenya Shillings per day.\n\n\nNotification of Winners:\n1.Daily winners will be notified through their registered accounts or contact information.\n2.Winners will be published on the social media pages",
-    "description": "",
-    "termsHeading": "Terms and Conditions",
-    "termsContent": "1.To qualify, participants must play 3 bets on Nare league with a stake of at least 49 Kenya Shillings.\n2.The 3 bets must be placed between 6pm and 9pm \n3.Winnings will be calculated based on the odds of the selected games.\n4.Daily winners will be determined based on the successful Nare league games placed on that specific day and that specific period of time (6pm to 9pm)\n",
-    "headingBooster": "",
-    "boosterDescription": "",
-    "active": false,
-    "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/ShikishanaAviatorWeb.webp",
+    "summary": "The Promotion applies to cash bets placed on Betnare’s “Aviator” game...",
+    "eventTracking": "shikisha_na_aviator",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=24"
+      }
+    ]
   },
   {
     "id": 25,
+    "name": "SPIN & WIN INSTANT PRIZES WITH JETX!",
+    "heading": "\nSPIN & WIN INSTANT PRIZES WITH JETX!\n",
+    "intro": "",
+    "description": "",
+    "headingBooster": "\nHow to participate",
+    "boosterDescription": "",
+    "termsHeading": "Terms of the promotion",
+    "active": false,
+    "show": true,
+    "nd": "",
+    "nb": "\nParticipating Games are Jetx, Balloon, PlinkoX, Multihot5,FootballX, CricketX, GeniesBonanza, SlicerX, JokerBuyBonus,Cappadocia.",
+    "termsContent": "",
+    "src": "https://cdn.betnare.com/carousel/Spin&WIn.webp",
+    "summary": "Participating Games are Jetx, Balloon, PlinkoX, Multihot5,FootballX, CricketX, GeniesBonanza, SlicerX, JokerBuyBonus, Cappadocia...",
+    "eventTracking": "spin_n_win",
+    "actions": [
+      {
+        "name": "Play Jetx!",
+        "url": "/smart-play?game=JetX&category=JetX&status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=25"
+      }
+    ]
+  },
+  {
+    "id": 26,
     "name": "KIENYEJI PROMAX",
     "heading": "KIENYEJI PROMAX\n",
     "intro": "1. Eligibility:\n- The Kienyeji Promax campaign ('the Campaign') is open to all registered users of the BetNare platform who meet the eligibility criteria set forth in these terms and conditions. \n2. Promotion Period:\n- The Campaign will run from March 26th, 2024, starting at 6:00 AM, to April 1st, 2024, ending at 9:00 AM ('the Promotion Period'). \n3. Qualifying Games and Stake:\n- To qualify for the Campaign, players must place a bet of 99 bob or more on any of the following games: Aviator, JetX, Nare League, and Casino games.\n- Only bets placed and settled between 6:00 AM and 9:00 AM during the Promotion Period will be considered. \n4. Prize Details:\n- Daily prizes will be awarded to eligible players as follows:\n- Jogoo ya Easter (Easter's Rooster) worth Kes 1500 will be awarded to 20 players daily.\n- Kes 500 cash prize will be awarded to 100 players daily.\n- Prizes will be credited to the winners' BetNare accounts within 24 hours of the conclusion of each daily period. \n5. Selection Process:\n- Winners of the Jogoo ya Easter prize and the cash prize will be randomly selected from eligible participants who meet the criteria outlined in these terms and conditions.\n- Winners will be notified via their registered contact details and/or announced on the BetNare platform. ",
@@ -445,12 +812,26 @@
     "headingBooster": "",
     "boosterDescription": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/Kienyeji.webp",
+    "summary": "To qualify for the Campaign, players must place a bet of 99 bob or more on any of the following games: Aviator, JetX, Nare League, and Casino games.",
+    "eventTracking": "kienyeji_promax",
+    "actions": [
+      {
+        "name": "Play Games!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=26"
+      }
+    ]
   },
   {
-    "id": 26,
-    "name": "PUNCH YA SARE ",
+    "id": 27,
+    "name": "PUNCH YA SARE",
     "heading": "PUNCH YA SARE\n",
     "intro": "1. Eligibility:\n- The Punch Ya Sare promotion ('the Promotion') is open to all registered users of the BetNare platform who meet the eligibility criteria set forth in these terms and conditions. \n2. Promotion Period:\n- The Promotion will run from March 26th, 2024, starting at 12:00 AM, to April 1st, 2024, ending at 6:00 AM ('the Promotion Period'). \n3. Prize Details:\n- During the Promotion Period, a total of Kes 500 will be awarded to 10 players every hour between 12:00 AM and 6:00 AM, totaling 50 players each hour.\n- Prizes will be awarded based on the highest multipliers achieved by the players within the specified time frame. \n4. Participation:\n- To participate in the Promotion, players must place a minimum stake of Kes 20 on eligible bets during the Promotion Period.\n- Only bets placed and settled within the Promotion Period will be considered for the awarding of prizes. \n5. Prize Allocation:\n- Prizes will be allocated to the 10 players with the highest multipliers every hour during the Promotion Period.\n- Winners will be notified via their registered contact details and/or announced on the BetNare platform.\n- Prizes will be credited to the winners' BetNare accounts within 24 hours of the conclusion of each hourly period.\n",
     "description": "",
@@ -459,11 +840,25 @@
     "headingBooster": "",
     "boosterDescription": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/PunchyaSare.webp",
+    "summary": "Prizes will be awarded based on the highest multipliers achieved by the players within the specified time frame.",
+    "eventTracking": "punch_ya_sare",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=27"
+      }
+    ]
   },
   {
-    "id": 27,
+    "id": 28,
     "name": "RUSH HOUR RAINS",
     "heading": "RUSH HOUR RAINS\n",
     "intro": "1. Multiplier:\n- During the Rush Hour Rains campaign ('the Campaign'), the multiplier for winnings is set at 1.5X the regular payout.\n2. Campaign Period:\n- The Campaign will be active from March 26th, 2024, to April 1st, 2024 ('the Campaign Period').3. Eligibility:- The Campaign is open to all registered users of the BetNare platform who meet the eligibility criteria outlined in the general terms and conditions for rains.",
@@ -473,25 +868,53 @@
     "headingBooster": "",
     "boosterDescription": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
-  },
-  {
-    "id": 28,
-    "name": "RASHA RASHA ZA AVIATOR",
-    "heading": "RASHA RASHA ZA AVIATOR\n",
-    "intro": "1. Eligibility:\n\n- The Rasha Rasha za Aviator Campaign is open to all registered users of the Betnare platform.\n- Participants must be aged 18 years or above to participate in the campaign.\n- Only players who place bets on the Aviator game are eligible to qualify for the campaign. \n\n2. Campaign Period:\n\n- The campaign will run for 7 days from April 12, 2024 \n\n3. Qualifying Bets:\n\n- Participants must place a minimum bet of 20 Kenyan Shillings on the Aviator game to qualify for the campaign.\n- Only bets placed between the hours of 12:00 AM and 6:00 AM will qualify for the campaign. \n\n4. Airtime Awards:\n\n- Every hour between 12:00 AM and 6:00 AM, one lucky player will be randomly selected to receive 500 Kenyan Shillings worth of airtime. \n\n5. Multiplier Awards:\n\n- Players with the highest multipliers during the campaign period will be awarded special prizes.\n- The calculation of multipliers will be based on the total winnings relative to the stake amount. \n\n6. Grand Prize:\n\n- At the end of each week, three lucky players will be selected to win a grand prize of 3 Mbuzi worth 5,000 Kenyan Shillings each.\n- Winners will be randomly selected from the pool of eligible participants who have met the qualifying criteria.\n\n7. Winner Selection:\n\n- Winners of airtime awards, multiplier awards, and the grand prize will be selected randomly using an automated system to ensure fairness and transparency. \n\n8. Bonus Usage:\n\n- Airtime awards received as part of the Rasha Rasha za Aviator Campaign can be used for mobile airtime top-ups and other telecommunications services.",
-    "description": "",
-    "termsHeading": "Terms and Conditions",
-    "termsContent": "\nBetnare reserves the right to modify, suspend, or terminate the Rasha Rasha za Aviator Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.",
-    "headingBooster": "",
-    "boosterDescription": "",
-    "active": true,
-    "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/GoldRush.webp",
+    "summary": "During the Rush Hour Rains campaign ('the Campaign'), the multiplier for winnings is set at 1.5X the regular payout.",
+    "eventTracking": "rush_hour_rains2",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=28"
+      }
+    ]
   },
   {
     "id": 29,
+    "name": "MBUZI YA MBOGI!",
+    "heading": "MBUZI YA MBOGI\n",
+    "intro": "\n1. Eligibility:\n- Participants must be registered users of Betnare.\n- Only bets placed on the sportsbook with a minimum stake of 50 bob are eligible for participation in the Mbuzi ya Mbogi Campaign.\n- Participants must share their bet slip with five friends to qualify for entry into the campaign.\n\n2. Campaign Period:\n- The Mbuzi ya Mbogi Campaign will run from 2024-04-03 to 2024-05-19 \n\n3. Entry Requirements:\n- To enter the campaign, participants must:\n- Place a bet on the sportsbook with a minimum stake of 50 bob.\n- Share their bet slip with five friends via social media platforms,\n\n4. Prize:\n- The prize for the Mbuzi ya Mbogi Campaign is a live goat (mbuzi ya mbogi) worth 10,000 Kenyan Shillings.\n- The prize will be awarded to each winner based on a random selection process among eligible participants.\n\n5. Winner Selection:\n- Winners will be selected randomly from eligible participants who have met all entry requirements.\n- The selection process will be conducted at the end of the campaign period. ",
+    "description": "",
+    "termsHeading": "Terms and Conditions",
+    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the Mbuzi ya Mbogi Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
+    "headingBooster": "",
+    "boosterDescription": "",
+    "active": false,
+    "show": true,
+    "nd": "",
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/Mbuziyambogi.webp",
+    "summary": "Place a bet on sportsbook with a minimum stake of 50 bob share with 5 friends and stand a chance to win a live goat(mbuzi ya mbogi) !",
+    "eventTracking": "mbuzi_ya_mbogi",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=29"
+      }
+    ]
+  },
+  {
+    "id": 30,
     "name": "MORNING GLORY",
     "heading": "MORNING GLORY\n",
     "intro": "\n1. Eligibility:\n\n- The Morning Glory Reloaded Campaign is open to all registered users of the Betnare platform.\n- Participants must be aged 18 years or above to participate in the campaign.\n- Only players who place bets between the hours of 6:00 AM and 9:00 AM are eligible to qualify for the campaign.  \n\n2. Campaign Period:\n\n- The campaign will run from 2024-04-03 to 2024-04-10  \n\n3. Qualifying Bets:\n\n- Participants must place a minimum bet of 100 Kenyan Shillings on any of the following games: Aviator, JetX, Nare League, or Casino games.\n- Only bets placed within the specified time frame (6:00 AM to 9:00 AM) will qualify for the campaign.  \n\n4. Cash Award:\n\n- Each day, twenty (20) players who meet the qualifying criteria will be randomly selected to receive a cash award worth 1000 Kenyan Shillings.\n\n- The cash award will be credited to the winners' Betnare accounts within [Insert Timeframe] after the selection process.  \n\n5. Winner Selection:\n\n- Winners will be selected randomly from the pool of eligible participants who have met the qualifying criteria.\n- The selection process will be conducted by an automated system to ensure fairness and transparency.  \n\n6. Notification of Winners:\n- Winners will be notified via email or SMS using the contact details provided during registration.\n- It is the responsibility of the winners to ensure that their contact information is accurate and up to date.  \n\n7. Bonus Usage:\n\n- Cash awards received as part of the Morning Glory Reloaded Campaign can be used for placing bets on the Betnare platform or withdrawn as cash, subject to the platform's terms and conditions. \n",
@@ -501,82 +924,54 @@
     "headingBooster": "",
     "boosterDescription": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
-  },
-  {
-    "id": 30,
-    "name": "MBUZI YA MBOGI",
-    "heading": "MBUZI YA MBOGI\n",
-    "intro": "\n1. Eligibility:\n- Participants must be registered users of Betnare.\n- Only bets placed on the sportsbook with a minimum stake of 50 bob are eligible for participation in the Mbuzi ya Mbogi Campaign.\n- Participants must share their bet slip with five friends to qualify for entry into the campaign.\n\n2. Campaign Period:\n- The Mbuzi ya Mbogi Campaign will run from 2024-04-03 to 2024-05-19 \n\n3. Entry Requirements:\n- To enter the campaign, participants must:\n- Place a bet on the sportsbook with a minimum stake of 50 bob.\n- Share their bet slip with five friends via social media platforms,\n\n4. Prize:\n- The prize for the Mbuzi ya Mbogi Campaign is a live goat (mbuzi ya mbogi) worth 10,000 Kenyan Shillings.\n- The prize will be awarded to each winner based on a random selection process among eligible participants.\n\n5. Winner Selection:\n- Winners will be selected randomly from eligible participants who have met all entry requirements.\n- The selection process will be conducted at the end of the campaign period. ",
-    "description": "",
-    "termsHeading": "Terms and Conditions",
-    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the Mbuzi ya Mbogi Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
-    "headingBooster": "",
-    "boosterDescription": "",
-    "active": false,
-    "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/Morningglory.webp",
+    "summary": "Play with a minimum of KES 100 between 6:00 AM and 9:00 AM and stand a chance to be awarded cash worth 1000 Kenyan shillings...",
+    "eventTracking": "morning_glory",
+    "actions": [
+      {
+        "name": "Play Games!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=30"
+      }
+    ]
   },
   {
     "id": 31,
-    "name": "MZINGA YA MBOGI",
-    "heading": "MZINGA YA MBOGI\n",
-    "intro": "1. Eligibility\n\n1.1 The Share Bet Ushinde Mzinga ya Mbogi Promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations. \n\n2. Promotion Period\n\n2.1 The Promotion will run for 7 days from April 12, 2024 . \n\n3. Qualifying Bet\n\n3.1 To qualify for the Promotion, participants must place a bet with any amount on Betnare.\n3.2 Participants must share their betslip with at least 5 friends using the provided sharing options on the Betnare platform. \n\n4. Mzinga Prize\n\n4.1 Participants will be eligible to win a Mzinga worth 5,000 Kenyan Shillings (KES) if their betslip is shared with at least 5 friends.\n4.2 If the participant's 'mbogi' (group of friends) collectively place bets on the shared betslip, the participant will win the Mzinga prize. \n\n5. Notification\n\n5.1 Winners will be notified via their registered mobile number.\n5.2 Betnare reserves the right to use any other method of communication deemed appropriate to notify winners. \n\n6. Redemption\n\n6.1 The Mzinga prize will be awarded to the participant within 24 hours of meeting the eligibility criteria.\n6.2 The Mzinga prize is non-transferable and may not be exchanged for cash or other prizes.  ",
+    "name": "RASHA RASHA ZA AVIATOR!",
+    "heading": "RASHA RASHA ZA AVIATOR\n",
+    "intro": "1. Eligibility:\n\n- The Rasha Rasha za Aviator Campaign is open to all registered users of the Betnare platform.\n- Participants must be aged 18 years or above to participate in the campaign.\n- Only players who place bets on the Aviator game are eligible to qualify for the campaign. \n\n2. Campaign Period:\n\n- The campaign will run for 7 days from April 12, 2024 \n\n3. Qualifying Bets:\n\n- Participants must place a minimum bet of 20 Kenyan Shillings on the Aviator game to qualify for the campaign.\n- Only bets placed between the hours of 12:00 AM and 6:00 AM will qualify for the campaign. \n\n4. Airtime Awards:\n\n- Every hour between 12:00 AM and 6:00 AM, one lucky player will be randomly selected to receive 500 Kenyan Shillings worth of airtime. \n\n5. Multiplier Awards:\n\n- Players with the highest multipliers during the campaign period will be awarded special prizes.\n- The calculation of multipliers will be based on the total winnings relative to the stake amount. \n\n6. Grand Prize:\n\n- At the end of each week, three lucky players will be selected to win a grand prize of 3 Mbuzi worth 5,000 Kenyan Shillings each.\n- Winners will be randomly selected from the pool of eligible participants who have met the qualifying criteria.\n\n7. Winner Selection:\n\n- Winners of airtime awards, multiplier awards, and the grand prize will be selected randomly using an automated system to ensure fairness and transparency. \n\n8. Bonus Usage:\n\n- Airtime awards received as part of the Rasha Rasha za Aviator Campaign can be used for mobile airtime top-ups and other telecommunications services.",
     "description": "",
     "termsHeading": "Terms and Conditions",
-    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the Mzinga ya Mbogi Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
+    "termsContent": "\nBetnare reserves the right to modify, suspend, or terminate the Rasha Rasha za Aviator Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.",
     "headingBooster": "",
     "boosterDescription": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/Rasha.webp",
+    "summary": "Play with a minimum of KES 20 between 12:00 AM and 6:00 AM and receive kenyan shillings 500 airtime...",
+    "eventTracking": "rasha_rasha_za_aviator",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=31"
+      }
+    ]
   },
   {
     "id": 32,
-    "name": "RAUKA BONUS ",
-    "heading": "RAUKA BONUS \n",
-    "intro": "1.Eligibility\n\n1.1 The Rauka Bonus promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations.\n\n2. Promotion Period\n\n2.1 The Promotion will run daily from 6:00 AM to 9:00 AM for 7 days from April 12, 2024 .\n\n3. Qualifying Deposit\n\n3.1 To qualify for the Promotion, participants must make a deposit of at least 100 Kenyan Shillings (KES) into their Betnare account during the Promotion Period.\n3.2 Only deposits made between 6:00 AM and 9:00 AM will be eligible for the Promotion.\n\n4. Bonus\n\n4.1 Participants who make a qualifying deposit during the Promotion Period will be eligible to win a bonus of 500 Kenyan Shillings (KES).\n4.2 The bonus will be credited to the participant's Betnare account within 24 hours of the qualifying deposit being made.\n4.3 The bonus is non-transferable and may not be exchanged for cash or other prizes.",
-    "description": "",
-    "termsHeading": "Terms and Conditions",
-    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the Rauka Bonus Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
-    "headingBooster": "",
-    "boosterDescription": "",
-    "active": false,
-    "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
-  },
-  {
-    "id": 33,
-    "name": "PULL-OUT KICHAMPE ",
-    "heading": "PULL-OUT KICHAMPE \n",
-    "intro": "1. Eligibility\n\n1.1 The Pull-out-Kichampe Promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations. \n\n2. Promotion Period  \n\n2.1 The Promotion will run nightly from 12:00 AM to 6:00 AM for 7 days from April 12, 2024 . \n\n3. Qualifying Stake\n\n3.1 To qualify for the Promotion, participants must stake a minimum of 20 Kenyan Shillings (KES) on both the JETX and Aviator games during the Promotion Period.\n3.2 Only stakes made between 12:00 AM and 6:00 AM [Local Time] during the 7 days from April 12, 2024 will be eligible for the Promotion. \n\n4. Highest Multiplier\n\n4.1 Participants will compete to attain the highest multiplier on their stakes placed on the JETX and Aviator games during the Promotion Period.\n4.2 The participant with the highest multiplier will win the grand prize of 500,000 Kenyan Shillings (KES). \n\n5. Hourly Prizes\n\n5.1 In addition to the grand prize, participants will also have the chance to win hourly prizes as follows:\n\n- 1000 Kenyan Shillings (KES)\n- 500 Kenyan Shillings (KES)\n- 100 Kenyan Shillings (KES) airtime\n5.2 Hourly prizes will be randomly awarded to eligible participants every hour during the Promotion Period. \n\n6. Notification\n\n6.1 Winners will be notified via their registered mobile number.\n6.2 Betnare reserves the right to use any other method of communication deemed appropriate to notify winners. \n\n7. Redemption\n\n7.1 Prizes won during the Promotion Period will be credited to the participant's Betnare account within 24 hours of winning.\n7.2 Cash prizes are subject to Betnare's general terms and conditions and may be withdrawn or used for betting in accordance with those terms. ",
-    "description": "",
-    "termsHeading": "Terms and Conditions",
-    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the Pull-out Kichampe Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
-    "headingBooster": "",
-    "boosterDescription": "",
-    "active": false,
-    "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
-  },
-  {
-    "id": 34,
-    "name": "DONDOKA NA FREE BETS ",
-    "heading": "DONDOKA NA FREE BETS \n",
-    "intro": "1. Eligibility\n\n1.1 The DONDOKA na Free Bets promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations. \n\n2. Promotion Period\n\n2.1 The Promotion will run daily from 6:00 AM to 6:00 PM for 7 days from April 12, 2024 . \n\n3. Qualifying Play\n\n3.1 To qualify for the Promotion, participants must play the Aviator game during the Promotion Period.\n3.2 Participants will be eligible to win up to 1000 free bets every hour during the Promotion Period. \n\n4. Free Bets Allocation\n\n4.1 Betnare will allocate a total of 1,000 free bets every hour during the Promotion Period.\n4.2 Free bets will be awarded randomly to eligible participants who have played the Aviator game during the hour. \n\n5. Notification\n\n5.1 Participants who win free bets will be notified via their registered email address or mobile number.\n5.2 Betnare reserves the right to use any other method of communication deemed appropriate to notify winners. \n\n6. Redemption\n\n6.1 Free bets won during the Promotion Period will be credited to the participant's Betnare account \n6.2 Free bets are subject to Betnare's general terms and conditions and may be used in accordance with those terms. ",
-    "description": "",
-    "termsHeading": "Terms and Conditions",
-    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the DONDOKA na 'FREE' Bets Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
-    "headingBooster": "",
-    "boosterDescription": "",
-    "active": false,
-    "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
-  },
-  {
-    "id": 35,
-    "name": "MIDNIGHT RAINS ",
+    "name": "MIDNIGHT RAINS!",
     "heading": "MIDNIGHT RAINS \n",
     "intro": "1. Eligibility\n\n1.1 The Midnight Rains Free Bets Promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations. \n\n2. Promotion Period\n\n2.1 The Promotion will run nightly from 12:00 AM to 6:00 AM for 7 days from April 12, 2024 . \n\n3. Qualifying Play\n\n3.1 To qualify for the Promotion, participants must engage in betting activities on Betnare during the Promotion Period.\n3.2 Participants will be eligible to win free bets during the Promotion Period. \n\n4. Free Bets Allocation\n\n4.1 Betnare will award free bets every hour during the Promotion Period.\n4.2 A total of 85 free bet winners will be selected every hour.\n\n5. Notification\n\n5.1 Winners will be notified via their registered mobile number.\n5.2 Betnare reserves the right to use any other method of communication deemed appropriate to notify winners. \n\n6. Redemption\n\n6.1 Free bets are subject to Betnare's general terms and conditions and may be used in accordance with those terms.",
     "description": "",
@@ -597,26 +992,138 @@
     },
     "boosterDescription": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/MidnightRainsWeb.webp",
+    "summary": "Engage in betting activities on Betnare during the Promotion Period and win free bets ...",
+    "eventTracking": "midnight_rains",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=32"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "name": "DONDOKA NA FREE BETS!",
+    "heading": "DONDOKA NA FREE BETS \n",
+    "intro": "1. Eligibility\n\n1.1 The DONDOKA na Free Bets promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations. \n\n2. Promotion Period\n\n2.1 The Promotion will run daily from 6:00 AM to 6:00 PM for 7 days from April 12, 2024 . \n\n3. Qualifying Play\n\n3.1 To qualify for the Promotion, participants must play the Aviator game during the Promotion Period.\n3.2 Participants will be eligible to win up to 1000 free bets every hour during the Promotion Period. \n\n4. Free Bets Allocation\n\n4.1 Betnare will allocate a total of 1,000 free bets every hour during the Promotion Period.\n4.2 Free bets will be awarded randomly to eligible participants who have played the Aviator game during the hour. \n\n5. Notification\n\n5.1 Participants who win free bets will be notified via their registered email address or mobile number.\n5.2 Betnare reserves the right to use any other method of communication deemed appropriate to notify winners. \n\n6. Redemption\n\n6.1 Free bets won during the Promotion Period will be credited to the participant's Betnare account \n6.2 Free bets are subject to Betnare's general terms and conditions and may be used in accordance with those terms. ",
+    "description": "",
+    "termsHeading": "Terms and Conditions",
+    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the DONDOKA na 'FREE' Bets Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
+    "headingBooster": "",
+    "boosterDescription": "",
+    "active": false,
+    "show": true,
+    "nd": "",
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/DondokaWeb.jpeg",
+    "summary": "Win up to 1000 free bets every hour between 6:00 AM to 6:00 PM awards random it could be you ...",
+    "eventTracking": "dondoka_free_bets",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=33"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "name": "PULL-OUT KICHAMPE!",
+    "heading": "PULL-OUT KICHAMPE \n",
+    "intro": "1. Eligibility\n\n1.1 The Pull-out-Kichampe Promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations. \n\n2. Promotion Period  \n\n2.1 The Promotion will run nightly from 12:00 AM to 6:00 AM for 7 days from April 12, 2024 . \n\n3. Qualifying Stake\n\n3.1 To qualify for the Promotion, participants must stake a minimum of 20 Kenyan Shillings (KES) on both the JETX and Aviator games during the Promotion Period.\n3.2 Only stakes made between 12:00 AM and 6:00 AM [Local Time] during the 7 days from April 12, 2024 will be eligible for the Promotion. \n\n4. Highest Multiplier\n\n4.1 Participants will compete to attain the highest multiplier on their stakes placed on the JETX and Aviator games during the Promotion Period.\n4.2 The participant with the highest multiplier will win the grand prize of 500,000 Kenyan Shillings (KES). \n\n5. Hourly Prizes\n\n5.1 In addition to the grand prize, participants will also have the chance to win hourly prizes as follows:\n\n- 1000 Kenyan Shillings (KES)\n- 500 Kenyan Shillings (KES)\n- 100 Kenyan Shillings (KES) airtime\n5.2 Hourly prizes will be randomly awarded to eligible participants every hour during the Promotion Period. \n\n6. Notification\n\n6.1 Winners will be notified via their registered mobile number.\n6.2 Betnare reserves the right to use any other method of communication deemed appropriate to notify winners. \n\n7. Redemption\n\n7.1 Prizes won during the Promotion Period will be credited to the participant's Betnare account within 24 hours of winning.\n7.2 Cash prizes are subject to Betnare's general terms and conditions and may be withdrawn or used for betting in accordance with those terms. ",
+    "description": "",
+    "termsHeading": "Terms and Conditions",
+    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the Pull-out Kichampe Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
+    "headingBooster": "",
+    "boosterDescription": "",
+    "active": false,
+    "show": true,
+    "nd": "",
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/PullOutWebNew.webp",
+    "summary": "Stake a minimum of 20 Kenyan Shillings (KES) on both the JETX and Aviator games during the Promotion Period..",
+    "eventTracking": "pull_out_kichampe",
+    "actions": [
+      {
+        "name": "Play Games!",
+        "url": "/deposit"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=34"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "name": "RAUKA BONUS!",
+    "heading": "RAUKA BONUS \n",
+    "intro": "1.Eligibility\n\n1.1 The Rauka Bonus promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations.\n\n2. Promotion Period\n\n2.1 The Promotion will run daily from 6:00 AM to 9:00 AM for 7 days from April 12, 2024 .\n\n3. Qualifying Deposit\n\n3.1 To qualify for the Promotion, participants must make a deposit of at least 100 Kenyan Shillings (KES) into their Betnare account during the Promotion Period.\n3.2 Only deposits made between 6:00 AM and 9:00 AM will be eligible for the Promotion.\n\n4. Bonus\n\n4.1 Participants who make a qualifying deposit during the Promotion Period will be eligible to win a bonus of 500 Kenyan Shillings (KES).\n4.2 The bonus will be credited to the participant's Betnare account within 24 hours of the qualifying deposit being made.\n4.3 The bonus is non-transferable and may not be exchanged for cash or other prizes.",
+    "description": "",
+    "termsHeading": "Terms and Conditions",
+    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the Rauka Bonus Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
+    "headingBooster": "",
+    "boosterDescription": "",
+    "active": false,
+    "show": true,
+    "nd": "",
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/RaukaBonusWeb.webp",
+    "summary": "Deposit of at least 100 Kenyan Shillings (KES) into their Betnare account between 6:00 AM and 9:00 AM ...",
+    "eventTracking": "rauka_bonus",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/deposit"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=35"
+      }
+    ]
   },
   {
     "id": 36,
-    "name": "PAMBAZUKA NA JOGOO ",
-    "heading": "PAMBAZUKA NA JOGOO \n",
-    "intro": "Eligibility:\n\n- The Pambazuka na Jogoo campaign ('the Campaign') is open to all registered users of the Betnare platform who meet the eligibility criteria set forth in these terms and conditions.\n\n2. Promotion Period:\n\n- The Campaign will run from 6:00 AM ending at 10:00 AM ('the Promotion Period').\n\n3. Qualifying Games and Stake:\n\n- To qualify for the Campaign, players must Deposit {100 shillings} and place a bet of 100 bob or more on all the games on Betnare Platform\n- Only bets placed and settled between 6:00 AM and 10:00 AM during the Promotion Period will be considered.\n\n4. Prize Details:\n\n- Daily prizes will be awarded to eligible players as follows:\n- Jogoo (Rooster) worth Kes 2000 will be awarded to 20 players daily. The more you play the higher the chances of you winning the Jogoo (Rooster)\n- Kes 500 cash prize will be awarded to 50 players daily.\n- Prizes will be credited to the winners' BetNare accounts within 24 hours of the conclusion of each daily period.\n\n5. Selection Process:\n\n- Winners of the Jogoo (Rooster)prize and the cash prize will be randomly selected from eligible participants who meet the criteria outlined in these terms and conditions.\n- Winners will be notified via their registered contact details and/or announced on the BetNare platform.",
+    "name": "MZINGA YA MBOGI!",
+    "heading": "MZINGA YA MBOGI\n",
+    "intro": "1. Eligibility\n\n1.1 The Share Bet Ushinde Mzinga ya Mbogi Promotion ('Promotion') is open to individuals who are registered users of Betnare and who meet the eligibility criteria outlined in these terms and conditions.\n1.2 Participants must be of legal age to gamble in their jurisdiction and must comply with all applicable laws and regulations. \n\n2. Promotion Period\n\n2.1 The Promotion will run for 7 days from April 12, 2024 . \n\n3. Qualifying Bet\n\n3.1 To qualify for the Promotion, participants must place a bet with any amount on Betnare.\n3.2 Participants must share their betslip with at least 5 friends using the provided sharing options on the Betnare platform. \n\n4. Mzinga Prize\n\n4.1 Participants will be eligible to win a Mzinga worth 5,000 Kenyan Shillings (KES) if their betslip is shared with at least 5 friends.\n4.2 If the participant's 'mbogi' (group of friends) collectively place bets on the shared betslip, the participant will win the Mzinga prize. \n\n5. Notification\n\n5.1 Winners will be notified via their registered mobile number.\n5.2 Betnare reserves the right to use any other method of communication deemed appropriate to notify winners. \n\n6. Redemption\n\n6.1 The Mzinga prize will be awarded to the participant within 24 hours of meeting the eligibility criteria.\n6.2 The Mzinga prize is non-transferable and may not be exchanged for cash or other prizes.  ",
     "description": "",
     "termsHeading": "Terms and Conditions",
-    "termsContent": "- The Campaign is subject to the terms and conditions of BetNare, which can be found on the BetNare website.\n- BetNare reserves the right to amend, suspend, or terminate the Campaign at any time and without prior notice.\n- In the event of any dispute regarding the eligibility, participation, or prize allocation, BetNare's decision shall be final and binding.\n- By participating in the Campaign, players agree to abide by these terms and conditions and any decisions made by BetNare regarding the Campaign.\n",
+    "termsContent": "\n- Betnare reserves the right to modify, suspend, or terminate the Mzinga ya Mbogi Campaign at any time without prior notice.\n- By participating in the campaign, participants agree to abide by these terms and conditions and the decisions of Betnare, which shall be final and binding.\n- Betnare employees, affiliates, partners, and their immediate family members are not eligible to participate in the campaign.\n- Participation in the campaign constitutes acceptance of these terms and conditions.\n",
     "headingBooster": "",
     "boosterDescription": "",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/Mzinga.webp",
+    "summary": "Mzinga worth 5,000 Kenyan Shillings (KES) if their betslip is shared with at least 5 friends.",
+    "eventTracking": "mzinga_ya_mbogi",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=36"
+      }
+    ]
   },
   {
     "id": 37,
-    "name": "GOAL RUSH ",
+    "name": "GOAL RUSH!",
     "heading": "GOAL RUSH \n",
     "intro": "1.Eligibility\n\n- To participate in the Goal Rush promotional offer, customers must stake a minimum of 49 Kenyan Shillings on a single bet or multi-bet.\n- Only cash bets placed within this period are eligible for the promotion.\n\t\n- The promotional period will start on 4th May 2024 to 6th of May 2024 subject to extension at BetNare’s own discretion. \n-The promotion start time will be from 00:00hrs to 23:59hrs everyday during the campaign period.\n\n2. Prizes\n\n- 20 winners will be a warded 500 shillings each daily after placing a qualifying bet.\n- Jackpot bets, virtual bets will not be valid during this promotion.\n-Only bets placed on the Top European leagues will be eligible.\n\n4. Exclusions:\n\n- Low tier leagues are excluded from this promotion.\n- Only valid bets placed on the Top European leagues will be valid for the promotion.\n\n5. Notification of Winners:\n\n- Daily winners will be notified through their registered accounts or contact information.\n- Winners will be published on the social media pages everyday at 2pm\n",
     "description": "",
@@ -625,12 +1132,26 @@
     "headingBooster": "",
     "boosterDescription": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/GoalRushNew.webp",
+    "summary": "Stake a minimum of 49 Kenyan Shillings on a multi-bet comprising of at least 3 games and be among the 20 winners being awarded 500 kes daily...",
+    "eventTracking": "goal_rush",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=37"
+      }
+    ]
   },
   {
     "id": 38,
-    "name": "WEEKEND BONANZA ",
+    "name": "WEEKEND BONANZA!",
     "heading": "WEEKEND BONANZA \n",
     "intro": "\n Eligibility \n\n -To participate in the Weekend Bonanza na Aviator promotional offer,customers must stake a minimum of 20 Kenyan Shillings on Aviator.\n-Only players with the highest game multiplier between 10am to 6pm will win\n-Customers with the highest in-game multiplier(s) will be awarded prizes \n- The promotional period will starts on 4th May 2024 to 6th of May 2024 subject to extension at BetNare's own discretion. \n\n The promotion start time will be from 10 am to 6:00 pm everyday during the campaign period.\n\n- Only bets placed within this period are eligible for the promotion. \n\n 1.The Promotion applies to cash bets placed on Betnare's 'Aviator' game.\n 2.Only bets placed with a minimum stake of Ksh. 20 will apply ('Qualifying bet').\n 3. For the 3 days promotional period customers with the highest in-game multiplier(s) will be awarded prizes in the following order: \n\n a)1 player with the highest multiplier will be awarded 10,000 shillings daily.\n b) 5 Players with the second highest multiplier will be awarded 5,000 shillings daily.\n c) 5 players with the third highest multiplier will be awarded 2,000 shillings daily.\n d)10 players with fourth highest multiplier will be awarded 500 shillings daily.\n\n 4.A Customer can place as many Qualifying bets as possible to try reach the highest possible in-game multiplier to win one of the prizes.\n5.Free bets and rain free bets will not qualify.\n 6.The cash prize will be credited in the player's Betnare wallet the following day at 10am",
     "description": "",
@@ -639,12 +1160,26 @@
     "headingBooster": "",
     "boosterDescription": "",
     "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/WeekendBonanzawebnew.webp",
+    "summary": "Stake a minimum of 20 Kenyan Shillings on Aviator and win big prizes with the highest multiplier...",
+    "eventTracking": "end_month_bonanza",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=38"
+      }
+    ]
   },
   {
     "id": 39,
-    "name": "KAQUARTER KA KUFUNGA SEASON",
+    "name": "KAQUARTER KA KUFUNGA SEASON!",
     "heading": "KAQUARTER KA KUFUNGA SEASON \n",
     "intro": "\n1.Eligibility \n\n-To participate in the Kaquarter ka Kufunga Season promotional offer, customers must stake a minimum of 49 Kenyan Shillings on a single bet or multi-bet.\n- Only cash bets placed within this period are eligible for the promotion.\n\n- The promotional period will start on 1st June 2024 to 7th of June 2024 subject to extension at BetNare's own discretion.\n\n-The promotion start time will be from 00:00hrs to 23:59hrs everyday during the campaign period.\n\n2. Prizes\n\n- 5. winners will be awarded a  shopping worth 5,000 shillings each daily after placing a qualifying bet.\n- 10 winners will be a warded 2,500 shillings each daily after placing a qualifying bet.\n- 35 winners will be a warded Kaquarter worth 500 shillings each daily after placing a qualifying bet.\n- Jackpot bets, virtual bets will not be valid during this promotion.\n-Only pre-match bets placed on football and basketball will be eligible.\n\n4. Exclusions:\n\n- Low tier leagues are excluded from this promotion.\n- Only valid bets placed on the Top European leagues will be valid for the promotion.\n\n5. Notification of Winners:\n\n- Daily winners will be notified through their registered accounts or contact information.\n- Winners will be published on the social media pages everyday at 2pm\n",
     "description": "",
@@ -652,38 +1187,55 @@
     "termsContent": "- The Campaign is subject to the terms and conditions of BetNare, which can be found on the BetNare website.\n- BetNare reserves the right to amend, suspend, or terminate the Campaign at any time and without prior notice.\n- In the event of any dispute regarding the eligibility, participation, or prize allocation, BetNare's decision shall be final and binding.\n- By participating in the Campaign, players agree to abide by these terms and conditions and any decisions made by BetNare regarding the Campaign.\n",
     "headingBooster": "",
     "boosterDescription": "",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/QuarterWeb.webp",
+    "summary": "Stake a minimum of 49 Kenyan Shillings from 00:00hrs to 23:59hrs everyday and win a shopping worth 5,000 shillings",
+    "eventTracking": "kaquarter_ka_funga_season",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=39"
+      }
+    ]
   },
   {
     "id": 40,
-    "name": "FLIGHT OF FORTUNE",
-    "heading": "FLIGHT OF FORTUNE \n",
-    "intro": "1. Eligibility\n\n• To participate in the Kaquarter ka Kufunga Season promotional offer, customers must place a single bet or a multi-bet with a minimum stake of 49 Kenyan Shillings on Sportsbook or Nare League (virtual bet).\n• Only cash bets placed within this period are eligible for the promotion.\n• The promotional period will start 1st June 2024 to 7th June 2024 subject to extension at BetNare's own discretion.\n• The promotion start time will be from 00:00hrs to 23:59hrs everyday during the campaign period.\nHow it works\n\n2. Prizes\n\n5 winners will be awarded a shopping worth 5,000 shillings each daily after placing a qualifying bet\n 10 winners will be a warded 2,500 shillings each daily after placing a qualifying bet.\n 35 winners will be a warded Kaquarter worth 500 shillings each daily after placing a qualifying bet.\nJackpot bets, Live games and Casino will not be valid during this promotion.\nOnly bets placed on football, basketball and Nare League (virtual) will be eligible.\n4. Notification of Winners:\n\n- Daily winners will be notified through their registered accounts or contact information.\n- Winners will be published on the social media pages everyday at 2pm\n",
+    "name": "MBUZI YA MADARAKA!",
+    "heading": "MBUZI YA MADARAKA \n",
+    "intro": "Eligibility:\n\n- The Mbuzi ya Madaraka campaign ('the Campaign') is open to all registered users of the Betnare platform who meet the eligibility criteria set forth in these terms and conditions.\n\n2. Promotion Period:\n\n- The Campaign will run on June 1st, 2024 starting at 6:00 AM , to June 2nd Midnight ('the Promotion Period').\n\n3. Qualifying Games and Stake:\n\n- To qualify for the Campaign, players must Deposit {100 shillings} and place a bet of 100 bob or more on all the games on Betnare Platform\n- Only bets placed and settled during the Promotion Period will be considered.\n\n4. Prize Details:\n\n- Daily prizes will be awarded to eligible players as follows:\n- Jogoo (Rooster) worth Kes 2000 will be awarded to 20 players daily. The more you play the higher the chances of you winning the Jogoo (Rooster)\n- Kes 500 cash prize will be awarded to 50 players daily.\n- Prizes will be credited to the winners' BetNare accounts within 24 hours of the conclusion of each daily period.\n\n5. Selection Process:\n\n- Winners of the Jogoo (Rooster)prize and the cash prize will be randomly selected from eligible participants who meet the criteria outlined in these terms and conditions.\n- Winners will be notified via their registered contact details and/or announced on the BetNare platform.",
     "description": "",
     "termsHeading": "Terms and Conditions",
     "termsContent": "- The Campaign is subject to the terms and conditions of BetNare, which can be found on the BetNare website.\n- BetNare reserves the right to amend, suspend, or terminate the Campaign at any time and without prior notice.\n- In the event of any dispute regarding the eligibility, participation, or prize allocation, BetNare's decision shall be final and binding.\n- By participating in the Campaign, players agree to abide by these terms and conditions and any decisions made by BetNare regarding the Campaign.\n",
     "headingBooster": "",
-    "tableData": {
-      "headings": ["Winnners", "Amount"],
-      "rows": [
-        ["5 players", "10,000"],
-        ["20 players", "5,000"],
-        ["20 players", "2,000"],
-        ["20 players", "1,000"],
-        ["20 players", "500"],
-        ["Total", "200,000"]
-      ]
-    },
     "boosterDescription": "",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/MbuziyaMadarakaWeb.webp",
+    "summary": "Deposit 100 shillings and place a bet of 100 bob or more on all the games on Betnare Platform between 6:00 AM and 10:00 AM and win jogoo(2000)...",
+    "eventTracking": "mbuzi_ya_madaraka",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=40"
+      }
+    ]
   },
   {
     "id": 41,
-    "name": "AVIATOR ALTITUDE",
+    "name": "AVIATOR ALTITUDE!",
     "heading": "AVIATOR ALTITUDE \n",
     "intro": "\n.Eligibility\n\n- To participate in the Aviator Altitude promotional offer, customers must stake a minimum of 20 Kenyan Shillings on Aviator. \n- Only players with the highest in-game multiplier(s) in 24 hours will win \n- Customers with the highest in-game multiplier(s) will be awarded prizes \n- The promotional period will start 1st June 2024 to 7th June 2024 subject to extension at BetNare's own discretion.\nThe promotion start time will be from 0000 hours to 2359 hours everyday during the campaign period.\n- Only bets placed within this period are eligible for the promotion.\n\n1. The Promotion applies to cash bets placed on Betnare's 'Aviator' game.\n2. Only bets placed with a minimum stake of Ksh. 20 will apply ('Qualifying bet').\n3. For the 7 days promotional period customers with the highest in-game multiplier(s) will be awarded prizes in the following order:",
     "termsHeading": "Terms and Conditions",
@@ -703,27 +1255,55 @@
       ]
     },
     "boosterDescription": "",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/AltitudePromo.webp",
+    "summary": "Stake a minimum of 20 Kenyan Shillings on Aviator , get highest in-game multiplier(s) and win amazing prizes",
+    "eventTracking": "aviator_altitude",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=41"
+      }
+    ]
   },
   {
     "id": 42,
-    "name": "MBUZI YA MADARAKA ",
-    "heading": "MBUZI YA MADARAKA \n",
-    "intro": "Eligibility:\n\n- The Mbuzi ya Madaraka campaign ('the Campaign') is open to all registered users of the Betnare platform who meet the eligibility criteria set forth in these terms and conditions.\n\n2. Promotion Period:\n\n- The Campaign will run on June 1st, 2024 starting at 6:00 AM , to June 2nd Midnight ('the Promotion Period').\n\n3. Qualifying Games and Stake:\n\n- To qualify for the Campaign, players must Deposit {100 shillings} and place a bet of 100 bob or more on all the games on Betnare Platform\n- Only bets placed and settled during the Promotion Period will be considered.\n\n4. Prize Details:\n\n- Daily prizes will be awarded to eligible players as follows:\n- Jogoo (Rooster) worth Kes 2000 will be awarded to 20 players daily. The more you play the higher the chances of you winning the Jogoo (Rooster)\n- Kes 500 cash prize will be awarded to 50 players daily.\n- Prizes will be credited to the winners' BetNare accounts within 24 hours of the conclusion of each daily period.\n\n5. Selection Process:\n\n- Winners of the Jogoo (Rooster)prize and the cash prize will be randomly selected from eligible participants who meet the criteria outlined in these terms and conditions.\n- Winners will be notified via their registered contact details and/or announced on the BetNare platform.",
+    "name": "PAMBAZUKA NA JOGOO!",
+    "heading": "PAMBAZUKA NA JOGOO \n",
+    "intro": "Eligibility:\n\n- The Pambazuka na Jogoo campaign ('the Campaign') is open to all registered users of the Betnare platform who meet the eligibility criteria set forth in these terms and conditions.\n\n2. Promotion Period:\n\n- The Campaign will run from 6:00 AM ending at 10:00 AM ('the Promotion Period').\n\n3. Qualifying Games and Stake:\n\n- To qualify for the Campaign, players must Deposit {100 shillings} and place a bet of 100 bob or more on all the games on Betnare Platform\n- Only bets placed and settled between 6:00 AM and 10:00 AM during the Promotion Period will be considered.\n\n4. Prize Details:\n\n- Daily prizes will be awarded to eligible players as follows:\n- Jogoo (Rooster) worth Kes 2000 will be awarded to 20 players daily. The more you play the higher the chances of you winning the Jogoo (Rooster)\n- Kes 500 cash prize will be awarded to 50 players daily.\n- Prizes will be credited to the winners' BetNare accounts within 24 hours of the conclusion of each daily period.\n\n5. Selection Process:\n\n- Winners of the Jogoo (Rooster)prize and the cash prize will be randomly selected from eligible participants who meet the criteria outlined in these terms and conditions.\n- Winners will be notified via their registered contact details and/or announced on the BetNare platform.",
     "description": "",
     "termsHeading": "Terms and Conditions",
     "termsContent": "- The Campaign is subject to the terms and conditions of BetNare, which can be found on the BetNare website.\n- BetNare reserves the right to amend, suspend, or terminate the Campaign at any time and without prior notice.\n- In the event of any dispute regarding the eligibility, participation, or prize allocation, BetNare's decision shall be final and binding.\n- By participating in the Campaign, players agree to abide by these terms and conditions and any decisions made by BetNare regarding the Campaign.\n",
     "headingBooster": "",
     "boosterDescription": "",
-    "active": true,
+    "active": false,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/PambazukaBonus3.0.webp",
+    "summary": "Deposit 100 shillings and place a bet of 100 bob or more on all the games on Betnare Platform between 6:00 AM and 10:00 AM and win jogoo(2000)...;",
+    "eventTracking": "pambazuka_na_jogoo_3",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=42"
+      }
+    ]
   },
   {
     "id": 43,
-    "name": "MECHI SAFI HULAST 3 MINUTES PROMOTION ",
+    "name": "MECHI SAFI HULAST 3 MINUTES PROMOTION !",
     "heading": "MECHI SAFI HULAST 3 MINUTES PROMOTION  \n",
     "intro": "1.Eligibility\n\n-To participate in the Mechi Safi promotional offer, customers must stake a minimum of 20 Kenyan Shillings on a single bet or multi-bet on Nare League.\n\n-The promotional period will start on 8th June 2024 to 14th June 2024 subject to extension at BetNare's own discretion.\n\n- Only cash bets placed on Nare League within this period are eligible for the promotion.\n-The promotion start time will be from 00:00hrs to 23:59hrs everyday during the campaign period.\n2. Prizes\n\n- 48 winners will be a warded 500 shillings each daily after placing a qualifying bet.\n- Jackpot bets, Sportsbook bet and Casino bets will not be valid during this promotion.\n-Only bets placed on Nare League will be eligible.\n3. Notification of Winners:\n\n- Daily winners will be notified through their registered accounts or contact information.\n- Winners will be published on the social media pages everyday at 2pm\n",
     "description": "",
@@ -732,26 +1312,54 @@
     "headingBooster": "",
     "boosterDescription": "",
     "active": true,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/MechiSafiWeb.webp",
+    "summary": "Stake a minimum of 20 Kenyan Shillings on a single bet or multi-bet on Nare League around 00:00hrs to 23:59hrs everyday and be among the 48 winners to be awarded",
+    "eventTracking": "mechi_safi_hulast_3_minutes",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/nare-league"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=43"
+      }
+    ]
   },
   {
     "id": 44,
-    "name": "RISE AND SHINE PROMOTION",
+    "name": "RISE AND SHINE PROMOTION!",
     "heading": "RISE AND SHINE PROMOTION \n",
-    "intro":"Eligibility:\n-Rise and Shine promotion ('the Campaign') is open to all registered users of the Betnare platform who meet the eligibility criteria set forth in these terms and conditions.\n\n2.Promotion Period:\n\n- The Campaign will run from 8th June 2024 to 14th June 2024 each day (6:00 am to 10 am) \n\n3.Qualifying Games and Stake:\n-To qualify for the Campaign, players must Deposit {100 shillings} and place a bet of 100 bob or more on all the games on Betnare Platform\n\n-Only bets placed and settled between 6:00 AM and 10:00 AM during the Promotion Period will be considered.\n\n4.Prize Details:\n\n- Daily prizes will be awarded to eligible players as follow:\n-1000 shillings will be awarded to 50 winners between 6am and 10 am daily\n- Prizes will be credited to the winners' BetNare accounts within 24 hours of the conclusion of each daily period.\n-The more you play the higher the chances of you winning.\n\n5. Selection Process:\n\n- Winners of the 1000 shillings prize will be randomly selected from eligible participants who meet the criteria outlined in these terms and conditions.\n- Winners will be notified via their registered contact details and/or announced on the BetNare platform.",
+    "intro": "Eligibility:\n-Rise and Shine promotion ('the Campaign') is open to all registered users of the Betnare platform who meet the eligibility criteria set forth in these terms and conditions.\n\n2.Promotion Period:\n\n- The Campaign will run from 8th June 2024 to 14th June 2024 each day (6:00 am to 10 am) \n\n3.Qualifying Games and Stake:\n-To qualify for the Campaign, players must Deposit {100 shillings} and place a bet of 100 bob or more on all the games on Betnare Platform\n\n-Only bets placed and settled between 6:00 AM and 10:00 AM during the Promotion Period will be considered.\n\n4.Prize Details:\n\n- Daily prizes will be awarded to eligible players as follow:\n-1000 shillings will be awarded to 50 winners between 6am and 10 am daily\n- Prizes will be credited to the winners' BetNare accounts within 24 hours of the conclusion of each daily period.\n-The more you play the higher the chances of you winning.\n\n5. Selection Process:\n\n- Winners of the 1000 shillings prize will be randomly selected from eligible participants who meet the criteria outlined in these terms and conditions.\n- Winners will be notified via their registered contact details and/or announced on the BetNare platform.",
     "description": "",
     "termsHeading": "Terms and Conditions",
     "termsContent": "- The Campaign is subject to the terms and conditions of BetNare, which can be found on the BetNare website.\n- BetNare reserves the right to amend, suspend, or terminate the Campaign at any time and without prior notice.\n- In the event of any dispute regarding the eligibility, participation, or prize allocation, BetNare's decision shall be final and binding.\n- By participating in the Campaign, players agree to abide by these terms and conditions and any decisions made by BetNare regarding the Campaign.\n",
     "headingBooster": "",
     "boosterDescription": "",
     "active": true,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/Rise&ShineWeb.webp",
+    "summary": "Players must Deposit 100 shillings and place a bet of 100 bob or more on bets placed and settled between 6:00 AM and 10:00 AM and stand a chance to win daily prizes",
+    "eventTracking": "rise_and_shine_promotion",
+    "actions": [
+      {
+        "name": "Bet Now!",
+        "url": "/"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=44"
+      }
+    ]
   },
   {
     "id": 45,
-    "name": "BURUKA NA AVIATOR PROMOTION ",
+    "name": "BURUKA NA AVIATOR PROMOTION!",
     "heading": "BURUKA NA AVIATOR PROMOTION \n",
     "intro": "-To participate in the Buruka na Aviator promotional offer, customers must stake a minimum of 20 Kenyan Shillings on Aviator.\n\n-Only players with the highest in-game multiplier(s) between 10 am and 10 pm will win\n-Customers with the highest in-game multiplier(s) will be awarded prizes daily.\n- The promotional period will start 8th June 2024 to 14th June 2024 subject to extension at BetNare's own discretion.\n\nThe promotion start time will be from 10 am to 10 pm everyday during the campaign period.\n\n- Only bets placed within this period are eligible for the promotion.\n\n1.The Promotion applies to cash bets placed on Betnare's 'Aviator' game.\n2. Only bets placed with a minimum stake of Ksh. 20 will apply ('Qualifying bet').\n3.5000 shillings will be awarded to 20 winners between 10 am and 10 pm daily\n4.A Customer can place as many qualifying bets as possible to try reach the highest possible in-game multiplier to win one of the prizes.\n5.Free bets and rain free bets will not qualify.\n6.The cash prize will be credited in the player's Betnare wallet the following day at 10am",
     "description": "",
@@ -760,7 +1368,21 @@
     "headingBooster": "",
     "boosterDescription": "",
     "active": true,
+    "show": true,
     "nd": "",
-    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion ."
+    "nb": "\nNB: BetNare has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeiting of any prizes.\nf BetNare believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.\nBetNare General terms and conditions apply in this promotion .",
+    "src": "https://cdn.betnare.com/carousel/BurukaWeb.webp",
+    "summary": "Stake a minimum of 20 Kenyan Shillings, customers with the highest in-game multiplier(s) will stand a chance to get amazing prizes",
+    "eventTracking": "buruka_na_aviator_promotion",
+    "actions": [
+      {
+        "name": "Play Aviator!",
+        "url": "/nare-games/aviator?status=live"
+      },
+      {
+        "name": "Read More",
+        "url": "/promo?id=45"
+      }
+    ]
   }
 ]

@@ -63,7 +63,6 @@ jobs:
 
       # Use Node.js orb to install Node.js and npm
       - node/install:
-          install-yarn: true
           node-version: '18.19'
       - run: node --version
 

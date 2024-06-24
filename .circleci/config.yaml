@@ -41,14 +41,14 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - master
       - deploy:
           requires:
             - build
           filters:
             branches:
               only:
-                - main
+                - master
 
 jobs:
   build:
@@ -87,7 +87,7 @@ jobs:
       - run:
           name: Build
           command: |
-            if [ $CIRCLE_BRANCH = 'main' ]; then
+            if [ $CIRCLE_BRANCH = 'master' ]; then
               npm run build
             fi
 

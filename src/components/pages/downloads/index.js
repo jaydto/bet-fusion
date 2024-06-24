@@ -145,7 +145,7 @@ export default function MatchesList() {
                                         <div className="col-md-12 mt-5 text-center">
                                             
                                             <PDFDownloadLink
-                                                className={`btn btn-warning betnare-button-bg text-dark btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
+                                                className={`btn btn-warning CrashKali-button-bg text-dark btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
                                                 document={<PdfDocument matches={matches} jackpot={isJackpot}
                                                                        title={title}/>}
                                                 fileName="matches.pdf">
@@ -174,7 +174,7 @@ export default function MatchesList() {
                                                         </p>
                                                     </Card.Body>
                                                     <PDFDownloadLink
-                                                        className={`btn btn-warning betnare-button-bg text-white btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
+                                                        className={`btn btn-warning CrashKali-button-bg text-white btn-lg p-4 col-md-4 ${loaded ? '' : 'disabled'}`}
                                                         document={<PdfDocument matches={matches} jackpot={isJackpot}
                                                                                title={title}/>}
                                                         fileName="matches.pdf">

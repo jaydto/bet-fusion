@@ -122,7 +122,7 @@ const KironPlayouts = React.memo(
                                                         <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center"><span
                                                             className="team-jersey"><LazyLoadImage
                                                             src={results?.home_team_image}
-                                                            alt="Nare League"/></span>
+                                                            alt="Big League"/></span>
                                                             <a href="#"
                                                                className={'d-flex  justify-content-between align-items-center gap-4 '}
                                                                style={{color: "var(--black)"}}>
@@ -151,7 +151,7 @@ const KironPlayouts = React.memo(
                                                             </a>
                                                             <span className="team-jersey"><LazyLoadImage
                                                                 src={results?.away_team_image}
-                                                                alt="Nare League"/></span>
+                                                                alt="Big League"/></span>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -3,10 +3,9 @@
     justify-content: center;
 }
 .iphone {
-    background-color: var(--betnare-primary);
-    height: 100%;
+    background-color: var(--profile-bg-page);
+    height: 100vh;
     width: 100%;
-    box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     position: relative;
     transform-origin: top center;
@@ -45,7 +44,7 @@
     z-index: -1;
 }
 .background-profile{
-    background: var(--betnare-header-bg)!important;
+    background: var(--CrashKali-header-bg)!important;
     color:var(--light);
 }
 .text-profile-light{
@@ -76,7 +75,7 @@
 }
 .card {
     align-self: stretch;
-    background-color: #1a252f;
+    background-color: var(--black);
     border-radius: 12px;
     display: flex;
     flex-direction:column;
@@ -86,7 +85,7 @@
     position: sticky;
     top: 0px;
     width: 100%;
-    background: var(--betnare-header-bg);
+    background: var(--CrashKali-header-bg);
 }
 .upper-row {
     display: flex;
@@ -94,9 +93,12 @@
     padding-top: 10px
 }
 .card-item {
-    margin: 20px;
+    margin: 10px 22px;
     display: flex;
     flex-direction: column;
+    background: black;
+    padding: 24px;
+    border-radius: 20px;
 }
 .t-label{
     color:var(--light);
@@ -169,7 +171,7 @@ a.text-logout{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1a252f;
+    background-color: var(--profile-card);
     box-shadow: 0 14px 28px rgba(0,0,0,0.02), 0 10px 10px rgba(0,0,0,0.0);
     border-radius: 12px;
     margin-bottom: 20px;
@@ -272,7 +274,7 @@ a.text-logout{
 }
 @media (min-width:992px){
     .content {
-        margin-top: 5rem!important;
+        margin-top: 7rem!important;
         top: 12rem;
         position: sticky;
         width: 100%;

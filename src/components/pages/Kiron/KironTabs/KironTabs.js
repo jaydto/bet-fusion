@@ -42,7 +42,7 @@ const KironTabs = React.memo(
             <div className={"full-mobile   kiron-tab-container"}>
                 <div className="top-matches d-flex flex-row w-100">
                     <div className="col  text-center kiron-tabs-padding ">
-                        <Link className={`cursor-pointer w-100 ${h_class}`} to={'/nare-league?' + getLink()}>
+                        <Link className={`cursor-pointer w-100 ${h_class}`} to={'/?' + getLink()}>
                             <span className="col-sm-11 main-header kiron-tabs-link">Matches</span>
                         </Link>
                     </div>

@@ -49,7 +49,7 @@ const Betslip = (props) => {
                         <QuickLogin/>
                     </div>
                 </div>
-                <CompanyInfo/>
+                {/* <CompanyInfo/> */}
             </div>
             <div
                 className={`fixed-bottom text-white d-block d-md-none shadow-lg betslip-container-mobile ${betSlipMobile ? 'd-block' : 'd-none'}`}>

@@ -35,13 +35,13 @@ const LiveBetting = () => {
                         at all.
                     </li>
 
-                    <li>BetNare reiterates that any live scores displayed on its sites during
+                    <li>CrashKali reiterates that any live scores displayed on its sites during
                         live
-                        events remain placed for guidance purposes only and that BetNare will
+                        events remain placed for guidance purposes only and that CrashKali will
                         not
                         take any responsibility for any errors and inaccuracies on the same.
                     </li>
-                    <li>BetNare reserves the right to void any bets placed after the outcome of
+                    <li>CrashKali reserves the right to void any bets placed after the outcome of
                         an
                         event is known. Should a bet be placed with incorrect odds due to
                         delayed

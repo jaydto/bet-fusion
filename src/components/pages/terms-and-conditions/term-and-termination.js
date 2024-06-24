@@ -34,7 +34,7 @@ const TermAndTermination = () => {
                         The term of the Agreement shall be for an indefinite period.
                     </li>
                     <li>
-                        BetNare shall have the right prior to accepting any bet, temporarily to
+                        CrashKali shall have the right prior to accepting any bet, temporarily to
                         suspend or permanently to terminate, the provision of betting services
                         to a
                         CLIENT without providing any reason.
@@ -53,7 +53,7 @@ const TermAndTermination = () => {
                     <li>
                         The CLIENT may only terminate the agreement by providing written notice
                         to
-                        the customer support email atsupport@betnare.com.
+                        the customer support email atsupport@CrashKali.com.
                     </li>
                 </ol>
 

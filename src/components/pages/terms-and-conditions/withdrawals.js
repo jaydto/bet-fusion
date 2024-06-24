@@ -23,21 +23,21 @@ const Withdrawals = () => {
                         a gaming session.
                     </li>
                     <li>
-                        BetNare’ finance department will handle all withdrawal requests.
-                        BetNare reserves the right to verify the account holder's
+                        CrashKali’ finance department will handle all withdrawal requests.
+                        CrashKali reserves the right to verify the account holder's
                         eligibility
                         for any requests and, in case of doubt, refuse to process the
                         withdrawal, leading to the return of the funds back to the player's
                         account. Valid documents issued by government (Passport, Identity
                         Card)
-                        must be submitted in order to process a withdrawal. However, BetNare
+                        must be submitted in order to process a withdrawal. However, CrashKali
                         reserves the right to verify the User’s identity, age, address and
                         location at any time before processing any amount of requested
                         withdrawal.
                     </li>
                     <li>
                         Withdrawal methods information is included in the Withdrawal section
-                        on the website www.BetNare.com.
+                        on the website www.CrashKali.com.
                     </li>
                     <li>
                         Any expense related to withdrawal requests, if applicable and
@@ -46,7 +46,7 @@ const Withdrawals = () => {
                     </li>
                     <li>
                         The account holder's personal data in their Gaming Account and Bank
-                        Account (or for any other payment method) must correspond. BetNare
+                        Account (or for any other payment method) must correspond. CrashKali
                         reserves the right to withhold withdrawal until to request further
                         documentation, as proof of identity, as well as additional
                         verification
@@ -60,7 +60,7 @@ const Withdrawals = () => {
                         Withdrawals from a User’s Account can only be addressed strictly to
                         the person registered on the Account and as per the conditions
                         specified
-                        on the BetNare WEBSITE.
+                        on the CrashKali WEBSITE.
                     </li>
 
                     <li>
@@ -68,13 +68,13 @@ const Withdrawals = () => {
                         method from which player's deposits have originated.
                     </li>
                     <li>
-                        Once a withdrawal request is submitted it can take BetNare up to Seventy-Two (72) hours to
-                        process the request. However, BetNare will be doing its best to process withdrawal requests
+                        Once a withdrawal request is submitted it can take CrashKali up to Seventy-Two (72) hours to
+                        process the request. However, CrashKali will be doing its best to process withdrawal requests
                         immediately.
                     </li>
                     <li>
                         In the instance a CLIENT attempts to withdraw funds that were deposited but not used for
-                        staking, BetNare may levy up to a processing fee of 50% upon such withdrawals. BetNare reserves
+                        staking, CrashKali may levy up to a processing fee of 50% upon such withdrawals. CrashKali reserves
                         the right to investigate any and all suspicious activities related to such withdrawals and
                         report the same to the relevant authorities. Additionally, the CLIENT will lose all the
                         deposited funds.
@@ -93,15 +93,15 @@ const Withdrawals = () => {
                         The CLIENT agrees not to attempt any chargebacks, reversals or
                         otherwise cancel any deposit previously made in his/her Account.
                         Whenever any such event should occur the CLIENT commits to refund
-                        BetNare for the unpaid deposits and for possible expenses resulting
+                        CrashKali for the unpaid deposits and for possible expenses resulting
                         from
                         the recollection of the misplaced money.
                     </li>
                     <li>
-                        Kindly note that BetNare will hold the funds deposited in the
+                        Kindly note that CrashKali will hold the funds deposited in the
                         Account
                         as trustee for the CLIENT and not as his/her banker or debtor.
-                        Accordingly, there will be no obligation on the part of BetNare
+                        Accordingly, there will be no obligation on the part of CrashKali
                         Kenya to
                         repay money to the Customer as his/her debtor. Additionally, no
                         interest
@@ -110,7 +110,7 @@ const Withdrawals = () => {
                         the form of deposits, winnings or any other method.
                     </li>
                     <li>
-                        BetNare at all times reserves the right to refuse and/ or limit
+                        CrashKali at all times reserves the right to refuse and/ or limit
                         bets.
                     </li>
                 </ol>

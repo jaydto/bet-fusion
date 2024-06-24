@@ -15,7 +15,6 @@ const Deposit3 = React.lazy(() => import("./components/pages/deposit-withraw/Dep
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 
 
-const Jackpot = React.lazy(() => import('./components/Jackpot'));
 
 const Live = React.lazy(
     () => import('./components/live')
@@ -79,7 +78,6 @@ const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
 
 const NewCasino = React.lazy(() => import('./components/pages/new-casino/NewCasino'))
 
-const FPL = React.lazy(() => import('./components/FPL'))
 const LeaderBoard = React.lazy(() => import('./components/pages/LeaderBoards/LeaderBoards'))
 const JetxLeaderBoard = React.lazy(() => import('./components/pages/LeaderBoards/JetxLeaderBoards'))
 
@@ -177,7 +175,7 @@ const App =
                 <Suspense fallback={<></>}>
                     <Routes>
                         <Route path="*" element={<Navigate to="/404"/>}/>
-                        <Route exact path="/" element={<DefaultPage/>}/>
+                        {/* <Route exact path="/" element={<DefaultPage/>}/>
                         <Route exact path="/highlights" element={<DefaultPage/>}/>
                         <Route exact path="/upcoming" element={<DefaultPage/>}/>
                         <Route exact path="/tomorrow" element={<DefaultPage/>}/>
@@ -195,12 +193,11 @@ const App =
                         <Route exact path="/live/:spid" element={<DefaultPage/>}/>
 
                         <Route exact path="/match/:id" element={<DefaultPage/>}/>
-                        <Route exact path="/match/live/:id" element={<DefaultPage live/>}/>
+                        <Route exact path="/match/live/:id" element={<DefaultPage live/>}/> */}
 
                         <Route exact path="/login" element={<Login/>}/>
-                        <Route exact path="/fpl" element={<FPL/>}/>
                         <Route exact path="/share" element={<BetslipShareDecode/>}/>
-                        <Route exact path="/livescore" element={<LiveScore/>}/>
+                        {/* <Route exact path="/livescore" element={<LiveScore/>}/> */}
                         <Route exact path="/404" element={<PageNotFound/>}/>
                         <Route exact path="/casino" element={<NewCasino/>}/>
                         <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
@@ -210,7 +207,7 @@ const App =
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
                         <Route exact path="/shaks/:game" element={<ShaksGamePlay/>}/>
 
-                        <Route exact path={"/nare-league"} element={<Kiron/>}/>
+                        <Route exact path={"/"} element={<Kiron/>}/>
                         <Route exact path={"/results"} element={<Kiron/>}/>
                         <Route exact path={"/standing"} element={<Kiron/>}/>
                         <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
@@ -223,9 +220,8 @@ const App =
                         <Route exact path="/betslip-nare" element={<BetslipPage/>}/>
                         <Route exact path="/betslip-jackpot" element={<BetslipPage/>}/>
 
-                        <Route exact path="/jackpot" element={<Jackpot/>}/>
-                        <Route exact path="/live1" element={<Live/>}/>
-                        <Route exact path="/live1/:spid" element={<Live/>}/>
+                        {/* <Route exact path="/live1" element={<Live/>}/>
+                        <Route exact path="/live1/:spid" element={<Live/>}/> */}
                         <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
                         <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
                         <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>
@@ -243,7 +239,7 @@ const App =
                         <Route exact path="/verify" element={<VerifyAccount/>}/>
                         <Route exact path="/logout" element={<Logout/>}/>
                         <Route exact path="/redirect" element={<Redirect/>}/>
-                        <Route exact path="/print-matches" element={<PrintMatches/>}/>
+                        {/* <Route exact path="/print-matches" element={<PrintMatches/>}/> */}
                         <Route exact path="/promotions" element={<Promotions/>}/>
                         <Route exact path="/promo" element={<Promo/>}/>
                         <Route exact path="/deposit"
@@ -251,8 +247,8 @@ const App =
 
                         <Route exact path="/withdraw"
                                element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
-                        <Route exact path="/redeem-points"
-                               element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/>
+                        {/* <Route exact path="/redeem-points"
+                               element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/> */}
                     </Routes>
                 </Suspense>
 

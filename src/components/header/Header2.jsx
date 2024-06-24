@@ -2,12 +2,13 @@ import {Navbar, Offcanvas} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBackspace} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeftLong} from "@fortawesome/free-solid-svg-icons";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setState} from "../../redux/dataSlice";
+import Logo from "../../assets/img/logo.png"
 
 const Header2 = React.memo(
 	() => {
@@ -27,10 +28,10 @@ const Header2 = React.memo(
 						variant="dark" style={{paddingLeft: '0px', paddingBottom: '0px'}}>
 					<Container fluid
 							   className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betnare"
+						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="CrashKali"
 									  style={{paddingLeft: '0px', paddingBottom: '0px'}}>
-							<Link to={'/'} className={'betnare-text-light'}>
-								<FontAwesomeIcon icon={faBackspace}/> Home
+							<Link to={'/'} className={'CrashKali-text-light'}>
+								<FontAwesomeIcon icon={faArrowLeftLong}/> Home
 							</Link>
 
 							<div
@@ -38,7 +39,7 @@ const Header2 = React.memo(
 								style={{marginLeft: 'auto'}}>
 
 								<Link to={{pathname: "/"}} className=" resize-mobile">
-									<LazyLoadImage src={'https://cdn.betnare.com/logo-white.webp'} alt="Betnare" title="Betnare" effects="blur"
+									<LazyLoadImage src={Logo} alt="CrashKali" title="CrashKali" effects="blur"
 												   className={"image-size "}/>
 								</Link>
 							</div>
@@ -57,7 +58,7 @@ const Header2 = React.memo(
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
 									<div className="col-3">
 										<div>
-											<LazyLoadImage src={'https://cdn.betnare.com/logo-white.webp'} alt="Betnare" title="Betnare" effects="blur"/>
+											<LazyLoadImage src={Logo} alt="CrashKali" title="CrashKali" effects="blur"/>
 										</div>
 									</div>
 								</Offcanvas.Title>

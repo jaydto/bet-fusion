@@ -88,7 +88,7 @@ const HeaderNav = React.memo((props) => {
   };
 
   const checkEnvironment = () => {
-    setTest(window.location.hostname === "test.betnare.com");
+    setTest(window.location.hostname === "test.CrashKali.com");
   };
 
   useEffect(() => {
@@ -178,7 +178,7 @@ const HeaderNav = React.memo((props) => {
             </div>
           </li>
 
-          <li
+          {/* <li
             className={
               pathname.includes("live") &&
               pathname.includes("new-casino") === false &&
@@ -191,19 +191,8 @@ const HeaderNav = React.memo((props) => {
             <Link className={`url-link fm anl cg ox `} to="/live" title="Live">
               <strong>Live</strong>
             </Link>
-          </li>
-          <li
-            className={pathname === "/jackpot" ? "active" : ""}
-            onClick={() => gaEventTracker("Visit Jackpot Page")}
-          >
-            <Link
-              className="cg fm ox anl url-link"
-              to="/jackpot"
-              title="Jackpot"
-            >
-              <strong>Jackpot</strong>
-            </Link>
-          </li>
+          </li> */}
+         
 
           <li className={`${pathname === "/casino" ? "active" : ""}`}>
             <div
@@ -220,39 +209,23 @@ const HeaderNav = React.memo((props) => {
             </div>
           </li>
 
-          <li className={`${pathname === "/nare-league" ? "active" : ""}`}>
+          {/* <li className={`${pathname === "/nare-league" ? "active" : ""}`}>
             <div
               className="url-link fm anl cg ox "
               onClick={() => {
                 navigate("/nare-league");
-                gaEventTracker("Visit Nare League Page");
+                gaEventTracker("Visit Big League Page");
               }}
-              title="Nare League"
+              title="Big League"
             >
               <span>
-                <strong>Nare League</strong>
+                <strong>Big League</strong>
                 <span className="hot-alert-badge-item">HOT</span>
               </span>
             </div>
-          </li>
+          </li> */}
 
-          <>
-            <li className={pathname === "/livescore" ? "active" : ""}>
-              <Link
-                className="url-link fm anl cg ox"
-                to="/livescore"
-                title="Live Score"
-                onClick={() => gaEventTracker("Visit Live Score Page")}
-              >
-                <span>
-                  <strong>
-                    {/*<FontAwesomeIcon icon={faInfo}/> */}
-                    Live Score
-                  </strong>
-                </span>
-              </Link>
-            </li>
-          </>
+          
 
           <li
             className={pathname.includes("promotions") ? "active" : ""}
@@ -316,25 +289,7 @@ const HeaderNav = React.memo((props) => {
               </span>
             </Link>
           </li>
-          <li
-            className={
-              pathname === "/print-matches"
-                ? "active py-3"
-                : " py-md-0 py-lg-3 py-sm-0 d-flex align-items-center gap-1"
-            }
-            onClick={() => gaEventTracker("Visit Print Matches")}
-          >
-            <Link
-              className="url-link fm anl cg ox fix-print"
-              to="/print-matches"
-              title="Print Matches"
-            >
-              <span className=" space-icons">
-                <FontAwesomeIcon icon={faPrint} />{" "}
-              </span>
-              Print <span className={"hide1"}> Matches</span>
-            </Link>
-          </li>
+         
         </ListGroup>
       </Container>
 

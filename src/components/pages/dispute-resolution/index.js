@@ -75,23 +75,23 @@ const DisputeResolution = () => {
                                         </AccordionItemHeading>
                                         <AccordionItemPanel className='accordion-item-panel'>
                                             <p>
-                                                BetNare aims to offer all of the company’s clients from the Kenya the
+                                                CrashKali aims to offer all of the company’s clients from the Kenya the
                                                 greatest possible Customer experience in the industry. We want to make
                                                 sure
                                                 that all of our clients are completely satisfied with the products and
                                                 service the company has to offer, as well as their quality and
                                                 transparency.
-                                                At the same time, BetNare realizes that sometimes there might be cases
+                                                At the same time, CrashKali realizes that sometimes there might be cases
                                                 when
                                                 the company hasn’t been able to deliver. If you are not happy with the
                                                 service that our platform provides, you can always send a query to our
                                                 Customer Services team.
                                             </p>
                                             <p>
-                                                You can contact the BetNare Customer Services team by way of email
-                                               support@betnare.com or call our customer care lines or inbox us through
+                                                You can contact the CrashKali Customer Services team by way of email
+                                               support@CrashKali.com or call our customer care lines or inbox us through
                                                 our
-                                                social Media Pages Facebook, Betnare, Instagram Betnare etc. Queries
+                                                social Media Pages Facebook, CrashKali, Instagram CrashKali etc. Queries
                                                 will
                                                 always be processed within one business day. However, if, after your
                                                 issue
@@ -145,14 +145,14 @@ const DisputeResolution = () => {
                                             </p>
 
                                             <p>
-                                                If BetNare is unable to settle the dispute, BetNare will refer the
+                                                If CrashKali is unable to settle the dispute, CrashKali will refer the
                                                 dispute
                                                 to BCLB, whose decision will be final (save in respect of any manifest
                                                 error) subject to full representation given to all parties involved. No
                                                 dispute regarding any bet/wager will result in litigation, court action
                                                 or
                                                 objection to a bookmaker’s license or permit (including any remote
-                                                operator’s license or personal license) unless BetNare fails to
+                                                operator’s license or personal license) unless CrashKali fails to
                                                 implement
                                                 the decision given by arbitration.
                                             </p>

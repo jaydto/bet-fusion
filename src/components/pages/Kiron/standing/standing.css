@@ -131,7 +131,7 @@ tr td.standings-menu:nth-child(5) {
 }
 
 .match-standing-wrapper table tr td{
-    background: var(--betnare-body-bg);
+    background: var(--CrashKali-body-bg);
     color:var(--light);
     border:none!important;
 }

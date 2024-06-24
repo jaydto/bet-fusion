@@ -102,7 +102,7 @@ const MobileNav1 = React.memo(
             <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft: "-9px"}}>
                 <tbody>
                 <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
-                    <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(active_link) === 79 ? "active_link" : "link-inactive"}`}>
+                    {/* <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(active_link) === 79 ? "active_link" : "link-inactive"}`}>
                         <div
                             className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
                             onClick={() => {
@@ -123,6 +123,34 @@ const MobileNav1 = React.memo(
                                 </div>
                                 <p style={{textAlign: "center", marginBottom: "unset"}}>
                                     Soccer
+                                </p>
+                            </div>
+                        </div>
+                    </td> */}
+                    <td className={`menu-t m-auto sport-check nare-league ${pathname === "/"===active_link ? "active_link" : "link-inactive"}`}>
+                        <div
+                            className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
+                            onClick={() => {
+                                gaEventTracker('Visit Big League Page');
+                                setActiveLink('/');
+                                navigate('/')
+                            }} 
+                            >
+                            <div className={`inner-div  cg hot-alert ox anl url-link d-flex flex-column align-items-center  `}>
+
+                                <div className="menu-img  ">
+                                    <LazyLoadImage
+                                        className="side-icon"
+                                        src={league}
+                                        alt=""
+                                        effect='blur'
+                                        style={{height: "25px", marginTop: "0px"}}
+                                    />
+                                    <span className=" hot-alert-badge">HOT</span>
+
+                                </div>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
+                                    League
                                 </p>
                             </div>
                         </div>
@@ -190,11 +218,11 @@ const MobileNav1 = React.memo(
               </div>
             </td>
                     
-                    <td className={`menu-t m-auto sport-check nare-league ${'/nare-league'===active_link ? "active_link" : "link-inactive"}`}>
+                    {/* <td className={`menu-t m-auto sport-check nare-league ${'/nare-league'===active_link ? "active_link" : "link-inactive"}`}>
                         <div
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
                             onClick={() => {
-                                gaEventTracker('Visit Nare League Page');
+                                gaEventTracker('Visit Big League Page');
                                 setActiveLink('/nare-league');
                                 navigate('/nare-league')
                             }} 
@@ -217,33 +245,8 @@ const MobileNav1 = React.memo(
                                 </p>
                             </div>
                         </div>
-                    </td>
-                    <td className={`menu-t m-auto sport-check ${'/jackpot'===active_link ? "active_link" : "link-inactive"} `}>
-                        <div
-                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
-                            onClick={() => {
-                                navigate('/jackpot')
-                                gaEventTracker('Visit Jackpot Page');
-                                setActiveLink('/jackpot')
-                            }}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon "
-                                        src={jackpot}
-                                        alt=""
-                                        effect='blur'
-                                        style={{height: "32px", marginTop: "-3px"}}
-                                    />
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    Jackpot
-                                </p>
-                            </div>
-                        </div>
-
-                    </td>
+                    </td> */}
+                    
 
                     <td className={`menu-t m-auto sport-check ${'/casino' ===active_link ? " active_link" : "link-inactive"} `}>
                         <div
@@ -277,7 +280,7 @@ const MobileNav1 = React.memo(
 
                     
 
-                    {competitions?.all_sports.map((allsports, index) => {
+                    {/* {competitions?.all_sports.map((allsports, index) => {
 
                         return allsports?.sport_id !== 79 && (
                             <td key={index}
@@ -307,7 +310,7 @@ const MobileNav1 = React.memo(
                                 </div>
                             </td>
                         );
-                    })}
+                    })} */}
                     <td className={`menu-t m-auto sport-check ${'/promotions' === active_link ? "active_link" : "link-inactive"} `}>
                         <div
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}

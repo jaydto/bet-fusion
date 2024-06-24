@@ -168,7 +168,7 @@ const SmartPlay = React.memo(
             }
         };
         const configureDemoGame = () => {
-            setGameUrl(`https://www.smartsoftgaming.com/GameDemo/${game || 'JetX'}?currency=USD&lang=EN&return_url=https://betnare.com`)
+            setGameUrl(`https://www.smartsoftgaming.com/GameDemo/${game || 'JetX'}?currency=USD&lang=EN&return_url=https://CrashKali.com`)
             setGameUrlLoaded(true)
             setDemo(true)
         }
@@ -256,7 +256,7 @@ const SmartPlay = React.memo(
                                                 </li>
                                             </ul>
                                             <br/>
-                                            <h3 className={'text-center'}>How to Play JetX on BetNare</h3>
+                                            <h3 className={'text-center'}>How to Play JetX on CrashKali</h3>
                                             <ul>
                                                 <li>
                                                     When playing JetX, you can put more than one bet on each round to
@@ -266,8 +266,8 @@ const SmartPlay = React.memo(
                                                     cashing out before the Jet goes up in flames.
                                                 </li>
                                                 <li>
-                                                    Play JetX only on BetNare. Click here to play
-                                                    https://betnare.com/smart-play?game=JetX&category=JetX
+                                                    Play JetX only on CrashKali. Click here to play
+                                                    https://CrashKali.com/smart-play?game=JetX&category=JetX
                                                 </li>
                                                 <li>
                                                     Cashing out on JetX is Easy. You can Cash-Out by clicking the

@@ -294,7 +294,7 @@ const BetHistory = () => {
                       <span
                         className={`badge`}
                         style={{
-                          color: "var(--betnare-button-login)",
+                          color: "var(--CrashKali-button-login)",
                           borderRadius: "7px",
                           marginLeft: "1px",
                           padding: "2.9px 9px ",
@@ -310,7 +310,7 @@ const BetHistory = () => {
                       <span
                         className={`badge cursor-pointer`}
                         style={{
-                          color: "var(--betnare-button-login)",
+                          color: "var(--CrashKali-button-login)",
                           borderRadius: "7px",
                           marginLeft: "1px",
                           padding: "2.9px 9px ",

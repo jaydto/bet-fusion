@@ -15,7 +15,7 @@
 
 }
 .flex-item-kiron >div {
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
     /* border: 3px solid #ffcc80; */
     border-radius: 5px;
     padding: 0px 0px;
@@ -38,7 +38,7 @@
     justify-content: space-between;
     /* flex-flow: nowrap; */
     flex-wrap: nowrap;
-    background-color: var(--betnare-primary);
+    background-color: var(--CrashKali-primary);
     height: 100%;
     padding: 20px 0px 0px 0px;
     margin-top: 63px;
@@ -66,7 +66,7 @@
     /*-moz-box-shadow: 0px -1px 16px 6px rgba(0,0,0,0.75);*/
 }
 .carousel.slide{
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
 }
 .item-kiron3 {
     /* flex:1 1 auto; */
@@ -127,7 +127,7 @@
         width:100vw;
     }
     .flex-item-kiron >div{
-        background: var(--betnare-primary);
+        background: var(--CrashKali-primary);
         align-items: flex-start;
     }
     .item-kiron2 {

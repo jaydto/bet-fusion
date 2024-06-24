@@ -62,7 +62,7 @@ const Promo = () => {
         <div className="d-flex flex-row">
           <div
             className="gz home promotions-app-top"
-            style={{ width: "100%", background: "var(--betnare-primary)" }}
+            style={{ width: "100%", background: "var(--CrashKali-primary)" }}
           >
             <div className="homepage desktop-promotions-info">
               <div className="col-md-12 d-flex flex-column">
@@ -79,7 +79,7 @@ const Promo = () => {
                     />
                   </span>
                   <div className="shadow-sm d-flex justify-content-center col-8 p-2 shadow-sm promotion-header text-white">
-                    BETNARE PROMOTIONS
+                    CrashKali PROMOTIONS
                   </div>
                 </div>
                 <div className="col">

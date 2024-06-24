@@ -120,7 +120,7 @@ const Deposit3 = React.memo(
         const FormTitle = () => {
             return (
                 <div className='col-md-12  p-4 text-center' style={{background: 'transparent'}}>
-                    <h4 className="inline-block betnare-text-light">
+                    <h4 className="inline-block CrashKali-text-light">
                         DEPOSIT FUNDS (MOBILE MONEY)
                     </h4>
                 </div>
@@ -131,7 +131,7 @@ const Deposit3 = React.memo(
             ()=>{
             return (
                 <ul className={'paybill-offers-list-items'}>
-                { settings?.betnareDeposit?.map((deposit, index) => {
+                { settings?.CrashKaliDeposit?.map((deposit, index) => {
                     return (
                         <li key={index}>{index + 1}.
                             Only pay
@@ -273,7 +273,7 @@ const Deposit3 = React.memo(
                                                                         <div className={'paybill-offers-list'}>
                                                                             <Offer />
                                                                             <br/>
-                                                                            (Betnare will credit your Account with The
+                                                                            (CrashKali will credit your Account with The
                                                                             offers above.)
                                                                         </div>
 
@@ -291,7 +291,7 @@ const Deposit3 = React.memo(
                                                                                 number
                                                                             </li>
                                                                             <li>6. Enter the amount you want to transfer
-                                                                                to Betnare account
+                                                                                to CrashKali account
                                                                             </li>
                                                                             <li>7. Enter your Mpesa pin and Confirm the
                                                                                 request
@@ -359,22 +359,22 @@ const Deposit3 = React.memo(
 const PaymentInstructions = (props) => {
     return (
         <>
-            <label className='betnare-text-light'>Deposit Instructions</label>
+            <label className='CrashKali-text-light'>Deposit Instructions</label>
             <div className="container d-flex flex-column">
                 <div className="row">
-                    <div className="col betnare-text-light"> 1. Enter the amount you want to deposit.</div>
+                    <div className="col CrashKali-text-light"> 1. Enter the amount you want to deposit.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 2. Click on the deposit button.</div>
+                    <div className="col CrashKali-text-light"> 2. Click on the deposit button.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 3. Check your phone for an M-Pesa Request.</div>
+                    <div className="col CrashKali-text-light"> 3. Check your phone for an M-Pesa Request.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 4. Enter your M-Pesa Pin to confirm the transaction.</div>
+                    <div className="col CrashKali-text-light"> 4. Enter your M-Pesa Pin to confirm the transaction.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 5. On successful payment, you will receive an M-Pesa
+                    <div className="col CrashKali-text-light"> 5. On successful payment, you will receive an M-Pesa
                         Confirmation.
                     </div>
                 </div>
@@ -386,18 +386,18 @@ const PaymentInstructions = (props) => {
 const ConfirmationInstructions = (props) => {
     return (
         <>
-            <label className='betnare-text-light'>Missing Deposit?</label>
+            <label className='CrashKali-text-light'>Missing Deposit?</label>
             <div className="container d-flex flex-column">
                 <div className="row">
-                    <div className="col betnare-text-light"> 1. Enter Mpesa Transaction code when your deposit has not
+                    <div className="col CrashKali-text-light"> 1. Enter Mpesa Transaction code when your deposit has not
                         reflected in your account.
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 2. Click on confirm deposit..</div>
+                    <div className="col CrashKali-text-light"> 2. Click on confirm deposit..</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 3. Your deposit will be credited to your account.</div>
+                    <div className="col CrashKali-text-light"> 3. Your deposit will be credited to your account.</div>
                 </div>
             </div>
         </>
@@ -512,7 +512,7 @@ const DepositFormFields = (props) => {
             <div className="form-group  d-flex flex-column justify-content-center mt-3 deposit-widthdraw-input-desktop">
                 <div className="btn-group w-100 gap-3 justify-content-around" role="group" aria-label="Basic example">
                     <div className={'d-flex flex-wrap col-12 justify-content-between'}>
-                        {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
+                        {settings?.CrashKaliDeposit && settings?.CrashKaliDeposit?.map((deposit, index) => {
                             return (<div key={index} className={'col-3'}>
                                     <button type="button" onClick={() => incrementDepositValue(deposit?.deposit_amount)}
                                             className="deposit-buttons-value  m-2 gap-3 ">

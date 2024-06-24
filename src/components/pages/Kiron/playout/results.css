@@ -7,7 +7,7 @@
     width: 100%;
     float: left;
     overflow-y: auto;
-    background-color: var(--betnare-body-bg);
+    background-color: var(--CrashKali-body-bg);
 }
 .playing-games-wrapper {
     padding-bottom: 0 !important;
@@ -124,10 +124,10 @@
     margin:0;
     width: 100%;
     float: left;
-    background-color: orange;
-    border-bottom: none;
+    background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+        border-bottom: none;
     font-weight: 400;
-    color: #fff;
+    color: var(--color-text);
     font-size: 1em;
     text-transform: capitalize;
 }
@@ -145,7 +145,7 @@
 @media (max-width: 991px){
     .home-team-r, .away-team-r{
         max-width: 110px;
-        color:var(--light);
+        color:var(--text-btn-color);
     }
     .standing-heading-r {
         color: #000;

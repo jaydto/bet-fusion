@@ -236,8 +236,8 @@ const GamePlay = React.memo(
                                                     conversation amongst all the SpaceMan players. See up to 500 last
                                                     results with each round details.
                                                 </li>
-                                                <li>Play Spaceman only on BetNare. Click here to play
-                                                    https://betnare.com/gameplay/1301/1
+                                                <li>Play Spaceman only on CrashKali. Click here to play
+                                                    https://CrashKali.com/gameplay/1301/1
                                                 </li>
                                                 <li>
                                                     SpaceMan is available to NEW and EXISTING customers on the platform

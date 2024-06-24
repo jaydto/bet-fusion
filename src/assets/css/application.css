@@ -129,8 +129,8 @@
     border:none!important;
     color:var(--light) !important;
 }
-.betnare-button-bg{
-    background: var(--betnare-button-login) !important;
+.CrashKali-button-bg{
+    background: var(--CrashKali-button-login) !important;
     font-weight:700!important;
 }
 .css-qbdosj-Input input::placeholder{
@@ -180,7 +180,7 @@
 }
 
 .bet-body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 6px var(--betnare-primary);
 }
 
 .bet-body::-webkit-scrollbar-thumb {
@@ -294,10 +294,10 @@
 }
 
 .box-shadow-table-submit-form {
-    /* box-shadow: 10px 10px 10px 10px var(--betnare-input); */
+    /* box-shadow: 10px 10px 10px 10px var(--CrashKali-input); */
     padding: 5px;
     border-radius: 10px;
-    border: thin solid var(--betnare-input);
+    border: thin solid var(--CrashKali-input);
     opacity:0.9;
 }
 
@@ -381,7 +381,7 @@
 }
 
 .bg-input-placebet {
-    background: var(--betnare-input);
+    background: var(--CrashKali-input);
 }
 
 .bg-input-placebet {
@@ -395,7 +395,7 @@
     padding-left: 0px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
     padding-right: 10px;
 }
 
@@ -488,7 +488,7 @@ h4.inline-block {
 
 .betslip {
     /*background: #1c313b;*/
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
     /*padding: 5px;*/
     padding-top: 1px;
     font-size: 14px;
@@ -515,8 +515,9 @@ li.bet-option {
     margin-left: auto;
 }
 
+
 .slip-bg {
-    background: var(--betslip-list) !important;
+    background: linear-gradient(45deg, var(--slip-bg-color-1), var(--slip-bg-color-2));
     position: relative;
 }
 
@@ -531,7 +532,7 @@ li.bet-option {
     color: var(--light);
     padding: 4px;
     text-shadow: none;
-    /* border-bottom: 1px solid var(--betnare-primary); */
+    /* border-bottom: 1px solid var(--CrashKali-primary); */
     /*overflow: hidden;*/
     line-height: 1.6;
     border-radius: 0px;
@@ -632,13 +633,23 @@ li.bet-option {
     margin: auto;
 }
 
-.bet-cancel input {
-    height: 20px;
-    width: 20px;
+.bet-cancel div {
+    height: 25px;
+    width: 25px;
     border-radius: 50% !important;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: bolder !important;
-    background: var(--slip-separator-color) !important;
+    background: var(--btn-color) !important;
+    margin: auto;
+    display: flex;
+}
+.bet-cancel div input {
+    font-weight: bolder !important;
+    background: var(--btn-color) !important;
+    border: none!important;
+   
+    border-radius: 0px!important;
+    margin: auto;
 }
 
 .bet-align-left {
@@ -710,7 +721,7 @@ li.bet-option {
 
 .bet-odd {
     float: right;
-    color: var(--betnare-button-login);
+    color: var(--CrashKali-button-login);
     font-size: 11px;
     opacity: 0.9;
     padding-right: 10px;
@@ -938,11 +949,11 @@ li.bet-option {
 .market-group-pill {
     outline: none !important;
     border-radius: 15px !important;
-    background: var(--betnare-odds-body);
+    background: var(--CrashKali-odds-body);
     margin: 0px 4px;
     padding: 10px 5px;
     cursor: pointer;
-    border: 0.5px solid var(--betnare-odds-body);
+    border: 0.5px solid var(--CrashKali-odds-body);
 }
 
 

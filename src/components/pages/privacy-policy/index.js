@@ -89,7 +89,7 @@ const PrivacyPolicy = React.memo(() => {
                     </AccordionItemHeading>
                     <AccordionItemPanel className="accordion-item-panel">
                       <p>
-                        1.1.At Betnare we are committed to protecting and
+                        1.1.At CrashKali we are committed to protecting and
                         respecting your privacy and maintaining your confidence
                         and trust. This privacy policy ("Privacy Policy") is
                         used to inform you as to how we process your Personal
@@ -99,7 +99,7 @@ const PrivacyPolicy = React.memo(() => {
                         about your privacy rights and how the law protects you.
                         This Privacy Policy should be read and applied together
                         with the 
-                        {<Link to="/terms-and-conditions"> Betnare General Terms and Conditions </Link>} ("Terms and Conditions").
+                        {<Link to="/terms-and-conditions"> CrashKali General Terms and Conditions </Link>} ("Terms and Conditions").
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -118,13 +118,13 @@ const PrivacyPolicy = React.memo(() => {
                         2.1. 1.	"Applicable Laws" means the Data Protection Laws and any relevant international data protection laws;
                       </p>
                       <p>
-                        2.2. 2.	"Betnare Service(s)" has the meaning given to it in the Terms and Conditions and "Services" shall be construed accordingly;
+                        2.2. 2.	"CrashKali Service(s)" has the meaning given to it in the Terms and Conditions and "Services" shall be construed accordingly;
                       </p>
                       <p>
-                        2.3. 3.	"Channel(s)" means the Betnare website, mobile app, social media platforms and any other platforms used to offer the Betnare Services;
+                        2.3. 3.	"Channel(s)" means the CrashKali website, mobile app, social media platforms and any other platforms used to offer the CrashKali Services;
                       </p>
                       <p>
-                        2.4. 4.	"Customer(s)" means registered users of the Betnare Service;
+                        2.4. 4.	"Customer(s)" means registered users of the CrashKali Service;
                       </p>
                       <p>
                         2.5. 
@@ -151,7 +151,7 @@ const PrivacyPolicy = React.memo(() => {
                         3.2. 	A reference to any one gender, whether masculine or feminine includes the other two;
                       </p> 
                       <p>
-                        3.2. 	A reference to "We" "Us" "Our" is a reference to Shop and Deliver Limited, Betnare and or its successors in title and assigns.  </p>
+                        3.2. 	A reference to "We" "Us" "Our" is a reference to Shop and Deliver Limited, CrashKali and or its successors in title and assigns.  </p>
                     </AccordionItemPanel>
                   </AccordionItem>
                   <AccordionItem uuid={preExpandedItems[3]}>
@@ -164,17 +164,17 @@ const PrivacyPolicy = React.memo(() => {
                     We collect your Personal Data when you interact with us or use our Services in any of the following ways (this list is subject to amendment from time to time as per clause 19 below):
 
                       <p>
-                        4.1. 	Visit, access or use any of the Betnare Services, events, business premises and / or Channels;
+                        4.1. 	Visit, access or use any of the CrashKali Services, events, business premises and / or Channels;
                       </p>
 
                       <p>
-                        4.1.2.	Subscribe or register to our Services and products, including but not limited to: betting and gaming services offered at www.Betnare.com, promotional offers, tournaments, and competitions;
+                        4.1.2.	Subscribe or register to our Services and products, including but not limited to: betting and gaming services offered at www.CrashKali.com, promotional offers, tournaments, and competitions;
                       </p>
                       <p>
-                        4.1.3.	Participate in any of Betnare’s platforms, for example discussion boards on our website or social media platforms, promotions or surveys, report a problem with our mobile app, website, Services or products, or ask for more information on a Service or product;
+                        4.1.3.	Participate in any of CrashKali’s platforms, for example discussion boards on our website or social media platforms, promotions or surveys, report a problem with our mobile app, website, Services or products, or ask for more information on a Service or product;
                       </p>
                       <p>
-                        4.1.4.	Interact with us as a supplier, agent, merchant, or dealer of Betnare Services; and
+                        4.1.4.	Interact with us as a supplier, agent, merchant, or dealer of CrashKali Services; and
                       </p>
                       <p>
                         4.1.5.	From third party sources, where:
@@ -216,7 +216,7 @@ const PrivacyPolicy = React.memo(() => {
                         2.	Technical Information - includes the type of mobile device you use, unique device identifiers such as internet protocol (IP) address of your computer or smart phone, or your device's IMEI or serial number or SIM card number of your non-smart phone or feature phone, your login information, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, information about the SIM card used by your device, mobile network information and other technology on the devices you use to access our Channels;
                         </li>
                         <li>
-                        3.	Financial Information - includes your transaction information when you withdraw from or deposit into your Betnare account, information we obtain from fraud prevention agencies, Anti-Money Laundering agencies and any government regulator;
+                        3.	Financial Information - includes your transaction information when you withdraw from or deposit into your CrashKali account, information we obtain from fraud prevention agencies, Anti-Money Laundering agencies and any government regulator;
                         </li>
                         <li>
                         4.	Contact Information - includes information stored on your device, including contact lists, call logs, SMS logs, social media friends, followers, and contacts, contact lists from other social media accounts, photos, videos, or other digital content;
@@ -352,7 +352,7 @@ const PrivacyPolicy = React.memo(() => {
                     In compliance with the relevant local and international data protection laws, we will only process your information in accordance with any of the lawful basis provided for under these laws which include:
                      <ul>
                       <li>1.	The performance of an agreement with you;</li>
-                      <li>2.	Betnare’s legitimate business interests;</li>
+                      <li>2.	CrashKali’s legitimate business interests;</li>
                       <li>3.	Compliance with any mandatory legal obligations;</li>
                       <li>4.	Your consent;</li>
                       <li>5.	Your vital interest; and</li>
@@ -369,7 +369,7 @@ const PrivacyPolicy = React.memo(() => {
                     <AccordionItemPanel className="accordion-item-panel">
 
                       <p>
-                        Through your interaction with any of the Betnare Services, premises, or our Channels, we may collect Sensitive Personal Data about you to the extent that the same is necessary for the full and proper operation of the Betnare Services that we offer to you
+                        Through your interaction with any of the CrashKali Services, premises, or our Channels, we may collect Sensitive Personal Data about you to the extent that the same is necessary for the full and proper operation of the CrashKali Services that we offer to you
 Should we wish to process your Sensitive Personal Data, we shall seek your specific consent first and ensure that the processing is necessary for:
 
                       </p>
@@ -396,7 +396,7 @@ Should we wish to process your Sensitive Personal Data, we shall seek your speci
                         1.	required or authorized by law or reasonably necessary for a lawful purpose, for instance for the purposes of satisfying any legal, regulatory, tax, accounting or reporting requirements;
                         </li>
                         <li>
-                        2.	Authorized or consented by you for any reason, including for the purposes of carrying out any obligation to you under an agreement with Betnare; or
+                        2.	Authorized or consented by you for any reason, including for the purposes of carrying out any obligation to you under an agreement with CrashKali; or
                         </li>
                         <li>
                         3.	For historical, statistical, journalistic literature and art or research purposes.
@@ -417,11 +417,11 @@ We may disclose your Personal Data to:
 </p>
 <ul>
   <li>1.	law-enforcement agencies, regulatory authorities, courts, or other statutory authorities in response to a demand issued with the appropriate lawful mandate and where the form and scope of the demand is compliant with the law;</li>
-  <li>2.	our subsidiaries, associates, partners, merchants, or agents who are involved in delivering Betnare products and Services you subscribe to or use;</li>
+  <li>2.	our subsidiaries, associates, partners, merchants, or agents who are involved in delivering CrashKali products and Services you subscribe to or use;</li>
   <li>3.	third parties to whom we may choose to sell, transfer or merge parts of our business or our assets or to whom we may seek to acquire our businesses or merge with;</li>
   <li>4.	fraud prevention and anti-money laundering agencies;</li>
   <li>5.	publicly available and/or restricted government databases to verify your identity information in order to comply with regulatory requirements;</li>
-  <li>6.	survey agencies that conduct surveys on behalf of Betnare; and</li>
+  <li>6.	survey agencies that conduct surveys on behalf of CrashKali; and</li>
   <li>7.	any other person that we are lawfully permitted to share the data with.</li>
 </ul>
 
@@ -483,7 +483,7 @@ We shall obtain your express consent prior to disclosing your Personal Data with
                       </p>
                       <li>To update your information, please contact us by sending an email to the email address provided in clause 20.</li>
                       <p><b>Safeguarding And Protection Of Information</b></p>
-                      <li>Betnare has put in place appropriate technical, operational and security measures to protect and prevent your Personal Data from unauthorized access, accidental loss, destruction or alteration. In addition, we limit access to your Personal Data to those employees, agents, contractors and third parties who have a business need to know this information. They shall only process your Personal Data on our instructions and shall be subject to a duty of strict confidentiality.
+                      <li>CrashKali has put in place appropriate technical, operational and security measures to protect and prevent your Personal Data from unauthorized access, accidental loss, destruction or alteration. In addition, we limit access to your Personal Data to those employees, agents, contractors and third parties who have a business need to know this information. They shall only process your Personal Data on our instructions and shall be subject to a duty of strict confidentiality.
 We have further put in place procedures to deal with any suspected and material Personal Data breaches and shall notify you and any applicable regulator of such a breach where we are legally required to do so.
 For more information on our safeguarding and security measures, please contact us with the information provided in clause 20.
 </li>
@@ -556,7 +556,7 @@ For more information on our safeguarding and security measures, please contact u
                         3.	remember to sign off after visiting our Channels;
                         </li>
                         <li>
-                        4.	inform Betnare of any changes that occur in your Personal Data to facilitate maintenance of accurate and up-to-date records;
+                        4.	inform CrashKali of any changes that occur in your Personal Data to facilitate maintenance of accurate and up-to-date records;
                         </li>
                         <li>
                         5.	do not send any of your Personal Data via non-encrypted e-mail; and
@@ -581,7 +581,7 @@ For more information on our safeguarding and security measures, please contact u
                       <ul>
                         <li>
                           {" "}
-                          Betnare reserves the right to terminate any agreement with you for failure to comply with the provisions of this Privacy Policy and its {<a href="/terms-and-conditions">Terms and Conditions</a> }
+                          CrashKali reserves the right to terminate any agreement with you for failure to comply with the provisions of this Privacy Policy and its {<a href="/terms-and-conditions">Terms and Conditions</a> }
                           and reject any application for information contrary to this Privacy Policy.
                         </li>
                         
@@ -595,7 +595,7 @@ For more information on our safeguarding and security measures, please contact u
                     </AccordionItemHeading>
                     <AccordionItemPanel className="accordion-item-panel">
                       <p>
-                      Betnare reserves the right to amend any part of this Privacy Policy, to the extent permissible by law. Where such an amendment is made, We shall notify you via our Channels and you should check our Channels frequently to stay up to date with any recent changes. Unless stated otherwise, our current Privacy Policy applies to all Personal Data that we have about you and your account.
+                      CrashKali reserves the right to amend any part of this Privacy Policy, to the extent permissible by law. Where such an amendment is made, We shall notify you via our Channels and you should check our Channels frequently to stay up to date with any recent changes. Unless stated otherwise, our current Privacy Policy applies to all Personal Data that we have about you and your account.
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -611,7 +611,7 @@ For more information on our safeguarding and security measures, please contact u
                         Name: Beyond Intoch
                         </li>
                         
-                          <li>Email address:{ <a href="mailto:operations@betnare.com ">operations@betnare.com</a> }</li>
+                          <li>Email address:{ <a href="mailto:operations@CrashKali.com ">operations@CrashKali.com</a> }</li>
                         
                           <li>Adress : Argwins Kothek Road , Hurlingham, Nairobi, Kenya</li>
                         <li>Telephone number:0701 087777 </li>

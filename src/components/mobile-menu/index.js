@@ -174,12 +174,12 @@ const MobileMenu = React.memo((props) => {
                     </div>
                 </div>
             </div>
-            {/* {console.log("betnare giftboost status information",(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
-                   Number(settings?.betnareGifts?.awardGiftBoost)===1) )} */}
+            {/* {console.log("CrashKali giftboost status information",(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
+                   Number(settings?.CrashKaliGifts?.awardGiftBoost)===1) )} */}
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
                    style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "50px"} : countInfo&&(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
-                   Number(settings?.betnareGifts?.awardGiftBoost)===1) ? {height: "92px"} : {height: "70px"} : {height: "50px"}}>
+                   Number(settings?.CrashKaliGifts?.awardGiftBoost)===1) ? {height: "92px"} : {height: "70px"} : {height: "50px"}}>
                    <tbody>
                 {slip_condition ?
                     <tr className={"mobile-menu-container"} onClick={()=>navigate(pathname.includes("nare-league")?"/betslip-nare?nare-league=true":"/betslip-slip")}>
@@ -284,7 +284,7 @@ const MobileMenu = React.memo((props) => {
                                     </Link>
                                 </td>
 
-                                <td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
+                                {/* <td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
                                     <Link
                                         to={`/live`}
                                         onClick={() => gaEventTracker("Visit Live  Page")}
@@ -300,7 +300,7 @@ const MobileMenu = React.memo((props) => {
                                         </p>
 
                                     </Link>
-                                </td>
+                                </td> */}
                                 <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
                                     <Link to={{
                                         pathname: `${ kiron ? `/betslip-nare` : "/betslip-slip"}`,

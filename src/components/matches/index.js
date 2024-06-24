@@ -177,9 +177,9 @@ export const virtualGameChoiceOptions = (bottomSheetType) => {
         url: "/smart-play?game=JetX&category=JetX",
       },
       {
-        id: "Nare League",
-        name: "Nare League",
-        url: "/nare-league",
+        id: "Big League",
+        name: "Big League",
+        url:"/",
       },
       {
         id: "Casino",
@@ -740,7 +740,7 @@ const SideBets = React.memo((props) => {
       {jackpot && (
         <a
           className="side w-auto bold "
-          href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+          href={`https://s5.sir.sportradar.com/CrashKalimts/en/match/${match.parent_match_id}`}
           target={"_blank"}
           style={{ color: "aqua", padding: "0px 13px" }}
           title={"View Stats"}
@@ -754,7 +754,7 @@ const SideBets = React.memo((props) => {
         <>
           <a
             className="side w-auto bold"
-            href={`https://s5.sir.sportradar.com/betnaremts/en/match/${match.parent_match_id}`}
+            href={`https://s5.sir.sportradar.com/CrashKalimts/en/match/${match.parent_match_id}`}
             target={"_blank"}
             style={{ color: "aqua" }}
             title={"View Stats"}

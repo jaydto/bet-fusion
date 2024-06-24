@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { configSettings, setState } from "../../redux/dataSlice";
 import { userBalance } from "../../redux/authSlice";
 import { matchCategories, matchesSearch } from "../../redux/matchesSlice";
+import Logo from "../../assets/img/logo.png" 
 import {
   checkDesktopTopNavigation,
   checkNavigation,
@@ -360,17 +361,17 @@ const Header = React.memo((props) => {
               <div className={"d-flex w-100 directions-header-nav"}>
                 <Navbar.Brand
                   className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
-                  title="Betnare"
+                  title="CrashKali"
                 >
                   <div
                     onClick={() => navigate("/")}
-                    className="col-4 logo-betnare resize-mobile"
+                    className="col-4 logo-CrashKali resize-mobile"
                     style={{ marginLeft: "2px" }}
                   >
                     <img
-                      src={"https://cdn.betnare.com/logo-white.webp"}
-                      alt="Betnare"
-                      title="Betnare"
+                      src={Logo}
+                      alt="CrashKali"
+                      title="CrashKali"
                       effects="blur"
                       className={`image-size ${!user && "logo-top"}`}
                       style={
@@ -498,9 +499,9 @@ const Header = React.memo((props) => {
                     <div className="col-5">
                       <div>
                         <img
-                          src={"https://cdn.betnare.com/logo-white.webp"}
-                          alt="Betnare"
-                          title="Betnare"
+                          src={Logo}
+                          alt="CrashKali"
+                          title="CrashKali"
                           effects="blur"
                         />
                       </div>

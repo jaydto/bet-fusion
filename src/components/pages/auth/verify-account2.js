@@ -66,7 +66,7 @@ const VerifyAccount2 = React.memo(
                                     <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3"
                                        style={{fontSize: "16px", opacity: '0.5px'}}>Bet ni Moto<LazyLoadImage src={fire}
                                                                                                               style={{width: "20px"}}
-                                                                                                              alt={'betnare'}/>
+                                                                                                              alt={'CrashKali'}/>
                                     </p>
                                 </Col>
                             </Row>

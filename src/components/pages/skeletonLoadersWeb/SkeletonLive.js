@@ -8,7 +8,7 @@ const SkeletonLoader = React.memo(
             backgroundImage: "linear-gradient(90deg, #ececec 0px, #ddd 40px, #ececec 80px)"
         }
         const backgroundLoaderbtn={
-            backgroundImage: "-webkit-linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px)"
+            backgroundImage: "-webkit-linear-gradient(left, var(--btn-color) 0px, #ddd 40px, var(--btn-color) 80px)"
         }
         const skeletonCount = 10; // Number of SkeletonLoaderMobile components to render
 

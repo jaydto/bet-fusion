@@ -116,7 +116,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMobileAndroid} className={'svg-mobile'} />
-                            <a href={"https://cdn.betnare.com/betnareapp.apk"} onClick={handleClose}>Download App </a>
+                            <a href={"https://cdn.CrashKali.com/CrashKaliapp.apk"} onClick={handleClose}>Download App </a>
                         </div>
                     </MenuItem>
                 </Menu>

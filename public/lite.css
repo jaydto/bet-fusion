@@ -17,8 +17,8 @@
 
 }
 .lite-top-color {
-    border: thin solid var(--betnare-input);
-    color: var(--betnare-button-login);
+    border: thin solid var(--CrashKali-input);
+    color: var(--CrashKali-button-login);
     text-align: center;
     display: flex;
     justify-content: center;

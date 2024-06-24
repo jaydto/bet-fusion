@@ -469,7 +469,7 @@ const   OddButton = React.memo(
           outcome_name={''}
           round_id={round_id}
           onClick={handleButtonOnClick}
-      ><span className="theodds odd-fix" style={{lineHeight:"1",opacity:'0.5'}}>{oddkey}</span>
+      ><span className="theodds odd-fix mkt-text" style={{lineHeight:"1",opacity:'0.5'}}>{oddkey}</span>
         {!detail && <span className="theodds odd-fix" style={{lineHeight:"1"}}>{odds}</span>}
       </button>
   );

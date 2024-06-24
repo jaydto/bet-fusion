@@ -300,7 +300,7 @@ video {
 }
 
 .header-menu{
-    background: var(--betnare-body-bg);
+    background: var(--CrashKali-body-bg);
 }
 
 .header-menu li.active:after {
@@ -311,7 +311,7 @@ video {
     height: 5px;
     left: 50%;
     transform: translate(-50%);
-    background: var(--betnare-button-login);
+    background: var(--CrashKali-button-login);
     bottom: 0;
     border-bottom: none;
     border-top-right-radius: 10px;
@@ -319,7 +319,7 @@ video {
 }
 
 .header-menu li.active a strong{
-    color:var(--betnare-button-login)!important;
+    color:var(--CrashKali-button-login)!important;
     font-weight:700;
 }
 
@@ -359,10 +359,10 @@ video {
 }
 
 .accordion-button.jackpot {
-background: var(--betnare-body-bg)!important;
+background: var(--CrashKali-body-bg)!important;
 }
 .accordion-button {
-background: var(--betnare-body-bg)!important;
+background: var(--CrashKali-body-bg)!important;
 }
 
 .no-border-radius {
@@ -481,12 +481,12 @@ background: var(--betnare-body-bg)!important;
 }
 
 .accordion-container {
-    background: var(--betnare-primary) !important;
+    background: var(--CrashKali-primary) !important;
 
 }
 
 .accordion-item-panel {
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
     padding: 10px 35px;
     line-height: 30px;
     font-size: var(--font-size-large);
@@ -950,7 +950,7 @@ background: var(--betnare-body-bg)!important;
 
 .top-matches button {
     overflow: visible;
-    display: block;
+    display: flex;
     width: 100%;
     border: none;
     text-align: center !important;
@@ -960,7 +960,10 @@ background: var(--betnare-body-bg)!important;
     font-size: 10px;
     font-weight: 100;
     padding: 2px;
-}
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+  }
 #live_matches .match-div-col {
     padding: 10px 2px 0 0px !important;
 }
@@ -2014,7 +2017,7 @@ events-header {
 
 .top-nav-login {
     top: -2px;
-    padding-top: var(--betnare-header-bg)!important;
+    padding-top: var(--CrashKali-header-bg)!important;
     background-size: cover;
     background-position: center center;
     padding-bottom: 17px;
@@ -2102,7 +2105,7 @@ events-header {
 
 .home-team {
     background: var(--odds-button);
-    color: #fff;
+    color: var(--text-secondary);
     font-weight: 150 !important;
 }
 
@@ -2126,7 +2129,7 @@ events-header {
 }
 
 .top-matches button.picked {
-    background: #FFC428 !important;
+    background: var(--picked) !important;
     color: var(--dark)!important;
 }
 .text-weight-md{
@@ -2141,7 +2144,7 @@ events-header {
 
 .mobi .home-team {
     background: #a11045;
-    color: #fff;
+    color: var(--text-btn-color);
     font-weight: normal !important;
 }
 
@@ -3466,7 +3469,7 @@ pre code {
 }
 
 table {
-    background-color: var(--betnare-primary);
+    background-color: var(--CrashKali-primary);
     width: 100%;
 }
 
@@ -4603,7 +4606,7 @@ fieldset[disabled] .fm.fl {
 }
 
 .primary-bg {
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
     color: var(--light);
 }
 
@@ -6298,7 +6301,7 @@ select[multiple].eq > .fj > .cg {
     position: relative;
     display: block;
     padding: 5px 15px;
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
     opacity: 0.8;
 }
 
@@ -6895,7 +6898,7 @@ ul.sport {
     
     /* Track */
     ::-webkit-scrollbar-track {
-        background: #16202c;
+        background: var(--betnare-primary);
     }
     
     
@@ -7749,7 +7752,7 @@ ul.sport {
         white-space: nowrap;
         overflow-x: hidden;
         overflow-y: hidden;
-        background: var(--betnare-header-bg);
+        background: var(--CrashKali-header-bg);
         max-height: 59px;
     }
 
@@ -16079,7 +16082,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border: none;
     font-size: 14px;
     text-transform: uppercase;
-    background: var(--betnare-button-login);
+    background: var(--CrashKali-button-login);
     color: var(--dark);
 }
 
@@ -16148,7 +16151,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 /*}*/
 
 .filters-modal .modal-content {
-    background-color: var(--betnare-primary);
+    background-color: var(--CrashKali-primary);
     color: #fff;
 }
 .market-item:hover {
@@ -16335,7 +16338,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     font-size: 13px;
     color: white;
     text-align: left;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 var(--betnare-primary), 0 6px 20px 0 var(--btn-color)!important;
 }
 
 .promotion-header {
@@ -16514,7 +16517,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .profile-bg {
     /*background: #253743;*/
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
 }
 
 .user-style {
@@ -18430,7 +18433,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-color: rgba(0, 0, 0, 0.12);
 }
 /*.sr-bb .srt-base-1 {*/
-/*  background-color: var(--betnare-body-bg);*/
+/*  background-color: var(--CrashKali-body-bg);*/
 /*  color: var(--light);*/
 /*  border-color: rgba(0, 0, 0, 0.12);*/
 /*}*/

@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Row, Col,} from "antd";
-import authImg from "../../../assets/img/Logo.webp";
+import authImg from "../../../assets/img/logo.png";
 import "./stepper.css";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -9,7 +9,6 @@ import {
   setTrackingData,
 } from "../../utils/local-storage";
 import only18 from "../../../assets/img/auth/18only.png";
-import backgroundURL from "../../../assets/img/auth/img-17.webp";
 import kenyan from '../../../assets/svg/kenya.svg'
 
 
@@ -29,7 +28,6 @@ import Header2 from "../../header/Header2";
 import { Dropdown } from "react-bootstrap";
 
 const backgroundStyle = {
-  backgroundImage: `url(${backgroundURL})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
 };
@@ -63,7 +61,7 @@ const RegisterTwo = () => {
 
   return (
     <>
-      <div style={{ height: "100vh", background: "#16202C" }}>
+      <div style={{ height: "100vh" }}>
         <Row justify="center" className="align-items-stretch h-100">
           <Col xs={0} sm={0} md={0} lg={8}>
             <div
@@ -87,7 +85,7 @@ const RegisterTwo = () => {
                     className="text-white text-center"
                     style={{ fontSize: "30px" }}
                   >
-                    Welcome to BetNare
+                    {/* Welcome to CrashKali */}
                   </h1>
                 </Col>
               </Row>

@@ -31,7 +31,7 @@
 }
 
 .contain::-webkit-scrollbar-track {
-    background-color: #f5f5f5; /* Set the color of the scrollbar track */
+    background-color: var(--betnare-primary); /* Set the color of the scrollbar track */
 }
 
 .contain::-webkit-scrollbar-thumb {
@@ -96,7 +96,7 @@
 
 .bet_item_details{
     /* background-color: rgb(55, 55, 59); */
-    /* background-color: var(--betnare-secondary); */
+    /* background-color: var(--CrashKali-secondary); */
     width: 95%;
     margin: auto;
     margin-top: 20px;

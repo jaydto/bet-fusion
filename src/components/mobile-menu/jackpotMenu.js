@@ -359,7 +359,7 @@ const JackpotMenu = React.memo((props) => {
                     <FontAwesomeIcon
                       icon={faExclamationCircle}
                       style={{
-                        color: "var(--betnare-login-button)",
+                        color: "var(--CrashKali-login-button)",
                         fontSize: "12px",
                       }}
                     />{" "}

@@ -53,7 +53,7 @@ const Standing = () => {
             <div className="league-wrapper">
                 <div className="match-standing-wrapper pt-0">
                     {!loadingData ? <table className={"mx-1 table"}>
-                        <tbody style={{background: 'var(--betnare-body-bg)'}}>
+                        <tbody style={{background: 'var(--CrashKali-body-bg)'}}>
                         <tr className="table-header">
                             <th className={'standings-menu'}>Position</th>
                             <th className={'standings-menu'}>Team</th>
@@ -70,7 +70,7 @@ const Standing = () => {
                                         <span className="team-badge d-flex align-items-center">
                                              <LazyLoadImage
                                                  src={standing?.icon_url}
-                                                 alt="Nare League"/>&nbsp;
+                                                 alt="Big League"/>&nbsp;
                                             <span>{standing?.team_name}</span>
                                       </span>
                                     </td>

@@ -77,7 +77,7 @@ const Withdraw = React.memo(
         const FormTitle = () => {
             return (
                 <div className='col-md-12  p-4 text-center' style={{background: 'transparent'}}>
-                    <h4 className="inline-block betnare-text-light">
+                    <h4 className="inline-block CrashKali-text-light">
                         WITHDRAW FUNDS (MOBILE MONEY)
                     </h4>
                 </div>
@@ -184,13 +184,13 @@ const PaymentInstructions = (props) => {
             <label className='header text-info'>Withdrawal Instructions</label>
             <div className="container d-flex flex-column">
                 <div className="row">
-                    <div className="col betnare-text-light"> 1. Enter the amount you wish to withdraw.</div>
+                    <div className="col CrashKali-text-light"> 1. Enter the amount you wish to withdraw.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 2. Click on the withdraw funds button.</div>
+                    <div className="col CrashKali-text-light"> 2. Click on the withdraw funds button.</div>
                 </div>
                 <div className="row">
-                    <div className="col betnare-text-light"> 3. Check your phone for an M-Pesa Confirmation.
+                    <div className="col CrashKali-text-light"> 3. Check your phone for an M-Pesa Confirmation.
                     </div>
                 </div>
             </div>

@@ -21,17 +21,17 @@ const Footer = React.memo((props) => {
           className="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-white"
           style={deposit2 && { width: "50%" }}
         >
-          <h5 className={""}>BETNARE</h5>
+          <h5 className={""}>CrashKali</h5>
           <ul>
             <li className="">P.O.BOX 00100 NAIROBI KENYA</li>
             <li className="">
-              <a href="mailto:care@ke.betnare.com" target={"_blank"}>
-                <FontAwesomeIcon icon={faEnvelope} />support@betnare.com
+              <a href="mailto:care@ke.CrashKali.com" target={"_blank"}>
+                <FontAwesomeIcon icon={faEnvelope} />support@CrashKali.com
               </a>
             </li>
             <li className="footer-icon">
               <a
-                href="http://facebook.com/Betnare-101164702604689"
+                href="http://facebook.com/CrashKali-101164702604689"
                 target={"_blank"}
               >
                 <FontAwesomeIcon icon={faFacebook} /> Facebook
@@ -39,7 +39,7 @@ const Footer = React.memo((props) => {
             </li>
             <li className="footer-icon">
               <a
-                href="https://instagram.com/betnareke?igshid=YmMyMTA2M2Y="
+                href="https://instagram.com/CrashKalike?igshid=YmMyMTA2M2Y="
                 target={"_blank"}
               >
                 <FontAwesomeIcon icon={faInstagram} /> Instagram

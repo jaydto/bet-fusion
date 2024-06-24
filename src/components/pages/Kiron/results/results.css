@@ -7,7 +7,7 @@
     width: 100%;
     float: left;
     overflow-y: auto;
-    background-color: var(--betnare-body-bg);
+    background-color: var(--CrashKali-body-bg);
 }
 .playing-games-wrapper {
     padding-bottom: 0 !important;

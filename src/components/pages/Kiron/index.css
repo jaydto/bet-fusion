@@ -3,7 +3,7 @@
 }
 .container-size {
     color:var(--light)!important;
-    background: var(--betnare-primary)!important;
+    background: var(--CrashKali-primary)!important;
     width: 100%!important;
 }
 .size-info {
@@ -17,7 +17,7 @@
     align-items:flex-end;
 }
 .matches .top-matches .kiron-btn {
-    border-radius: 20px !important;
+    border-radius: 4px !important;
     margin-right: 4px;
     outline: none;
     height: 40px;
@@ -173,8 +173,8 @@
     content: "";
     width: 220px;
     height: 220px;
-    border: 23px solid #DDDDDD;
-    border-top-color: #009579;
+    border: 23px solid var(--light);
+    border-top-color: var(--loader);
     border-radius: 50%;
     animation: loading 1s ease infinite;
 }
@@ -304,10 +304,10 @@
     color: white;
 }
 #more_markets_selection_kiron {
-    background-color: var(--betnare-footer);
+    background-color: var(--CrashKali-footer);
 }
 .kiron-more-button-color {
-    background: var(--betnare-button-login)!important;
+    background: var(--CrashKali-button-login)!important;
     color: var(--dark)!important;
     font-weight: bold;
 }
@@ -419,12 +419,12 @@
         position: fixed;
         z-index: 1999;
         width: 100%;
-        background: var(--betnare-header-bg);
+        background: var(--CrashKali-header-bg);
         top: 14.4rem!important;
     }
     .kiron_matches_now {
         margin-top: 11rem!important;
-        background: var(--betnare-primary);
+        background: var(--CrashKali-primary);
     }
 }
 
@@ -438,7 +438,7 @@
     }
     .matches .top-matches .kiron-btn {
         /* height: 30px; */
-        border-radius: 10px !important;
+        border-radius: 4px !important;
         margin-right: 4px;
         outline: none;
         height: 40px;
@@ -471,7 +471,7 @@
         width:75%;
     }
     .event{
-        background:var(--betnare-primary)!important
+        background:var(--CrashKali-primary)!important
     }
     .kiron-body{
         margin-top:11rem;
@@ -482,11 +482,11 @@
         top:19rem;
         z-index: 1999;
         width:75%;
-        background: var(--betnare-header-bg);
+        background: var(--CrashKali-header-bg);
     }
     .kiron_matches_now {
         margin-top: 10.6rem;
-        background: var(--betnare-primary);
+        background: var(--CrashKali-primary);
     }
 
     .kiron-size{
@@ -581,12 +581,12 @@
         position: fixed;
         z-index: 1999;
         width: 100%;
-        background: var(--betnare-header-bg);
+        background: var(--CrashKali-header-bg);
         top: 16rem;
     }
     .kiron_matches_now {
         margin-top: 15.6rem;
-        background: var(--betnare-primary);
+        background: var(--CrashKali-primary);
     }
     .kiron-body {
         margin-top: 12.9rem;
@@ -598,11 +598,11 @@
     }
 
     .event{
-        background:var(--betnare-primary)!important
+        background:var(--CrashKali-primary)!important
     }
     .top-matches.kiron div {
         color: var(--light);
-        background: var(--betnare-primary);
+        background: var(--CrashKali-primary);
         min-height: 16px;
         justify-content: unset;
         padding-left: 0.1rem!important;

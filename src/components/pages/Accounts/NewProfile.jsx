@@ -80,22 +80,7 @@ const NewProfile = React.memo(
 										</span>
                                             </div>
                                         </div>
-                                        <div className="upper-row">
-                                            <div className="card-item">
-                                                {/*todo gift*/}
-                                                <span className='t-label'>Stake Booster</span>
-                                                <span>
-											<span className="dollar">Ksh {formatNumber(user?.gift_balance) || 0}</span>
-										</span>
-                                            </div>
-                                            <div className="card-item">
-                                                {/*/todo nare points*/}
-                                                <span className='t-label'>Nare Points</span>
-                                                <span>
-											<span className="dollar"> Pts {formatNumber(user?.points_balance) || 0}</span>
-										</span>
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                   
                                     {
@@ -139,12 +124,7 @@ const NewProfile = React.memo(
                                                 <div className="t-details">
                                                     <div className="t-title">Deposit</div>
                                                 </div>
-                                                <div className="t-amount">
-                                                    <LazyLoadImage
-                                                        effects={"blur"}
-                                                        src="https://storage.googleapis.com/nareimages/affiliate/mpesa.svg"
-                                                        width="50px" alt=""/>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </Link>
@@ -160,12 +140,7 @@ const NewProfile = React.memo(
                                             <div className="t-details">
                                                 <div className="t-title">Withdraw</div>
                                             </div>
-                                            <div className="t-amount">
-                                                <LazyLoadImage
-                                                    effect={"blur"}
-                                                    src="https://storage.googleapis.com/nareimages/affiliate/mpesa.svg"
-                                                    width="50px" alt=""/>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <Link to="/redeem-points" style={{textDecoration: "none", color: "black"}}>

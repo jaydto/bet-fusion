@@ -11,7 +11,7 @@
 
 
 .promo-inner {
-    box-shadow: 0px 1px 5px 3px #253743 !important;
+    box-shadow: 0px 1px 5px 3px var(--btn-color) !important;
     margin-bottom: 15px !important;
     border-radius: 7px!important;
     border: thin solid #253743;

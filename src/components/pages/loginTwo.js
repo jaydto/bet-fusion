@@ -1,19 +1,18 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
-import authImg from '../../assets/img/Logo.webp'
+import authImg from '../../assets/img/logo.png'
 import {Link, useNavigate} from "react-router-dom";
 import HeaderLogin from "../header/top-login";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
 import {toast} from "react-toastify";
 import only18 from '../../assets/img/auth/18only.png'
-import backgroundURL from '../../assets/img/auth/img-17.webp'
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 import {StoreContext} from "../../context/store";
 import {useSelector} from "react-redux";
 
 const backgroundStyle = {
-    backgroundImage: `url(${backgroundURL})`,
+    // backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
 }
@@ -77,7 +76,7 @@ const LoginTwo = React.memo(
         const {state} = useContext(StoreContext);
 
         return (
-            <div style={{height: '100vh', background: '#16202C', overflowX: 'hidden'}}>
+            <div style={{height: '100vh', overflowX: 'hidden'}}>
                 <Row justify="center" className="align-items-stretch h-100">
 
                     <Col xs={0} sm={0} md={0} lg={8}>
@@ -89,8 +88,8 @@ const LoginTwo = React.memo(
                                         <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                     </Link>
 
-                                    <h1 className="text-white text-center" style={{fontSize: "30px"}}>Welcome to
-                                        BetNare</h1>
+                                    {/* <h1 className="text-white text-center" style={{fontSize: "30px"}}>Welcome to
+                                        CrashKali</h1> */}
                                 </Col>
                             </Row>
                             <div className="d-flex justify-content-end pb-4">

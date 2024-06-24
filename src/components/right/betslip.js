@@ -313,15 +313,15 @@ const BetSlip = React.memo((props) => {
   };
 
   const updateBonusStateCallback = useCallback(() => {
-    let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
+    let maxBonusGames = Number(settings?.CrashKaliBonus?.bonusBetLegs);
 
-    let perSlipBonusOdd = settings?.betnareBonus?.minBonusOdd;
+    let perSlipBonusOdd = settings?.CrashKaliBonus?.minBonusOdd;
 
-    let fixedOdd = settings?.betnareBonus?.fixedOdd === "1";
+    let fixedOdd = settings?.CrashKaliBonus?.fixedOdd === "1";
 
-    let perSlipMaxOdd = settings?.betnareBonus?.maxBonusOdd;
+    let perSlipMaxOdd = settings?.CrashKaliBonus?.maxBonusOdd;
 
-    let bonusBetFixedAmount = settings?.betnareBonus?.bonusBetAmount;
+    let bonusBetFixedAmount = settings?.CrashKaliBonus?.bonusBetAmount;
 
     let message = "";
 
@@ -342,7 +342,7 @@ const BetSlip = React.memo((props) => {
 
     let bonusBetEligible = false;
 
-    let bonusBetSportID = settings?.betnareBonus?.bonusSport;
+    let bonusBetSportID = settings?.CrashKaliBonus?.bonusSport;
 
     if (fixedOdd) {
       bonusBetEligible =
@@ -460,7 +460,7 @@ const BetSlip = React.memo((props) => {
       // setSimilarEventIds(allKeys);
 
       // Configure SIR and add Widget 1 with updated similarEventIds
-      window.SIR("registerAdapter", "betnare", {
+      window.SIR("registerAdapter", "CrashKali", {
         onBetSlipChanged: onBetSlipChanged,
       });
       window.SIR(
@@ -671,12 +671,15 @@ const BetSlip = React.memo((props) => {
                       }`}
                     >
                       <div className="bet-cancel">
-                        <input
+                        <div>
+                           <input
                           id={slip.match_id}
                           type="submit"
                           value="X"
                           onClick={() => handledRemoveSlip(slip)}
                         />
+                        </div>
+                       
                       </div>
                       <div className="d-flex width-slip-item-container">
                         <li

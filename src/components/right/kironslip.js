@@ -115,15 +115,15 @@ const KironSlip = React.memo(
         const updateGiftState = () => {
         };
         const updateBonusState = () => {
-            let maxBonusGames = Number(settings?.betnareBonus?.bonusBetLegs);
+            let maxBonusGames = Number(settings?.CrashKaliBonus?.bonusBetLegs);
 
-            let perSlipBonusOdd = settings?.betnareBonus?.minBonusOdd;
+            let perSlipBonusOdd = settings?.CrashKaliBonus?.minBonusOdd;
 
-            let fixedOdd = settings?.betnareBonus?.fixedOdd === "1";
+            let fixedOdd = settings?.CrashKaliBonus?.fixedOdd === "1";
 
-            let perSlipMaxOdd = settings?.betnareBonus?.maxBonusOdd;
+            let perSlipMaxOdd = settings?.CrashKaliBonus?.maxBonusOdd;
 
-            let bonusBetFixedAmount = settings?.betnareBonus?.bonusBetAmount;
+            let bonusBetFixedAmount = settings?.CrashKaliBonus?.bonusBetAmount;
 
             let message = "";
 
@@ -144,7 +144,7 @@ const KironSlip = React.memo(
 
             let bonusBetEligible = false;
 
-            let bonusBetSportID = settings?.betnareBonus?.bonusSport;
+            let bonusBetSportID = settings?.CrashKaliBonus?.bonusSport;
 
             if (fixedOdd) {
                 bonusBetEligible =
@@ -227,12 +227,15 @@ const KironSlip = React.memo(
                                     return (
                                         <div className={'d-flex slip-bg'} key={index}>
                                             <div className="bet-cancel">
-                                                <input
+                                                <div>
+                                                   <input
                                                     id={slip.match_id}
                                                     type="submit"
                                                     value="X"
                                                     onClick={() => handledRemoveSlip(slip)}
-                                                />
+                                                /> 
+                                                </div>
+                                                
                                             </div>
                                             <div className="d-flex width-slip-item-container">
                                                 <li

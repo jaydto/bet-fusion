@@ -11,7 +11,7 @@
     text-transform: capitalize;
 }
 .kiron-value{
-    background:#34495e;
+    background:var(--kiron-button);
 }
 .periods::-webkit-scrollbar{
     display:none;

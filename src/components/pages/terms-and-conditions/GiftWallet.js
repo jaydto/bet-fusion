@@ -18,7 +18,7 @@ const GiftWallet = () => {
             <AccordionItemPanel className='accordion-item-panel'>
 <ol>
     <li>
-        Register and Get the BetNare Bet Booster of UPTO 3,000/= FREE
+        Register and Get the CrashKali Bet Booster of UPTO 3,000/= FREE
     </li>
     <li>The client is set to receive Up to 3,000/= to Unlock their Stake Booster once they REGISTER</li>
 </ol>
@@ -26,8 +26,8 @@ const GiftWallet = () => {
                 <br/>
                 <strong className="text-decoration-underline">HOW TO GET THE NARE BOOSTER GIFTS</strong>
                 <ol>
-                    <li>REGISTER on BetNare.</li>
-                    <li>Get UPTO 3,000 of registration as Free Nare Booster to be used on BetNare
+                    <li>REGISTER on CrashKali.</li>
+                    <li>Get UPTO 3,000 of registration as Free Nare Booster to be used on CrashKali
                         when placing bets (in the Betslip)
                     </li>
                     <li>Start using your BOOSTERS immediately on your 1 st Cash Bet.
@@ -45,9 +45,9 @@ const GiftWallet = () => {
                         A minimum of 4 games on a Multi Bet.
                     </li>
                     <li>
-                        BetNare will top up your stake by 20% of the stake used.
-                        e.g., When you stake 50/= BetNare will boost your stake by 20% meaning
-                        your stake will be 60/=, if you place a Stake of 200/=, BetNare will boost it to
+                        CrashKali will top up your stake by 20% of the stake used.
+                        e.g., When you stake 50/= CrashKali will boost your stake by 20% meaning
+                        your stake will be 60/=, if you place a Stake of 200/=, CrashKali will boost it to
                         240/=
                     </li>
                 </ol>
@@ -88,7 +88,7 @@ const GiftWallet = () => {
                         Only 1 Booster Gift can be used in 1 Betslip.
                     </li>
                     <li>
-                        In this promotion, BetNare only allows one chance to award Gifts per person /
+                        In this promotion, CrashKali only allows one chance to award Gifts per person /
                         mobile number/ IP address/device number.
                     </li>
                     <li>
@@ -99,7 +99,7 @@ const GiftWallet = () => {
                     <li>
                         Under suspect of fraud or abuse of this promotion by any customer, we reserve ourselves the
                         right to remove Gifts and associated winnings from a given account or any associated accounts.
-                        BetNare reserves itself the rights to amend, cancel, reclaim or refuse any promotion at its own
+                        CrashKali reserves itself the rights to amend, cancel, reclaim or refuse any promotion at its own
                         discretion.
                     </li>
 

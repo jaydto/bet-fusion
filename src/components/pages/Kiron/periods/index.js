@@ -198,7 +198,7 @@ const KironPeriods = React.memo((props) => {
     let secondsLeft = initialTimeLeft % 60;
     let minutesLeft = Math.floor(initialTimeLeft / 60);
     let timeLeft = `${minutesLeft}:${
-      secondsLeft < 10 ? "0" : ""
+      secondsLeft < 11 ? "0" : ""
     }${secondsLeft}`;
     dispatchRedux(setTimerData("time_left", timeLeft));
 
@@ -210,11 +210,11 @@ const KironPeriods = React.memo((props) => {
       diff = firstRound.diff(now);
       secondsLeft = Math.abs(initialTimeLeft) % 60;
       minutesLeft = Math.floor(Math.abs(initialTimeLeft) / 60);
-      timeLeft = `${minutesLeft}:${secondsLeft < 10 ? "0" : ""}${secondsLeft}`;
+      timeLeft = `${minutesLeft}:${secondsLeft < 11 ? "0" : ""}${secondsLeft}`;
       dispatchRedux(setTimerData("time_left", timeLeft));
 
       // Update the "Game Week" DOM element when time_left is less than 10
-      if (initialTimeLeft <= 10) {
+      if (initialTimeLeft <= 11) {
         dispatchRedux(setState("close_spinner", true));
 
         const gameWeekElement = document.getElementById("game_week");

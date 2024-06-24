@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 import {Col, Row} from "antd";
-import authImg from '../../../assets/img/Logo.webp'
+import authImg from '../../../assets/img/logo.png'
 import {Link, useNavigate} from "react-router-dom";
 import only18 from '../../../assets/img/auth/18only.png'
 import backgroundURL from '../../../assets/img/auth/img-17.webp'
@@ -13,7 +13,7 @@ import {Form, Formik} from "formik";
 import {StoreContext } from "../../../context/store"
 
 const backgroundStyle = {
-    backgroundImage: `url(${backgroundURL})`,
+    // backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
 }
@@ -43,7 +43,7 @@ const ResetPassword2 = React.memo(
 
 
     return (
-        <div style={{height:'100vh', background:'#16202C'}}>
+        <div style={{height:'100vh'}}>
             <Row justify="center" className="align-items-stretch h-100">
 
                 <Col xs={0} sm={0} md={0} lg={8}>
@@ -56,7 +56,7 @@ const ResetPassword2 = React.memo(
                                     <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                 </Link>
 
-                                <h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to BetNare</h1>
+                                {/* <h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to CrashKali</h1> */}
 
                             </Col>
                         </Row>

@@ -52,7 +52,7 @@
     padding: 15px 20px;
     border: none;
     outline: none;
-    background: #2D4352;
+    background: var(--btn-color);
     border-radius: 5px;
     height: 50px;
     box-sizing: border-box;

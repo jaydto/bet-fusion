@@ -195,7 +195,7 @@ const Right = React.memo((props) => {
                 <QuickLogin />
               </div>
             </div>
-            <CompanyInfo />
+            {/* <CompanyInfo /> */}
           </div>
 
           {/*    removed item here*/}

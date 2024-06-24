@@ -1,5 +1,5 @@
 {
-  "name": "betnare-web",
+  "name": "CrashKali-web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -73,7 +73,7 @@
   },
   "scripts": {
     "start": "node ./scripts/start.js start",
-    "build": "node ./scripts/build.js build && sudo cp -rf build/* ../betnare-live/ && sudo chown -R nginx ../betnare-live",
+    "build": "node ./scripts/build.js build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "preinstall": "npx npm-force-resolutions"

@@ -421,7 +421,7 @@ const BetDetails = React.memo(
                                                      letterSpacing:'2px',
                                                      fontWeight:'var(--font-weight3)',
                                                      background:'var(--bet-history)',
-                                                     color:'var(--betnare-button-login)'
+                                                     color:'var(--CrashKali-button-login)'
                                                  }}
                                                  onClick={() =>
                                                      cashoutRequest(item?.bet_id,item?.bet_amount, item?.possible_win)
@@ -432,7 +432,7 @@ const BetDetails = React.memo(
                                                      letterSpacing:'2px',
                                                      fontWeight:'var(--font-weight3)',
                                                      background:'var(--bet-history)',
-                                                     color:'var(--betnare-button-login)',
+                                                     color:'var(--CrashKali-button-login)',
                                                      opacity:'0.4'
                                                  }}
                                                  >

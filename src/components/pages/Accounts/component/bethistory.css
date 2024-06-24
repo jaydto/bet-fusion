@@ -79,7 +79,7 @@
     width: inherit;
 }
 .bet-history-options.progress{
-    background: var(--betnare-primary);
+    background: var(--CrashKali-primary);
     font-size:14px;
 
 }
@@ -217,7 +217,7 @@ font-weight: 900;
     padding: 2px 18px;
     border-radius: 18px;
     border: thin solid;
-    background: var(--betnare-header-bg);
+    background: var(--CrashKali-header-bg);
     display: flex;
     gap: 5px;
     /* line-height: 1; */

@@ -69,7 +69,7 @@ export const SubmitButton = (props) => {
               padding: "10px",
               borderRadius: "0.7rem",
               fontSize: "14px",
-              background: "var(--betnare-button-login",
+              background: "var(--CrashKali-button-login",
               whiteSpace: "nowrap",
             }
           : {
@@ -536,7 +536,7 @@ const BetslipSubmitForm = React.memo((props) => {
     bet_amount:
       (jackpot && jackpotData?.bet_amount) ||
       (bonusBet
-        ? Number(settings?.betnareBonus?.defaultBonusBetAmount)
+        ? Number(settings?.CrashKaliBonus?.defaultBonusBetAmount)
         : stake),
     accept_all_odds_change: value_for_odds_change,
     user_id: user?.profile_id,
@@ -595,7 +595,7 @@ const BetslipSubmitForm = React.memo((props) => {
   const calculateMultiBetBoostAmountCallback = useCallback(() => {
     let settings = getFromLocalStorage("settings");
 
-    let giftMinGames = Number(settings?.betnareGifts?.giftBoostMinLegs);
+    let giftMinGames = Number(settings?.CrashKaliGifts?.giftBoostMinLegs);
     console.log("toatal games", totalGames);
 
     if (totalGames < giftMinGames) {
@@ -616,13 +616,13 @@ const BetslipSubmitForm = React.memo((props) => {
     let odds = Object.values(betslips || [])?.filter(
       (slip) =>
         // slip.bet_type !== "1" &&
-        Number(slip.odd_value) >= settings?.betnareGifts?.giftBoostMinOdds
+        Number(slip.odd_value) >= settings?.CrashKaliGifts?.giftBoostMinOdds
     );
 
     let giftQualificationOdds = odds.length;
 
     let awardGifts =
-      Number(getFromLocalStorage("settings")?.betnareGifts?.awardGiftBoost) ===
+      Number(getFromLocalStorage("settings")?.CrashKaliGifts?.awardGiftBoost) ===
         1 && Number(user?.gift_balance || 0) > 0;
 
     // console.log("awargift criteria", awardGifts);
@@ -643,7 +643,7 @@ const BetslipSubmitForm = React.memo((props) => {
             multiboostmessage: ` Add ${remainingGames} more game${
               remainingGames > 1 ? "s" : ""
             } with odds of  ${
-              settings?.betnareGifts?.giftBoostMinOdds
+              settings?.CrashKaliGifts?.giftBoostMinOdds
             } or above to boost your winnings.`,
           },
         })
@@ -653,22 +653,22 @@ const BetslipSubmitForm = React.memo((props) => {
         `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
           remainingGames > 1 ? "s" : ""
         } with odds of  ${
-          settings?.betnareGifts?.giftBoostMinOdds
+          settings?.CrashKaliGifts?.giftBoostMinOdds
         } or above to redeem your gift.`
       );
 
       setMultiBoostAmount(0);
     } else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
       boost =
-        ((Number(settings?.betnareGifts?.giftBoostPercentage) || 20) / 100) *
+        ((Number(settings?.CrashKaliGifts?.giftBoostPercentage) || 20) / 100) *
         stake;
 
       if (isNaN(boost)) {
         boost = 0;
       }
 
-      if (boost >= Number(settings?.betnareGifts?.maxGiftBoostAmount)) {
-        boost = Number(settings?.betnareGifts?.maxGiftBoostAmount);
+      if (boost >= Number(settings?.CrashKaliGifts?.maxGiftBoostAmount)) {
+        boost = Number(settings?.CrashKaliGifts?.maxGiftBoostAmount);
       }
 
       if (boost >= 1) {

@@ -84,7 +84,7 @@ const AntiMoneyLaundering = () => {
                                                 laundering, terrorism financing or any other illegal activity.
                                             </p>
                                             <p>
-                                                BetNare is obliged to block such funds and to undertake measure as
+                                                CrashKali is obliged to block such funds and to undertake measure as
                                                 provided
                                                 in the AML policy rules.
                                             </p>

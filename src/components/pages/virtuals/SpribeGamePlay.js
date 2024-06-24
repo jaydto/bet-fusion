@@ -80,7 +80,7 @@ const GamePlay = React.memo(
         }
 
         const configureDemoGame = () => {
-            setGameUrl(`https://demo.spribe.io/launch/${game || 'aviator'}?currency=USD&lang=EN&return_url=https://betnare.com`)
+            setGameUrl(`https://demo.spribe.io/launch/${game || 'aviator'}?currency=USD&lang=EN&return_url=https://CrashKali.com`)
             setGameUrlLoaded(true)
             setDemo(true)
         }
@@ -300,14 +300,14 @@ const GamePlay = React.memo(
                                             <h3 className={'text-center'}>Aviator Freebets </h3>
                                             <ul>
                                                 <li>
-                                                    Play Aviator on BetNare & Get Freebets every time.
+                                                    Play Aviator on CrashKali & Get Freebets every time.
                                                 </li>
                                                 <li>
-                                                    Register now on https://betnare.com/nare-games/aviator and become a
+                                                    Register now on https://CrashKali.com/nare-games/aviator and become a
                                                     potential winner.
                                                 </li>
                                                 <li>
-                                                    Sign Up to play Aviator here https://betnare.com/nare-games/aviator
+                                                    Sign Up to play Aviator here https://CrashKali.com/nare-games/aviator
                                                     .
                                                 </li>
                                             </ul>

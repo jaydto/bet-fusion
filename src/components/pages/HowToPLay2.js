@@ -101,15 +101,15 @@ const HowToPlay = React.memo((props) => {
                                   <AccordionItemButton
                                     className={"accordion-button"}
                                   >
-                                    Why should I register with BetNare ?
+                                    Why should I register with CrashKali ?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel
                                   className={"accordion-item-panel"}
                                 >
-                                  Registration allows you to open a BetNare
+                                  Registration allows you to open a CrashKali
                                   account free of charge and under no
-                                  obligation. Your BetNare account will help you
+                                  obligation. Your CrashKali account will help you
                                   manage your bets and other account details.
                                   You need to deposit actual money into your
                                   account before you can place bets.
@@ -120,7 +120,7 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    How do I register with BetNare?
+                                    How do I register with CrashKali?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className={"px-2 py-1"}>
@@ -139,10 +139,10 @@ const HowToPlay = React.memo((props) => {
                                         29877. You will receive a confirmation
                                         message with a link directing you to
                                         read the terms and conditions on
-                                        BetNare. Once you have read and
+                                        CrashKali. Once you have read and
                                         understood the Terms and Conditions, you
                                         are able to create an account on
-                                        BetNare.
+                                        CrashKali.
                                       </AccordionItemPanel>
                                     </AccordionItem>
                                   </Accordion>
@@ -155,17 +155,17 @@ const HowToPlay = React.memo((props) => {
                                     To register via SMS send “JOIN” to 29877.
                                     You will receive a confirmation message with
                                     a link directing you to read the terms and
-                                    conditions on BetNare. Once you have read
+                                    conditions on CrashKali. Once you have read
                                     and understood the Terms and Conditions, you
-                                    are able to create an account on BetNare.
+                                    are able to create an account on CrashKali.
                                   </p>
                                   <br />
                                 </AccordionItemPanel>
                                 <AccordionItemPanel>
                                   <p>
-                                    Registration allows you to open a BetNare
+                                    Registration allows you to open a CrashKali
                                     account free of charge and under no
-                                    obligation. Your BetNare account will help
+                                    obligation. Your CrashKali account will help
                                     you manage your bets and other account
                                     details. You need to deposit actual money
                                     into your account before you can place bets.
@@ -185,11 +185,11 @@ const HowToPlay = React.memo((props) => {
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel px-2 py-1">
                             <h3 className={"p-3"}>
-                              How do I deposit cash into my BetNare account?
+                              How do I deposit cash into my CrashKali account?
                             </h3>
                             <p className={"px-2"}>
                               Once you have completed your registration. To
-                              deposit money into your BetNare account is easy,
+                              deposit money into your CrashKali account is easy,
                               just follow these steps:
                             </p>
                             <Accordion allowZeroExpanded>
@@ -202,7 +202,7 @@ const HowToPlay = React.memo((props) => {
                                 <AccordionItemPanel>
                                   <p>
                                     Access your mobile money menu on your phone
-                                    and transfer money using the BetNare Paybill
+                                    and transfer money using the CrashKali Paybill
                                     number (4087777) sent to you during
                                     registration. M-Pesa PAYBILL NUMBER; 4087777
                                   </p>
@@ -217,11 +217,11 @@ const HowToPlay = React.memo((props) => {
                                 </AccordionItemHeading>
                                 <AccordionItemPanel>
                                   <p className={"px-2"}>
-                                    Your BetNare account will be credited
+                                    Your CrashKali account will be credited
                                     automatically. You will then receive a
-                                    confirmation message from BetNare for the
+                                    confirmation message from CrashKali for the
                                     deposit transaction. e.g., KSH 15/=
-                                    received. Your BetNare account balance is;
+                                    received. Your CrashKali account balance is;
                                     KSH 15/=
                                   </p>
                                 </AccordionItemPanel>
@@ -250,7 +250,7 @@ const HowToPlay = React.memo((props) => {
                                   <p>
                                     You now have an opportunity to predict the
                                     outcome of any match available on the
-                                    BetNare platform. You can select any betting
+                                    CrashKali platform. You can select any betting
                                     option from the wide range of markets
                                     available on different games and send your
                                     bet to 29877.{" "}
@@ -298,7 +298,7 @@ const HowToPlay = React.memo((props) => {
                                         <AccordionItemPanel>
                                           You will receive a confirmation
                                           message from 29877 showing your Bet
-                                          ID, possible payout, and your BetNare
+                                          ID, possible payout, and your CrashKali
                                           account balance. The possible payout
                                           is calculated by multiplying your
                                           total Odds by the bet amount then
@@ -360,7 +360,7 @@ const HowToPlay = React.memo((props) => {
                                           You will receive a confirmation
                                           message from 29877 showing your Multi
                                           Bet ID, possible payout, and your
-                                          BetNare account balance. The possible
+                                          CrashKali account balance. The possible
                                           payout is calculated by multiplying
                                           your total Odds by the bet amount then
                                           subtracting 20% withholding tax.
@@ -431,7 +431,7 @@ const HowToPlay = React.memo((props) => {
                                       You will receive a confirmation message
                                       from 29877 showing your Jackpot Bet ID,
                                       all the 11 predictions you have made, the
-                                      bet amount and your BetNare account
+                                      bet amount and your CrashKali account
                                       balance. Note: You are a winner when all
                                       your 11 predictions match the games
                                       outcomes. The Jackpot is equally shared
@@ -456,7 +456,7 @@ const HowToPlay = React.memo((props) => {
                             <p>
                               Getting money is as easy as depositing it. For
                               example if you want to withdraw KSH 100 from your
-                              BetNare account you will: SMS to 29877; W#100 -
+                              CrashKali account you will: SMS to 29877; W#100 -
                               where W stands for Withdraw, 100 is the amount of
                               money you wish to withdraw. Note: The withdrawal
                               format is standard across all mobile money service
@@ -478,10 +478,10 @@ const HowToPlay = React.memo((props) => {
                             <h3>How do I check my balance?</h3>
                             <p>
                               SMS the word "BALANCE" to 29877 to see how much
-                              you have on your BetNare account. You will receive
+                              you have on your CrashKali account. You will receive
                               a message showing your account balance. e.g. Your
-                              BetNare balance is: KSH 253/= Note: If you have a
-                              pending withdrawal request, your BetNare account
+                              CrashKali balance is: KSH 253/= Note: If you have a
+                              pending withdrawal request, your CrashKali account
                               balance will not include the amount you want to
                               withdraw.
                             </p>
@@ -519,14 +519,14 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem uuid={"13"}>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    Why should I register with BetNare?
+                                    Why should I register with CrashKali?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Registration allows you to open a BetNare
+                                    Registration allows you to open a CrashKali
                                     account free of charge and under no
-                                    obligation. Your BetNare account will help
+                                    obligation. Your CrashKali account will help
                                     you manage your bets and other account
                                     details. You need to deposit actual money
                                     into your account before you can place bets.
@@ -536,12 +536,12 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    How do I Register with BetNare?
+                                    How do I Register with CrashKali?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Step 1 Please visit www.BetNare.com and
+                                    Step 1 Please visit www.CrashKali.com and
                                     click on the Register Now link on the top
                                     RIGHT corner of the website. Please read the
                                     Terms and Conditions and fill in all the
@@ -556,7 +556,7 @@ const HowToPlay = React.memo((props) => {
                                   <p>
                                     A confirmation message appears to confirm
                                     that your registration was successful.
-                                    BetNare!
+                                    CrashKali!
                                   </p>
                                 </AccordionItemPanel>
                               </AccordionItem>
@@ -573,7 +573,7 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
                               You have an opportunity to predict the outcome of
-                              any match available on the BetNare website. You
+                              any match available on the CrashKali website. You
                               can select any betting option from the wide range
                               of pre-match and live markets available on
                               different games and place your bet. Note; All
@@ -593,7 +593,7 @@ const HowToPlay = React.memo((props) => {
                             <p>
                               Now you have registered and your account has been
                               set up, kindly ensure that you log in before you
-                              place your bet. The BetNare website is very easy
+                              place your bet. The CrashKali website is very easy
                               to navigate, all you need to do is click on the
                               sport you are interested in i.e FOOTBALL,
                               Basketball, Tennis, Cricket or Rugby to find
@@ -633,7 +633,7 @@ const HowToPlay = React.memo((props) => {
                               <li>The excise tax deducted</li>
                               <li>Your Bet ID</li>
                               <li>Your possible payout</li>
-                              <li>Your BetNare account balance</li>
+                              <li>Your CrashKali account balance</li>
                             </ul>
                             <p>
                               {" "}
@@ -653,7 +653,7 @@ const HowToPlay = React.memo((props) => {
                             <p>
                               Now you have registered and your account has been
                               set up, kindly ensure that you log in before you
-                              place your bets. The BetNare website is very easy
+                              place your bets. The CrashKali website is very easy
                               to navigate, all you need to do is click on the
                               sport you are interested in i.e Football,
                               Basketball, Tennis, Cricket or Rugby to find
@@ -695,7 +695,7 @@ const HowToPlay = React.memo((props) => {
                               <li> The amount you have bet with </li>
                               <li> The excise tax deducted </li>
                               <li> Your possible payout </li>
-                              <li> Your BetNare account balance </li>
+                              <li> Your CrashKali account balance </li>
                             </ul>
                             <p>
                               <strong>
@@ -720,7 +720,7 @@ const HowToPlay = React.memo((props) => {
                               </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel className="accordion-item-panel">
-                              Log into your BetNare account and navigate to
+                              Log into your CrashKali account and navigate to
                               jackpot link
                             </AccordionItemPanel>
                             <AccordionItemHeading>
@@ -772,7 +772,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I withdraw cash from my BetNare account?
+                              How do I withdraw cash from my CrashKali account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -799,11 +799,11 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I log into my BetNare account?
+                              How do I log into my CrashKali account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
-                            Once you have registered you can access your BetNare
+                            Once you have registered you can access your CrashKali
                             account by entering your phone number as USERNAME
                             and the WEB PASSWORD as PASSWORD
                           </AccordionItemPanel>
@@ -811,7 +811,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my transaction from my BetNare
+                              How do I check my transaction from my CrashKali
                               account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
@@ -825,7 +825,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my bets from my BetNare account?
+                              How do I check my bets from my CrashKali account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -845,13 +845,13 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
                               Why wait 90 Minutes when you can play Virtuals and
-                              WIN Big in Minutes? BetNare offers a variety of
+                              WIN Big in Minutes? CrashKali offers a variety of
                               Virtual games ranging from; Fantastic football
                               league, Horse racing , Force 1 racing , Greyhound
                               racing and Penalty shootout. Log into
-                              https://betnare.com/virtuals to get the Virtual
+                              https://CrashKali.com/virtuals to get the Virtual
                               experience. Stake low, Win High & Fast with
-                              BetNare Virtuals.
+                              CrashKali Virtuals.
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>
@@ -905,16 +905,16 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              What is the BetNare Customer care number?
+                              What is the CrashKali Customer care number?
                             </AccordionItemButton>
                           </AccordionItemHeading>
 
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
-                              BetNare offers Customer Care support round the
+                              CrashKali offers Customer Care support round the
                               clock. We are reachable via 0701087777 on Mobile,
                               WhatsApp Number – 0701087777. You can also reach
-                              us through E-Mail onsupport@betnare.com
+                              us through E-Mail onsupport@CrashKali.com
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>

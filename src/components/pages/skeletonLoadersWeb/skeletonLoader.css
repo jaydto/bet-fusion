@@ -56,12 +56,12 @@
     padding: 8px 0px;
     border: none;
     outline: none;
-    background: #2D4352;
+    background: var(--btn-color);
     height: 33px!important;
     box-sizing: border-box;
     margin-right: 18px;
-    background-image: linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px);
-    background-image: -o-linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px);
+    background-image: linear-gradient(left, var(--btn-color) 0px, #ddd 40px, var(--btn-color) 80px);
+    background-image: -o-linear-gradient(left, var(--btn-color) 0px, #ddd 40px, var(--btn-color) 80px);
     background-size: 250px;
     border-radius: 19px!important;
 
@@ -119,14 +119,14 @@
     padding: 8px 0px;
     border: none;
     outline: none;
-    background: #2D4352;
+    background: var(--btn-color);
     border-radius: 5px;
     height: 50px;
     box-sizing: border-box;
     margin-right: 2px;
-    background-image: linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px);
-    background-image: -webkit-linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px);
-    background-image: -o-linear-gradient(left, #2D4352 0px, #ddd 40px, #2D4352 80px);
+    background-image: linear-gradient(left, var(--btn-color) 0px, #ddd 40px, var(--btn-color) 80px);
+    background-image: -webkit-linear-gradient(left, var(--btn-color) 0px, #ddd 40px, var(--btn-color) 80px);
+    background-image: -o-linear-gradient(left, var(--btn-color) 0px, #ddd 40px, var(--btn-color) 80px);
     background-size: 250px;
     border-radius: 3px;
 }

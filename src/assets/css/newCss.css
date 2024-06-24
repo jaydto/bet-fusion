@@ -1,8 +1,11 @@
 body {
-  font-size: var(--betnare-font-size-nav);
+  font-size: var(--CrashKali-font-size-nav);
   line-height: var(--body-line-weight);
-  background: var(--betnare-body-bg);
+  background: var(--CrashKali-body-bg);
   max-width: 100% !important;
+}
+.btn-button-bg{
+  background:var(--btn-color-action)!important;
 }
 
 .line-on-slip-items-container {
@@ -84,7 +87,7 @@ body {
 }
 
 .decode-bg {
-  background: var(--betnare-header-bg) !important;
+  background: var(--CrashKali-header-bg) !important;
 }
 
 .c-btn-header {
@@ -110,11 +113,11 @@ body {
 }
 
 .decode-bg {
-  background: var(--betnare-primary);
+  background: var(--CrashKali-primary);
 }
 
 .loadmore {
-  background: var(--betnare-button-login);
+  background: var(--CrashKali-button-login);
   border: none;
   width: 100%;
   color: var(--light);
@@ -126,11 +129,11 @@ body {
   color: whitesmoke;
   border-bottom: 0px solid #fff;
   font-size: 15px;
-  background: var(--betnare-footer);
+  background: var(--CrashKali-footer);
   color: var(--footer-color);
   padding: 10px;
   margin-top: 10px;
-  box-shadow: 10px 10px 10px 10px var(--betnare-header-bg);
+  box-shadow: 10px 10px 10px 10px var(--CrashKali-header-bg);
 }
 
 .active_link {
@@ -185,25 +188,15 @@ input.text-white {
 .text-white {
   color: var(--footer-color) !important;
 }
-<<<<<<< HEAD
-/* todo check on this  */
-/* .styling-matches {
-=======
 
-/* . styling-matches {
->>>>>>> origin/main
-  -webkit-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
-  -moz-box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
-  box-shadow: 0px 4px 5px 0px rgba(40, 55, 78, 1);
-} */
 .cg.login-button2 {
   color: var(--dark) !important;
 }
 .login-button2:active {
-  background: var(--betnare-button-login) !important ;
+  background: var(--CrashKali-button-login) !important ;
 }
 .login-button2:disabled {
-  background: var(--betnare-button-login) !important ;
+  background: var(--CrashKali-button-login) !important ;
 }
 
 .shadow-testimonials {
@@ -223,7 +216,7 @@ input.text-white {
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  background: var(--betnare-header-bg);
+  background: var(--CrashKali-header-bg);
   padding: 5px 10px;
   border-radius: 6px;
 }
@@ -243,7 +236,7 @@ input.text-white {
 }
 
 .b-icon {
-  color: var(--betnare-button-login) !important;
+  color: var(--CrashKali-button-login) !important;
 }
 
 .Toastify__toast-container--top-right {
@@ -263,7 +256,7 @@ input.text-white {
 .clip-get-size {
   -webkit-clip-path: circle(50% at 11% 20%);
   clip-path: circle(50% at 11% 20%);
-  background: var(--betnare-header-bg);
+  background: var(--CrashKali-header-bg);
 }
 
 .casino-scroll::-webkit-scrollbar {
@@ -271,13 +264,13 @@ input.text-white {
 }
 
 .directions-header-nav {
-  /*background: var(--betnare-header-bg);*/
+  /*background: var(--CrashKali-header-bg);*/
 }
 
 .top-nav {
   top: -2px;
   padding-top: 10px;
-  background: var(--betnare-header-bg);
+  background: var(--CrashKali-header-bg);
   background-size: cover;
   background-position: center center;
   padding-bottom: 17px;
@@ -301,7 +294,7 @@ input.text-white {
 
 .betslip-header {
   clear: both;
-  background: var(--betnare-body-bg);
+  background: var(--CrashKali-body-bg);
   border-radius: var(--button-radius);
   color: #fff;
   cursor: pointer;
@@ -313,7 +306,7 @@ input.text-white {
 }
 
 .card-bet-details {
-  background: var(--betnare-primary) !important;
+  background: var(--CrashKali-primary) !important;
   color: var(--white) !important;
   padding: 10px;
   margin-bottom: 5px;
@@ -329,7 +322,7 @@ input.text-white {
 }
 
 .accordion-item.bet-history-kiron {
-  background: var(--betnare-primary) !important;
+  background: var(--CrashKali-primary) !important;
 }
 
 .ReactModal__Overlay {
@@ -380,13 +373,13 @@ input.text-white {
   border-radius: 6px;
   font-size: 16px;
   font-weight: 600;
-  background-color: var(--betnare-button-login);
+  background-color: var(--CrashKali-button-login);
 }
 
 .accordion-button.bet-history-button {
   padding: 10px;
   padding-left: 7px;
-  background: var(--betnare-body-bg) !important;
+  background: var(--CrashKali-body-bg) !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
@@ -394,7 +387,8 @@ input.text-white {
 }
 
 .pro-sidebar > .pro-sidebar-inner {
-  background: var(--betnare-header-bg) !important;
+  background: var(--side-bg) !important;
+  border-radius: 0rem;
 }
 
 .slip-menu-body-width {
@@ -440,12 +434,12 @@ input.text-white {
 }
 
 .match-status {
-  color: var(--betnare-button-login) !important;
+  color: var(--CrashKali-button-login) !important;
   white-space: nowrap;
 }
 
 .live-status {
-  color: var(--betnare-live);
+  color: var(--CrashKali-live);
 }
 
 #xgames-header {
@@ -470,7 +464,7 @@ input.text-white {
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
-  background-color: var(--betnare-primary) !important;
+  background-color: var(--CrashKali-primary) !important;
 }
 
 .pro-sidebar.collapsed
@@ -479,7 +473,7 @@ input.text-white {
   > .pro-menu-item.pro-sub-menu
   > .pro-inner-list-item
   > .popper-inner {
-  background-color: var(--betnare-body-bg) !important;
+  background-color: var(--CrashKali-body-bg) !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
@@ -505,8 +499,12 @@ input.text-white {
   display: none !important;
 }
 
+.theodds.odd-fix.mkt-text{
+  color:var(--text-btn-color);
+}
+
 .top-matches button.picked {
-  background: #ffc428 !important;
+  background: var(--picked)!important;
   color: var(--dark) !important;
   font-size: 12px;
 }
@@ -515,7 +513,8 @@ input.text-white {
 }
 
 .betslip-container {
-  background: var(--betnare-header-bg) !important;
+  background: var(--CrashKali-header-bg) !important;
+  width: 100%;
 }
 
 .container-size-match {
@@ -550,15 +549,15 @@ input.text-white {
 }
 
 .second-nav-list {
-  box-shadow: -3px 0px 0px 0px var(--betnare-header-bg);
-  -webkit-box-shadow: -3px 0px 0px 0px var(--betnare-header-bg);
-  -moz-box-shadow: -3px 0px 0px 0px var(--betnare-header-bg);
+  box-shadow: -3px 0px 0px 0px var(--CrashKali-header-bg);
+  -webkit-box-shadow: -3px 0px 0px 0px var(--CrashKali-header-bg);
+  -moz-box-shadow: -3px 0px 0px 0px var(--CrashKali-header-bg);
 }
 
 .top-nav-login {
   min-height: 60px;
   padding: 1px 0px 5px 0px;
-  background: var(--betnare-header-bg);
+  background: var(--CrashKali-header-bg);
   max-height: 104px;
 }
 
@@ -575,7 +574,7 @@ input.text-white {
   width: 19px !important;
   margin-top: -6px !important;
   border-radius: 16px;
-  background: var(--betnare-header-bg);
+  background: var(--CrashKali-header-bg);
   margin-bottom: -7px;
 }
 
@@ -592,7 +591,7 @@ strong {
   color: var(--aqua-text);
 }
 
-/*top navigation betnare-web*/
+/*top navigation CrashKali-web*/
 .myButton {
   border-radius: 8px;
   color: #fff;
@@ -619,7 +618,7 @@ strong {
 
 .main-navigations {
   /*line-height: 2.2 !important;*/
-  background: var(--betnare-body-bg);
+  background: var(--CrashKali-body-bg);
   position: sticky;
   top: 5rem;
   z-index: 1999;
@@ -650,14 +649,14 @@ strong {
   opacity: 1;
   position: sticky;
   z-index: 2000;
-  background: var(--betnare-body-bg);
+  background: var(--CrashKali-body-bg);
   max-height: 40.5px;
   min-height: 40.5px;
 }
 
 /*end top navigation web */
 .login-text:hover {
-  color: var(--betnare-button-login);
+  color: var(--CrashKali-button-login);
 }
 
 .profile-top-nav {
@@ -665,7 +664,7 @@ strong {
 }
 
 .search-results-box {
-  background: var(--betnare-input);
+  background: var(--CrashKali-input);
   color: var(--light);
   margin-top: 3px;
   width: 41.2%;
@@ -691,7 +690,7 @@ label {
 }
 
 input {
-  background: var(--betnare-input) !important;
+  background: var(--CrashKali-input) !important;
   border-radius: 3px !important;
   color: var(--light) !important;
   font-weight: bold !important;
@@ -720,7 +719,7 @@ input {
   /* margin-left: auto; */
   display: flex;
   justify-content: start;
-  background: var(--betnare-body-bg);
+  background: var(--CrashKali-body-bg);
 }
 ol.list-count-type {
   list-style: circle !important;
@@ -743,7 +742,7 @@ input:focus {
 }
 
 .input-bg-user {
-  background: #28374e !important;
+  background: var(--btn-color) !important;
   border-radius: 3px !important;
   border: 0.1px groove #2d3641 !important;
 }
@@ -773,13 +772,13 @@ select::after {
 }
 
 .all-markkets-search {
-  background: var(--betnare-input) !important;
+  background: var(--CrashKali-input) !important;
   border: none !important;
   border-radius: var(--button-radius) !important;
 }
 
 .all-markkets-search input {
-  background: var(--betnare-input) !important;
+  background: var(--CrashKali-input) !important;
   border: none !important;
   color: #fff !important;
 }
@@ -789,7 +788,7 @@ select::after {
   line-height: 1.7 !important;
 }
 .width-page-centric {
-  box-shadow: 5px 7px 30px 8px #2c3c44;
+  box-shadow: 5px 7px 30px 8px var(--btn-color);
   width: 60%;
   margin: auto;
 }
@@ -815,7 +814,7 @@ select::after {
   display: flex !important;
 }
 
-.betnare-text-light {
+.CrashKali-text-light {
   color: var(--light) !important;
   line-height: 1.5;
 }
@@ -843,12 +842,13 @@ select::after {
 }
 
 .login-button.button-page {
-  background: var(--betnare-button-login);
-  color: var(--dark);
+  background: var(--CrashKali-button-login);
+  color: var(--dark)!important;
+  font-weight: 600;
 }
 
 .deposit-withdraw-button.button-page {
-  background: var(--betnare-button-login);
+  background: var(--CrashKali-button-login);
   color: var(--dark);
 }
 
@@ -859,7 +859,7 @@ select::after {
 .login-button2 {
   color: #000;
   /*background: #527994FF;*/
-  background-color: #ffc107;
+  background-color: var(--btn-color-action);
   border-color: #24367e;
   height: 29px;
   padding: 0px 10px;
@@ -869,7 +869,7 @@ select::after {
 }
 
 .header-styling-mobile {
-  background: var(--betnare-header-bg);
+  background: var(--CrashKali-header-bg);
   color: var(--light);
   padding: 5px 1px 5px 1px !important;
   font-size: 9px !important;
@@ -887,7 +887,7 @@ select::after {
 }
 
 .matches .top-matches.more-markets {
-  background: var(--betnare-body-bg) !important;
+  background: var(--CrashKali-body-bg) !important;
   margin-bottom: 1px;
 }
 
@@ -956,14 +956,14 @@ input:placeholder-shown {
 }
 
 .width-page-centric.register-page {
-  box-shadow: 5px 7px 30px 8px #2c3c44;
+  box-shadow: 5px 7px 30px 8px var(--btn-color);
   width: 60%;
   margin: auto;
   min-height: 450px;
 }
 
 .width-page-centric.pass-reset-page {
-  box-shadow: 5px 7px 30px 8px #2c3c44;
+  box-shadow: 5px 7px 30px 8px var(--btn-color);
   width: 60%;
   margin: auto;
   min-height: 600px;
@@ -1041,7 +1041,7 @@ input[type="checkbox"] {
 
 .second-nav {
   /*background: #1f2f38 !important;*/
-  font-size: var(--betnare-font-size-nav);
+  font-size: var(--CrashKali-font-size-nav);
   box-shadow: 0 1px 2px #16202c;
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 1px 2px #16202c;
@@ -1110,7 +1110,7 @@ input[type="checkbox"] {
 
 .profile-width-side {
   min-width: 316px !important;
-  background: var(--betnare-header-bg) !important;
+  background: var(--CrashKali-header-bg) !important;
   padding-left: 0rem;
   margin-top: 0rem;
   padding-left: 2.5rem;
@@ -1225,7 +1225,7 @@ input[type="checkbox"] {
   top: 0px; /* Adjust the position based on your layout */
   right: 0px; /* Adjust the position based on your layout */
   z-index: 10000; /* Ensure the button is on top of the overlay */
-  background-color: var(--betnare-body-bg); /* Button background color */
+  background-color: var(--CrashKali-body-bg); /* Button background color */
   padding: 15px 20px;
   border-radius: 4px;
   cursor: pointer;
@@ -1259,7 +1259,7 @@ img.nare-league {
 }
 
 .input-color-icon {
-  background: var(--betnare-input) !important;
+  background: var(--CrashKali-input) !important;
 }
 
 .deposit-buttons-value {
@@ -1287,7 +1287,7 @@ img.nare-league {
 }
 
 .header-sports {
-  background: var(--betnare-header-bg);
+  /* background: var(--CrashKali-header-bg); */
   opacity: 1 !important;
   top: 100px;
 }
@@ -1355,7 +1355,7 @@ img.nare-league {
   border: 1px solid rgb(59 55 55 / 20%);
   position: relative;
   transition: 0.3s;
-  background: var(--betnare-header-bg);
+  background: var(--CrashKali-header-bg);
 }
 
 .original-button::before {
@@ -1590,7 +1590,7 @@ img.nare-league {
 
   .app-navbar .e img {
     max-width: 188px;
-    height: 26px;
+    height: 32px;
     margin-left: -5px;
   }
 
@@ -1854,7 +1854,7 @@ img.nare-league {
     z-index: 1999 !important;
     opacity: 1;
     background: var(--testimonial);
-    border: 1px solid var(--betnare-button-login) !important;
+    border: 1px solid var(--CrashKali-button-login) !important;
   }
 
   .sticky-user {
@@ -1927,7 +1927,7 @@ img.nare-league {
 
   .app-navbar .e img {
     max-width: 194px;
-    height: 28px;
+    height: 34px;
   }
 
   .app-header-nav {
@@ -2127,7 +2127,7 @@ img.nare-league {
   .market-groups-container {
     max-width: 61.2vw;
     z-index: 1000;
-    background: var(--betnare-header-bg);
+    background: var(--CrashKali-header-bg);
   }
 
   .details-items .team .team-info {
@@ -2164,7 +2164,7 @@ img.nare-league {
   }
 
   .btn.login-button2:hover {
-    background: var(--betnare-button-login) !important;
+    background: var(--CrashKali-button-login) !important;
   }
 
   .bet-align-right {
@@ -2181,7 +2181,7 @@ img.nare-league {
     opacity: 1;
     border-radius: 3px;
     top: -8rem;
-    background: var(--betnare-body-bg) !important;
+    background: var(--CrashKali-body-bg) !important;
   }
 
   .os {
@@ -2371,7 +2371,7 @@ button#countryCode {
 }
 .codecCountry .dropdown .dropdown-menu {
   color: var(--light);
-  background-color: var(--betnare-body-bg) !important;
+  background-color: var(--CrashKali-body-bg) !important;
 }
 .codecCountry .dropdown .dropdown-menu a {
   color: var(--light);
@@ -2381,7 +2381,7 @@ button#countryCode {
 
 .filters-modal .modal-content,
 .filters-modal.exclude .modal-content {
-  background-color: var(--betnare-body-bg);
+  background-color: var(--CrashKali-body-bg);
 }
 .bg-deposit-modal-btn.cancel-filter-markets {
   background: none !important;
@@ -2699,7 +2699,7 @@ button#countryCode {
     height: 78vh !important;
   }
 
-  .logo-betnare {
+  .logo-CrashKali {
     display: flex;
     align-items: center;
   }
@@ -2744,7 +2744,7 @@ button#countryCode {
   .market-groups-container {
     max-width: 100vw;
     z-idex: 2001;
-    background: var(--betnare-header-bg);
+    background: var(--CrashKali-header-bg);
   }
 
   .outcome-h {
@@ -2805,14 +2805,14 @@ button#countryCode {
   }
 
   .filters-modal .modal-content {
-    background-color: var(--betnare-body-bg);
+    background-color: var(--CrashKali-body-bg);
     color: #fff;
     position: fixed;
     bottom: 0;
   }
 
   .filters-modal.exclude .modal-content {
-    background-color: var(--betnare-body-bg);
+    background-color: var(--CrashKali-body-bg);
     color: #fff;
     position: fixed;
   }
@@ -2851,17 +2851,17 @@ button#countryCode {
 
   .slip-count-value {
     position: absolute;
-    background: var(--betnare-button-login) !important;
+    background: var(--CrashKali-button-login) !important;
     top: -10px;
     left: 4px;
   }
 
   .mobile-menu tbody.slip-menu-prematch {
     margin: 0px 10px;
-    box-shadow: 10px 10px 10px 10px var(--betnare-side-bg);
+    box-shadow: 10px 10px 10px 10px var(--CrashKali-side-bg);
     border-radius: 10px;
     position: relative;
-    background: var(--betnare-body-bg);
+    background: var(--CrashKali-body-bg);
   }
 
   .slip-count-option {
@@ -2876,7 +2876,7 @@ button#countryCode {
 
   .close-prompt {
     margin-bottom: -6px !important;
-    /* background: var(--betnare-button-login); */
+    /* background: var(--CrashKali-button-login); */
     border-radius: 10px;
     margin-right: -17px;
   }
@@ -2910,7 +2910,7 @@ button#countryCode {
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
     width: 56px;
-    box-shadow: 1px 1px 3px 1px var(--betnare-body-bg);
+    box-shadow: 1px 1px 3px 1px var(--CrashKali-body-bg);
     margin-top: -2px;
   }
 
@@ -2920,14 +2920,14 @@ button#countryCode {
   }
 
   .info-slip-bets {
-    background: var(--betnare-button-login);
+    background: var(--CrashKali-button-login);
     width: 100%;
     height: 2rem;
     align-items: center;
   }
 
   .info_bet_alert {
-    /*background: var(--betnare-button-login);*/
+    /*background: var(--CrashKali-button-login);*/
     width: 100%;
     height: 2rem;
     align-items: center;
@@ -3039,7 +3039,7 @@ button#countryCode {
   .box-shadow-table-submit-form {
     padding: 5px;
     border-radius: 10px;
-    border: thin solid var(--betnare-input);
+    border: thin solid var(--CrashKali-input);
     line-height: 0.7;
   }
 
@@ -3101,11 +3101,11 @@ button#countryCode {
   }
 
   .btn.login-button:hover {
-    background: var(--betnare-button-login) !important;
+    background: var(--CrashKali-button-login) !important;
   }
 
   .btn.login-button2:hover {
-    background: var(--betnare-button-login) !important;
+    background: var(--CrashKali-button-login) !important;
   }
 
   .top-matches a.odds-container-size {
@@ -3149,7 +3149,7 @@ button#countryCode {
   .bottom {
     position: sticky;
     bottom: 18rem;
-    background: var(--betnare-body-bg);
+    background: var(--CrashKali-body-bg);
   }
 
   .slip-bottom-betlip-active {
@@ -3172,7 +3172,7 @@ button#countryCode {
   .sticky-logged-in-testimony {
     top: 0px;
     border-radius: 7px;
-    border: 1px solid var(--betnare-button-login) !important;
+    border: 1px solid var(--CrashKali-button-login) !important;
     line-height: 1.5;
   }
 
@@ -3224,7 +3224,7 @@ button#countryCode {
     position: absolute;
     top: -9rem;
     right: -13rem;
-    background: var(--betnare-body-bg) !important;
+    background: var(--CrashKali-body-bg) !important;
   }
 
   .slip-max-height {
@@ -3316,7 +3316,7 @@ button#countryCode {
     height: 1px;
     width: 93%;
     margin: auto;
-    background: var(--betnare-secondary);
+    background: var(--CrashKali-secondary);
   }
   .svg-mobile {
     min-width: 16px !important;
@@ -3352,7 +3352,7 @@ button#countryCode {
   }
 
   .search-results-box {
-    background: var(--betnare-input);
+    background: var(--CrashKali-input);
     color: var(--light);
     margin-top: 3px;
     width: 82%;
@@ -3419,7 +3419,7 @@ button#countryCode {
   }
 
   .second-nav {
-    font-size: var(--betnare-font-size-small);
+    font-size: var(--CrashKali-font-size-small);
   }
 
   .sticky-user {
@@ -3574,7 +3574,7 @@ button#countryCode {
   .slip-tabs {
     background: repeating-linear-gradient(
       45deg,
-      var(--betnare-header-bg),
+      var(--CrashKali-header-bg),
       transparent 100px
     );
   }
@@ -3729,7 +3729,7 @@ button#countryCode {
     position: sticky;
     top: 0px;
     z-index: 1999 !important;
-    border: 1px solid var(--betnare-button-login) !important;
+    border: 1px solid var(--CrashKali-button-login) !important;
     line-height: 1.5;
     border-radius: 6px;
   }
@@ -4074,8 +4074,10 @@ button#countryCode {
     border: none;
     border-right: 1px solid #16202c;
     line-height: 20px;
-    background: var(--odds-button);
-  }
+    /* background-color: black; */
+    /* background: rgb(51, 76, 92); */
+    background: var(--btn-color);
+}
 
   .app-navbar .e img {
     margin-left: 0px;
@@ -4141,7 +4143,7 @@ button#countryCode {
   .sticky-testimony {
     top: 0px;
     border-radius: 7px;
-    border: 1px solid var(--betnare-button-login) !important;
+    border: 1px solid var(--CrashKali-button-login) !important;
   }
 
   .highlight-menu {
@@ -4151,7 +4153,7 @@ button#countryCode {
 
 @media (max-width: 420px) {
   .search-results-box {
-    background: var(--betnare-input);
+    background: var(--CrashKali-input);
     color: var(--light);
     margin-top: 3px;
     width: 80%;
@@ -4169,7 +4171,7 @@ button#countryCode {
   .app-navbar .e img {
     max-width: 96px !important;
     margin-bottom: 4px !important;
-    height: 25px;
+    height: 32px;
   }
 }
 
@@ -4178,8 +4180,8 @@ button#countryCode {
 }
 
 .lite-top-color {
-  border: thin solid var(--betnare-input);
-  color: var(--betnare-button-login);
+  border: thin solid var(--CrashKali-input);
+  color: var(--CrashKali-button-login);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -4190,7 +4192,7 @@ button#countryCode {
 
 .lite-top-color .color-app-text {
   width: 100%;
-  color: var(--betnare-button-login);
+  color: var(--CrashKali-button-login);
   text-align: center;
 }
 
@@ -4200,8 +4202,8 @@ button#countryCode {
   }
   .app-navbar .e img {
     max-width: 100px !important;
-    background: var(--betnare-header-bg);
-    height: 23px;
+    background: var(--CrashKali-header-bg);
+    height: 30px;
   }
 
   .button-toggle {
@@ -4247,7 +4249,7 @@ button#countryCode {
   .sticky-logged-in-testimony {
     top: 0px;
     border-radius: 4px;
-    border: 1px solid var(--betnare-button-login) !important;
+    border: 1px solid var(--CrashKali-button-login) !important;
     line-height: 1.5;
   }
 }
@@ -4289,7 +4291,7 @@ button#countryCode {
   .app-navbar .e img {
     max-width: 87px !important;
     margin-bottom: 4px !important;
-    height: 23px;
+    height: 30px;
   }
 }
 .loader {

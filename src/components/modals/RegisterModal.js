@@ -154,7 +154,7 @@ const RegisterModal = React.memo(
                 <Button variant="secondary" onClick={hideModal} className={"col "} style={{padding:"7px", fontSize:"12px"}}>
                     Close
                 </Button>
-                <Button type="submit" onClick={handleSubmit} className={" col btn btn-warning "} style={{padding:"7px",  fontSize:"12px"}}>REGISTER</Button>
+                <Button type="submit" onClick={handleSubmit} className={" col btn btn-button-bg "} style={{padding:"7px",  fontSize:"12px"}}>REGISTER</Button>
             </Modal.Footer>
         </Modal>
         </>

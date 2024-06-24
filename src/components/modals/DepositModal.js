@@ -146,7 +146,7 @@ const DepositModal = React.memo(
 
                     <Alert/>
                     <div className={'d-flex justify-content-between align-items-center gap-2'}>
-                        {settings?.betnareDeposit && settings?.betnareDeposit?.map((deposit, index) => {
+                        {settings?.CrashKaliDeposit && settings?.CrashKaliDeposit?.map((deposit, index) => {
                             return (<div key={index} className={''}>
                                     <button type="button" onClick={() => incrementDepositValue(deposit?.deposit_amount)}
                                             className="deposit-buttons-value deposit-modal  ">

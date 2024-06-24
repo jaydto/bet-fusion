@@ -96,7 +96,7 @@ export const nareLeagueMatches =
         if (status === 200) {
             return response;
         } else {
-            throw new Error(response?.error || "Fetching Nare League Matches failed");
+            throw new Error(response?.error || "Fetching Big League Matches failed");
         }
     });
 export const nareLeagueStandings =
@@ -128,7 +128,7 @@ export const nareLeagueResults =
         if (status === 200) {
             return response;
         } else {
-            throw new Error(response?.error || "Nare League Results  failed");
+            throw new Error(response?.error || "Big League Results  failed");
         }
 
     }
@@ -145,7 +145,7 @@ export const nareLeaguePlayouts =
         if (status === 200) {
             return response;
         } else {
-            throw new Error(response?.error || "Nare League Playouts fetch  failed");
+            throw new Error(response?.error || "Big League Playouts fetch  failed");
         }
 
     }
@@ -161,7 +161,7 @@ export const nareLeagueCompetitions =
         if (status === 200) {
             return response;
         } else {
-            throw new Error(response?.error || "Nare League competitions fetch  failed");
+            throw new Error(response?.error || "Big League competitions fetch  failed");
         }
 
     }

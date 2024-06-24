@@ -92,7 +92,7 @@ jobs:
           name: Build
           command: |
             if [ $CIRCLE_BRANCH = 'master' ]; then
-              npm run build
+              CI="" npm run build
             fi
 
 

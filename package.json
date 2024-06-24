@@ -72,11 +72,10 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "node ./scripts/start.js start",
-    "build": "node ./scripts/build.js build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject",
-    "preinstall": "npx npm-force-resolutions"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

@@ -1,18 +1,54 @@
 version: 2.1
 
-
 orbs:
   node: circleci/node@5.0.2
+  aws-s3: circleci/aws-s3@3.0.0
+  aws-cloudfront: topmonks/aws-cloudfront@1.0.0
 
 description: >
-  Installs GCP CLI, uploads files to gs bucket, and invalidates Cloud cdn cache. All
+  Installs AWS CLI, uploads files to S3, and invalidates CloudFront cache. All
   steps are run with CircleCI.
 
-
 parameters:
-  GCLOUD_SERVICE_KEY:
+  aws_user:
     type: string
     default: env_var_name
+  aws_password:
+    type: string
+    default: env_var_name
+  aws_region:
+    type: string
+    default: env_var_name
+  s3_resource_bucket:
+    type: string
+    default: env_var_name
+  cloud_distribution_id:
+    type: string
+    description: The distribution's id.
+    default: env_var_name 
+  path:
+    type: string
+    description: The space-separated paths to be invalidated.
+    default: env_var_name 
+
+workflows:
+  version: 2
+  
+  build_and_deploy:
+    jobs:
+      - build:
+          context: portfolio
+          filters:
+            branches:
+              only:
+                - main
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
 
 jobs:
   build:
@@ -28,11 +64,10 @@ jobs:
       # Use Node.js orb to install Node.js and npm
       - node/install
 
-
       - restore_cache:
           keys:
-          - v2-dependencies-{{ checksum "package-lock.json" }}
-          - v2-dependencies-
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - v1-dependencies-
 
       
       # Install dependencies
@@ -41,7 +76,7 @@ jobs:
           command: npm install
       
       - save_cache:
-          key: v2-dependencies-{{ checksum "package-lock.json" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 
@@ -52,22 +87,35 @@ jobs:
       - run:
           name: Build
           command: |
-            if [ $CIRCLE_BRANCH = 'master' ]; then
-              CI="" npm run build 
+            if [ $CIRCLE_BRANCH = 'main' ]; then
+              npm run build
             fi
+
 
       - run:
           name: List Files in Build Directory
           command: ls -R build
 
+      - run:
+          name: List Files in Build Directory Now
+          command: |
+            echo "List of files in the build directory:"
+            find build -type f
+            echo "List of directories in the build directory:"
+            find build -type d
+
+
       - persist_to_workspace:
           root: ./
           paths:
             - build  # Only persist the 'build' directory
+          
 
   deploy:
     docker:
-      - image: google/cloud-sdk:alpine
+      - image: cimg/base:stable  
+
+    
 
     executor:
       name: node/default
@@ -76,40 +124,24 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./
-      - setup_remote_docker
 
+
+      # List the persisted files in the 'build' directory
       - run:
-          name: Show key
+          name: List Persisted Files in Build Directory
           command: |
-            echo $GCLOUD_SERVICE_KEY
+            echo "List of files in the persisted 'build' directory:"
+            ls -R ./
+      # Use AWS S3 orb to sync build files to S3 bucket
+      - aws-s3/sync:
+          from: ./build
+          to: s3://crash-kali
+          aws-access-key-id: aws_user
+          aws-secret-access-key: aws_password
+          aws-region: aws_region
 
+      # Use AWS CloudFront orb to invalidate cache
       - run:
-          name: Deploy to GCS
-          command: |
-            echo $GCLOUD_SERVICE_KEY > "$(pwd)/gcloud-service-key.json"
-            gcloud auth activate-service-account 619625655284-compute@developer.gserviceaccount.com --key-file=$(pwd)/gcloud-service-key.json
-            gsutil -m rsync -R build/ gs://crash-kali-test
-
-      - run:
-          name: Cloud CDN Invalidation path
-          command: |
-            gcloud config set project jayd-357010 
-            gcloud compute url-maps invalidate-cdn-cache crash-kali --path "/*"
-
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - build:
-          context: crash-kali
-          filters:
-              branches:
-                only:
-                  - master
-      - deploy:
-          requires:
-            - build
-          filters:
-              branches:
-                only:
-                  - master
+          name: Invalidate Cloudfront distribution cloud_distribution_id
+          command: >
+            aws cloudfront create-invalidation --distribution-id=${cloud_distribution_id} --paths=${path}

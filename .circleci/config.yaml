@@ -1,0 +1,115 @@
+version: 2.1
+
+
+orbs:
+  node: circleci/node@5.0.2
+
+description: >
+  Installs GCP CLI, uploads files to gs bucket, and invalidates Cloud cdn cache. All
+  steps are run with CircleCI.
+
+
+parameters:
+  GCLOUD_SERVICE_KEY:
+    type: string
+    default: env_var_name
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable  # Adjust the base image accordingly
+
+    executor:
+      name: node/default
+
+    steps:
+      - checkout
+
+      # Use Node.js orb to install Node.js and npm
+      - node/install
+
+
+      - restore_cache:
+          keys:
+          - v2-dependencies-{{ checksum "package-lock.json" }}
+          - v2-dependencies-
+
+      
+      # Install dependencies
+      - run:
+          name: Install Dependencies
+          command: npm install
+      
+      - save_cache:
+          key: v2-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: Ensure Build Directory
+          command: mkdir -p build
+    
+      - run:
+          name: Build
+          command: |
+            if [ $CIRCLE_BRANCH = 'master' ]; then
+              CI="" npm run build 
+            fi
+
+      - run:
+          name: List Files in Build Directory
+          command: ls -R build
+
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - build  # Only persist the 'build' directory
+
+  deploy:
+    docker:
+      - image: google/cloud-sdk:alpine
+
+    executor:
+      name: node/default
+
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - setup_remote_docker
+
+      - run:
+          name: Show key
+          command: |
+            echo $GCLOUD_SERVICE_KEY
+
+      - run:
+          name: Deploy to GCS
+          command: |
+            echo $GCLOUD_SERVICE_KEY > "$(pwd)/gcloud-service-key.json"
+            gcloud auth activate-service-account 619625655284-compute@developer.gserviceaccount.com --key-file=$(pwd)/gcloud-service-key.json
+            gsutil -m rsync -R build/ gs://crash-kali-test
+
+      - run:
+          name: Cloud CDN Invalidation path
+          command: |
+            gcloud config set project jayd-357010 
+            gcloud compute url-maps invalidate-cdn-cache crash-kali --path "/*"
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          context: crash-kali
+          filters:
+              branches:
+                only:
+                  - master
+      - deploy:
+          requires:
+            - build
+          filters:
+              branches:
+                only:
+                  - master

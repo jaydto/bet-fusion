@@ -73,6 +73,7 @@ jobs:
       # Install dependencies
       - run:
           name: Install Dependencies
+          no_output_timeout: 60m
           command: npm install
       
       - save_cache:

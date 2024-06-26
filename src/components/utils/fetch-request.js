@@ -9,7 +9,7 @@ import { notification } from "antd";
 const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y';
 // export const BASE_URL = 'http://localhost:5000';
   // export const BASE_URL = 'https://testapi.CrashKali.co.ke';
-export const BASE_URL = 'https://api.betnare.com';
+export const BASE_URL = 'http://51.83.99.148:5000';
 
 const instance = axios.create({
   baseURL: BASE_URL,

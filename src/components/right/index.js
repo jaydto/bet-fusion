@@ -10,21 +10,12 @@ import JackpotMenu from "../mobile-menu/jackpotMenu";
 import { StoreContext } from "../../context/store";
 import { getFromLocalStorage } from "../utils/local-storage";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  sportLiveCount,
-  startFetchingLiveCount,
-  stopFetchingLiveCount,
-} from "../../redux/matchesSlice";
+
 import { setState } from "../../redux/dataSlice";
-import {
-  betslipValidation,
-  startBetslipValidation,
-  stopBetslipValidation,
-} from "../../redux/bettingSlice";
+
 import {
   findPostableReduxSlip,
-  findPostableSlip,
-  getBetslip,
+  
 } from "../utils/betslip";
 import { setState as setMatchBetslipOptions } from "../../redux/bettingSlice";
 
@@ -77,21 +68,7 @@ const Right = React.memo((props) => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
   }, [appConfigs]);
 
-        const fetchLiveData = () => {
-            dispatchRedux(sportLiveCount())
-            dispatchRedux(startFetchingLiveCount({interval:30000}) )
-
-        };
-
-  useEffect(() => {
-    const abortController = new AbortController();
-    dispatchRedux(stopFetchingLiveCount());
-    fetchLiveData();
-
-    return () => {
-      abortController.abort();
-    };
-  }, []);
+  
   useEffect(() => {
     let value =
       stake_value ||

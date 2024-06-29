@@ -293,55 +293,7 @@ const HeaderNav = React.memo((props) => {
         </ListGroup>
       </Container>
 
-      <Container
-        id="navbar-collapse-main"
-        className={`fadeIn header-menu d-flex justify-content-center px-4 ${
-          searching ? "d-block" : "d-none"
-        }`}
-      >
-        <ListGroup
-          as="ul"
-          xs="9"
-          horizontal
-          className="nav navbar-nav og ale ss col-md-6 text-center"
-        >
-          <div className="d-flex">
-            <div className="col-md-10">
-             {notShowSearch&& <input
-                type="text"
-                placeholder={"Start typing to search for team ..."}
-                autoFocus={true}
-                ref={searchInputRef}
-                onInput={(event) => fetchMatches(event.target.value)}
-                className={
-                  "form-control input-field border-0 bg-dark text-white no-border-radius"
-                }
-              />}
-            </div>
-
-            <button
-              className={"btn text-white -align-right"}
-              onClick={() => dismissSearch()}
-            >
-              <FontAwesomeIcon icon={faTimes} /> Close
-            </button>
-          </div>
-          <div
-            className={`autocomplete-box search-results-box position-fixed  border-dark col-md-5 mt-1 shadow-lg text-start`}
-            onClick={() => gaEventTracker("View Search Results")}
-          >
-            {matches?.map((match, index) => (
-              <Link
-                to={`/?search=${match.home_team}`}
-                key={index}
-                onClick={() => dismissSearch()}
-              >
-                <li>{match.home_team}</li>
-              </Link>
-            ))}
-          </div>
-        </ListGroup>
-      </Container>
+    
     </>
   );
 });

@@ -143,17 +143,7 @@ const NewProfile = React.memo(
                                             
                                         </div>
                                     </div>
-                                    <Link to="/redeem-points" style={{textDecoration: "none", color: "black"}}>
-                                        <div className="transaction">
-                                            <div className="t-details">
-                                                <div className="t-title">Redeem Points</div>
-                                            </div>
-                                            <div className="t-amount">
-                                                {/*<i className="fas fa-coins" style={{fontSize: "24px"}}></i>*/}
-                                                <FontAwesomeIcon icon={faCoins} style={{fontSize: "24px"}}/>
-                                            </div>
-                                        </div>
-                                    </Link>
+                                   
                                     <Link to="/my-bets" style={{textDecoration: "none", color: "black"}}>
                                         <div className="transaction">
                                             <div className="t-details">

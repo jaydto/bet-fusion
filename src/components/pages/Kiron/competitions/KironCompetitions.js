@@ -67,10 +67,12 @@ const KironCompetitions = React.memo(
             // dispatchRedux(setState('playouts_data',null));
 
         }
+        const path = window.location.pathname;
+
 
         return (
             competitionData &&
-            <div className="app-countries-icons mt-4">
+            <div className={`${path.includes('results')||path.includes('standing')? 'app-countries-icons change':'app-countries-icons'} mt-4`}>
                 <div className="container-fluid">
                     <div className="d-flex">
                         {error ?

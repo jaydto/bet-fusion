@@ -23,7 +23,6 @@ import { UserInfo } from "./UserInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { configSettings, setState } from "../../redux/dataSlice";
 import { userBalance } from "../../redux/authSlice";
-import { matchCategories, matchesSearch } from "../../redux/matchesSlice";
 import Logo from "../../assets/img/logo.png" 
 import {
   checkDesktopTopNavigation,
@@ -31,7 +30,7 @@ import {
   shouldShowDownload,
   shouldShowMobileNav,
   shouldShowHeader,
-  shouldShowSearch
+  
 } from "../../redux/navigationAction";
 import Header2 from "./Header2";
 import useWindowDimensions from "./Dimensions";
@@ -43,7 +42,7 @@ const Header = React.memo((props) => {
   const { slip, scrollPosition, jackpot } = props;
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
   const { state, dispatch } = useContext(StoreContext);
-  const searchInputRef = useRef(null);
+  
   const show = useSelector((state) => state.data.show_menu);
   const handleClose = () => {
     dispatchRedux(setState("show_menu", false));
@@ -64,7 +63,6 @@ const Header = React.memo((props) => {
 
   const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
   const notShowHeaderNav = dispatchRedux(shouldShowHeader(pathname));
-  const notShowSearch = dispatchRedux(shouldShowSearch(pathname));
   const showDownload = dispatchRedux(shouldShowDownload(pathname));
   const changeNav = dispatchRedux(checkNavigation(pathname));
   const checkDesktop = dispatchRedux(checkDesktopTopNavigation(pathname));
@@ -95,14 +93,9 @@ const Header = React.memo((props) => {
     }
   }, [pathname]);
 
-  const dismissSearch = () => {
-    dispatch({ type: "SET", key: "searching", payload: false });
-    setMatches([]);
-  };
 
-  const fetchData = async () => {
-    dispatchRedux(matchCategories());
-  };
+
+ 
   const appConfigs = useSelector((state) => state.data.app_config);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
 
@@ -110,10 +103,7 @@ const Header = React.memo((props) => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
   }, [appConfigs]);
 
-  const cleanUpFuctionSportCategories = async () => {
-    await fetchData();
-  };
-
+ 
   const fetchAppConfigurations = useCallback(async () => {
     let cached_settings = getFromLocalStorage("settings");
 
@@ -171,28 +161,12 @@ const Header = React.memo((props) => {
     }
   }, [appConfigs, getFromLocalStorage("settings")]);
 
-  useEffect(() => {
-    cleanUpFuctionSportCategories();
-  }, []);
+ 
 
   const active_sport_value = useSelector(
     (state) => state.matchesData.active_sport
   );
-  const fetchMatches = async (search) => {
-    if (search && search.length >= 3) {
-      gaEventTracker("Searching");
-      let method = "POST";
-      let endpoint = "/v1/matches?page=" + 1 + `&limit=${10}&search=${search}`;
 
-      dispatchRedux(
-        matchesSearch({
-          endpoint: endpoint,
-          method: method,
-          active_sport: active_sport_value,
-        })
-      );
-    }
-  };
 
   const updateUserOnHistory = () => {
     if (!user) {
@@ -235,11 +209,6 @@ const Header = React.memo((props) => {
   var currentURL = new URL(window.location.href);
   var pathAndQuery = currentURL.pathname + currentURL.search;
 
-  useEffect(() => {
-    if (state?.searching) {
-      dispatchRedux(setState("navigation_link", pathAndQuery));
-    }
-  }, [state?.searching]);
 
   const PromoActive = () => {
     // console.log('appConfigs', appConfigs)
@@ -322,7 +291,7 @@ const Header = React.memo((props) => {
 
                     if (
                       activePromo &&
-                      activePromo.promo_active === "1" &&
+                      activePromo.promo_active === "0" &&
                       activePromo.promo_url
                     ) {
                       gaEventTracker(activePromo?.promo_utm);
@@ -412,67 +381,13 @@ const Header = React.memo((props) => {
                   <HeaderNav />
                 </Row>
               )}
-              {state?.searching ? (
-                <div
-                  id="navbar-collapse-main"
-                  className={`fadeIn header-menu d-flex justify-content-center w-100 d-block`}
-                >
-                  <ListGroup
-                    as="ul"
-                    xs="9"
-                    horizontal
-                    className="nav navbar-nav og ale ss col-12 text-center w-100 d-flex"
-                  >
-                    <div className="d-flex w-100">
-                      <div
-                        className="col-10  px-2"
-                        style={{ marginLeft: "2vw" }}
-                      >
-                       <input
-                          type="text"
-                          placeholder={"Start typing to search for team ..."}
-                          autoFocus={true}
-                          ref={searchInputRef}
-                          onInput={(event) => fetchMatches(event.target.value)}
-                          className={
-                            "form-control input-field-search border-0  text-default bg-light no-border-radius input-bg-user"
-                          }
-                          style={{ background: "#2D4352" }}
-                        />
-                        <div
-                          style={{ overflowY: "auto", borderRadius: "2px" }}
-                          className={`col-10 autocomplete-box  rounded position-fixed  search-results-box border-dark col-md-5 shadow-lg text-start`}
-                          onClick={() => gaEventTracker("View Search Results")}
-                        >
-                          {matches?.map((match, index) => (
-                            <Link
-                              to={`/?search=${match.home_team}`}
-                              key={index}
-                              onClick={() => dismissSearch()}
-                            >
-                              <li>{match.home_team}</li>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                      <button
-                        className={
-                          "col-2 btn text-warning align-right d-flex justify-content-center align-items-center flex-column"
-                        }
-                        onClick={() => dismissSearch()}
-                      >
-                        <FontAwesomeIcon icon={faTimes} /> Close
-                      </button>
-                    </div>
-                  </ListGroup>
-                </div>
-              ) : (
-                notShowMobileNav &&
+              
+               { notShowMobileNav &&
                 !slip &&
                 !jackpot &&
                 !checkDesktop &&
                 !pathname.includes("match") && <MobileNav1 />
-              )}
+              }
 
               <Offcanvas
                 style={{

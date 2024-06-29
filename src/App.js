@@ -8,17 +8,11 @@ import {Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import Header from './components/header/header';
 import {matchCategories} from "./redux/matchesSlice";
 import {configSettings} from "./redux/dataSlice";
-import DefaultPage from './components/defaultPage'
 
 const Deposit3 = React.lazy(() => import("./components/pages/deposit-withraw/Deposit3"));
 
 const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 
-
-
-const Live = React.lazy(
-    () => import('./components/live')
-);
 
 const HowToPlay = React.lazy(
     () => import('./components/pages/HowToPLay2')
@@ -109,7 +103,6 @@ const Login = React.lazy(() => import('./components/pages/loginTwo'));
 const NewProfile = React.lazy(() => import( "./components/pages/Accounts/NewProfile"));
 
 const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
-const BetHistory = React.lazy(() => import( "./components/pages/Accounts/component/BetHistory"));
 
 const Logout = () => {
     const {dispatch} = useContext(StoreContext);
@@ -214,7 +207,6 @@ const App =
                         <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
 
                         <Route exact path={"/profile"} element={<ProtectedRoute><NewProfile/></ProtectedRoute>}/>
-                        <Route exact path={"/my-bets"} element={<ProtectedRoute><BetHistory/></ProtectedRoute>}/>
                         <Route exact path={"/betslip"} element={<BetslipPage/>}/>
                         <Route exact path="/betslip-slip" element={<BetslipPage/>}/>
                         <Route exact path="/betslip-nare" element={<BetslipPage/>}/>

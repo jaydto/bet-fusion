@@ -191,13 +191,10 @@ const initialState = {
             'signup',
             'leader-board',
             'nare-league',
-            'results',
             'my-bets',
             'promotions',
             'smart-soft',
             'casino',
-            'standing',
-            'playouts',
             'bet-history',
             'nare-games',
             'responsible-gambling',
@@ -305,8 +302,7 @@ const initialState = {
             'playouts',
             'nare-league',
             'bet-history',
-            'standing',
-            'results',
+            
         ],
         top_navigations:[]
 

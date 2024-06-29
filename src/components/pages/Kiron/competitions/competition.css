@@ -89,7 +89,13 @@ img{
     text-decoration: none;
 }
 @media (min-width:200px) and (max-width: 991px){
-    .app-countries-icons {
+    /* .app-countries-icons {
         margin-top: 9px!important;
+    } */
+    .app-countries-icons {
+        margin-top: 100px!important;
+    }
+    .app-countries-icons.change{
+        margin-top: 66px!important;
     }
 }

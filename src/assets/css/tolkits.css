@@ -7728,7 +7728,7 @@ ul.sport {
         display: inline-block;
         overflow-y: hidden;
         overflow-x: auto;
-        background: #16202C!important;
+        background:var(--CrashKali-header-bg);
         /* background: orange!important; */
         -webkit-overflow-scrolling: touch;
         height: 55px;
@@ -16137,7 +16137,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .background-primary {
-    background-color: var(--jackpot-header) !important;
+    background-color: var(--CrashKali-footer);
 }
 
 .modal-50w {

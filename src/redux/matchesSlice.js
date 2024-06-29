@@ -14,7 +14,6 @@ import {
   startBetslipValidation,
   stopBetslipValidation,
 } from "./bettingSlice";
-import { truncate } from "lodash";
 
 // Async thunk for matches
 export const matchesPrematch = createAsyncThunk(
@@ -325,20 +324,7 @@ export const betCancel = createAsyncThunk("matches/betCancel", async (data) => {
     throw new Error(response?.error || " betCancel failed");
   }
 });
-export const sportLiveCount = createAsyncThunk(
-  "matches/sportLiveCount",
-  async () => {
-    const [status, response] = await makeRequest({
-      url: "/v1/sports?live=1",
-      method: "GET",
-    });
-    if (status === 200) {
-      return response;
-    } else {
-      throw new Error(response?.error || "Fetching Sports Count failed");
-    }
-  }
-);
+
 export const favoriteMarkets = createAsyncThunk(
   "matches/favoriteMarkets",
   async () => {
@@ -627,97 +613,9 @@ export const resetState = createAction("matches/reset", (stateToReset) => {
   return { payload: stateToReset };
 });
 
-let fetchInterval; // Declare the interval variable outside the action creator
 
-export const startFetchingMatches =
-  ({
-    endpoint,
-    method,
-    data,
-    interval,
-    prematch = false,
-    live = false,
-    competition = false,
-    search = false,
-    active_sport = "Soccer",
-    active_sub_type = null,
-  }) =>
-  async (dispatch) => {
-    // Dispatch the initial fetch
-    const matchesData = {
-      endpoint,
-      method,
-      data,
-      search,
-      active_sport,
-      active_sub_type,
-    };
 
-    // Set up the interval to fetch matches every 20 seconds
-    fetchInterval = setInterval(() => {
-      if (prematch) {
-        dispatch(matchesPrematch(matchesData));
-      }
-      if (live) {
-        dispatch(matchesLive(matchesData));
-      }
-      if (competition) {
-        dispatch(matchesCompetition(matchesData));
-      }
-    }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
-  };
-let fetchMoreInterval;
-export const startFetchingMoreMatches =
-  ({
-    endpoint,
-    method,
-    data,
-    interval,
-    more_prematch = false,
-    more_live = false,
-  }) =>
-  async (dispatch) => {
-    // Dispatch the initial fetch
-    const matchesData = { endpoint, method, data };
 
-    // Set up the interval to fetch matches every 20 seconds
-    fetchMoreInterval = setInterval(() => {
-      if (more_prematch) {
-        dispatch(matchesMorePrematchMarkets(matchesData));
-      }
-      if (more_live) {
-        dispatch(matchesMoreLiveMarkets(matchesData));
-      }
-    }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
-  };
-export const stopFetchingMoreMatches = () => () => {
-  if (fetchMoreInterval) {
-    clearInterval(fetchMoreInterval);
-  }
-};
-let countInterval; // Declare the interval variable outside the action creator
-
-export const startFetchingLiveCount =
-  ({ interval }) =>
-  async (dispatch) => {
-    // Set up the interval to fetch matches every 20 seconds
-    countInterval = setInterval(() => {
-      dispatch(sportLiveCount());
-    }, interval); // 20000 milliseconds = 20 seconds //5000 milliseconds = 5 seconds
-  };
-
-export const stopFetchingLiveCount = () => () => {
-  if (countInterval) {
-    clearInterval(countInterval);
-  }
-};
-
-// Action creator to stop fetching matches
-export const stopFetchingMatches = () => () => {
-  if (fetchInterval) {
-    clearInterval(fetchInterval);
-  }
-};
 
 export const setState = createAction(
   "matches/setMatchesState",
@@ -982,17 +880,7 @@ const matchesSlice = createSlice({
         state.error = null;
       })
 
-      .addCase(sportLiveCount.pending, (state) => {
-        state.error = null;
-      })
-      .addCase(sportLiveCount.fulfilled, (state, action) => {
-        state.sport_live_count = action.payload.data;
-        state.error = null;
-      })
-      .addCase(sportLiveCount.rejected, (state, action) => {
-        state.error = action.error.message;
-      })
-
+     
       .addCase(marketGroups.pending, (state) => {
         state.loading = true;
         state.error = null;

@@ -94,20 +94,7 @@ export const UserInfo = React.memo(
                                           </span>
                             </Link>
                         </div>
-                        {(!profile&&notShowSearch)&&<div className='d-flex align-items-baseline'>
-                            <div className={` align-items-center  ${state?.searching ? 'd-none' : 'd-flex'}`}>
-                                <div className="cursor-pointer link_color"  title="Search"
-                                      onClick={() => {
-                                          showSearchBar();
-                                          gaEventTracker('Visit Search')
-                                      }}>
-                                                <span
-                                                    className="border-radius-search p-2 align-items-center  justify-content-center d-flex"><FontAwesomeIcon
-                                                    icon={faSearch}/> </span><span
-                                ></span>
-                                </div>
-                            </div>
-                        </div>}
+                       
                         <div className="col-1 button-toggle space-button"
                              style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
                             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
@@ -137,20 +124,7 @@ export const UserInfo = React.memo(
                             <Link to={"/login"} className="cg  login-color login-size btn" type="submit">
                                 <span>Login</span>
                             </Link>}
-                        {pathname !== '/signup' && <div className='d-flex align-items-baseline'>
-                            <div className={` align-items-center  ${state?.searching ? 'd-none' : 'd-flex'}`}>
-                                <div className="cursor-pointer link-color"  title="Search"
-                                      onClick={() => {
-                                          showSearchBar();
-                                          gaEventTracker('Visit Search')
-                                      }}>
-                                                    <span
-                                                        className="border-radius-search p-2  justify-content-center d-flex"><FontAwesomeIcon
-                                                        icon={faSearch}/> </span><span
-                                ></span>
-                                </div>
-                            </div>
-                        </div>}
+                      
                         <div className="col-1 button-toggle space-button"
                              style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
                             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3"

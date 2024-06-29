@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import HomeSvg from "../../assets/img/mobile/Home.svg"
-import LiveSvg from "../../assets/img/mobile/Live.svg"
+import Casino from "../../assets/img/mobile/Casino.svg"
 import ProfileSvg from "../../assets/img/mobile/Profile.svg"
 import CloseIcon from "../../assets/img/mobile/close_icon.png"
 import Mybets from "../../assets/img/mobile/MyBets.svg"
@@ -283,42 +283,9 @@ const MobileMenu = React.memo((props) => {
                                         <p>Home</p>
                                     </Link>
                                 </td>
-
-                                {/* <td className={`bloc-icon ${pathname === "/live" ? "active" : ""}`}>
+                                <td className={`bloc-icon ${pathname === ('/bet-history') ? "active" : ""}`}>
                                     <Link
-                                        to={`/live`}
-                                        onClick={() => gaEventTracker("Visit Live  Page")}
-                                    >
-                                        <LazyLoadImage src={LiveSvg}
-                                        effect="blur"
-                                        alt=""/>
-                                        {liveSports?.forEach((sport) => {
-                                            totalCount += sport.count;
-                                        })}
-                                        <p>
-                                            Live <span className={"text-light"}>({totalCount || 0})</span>
-                                        </p>
-
-                                    </Link>
-                                </td> */}
-                                <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
-                                    <Link to={{
-                                        pathname: `${ kiron ? `/betslip-nare` : "/betslip-slip"}`,
-                                        search: `${kiron !== undefined ? 'nare-league=' + kiron : ''}`
-                                    }}>
-                                        <Badge
-                                            pill
-                                            bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
-                                        >
-                                            <strong className={'badge-font-weight'}>{kiron?state?.betslipKironLength:betslipLength}</strong>
-
-                                        </Badge>
-                                    </Link>
-                                </td>
-
-                                <td className={`bloc-icon ${pathname === (kiron?'/bet-history':'/my-bets') ? "active" : ""}`}>
-                                    <Link
-                                        to={`${kiron?'/bet-history':'/my-bets'}`}
+                                        to={`${'/bet-history'}`}
                                         onClick={() => gaEventTracker("Visit My Bets Page")}>
                                         <LazyLoadImage src={Mybets}
                                                        effect="blur"
@@ -329,6 +296,38 @@ const MobileMenu = React.memo((props) => {
 
                                     </Link>
                                 </td>
+
+                                
+                                <td className={` nav__betslip bloc-icon bet-slip-footer-toggle text-white`}>
+                                    <Link to={{
+                                        pathname: `${  `/betslip-nare` }`,
+                                        search: `${ 'nare-league=' + kiron}`
+                                    }}>
+                                        <Badge
+                                            pill
+                                            bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
+                                        >
+                                            <strong className={'badge-font-weight'}>{state?.betslipKironLength}</strong>
+
+                                        </Badge>
+                                    </Link>
+                                </td>
+                                <td className={`bloc-icon ${pathname === "/casino" ? "active" : ""}`}>
+                                    <Link
+                                        to={`/casino`}
+                                        onClick={() => gaEventTracker("Visit Casino Page")}
+                                    >
+                                        <LazyLoadImage src={Casino}
+                                        effect="blur"
+                                        alt=""/>
+                                      
+                                        <p>
+                                           Casino
+                                        </p>
+
+                                    </Link>
+                                </td>
+                              
 
                                 {user ? (<td className={`bloc-icon ${pathname === "/profile" ? "active" : ""}`}>
                                     <Link

@@ -462,7 +462,7 @@ const MyDepositForm = (props) => {
           setShowJisortModal={setShowJisortModal}
         />
       )}
-      <Form className="shadow-sm rounded border-0">
+      <Form className="shadow-sm rounded border-0 p-5">
         <div className="pt-0">
           <div className="row">
             <div className="col-md-7 text-center">
@@ -486,10 +486,9 @@ const MyDepositForm = (props) => {
                         style={{ color: "#ea5d0b",     fontSize: "15px",
                         fontWeight: "600",
                         boxshadow: "0 10px 20px rgba(0, 0, 0, 0.03)",
-                        padding: "3px 27px",
+                        padding: "7px 27px",
                         border:" 1px solid",
-                        margin:"0px 12px",
-                        borderRadius: "5px"}}
+                        borderRadius: "10px"}}
                         onClick={() => {
                             setShowJisortModal(true);
                         }}

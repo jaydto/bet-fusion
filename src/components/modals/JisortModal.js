@@ -268,7 +268,7 @@ const DepositConfirmFormFields = (props) => {
             <div className="form-group w-100 d-flex justify-content-left mb-4 ">
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop w-100 px-2">
                     <button type={"submit"}
-                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center'
+                            className='btn btn-lg w-100 deposit-button button-radius input-field btn-font login-button2 btn bold d-flex justify-content-center align-items-center'
                             style={{marginTop: "30px"}} disabled={values?.amount == ''||loadingConfirmDeposit}>
                         {loadingConfirmDeposit ? <div className="loader"></div>:'CONFIRM DEPOSIT ' }
                     </button>

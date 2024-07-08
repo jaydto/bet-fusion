@@ -96,7 +96,7 @@ export const virtualLeagueMatches =
         if (status === 200) {
             return response;
         } else {
-            throw new Error(response?.error || "Fetching Big League Matches failed");
+            throw new Error(response?.error || "Fetching Virtual League Matches failed");
         }
     });
 export const virtualLeagueStandings =
@@ -128,7 +128,7 @@ export const virtualLeagueResults =
         if (status === 200) {
             return response;
         } else {
-            throw new Error(response?.error || "Big League Results  failed");
+            throw new Error(response?.error || "Virtual League Results  failed");
         }
 
     }
@@ -145,7 +145,7 @@ export const virtualLeaguePlayouts =
         if (status === 200) {
             return response;
         } else {
-            throw new Error(response?.error || "Big League Playouts fetch  failed");
+            throw new Error(response?.error || "Virtual League Playouts fetch  failed");
         }
 
     }
@@ -161,7 +161,7 @@ export const virtualLeagueCompetitions =
         if (status === 200) {
             return response;
         } else {
-            throw new Error(response?.error || "Big League competitions fetch  failed");
+            throw new Error(response?.error || "Virtual League competitions fetch  failed");
         }
 
     }

@@ -73,7 +73,7 @@ const KironResults =
                                                                 <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center"><span
                                                                     className="team-jersey"><LazyLoadImage
                                                                     src={results?.home_icon}
-                                                                    alt="Big League"/></span>
+                                                                    alt="Virtual League"/></span>
                                                                     <a href="#"
                                                                        className={'d-flex  justify-content-between align-items-center gap-4 '}
                                                                        style={{color: "var(--black)"}}>
@@ -99,7 +99,7 @@ const KironResults =
                                                                     </a>
                                                                     <span className="team-jersey"><LazyLoadImage
                                                                         src={results?.away_icon}
-                                                                        alt="Big League"/></span>
+                                                                        alt="Virtual League"/></span>
                                                                 </div>
 
                                                             </div>

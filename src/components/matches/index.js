@@ -177,8 +177,8 @@ export const virtualGameChoiceOptions = (bottomSheetType) => {
         url: "/smart-play?game=JetX&category=JetX",
       },
       {
-        id: "Big League",
-        name: "Big League",
+        id: "Virtual League",
+        name: "Virtual League",
         url:"/",
       },
       {

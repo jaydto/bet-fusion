@@ -70,7 +70,7 @@ const Standing = () => {
                                         <span className="team-badge d-flex align-items-center">
                                              <LazyLoadImage
                                                  src={standing?.icon_url}
-                                                 alt="Big League"/>&nbsp;
+                                                 alt="Virtual League"/>&nbsp;
                                             <span>{standing?.team_name}</span>
                                       </span>
                                     </td>

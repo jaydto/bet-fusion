@@ -60,7 +60,7 @@ const JisortModal = React.memo((props) => {
             <strong
               style={{
                 width: "100%",
-                fontSize: "19px",
+                fontSize: "14px",
                 fontWeight: "bolder",
                 letterSpacing: "2px",
               }}
@@ -73,7 +73,7 @@ const JisortModal = React.memo((props) => {
       </Modal.Header>
       <Modal.Body className={""}>
         <ConfirmationAlert />
-        <div className="col-12 text-center ">
+        <div className="col-12 text-center " style={{overflowX:"hidden"}}>
           <div className=" pb-0" data-backdrop="static">
             <DepositConfirmForm />
           </div>
@@ -186,9 +186,9 @@ const MyDepositConfirmationForm = (props) => {
                         // Pass confirmation code  here
 
                     />
-                    <div className={``}>
+                    {/* <div className={``}>
                         <ConfirmationInstructions/>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
@@ -196,34 +196,34 @@ const MyDepositConfirmationForm = (props) => {
     );
 }
 
-const ConfirmationInstructions = (props) => {
-    return (
-      <>
-        <label className="CrashKali-text-light">Missing Deposit?</label>
-        <div className="container d-flex flex-column">
-          <div className="row">
-            <div className="col CrashKali-text-light">
-              {" "}
-              1. Enter Mpesa Transaction code when your deposit has not reflected
-              in your account.
-            </div>
-          </div>
-          <div className="row">
-            <div className="col CrashKali-text-light">
-              {" "}
-              2. Click on confirm deposit..
-            </div>
-          </div>
-          <div className="row">
-            <div className="col CrashKali-text-light">
-              {" "}
-              3. Your deposit will be credited to your account.
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  };
+// const ConfirmationInstructions = (props) => {
+//     return (
+//       <>
+//         <label className="CrashKali-text-light">Missing Deposit?</label>
+//         <div className="container d-flex flex-column">
+//           <div className="row">
+//             <div className="col CrashKali-text-light">
+//               {" "}
+//               1. Enter Mpesa Transaction code when your deposit has not reflected
+//               in your account.
+//             </div>
+//           </div>
+//           <div className="row">
+//             <div className="col CrashKali-text-light">
+//               {" "}
+//               2. Click on confirm deposit..
+//             </div>
+//           </div>
+//           <div className="row">
+//             <div className="col CrashKali-text-light">
+//               {" "}
+//               3. Your deposit will be credited to your account.
+//             </div>
+//           </div>
+//         </div>
+//       </>
+//     );
+//   };
 
 const DepositConfirmFormFields = (props) => {
     const {values, errors, onFieldChanged} = props;

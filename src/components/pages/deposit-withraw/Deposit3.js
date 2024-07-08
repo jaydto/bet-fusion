@@ -486,14 +486,15 @@ const MyDepositForm = (props) => {
                         style={{ color: "#ea5d0b",     fontSize: "15px",
                         fontWeight: "600",
                         boxshadow: "0 10px 20px rgba(0, 0, 0, 0.03)",
-                        padding: "7px 27px",
+                        padding: "3px 27px",
                         border:" 1px solid",
-                        borderRadius: "10px"}}
+                        margin:"0px 12px",
+                        borderRadius: "5px"}}
                         onClick={() => {
                             setShowJisortModal(true);
                         }}
                         >
-                        jisort
+                        Jisort
                         </span>
 
             </div>

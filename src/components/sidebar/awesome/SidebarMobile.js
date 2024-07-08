@@ -79,15 +79,7 @@ const SidebarMobile = React.memo(
                         </div>
                     </MenuItem>
                 </Menu>
-                <Menu>
-                    <MenuItem className={"d-flex justify-content-between"}>
-                        <div className={"d-flex gap-4 align-items-center"}>
-                            <LazyLoadImage src={fpl} effect={"blur"}  style={{width:'15px'}} className={'svg-mobile'} />
-
-                            <Link to={"/fpl"} onClick={handleClose}>FPL</Link>
-                        </div>
-                    </MenuItem>
-                </Menu>
+               
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>

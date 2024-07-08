@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import Betslip from "../../right/betslip";
 import Right from "../../right";
 
 import SlipTabs from "./tabs/slip-tabs";
@@ -164,20 +163,12 @@ const BetslipPage = React.memo(() => {
                   className={" d-flex flex-column w-100 justify-content-end"}
                   style={{ height: "100%" }}
                 >
-                  {nare_league ? (
+                 
                     <KironSlip
                       kironValidation={nareData}
                       kiron={nare_league || pathname === "/betslip-nare"}
                     />
-                  ) : (
-                    <Betslip
-                      jackpot={jackpot ? true : false}
-                      betslipValidationData={
-                        slip_validated_data ?? betslipValidationData
-                      }
-                      jackpotData={jackpotData}
-                    />
-                  )}
+                  
                 </div>
               </div>
             </div>

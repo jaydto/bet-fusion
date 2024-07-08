@@ -71,15 +71,10 @@ const Header = React.memo((props) => {
   );
 
   const userData = useSelector((state) => state.auth.user);
-  const matchesData = useSelector(
-    (state) => state.matchesData.searched_matches
-  );
-  const [user, setUser] = useState(getFromLocalStorage("user"));
-  const [matches, setMatches] = useState([]);
 
-  useEffect(() => {
-    setMatches(matchesData);
-  }, [matchesData]);
+  const [user, setUser] = useState(getFromLocalStorage("user"));
+
+
 
   useEffect(() => {
     if (userData) {
@@ -163,10 +158,7 @@ const Header = React.memo((props) => {
 
  
 
-  const active_sport_value = useSelector(
-    (state) => state.matchesData.active_sport
-  );
-
+ 
 
   const updateUserOnHistory = () => {
     if (!user) {
@@ -273,54 +265,13 @@ const Header = React.memo((props) => {
           >
             <div
               className={`${
-                close_call_to_action
-                  ? "optional-action"
-                  : "optional-action active"
+                "optional-action"
+                 
               }  ${
                 showDownload ? "d-none" : "d-sm-flex d-lg-none d-md-none w-100"
               }`}
             >
-              {settings?.active_promotion?.app_promo?.promo_active === "1" && (
-                <div
-                  title={"Promotion"}
-                  className={"lite-top d-flex flex-column"}
-                  onClick={() => {
-                    const activePromo = settings
-                      ? settings?.active_promotion?.mobile_promo
-                      : appConfigs?.active_promotion?.mobile_promo;
-
-                    if (
-                      activePromo &&
-                      activePromo.promo_active === "0" &&
-                      activePromo.promo_url
-                    ) {
-                      gaEventTracker(activePromo?.promo_utm);
-                      navigate(
-                        `${activePromo?.promo_url}?utm_source=${activePromo?.promo_utm}`
-                      );
-                    }
-                  }}
-                >
-                  <div
-                    className={
-                      "app-download-link  d-flex justify-content-between w-100"
-                    }
-                  >
-                    <div className="col-2">
-                    <FontAwesomeIcon
-                      icon={faXmark}
-                      className={"close-call-action"}
-                      onClick={(e) => handleCloseCallToAction(e)}
-                    />
-                  </div>
-                    <span className={"color-app-text flashy col-12"}>
-                      <span className="d-flex justify-content-start px-4 mx-1">
-                        <PromoActive />
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              )}
+              
             </div>
             <div
               className={

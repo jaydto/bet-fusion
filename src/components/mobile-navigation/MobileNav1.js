@@ -31,11 +31,9 @@ const MobileNav1 = React.memo(
 
         const pathname = window.location.pathname;
 
-        const availableCategories = useSelector((state) => state.matchesData.sport_categories)
 
         const active_link=useSelector((state)=>state.data.active_link)
 
-        const [competitions, setCompetitions] = useState(getFromLocalStorage("sport_categories"));
 
         const userData = useSelector((state) => state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
@@ -50,10 +48,7 @@ const MobileNav1 = React.memo(
             dispatchRedux(setState('active_link',link ))
         }
 
-        useEffect(() => {
-            setCompetitions(availableCategories||getFromLocalStorage("sport_categories"))
-
-        }, [availableCategories])
+        
 
         const getDefaultMarketsForSport = (allsports) => {
             return allsports?.default_display_markets

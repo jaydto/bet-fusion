@@ -23,38 +23,19 @@ const backgroundStyle = {
 
 const LoginTwo = React.memo(
     props => {
-        const [message,] = useState(null);
         // const {setUser} = props;
         const navigate = useNavigate();
         const userData = useSelector((state) => state.auth.user)
         const [user, setUser] = useState(getFromLocalStorage("user"))
 
-        // useEffect(() => {
-        //     if (userData) {
-        //         setUser(userData || getFromLocalStorage("user"))
-        //     }
-        // }, [])
-
-
-        const Notify = (message) => {
-            let options = {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                toastId: 673738 /* this is hack to prevent multiple toasts */
+        useEffect(() => {
+            if (userData) {
+                setUser(userData || getFromLocalStorage("user"))
             }
-            if (message.status === 200) {
-                toast.success(`🚀 ${message.message}`, options);
-            } else {
-                toast.error(`🦄 ${message.message}`, options);
-            }
+        }, [])
 
-        };
 
+     
        
 
 

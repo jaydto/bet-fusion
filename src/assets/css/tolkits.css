@@ -6929,7 +6929,7 @@ ul.sport {
         height:4rem;
         align-items:center;
         justify-content: center;
-        background: #23313d;
+        background: var(--CrashKali-header-bg);
         border: 1px solid white;
         border-radius: 1rem;
     }

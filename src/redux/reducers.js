@@ -7,7 +7,6 @@ import dataReducer from "./dataSlice"
 import authReducer from "./authSlice"
 import virtualLeagueReducer from "./virtualLeague"
 import bettingReducer from "./bettingSlice"
-import matchesReducer from "./matchesSlice"
 import virtualsReducer from './virtualsSlice';
 import scrollReducer from './ScrollBehavior';
 import navigationReducer from './Navigations';
@@ -20,7 +19,6 @@ const rootReducer = combineReducers({
     auth: authReducer,
     virtualLeague: virtualLeagueReducer,
     betting: bettingReducer,
-    matchesData:matchesReducer,
     virtuals: virtualsReducer,
     scroll: scrollReducer,
     navigations:navigationReducer

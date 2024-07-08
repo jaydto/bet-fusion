@@ -31,7 +31,6 @@ const MobileMenu = React.memo((props) => {
     const gaEventTracker = useAnalyticsEventTracker("Navigation");
     
     const navigate = useNavigate();
-    const liveCount=useSelector((state)=>state.matchesData.sport_live_count)
     const userData = useSelector((state) => state.auth.user)
     const [user, setUser] = useState(getFromLocalStorage("user"))
     const remaining_games=useSelector((state)=>state.betting.remaining_games)
@@ -47,13 +46,7 @@ const MobileMenu = React.memo((props) => {
         }
     }, [userData])
 
-    const [liveSports, setLiveSports] = useState()
-
-    useEffect(()=>{
-        setLiveSports(liveCount)
-
-    },[liveCount])
-
+    
     useEffect(() => {
         if(pathname.includes('nare')){
             setKiron(true)

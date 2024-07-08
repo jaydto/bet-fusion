@@ -17,7 +17,7 @@ export const configSettings = createAsyncThunk(
     if (status === 200) {
       return response;
     } else {
-      throw new Error(response?.error || "Fetching Prematch failed");
+      throw new Error(response?.error || "Fetching App Configs failed");
     }
   }
 );

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import QuickLogin from "./quick-login";
 import CompanyInfo from "./company-info";
-import BetSlip from "./betslip";
 import { Badge } from "react-bootstrap";
 import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
@@ -155,18 +154,9 @@ const Right = React.memo((props) => {
                   X
                 </button>
                 <div id="betslip" className="betslip">
-                  {kiron == true ? (
+                  
                     <Kironslip kiron={kiron} />
-                  ) : (
-                    <BetSlip
-                      jackpot={jackpot}
-                      betslipValidationData={
-                        slip_validated_data ?? betslipValidationData
-                      }
-                      live={live}
-                      jackpotData={jackpotData}
-                    />
-                  )}
+                 
                 </div>
                 <QuickLogin />
               </div>

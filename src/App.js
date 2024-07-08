@@ -6,12 +6,8 @@ import {getFromLocalStorage, setLocalStorage} from "./components/utils/local-sto
 import {resetState} from "./redux/authSlice";
 import {Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import Header from './components/header/header';
-import {matchCategories} from "./redux/matchesSlice";
-import {configSettings} from "./redux/dataSlice";
 
 const Deposit3 = React.lazy(() => import("./components/pages/deposit-withraw/Deposit3"));
-
-const BetslipShareDecode = React.lazy(() => import('./components/betslip/BetslipShareDecode'))
 
 
 const HowToPlay = React.lazy(
@@ -164,34 +160,11 @@ const App =
                 <Suspense fallback={<></>}>
                     <Routes>
                         <Route path="*" element={<Navigate to="/404"/>}/>
-                        {/* <Route exact path="/" element={<DefaultPage/>}/>
-                        <Route exact path="/highlights" element={<DefaultPage/>}/>
-                        <Route exact path="/upcoming" element={<DefaultPage/>}/>
-                        <Route exact path="/tomorrow" element={<DefaultPage/>}/>
-                        <Route exact path="/countries" element={<DefaultPage/>}/>
-                        <Route exact path="/competition/:id" element={<DefaultPage/>}/>
-                        <Route exact path="/competition/:sportid/:categoryid/:competitionid" element={<DefaultPage/>}/>
-                        <Route exact path="/highlights-competition/competition/:sportid/:categoryid/:competitionid"
-                               element={<DefaultPage/>}/>
-                        <Route exact path="/upcoming-competition/competition/:sportid/:categoryid/:competitionid"
-                               element={<DefaultPage/>}/>
-                        <Route exact path="/tomorrow-competition/competition/:sportid/:categoryid/:competitionid"
-                               element={<DefaultPage/>}/>
-
-                        <Route exact path="/live" element={<DefaultPage/>}/>
-                        <Route exact path="/live/:spid" element={<DefaultPage/>}/>
-
-                        <Route exact path="/match/:id" element={<DefaultPage/>}/>
-                        <Route exact path="/match/live/:id" element={<DefaultPage live/>}/> */}
-
+                      
                         <Route exact path="/login" element={<Login/>}/>
-                        <Route exact path="/share" element={<BetslipShareDecode/>}/>
-                        {/* <Route exact path="/livescore" element={<LiveScore/>}/> */}
                         <Route exact path="/404" element={<PageNotFound/>}/>
                         <Route exact path="/casino" element={<NewCasino/>}/>
-                        <Route exact path="/gameplay/:game_id/:live" element={<CasinoGamePlay/>}/>
-                        <Route exact path="/nare-games/:game" element={<SpribeGamePlay/>}/>
-                        <Route exact path="/nare-games" element={<SpribeGames/>}/>
+                       
                         <Route exact path="/smart-play" element={<SmartPlay/>}/>
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
 
@@ -207,8 +180,7 @@ const App =
                         <Route exact path="/betslip-nare" element={<BetslipPage/>}/>
                         <Route exact path="/betslip-jackpot" element={<BetslipPage/>}/>
 
-                        {/* <Route exact path="/live1" element={<Live/>}/>
-                        <Route exact path="/live1/:spid" element={<Live/>}/> */}
+                        
                         <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}/>
                         <Route exact path="/anti-money-laundering" element={<AntimoneyLaundering/>}/>
                         <Route exact path="/responsible-gambling" element={<ResponsibleGambling/>}/>
@@ -216,7 +188,6 @@ const App =
                         <Route exact path="/cookie-policy" element={<CookiePolicy/>}/>
                         <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}/>
                         <Route exact path="/how-to-play" element={<HowToPlay/>}/>
-                        {/*<Route exact path="/lobby" element={<Lobby/>}/>*/}
                         <Route exact path="/signup" element={<Signup/>}/>
                         <Route exact path="/leader-board" element={<LeaderBoard/>}/>
                         <Route exact path="/leader-boardx" element={<JetxLeaderBoard/>}/>
@@ -226,15 +197,13 @@ const App =
                         <Route exact path="/verify" element={<VerifyAccount/>}/>
                         <Route exact path="/logout" element={<Logout/>}/>
                         <Route exact path="/redirect" element={<Redirect/>}/>
-                        {/* <Route exact path="/print-matches" element={<PrintMatches/>}/> */}
                       
                         <Route exact path="/deposit"
                                element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
 
                         <Route exact path="/withdraw"
                                element={<ProtectedRoute><Withdraw/></ProtectedRoute>}/>
-                        {/* <Route exact path="/redeem-points"
-                               element={<ProtectedRoute><RedeemPoints/></ProtectedRoute>}/> */}
+                     
                     </Routes>
                 </Suspense>
 

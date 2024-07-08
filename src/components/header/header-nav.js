@@ -13,7 +13,6 @@ import {
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import { Link, useNavigate } from "react-router-dom";
 import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
-import { matchesSearch } from "../../redux/matchesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../redux/dataSlice";
 import { shouldShowSearch } from "../../redux/navigationAction";
@@ -27,17 +26,12 @@ const HeaderNav = React.memo((props) => {
   const pathname = window.location.pathname;
   const notShowSearch = dispatchRedux(shouldShowSearch(pathname));
   const [searching, setSearching] = useState(false);
-  const matchesData = useSelector(
-    (state) => state.matchesData.searched_matches
-  );
 
-  const [matches, setMatches] = useState([]);
+
   const searchInputRef = useRef(null);
   let navigate = useNavigate();
 
-  const active_sport_value = useSelector(
-    (state) => state.matchesData.active_sport
-  );
+
   var currentURL = new URL(window.location.href);
   var pathAndQuery = currentURL.pathname + currentURL.search;
 
@@ -49,21 +43,6 @@ const HeaderNav = React.memo((props) => {
     }
   }, [userData, getFromLocalStorage("user")]);
 
-  const fetchMatches = async (search) => {
-    if (search && search.length >= 3) {
-      gaEventTracker("Searching");
-      let method = "POST";
-      let endpoint = "/v1/matches?page=" + 1 + `&limit=${10}&search=${search}`;
-
-      dispatchRedux(
-        matchesSearch({
-          endpoint: endpoint,
-          method: method,
-          active_sport: active_sport_value,
-        })
-      );
-    }
-  };
 
   const showSearchBar = () => {
     setSearching(true);
@@ -71,14 +50,8 @@ const HeaderNav = React.memo((props) => {
     gaEventTracker("Clicked on Search");
   };
 
-  useEffect(() => {
-    setMatches(matchesData);
-  }, [matchesData]);
 
-  const dismissSearch = () => {
-    setSearching(false);
-    setMatches([]);
-  };
+
 
   const checkEnvironment = () => {
     setTest(window.location.hostname === "test.CrashKali.com");

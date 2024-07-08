@@ -71,13 +71,6 @@ const HeaderNav = React.memo((props) => {
     gaEventTracker("Clicked on Search");
   };
 
-  const launchAviator = (status) => {
-    if (status === "demo") {
-      navigate("/nare-games/aviator?status=demo");
-    } else {
-      navigate("/nare-games/aviator?status=live");
-    }
-  };
   useEffect(() => {
     setMatches(matchesData);
   }, [matchesData]);
@@ -145,53 +138,9 @@ const HeaderNav = React.memo((props) => {
             </Link>
           </li>
 
-          <li
-            className={pathname.includes("aviator") ? "active live-bg" : ""}
-            onClick={() => gaEventTracker("Aviator")}
-          >
-            <div
-              className="url-link fm anl cg ox"
-              onClick={() => {
-                launchAviator(user ? "live" : "demo");
-              }}
-              title="Aviator"
-            >
-              <strong>
-                <div className={"d-flex menu-item"}>Aviator</div>
-              </strong>
-            </div>
-          </li>
-          <li
-            className={pathname.includes("jetX") ? "active live-bg" : ""}
-            onClick={() => gaEventTracker("JetX")}
-          >
-            <div
-              className="url-link fm anl cg ox"
-              onClick={() => {
-                launchJetX();
-              }}
-              title="JetX"
-            >
-              <strong>
-                <div className={"d-flex menu-item"}>JetX</div>
-              </strong>
-            </div>
-          </li>
+        
 
-          {/* <li
-            className={
-              pathname.includes("live") &&
-              pathname.includes("new-casino") === false &&
-              pathname.includes("livescore") === false
-                ? "active"
-                : ""
-            }
-            onClick={() => gaEventTracker("Visit Live Page")}
-          >
-            <Link className={`url-link fm anl cg ox `} to="/live" title="Live">
-              <strong>Live</strong>
-            </Link>
-          </li> */}
+          
          
 
           <li className={`${pathname === "/casino" ? "active" : ""}`}>
@@ -209,37 +158,10 @@ const HeaderNav = React.memo((props) => {
             </div>
           </li>
 
-          {/* <li className={`${pathname === "/nare-league" ? "active" : ""}`}>
-            <div
-              className="url-link fm anl cg ox "
-              onClick={() => {
-                navigate("/nare-league");
-                gaEventTracker("Visit Big League Page");
-              }}
-              title="Big League"
-            >
-              <span>
-                <strong>Big League</strong>
-                <span className="hot-alert-badge-item">HOT</span>
-              </span>
-            </div>
-          </li> */}
+         
 
           
 
-          <li
-            className={pathname.includes("promotions") ? "active" : ""}
-            onClick={() => gaEventTracker("Visit Promotions Page")}
-          >
-            <Link
-              className="url-link fm anl cg ox"
-              to="/promotions"
-              title="Promotions"
-              onClick={() => gaEventTracker("Visit Promotion Page")}
-            >
-              <strong>Promotions</strong>
-            </Link>
-          </li>
         </ListGroup>
         <ListGroup
           as="ul"

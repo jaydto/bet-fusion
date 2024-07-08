@@ -81,7 +81,7 @@ const ProfileMenu = React.memo(
                             <div className="w-auto d-flex text-white align-items-start">
                                 <div className={"profile-wrap"} style={{color: "#FFB200"}}>
                                     <Link
-                                        to={{pathname: "/my-bets"}}
+                                        to={ "/bet-history?competition_id=2"}
                                         style={{color: "#FFB200", fontSize: "14px"}}
                                         title={'MY BETS'}>
                                       <span className="">

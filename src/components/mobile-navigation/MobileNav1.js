@@ -8,10 +8,6 @@ import league from "../../../src/assets/img/mobile/League.svg"
 //SVGs
 import soccer from "../../assets/svg/sports/Soccer.svg"
 import casino1 from "../../assets/img/mobile/Casino.svg"
-import jackpot from "../../assets/img/mobile/Jackpot.svg"
-import promo from "../../assets/svg/fire.svg"
-import aviator from "../../../src/assets/img/aviator.webp"
-import jetX from "../../../src/assets/img/mobile/jet.svg";
 
 
 import {getFromLocalStorage} from "../utils/local-storage";
@@ -156,97 +152,8 @@ const MobileNav1 = React.memo(
                         </div>
                     </td>
 
-                    <td className={`menu-t m-auto sport-check ${'/nare-games/aviator'===active_link ? " active_link" : "link-inactive"}`}>
-                        <div 
-                              className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                              onClick={() => {
-                                  gaEventTracker('Visit Aviator Page');
-                                  launchAviator(user?'live':'demo');
-                                  setActiveLink('/nare-games/aviator')
-                              }}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon "
-                                        src={aviator}
-                                        alt=""
-                                        style={{height: "26px", marginTop: "-1px", width:'41px'}}
-                                    />
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    Aviator
-                                </p>
-                            </div>
-                        </div>
-
-                    </td>
-                    <td
-              className={`menu-t m-auto sport-check ${
-                "/smart-play?game=JetX&category=JetX" === active_link
-                  ? " active_link"
-                  : "link-inactive"
-              }`}
-            >
-              <div
-                className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                onClick={() => {
-                  gaEventTracker("Visit JetX Page");
-                  launchJetX();
-                  setActiveLink("/smart-play?game=JetX&category=JetX");
-                }}
-              >
-                <div
-                  className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}
-                >
-                  <div className="menu-img ">
-                    <LazyLoadImage
-                      className="side-icon "
-                      src={jetX}
-                      alt=""
-                      style={{
-                        height: "26px",
-                        marginTop: "-4px",
-                        width: "41px",
-                      }}
-                    />
-                  </div>
-                  <p style={{ textAlign: "center", marginBottom: "unset" }}>
-                    JetX
-                  </p>
-                </div>
-              </div>
-            </td>
-                    
-                    {/* <td className={`menu-t m-auto sport-check nare-league ${'/nare-league'===active_link ? "active_link" : "link-inactive"}`}>
-                        <div
-                            className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                            onClick={() => {
-                                gaEventTracker('Visit Big League Page');
-                                setActiveLink('/nare-league');
-                                navigate('/nare-league')
-                            }} 
-                            >
-                            <div className={`inner-div  cg hot-alert ox anl url-link d-flex flex-column align-items-center  `}>
-
-                                <div className="menu-img  ">
-                                    <LazyLoadImage
-                                        className="side-icon"
-                                        src={league}
-                                        alt=""
-                                        effect='blur'
-                                        style={{height: "25px", marginTop: "0px"}}
-                                    />
-                                    <span className=" hot-alert-badge">HOT</span>
-
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    League
-                                </p>
-                            </div>
-                        </div>
-                    </td> */}
-                    
+                  
+            
 
                     <td className={`menu-t m-auto sport-check ${'/casino' ===active_link ? " active_link" : "link-inactive"} `}>
                         <div
@@ -276,69 +183,7 @@ const MobileNav1 = React.memo(
                     </td>
 
                     
-                    
 
-                    
-
-                    {/* {competitions?.all_sports.map((allsports, index) => {
-
-                        return allsports?.sport_id !== 79 && (
-                            <td key={index}
-                                className={`menu-t m-auto sport-check ${Number(active_link) === Number(allsports?.sport_id) ? 'active_link' : "link-inactive"}`}>
-                                <div
-                                    className={`inner-div more-sports cg ox anl url-link d-flex flex-column align-items-center `}
-                                    onClick={() => {
-                                        gaEventTracker(`Visit ${state?.active_sport}/${state?.active_sport_name}  Page`);
-                                        setActiveLink(allsports?.sport_id);
-                                        navigate(`/highlights?sport_id=${allsports.sport_id}&sub_type_id=${getDefaultMarketsForSport(allsports)}&sport_name=${allsports.sport_name}`)
-                                    }}
-                                    >
-                                    <div className="inner-div cg ox anl url-link d-flex flex-column align-items-center">
-                                        <div className="menu-img">
-                                            <LazyLoadImage
-                                                className="side-icon"
-                                                src={getSportImageIcon(allsports?.sport_name)}
-                                                alt=""
-                                                effect='blur'
-                                                style={{height: "23px", marginTop: "-1px"}}
-                                            />
-                                        </div>
-                                        <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                            {allsports?.sport_name}
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                        );
-                    })} */}
-                    <td className={`menu-t m-auto sport-check ${'/promotions' === active_link ? "active_link" : "link-inactive"} `}>
-                        <div
-                            className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                            onClick={() => {
-                                gaEventTracker('Visit Promotion Page');
-                                setActiveLink('/promotions');
-                                navigate(`/promotions`)
-                            }} >
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon"
-                                        src={promo}
-                                        alt=""
-                                        effect='blur'
-                                        style={{height: "23px", marginTop: "-6px"}}
-                                    />
-                                    <span className="badge rounded-pill bg-warning text-dark promo-count ">
-                                        8
-                                </span>
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    Promo
-                                </p>
-                            </div>
-                        </div>
-
-                    </td>
                 </tr>
                 </tbody>
             </table>

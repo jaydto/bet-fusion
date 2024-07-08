@@ -217,15 +217,21 @@
 .kiron-tabs-padding{
     border-right:thin solid var(--bet-history);
 }
+.kiron-bet-history-tabs{
+    align-items: center;
+        display: flex;
+}
 @media (max-width: 991px) and (min-width: 768px){
     .kiron-bet-history-tabs{
         margin-top:3rem;
+       
     }
     .kiron-bet-history-badge{
         min-height:2.4rem;
     }
 }
 @media (max-width: 767px) {
+    
     .kiron-bet-history-badge{
         min-height:2rem;
     }
@@ -270,8 +276,9 @@
         float: right;
     }
     .kiron-bet-history-tabs {
-        margin-top: 3rem;
+        margin-top: 8.5rem;
         padding-right: 0.5rem;
+    
     }
 
 }

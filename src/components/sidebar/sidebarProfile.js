@@ -52,7 +52,7 @@ const SidebarProfile = React.memo(
 
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
-                        <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/my-bets"}>
+                        <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/bet-history?id=2"}>
                             <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:'24px'}}/>
                             <div className={'text-profile'} >My Bets</div>
                         </Link>
@@ -77,15 +77,7 @@ const SidebarProfile = React.memo(
                         </Link>
                     </MenuItem>
                 </Menu>
-                <Menu>
-                    <MenuItem>
-                        <Link className={"d-flex gap-4 align-items-center px-3"} to={"/redeem-points"}>
-                            <FontAwesomeIcon icon={faAddressBook} style={{fontSize:'24px'}}/>
-                            <div className={'text-profile'} >Points</div>
-                        </Link>
-
-                    </MenuItem>
-                </Menu>
+                
                 <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
@@ -106,14 +98,7 @@ const SidebarProfile = React.memo(
                 {/*        </Link>*/}
                 {/*    </MenuItem>*/}
                 {/*</Menu>*/}
-                <Menu>
-                    <MenuItem>
-                        <div className={"d-flex gap-4 align-items-center text-profile px-3"}>
-                            <FontAwesomeIcon icon={faMagic} style={{fontSize:'24px'}}/>
-                            <Link to={"/promotions"} className={'text-profile'}>Promotions</Link>
-                        </div>
-                    </MenuItem>
-                </Menu>
+                
                 <Menu>
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>

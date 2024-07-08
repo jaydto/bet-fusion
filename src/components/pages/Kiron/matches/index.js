@@ -477,9 +477,9 @@ const   OddButton = React.memo(
 
 const MatchList = React.memo(
     (props) => {
-      const matchesData=useSelector((state)=>state.nareLeague.matches_data)
-      const loading=useSelector((state)=>state.nareLeague.loading)
-      const competition_id=useSelector((state)=>state.nareLeague.competition_id)
+      const matchesData=useSelector((state)=>state.virtualLeague.matches_data)
+      const loading=useSelector((state)=>state.virtualLeague.loading)
+      const competition_id=useSelector((state)=>state.virtualLeague.competition_id)
   const {
     pdown,
     three_way

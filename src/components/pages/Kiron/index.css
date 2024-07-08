@@ -399,7 +399,7 @@
 @media (max-width: 767px){
     .standings-container-heading {
         position: fixed;
-        top: 18.4rem!important;
+        top: 25.4rem!important;
         width: 100vw;
         background: var(--orange);
         z-index: 100;
@@ -420,10 +420,10 @@
         z-index: 1999;
         width: 100%;
         background: var(--CrashKali-header-bg);
-        top: 24.1rem!important;
+        top: 21.1rem!important;
     }
     .kiron_matches_now {
-        margin-top: 11rem!important;
+        margin-top: 9rem!important;
         background: var(--CrashKali-primary);
     }
 }
@@ -561,7 +561,7 @@
     }
     .standings-container-heading {
         position: fixed;
-        top: 21.2rem;
+        top: 22.2rem;
         width: 100vw;
         background: var(--orange);
         z-index: 100;
@@ -582,7 +582,7 @@
         z-index: 1999;
         width: 100%;
         background: var(--CrashKali-header-bg);
-        top: 16rem;
+        top: 22rem;
     }
     .kiron_matches_now {
         margin-top: 15.6rem;
@@ -593,7 +593,7 @@
         position: relative;
     }
     .kiron-body-pages {
-        margin-top: 15.3rem;
+        margin-top: 18.3rem;
         position: relative;
     }
 

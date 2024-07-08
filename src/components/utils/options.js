@@ -3,7 +3,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import {getFromLocalStorage} from "./local-storage";
 import {useDispatch} from "react-redux";
-import {setState} from "../../redux/nareLeague";
+import {setState} from "../../redux/virtualLeague";
 
 const LinkOption = React.memo(
     (props) => {

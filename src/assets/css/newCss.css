@@ -963,7 +963,6 @@ input:placeholder-shown {
 }
 
 .width-page-centric.pass-reset-page {
-  box-shadow: 5px 7px 30px 8px var(--btn-color);
   width: 60%;
   margin: auto;
   min-height: 600px;
@@ -2014,7 +2013,20 @@ img.nare-league {
   }
 }
 
+.button.btn-prev {
+  background: #4361ee;
+  border: none;
+  border-radius: 4px;
+  padding: 1px 17px;
+}
+
 @media (min-width: 992px) {
+  .login-page.user-page{
+    box-shadow:5px 7px 30px 8px var(--btn-color);
+  }
+  .width-page-centric.pass-reset-page {
+    box-shadow: 5px 7px 30px 8px var(--btn-color);
+  }
   .ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
         top: 100px!important;
   }

@@ -5,7 +5,7 @@ import initialState from './state'
 // Import your individual reducers here
 import dataReducer from "./dataSlice"
 import authReducer from "./authSlice"
-import nareLeagueReducer from "./nareLeague"
+import virtualLeagueReducer from "./virtualLeague"
 import bettingReducer from "./bettingSlice"
 import matchesReducer from "./matchesSlice"
 import virtualsReducer from './virtualsSlice';
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     // Add your individual reducers here
     data: dataReducer,
     auth: authReducer,
-    nareLeague: nareLeagueReducer,
+    virtualLeague: virtualLeagueReducer,
     betting: bettingReducer,
     matchesData:matchesReducer,
     virtuals: virtualsReducer,

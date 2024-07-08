@@ -6,7 +6,6 @@ import { Badge } from "react-bootstrap";
 import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
 import useWindowDimensions from "../header/Dimensions";
-import JackpotMenu from "../mobile-menu/jackpotMenu";
 import { StoreContext } from "../../context/store";
 import { getFromLocalStorage } from "../utils/local-storage";
 import { useDispatch, useSelector } from "react-redux";
@@ -137,7 +136,7 @@ const Right = React.memo((props) => {
             <div className="bet-option-list " id="">
               <div className="bet alu block-shadow">
                 <header className={"d-flex justify-content-between gap-2"}>
-                  <div className="betslip-header d-flex justify-content-between w-100">
+                  <div className="betslip-header d-flex justify-content-between w-100 align-items-center">
                     <span className="col-sm-2 bkmrk d-none">
                       <i className="fa fa-bookmark" aria-hidden="true"></i>
                     </span>
@@ -191,16 +190,14 @@ const Right = React.memo((props) => {
         }  
                       fixed-bottom text-center text-white bet-slip-footer-toggle`}
       >
-        {pathname == "/jackpot" ? (
-          <JackpotMenu jackpotData={jackpotData} matches={matches} />
-        ) : (
+        
           <MobileMenu
             jackpot={jackpot}
             betslipValidationData={betslipValidationData}
             jackpotData={jackpotData}
             kiron={kiron}
           />
-        )}
+      
       </div>
     </div>
   );

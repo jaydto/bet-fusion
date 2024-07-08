@@ -14,9 +14,7 @@ import {useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../../redux/dataSlice";
 
-const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
-const Right = React.lazy(()=>import('../../right/index'));
 
 
 
@@ -43,9 +41,8 @@ const CookiePolicy = () => {
     return (
         <div className={'flex-item'}>
             <div className="flex-container height-default-body top-diff-pages">
-                <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
-                    <div className="gz home w-100">
+                <div className="home" style={{margin:"auto", width:"991px"}}>
                         <div className="homepage">
                             <div className='col-md-12 primary-bg p-4 text-center'>
                                 <div className={'d-flex align-items-center'}>
@@ -142,7 +139,6 @@ const CookiePolicy = () => {
                         </div>
                     </div>
                 </div>
-                <div className="item3 mobile-remove"><Right  test={true}/></div>
 
             </div>
             <div className="item6"><div className={"footer-mobile-none"}>

@@ -56,7 +56,7 @@ const TermsAndConditions = React.memo(
                     {/* <div className="item1" ><SideBar
                         loadCompetitions/></div> */}
                     <div className={`item2 `} >
-                        <div className="gz home match-overflow">
+                        <div className="home" style={{margin:"auto", width: "991px"}}>
                             <div className="homepage mobile-full-height">
                                 <div className='col-md-12 primary-bg p-4 text-center'>
                                     <div className={'d-flex align-items-center'}>

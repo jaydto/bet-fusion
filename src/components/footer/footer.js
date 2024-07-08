@@ -48,7 +48,7 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
         <div
-          className="col-xs-12 col-sm-6 col-md-3 col-lg-3"
+          className="col-xs-12 col-sm-6 col-md-3 col-lg-4"
           style={deposit2 && { width: "50%" }}
         >
           <h5 className={""}>TERMS AND CONDITIONS</h5>
@@ -71,7 +71,7 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
         <div
-          className="col-xs-12 col-sm-6 col-md-3 col-lg-3 mobile-only"
+          className="col-xs-12 col-sm-6 col-md-3 col-lg-4 mobile-only"
           style={deposit2 && { width: "50%" }}
         >
           <h5 className={""}>RESPONSIBLE GAMBLING</h5>
@@ -112,7 +112,7 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
         <div
-          className="col-xs-12 col-sm-6 col-md-3 col-lg-3"
+          className="col-xs-12 col-sm-6 col-md-3 col-lg-4"
           style={deposit2 && { width: "50%" }}
         >
           <h5 className={""}>LEGAL</h5>
@@ -162,16 +162,7 @@ const Footer = React.memo((props) => {
             </li>
           </ul>
         </div>
-        <div
-          className="col-xs-12 col-sm-6 col-md-3 col-lg-3"
-          style={deposit2 && { width: "50%" }}
-        >
-          <h5 className={""}>LICENSING</h5>
-          <p>
-            We are licensed and regulated by the Betting Control and Licensing
-            Board BCLB 0000540
-          </p>
-        </div>
+       
       </div>
       <div className="container" id="navbar-collapse-main">
         <div className="footer-bottom text-center">

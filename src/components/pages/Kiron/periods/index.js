@@ -4,13 +4,13 @@ import "./period.css";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch hook
 import {
-  nareLeagueMatches,
-  nareLeaguePeriods,
-  nareLeaguePlayouts,
+  virtualLeagueMatches,
+  virtualLeaguePeriods,
+  virtualLeaguePlayouts,
   resetState,
   setState,
   setTimerData,
-} from "../../../../redux/nareLeague";
+} from "../../../../redux/virtualLeague";
 
 export const getTime = (dateTime) => {
   // Split the input date-time string into date and time parts
@@ -36,25 +36,25 @@ const KironPeriods = React.memo((props) => {
   const dispatchRedux = useDispatch();
   const firstMatchEndTime = getFromLocalStorage("kiron_end_time"); // Use empty object as default value if kiron_search_data is null or undefined
   const kironPeriodsRef = useRef(null);
-  const competition = useSelector((state) => state.nareLeague.competition_id);
+  const competition = useSelector((state) => state.virtualLeague.competition_id);
   const competition_id =
     Number(new URL(window.location).searchParams.get("competition_id")) ||
     competition;
-  // Access the nareLeague period states
-  const periodsData = useSelector((state) => state.nareLeague.periods_data);
-  const periodsReady = useSelector((state) => state.nareLeague.periods_ready);
-  const periodFirst = useSelector((state) => state.nareLeague.start_time);
-  const time_left = useSelector((state) => state.nareLeague.time_left);
-  const play_time = useSelector((state) => state.nareLeague.play_time);
-  const inPlay = useSelector((state) => state.nareLeague.inPlay);
-  const round_id = useSelector((state) => state.nareLeague.round_id);
-  const market_id = useSelector((state) => state.nareLeague.active_market);
+  // Access the virtualLeague period states
+  const periodsData = useSelector((state) => state.virtualLeague.periods_data);
+  const periodsReady = useSelector((state) => state.virtualLeague.periods_ready);
+  const periodFirst = useSelector((state) => state.virtualLeague.start_time);
+  const time_left = useSelector((state) => state.virtualLeague.time_left);
+  const play_time = useSelector((state) => state.virtualLeague.play_time);
+  const inPlay = useSelector((state) => state.virtualLeague.inPlay);
+  const round_id = useSelector((state) => state.virtualLeague.round_id);
+  const market_id = useSelector((state) => state.virtualLeague.active_market);
   const current_selection_period = useSelector(
-    (state) => state.nareLeague.current_selection_period
+    (state) => state.virtualLeague.current_selection_period
   );
-  const game_week = useSelector((state) => state.nareLeague.game_week);
-  const Ended = useSelector((state) => state.nareLeague.ended);
-  const timeSet = useSelector((state) => state.nareLeague.time_set);
+  const game_week = useSelector((state) => state.virtualLeague.game_week);
+  const Ended = useSelector((state) => state.virtualLeague.ended);
+  const timeSet = useSelector((state) => state.virtualLeague.time_set);
 
   const fetchData = useCallback(async () => {
     const newCompetition = {
@@ -62,7 +62,7 @@ const KironPeriods = React.memo((props) => {
         Number(new URL(window.location).searchParams.get("competition_id")) ||
         Number(competition_id),
     };
-    await dispatchRedux(nareLeaguePeriods(newCompetition));
+    await dispatchRedux(virtualLeaguePeriods(newCompetition));
   }, [competition_id]);
 
   // track when competiton_id changes and resets for all previous states
@@ -152,10 +152,10 @@ const KironPeriods = React.memo((props) => {
     }
     if (timeSet) {
       if (inPlay && !current_selection_period) {
-        dispatchRedux(nareLeaguePlayouts(data)); // Dispatch nareLeaguePlayouts async thunk
+        dispatchRedux(virtualLeaguePlayouts(data)); // Dispatch virtualLeaguePlayouts async thunk
         dispatchRedux(resetState("matches_data"));
       } else if (!inPlay && !current_selection_period) {
-        dispatchRedux(nareLeagueMatches(dataMatches)); // Dispatch nareLeagueMatches async thunk
+        dispatchRedux(virtualLeagueMatches(dataMatches)); // Dispatch virtualLeagueMatches async thunk
         dispatchRedux(resetState("playouts_data"));
         if (Ended) {
           dispatchRedux(resetState("ended"));
@@ -172,7 +172,7 @@ const KironPeriods = React.memo((props) => {
           if (play_time < 1 && time_left === "0:00") {
             return;
           }
-          dispatchRedux(nareLeagueMatches(dataMatches)); // Dispatch nareLeagueMatches async thunk
+          dispatchRedux(virtualLeagueMatches(dataMatches)); // Dispatch virtualLeagueMatches async thunk
         }
       }
     }

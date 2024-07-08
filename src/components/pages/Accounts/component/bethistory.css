@@ -2,7 +2,7 @@
     padding: 10px;
     margin: 5px 10px;
     border: 1px solid var(--bet-history);
-    background-color: var(--bet-history);
+    background-color: var(--CrashKali-header-bg);
     border-radius: 8px;
     line-height: 2;
 }
@@ -13,7 +13,7 @@
     gap: 1px;
 }
 .cashout-divider{
-    border: 1px solid #1f2e3c;
+    border: 1px solid var(--CrashKali-header-bg);
 }
 .type{
     font-weight: var(--font-weight3);
@@ -136,7 +136,7 @@
     padding: 8px 12px;
     /*border: thin solid;*/
     border-radius: 10px;
-    background: var(--bet-history);
+    background: var(--CrashKali-header-bg);
 }
 .history-details-padding{
     padding-right:1rem;
@@ -204,7 +204,7 @@ font-weight: 900;
     padding: 18px;
     /* border: thin solid; */
     border-radius: 10px;
-    background: var(--bet-history);
+    background: var(--CrashKali-header-bg);
 }
 .filter-buttons-bethistory{
 

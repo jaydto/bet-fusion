@@ -86,13 +86,10 @@ const SmartSoftPlay = React.lazy(() => import('./components/pages/smart-soft/sma
 
 const SmartPlay = React.lazy(() => import('./components/pages/smart-soft/SmartPlay'))
 
-const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
 
-const LiveScore = React.lazy(() => import('./components/pages/livescore/LiveScore'))
 
 const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 
-const ShaksGamePlay = React.lazy(() => import('./components/pages/shaks/ShaksGamePlay'))
 
 const Kiron = React.lazy(() => import('./components/pages/Kiron'))
 
@@ -102,7 +99,6 @@ const Login = React.lazy(() => import('./components/pages/loginTwo'));
 
 const NewProfile = React.lazy(() => import( "./components/pages/Accounts/NewProfile"));
 
-const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
 
 const Logout = () => {
     const {dispatch} = useContext(StoreContext);
@@ -198,7 +194,6 @@ const App =
                         <Route exact path="/nare-games" element={<SpribeGames/>}/>
                         <Route exact path="/smart-play" element={<SmartPlay/>}/>
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
-                        <Route exact path="/shaks/:game" element={<ShaksGamePlay/>}/>
 
                         <Route exact path={"/"} element={<Kiron/>}/>
                         <Route exact path={"/results"} element={<Kiron/>}/>
@@ -232,8 +227,7 @@ const App =
                         <Route exact path="/logout" element={<Logout/>}/>
                         <Route exact path="/redirect" element={<Redirect/>}/>
                         {/* <Route exact path="/print-matches" element={<PrintMatches/>}/> */}
-                        <Route exact path="/promotions" element={<Promotions/>}/>
-                        <Route exact path="/promo" element={<Promo/>}/>
+                      
                         <Route exact path="/deposit"
                                element={<ProtectedRoute><Deposit3/> </ProtectedRoute>}/>
 

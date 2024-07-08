@@ -17,11 +17,11 @@ import {FormatDate} from "./KironBetHistory"; // Import useDispatch hook
 const BetDetails = React.memo(
     (props) => {
         const {betID} = useParams()
-        const loading = useSelector((state) => state.nareLeague.loading)
+        const loading = useSelector((state) => state.virtualLeague.loading)
         const [collapsed, setCollapsed] = useState([]);
         const [collapsedAll, setCollapsedAll] = useState(false);
-        const betDetails = useSelector((state) => state.nareLeague.bet_details_data)
-        const activeBetHistory = useSelector((state) => state.nareLeague.bet_history_data)
+        const betDetails = useSelector((state) => state.virtualLeague.bet_details_data)
+        const activeBetHistory = useSelector((state) => state.virtualLeague.bet_history_data)
 
 
         // Empty dependency array to run the effect only once when the component mounts

@@ -1,6 +1,8 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
 import authImg from '../../assets/img/logo.png'
+import gameDay from "../../assets/svg/game_bg.svg";
+
 import {Link, useNavigate} from "react-router-dom";
 import HeaderLogin from "../header/top-login";
 import {getFromLocalStorage, setLocalStorage} from "../utils/local-storage";
@@ -12,9 +14,11 @@ import {StoreContext} from "../../context/store";
 import {useSelector} from "react-redux";
 
 const backgroundStyle = {
-    // backgroundImage: `url(${backgroundURL})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover'
+    background:`url(${gameDay})`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+//   backgroundPosition:"bottom",
+  backgroundAttachment:"fixed"
 }
 
 const LoginTwo = React.memo(

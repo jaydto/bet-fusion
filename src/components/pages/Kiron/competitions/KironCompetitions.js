@@ -5,12 +5,12 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage} from "../../../utils/local-storage";
 import "./competition.css"
 import {useDispatch, useSelector} from 'react-redux'; // Import useDispatch hook
-import {nareLeagueCompetitions, setState} from '../../../../redux/nareLeague';
+import {virtualLeagueCompetitions, setState} from '../../../../redux/virtualLeague';
 
 const KironCompetitions = React.memo(
     () => {
         const dispatchRedux = useDispatch()
-        const active_competition = useSelector((state) => state.nareLeague.competition_id)
+        const active_competition = useSelector((state) => state.virtualLeague.competition_id)
         const pathLocation = window.location.pathname
         const [pathname, setPathname] = useState(() => {
             const searchParams = new URLSearchParams(window.location.search);
@@ -39,13 +39,13 @@ const KironCompetitions = React.memo(
             let cached_competitions = getFromLocalStorage('kiron-competitions');
 
             if (!cached_competitions) {
-                dispatchRedux(nareLeagueCompetitions())
+                dispatchRedux(virtualLeagueCompetitions())
             }
 
         }, []);
 
-        const competitionData = useSelector((state) => state.nareLeague.competitions_data) || getFromLocalStorage('kiron-competitions')
-        const error = useSelector((state) => state.nareLeague.error)
+        const competitionData = useSelector((state) => state.virtualLeague.competitions_data) || getFromLocalStorage('kiron-competitions')
+        const error = useSelector((state) => state.virtualLeague.error)
 
         useEffect(() => {
             const abort = new AbortController();

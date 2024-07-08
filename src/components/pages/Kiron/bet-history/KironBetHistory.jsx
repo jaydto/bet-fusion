@@ -9,11 +9,11 @@ import { useNavigate, useParams} from 'react-router-dom';
 
 import {useDispatch, useSelector} from 'react-redux'; // Import useDispatch hook
 import {
-    nareLeagueBetDetails,
-    nareLeagueBetHistory,
-    nareLeagueOldBetDetails,
-    nareLeagueOldBets, resetState
-} from '../../../../redux/nareLeague';
+    virtualLeagueBetDetails,
+    virtualLeagueBetHistory,
+    virtualLeagueOldBetDetails,
+    virtualLeagueOldBets, resetState
+} from '../../../../redux/virtualLeague';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXbox} from "@fortawesome/free-brands-svg-icons";
 import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
@@ -77,21 +77,21 @@ const KironBetHistory = React.memo(
         const {betID} = useParams()
 
         const [activeTab, setActiveTab] = useState(getFromLocalStorage("tab_history_kiron") || "active");
-        const loading = useSelector((state) => state.nareLeague.loading)
+        const loading = useSelector((state) => state.virtualLeague.loading)
         //functions to fetch active and old bets from the API
         const fetchData = useCallback(async () => {
-            dispatchRedux(nareLeagueBetHistory())
+            dispatchRedux(virtualLeagueBetHistory())
         }, []);
 
         const fetchOldBetDetails = useCallback(async () => {
             const data = {
                 'bet_id': betID
             };
-            await dispatchRedux(nareLeagueOldBetDetails(data))
+            await dispatchRedux(virtualLeagueOldBetDetails(data))
         }, [betID]);
 
         const fetchOldBets = useCallback(async () => {
-            dispatchRedux(nareLeagueOldBets())
+            dispatchRedux(virtualLeagueOldBets())
         }, []);
 
         const fetchActiveBetDetails = useCallback(async () => {
@@ -99,7 +99,7 @@ const KironBetHistory = React.memo(
             const betIdData = {
                 bet_id: betID,
             };
-            await dispatchRedux(nareLeagueBetDetails(betIdData))
+            await dispatchRedux(virtualLeagueBetDetails(betIdData))
 
         },[betID]);
 
@@ -136,8 +136,8 @@ const KironBetHistory = React.memo(
 
 
 
-        const activeBetHistory = useSelector((state) => state.nareLeague.bet_history_data)
-        const oldBetHistory = useSelector((state) => state.nareLeague.old_bets_data)
+        const activeBetHistory = useSelector((state) => state.virtualLeague.bet_history_data)
+        const oldBetHistory = useSelector((state) => state.virtualLeague.old_bets_data)
 
         const OldBets = React.memo(
             () => {

@@ -46,7 +46,7 @@ const PrivacyPolicy = React.memo(() => {
       <div className="flex-container height-default-body top-diff-pages">
         <div className="item1"> {/* <SideBar loadCompetitions /> */}</div>
         <div className="item2" style={{ width: "100%" }}>
-          <div className="gz home w-100">
+        <div className="home" style={{margin:"auto", width:"991px"}}>
             <div className="homepage">
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>

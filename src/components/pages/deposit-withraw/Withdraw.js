@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
-import authImg from '../../../assets/img/Logo.webp'
+import authImg from '../../../assets/img/logo.png'
 
 import {Link, useNavigate} from "react-router-dom";
 
@@ -20,7 +20,6 @@ import {useDispatch, useSelector} from "react-redux";
 import { userWithdrawal} from "../../../redux/dataSlice";
 import {userBalance} from "../../../redux/authSlice";
 const backgroundStyle = {
-    backgroundImage: `url(${backgroundURL})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
 }
@@ -97,7 +96,7 @@ const Withdraw = React.memo(
 
 
         return (
-            <div style={{height: '100vh', background: '#16202C'}}>
+            <div style={{height: '100vh'}}>
                 <Header2/>
                 <ToastContainer/>
                 <Row justify="center" className="align-items-stretch h-100">
@@ -113,8 +112,7 @@ const Withdraw = React.memo(
                                         <LazyLoadImage className="img-fluid mb-5" src={authImg} alt=""/>
                                     </Link>
 
-                                    <h1 className="text-white text-center" style={{fontSize: "30px"}}>Withdraw Cash From
-                                        Your Account</h1>
+                                
 
                                 </Col>
                             </Row>
@@ -150,7 +148,7 @@ const Withdraw = React.memo(
                                             <div className={"d-flex flex-row justify-content-between"}>
                                                 <div className=" w-100">
                                                     <div
-                                                        className="homepage d-flex  flex-column align-items-center  login-page">
+                                                        className="homepage d-flex  flex-column align-items-center  login-page user-page">
 
                                                         <Alert/>
                                                         <div className=" pb-0" data-backdrop="static">

@@ -1,6 +1,6 @@
 :root {
     --CrashKali-primary: rgba(5, 49, 104, 0.75);
-    --CrashKali-secondary: #2c3c44;
+    --CrashKali-secondary: #08306B;
     --CrashKali-footer:#08306B;
     --footer-color:#fff;
     --CrashKali-button-login: #f5821f;
@@ -8,6 +8,7 @@
     --CrashKali-button-register: #ffffff;
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
     --CrashKali-header-bg:#030d41;
+    --Crashkali-lite:#032558;
     --CrashKali-body-bg:#08306B;
     --hot:#f66203;
     --profile-card:#040b2e;

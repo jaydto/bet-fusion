@@ -9,6 +9,7 @@ import {
   setTrackingData,
 } from "../../utils/local-storage";
 import only18 from "../../../assets/img/auth/18only.png";
+import gameDay from "../../../assets/svg/game_bg.svg";
 import kenyan from '../../../assets/svg/kenya.svg'
 
 
@@ -28,8 +29,11 @@ import Header2 from "../../header/Header2";
 import { Dropdown } from "react-bootstrap";
 
 const backgroundStyle = {
+  background:`url(${gameDay})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
+//   backgroundPosition:"bottom",
+  backgroundAttachment:"fixed"
 };
 
 const RegisterTwo = () => {
@@ -135,7 +139,7 @@ const RegisterTwo = () => {
                         className={"d-flex flex-row justify-content-between"}
                       >
                         <div className=" w-100">
-                          <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
+                          <div className="homepage d-flex flex-column align-items-center justify-content-center login-page user-page">
                             <div className="col-md-12 mt-2 text-white p-2 w-100">
                               <div className="pb-0" data-backdrop="static">
                                 <ToastContainer />

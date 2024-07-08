@@ -1,11 +1,11 @@
-// nareLeagueSlice.js
+// virtualLeagueSlice.js
 import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";// Import the makeRequest function
 import {setLocalStorage} from "../components/utils/local-storage";
-// Async thunk for nareLeague
-export const nareLeaguePeriods =
-    createAsyncThunk("nareLeague/periods",
+// Async thunk for virtualLeague
+export const virtualLeaguePeriods =
+    createAsyncThunk("virtualLeague/periods",
     async (periodsData) => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/periods",
@@ -18,22 +18,22 @@ export const nareLeaguePeriods =
             throw new Error(response?.error || "Fetching Periods failed");
         }
     });
-export const nareLeagueBetDetails =
-    createAsyncThunk("nareLeague/betDetails",
-    async (betDetailsData) => {
-        const [status, response] = await makeRequest({
-            url: "/v1/nare-league/bet-details",
-            method: "POST",
-            data: betDetailsData,
+    export const virtualLeagueBetDetails =
+        createAsyncThunk("virtualLeague/betDetails",
+        async (betDetailsData) => {
+            const [status, response] = await makeRequest({
+                url: "/v1/nare-league/bet-details",
+                method: "POST",
+                data: betDetailsData,
+            });
+            if (status === 200) {
+                return response;
+            } else {
+                throw new Error(response?.error || "Fetching betDetails failed");
+            }
         });
-        if (status === 200) {
-            return response;
-        } else {
-            throw new Error(response?.error || "Fetching betDetails failed");
-        }
-    });
-export const nareLeagueBetHistory =
-    createAsyncThunk("nareLeague/betHistory",
+export const virtualLeagueBetHistory =
+    createAsyncThunk("virtualLeague/betHistory",
     async () => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/bet-history",
@@ -45,8 +45,8 @@ export const nareLeagueBetHistory =
             throw new Error(response?.error || "Fetching BetHistory failed");
         }
     });
-export const nareLeagueOldBetDetails =
-    createAsyncThunk("nareLeague/oldBetDetails",
+export const virtualLeagueOldBetDetails =
+    createAsyncThunk("virtualLeague/oldBetDetails",
     async (betDetailsData) => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/old-bet-details",
@@ -59,8 +59,8 @@ export const nareLeagueOldBetDetails =
             throw new Error(response?.error || "Fetching BetHistory failed");
         }
     });
-export const nareLeagueOldBets =
-    createAsyncThunk("nareLeague/nareLeagueOldBets",
+export const virtualLeagueOldBets =
+    createAsyncThunk("virtualLeague/virtualLeagueOldBets",
         async () => {
             const [status, response] = await makeRequest({
                 url: "/v1/nare-league/old-bets",
@@ -69,11 +69,11 @@ export const nareLeagueOldBets =
             if (status === 200) {
                 return response;
             } else {
-                throw new Error(response?.error || "Fetching nareLeagueOldBets failed");
+                throw new Error(response?.error || "Fetching virtualLeagueOldBets failed");
             }
         });
-export const nareLeagueMarkets =
-    createAsyncThunk("nareLeague/markets",
+export const virtualLeagueMarkets =
+    createAsyncThunk("virtualLeague/markets",
     async () => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/markets",
@@ -85,8 +85,8 @@ export const nareLeagueMarkets =
             throw new Error(response?.error || "Fetching Markets failed");
         }
     });
-export const nareLeagueMatches =
-    createAsyncThunk("nareLeague/matches",
+export const virtualLeagueMatches =
+    createAsyncThunk("virtualLeague/matches",
     async (matchesData) => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/matches",
@@ -99,9 +99,9 @@ export const nareLeagueMatches =
             throw new Error(response?.error || "Fetching Big League Matches failed");
         }
     });
-export const nareLeagueStandings =
+export const virtualLeagueStandings =
     createAsyncThunk(
-    "nareLeague/standings",
+    "virtualLeague/standings",
     async (standingsData) => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/standings",
@@ -116,9 +116,9 @@ export const nareLeagueStandings =
 
     }
 );
-export const nareLeagueResults =
+export const virtualLeagueResults =
     createAsyncThunk(
-    "nareLeague/results",
+    "virtualLeague/results",
     async (resultsData) => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/results",
@@ -133,9 +133,9 @@ export const nareLeagueResults =
 
     }
 );
-export const nareLeaguePlayouts =
+export const virtualLeaguePlayouts =
     createAsyncThunk(
-    "nareLeague/playouts",
+    "virtualLeague/playouts",
     async (playoutsData) => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/live",
@@ -150,9 +150,9 @@ export const nareLeaguePlayouts =
 
     }
 );
-export const nareLeagueCompetitions =
+export const virtualLeagueCompetitions =
     createAsyncThunk(
-    "nareLeague/competitions",
+    "virtualLeague/competitions",
     async () => {
         const [status, response] = await makeRequest({
             url: "/v1/nare-league/competitions",
@@ -178,65 +178,65 @@ export const setTimerData =
     createAction("betting/timerData", (stateToSet,data) => {
         return {payload:{stateToSet, data} };
     });
-const nareLeagueSlice = createSlice({
-    name: "nareLeague",
+const virtualLeagueSlice = createSlice({
+    name: "virtualLeague",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(nareLeagueMatches.pending, (state) => {
+            .addCase(virtualLeagueMatches.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueMatches.fulfilled, (state, action) => {
+            .addCase(virtualLeagueMatches.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
                 state.matches_data=action.payload
             })
-            .addCase(nareLeagueMatches.rejected, (state, action) => {
+            .addCase(virtualLeagueMatches.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeaguePlayouts.pending, (state) => {
+            .addCase(virtualLeaguePlayouts.pending, (state) => {
                 state.loading = false;
             })
-            .addCase(nareLeaguePlayouts.fulfilled, (state, action) => {
+            .addCase(virtualLeaguePlayouts.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
                 state.playouts_data=action.payload
             })
-            .addCase(nareLeaguePlayouts.rejected, (state, action) => {
+            .addCase(virtualLeaguePlayouts.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeagueStandings.pending, (state) => {
+            .addCase(virtualLeagueStandings.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueStandings.fulfilled, (state, action) => {
+            .addCase(virtualLeagueStandings.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
                 state.loading=false;
                 state.standings_data=action.payload;
             })
-            .addCase(nareLeagueStandings.rejected, (state, action) => {
+            .addCase(virtualLeagueStandings.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeagueResults.pending, (state) => {
+            .addCase(virtualLeagueResults.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueResults.fulfilled, (state,action) => {
+            .addCase(virtualLeagueResults.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
                 state.results_data = action.payload;
             })
-            .addCase(nareLeagueResults.rejected, (state, action) => {
+            .addCase(virtualLeagueResults.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeagueMarkets.pending, (state) => {
+            .addCase(virtualLeagueMarkets.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueMarkets.fulfilled, (state,action) => {
+            .addCase(virtualLeagueMarkets.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
                 state.markets_data=action.payload
@@ -249,19 +249,19 @@ const nareLeagueSlice = createSlice({
                 state.market_options=labeledOptions
                 setLocalStorage('kiron-more', labeledOptions);
             })
-            .addCase(nareLeagueMarkets.rejected, (state, action) => {
+            .addCase(virtualLeagueMarkets.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeaguePeriods.pending, (state) => {
+            .addCase(virtualLeaguePeriods.pending, (state) => {
                 // state.loading = true;
                 state.periods_ready=false
                 state.time_set = false; // Reset timeAfter when periods are fetched
                 state.inPlay=false
 
             })
-            .addCase(nareLeaguePeriods.fulfilled, (state,action) => {
-                // When nareLeaguePeriods is fulfilled, update the state with the first period's data
+            .addCase(virtualLeaguePeriods.fulfilled, (state,action) => {
+                // When virtualLeaguePeriods is fulfilled, update the state with the first period's data
                 const periodsData = action.payload;
 
                 if (periodsData.length > 0) {
@@ -289,27 +289,27 @@ const nareLeagueSlice = createSlice({
                 // state.current_selection_period = null; // Reset current_selection_period when periods are fetched
                 state.inPlay = false; // Set inPlay to false when periods are fetched
             })
-            .addCase(nareLeaguePeriods.rejected, (state, action) => {
+            .addCase(virtualLeaguePeriods.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeagueCompetitions.pending, (state) => {
+            .addCase(virtualLeagueCompetitions.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueCompetitions.fulfilled, (state,action) => {
+            .addCase(virtualLeagueCompetitions.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
                 state.competitions_data=action.payload;
                 setLocalStorage('kiron-competitions', action.payload);
             })
-            .addCase(nareLeagueCompetitions.rejected, (state, action) => {
+            .addCase(virtualLeagueCompetitions.rejected, (state, action) => {
                 state.loading = false;
                 state.error = "OOP's, Something went wrong please Retry ";
             })
-            .addCase(nareLeagueBetHistory.pending, (state) => {
+            .addCase(virtualLeagueBetHistory.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueBetHistory.fulfilled, (state,action) => {
+            .addCase(virtualLeagueBetHistory.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
                 state.bet_history_data=action.payload;
@@ -323,39 +323,39 @@ const nareLeagueSlice = createSlice({
                     state.bet_history_data=[]
                 }
             })
-            .addCase(nareLeagueBetHistory.rejected, (state, action) => {
+            .addCase(virtualLeagueBetHistory.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeagueBetDetails.pending, (state) => {
+            .addCase(virtualLeagueBetDetails.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueBetDetails.fulfilled, (state,action) => {
+            .addCase(virtualLeagueBetDetails.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
                 state.bet_details_data=action.payload;
             })
-            .addCase(nareLeagueBetDetails.rejected, (state, action) => {
+            .addCase(virtualLeagueBetDetails.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeagueOldBetDetails.pending, (state) => {
+            .addCase(virtualLeagueOldBetDetails.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueOldBetDetails.fulfilled, (state,action) => {
+            .addCase(virtualLeagueOldBetDetails.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
                 state.old_bet_details=action.payload;
 
             })
-            .addCase(nareLeagueOldBetDetails.rejected, (state, action) => {
+            .addCase(virtualLeagueOldBetDetails.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
-            .addCase(nareLeagueOldBets.pending, (state) => {
+            .addCase(virtualLeagueOldBets.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(nareLeagueOldBets.fulfilled, (state,action) => {
+            .addCase(virtualLeagueOldBets.fulfilled, (state,action) => {
                 state.loading = false;
                 state.error = null;
                 const status=action.payload.status;
@@ -370,14 +370,14 @@ const nareLeagueSlice = createSlice({
 
 
             })
-            .addCase(nareLeagueOldBets.rejected, (state, action) => {
+            .addCase(virtualLeagueOldBets.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
             .addCase(resetState, (state, action) => {
                 const stateToReset = action.payload;
                 if (state.hasOwnProperty(stateToReset)) {
-                    state[stateToReset] = initialState.nareLeague[stateToReset];
+                    state[stateToReset] = initialState.virtualLeague[stateToReset];
                 }
                 state.error = null;
             })
@@ -398,4 +398,4 @@ const nareLeagueSlice = createSlice({
     },
 });
 
-export default nareLeagueSlice.reducer;
+export default virtualLeagueSlice.reducer;

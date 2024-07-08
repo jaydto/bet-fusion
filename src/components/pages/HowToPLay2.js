@@ -16,8 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../redux/dataSlice";
 
 const Footer = React.lazy(() => import("../footer/footer"));
-const SideBar = React.lazy(() => import("../sidebar/awesome/Sidebar"));
-const Right = React.lazy(() => import("../right/index"));
+
 
 const HowToPlay = React.memo((props) => {
   useEffect(() => {
@@ -42,13 +41,10 @@ const HowToPlay = React.memo((props) => {
   return (
     <div className={"flex-item"}>
       <div className="flex-container height-default-body top-diff-pages">
-        <div className="item1">
-          {" "}
-          <SideBar loadCompetitions />
-        </div>
+        
         <div className="item2" style={{ width: "100%" }}>
           <div className=" home">
-            <div className="homepage">
+            <div className="homepage" style={{ width: "991px", margin: "auto" }}>
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>
                   <span
@@ -926,9 +922,7 @@ const HowToPlay = React.memo((props) => {
             </div>
           </div>
         </div>
-        <div className="item3 remove-betslip">
-          <Right test={true} />
-        </div>
+       
       </div>
       <div className="item6">
         <div className={"footer-mobile-none"}>

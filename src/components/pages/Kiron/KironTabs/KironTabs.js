@@ -8,7 +8,7 @@ const KironTabs = React.memo(
     (props) => {
         const {tab, user} = props;
         // console.log("tabs_main_tab", tab)
-        const active_competition = useSelector((state) => state.nareLeague.competition_id)
+        const active_competition = useSelector((state) => state.virtualLeague.competition_id)
 
 
         const u_class = tab === 'results' ? "kiron-tabs-active" : "home-tabs";

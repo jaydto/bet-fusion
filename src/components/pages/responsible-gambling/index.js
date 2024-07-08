@@ -74,9 +74,8 @@ const ResponsibleGambling = React.memo(() => {
         }
       >
         <div className="d-flex flex-row justify-content-between mt-5">
-          <SideBar loadCompetitions />
-          <div className="gz home">
-            <div className="homepage">
+          <div className="home" style={{margin:"auto", width:"991px"}}>
+            <div className="homepage" >
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>
                   <span
@@ -304,7 +303,6 @@ const ResponsibleGambling = React.memo(() => {
               </Tabs>
             </div>
           </div>
-          <Right remove_mobile={true} />
         </div>
       </div>
       <div className={"footer-mobile-none"}>

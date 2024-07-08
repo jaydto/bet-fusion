@@ -3,10 +3,10 @@ import "./standing.css"
 import {Spinner} from "react-bootstrap";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
-import {nareLeagueStandings, resetState} from '../../../../redux/nareLeague';
+import {virtualLeagueStandings, resetState} from '../../../../redux/virtualLeague';
 import SkeletonLoader from "../skeletonLoader/SkeletonLoader";
 const Standing = () => {
-    const competition_id=useSelector((state)=>state.nareLeague.competition_id)
+    const competition_id=useSelector((state)=>state.virtualLeague.competition_id)
     const newCompetition = new URL(window.location).searchParams.get('competition_id') ||competition_id
     const dispatchRedux=useDispatch()
     const fetchData = useCallback(async () => {
@@ -14,10 +14,10 @@ const Standing = () => {
         const kiron_data = {
             competition_id: new URL(window.location).searchParams.get('competition_id') || competition_id
         }
-        dispatchRedux(nareLeagueStandings(kiron_data))
+        dispatchRedux(virtualLeagueStandings(kiron_data))
     }, []);
-    const loadingData = useSelector((state) => state.nareLeague.loading);
-    const standingsData = useSelector((state) => state.nareLeague.standings_data);
+    const loadingData = useSelector((state) => state.virtualLeague.loading);
+    const standingsData = useSelector((state) => state.virtualLeague.standings_data);
 
 
 

@@ -40,33 +40,9 @@ const SideBarCasino = React.memo((props) => {
   const default_choice = useSelector((state) => state.virtuals.game_type);
   const storedCategories = getFromLocalStorage("casino_categories");
 
-  const fetchGames = async (category ) => {
-    let endpoint = "/v1/casino-games?game-type-id=" + category;
-    let method = "GET";
-    const data = {
-      endpoint: endpoint,
-      method: method,
-    };
-    dispatchRedux(casinoList(data));
-  };
+ 
 
-  const getFastGames = async () => {
-    let endpoint = "/v2/fast-games";
-
-    let method = "POST";
-
-    await makeRequest({ url: endpoint, method: method }).then(
-      ([status, result]) => {
-        if (status === 200) {
-          setGames(result?.games);
-          if (result?.types !== storedCategories && result?.types !== null) {
-            setCategories(result?.types);
-            setLocalStorage("casino_categories", result?.types, 86400000);
-          }
-        }
-      }
-    );
-  };
+  
 
   const getSmartGames = async () => {
     let endpoint = "/v2/smartsoft-games";
@@ -86,23 +62,7 @@ const SideBarCasino = React.memo((props) => {
     );
   };
 
-  const getCrashGames = async () => {
-    let endpoint = "/v1/crash-games";
 
-    let method = "POST";
-
-    await makeRequest({ url: endpoint, method: method }).then(
-      ([status, result]) => {
-        if (status === 200) {
-          setGames(result?.games);
-          if (result?.types !== storedCategories && result?.types !== null) {
-            setCategories(result?.types);
-            setLocalStorage("casino_categories", result?.types, 86400000);
-          }
-        }
-      }
-    );
-  };
 
   useEffect(() => {
     if (userData) {
@@ -125,17 +85,9 @@ const SideBarCasino = React.memo((props) => {
     setActiveGame(game);
     dispatch({ type: "SET", key: "casino_search", payload: {} });
     const firstItem =  casino_categories?.[0];
-    if (game === "pragmatic") {
-      fetchGames(firstItem?.game_type_id).then(() => {
-        setGames(casino_games);
-      });
-    } else if (game === "smart-soft") {
+     if (game === "smart-soft") {
       getSmartGames();
-    } else if (game === "crash-games") {
-      getCrashGames();
-    } else {
-      getFastGames();
-    }
+    } 
   };
 
   return (
@@ -162,18 +114,11 @@ const SideBarCasino = React.memo((props) => {
           <MenuItem className={"d-flex justify-content-between"}>
             <div
               className={`d-flex gap-4 align-items-center ${
-                activeGame === "pragmatic" ? " active-casino" : ""
+                activeGame === "smart-soft" ? " active-casino" : ""
               }`}
             >
               <FontAwesomeIcon icon={faStreetView} className={"svg-mobile"} />
-              <div
-                onClick={() => {
-                  handleClose();
-                  handleGameChoice("pragmatic");
-                }}
-              >
-                Pragmatic
-              </div>
+              
             </div>
           </MenuItem>
         </Menu>
@@ -197,44 +142,8 @@ const SideBarCasino = React.memo((props) => {
           </MenuItem>
         </Menu>
 
-        <Menu>
-          <MenuItem className={"d-flex justify-content-between"}>
-            <div
-              className={`d-flex gap-4 align-items-center ${
-                activeGame === "spribe" ? " active-casino" : ""
-              }`}
-            >
-              <FontAwesomeIcon icon={faMagento} className={"svg-mobile"} />
-              <div
-                onClick={() => {
-                  handleClose();
-                  handleGameChoice("spribe");
-                }}
-              >
-                Spribe
-              </div>
-            </div>
-          </MenuItem>
-        </Menu>
-        <Menu>
-          <MenuItem className={"d-flex justify-content-between"}>
-            <div
-              className={`d-flex gap-4 align-items-center ${
-                activeGame === "crash-games" ? " active-casino" : ""
-              }`}
-            >
-              <FontAwesomeIcon icon={faHelicopter} className={"svg-mobile"} />
-              <div
-                onClick={() => {
-                  handleClose();
-                  handleGameChoice("crash-games");
-                }}
-              >
-                Crash Games
-              </div>
-            </div>
-          </MenuItem>
-        </Menu>
+       
+       
       </SidebarHeader>
       <SidebarContent className={"background-primary"}></SidebarContent>
       <SidebarFooter className={"background-primary"}></SidebarFooter>

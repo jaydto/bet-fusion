@@ -156,7 +156,7 @@ const MobileMenu = React.memo((props) => {
                         style={{position: "absolute", bottom: "0"}}>
                         <div className="bet alu  block-shadow d-flex flex-column">
                             <header>
-                                <div className="betslip-header d-flex justify-content-between">
+                                <div className="betslip-header d-flex justify-content-between align-items-center">
                                     <span className="col-sm-8 slp">BETSLIP</span>
                                     <span
                                         className="col-sm-2 slip-counter d-flex justify-content-center"
@@ -285,7 +285,7 @@ const MobileMenu = React.memo((props) => {
                                 </td>
                                 <td className={`bloc-icon ${pathname === ('/bet-history') ? "active" : ""}`}>
                                     <Link
-                                        to={`${'/bet-history'}`}
+                                        to={`${'/bet-history?competition_id=2'}`}
                                         onClick={() => gaEventTracker("Visit My Bets Page")}>
                                         <LazyLoadImage src={Mybets}
                                                        effect="blur"

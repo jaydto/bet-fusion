@@ -21,15 +21,15 @@ import KironPlayouts from "./playout";
 
 const TestKiron = React.memo(() => {
     const {state, dispatch} = useContext(StoreContext)
-    ; // Import the async thunk from your nareLeagueSlice
+    ; // Import the async thunk from your virtualLeagueSlice
 
     const [tab, setTab] = useState('kiron')
     const [playout, setPlayout] = useState(null)
 
-    const close_spinner=useSelector((state)=>state.nareLeague.close_spinner)
-    const inPlay=useSelector((state)=>state.nareLeague.inPlay)
-    const loading=useSelector((state)=>state.nareLeague.loading)
-    const current_selection_period=useSelector((state)=>state.nareLeague.current_selection_period)
+    const close_spinner=useSelector((state)=>state.virtualLeague.close_spinner)
+    const inPlay=useSelector((state)=>state.virtualLeague.inPlay)
+    const loading=useSelector((state)=>state.virtualLeague.loading)
+    const current_selection_period=useSelector((state)=>state.virtualLeague.current_selection_period)
 
     const location = useLocation();
 
@@ -122,7 +122,7 @@ const TestKiron = React.memo(() => {
                                 </div>
 
                             </div>
-                            <Right kiron={true} nareleague={true}/>
+                            <Right kiron={true} virtualLeague={true}/>
                         </div>
                     </div>
                 </div>

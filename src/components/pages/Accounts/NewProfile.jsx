@@ -144,7 +144,7 @@ const NewProfile = React.memo(
                                         </div>
                                     </div>
                                    
-                                    <Link to="/my-bets" style={{textDecoration: "none", color: "black"}}>
+                                    <Link to="/bet-history?competition_id=2" style={{textDecoration: "none", color: "black"}}>
                                         <div className="transaction">
                                             <div className="t-details">
                                                 <div className="t-title">My Bets</div>

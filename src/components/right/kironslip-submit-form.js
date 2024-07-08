@@ -585,7 +585,7 @@ const KironslipSubmitForm = React.memo(
 
 
                 setMultiBoostMessage(
-                    `Congratulations, you qualify for Nare Gift. Add ${remainingGames} more game${
+                    `Congratulations, you qualify for a Gift. Add ${remainingGames} more game${
                         remainingGames > 1 ? "s" : ""
                     } with odds of  ${
                         settings?.kironGifts?.giftBoostMinOdds

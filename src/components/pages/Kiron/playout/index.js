@@ -3,7 +3,7 @@ import "./results.css"
 import {StoreContext} from "../../../../context/store"
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useDispatch, useSelector} from 'react-redux';
-import {nareLeaguePlayouts, resetState} from "../../../../redux/nareLeague"; // Import useDispatch hook
+import {virtualLeaguePlayouts, resetState} from "../../../../redux/virtualLeague"; // Import useDispatch hook
 
 
 const KironPlayouts = React.memo(
@@ -11,19 +11,19 @@ const KironPlayouts = React.memo(
         const {state, dispatch} = useContext(StoreContext);
         let timeVar;
         const dispatchRedux = useDispatch()
-        const playouts_data = useSelector((state) => state.nareLeague.playouts_data)
-        const competition_id = useSelector((state) => state.nareLeague.competition_id)
-        const loading = useSelector((state) => state.nareLeague.loading)
-        const round_id = useSelector((state) => state.nareLeague.round_id);
-        const play_time = useSelector((state) => state.nareLeague.play_time);
-        const Ended = useSelector((state) => state.nareLeague.ended);
+        const playouts_data = useSelector((state) => state.virtualLeague.playouts_data)
+        const competition_id = useSelector((state) => state.virtualLeague.competition_id)
+        const loading = useSelector((state) => state.virtualLeague.loading)
+        const round_id = useSelector((state) => state.virtualLeague.round_id);
+        const play_time = useSelector((state) => state.virtualLeague.play_time);
+        const Ended = useSelector((state) => state.virtualLeague.ended);
 
         const fetchData = () => {
             const data = {
                 competition_id: Number(competition_id),
                 round_id: round_id
             }
-            dispatchRedux(nareLeaguePlayouts(data)); // Dispatch nareLeaguePlayouts async thunk
+            dispatchRedux(virtualLeaguePlayouts(data)); // Dispatch virtualLeaguePlayouts async thunk
         }
 
         useEffect(() => {

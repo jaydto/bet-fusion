@@ -18,9 +18,9 @@ import {FormatDate} from "./KironBetHistory"; // Import useDispatch hook
 const OldBetDetails = React.memo(
     (props) => {
         const {betID} = useParams()
-        const loading = useSelector((state) => state.nareLeague.loading)
+        const loading = useSelector((state) => state.virtualLeague.loading)
 
-        const OldBetDetails = useSelector((state) => state.nareLeague.old_bet_details)
+        const OldBetDetails = useSelector((state) => state.virtualLeague.old_bet_details)
         const [collapsed, setCollapsed] = useState([]);
         const [collapsedAll, setCollapsedAll] = useState(false);
         // Empty dependency array to run the effect only once when the component mounts
@@ -68,12 +68,15 @@ const OldBetDetails = React.memo(
                     {OldBetDetails?.map((bet, index) => (
                         <React.Fragment key={index}>
                             {index === 0 && <div className="d-flex history-details flex-column bet-summary-info">
-                                <div className="id">
+                                <div className="d-flex justify-content-between gap-2 px-2 py-3">
+                                    <div className="id">
                                     #{betID}
                                 </div>
                                 <div className="date">
                                     <FormatDate date={bet?.bet_date}/>
                                 </div>
+                                </div>
+                                
                                 <div className="d-flex history-details-padding gap-3 mb-3">
                                     <div className="col-8 d-flex details-history-main-container">
                                         <div className="d-flex col-4 flex-column details-history-main">

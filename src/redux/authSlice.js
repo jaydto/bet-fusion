@@ -55,6 +55,30 @@ export const forgotPassword = createAsyncThunk(
   }
 );
 
+
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async (values, { getState }) => {
+      const state = getState();
+      values.mobile = state?.mobile;
+      const endpoint = '/v1/reset-password';
+
+      const [status, response] = await makeRequest({
+          url: endpoint,
+          method: 'POST',
+          data: values
+      });
+
+    
+
+      if (status === 200 || status === 201) {
+        return response; // Return an object with both user and data properties
+      } else {
+        throw new Error(response?.error?.message || "Reset Password failed");
+      }
+  }
+);
+// Thunk action for submitting the form
 // Async thunk for verifying the password reset token
 export const verifyPassword = createAsyncThunk(
   "auth/verifyPassword",
@@ -75,6 +99,43 @@ export const verifyPassword = createAsyncThunk(
 export const resetState = createAction("auth/reset", (stateToReset) => {
   return { payload: stateToReset };
 });
+
+export const setState = createAction(
+  "auth/setAuthState",
+  (stateToSet, data) => {
+    return { payload: { stateToSet, data } };
+  }
+);
+
+
+export const resetSubmitForm = createAsyncThunk(
+  'auth/resetSubmitForm',
+  async (values, { dispatch }) => {
+
+    console.log("values", values)
+
+      const endpoint = '/v1/code';
+
+      const [status, response] = await makeRequest({
+          url: endpoint,
+          method: 'POST',
+          data: values
+      });
+
+
+
+      dispatch(
+        setState("reset_mobile", values?.mobile)
+      );
+
+      if (status === 200 || status === 201) {
+        return response; // Return an object with both user and data properties
+      } else {
+        throw new Error(response?.error || "Otp failed");
+      }
+
+  }
+);
 
 // need to pass also the user data as part of the arguments being dispatched to userBalance thunk
 export const userBalance = createAsyncThunk(
@@ -119,6 +180,47 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+
+    .addCase(setState, (state, action) => {
+      const { stateToSet, data } = action.payload;
+      if (state.hasOwnProperty(stateToSet)) {
+        state[stateToSet] = data;
+      }
+      state.error = null;
+    })
+
+  .addCase(resetSubmitForm .pending, (state) => {
+      state.loading = true;
+  })
+  .addCase(resetSubmitForm .fulfilled, (state, action) => {
+    console.log("action information", action)
+      state.loading = false;
+      state.resetSuccess = true;
+      state.resetMessage=action.payload.success.message
+      state.reset_id=action.payload.success.id
+      state.otp_sent= true
+  })
+  .addCase(resetSubmitForm .rejected, (state, action) => {
+      state.loading = false;
+      state.resetSuccess = false;
+      state.resetMessage = action.error.message;
+      state.otp_sent=false
+  })
+    .addCase(resetPassword.pending, (state) => {
+      state.loading = true;
+  })
+  .addCase(resetPassword.fulfilled, (state, action) => {
+    console.log("new action information", action)
+      state.loading = false;
+      state.resetSuccessPassword = action.payload?.error?.message?false:true;
+      state.resetPasswordMessage=action.payload?.success?.message ?? action.payload?.error?.message
+  })
+  .addCase(resetPassword.rejected, (state, action) => {
+    console.log("action information", action)
+      state.loading = false;
+      state.resetSuccessPassword = false;
+      state.resetPasswordMessage = action.error.message;
+  })
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;

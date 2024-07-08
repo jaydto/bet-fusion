@@ -28,7 +28,7 @@ const Betslip = (props) => {
                 <div className="bet-option-list " id=''>
                     <div className="bet alu block-shadow">
                         <header>
-                            <div className="betslip-header d-flex justify-content-between">
+                            <div className="betslip-header d-flex justify-content-between align-items-center">
                     <span className="col-sm-2 bkmrk d-none">
                         <i className="fa fa-bookmark" aria-hidden="true"></i></span>
                                 <span className="col-sm-8 slp">BETSLIP</span>
@@ -56,7 +56,7 @@ const Betslip = (props) => {
                 <div className="bet-option-list sticky-top mobile-slip" id=''>
                     <div className="bet alu  block-shadow">
                         <header style={{marginTop: "60px"}}>
-                            <div className="betslip-header d-flex justify-content-between">
+                            <div className="betslip-header d-flex justify-content-between align-items-center">
                                 <span className="col-sm-8 slp">BETSLIP</span>
                                 <span className="col-sm-2 slip-counter d-flex justify-content-center"
                                       title={'Hide BetSlip'} onClick={() => setBetSlipMobile(false)}>

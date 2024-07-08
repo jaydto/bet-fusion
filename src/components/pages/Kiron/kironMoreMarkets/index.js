@@ -3,7 +3,7 @@ import {useLocation} from "react-router-dom";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {getFromLocalStorage, setLocalStorage} from "../../../utils/local-storage";
 import { useDispatch,useSelector } from 'react-redux'; // Import useDispatch hook
-import {nareLeagueMarkets, setState} from '../../../../redux/nareLeague';
+import {virtualLeagueMarkets, setState} from '../../../../redux/virtualLeague';
 
 import Button from "../../../utils/button";
 import LinkSelect from "../../../utils/options";
@@ -28,7 +28,7 @@ const KironMoreMarkets= React.memo(
         }
     });
 
-    const options=useSelector((state)=>state.nareLeague.market_options)||getFromLocalStorage('kiron-more')
+    const options=useSelector((state)=>state.virtualLeague.market_options)||getFromLocalStorage('kiron-more')
     const location = useLocation();
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const KironMoreMarkets= React.memo(
 
 
         if (!cached_competitions) {
-            dispatchRedux(nareLeagueMarkets())
+            dispatchRedux(virtualLeagueMarkets())
         }
 
     }, []);

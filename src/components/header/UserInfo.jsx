@@ -85,7 +85,7 @@ export const UserInfo = React.memo(
                         </div>}
                         <div className={'mybets-remove-on-mobile'}>
                             <Link
-                                to={{pathname: "/mybets"}}
+                                to={ "/bet-history?competition_id=2"}
                                 className={"deposit-button size-font-user-action"}>
                                           <span className={"text-success"}>
                                            <span className=" "> <FontAwesomeIcon

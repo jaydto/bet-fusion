@@ -62,7 +62,7 @@ const HeaderLogin = React.memo((props) => {
 
   const dispatchUser = useCallback(() => {
     if (successMessage !== null) {
-        // console.log("calling info here now user", successMessage)
+      // console.log("calling info here now user", successMessage)
       Notify(successMessage);
 
       if (successMessage.status == 200) {
@@ -162,83 +162,7 @@ const HeaderLogin = React.memo((props) => {
                 className="input-group input-color-icon w-100 "
                 style={{ display: "flex" }}
               >
-                <div
-                  className=" col-5 input-group-append  align-items-center justify-content-start"
-                  style={{ display: "contents" }}
-                >
-                  <div className="input-group-text  border-0 input-color-icon codecCountry">
-                    {/* <select
-                style={{color:"var(--light)"}}
-                name="countryCode"
-                className="form-control btn btn-link text-decoration-none input-color-icon"
-                onChange={onFieldChanged}
-                value={values.countryCode}
-              >
-                <option value="254" style={{color:"var(--light)"}}>+254&nbsp; <img 
-                        className="image-kenya"
-                         src={kenyan}
-                         style={{
-                          width:'17px',
-                          height:'11px', marginTop:'2px'
-                         }}
-                         alt="Kenya"
-                         title="Kenya"
-                         effects="blur"
-                        /></option>
-              </select> */}
-                    <Dropdown
-                      onSelect={(selectedOption) =>
-                        onFieldChanged({
-                          target: {
-                            name: "countryCode",
-                            value: selectedOption,
-                          },
-                        })
-                      }
-                      className="counrtryCodec"
-                    >
-                      <Dropdown.Toggle
-                        variant="link"
-                        id="countryCode"
-                        style={{ color: "var(--light)" }}
-                      >
-                        +{values.countryCode}
-                        &nbsp;{" "}
-                        <img
-                          className="image-kenya"
-                          src={kenyan}
-                          style={{
-                            width: "17px",
-                            height: "11px",
-                            marginTop: "2px",
-                          }}
-                          alt="Kenya"
-                          title="Kenya"
-                          effects="blur"
-                        />
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu className="countryCode">
-                        <Dropdown.Item eventKey="254" id="254">
-                          +254&nbsp;
-                          <img
-                            className="image-kenya"
-                            src={kenyan}
-                            style={{
-                              width: "17px",
-                              height: "11px",
-                              marginTop: "2px",
-                            }}
-                            alt="Kenya"
-                            title="Kenya"
-                            effects="blur"
-                          />
-                        </Dropdown.Item>
-                        {/* Add more country codes as needed */}
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                </div>
+                
                 <input
                   type="text"
                   name="msisdn"
@@ -316,22 +240,82 @@ const HeaderLogin = React.memo((props) => {
               )}
               <br />
               <input type="hidden" name="ref" value="{props.refURL}" />
-              <Link
-                to={"/reset-password"}
-                title="Reset password"
-                onClick={() => gaEventTracker("Reset Password")}
-              >
-                <span
-                  className={`sticky-hidden text-warning px-2 d-flex justify-content-end"`}
+              <div className="d-flex justify-content-between">
+                <Link
+                  to={"/reset-password"}
+                  title="Reset password"
+                  onClick={() => gaEventTracker("Reset Password")}
                 >
-                  Forgot Password?
+                  <span
+                    className={`sticky-hidden text-warning px-2 d-flex justify-content-end"`}
+                  >
+                    Forgot Password?
+                  </span>
+                </Link>
+                <span className="d-flex align-items-center">
+                  <span className="text-warning h4 m-0">
+                    You are using CrashKali
+                  </span>
+                  <Dropdown
+                    onSelect={(selectedOption) =>
+                      onFieldChanged({
+                        target: {
+                          name: "countryCode",
+                          value: selectedOption,
+                        },
+                      })
+                    }
+                    className="counrtryCodec"
+                  >
+                    <Dropdown.Toggle
+                      variant="link"
+                      id="countryCode"
+                      style={{ color: "var(--light)" }}
+                    >
+                      Kenya
+                      &nbsp;{" "}
+                      <img
+                        className="image-kenya"
+                        src={kenyan}
+                        style={{
+                          width: "17px",
+                          height: "11px",
+                          marginTop: "2px",
+                        }}
+                        alt="Kenya"
+                        title="Kenya"
+                        effects="blur"
+                      />
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="countryCode">
+                      <Dropdown.Item eventKey="254" id="254">
+                        <span className="text-light">
+                        +{values.countryCode}&nbsp;
+                          </span>
+                        <img
+                          className="image-kenya"
+                          src={kenyan}
+                          style={{
+                            width: "17px",
+                            height: "11px",
+                            marginTop: "2px",
+                          }}
+                          alt="Kenya"
+                          title="Kenya"
+                          effects="blur"
+                        />
+                      </Dropdown.Item>
+                      {/* Add more country codes as needed */}
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </span>
-              </Link>
+              </div>
             </div>
 
             <div className={`w-100`}>
               <button
-                className={`w-100 button-radius input-field btn-font cg  login-button2 mt-4 btn bold`}
+                className={`w-100 button-radius input-field btn-font login-button2 mt-4 btn bold`}
                 style={{ position: "relative" }}
                 disabled={loading}
                 type="submit"

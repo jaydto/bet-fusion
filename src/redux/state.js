@@ -209,7 +209,7 @@ const initialState = {
     changeMobileNav: [
       "verify",
       "signup",
-      "login",
+     
       "deposit",
       "withdraw",
       "points",

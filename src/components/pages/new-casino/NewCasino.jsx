@@ -960,7 +960,7 @@ const GameChoice = ({ title, games, user, provider }) => {
                       onMouseLeave={handleMouseLeave}
                       onClick={() => handleMobileClick(index)}
                     >
-                      <div style={{ position: "relative" }}>
+                      <div style={{ position: "relative" }} className="image-bg">
                         <LazyLoadImage
                           effect={"blur"}
                           className="ls-is-cached"
@@ -987,7 +987,7 @@ const GameChoice = ({ title, games, user, provider }) => {
                               Play Demo
                             </Button>
                             <Button
-                              variant="danger"
+                              variant="dark"
                               onClick={(event) =>
                                 handleButtonClick(
                                   event,
@@ -1363,7 +1363,7 @@ const GameSearch = ({ title, games, user }) => {
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleMobileClick(index)}
                 >
-                  <div style={{ position: "relative" }}>
+                  <div style={{ position: "relative" }} className="image-bg">
                     <LazyLoadImage
                       effect={"blur"}
                       className="ls-is-cached"
@@ -1394,7 +1394,7 @@ const GameSearch = ({ title, games, user }) => {
                           Play Demo
                         </Button>
                         <Button
-                          variant="danger"
+                          variant="dark"
                           onClick={(event) =>
                             handleButtonClick(
                               event,
@@ -1792,7 +1792,7 @@ const Categories = ({ title, games, user, provider }) => {
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleMobileClick(index)}
                 >
-                  <div style={{ position: "relative" }}>
+                  <div style={{ position: "relative" }} className="image-bg">
                     <LazyLoadImage
                       effect={"blur"}
                       className="ls-is-cached"
@@ -1820,7 +1820,7 @@ const Categories = ({ title, games, user, provider }) => {
                           Play Demo
                         </Button>
                         <Button
-                          variant="danger"
+                          variant="dark"
                           onClick={(event) =>
                             handleButtonClick(
                               event,

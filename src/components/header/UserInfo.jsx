@@ -52,6 +52,8 @@ export const UserInfo = React.memo(
             // searchInputRef.current.focus()
             gaEventTracker('Clicked on Search')
         }
+
+        console.log("userdata", user)
         return (
             <>
                 {user &&

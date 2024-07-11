@@ -16,7 +16,7 @@
     --bs-gutter-x: 20px;
     --bs-cyan:#3f9ad1;
     --kiron-button:#004f9e;
-    --profile-bg-page:#040c35;
+    --profile-bg-page:#072858;
     --side-bg:#04104c;
     
     --faded-color:rgb(105, 129, 154);
@@ -71,6 +71,7 @@
     --body-line-weight:2;
     --body-line-weight-sm:1.5;
     --width-side:18.75rem;
+    --width-side-lg:65.75rem;
     --width-side-sm:100%;
     --button-color:#334c5c;
     --testimonial-top-md:9.3rem;

@@ -4,7 +4,7 @@ import {Accordion,} from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import useWindowDimensions from "../../header/Dimensions";
 import {StoreContext} from "../../../context/store"
-import GiftWallet from "./GiftWallet";
+// import GiftWallet from "./GiftWallet";
 import {ToastContainer} from "react-toastify";
 import '../../test.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -18,8 +18,7 @@ const General = React.lazy(() => import('./general'));
 const AccountUsage = React.lazy(() => import('./account-usage'));
 const Deposits = React.lazy(() => import('./deposits'));
 const Withdrawals = React.lazy(() => import('./withdrawals'));
-const LiveBetting = React.lazy(() => import('./live-betting'));
-const BonusesAndPromotions = React.lazy(() => import('./bonuses-and-promotions'));
+// const BonusesAndPromotions = React.lazy(() => import('./bonuses-and-promotions'));
 const Complaints = React.lazy(() => import('./complaints'));
 const Misconduct = React.lazy(() => import('./misconduct'));
 const ErrorsOrOmissions = React.lazy(() => import('./errors-or-omissions'));
@@ -86,9 +85,8 @@ const TermsAndConditions = React.memo(
                                         <AccountUsage/>
                                         <Deposits/>
                                         <Withdrawals/>
-                                        <LiveBetting/>
-                                        <BonusesAndPromotions/>
-                                        <GiftWallet/>
+                                        {/* <BonusesAndPromotions/> */}
+                                        {/* <GiftWallet/> */}
                                         <Complaints/>
                                         <Misconduct/>
                                         <ErrorsOrOmissions/>

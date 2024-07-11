@@ -3,11 +3,11 @@ import {Link, useNavigate} from "react-router-dom";
 
 //Images
 // import aviator from "../../../src/assets/img/mobile/Aviator.svg"
-import league from "../../../src/assets/img/mobile/League.svg"
+import league from "../../../src/assets/svg/game.svg"
 
 //SVGs
 import soccer from "../../assets/svg/sports/Soccer.svg"
-import casino1 from "../../assets/img/mobile/Casino.svg"
+import casino1 from "../../assets/svg/casino.svg"
 
 
 import {getFromLocalStorage} from "../utils/local-storage";
@@ -135,7 +135,7 @@ const MobileNav1 = React.memo(
                                         src={league}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "25px", marginTop: "0px"}}
+                                        style={{height: "26px", marginTop: "0px", width:"45px", filter:"invert(1)"}}
                                     />
                                     <span className=" hot-alert-badge">HOT</span>
 
@@ -166,7 +166,7 @@ const MobileNav1 = React.memo(
                                         src={casino1}
                                         alt=""
                                         effect='blur'
-                                        style={{height: "29px", marginTop: "-2px"}}
+                                        style={{height: "25px", marginTop: "-2px", filter:"invert(1)"}}
                                     />
                                 </div>
                                 <p style={{textAlign: "center", marginBottom: "unset"}}>

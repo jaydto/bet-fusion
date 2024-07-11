@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const backgroundStyle = {
-  background: `url(${gameDay})`,
+  // background: `url(${gameDay})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   //   backgroundPosition:"bottom",
@@ -38,7 +38,7 @@ const LoginTwo = React.memo((props) => {
   const FormTitle = () => {
     return (
       <div
-        className="col-md-12 col-md-12  pt-4 text-center text-light py-3 text-center w-100 top-login-mobile"
+        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile"
         style={{ margin: "0px" }}
       >
         <div>
@@ -49,7 +49,7 @@ const LoginTwo = React.memo((props) => {
             onClick={() => navigate(-1)}
           >
             <span
-              className="d-flex justify-content-center w-25 "
+              className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "
               style={{ cursor: "pointer" }}
             >
               <FontAwesomeIcon

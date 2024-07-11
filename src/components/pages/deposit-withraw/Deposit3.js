@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import authImg from "../../../assets/img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   getFromLocalStorage,
   setLocalStorage,
@@ -25,6 +25,8 @@ import { userBalance } from "../../../redux/authSlice";
 
 import { useDispatch, useSelector } from "react-redux";
 import JisortModal from "../../modals/JisortModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const backgroundStyle = {
     background:`url(${gameDay})`,
@@ -123,15 +125,40 @@ const Deposit3 = React.memo((props) => {
     }
   }, [successMessage]);
 
+ 
+
   const FormTitle = () => {
+    const navigate = useNavigate();
+  
     return (
       <div
-        className="col-md-12  p-4 text-center"
-        style={{ background: "transparent" }}
+        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3 text-center w-100 top-login-mobile"
+        style={{ margin: "0px" }}
       >
-        <h4 className="inline-block CrashKali-text-light">
+        <div>
+          <div
+            className={
+              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center"
+            }
+            onClick={() => navigate(-1)}
+          >
+            <span
+              className="d-flex justify-content-start w-25 "
+              style={{ cursor: "pointer" }}
+            >
+              <FontAwesomeIcon
+                icon={faAngleLeft}
+                className={"back-navigation-icon"}
+              />{" "}
+            </span>
+  
+            <span className={"w-50 d-flex justify-content-center"}>
+            <h4 className="inline-block CrashKali-text-light">
           DEPOSIT FUNDS (MOBILE MONEY)
-        </h4>
+        </h4>            </span>
+            <span className="w-25"></span>
+          </div>
+        </div>
       </div>
     );
   };
@@ -170,58 +197,9 @@ const Deposit3 = React.memo((props) => {
 
   return (
     <div style={{ height: "100vh" }}>
-      <div className={""}>
-        <Header2 />
-      </div>
+      
       <Row justify="center" className="align-items-stretch h-100">
-        <Col xs={0} sm={0} md={0} lg={8}>
-          <div
-            className="d-flex flex-column justify-content-between h-100 px-4"
-            style={backgroundStyle}
-          >
-            <div className="text-right">
-              {/*<LazyLoadImage src="/img/logo-sm.jpg" style={{height:"35px"}}alt="logo"/>*/}
-            </div>
-            <Row justify="center">
-              <Col xs={0} sm={0} md={0} lg={20}>
-                <Link to={"/"}>
-                  <LazyLoadImage
-                    className="img-fluid mb-5"
-                    src={authImg}
-                    alt=""
-                  />
-                </Link>
-
-               
-              </Col>
-            </Row>
-            <div className="d-flex justify-content-end pb-4 mb-3">
-              <div
-                className={"d-flex justify-content-center align-items-center"}
-              >
-                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center">
-                  <LazyLoadImage
-                    src={only18}
-                    alt={"18 only"}
-                    style={{
-                      width: "30px",
-                      background: "aliceblue",
-                      borderRadius: "16px",
-                    }}
-                  />
-                </div>
-                <span className="mx-2 text-white"> | </span>
-                <a className="text-white" href="/terms-and-conditions">
-                  Terms & Conditions
-                </a>
-                <span className="mx-2 text-white"> | </span>
-                <a className="text-white" href="/privacy-policy">
-                  Privacy & Policy
-                </a>
-              </div>
-            </div>
-          </div>
-        </Col>
+        
         <div
           className={
             "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"

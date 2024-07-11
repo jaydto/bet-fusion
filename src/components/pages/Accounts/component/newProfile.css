@@ -309,6 +309,8 @@ a.text-logout{
     }
     .iphone{
         overflow-y: auto;
+        width:991px;
+        margin:auto;
     }
     .profile-container-desktop{
         overflow: hidden;

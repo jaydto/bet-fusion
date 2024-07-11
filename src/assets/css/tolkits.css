@@ -3108,6 +3108,9 @@ p {
     .navbar-expand-md .offcanvas{
         display:none!important
     }
+    .pro-sidebar {
+        width: var(--width-side-lg) !important;
+    }
 }
 
 .bigger-list li {
@@ -5046,7 +5049,12 @@ input[type="button"].btn-block {
         width: 100%;
     }
     .off-canvas {
-        display: none;
+        display: block;
+        width: 40%!important;
+        margin-top: 4rem!important;
+    }
+    .desktop-none{
+        display:none!important;
     }
 }
 
@@ -6894,6 +6902,9 @@ ul.sport {
     ::-webkit-scrollbar {
         width: 1px!important;
     
+    }
+    .pro-sidebar {
+        width: var(--width-side) !important;
     }
     
     /* Track */

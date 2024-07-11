@@ -15,7 +15,7 @@ import {
     virtualLeagueOldBets, resetState
 } from '../../../../redux/virtualLeague';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faXbox} from "@fortawesome/free-brands-svg-icons";
+import {faAccusoft, faXbox} from "@fortawesome/free-brands-svg-icons";
 import SkeletonLoaderMore from "../../skeletonLoadersWeb/SkeletonLoaderMore";
 import OldBetDetails from './OldBetDetails'
 import ActiveBetDetails from './ActiveBetDetails'
@@ -156,7 +156,7 @@ const KironBetHistory = React.memo(
                                                 #{bets?.bet_id}
                                             </div>
                                             <div className={"bet-history-items games badge "}>
-                                                <FontAwesomeIcon icon={faXbox}/>&nbsp;{bets?.total_games}
+                                                <FontAwesomeIcon icon={faAccusoft}/>&nbsp;{bets?.total_games}
                                             </div>
                                             <div className={"bet-history-items amount"}>
                                                 KES {bets?.bet_amount}
@@ -169,7 +169,7 @@ const KironBetHistory = React.memo(
                                             <p className="ban  ban-value-data mt-1"
                                                style={{
                                                    backgroundColor: parseInt(bets?.status) === 5 ? 'hsl(120, 70%, 50%)' : parseInt(bets?.status) === 3 ? '#ff9900' : 'inherit',
-                                                   borderRadius: '20px',
+                                                   borderRadius: '4px',
                                                    height: "1.8em",
                                                    marginTop: "-10px",
                                                    width: '1.6cm',
@@ -233,7 +233,7 @@ const KironBetHistory = React.memo(
                                             #{bets?.bet_id}
                                         </div>
                                         <div className={"bet-history-items games badge "}>
-                                            <FontAwesomeIcon icon={faXbox}/>&nbsp;{bets?.total_games}
+                                            <FontAwesomeIcon icon={faAccusoft}/>&nbsp;{bets?.total_games}
                                         </div>
                                         <div className={"bet-history-items amount"}>
                                             KES {bets?.bet_amount}
@@ -245,7 +245,7 @@ const KironBetHistory = React.memo(
                                         <p className="ban ban-value-data mt-1"
                                            style={{
                                                backgroundColor: parseInt(bets?.bet_status) === 5 ? 'hsl(120, 70%, 50%)' : parseInt(bets?.bet_status) === 3 ? '#ff9900' : 'inherit',
-                                               borderRadius: '20px',
+                                               borderRadius: '4px',
                                                height: "1.8em",
                                                marginTop: "-10px",
                                                width: '1.6cm',
@@ -306,7 +306,7 @@ const KironBetHistory = React.memo(
                         className="background-primary kiron-bet-history-tabs px-3"
                         justify
                         onSelect={handleTabSelect}>
-                        <Tab eventKey="active" title="ACTIVE BETS" className={'background-primary text-light'}>
+                        <Tab eventKey="active" title="RECENT BETS" className={'background-primary text-light'}>
                             {loading ?
                                 <div className={`text-center mt-2 text-white d-block`}>
                                     <SkeletonLoaderMore/>

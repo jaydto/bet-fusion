@@ -85,21 +85,16 @@ const General = () => {
                     </li>
 
 
-                    <li> “Event” a game between two football teams or two/double tennis players or basketball teams etc.
-                    </li>
+    
 
                     <li> “Header” the CrashKali header that provides quick access to your bet slip, "My bets", account
                         options and the Cashier
                     </li>
-                    <li>
-                        “Highlights” events that most of CrashKali users have bet on. These are the most-popular events.
-                    </li>
+                    
                     <li>
                         “In-play” a sport event that has already started
                     </li>
-                    <li>
-                        “Live” a sport event that has already started
-                    </li>
+                 
                     <li>
                         “Market” the betting type for an event. Each market has multiple results/options to be select
                         from (e.g. the 3-way market for a football event means 3 options are available choose from, e.g.
@@ -123,9 +118,7 @@ const General = () => {
                     <li>
                         “Pick” selected market of an event which is added to the bet slip
                     </li>
-                    <li>
-                        “Pre-match” a sport event that has not yet started
-                    </li>
+                    
                     <li>
                         “Result/Options” result is the available options for a market that you may bet on
                     </li>
@@ -140,13 +133,8 @@ const General = () => {
                         “Sports home page” every sport has its own dedicated home page. The sports homepage lists all
                         available filters, top leagues, and highlights.
                     </li>
-                    <li>
-                        “Starting soon” events that will start in the next hour
-                    </li>
-                    {/*<li>*/}
-                    {/*    “System” this is an advanced version of the Multi bet. Place bets on all possible combinations*/}
-                    {/*    generated from the number of bet you have added to the bet slip*/}
-                    {/*</li>*/}
+                   
+                    
                     <li>
                         “Today” events that will start within the current day.
                     </li>

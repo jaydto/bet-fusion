@@ -44,12 +44,7 @@ const Header = React.memo((props) => {
   const { state, dispatch } = useContext(StoreContext);
   
   const show = useSelector((state) => state.data.show_menu);
-  const handleClose = () => {
-    dispatchRedux(setState("show_menu", false));
-  };
-  const handleShow = () => {
-    dispatchRedux(setState("show_menu", true));
-  };
+
   const navigate = useNavigate();
   // Import the navigationConfig object
   const [isOpen, setIsOpen] = useState(false);
@@ -187,6 +182,16 @@ const Header = React.memo((props) => {
     setIsOpen(!isOpen);
   };
 
+  const handleShow = () => {
+    dispatchRedux(setState('show_menu', true))
+};
+const handleClose = () => {
+    dispatchRedux(setState('show_menu', false))
+};
+const toggleMenu = () => {
+    show?handleClose():handleShow()
+};
+
   const expand = "md";
   const styles = { color: "var(--gold)" }; // Define your styles here
 
@@ -202,39 +207,7 @@ const Header = React.memo((props) => {
   var pathAndQuery = currentURL.pathname + currentURL.search;
 
 
-  const PromoActive = () => {
-    // console.log('appConfigs', appConfigs)
 
-    return (settings || appConfigs) !== null ? (
-      Object.keys(
-        settings?.active_promotion?.mobile_promo ||
-          appConfigs?.active_promotion?.mobile_promo ||
-          {}
-      )?.map((key, index) => {
-        const promoValue = settings
-          ? settings.active_promotion.mobile_promo[key]
-          : appConfigs?.active_promotion?.mobile_promo[key];
-
-        if (key === "promo_message") {
-          return promoValue.split(" ").map((promoWord, indexWord) => {
-            if (indexWord % 2 === 0) {
-              return (
-                <strong key={indexWord} style={styles}>
-                  {promoWord}&nbsp;
-                </strong>
-              );
-            } else if (indexWord === promoValue.length - 1) {
-              return <span key={indexWord}>{promoWord}</span>;
-            } else {
-              return <span key={indexWord}>{promoWord}&nbsp;</span>;
-            }
-          });
-        }
-      })
-    ) : (
-      <></>
-    );
-  };
 
   const handleCloseCallToAction = (e) => {
     e.stopPropagation();
@@ -246,142 +219,145 @@ const Header = React.memo((props) => {
   return (
     <>
       {
-      changeNav ? (
-        <Header2 />
-      ) :
-       (
-        notShowHeaderNav && <div className={"d-flex flex-column"}>
-          <Navbar
-            expand="md"
-            className={`${
-              close_call_to_action || showDownload
-                ? "fixed-top-nav fixed"
-                : "fixed-top-nav"
-            } mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${
-              slip || showDownload ? "top-betslip-page-fix" : ""
-            } ${user ? "top-nav-login" : "top-nav-login"}`}
-            fixed="top"
-            variant="dark"
-          >
-            <div
-              className={`${
-                "optional-action"
-                 
-              }  ${
-                showDownload ? "d-none" : "d-sm-flex d-lg-none d-md-none w-100"
-              }`}
-            >
+       notShowHeaderNav && <div className={"d-flex flex-column"}>
+       <Navbar
+         expand="md"
+         className={`${
+           close_call_to_action || showDownload
+             ? "fixed-top-nav fixed"
+             : "fixed-top-nav"
+         }
+         ${(changeNav&&width<991)?'d-none':''}
+         mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${
+           slip || showDownload ? "top-betslip-page-fix" : ""
+         } ${user ? "top-nav-login" : "top-nav-login"}`}
+         fixed="top"
+         variant="dark"
+       >
+         <div
+           className={`${
+             "optional-action"
               
-            </div>
-            <div
-              className={
-                "w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main"
-              }
-            >
-              <div className={"d-flex w-100 directions-header-nav"}>
-                <Navbar.Brand
-                  className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
-                  title="CrashKali"
-                >
-                  <div
-                    onClick={() => navigate("/")}
-                    className="col-4 logo-CrashKali resize-mobile"
-                    style={{ marginLeft: "2px" }}
-                  >
-                    <img
-                      src={Logo}
-                      alt="CrashKali"
-                      title="CrashKali"
-                      effects="blur"
-                      className={`image-size ${!user && "logo-top"}`}
-                      style={
-                        user
-                          ? { marginBottom: "0px" }
-                          : {
-                              marginBottom: "11px",
-                              width: "auto",
-                            }
-                      }
-                    />
-                  </div>
+           }  ${
+             showDownload ? "d-none" : "d-sm-flex d-lg-none d-md-none w-100"
+           }`}
+         >
+           
+         </div>
+         <div
+           className={
+             "w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main"
+           }
+         >
+           <div className={"d-flex w-100 directions-header-nav"}>
+             <Navbar.Brand
+               className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
+               title="CrashKali"
+             >
+               <div
+                 className="col-4 logo-CrashKali resize-mobile d-flex align-items-center mb-2"
+                 style={{ marginLeft: "2px" }}
+               >
+                <div className="col-1 button-toggle space-button desktop-menu"
+                             style={{width: "4.1rem", overflowY: "auto", marginLeft: '0px'}}>
+                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
+                                           className="px-3 py-3 desktop-menu" onClick={toggleMenu}
+                            />
+                        </div>
+                 <img
+                   src={Logo}
+                   onClick={() => navigate("/")}
+                   alt="CrashKali"
+                   title="CrashKali"
+                   effects="blur"
+                   className={`image-size ${!user && "logo-top"}`}
+                   style={
+                     user
+                       ? { marginBottom: "0px" }
+                       : {
+                           marginBottom: "11px",
+                           width: "auto",
+                         }
+                   }
+                 />
+               </div>
 
-                  <UserInfo profile={checkDesktop} user={user} />
-                </Navbar.Brand>
+               <UserInfo profile={checkDesktop} user={user} />
+             </Navbar.Brand>
 
-                {/*todo check information provided for a user*/}
-                <div
-                  className={` col-10 change-size desk-top`}
-                  id="navbar-collapse-main "
-                >
-                  <div className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                    {user ? 
-                      <ProfileMenu user={user} profile={checkDesktop} />
-                     :                  
-                      <LoginSection />
-                  }
-                  </div>
-                </div>
-              </div>
+             {/*todo check information provided for a user*/}
+             <div
+               className={` col-10 change-size desk-top`}
+               id="navbar-collapse-main "
+             >
+               <div className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
+                 {user ? 
+                   <ProfileMenu user={user} profile={checkDesktop} />
+                  :                  
+                   <LoginSection />
+               }
+               </div>
+             </div>
+           </div>
 
-              {!checkDesktop && (
-                <Row
-                  className={`second-nav ck pc os app-navbar ${
-                    user ? " app-header-nav-login " : " app-header-nav "
-                  } to-navcheck `}
-                >
-                  <HeaderNav />
-                </Row>
-              )}
-              
-               { notShowMobileNav &&
-                !slip &&
-                !jackpot &&
-                !checkDesktop &&
-                !pathname.includes("match") && <MobileNav1 />
-              }
+           {!checkDesktop && (
+             <Row
+               className={`second-nav ck pc os app-navbar ${
+                 user ? " app-header-nav-login " : " app-header-nav "
+               } to-navcheck `}
+             >
+               <HeaderNav />
+             </Row>
+           )}
+           
+            { notShowMobileNav &&
+             !slip &&
+             !jackpot &&
+             !checkDesktop &&
+             !pathname.includes("match") && <MobileNav1 />
+           }
 
-              <Offcanvas
-                style={{
-                  width: "80%",
-                  height: "100%",
-                  zIndex: "9999",
-                  marginTop: "0px",
-                  overflowY: "auto",
-                }}
-                onHide={handleClose}
-                show={show}
-                className="off-canvas background-primary p-0"
-                id={`offcanvasNavbar-expand-${expand}`}
-                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                placement="start"
-              >
-                <Offcanvas.Header
-                  closeButton
-                  className="text-white"
-                  closeVariant={"white"}
-                  onClick={toggle}
-                >
-                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                    <div className="col-5">
-                      <div>
-                        <img
-                          src={Logo}
-                          alt="CrashKali"
-                          title="CrashKali"
-                          effects="blur"
-                        />
-                      </div>
-                    </div>
-                  </Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <SidebarMobile />
-                </Offcanvas.Body>
-              </Offcanvas>
-            </div>
-          </Navbar>
-        </div>
-      )}
+           <Offcanvas
+             style={{
+               width: "80%",
+               height: "100%",
+               zIndex: "9999",
+               marginTop: "0px",
+               overflowY: "auto",
+             }}
+             onHide={handleClose}
+             show={show}
+             className="off-canvas background-primary p-0"
+             id={`offcanvasNavbar-expand-${expand}`}
+             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+             placement="start"
+           >
+             <Offcanvas.Header
+               closeButton
+               className="text-white"
+               closeVariant={"white"}
+               onClick={toggle}
+             >
+               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                 <div className="col-5  desktop-none">
+                   <div>
+                     <img
+                       src={Logo}
+                       alt="CrashKali"
+                       title="CrashKali"
+                       effects="blur"
+                     />
+                   </div>
+                 </div>
+               </Offcanvas.Title>
+             </Offcanvas.Header>
+             <Offcanvas.Body>
+               <SidebarMobile />
+             </Offcanvas.Body>
+           </Offcanvas>
+         </div>
+       </Navbar>
+     </div>}
     </>
   );
 });

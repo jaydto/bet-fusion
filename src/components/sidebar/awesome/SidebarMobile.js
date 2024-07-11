@@ -80,14 +80,7 @@ const SidebarMobile = React.memo(
                     </MenuItem>
                 </Menu>
                
-                <Menu>
-                    <MenuItem className={"d-flex justify-content-between"}>
-                        <div className={"d-flex gap-4 align-items-center"}>
-                            <FontAwesomeIcon icon={faPrint} className={'svg-mobile'} />
-                            <Link to={"/print-matches"} onClick={handleClose}>Print</Link>
-                        </div>
-                    </MenuItem>
-                </Menu>
+                
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
@@ -133,43 +126,9 @@ const SidebarMobile = React.memo(
 
                 </Menu>
 
-                <Menu>
+             
 
-                    <MenuItem className={"d-flex justify-content-between"}>
-                        <div className={"d-flex gap-4 align-items-center"}>
-                            <FontAwesomeIcon icon={faStream} className={'svg-mobile'} />
-                            <Link to={"/live"} onClick={handleClose}>Live</Link>
-                        </div>
-                    </MenuItem>
-                </Menu>
-                <Menu>
-
-                    <MenuItem className={"d-flex justify-content-between"}>
-                        <div className={"d-flex gap-4 align-items-center"}>
-                            <FontAwesomeIcon icon={faPlay} className={'svg-mobile'} />
-                            <Link to={"/virtuals"} onClick={handleClose}>Virtuals</Link>
-                        </div>
-                    </MenuItem>
-                </Menu>
-
-                <Menu>
-
-                    <MenuItem className={"d-flex justify-content-between"}>
-                        <div className={"d-flex gap-4 align-items-center"}>
-                            <FontAwesomeIcon icon={faMagic} className={'svg-mobile'} />
-                            <Link to={"/promotions"} onClick={handleClose}>Promotions</Link>
-                        </div>
-                    </MenuItem>
-                </Menu>
-                <Menu>
-
-                    <MenuItem className={"d-flex justify-content-between"}>
-                        <div className={"d-flex gap-4 align-items-center"}>
-                            <FontAwesomeIcon icon={faInfo} className={'svg-mobile'} />
-                            <Link to={"/livescore"} onClick={handleClose}>Livescore</Link>
-                        </div>
-                    </MenuItem>
-                </Menu>
+                
 
 
             </SidebarContent>

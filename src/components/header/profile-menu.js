@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {
+    faBook,
     faCloudDownloadAlt,
     faCoins,
     faReceipt,
@@ -55,64 +56,55 @@ const ProfileMenu = React.memo(
 
                             {showBalance && !profile &&
                                 <div className="w-auto d-flex  text-white align-items-end" title={'CASH'}>
-                                    <div className={"profile-wrap"} style={{color: "#FFB200"}}>
-                                        <FontAwesomeIcon
-                                            icon={faCoins}/>
-                                        <strong style={{color: "#FFB200"}}> KSH {formatNumber(user?.balance) || 0.0}</strong>
+                                    <div className={"profile-wrap text-muted-1"} >
+                                        
+                                        <strong > KSH {formatNumber(user?.balance) || 0.0}</strong>
                                     </div>
 
 
                                 </div>}
 
+                            
                             <div className="w-auto d-flex text-white align-items-start">
-                                <div className={"profile-wrap"}>
-                                    <Link
-                                        to={{pathname: "/deposit"}}
-                                        className={"deposit-button"}
-                                        title={'DEPOSIT FUNDS'}>
-                                      <span className="">
-                                       <span className=" "> <FontAwesomeIcon
-                                           icon={faCloudDownloadAlt}/></span>
-                                          <strong style={{fontSize: "15px", fontWeight: "700"}}> Deposit</strong>
-                                      </span>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className="w-auto d-flex text-white align-items-start">
-                                <div className={"profile-wrap"} style={{color: "#FFB200"}}>
+                                <div className={"profile-wrap text-muted-1"} >
                                     <Link
                                         to={ "/bet-history?competition_id=2"}
-                                        style={{color: "#FFB200", fontSize: "14px"}}
+                                        style={{ fontSize: "14px"}}
                                         title={'MY BETS'}>
-                                      <span className="">
-                                       <span className=" "> <FontAwesomeIcon
-                                           icon={faReceipt}/></span>
+                                      <span className="text-muted-1">
+                                       <span className="text-muted-1 "> <FontAwesomeIcon
+                                           icon={faBook}/></span>
                                           <strong> My Bets</strong>
                                       </span>
                                     </Link>
                                 </div>
                             </div>
-                            <div className="w-auto d-flex  text-white align-items-end " title={'PROFILE'}>
+                            <div className="w-auto d-flex  text-white align-items-end text-muted-1 " title={'PROFILE'}>
                                 {!profile && <Link className={"profile-wrap"} to={'/profile'}>
-                                    <div className="font-btn text-light">
-                                        <div className="space-icons text-light">
+                                    <div className="font-btn text-muted-1">
+                                        <div className="space-icons text-muted-1">
                                             <FontAwesomeIcon icon={faUserAlt}/>
                                         </div>
                                         <strong>Profile</strong>
                                     </div>
                                 </Link>}
 
-                                {/* <div className="col-1 button-toggle space-button">
-                                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`}
-                                                   className="px-3 py-3" onClick={toggle}/>
-                                </div> */}
+                               
                             </div>
-                            {/*<div className="w-auto d-flex  text-white align-items-end"  title={'Theme'}>*/}
-                            {/*    <div className="cg " onClick={()=>handleThemeChange()}>*/}
-                            {/*        {!themeLight?<FontAwesomeIcon icon={faAdjust} style={{fontSize:'20px'}} className={'text-light'}/>:<FontAwesomeIcon icon={faSun} className={'text-warning'} style={{fontSize:'20px'}}/>}*/}
-                            {/*    </div>*/}
-
-                            {/*</div>*/}
+                            <div className="w-auto d-flex text-white align-items-start">
+                                <div className={"profile-wrap"}>
+                                    <Link
+                                        to={{pathname: "/deposit"}}
+                                        className={"deposit-button size-font-user-action deposit-button-header bg-warning"}
+                                        title={'DEPOSIT FUNDS'}>
+                                      <span className="">
+                                       
+                                          <strong style={{fontSize: "15px", fontWeight: "700"}}> Deposit</strong>
+                                      </span>
+                                    </Link>
+                                </div>
+                            </div>
+                            
                         </div>
                     </>
 

@@ -1216,6 +1216,17 @@ input[type="checkbox"] {
   top: 93px;
   position: sticky;
 }
+.deposit-button-header {
+    
+  border-radius: 4px;
+  color: var(--dark);
+  padding: 7px 13px;
+}
+
+.text-muted-1{
+  /* color:rgb(121 145 170 / 75%) !important; */
+  color:rgb(177 204 232 / 75%) !important;
+}
 
 .custom-fullscreen-wrapper {
   position: fixed;
@@ -3294,12 +3305,7 @@ img.nare-league {
     top: var(--slip-tab);
   }
 
-  .deposit-button-header {
-    
-    border-radius: 4px;
-    color: var(--dark);
-    padding: 7px 13px;
-}
+ 
 
   .odd-change-position {
     width: 100%;

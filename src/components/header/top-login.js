@@ -131,6 +131,43 @@ const HeaderLogin = React.memo((props) => {
     return errors;
   };
 
+  const CountryButton = ({ onFieldChanged }) => {
+    const handleClick = () => {
+      // Simulating selecting Kenya (254 is the country code for Kenya)
+      onFieldChanged({
+        target: {
+          name: "countryCode",
+          value: "254",
+        },
+      });
+    };
+  
+    return (
+      <button
+        type="button"
+        className="btn counrtryCodec"
+        onClick={handleClick}
+        style={{ color: "var(--light)", display: "flex", alignItems: "center" }}
+      >
+        Kenya
+        &nbsp;
+        <img
+          className="image-kenya"
+          src={kenyan}
+          style={{
+            width: "17px",
+            height: "11px",
+            marginTop: "2px",
+          }}
+          alt="Kenya"
+          title="Kenya"
+        />
+      </button>
+    );
+  };
+  
+  
+
   const MyLoginForm = (props) => {
     const { errors, values, setFieldValue } = props;
     const [showPassword, setShowPassword] = useState(false);
@@ -256,7 +293,8 @@ const HeaderLogin = React.memo((props) => {
                   <span className="text-warning h4 m-0">
                     You are using CrashKali
                   </span>
-                  <Dropdown
+                  <CountryButton onFieldChanged={onFieldChanged} />
+                  {/* <Dropdown
                     onSelect={(selectedOption) =>
                       onFieldChanged({
                         target: {
@@ -306,9 +344,8 @@ const HeaderLogin = React.memo((props) => {
                           effects="blur"
                         />
                       </Dropdown.Item>
-                      {/* Add more country codes as needed */}
                     </Dropdown.Menu>
-                  </Dropdown>
+                  </Dropdown> */}
                 </span>
               </div>
             </div>

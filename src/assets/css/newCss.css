@@ -688,6 +688,10 @@ label {
   max-width: 100%;
   font-size: 14px;
 }
+.counrtryCodec {
+  background: var(--CrashKali-header-bg);
+  margin-left: 8px;
+}
 
 input {
   background: var(--CrashKali-input) !important;

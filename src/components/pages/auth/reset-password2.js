@@ -7,7 +7,7 @@ import gameDay from "../../../assets/svg/game_bg.svg";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import makeRequest from "../../utils/fetch-request";
 import { Form, Formik } from "formik";
 import { StoreContext } from "../../../context/store";
@@ -28,16 +28,41 @@ const ResetPassword2 = React.memo((props) => {
   const resetMessage = useSelector((state) => state.auth.resetMessage);
   const resetPasswordMessage = useSelector((state) => state.auth.resetPasswordMessage);
   const otpSent = useSelector((state) => state.auth.otp_sent);
+  const navigate=useNavigate()
 
   const expand = "md";
+
+
 
   const FormTitle = () => {
     return (
       <div
-        className="col-md-12 col-md-12  pt-4 text-center text-light py-3 text-center w-100 top-login-mobile"
+        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile"
         style={{ margin: "0px" }}
       >
-        <h4 className="inline-block">RECOVER YOUR ACCOUNT</h4>
+        <div>
+          <div
+            className={
+              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center"
+            }
+            onClick={() => navigate(-1)}
+          >
+            <span
+              className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "
+              style={{ cursor: "pointer" }}
+            >
+              <FontAwesomeIcon
+                icon={faAngleLeft}
+                className={"back-navigation-icon"}
+              />{" "}
+            </span>
+
+            <span className={"w-50 d-flex justify-content-center"}>
+            <h4 className="inline-block">RECOVER YOUR ACCOUNT</h4>
+            </span>
+            <span className="w-25"></span>
+          </div>
+        </div>
       </div>
     );
   };
@@ -54,52 +79,7 @@ const ResetPassword2 = React.memo((props) => {
   return (
     <div style={{ height: "100vh" }}>
       <Row justify="center" className="align-items-stretch h-100">
-        <Col xs={0} sm={0} md={0} lg={8}>
-          <div
-            className="d-flex flex-column justify-content-between h-100 px-4"
-            style={backgroundStyle}
-          >
-            <div className="text-right"></div>
-            <Row justify="center">
-              <Col xs={0} sm={0} md={0} lg={20}>
-                <Link to={"/"}>
-                  <LazyLoadImage
-                    className="img-fluid mb-5"
-                    src={authImg}
-                    alt=""
-                  />
-                </Link>
-
-                {/* <h1 className="text-white text-center" style={{fontSize:"30px"}}>Welcome to CrashKali</h1> */}
-              </Col>
-            </Row>
-            <div className="d-flex justify-content-end pb-4">
-              <div
-                className={"d-flex justify-content-center align-items-center"}
-              >
-                <div className="text-white mx-2 bold d-flex justify-content-center align-items-center">
-                  <LazyLoadImage
-                    src={only18}
-                    alt={"18 only"}
-                    style={{
-                      width: "30px",
-                      background: "aliceblue",
-                      borderRadius: "16px",
-                    }}
-                  />
-                </div>
-                <span className="mx-2 text-white"> | </span>
-                <a className="text-white" href="/terms-and-conditions">
-                  Terms & Conditions
-                </a>
-                <span className="mx-2 text-white"> | </span>
-                <a className="text-white" href="/privacy-policy">
-                  Privacy & Policy
-                </a>
-              </div>
-            </div>
-          </div>
-        </Col>
+        
         <div
           className={
             "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"

@@ -74,10 +74,8 @@ export const UserInfo = React.memo(
                             <div
                                 className={"deposit-button size-font-user-action d-flex align-items-center"}
                                 style={{marginRight: "12px"}}>
-                                          <span className="text-warning">
-                                           <span className=" "><FontAwesomeIcon icon={faCoins}
-                                                                                className={"text-warning"}/>
-                                               </span>&nbsp;
+                                          <span className="text-muted-1">
+                                           &nbsp;
                                               {/*todo here user balance*/}
                                               KSH {formatNumber(user?.balance) || 0.0}
                                           </span>

@@ -3,7 +3,7 @@ import HomeSvg from "../../assets/img/mobile/Home.svg"
 import Casino from "../../assets/svg/casino.svg"
 import ProfileSvg from "../../assets/img/mobile/Profile.svg"
 import CloseIcon from "../../assets/img/mobile/close_icon.png"
-import Mybets from "../../assets/img/mobile/MyBets.svg"
+import Mybets from "../../assets/svg/book.svg"
 
 import {Badge} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -281,6 +281,7 @@ const MobileMenu = React.memo((props) => {
                                         to={`${'/bet-history?competition_id=2'}`}
                                         onClick={() => gaEventTracker("Visit My Bets Page")}>
                                         <LazyLoadImage src={Mybets}
+                                        style={{filter:"invert(1)"}}
                                                        effect="blur"
                                                        alt=""/>
                                         <p>

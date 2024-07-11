@@ -266,36 +266,7 @@ const NewCasino = () => {
 
   return (
     <div className="games-page d-flex">
-      <div className="left-nav lazyloaded">
-        <div
-          className="menu-container"
-          data-scrollbar="true"
-          tabIndex="-1"
-          style={{ overflow: "hidden", outline: "none" }}
-        >
-          <GameFilters
-            user={user}
-            activeItem={activeItem}
-            setActiveItem={setActiveItem}
-            handleGameChoice={handleGameChoice}
-            casino_categories={casino_categories}
-            setActiveCategoryLink={setActiveCategoryLink}
-          />
-
-          <div
-            className="scrollbar-track scrollbar-track-y show"
-            style={{ display: "block" }}
-          >
-            <div
-              className="scrollbar-thumb scrollbar-thumb-y"
-              style={{
-                height: "20px",
-                transform: "translate3d(0px, 0px, 0px)",
-              }}
-            ></div>
-          </div>
-        </div>
-      </div>
+     
       <div className="right-body ">
         <div className="casino-data">
           <section className="sections-container mb-3">

@@ -680,6 +680,17 @@ strong {
   transition-delay: 250ms;
   transition-property: position;
 }
+.logout-btn{
+  display: flex;
+  width: 100%;
+  height:4rem;
+  align-items:center;
+  justify-content: center;
+  background: var(--CrashKali-header-bg);
+  border: 1px solid white;
+  border-radius: 1rem;
+  color: var(--light);
+}
 
 label {
   font-weight: 600;
@@ -691,6 +702,17 @@ label {
 .counrtryCodec {
   background: var(--CrashKali-header-bg);
   margin-left: 8px;
+}
+.transaction {
+  cursor: default;
+  padding: 22px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--profile-card);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.02), 0 10px 10px rgba(0,0,0,0.0);
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
 input {
@@ -3273,9 +3295,11 @@ img.nare-league {
   }
 
   .deposit-button-header {
-    border: thin solid;
+    
     border-radius: 4px;
-  }
+    color: var(--dark);
+    padding: 7px 13px;
+}
 
   .odd-change-position {
     width: 100%;
@@ -3701,13 +3725,13 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
-  .navbar-expand-md .navbar-toggler.desktop-menu{
+  /* .navbar-expand-md .navbar-toggler.desktop-menu{
     display: none!important;
 
-  }
-  .desktop-menu{
+  } */
+  /* .desktop-menu{
     display:none;
-  }
+  } */
   .user_logged.casino {
     margin-top: 0.7rem !important;
   }

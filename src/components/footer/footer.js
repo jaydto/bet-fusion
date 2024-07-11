@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setState } from "../../redux/dataSlice";
+import { getFromLocalStorage } from "../utils/local-storage";
 
 const Footer = React.memo((props) => {
-  const { deposit2, profile_side } = props;
+  const { deposit2, profile_side, sidebar } = props;
+  const userData = useSelector((state) => state.auth.user);
+  const [user, setUser] = useState(getFromLocalStorage("user"));
+
+
+
+  useEffect(() => {
+    if (userData) {
+      setUser(userData || getFromLocalStorage("user"));
+    }
+  }, [userData]);
+
+  const dispatchRedux=useDispatch()
+
+
+  // const gaEventTracker = useAnalyticsEventTracker('Navigation');
+  const handleClose = () => {
+      dispatchRedux(setState('show_menu', false))
+  };
   return (
     <footer
-      className={`footer-custom ${deposit2 && "d-flex flex-column card"}`}
+      className={`footer-custom ${deposit2 && "d-flex flex-column card"} `}
       style={
         (deposit2 || profile_side) && {
           background: "transparent",
@@ -16,43 +37,68 @@ const Footer = React.memo((props) => {
         }
       }
     >
-      <div className={`row ${profile_side && " d-flex flex-column "}`}>
+      <div
+        className={`row ${profile_side && " d-flex flex-column "} ${
+          sidebar && "d-flex flex-column justify-content-center px-2"
+        }`}
+      >
         <div
-          className="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-white"
+          className={`col-xs-12 col-sm-6 col-md-3 ${
+            sidebar ? "col-lg-12" : "col-lg-3"
+          } text-white`}
           style={deposit2 && { width: "50%" }}
         >
-          <h5 className={""}>CrashKali</h5>
-          <ul>
+          <h5 className={`${sidebar && "px-3"}`}>CrashKali</h5>
+          <ul className={`${sidebar && "transaction flex-column"}`}>
             <li className="">P.O.BOX 00100 NAIROBI KENYA</li>
             <li className="">
               <a href="mailto:care@ke.CrashKali.com" target={"_blank"}>
-                <FontAwesomeIcon icon={faEnvelope} />support@CrashKali.com
+                <FontAwesomeIcon icon={faEnvelope} />
+                support@CrashKali.com
               </a>
             </li>
-            <li className="footer-icon">
-              <a
-                href="http://facebook.com/CrashKali-101164702604689"
-                target={"_blank"}
+            <div className={`${sidebar && "d-flex align-items-center"}`}>
+              <li
+                className={`footer-icon ${
+                  sidebar && "d-flex align-items-center"
+                } `}
               >
-                <FontAwesomeIcon icon={faFacebook} /> Facebook
-              </a>
-            </li>
-            <li className="footer-icon">
-              <a
-                href="https://instagram.com/CrashKalike?igshid=YmMyMTA2M2Y="
-                target={"_blank"}
+                <a
+                  href="http://facebook.com/CrashKali-101164702604689"
+                  target={"_blank"}
+                  className={`${sidebar && "d-flex align-items-center"} `}
+                >
+                  <FontAwesomeIcon icon={faFacebook} /> Facebook
+                </a>
+              </li>
+              <li
+                className={`footer-icon ${
+                  sidebar && "d-flex align-items-center"
+                } `}
               >
-                <FontAwesomeIcon icon={faInstagram} /> Instagram
-              </a>
-            </li>
+                <a
+                  href="https://instagram.com/CrashKalike?igshid=YmMyMTA2M2Y="
+                  target={"_blank"}
+                  className={`${sidebar && "d-flex align-items-center"} `}
+                >
+                  <FontAwesomeIcon icon={faInstagram} /> Instagram
+                </a>
+              </li>
+            </div>
           </ul>
         </div>
         <div
-          className="col-xs-12 col-sm-6 col-md-3 col-lg-4"
+          className={`col-xs-12 col-sm-6 col-md-3 ${
+            sidebar ? "col-lg-12" : "col-lg-4"
+          } `}
           style={deposit2 && { width: "50%" }}
         >
-          <h5 className={""}>TERMS AND CONDITIONS</h5>
-          <ul>
+          <h5 className={`${sidebar && "px-3"}`}>TERMS AND CONDITIONS</h5>
+          <ul
+            className={`${
+              sidebar && "transaction px-2 flex-column justify-content-center"
+            }`}
+          >
             <li className="">
               <Link to="/terms-and-conditions">Terms and Conditions</Link>
             </li>
@@ -71,10 +117,12 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
         <div
-          className="col-xs-12 col-sm-6 col-md-3 col-lg-4 mobile-only"
+          className={`col-xs-12 col-sm-6 col-md-3 ${
+            sidebar ? "col-lg-12" : "col-lg-4"
+          } mobile-only`}
           style={deposit2 && { width: "50%" }}
         >
-          <h5 className={""}>RESPONSIBLE GAMBLING</h5>
+          <h5 className={`${sidebar && "px-3"}`}>RESPONSIBLE GAMBLING</h5>
           <ul className="px-1">
             <li
               className="mt-2 mb-4 px-1"
@@ -85,7 +133,7 @@ const Footer = React.memo((props) => {
                 }
               }
             >
-              <p style={{}}>
+              <p style={{}} className={`${sidebar && "transaction d-block"}`}>
                 This is a real-money gambling app. Please gamble responsibly and
                 only bet what you can afford. For gambling addiction help and
                 support, please contact CustomerCare at (+254701087777), or
@@ -112,20 +160,29 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
         <div
-          className="col-xs-12 col-sm-6 col-md-3 col-lg-4"
+          className={`col-xs-12 col-sm-6 col-md-3 ${
+            sidebar ? "col-lg-12" : "col-lg-4"
+          } `}
           style={deposit2 && { width: "50%" }}
         >
-          <h5 className={""}>LEGAL</h5>
+          <h5 className={`${sidebar && "px-3"}`}>LEGAL</h5>
           <ul>
-            <li className="text-danger">
+            <li className={`text-danger ${sidebar && "transaction"}`}>
               You must be 18 Years+ to use this website.
             </li>
-            <li className="">
-              <Link to="/dispute-resolution">Dispute Resolution</Link>
-            </li>
-            <li className="">
-              <Link to="/anti-money-laundering">Anti-money Laundering</Link>
-            </li>
+            <div
+              className={`${
+                sidebar && "d-flex align-items-center flex-column transaction"
+              }`}
+            >
+              <li className="">
+                <Link to="/dispute-resolution">Dispute Resolution</Link>
+              </li>
+              <li className="">
+                <Link to="/anti-money-laundering">Anti-money Laundering</Link>
+              </li>
+            </div>
+
             <h5 className={"mt-3 desktop-only-show"}>RESPONSIBLE GAMBLING</h5>
             <li
               className="mt-1 mb-2 px-1 desktop-only-show"
@@ -136,7 +193,10 @@ const Footer = React.memo((props) => {
                 }
               }
             >
-              <p style={{}} className="mt-1 ">
+              <p
+                style={{}}
+                className={`mt-1 ${sidebar && "transaction d-block"}`}
+              >
                 This is a real-money gambling app. Please gamble responsibly and
                 only bet what you can afford. For gambling addiction help and
                 support, please contact CustomerCare at (+254701087777), or
@@ -146,7 +206,7 @@ const Footer = React.memo((props) => {
                   target="_blank"
                   style={{ color: "var(--aqua-text)" }}
                 >
-                  {" "}
+                  {`${sidebar && "px-3"}`}
                   Responsible Gambling Website
                 </a>{" "}
                 ).
@@ -162,8 +222,23 @@ const Footer = React.memo((props) => {
             </li>
           </ul>
         </div>
-       
       </div>
+      {(user && sidebar) ? (
+        <div className={"row "}>
+          <div className={"w-100 sidebar-mobile"}>
+            {" "}
+            <a
+              className={"logout-btn mt-2"}
+              href={"/logout"}
+              onClick={handleClose}
+            >
+              Logout
+            </a>{" "}
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="container" id="navbar-collapse-main">
         <div className="footer-bottom text-center">
           Copyright &copy; {new Date().getFullYear()} All rights Reserved.

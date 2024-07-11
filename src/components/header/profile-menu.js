@@ -102,10 +102,10 @@ const ProfileMenu = React.memo(
                                     </div>
                                 </Link>}
 
-                                <div className="col-1 button-toggle space-button">
+                                {/* <div className="col-1 button-toggle space-button">
                                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`}
                                                    className="px-3 py-3" onClick={toggle}/>
-                                </div>
+                                </div> */}
                             </div>
                             {/*<div className="w-auto d-flex  text-white align-items-end"  title={'Theme'}>*/}
                             {/*    <div className="cg " onClick={()=>handleThemeChange()}>*/}

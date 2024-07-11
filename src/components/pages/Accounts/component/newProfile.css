@@ -165,17 +165,7 @@ a.text-logout{
     font-weight: bold;
     padding-bottom: 10px;
 }
-.transaction {
-    cursor: default;
-    padding: 22px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--profile-card);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.02), 0 10px 10px rgba(0,0,0,0.0);
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
+
 .t-details {
     width: 55%;
 }

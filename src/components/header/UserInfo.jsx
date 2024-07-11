@@ -64,10 +64,8 @@ export const UserInfo = React.memo(
                         <div>
                             <Link
                                 to={{pathname: "/deposit"}}
-                                className={"deposit-button size-font-user-action deposit-button-header"}>
+                                className={"deposit-button size-font-user-action deposit-button-header bg-warning"}>
                                           <span className="">
-                                           <span className=" "> <FontAwesomeIcon
-                                               icon={faCloudDownloadAlt}/></span>&nbsp;
                                               DEPOSIT
                                           </span>
                             </Link>
@@ -85,7 +83,7 @@ export const UserInfo = React.memo(
                                           </span>
                             </div>
                         </div>}
-                        <div className={'mybets-remove-on-mobile'}>
+                        <div className={'mybets-remove-on-mobile px-2'}>
                             <Link
                                 to={ "/bet-history?competition_id=2"}
                                 className={"deposit-button size-font-user-action"}>
@@ -97,15 +95,15 @@ export const UserInfo = React.memo(
                             </Link>
                         </div>
                        
-                        <div className="col-1 button-toggle space-button"
+                        {/* <div className="col-1 button-toggle space-button"
                              style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
                             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
                                            className="px-3 py-3" onClick={toggle}
                             />
-                        </div>
+                        </div> */}
                     </div>}
                 <>
-                    {!user && <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show"
+                    {!user && <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2"
                                    style={{marginLeft: 'auto'}}>
                         {pathname !== '/signup' && <div className="remove-verify">
                             <Link className="cg  login-color login-size btn bg-success text-light"
@@ -127,11 +125,11 @@ export const UserInfo = React.memo(
                                 <span>Login</span>
                             </Link>}
                       
-                        <div className="col-1 button-toggle space-button"
+                        {/* <div className="col-1 button-toggle space-button"
                              style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
                             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3"
                                            onClick={toggle}/>
-                        </div>
+                        </div> */}
 
                     </div>}
                 </>

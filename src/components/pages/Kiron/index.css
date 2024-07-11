@@ -153,19 +153,59 @@
     box-sizing: border-box;
     margin-right: 2px;
 }
-.kiron-loader{
-    width: 100%;
+.kiron-loader{ 
+   width: 100%;
     height: 400px;
     display: block;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
+} 
+
+
+      
 .match-start {
     color: white;
     margin-bottom: -113px;
 }
-.loading {
+
+.loader-kiron {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loader-kiron::after,
+  .loader-kiron::before {
+    content: '';
+    box-sizing: border-box;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: green;
+    position: absolute;
+    top: -95px;
+    animation: animloader 2s linear infinite;
+    animation-fill-mode: backwards;
+  }
+  
+  .loader-kiron::after {
+    animation-delay: 1s;
+  }
+  
+  @keyframes animloader {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+  
+/* .loading {
     display: flex;
     justify-content: center;
 }
@@ -176,8 +216,8 @@
     border: 23px solid var(--light);
     border-top-color: var(--loader);
     border-radius: 50%;
-    animation: loading 1s ease infinite;
-}
+    animation: loading 1s ease infinite; */
+/* } */
 #game_week{
     color:#fff!important;
     font-weight:900;
@@ -200,7 +240,7 @@
     color: #FFC107;
 }
 .kiron-playout-score-animation {
-    background-color: red;
+    background-color: green;
     padding: 5px 5px;
     color: white;
     animation: scoreblink 1s linear infinite;
@@ -374,9 +414,9 @@
     height: 400px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
-    margin-top: 7rem;
+    margin-top: 10rem;
 }
 .red-txt {
     color: var(--red);

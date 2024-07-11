@@ -111,7 +111,7 @@ const TestKiron = React.memo(() => {
                                                             style={{marginTop: '120px'}}>
                                                             <span id="countdown"></span>
                                                         </div>
-                                                        <div className="loading loading--full-height"></div>
+                                                        <div className="loader-kiron loading--full-height"></div>
                                                     </div> : (inPlay&&!current_selection_period)? <KironPlayouts playout={playout}
                                                                                             isCountdownTimerActive={isCountdownTimerActive}/> :
                                                         <div className="kiron_matches_now">

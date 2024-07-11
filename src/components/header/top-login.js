@@ -277,7 +277,7 @@ const HeaderLogin = React.memo((props) => {
               )}
               <br />
               <input type="hidden" name="ref" value="{props.refURL}" />
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between align-items-center">
                 <Link
                   to={"/reset-password"}
                   title="Reset password"
@@ -294,58 +294,7 @@ const HeaderLogin = React.memo((props) => {
                     You are using CrashKali
                   </span>
                   <CountryButton onFieldChanged={onFieldChanged} />
-                  {/* <Dropdown
-                    onSelect={(selectedOption) =>
-                      onFieldChanged({
-                        target: {
-                          name: "countryCode",
-                          value: selectedOption,
-                        },
-                      })
-                    }
-                    className="counrtryCodec"
-                  >
-                    <Dropdown.Toggle
-                      variant="link"
-                      id="countryCode"
-                      style={{ color: "var(--light)" }}
-                    >
-                      Kenya
-                      &nbsp;{" "}
-                      <img
-                        className="image-kenya"
-                        src={kenyan}
-                        style={{
-                          width: "17px",
-                          height: "11px",
-                          marginTop: "2px",
-                        }}
-                        alt="Kenya"
-                        title="Kenya"
-                        effects="blur"
-                      />
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu className="countryCode">
-                      <Dropdown.Item eventKey="254" id="254">
-                        <span className="text-light">
-                        +{values.countryCode}&nbsp;
-                          </span>
-                        <img
-                          className="image-kenya"
-                          src={kenyan}
-                          style={{
-                            width: "17px",
-                            height: "11px",
-                            marginTop: "2px",
-                          }}
-                          alt="Kenya"
-                          title="Kenya"
-                          effects="blur"
-                        />
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown> */}
+                  
                 </span>
               </div>
             </div>

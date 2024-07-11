@@ -16,7 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../redux/dataSlice";
 
 const Footer = React.lazy(() => import("../footer/footer"));
-
+const SideBar = React.lazy(() => import("../sidebar/awesome/Sidebar"));
+const Right = React.lazy(() => import("../right/index"));
 
 const HowToPlay = React.memo((props) => {
   useEffect(() => {
@@ -41,10 +42,9 @@ const HowToPlay = React.memo((props) => {
   return (
     <div className={"flex-item"}>
       <div className="flex-container height-default-body top-diff-pages">
-        
         <div className="item2" style={{ width: "100%" }}>
-          <div className=" home">
-            <div className="homepage" style={{ width: "991px", margin: "auto" }}>
+          <div className=" home" style={{ margin: "auto", width: "991px" }}>
+            <div className="homepage">
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>
                   <span
@@ -64,6 +64,7 @@ const HowToPlay = React.memo((props) => {
                     />
                   </span>
                   <h4 className="inline-block"> HOW TO PLAY </h4>
+                  
                 </div>
               </div>
               <div
@@ -71,28 +72,26 @@ const HowToPlay = React.memo((props) => {
                 style={{ background: "var(--bet-history)" }}
               ></div>
               <div className="col-md-12 py-2 px-1 w-100 text-white accordion-container">
-                <Accordion
+              <Accordion
                   preExpanded={["1"]}
-                  allowZeroExpanded
+                  allowMultipleExpanded={true}
                   className="size-accordion"
                 >
-                
-                  <AccordionItem uuid="1">
+                  <AccordionItem uuid={"1"}>
                     <AccordionItemHeading>
                       <AccordionItemButton className="accordion-button px-2 pt-1">
-                        Play via Web
+                      <h2 className="px-3">Play Games</h2>
+
                       </AccordionItemButton>
                     </AccordionItemHeading>
+
                     <AccordionItemPanel className="accordion-item-panel px-1 py-1">
-                      <Accordion
-                        preExpanded={["1"]}
-                        allowZeroExpanded
-                        className={"px-1"}
-                      >
+                    <Accordion  allowZeroExpanded>
+
                         <AccordionItem uuid={"1"}>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              Registration by web
+                              Registration 
                             </AccordionItemButton>
                           </AccordionItemHeading>
 
@@ -149,7 +148,8 @@ const HowToPlay = React.memo((props) => {
                             </Accordion>
                           </AccordionItemPanel>
                         </AccordionItem>
-                     
+                       
+        
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
@@ -186,7 +186,7 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             Once you have registered you can access your CrashKali
                             account by entering your phone number as USERNAME
-                            and the WEB PASSWORD as PASSWORD
+                            and  PASSWORD as PASSWORD
                           </AccordionItemPanel>
                         </AccordionItem>
                         <AccordionItem>
@@ -219,7 +219,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              Virtual bets.
+                              Virtual League.
                             </AccordionItemButton>
                           </AccordionItemHeading>
 
@@ -230,7 +230,7 @@ const HowToPlay = React.memo((props) => {
                               Virtual games ranging from; Fantastic football
                               league, Horse racing , Force 1 racing , Greyhound
                               racing and Penalty shootout. Log into
-                              https://CrashKali.com/virtuals to get the Virtual
+                              https://CrashKali.com/ to get the Virtual
                               experience. Stake low, Win High & Fast with
                               CrashKali Virtuals.
                             </p>
@@ -258,11 +258,20 @@ const HowToPlay = React.memo((props) => {
                     </AccordionItemPanel>
                   </AccordionItem>
                 </Accordion>
+                <Accordion
+                  preExpanded={["1"]}
+                  allowMultipleExpanded={true}
+                  className="size-accordion"
+                >
+                  
+                 
+                </Accordion>
+
+              
               </div>
             </div>
           </div>
         </div>
-       
       </div>
       <div className="item6">
         <div className={"footer-mobile-none"}>

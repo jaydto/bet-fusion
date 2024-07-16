@@ -73,7 +73,7 @@ const KironCompetitions = React.memo(
 
         return (
             competitionData &&
-            <div className={`${path.includes('results')||path.includes('standing')? 'app-countries-icons change':'app-countries-icons'} mt-4`}>
+            <div className={`${path.includes('results')||path.includes('standing')? 'app-countries-icons change':'app-countries-icons'} ${!sideLobby&&'mt-4'}`}>
                 <div className="container-fluid">
                     <div className="d-flex">
                         {error ?

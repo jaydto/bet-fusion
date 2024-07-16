@@ -1228,6 +1228,15 @@ input[type="checkbox"] {
   color:rgb(177 204 232 / 75%) !important;
 }
 
+.header-nav-container> .header-nav-item{
+  list-style: none;
+  list-style-type: none;
+  
+}
+.header-nav-container> .header-nav-item >div{
+  color:var(--gold)!important;
+}
+
 .custom-fullscreen-wrapper {
   position: fixed;
   top: 50px;
@@ -2512,6 +2521,9 @@ img.nare-league {
   transition: display linear 0.7s;
 }
 @media (max-width: 991px) {
+  .header-nav-container{
+    display: none;
+  }
 
   .mobile-widget-position{
     /* position:absolute; */
@@ -3664,7 +3676,7 @@ img.nare-league {
   }
 
   .amt {
-    margin-top: 100px !important;
+    margin-top: 67px !important;
   }
 
   .og {

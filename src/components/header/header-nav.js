@@ -111,6 +111,21 @@ const HeaderNav = React.memo((props) => {
             </Link>
           </li>
 
+          <li className={`${pathname === "/casino" ? "active" : ""}`}>
+            <div
+              className="url-link fm anl cg ox "
+              title="Casino"
+              onClick={() => {
+                LoginCheck("new-casino");
+                gaEventTracker("Visit Casino Page");
+              }}
+            >
+              <span>
+                <strong>Virtual League</strong>
+              </span>
+            </div>
+          </li>
+
         
 
           

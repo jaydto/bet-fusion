@@ -23,14 +23,13 @@ import { UserInfo } from "./UserInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { configSettings, setState } from "../../redux/dataSlice";
 import { userBalance } from "../../redux/authSlice";
-import Logo from "../../assets/img/logo.png" 
+import Logo from "../../assets/img/logo.png";
 import {
   checkDesktopTopNavigation,
   checkNavigation,
   shouldShowDownload,
   shouldShowMobileNav,
   shouldShowHeader,
-  
 } from "../../redux/navigationAction";
 import Header2 from "./Header2";
 import useWindowDimensions from "./Dimensions";
@@ -42,7 +41,7 @@ const Header = React.memo((props) => {
   const { slip, scrollPosition, jackpot } = props;
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
   const { state, dispatch } = useContext(StoreContext);
-  
+
   const show = useSelector((state) => state.data.show_menu);
 
   const navigate = useNavigate();
@@ -54,7 +53,7 @@ const Header = React.memo((props) => {
   const pathname = `${path_origin?.pathname}${search_param}`;
 
   const dispatchRedux = useDispatch();
-  const {width}=useWindowDimensions()
+  const { width } = useWindowDimensions();
 
   const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
   const notShowHeaderNav = dispatchRedux(shouldShowHeader(pathname));
@@ -69,8 +68,6 @@ const Header = React.memo((props) => {
 
   const [user, setUser] = useState(getFromLocalStorage("user"));
 
-
-
   useEffect(() => {
     if (userData) {
       setUser(userData || getFromLocalStorage("user"));
@@ -83,9 +80,6 @@ const Header = React.memo((props) => {
     }
   }, [pathname]);
 
-
-
- 
   const appConfigs = useSelector((state) => state.data.app_config);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
 
@@ -93,7 +87,6 @@ const Header = React.memo((props) => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
   }, [appConfigs]);
 
- 
   const fetchAppConfigurations = useCallback(async () => {
     let cached_settings = getFromLocalStorage("settings");
 
@@ -105,41 +98,38 @@ const Header = React.memo((props) => {
   const cleanUpFuction = async () => {
     await fetchAppConfigurations();
 
-
     const handleStorageChange = (event) => {
       if (event.key === "settings") {
         fetchAppConfigurations();
       }
     };
 
-      const abort = new AbortController();
+    const abort = new AbortController();
 
-      window?.addEventListener("storage", handleStorageChange);
-      // window?.addEventListener('beforeunload', handleBeforeUnload);
+    window?.addEventListener("storage", handleStorageChange);
+    // window?.addEventListener('beforeunload', handleBeforeUnload);
 
-      const clearLocalStorageSettings = () => {
-        localStorage.removeItem("settings");
-        // Manually call fetchAppConfigurations to update the settings
-        // fetchAppConfigurations();
-      };
+    const clearLocalStorageSettings = () => {
+      localStorage.removeItem("settings");
+      // Manually call fetchAppConfigurations to update the settings
+      // fetchAppConfigurations();
+    };
 
-      
+    // Listen for "beforeunload" event to handle clearing localStorage in the same tab
+    const handleBeforeUnload = () => {
+      clearLocalStorageSettings();
+    };
 
-      // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-      const handleBeforeUnload = () => {
-        clearLocalStorageSettings();
-      };
+    window?.addEventListener("storage", handleStorageChange);
+    window?.addEventListener("beforeunload", handleBeforeUnload);
+    // Listen for the "storage" event to detect changes in "settings" localStorage
 
-      window?.addEventListener("storage", handleStorageChange);
-      window?.addEventListener("beforeunload", handleBeforeUnload);
-      // Listen for the "storage" event to detect changes in "settings" localStorage
-
-      return () => {
-        // Clean up the event listeners when the component unmounts
-        window?.removeEventListener("storage", handleStorageChange);
-        window?.removeEventListener("beforeunload", handleBeforeUnload);
-        abort.abort();
-      };
+    return () => {
+      // Clean up the event listeners when the component unmounts
+      window?.removeEventListener("storage", handleStorageChange);
+      window?.removeEventListener("beforeunload", handleBeforeUnload);
+      abort.abort();
+    };
   };
 
   useEffect(() => {
@@ -150,10 +140,6 @@ const Header = React.memo((props) => {
       cleanUpFuction();
     }
   }, [appConfigs, getFromLocalStorage("settings")]);
-
- 
-
- 
 
   const updateUserOnHistory = () => {
     if (!user) {
@@ -183,14 +169,14 @@ const Header = React.memo((props) => {
   };
 
   const handleShow = () => {
-    dispatchRedux(setState('show_menu', true))
-};
-const handleClose = () => {
-    dispatchRedux(setState('show_menu', false))
-};
-const toggleMenu = () => {
-    show?handleClose():handleShow()
-};
+    dispatchRedux(setState("show_menu", true));
+  };
+  const handleClose = () => {
+    dispatchRedux(setState("show_menu", false));
+  };
+  const toggleMenu = () => {
+    show ? handleClose() : handleShow();
+  };
 
   const expand = "md";
   const styles = { color: "var(--gold)" }; // Define your styles here
@@ -206,101 +192,124 @@ const toggleMenu = () => {
   var currentURL = new URL(window.location.href);
   var pathAndQuery = currentURL.pathname + currentURL.search;
 
-
-
+  const LoginCheck = (game) => {
+    {
+      navigate("/virtual-league");
+    }
+  };
 
   const handleCloseCallToAction = (e) => {
     e.stopPropagation();
-    dispatchRedux(setState("call_to_action",true));
+    dispatchRedux(setState("call_to_action", true));
   };
 
   // console.log("notshowHeader", notShowHeaderNav)
 
   return (
     <>
-      {
-       notShowHeaderNav && <div className={"d-flex flex-column"}>
-       <Navbar
-         expand="md"
-         className={`${
-           close_call_to_action || showDownload
-             ? "fixed-top-nav fixed"
-             : "fixed-top-nav"
-         }
-         ${(changeNav&&width<991)?'d-none':''}
+      {notShowHeaderNav && (
+        <div className={"d-flex flex-column"}>
+          <Navbar
+            expand="md"
+            className={`${
+              close_call_to_action || showDownload
+                ? "fixed-top-nav fixed"
+                : "fixed-top-nav"
+            }
+         ${changeNav && width < 991 ? "d-none" : ""}
          mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${
            slip || showDownload ? "top-betslip-page-fix" : ""
          } ${user ? "top-nav-login" : "top-nav-login"}`}
-         fixed="top"
-         variant="dark"
-       >
-         <div
-           className={`${
-             "optional-action"
-              
-           }  ${
-             showDownload ? "d-none" : "d-sm-flex d-lg-none d-md-none w-100"
-           }`}
-         >
-           
-         </div>
-         <div
-           className={
-             "w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main"
-           }
-         >
-           <div className={"d-flex w-100 directions-header-nav"}>
-             <Navbar.Brand
-               className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
-               title="CrashKali"
-             >
-               <div
-                 className="col-4 logo-CrashKali resize-mobile d-flex align-items-center mb-2"
-                 style={{ marginLeft: "2px" }}
-               >
-                <div className="col-1 button-toggle space-button desktop-menu"
-                             style={{width: "4.1rem", overflowY: "auto", marginLeft: '0px'}}>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
-                                           className="px-3 py-3 desktop-menu" onClick={toggleMenu}
-                            />
+            fixed="top"
+            variant="dark"
+          >
+            <div
+              className={`${"optional-action"}  ${
+                showDownload ? "d-none" : "d-sm-flex d-lg-none d-md-none w-100"
+              }`}
+            ></div>
+            <div
+              className={
+                "w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main"
+              }
+            >
+              <div className={"d-flex w-100 directions-header-nav"}>
+                <Navbar.Brand
+                  className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
+                  title="CrashKali"
+                >
+                  <div
+                    className="col-4 logo-CrashKali resize-mobile d-flex align-items-center mb-2"
+                    style={{ marginLeft: "2px" }}
+                  >
+                    <div
+                      className="col-1 button-toggle space-button desktop-menu"
+                      style={{
+                        width: "4.1rem",
+                        overflowY: "auto",
+                        marginLeft: "0px",
+                      }}
+                    >
+                      <Navbar.Toggle
+                        aria-controls={`offcanvasNavbar-expand-${"lg"}`}
+                        className="px-3 py-3 desktop-menu"
+                        onClick={toggleMenu}
+                      />
+                    </div>
+                    <img
+                      src={Logo}
+                      onClick={() => navigate("/")}
+                      alt="CrashKali"
+                      title="CrashKali"
+                      effects="blur"
+                      className={`image-size ${!user && "logo-top"}`}
+                      style={
+                        user
+                          ? { marginBottom: "0px" }
+                          : {
+                              marginBottom: "11px",
+                              width: "auto",
+                            }
+                      }
+                    />
+
+                    <ul className="header-nav-container">
+                      <li className={`${pathname === "/virtual-league" ? "active" : ""} header-nav-item`}>
+                        <div
+                          className="url-link fm anl cg ox "
+                          title="Casino"
+                          onClick={() => {
+                            LoginCheck("virtual League");
+                            gaEventTracker("Visit Virtual League Page");
+                          }}
+                        >
+                          <span>
+                            <strong>Virtual League</strong>
+                          </span>
                         </div>
-                 <img
-                   src={Logo}
-                   onClick={() => navigate("/")}
-                   alt="CrashKali"
-                   title="CrashKali"
-                   effects="blur"
-                   className={`image-size ${!user && "logo-top"}`}
-                   style={
-                     user
-                       ? { marginBottom: "0px" }
-                       : {
-                           marginBottom: "11px",
-                           width: "auto",
-                         }
-                   }
-                 />
-               </div>
+                      </li>
+                    </ul>
+                  </div>
 
-               <UserInfo profile={checkDesktop} user={user} />
-             </Navbar.Brand>
+                  <UserInfo profile={checkDesktop} user={user} />
+                </Navbar.Brand>
 
-             {/*todo check information provided for a user*/}
-             <div
-               className={` col-10 change-size desk-top`}
-               id="navbar-collapse-main "
-             >
-               <div className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
-                 {user ? 
-                   <ProfileMenu user={user} profile={checkDesktop} />
-                  :                  
-                   <LoginSection />
-               }
-               </div>
-             </div>
-           </div>
+                {/*todo check information provided for a user*/}
+                <div
+                  className={` col-10 change-size desk-top`}
+                  id="navbar-collapse-main "
+                >
+                  <div className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
+                    {user ? (
+                      <ProfileMenu user={user} profile={checkDesktop} />
+                    ) : (
+                      <LoginSection />
+                    )}
+                  </div>
+                </div>
+              </div>
 
-           {!checkDesktop && (
+              {/* {!checkDesktop && (
              <Row
                className={`second-nav ck pc os app-navbar ${
                  user ? " app-header-nav-login " : " app-header-nav "
@@ -308,56 +317,56 @@ const toggleMenu = () => {
              >
                <HeaderNav />
              </Row>
-           )}
-           
-            { notShowMobileNav &&
-             !slip &&
-             !jackpot &&
-             !checkDesktop &&
-             !pathname.includes("match") && <MobileNav1 />
-           }
+           )} */}
 
-           <Offcanvas
-             style={{
-               width: "80%",
-               height: "100%",
-               zIndex: "9999",
-               marginTop: "0px",
-               overflowY: "auto",
-             }}
-             onHide={handleClose}
-             show={show}
-             className="off-canvas background-primary p-0"
-             id={`offcanvasNavbar-expand-${expand}`}
-             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-             placement="start"
-           >
-             <Offcanvas.Header
-               closeButton
-               className="text-white"
-               closeVariant={"white"}
-               onClick={toggle}
-             >
-               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                 <div className="col-5  desktop-none">
-                   <div>
-                     <img
-                       src={Logo}
-                       alt="CrashKali"
-                       title="CrashKali"
-                       effects="blur"
-                     />
-                   </div>
-                 </div>
-               </Offcanvas.Title>
-             </Offcanvas.Header>
-             <Offcanvas.Body>
-               <SidebarMobile />
-             </Offcanvas.Body>
-           </Offcanvas>
-         </div>
-       </Navbar>
-     </div>}
+              {notShowMobileNav &&
+                !slip &&
+                !jackpot &&
+                !checkDesktop &&
+                !pathname.includes("match") && <MobileNav1 />}
+
+              <Offcanvas
+                style={{
+                  width: "80%",
+                  height: "100%",
+                  zIndex: "9999",
+                  marginTop: "0px",
+                  overflowY: "auto",
+                }}
+                onHide={handleClose}
+                show={show}
+                className="off-canvas background-primary p-0"
+                id={`offcanvasNavbar-expand-${expand}`}
+                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                placement="start"
+              >
+                <Offcanvas.Header
+                  closeButton
+                  className="text-white"
+                  closeVariant={"white"}
+                  onClick={toggle}
+                >
+                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                    <div className="col-5  desktop-none">
+                      <div>
+                        <img
+                          src={Logo}
+                          alt="CrashKali"
+                          title="CrashKali"
+                          effects="blur"
+                        />
+                      </div>
+                    </div>
+                  </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  <SidebarMobile />
+                </Offcanvas.Body>
+              </Offcanvas>
+            </div>
+          </Navbar>
+        </div>
+      )}
     </>
   );
 });

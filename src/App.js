@@ -6,6 +6,7 @@ import {getFromLocalStorage, setLocalStorage} from "./components/utils/local-sto
 import {resetState} from "./redux/authSlice";
 import {Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import Header from './components/header/header';
+import CasinoIndex from './components/lobby/Index';
 
 const Deposit3 = React.lazy(() => import("./components/pages/deposit-withraw/Deposit3"));
 
@@ -167,8 +168,10 @@ const App =
                        
                         <Route exact path="/smart-play" element={<SmartPlay/>}/>
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
+                        <Route exact path="/" element={<CasinoIndex/>}/>
 
-                        <Route exact path={"/"} element={<Kiron/>}/>
+
+                        <Route exact path={"/virtual-League"} element={<Kiron/>}/>
                         <Route exact path={"/results"} element={<Kiron/>}/>
                         <Route exact path={"/standing"} element={<Kiron/>}/>
                         <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>

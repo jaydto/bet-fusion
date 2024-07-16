@@ -1410,6 +1410,218 @@ const clear_rep = (str) => {
 //     return str.replace(/-+/g, "-");
 // };
 
+export const MatchHeaderRow = React.memo((props) => {
+  const { live, first_match, jackpot, loading } = props;
+
+  const [, setShowX] = useState(true);
+  const [market, setMarket] = useState("1x2");
+  const [extraMarketDisplays, setExtraMarketDisplays] = useState([]);
+  const [, setThreeWay] = useState(false);
+  const dispatchRedux = useDispatch();
+  const userData = useSelector((state) => state.auth.user);
+  const search = useSelector((state) => state.matchesData.search);
+  const active_sport = useSelector((state) => state.matchesData.active_sport);
+  const active_sub_type = useSelector(
+    (state) => state.matchesData.active_sub_type
+  );
+  const [user, setUser] = useState(getFromLocalStorage("user"));
+
+  useEffect(() => {
+    if (userData) {
+      setUser(userData || getFromLocalStorage("user"));
+    }
+  }, [userData]);
+  const getSelectedMarkets = () => {
+    const markets = marketChoice();
+
+    let live_sub_type = first_match?.sub_type_id;
+
+    let url = new URL(window.location);
+
+    let sub_types = live
+      ? live_sub_type
+      : (url.searchParams.get("sub_type_id") || "1,18,29")?.split(",");
+
+    if (!live && sub_types.includes("1")) {
+      setThreeWay(true);
+    }
+
+    let extraMarkets = [];
+    if (live) {
+      let selectedMarket = markets.filter(
+        (market) => Number(market.id) === Number(sub_types)
+      );
+      if (selectedMarket.length > 0) {
+        extraMarkets.push(selectedMarket[0]);
+      }
+    } else {
+      sub_types?.forEach((sub_type) => {
+        let selectedMarket = markets.filter(
+          (market) => Number(market.id) === Number(sub_type)
+        );
+
+        if (selectedMarket.length > 0) {
+          extraMarkets.push(selectedMarket[0]);
+        }
+      });
+    }
+
+    setExtraMarketDisplays(extraMarkets);
+  };
+
+  useEffect(() => {
+    getSelectedMarkets();
+    if (first_match) {
+      setMarket(first_match?.market_name);
+      /**
+       * fixed
+       */
+      // setShowX(!["186", "340"]?.includes(first_match.sub_type_id));
+      setShowX(
+        (["186", "340"] && ["186", "340"].includes(first_match?.sub_type_id)) ||
+          false
+      );
+    }
+  }, [first_match]);
+
+  const navigate = useNavigate();
+  const navigation_link = useSelector((state) => state.data.navigation_link);
+  const pathname = window.location.pathname;
+
+  const closeFilter = (option) => {
+    // reset filters
+    // navigate to the right condition
+    if (option === "sport") {
+      dispatchRedux(resetState("active_sport"));
+      dispatchRedux(setState("navigation_link", null));
+    } else if (option === "search") {
+      dispatchRedux(resetState("search"));
+    } else if (option === "sub_type") {
+      dispatchRedux(resetState("active_sub_type"));
+    }
+
+    if (navigation_link) {
+      if (pathname.includes("live")) {
+        navigate("/live");
+      } else {
+        navigate(`${navigation_link}`);
+        dispatchRedux(setState("navigation_link", null));
+      }
+    } else {
+      // If there is no previous navigation, go home or live home
+      if (pathname.includes("live")) {
+        navigate("/live");
+      } else {
+        navigate("/");
+      }
+    }
+    dispatchRedux(setState("active_link", 79));
+  };
+
+  return (
+    <Row
+      className={`full-mobile sticky-top ${
+        jackpot
+          ? "d-none "
+          : user
+          ? "sticky-user d-flex align-items-center "
+          : "sticky-responsive no-sticky d-flex align-items-center"
+      }`}
+    >
+      <div className="top-matches d-flex position-sticky sticky-top shadow-sports-header header-sports live-mobile-top">
+        <div className={"size-info  d-flex col-xs-12 pad left-text px-2"}>
+          <div className="col pad left-text d-flex">
+            <div className="align-self-center col">
+              <h3 className="mx-2 main-heading-1 text-white">
+                <div className={"d-flex align-items-center gap-2"}>
+                  {live && <span className="live-header">LIVE </span>}
+                  {active_sport === "Soccer" && !search && (
+                    <span className={"sport-styling"}>
+                      {active_sport} {market && <></>}
+                    </span>
+                  )}
+                  {search && !live && (
+                    <span
+                      className={
+                        "selected-filters__item d-flex gap-2 align-items-center"
+                      }
+                    >
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        className={"close-filter"}
+                        onClick={() => closeFilter("search")}
+                      />
+                      {search}
+                    </span>
+                  )}
+                  {active_sport !== "Soccer" && !search && (
+                    <span
+                      className={
+                        "selected-filters__item d-flex gap-2 align-items-center"
+                      }
+                    >
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        className={"close-filter"}
+                        onClick={() => closeFilter("sport")}
+                      />
+                      {active_sport}
+                    </span>
+                  )}
+
+                  {active_sub_type && active_sub_type !== "1x2" && !live && (
+                    <span
+                      className={
+                        "selected-filters__item d-flex gap-2 align-items-center"
+                      }
+                    >
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        className={"close-filter"}
+                        onClick={() => closeFilter("sub_type")}
+                      />
+                      {active_sub_type}
+                    </span>
+                  )}
+                </div>
+              </h3>
+            </div>
+          </div>
+
+          <div className={"col match-detail-container"}></div>
+        </div>
+        {/*match heading*/}
+        <div
+          className={
+            "col flex-row justify-content-between space-bets d-flex align-self-center"
+          }
+          style={{ minWidth: "45%" }}
+        >
+          {extraMarketDisplays && !jackpot && (
+            <div
+              className={`${
+                loading && first_match ? "d-none" : "d-flex flex-row"
+              }`}
+            >
+              <div className="d-flex flex-column text-center text-white mt-0 fit-ipad w-100">
+                <div className={"c-btn-group align-self-end"}>
+                  {extraMarketDisplays?.[0]?.extra_markets_display?.map(
+                    (display, index) => (
+                      <span className={"c-btn-header text-white"} key={index}>
+                        {display}
+                      </span>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </Row>
+  );
+});
+
 export const JackpotMatchList = React.memo((props) => {
   const { matches } = props;
   const dispatchRedux = useDispatch();

@@ -16,7 +16,7 @@ const Lobby=(props)=> {
         </div>
         <div className={`side center slots ${width < 991 ? `mobile` : `desktop`}`}>
             
-          <TopSection/>
+          {/* <TopSection/> */}
 
             <CasinoGamesComponent/>
 

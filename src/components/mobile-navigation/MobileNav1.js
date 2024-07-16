@@ -118,6 +118,33 @@ const MobileNav1 = React.memo(
                             </div>
                         </div>
                     </td> */}
+                    <td className={`menu-t m-auto sport-check ${'/c' ===active_link ? " active_link" : "link-inactive"} `}>
+                        <div
+                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}
+                            onClick={() => {
+                                gaEventTracker('Visit Casino Page')
+                                navigate('/');
+                                setActiveLink('/')
+                            }}>
+                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
+
+                                <div className="menu-img ">
+                                    <LazyLoadImage
+                                        className="side-icon"
+                                        src={casino1}
+                                        alt=""
+                                        effect='blur'
+                                        style={{height: "25px", marginTop: "-2px", filter:"invert(1)"}}
+                                    />
+                                </div>
+                                <p style={{textAlign: "center", marginBottom: "unset"}}>
+                                  Home
+                                </p>
+                            </div>
+                        </div>
+
+                    </td>
+
                     <td className={`menu-t m-auto sport-check nare-league ${pathname === "/"===active_link ? "active_link" : "link-inactive"}`}>
                         <div
                             className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
@@ -150,33 +177,7 @@ const MobileNav1 = React.memo(
                   
             
 
-                    <td className={`menu-t m-auto sport-check ${'/casino' ===active_link ? " active_link" : "link-inactive"} `}>
-                        <div
-                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}
-                            onClick={() => {
-                                gaEventTracker('Visit Casino Page')
-                                navigate('/casino');
-                                setActiveLink('/casino')
-                            }}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon"
-                                        src={casino1}
-                                        alt=""
-                                        effect='blur'
-                                        style={{height: "25px", marginTop: "-2px", filter:"invert(1)"}}
-                                    />
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    Casino
-                                </p>
-                            </div>
-                        </div>
-
-                    </td>
-
+                    
                     
 
                 </tr>

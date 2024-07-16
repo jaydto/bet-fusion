@@ -448,7 +448,7 @@
         margin-top:0rem!important;
     }
     .kiron-body-pages {
-        margin-top: 19.9rem!important;
+        margin-top: 14.9rem!important;
         position: relative;
     }
     .kiron-body {
@@ -460,7 +460,7 @@
         z-index: 1999;
         width: 100%;
         background: var(--CrashKali-header-bg);
-        top: 21.1rem!important;
+        top: 16.1rem!important;
     }
     .kiron_matches_now {
         margin-top: 9rem!important;
@@ -501,13 +501,13 @@
         width:46%
     }
     .kiron-body-pages {
-        margin-top: 11.6rem;
+        margin-top: 7.6rem;
         position: relative;
     }
     .kiron-sticky-nav{
         z-index:2000;
         position:fixed;
-        top:7.7rem;
+        top:4.7rem;
         width:75%;
     }
     .event{
@@ -519,7 +519,7 @@
     }
     .kiron-matches-header {
         position: fixed;
-        top:19rem;
+        top:16rem;
         z-index: 1999;
         width:75%;
         background: var(--CrashKali-header-bg);
@@ -534,6 +534,8 @@
     }
     .kiron-betslip-size{
         width:25%!important;
+        margin-top: -3rem!important;
+        top:0rem!important;
     }
     .standings-container-heading{
         position: fixed;

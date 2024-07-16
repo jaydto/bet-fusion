@@ -4,6 +4,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { casinoList } from "../../redux/virtualsSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../utils/local-storage";
+import OverlayIimage from "../../assets/img/mobile/overlayImage.png";
 
 const CasinoGamesComponent = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,8 @@ const CasinoGamesComponent = () => {
           data-order={gameIndex}
           data-id={game.gameId}
         >
-          <div className="jpOverlay"></div>
+          <div className="jpOverlay"         style={{backgroundImage:`url(${OverlayIimage})`}}
+></div>
           <div className="gamePanel">
             <div
               className="img"
@@ -128,7 +130,8 @@ const CasinoGamesComponent = () => {
         data-order={gameIndex}
         data-id={game.game.gameId}
       >
-        <div className="jpOverlay"></div>
+        <div className="jpOverlay"    style={{backgroundImage:`url(${OverlayIimage})`}}
+></div>
         <div className="gamePanel">
           <div
             className="img"
@@ -178,65 +181,7 @@ const CasinoGamesComponent = () => {
     ));
   };
 
-  const ContainerGames = (game, gameIndex) => {
-    return (
-      <div
-        key={`${game.provider}-${game.game.gameId}`}
-        className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}
-        data-provider={game.provider}
-        data-category={game.game.gameCategory}
-        data-order={gameIndex}
-        data-id={game.game.gameId}
-      >
-        <div className="jpOverlay"></div>
-        <div className="gamePanel">
-          <div
-            className="img"
-            style={{
-              backgroundImage: `url(${game.game?.game_icon ?? game.game?.image_url})`,
-              width: "-webkit-fill-available",
-            }}
-          ></div>
-
-          <div className="reaCover">
-            <div
-              data-real="1"
-              className="link Real"
-              onClick={(event) =>
-                handleButtonClick(
-                  event,
-                  game.game?.game_id ?? game.game?.gameName ?? game.game?.key,
-                  game.game?.gameCategory
-                )
-              }
-              to={`/smart-play?game=${game.game?.game_id}&category=${
-                game.game?.gameCategory
-              }&status=live`}
-              target="_self"
-            >
-              <div>Play now</div>
-            </div>
-          </div>
-        </div>
-        <div className="imgCover">
-          <h4>{game.game?.game_name ?? game.game?.gameName}</h4>
-          <a className="infoBtn">
-            <div>i</div>
-          </a>
-          <Link
-            data-real="0"
-            className="link Fun"
-            to={`/smart-play?game=${game.game?.game_id}&category=${
-              game.game?.gameCategory
-            }&status=demo`}
-            target="_self"
-          >
-            <div>Demo</div>
-          </Link>
-        </div>
-      </div>
-    );
-  };
+  
 
   return (
     <section className="gamesCont grid-layout slots">

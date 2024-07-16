@@ -70,10 +70,10 @@
   background-size: 120px 120px;
 }
 .grid-item:not(.nohover)[data-provider="SmartSoft"] .jpOverlay {
-    background: url('/Users/apple/Projects/crash_kali/frontend/crash-kali-web/src/assets/img/mobile/overlayImage.png');
+    /* background: url('/assets/img/mobile/overlayImage.png'); */
 }
 .grid-item:not(.nohover)[data-provider="SmartSoft"] .jpOverlay {
-    background: url('/Users/apple/Projects/crash_kali/frontend/crash-kali-web/src/assets/img/mobile/overlayImage.png');
+    /* background: url('/Users/apple/Projects/crash_kali/frontend/crash-kali-web/src/assets/img/mobile/overlayImage.png'); */
     /* filter: invert(1); */
     background-blend-mode: color;
     /* backdrop-filter: saturate(0.5); */
@@ -719,7 +719,7 @@ section.pageContent .side.center.desktop {
 }
 .newJPDisplay > .jplevels > .jpName[name="Gold"] {
   color: #b4a854;
-  background-image: url(//www.palmsbet.co.ke/images/levels-gold.png);
+  /* background-image: url(//www.palmsbet.co.ke/images/levels-gold.png); */
   background-size: 50%;
 }
 .newJPDisplay[data-provider="Casino Technology"] > .jplevels > .jpName {
@@ -967,7 +967,7 @@ section.pageContent .side.center.desktop {
 }
 .newJPDisplay > .jplevels > .jpName[name="Bronze"] {
   color: #bc7744;
-  background-image: url(//www.palmsbet.co.ke/images/levels-bronze.png);
+  /* background-image: url(//www.palmsbet.co.ke/images/levels-bronze.png); */
   background-size: 50%;
 }
 

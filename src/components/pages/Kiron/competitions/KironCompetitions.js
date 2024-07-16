@@ -8,7 +8,8 @@ import {useDispatch, useSelector} from 'react-redux'; // Import useDispatch hook
 import {virtualLeagueCompetitions, setState} from '../../../../redux/virtualLeague';
 
 const KironCompetitions = React.memo(
-    () => {
+    (props) => {
+        const {sideLobby}=props
         const dispatchRedux = useDispatch()
         const active_competition = useSelector((state) => state.virtualLeague.competition_id)
         const pathLocation = window.location.pathname
@@ -36,11 +37,11 @@ const KironCompetitions = React.memo(
         }, [location.search]);
 
         const fetchData = useCallback(async () => {
-            let cached_competitions = getFromLocalStorage('kiron-competitions');
+            // let cached_competitions = getFromLocalStorage('kiron-competitions');
 
-            if (!cached_competitions) {
+            // if (!cached_competitions) {
                 dispatchRedux(virtualLeagueCompetitions())
-            }
+            // }
 
         }, []);
 
@@ -85,7 +86,7 @@ const KironCompetitions = React.memo(
                                     <div
                                         className={`country-flag-icon ${(pathname.includes(`competition_id=${kiron_options?.competition_id}`)) ? ' active-league ' : " "} justify-content-center`}>
                                         <Link
-                                            to={`${pathLocation.includes('bet-history') ? '/' : pathLocation}?competition_id=${kiron_options?.competition_id||active_competition}`}
+                                            to={`${sideLobby&&'virtual-league'}${pathLocation.includes('bet-history') ? '/' : pathLocation}?competition_id=${kiron_options?.competition_id||active_competition}`}
                                             onClick={() => setActiveCompetition(kiron_options?.competition_id)}>
                                 <span className="icon">
                                    <LazyLoadImage

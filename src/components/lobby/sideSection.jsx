@@ -2,20 +2,24 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import crashGamesImg from '../../assets/img/mobile/crash-games.png';
 import { Link } from 'react-router-dom';
+import KironCompetitions from '../pages/Kiron/competitions/KironCompetitions';
 
 const SideCasinoMenu = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [isCollapsed, setIsCollapsed] = useState({});
+  const [isCollapsed, setIsCollapsed] = useState({
+    slots: true,
+    virtualLeague: true
+  });
   const smartsoft_categories = useSelector((state) => state.virtuals.smartsoft_categories);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const toggleCollapse = (category) => {
+  const toggleCollapse = (section) => {
     setIsCollapsed((prevState) => ({
       ...prevState,
-      [category]: !prevState[category],
+      [section]: !prevState[section],
     }));
   };
 
@@ -77,6 +81,19 @@ const SideCasinoMenu = () => {
         </div>
         <div className="counter">2</div>
         <div className="category-item providerFilt">
+          <div provider-list="VirtualLeague" className='provider' onClick={() => toggleCollapse('virtualLeague')} style={{ cursor: 'pointer' }} >
+            <label>
+              <span>Virtual League</span>  
+
+              <input type="checkbox" filter-value="SmartSoft" className="providerbox" />
+              <div className="checkboxx"></div>
+            </label>
+          </div>
+        </div>
+        {isCollapsed['virtualLeague'] && (
+        <KironCompetitions sideLobby={true}/>
+          )}
+        <div className="category-item providerFilt">
           <div provider-list="SmartSoft" className='provider' onClick={() => toggleCollapse('slots')} style={{ cursor: 'pointer' }} >
             <label>
               <span>SmartSoft</span>  <div className="category-item counter">{smartsoft_categories?.length}</div>
@@ -86,7 +103,7 @@ const SideCasinoMenu = () => {
             </label>
           </div>
         </div>
-        {!isCollapsed['slots'] && (
+        {isCollapsed['slots'] && (
           <div className="items providerFilt">
             {smartsoft_categories?.map((value) => (
               <div key={value.default_description} provider-list={value.default_description}>

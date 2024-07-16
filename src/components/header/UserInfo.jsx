@@ -103,13 +103,13 @@ export const UserInfo = React.memo(
                 <>
                     {!user && <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2"
                                    style={{marginLeft: 'auto'}}>
-                        {pathname !== '/signup' && <div className="remove-verify">
+                        {/* {pathname !== '/signup' && <div className="remove-verify">
                             <Link className="cg  login-color login-size btn bg-success text-light"
                                   to={"/verify"} title="Verify Account"
                                   onClick={() => gaEventTracker('Verify')}>
                                 <span className="register-label text-light">Verify</span>
                             </Link>
-                        </div>}
+                        </div>} */}
                         {pathname !== '/signup' && <div className="">
                             <Link className="cg  login-color login-size btn btn-button-bg text-light"
                                   to={"/signup"} title="Join now"

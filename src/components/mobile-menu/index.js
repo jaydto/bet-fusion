@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import HomeSvg from "../../assets/img/mobile/Home.svg"
-import Casino from "../../assets/svg/casino.svg"
+import VirtualLeague from "../../assets/svg/game.svg"
 import ProfileSvg from "../../assets/img/mobile/Profile.svg"
 import CloseIcon from "../../assets/img/mobile/close_icon.png"
 import Mybets from "../../assets/svg/book.svg"
@@ -308,15 +308,15 @@ const MobileMenu = React.memo((props) => {
                                 </td>
                                 <td className={`bloc-icon ${pathname === "/casino" ? "active" : ""}`}>
                                     <Link
-                                        to={`/casino`}
+                                        to={`/virtual-league`}
                                         onClick={() => gaEventTracker("Visit Casino Page")}
                                     >
-                                        <LazyLoadImage src={Casino} style={{filter:"invert(1)"}}
+                                        <LazyLoadImage src={VirtualLeague} style={{filter:"invert(1)"}}
                                         effect="blur"
                                         alt=""/>
                                       
                                         <p>
-                                           Casino
+                                           League
                                         </p>
 
                                     </Link>

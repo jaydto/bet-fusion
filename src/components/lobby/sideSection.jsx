@@ -29,7 +29,7 @@ const SideCasinoMenu = () => {
 
   return (
     <ul className="sideCasinoMenu">
-      <li className="search">
+      {/* <li className="search">
         <span className="twitter-typeahead" style={{ position: 'relative', display: 'inline-block' }}>
           <input
             type="text"
@@ -62,7 +62,7 @@ const SideCasinoMenu = () => {
             style={{ position: 'relative', verticalAlign: 'top', backgroundColor: 'transparent' }}
           />
         </span>
-      </li>
+      </li> */}
 
       <li className="category subCat" data-category="crash-games">
         <Link to="/smart-play?game=JetX&category=JetX&status=live" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

@@ -10,7 +10,7 @@ import './index.css'
 const MobileNavCasino = () => {
   return (
     <section className="sportsNav non-desktop done" id="casinoMenu">
-      <div className="nwBtns" style={{ minWidth: '1100px', width: '100%', fontSize: '0px' }}>
+      <div className="nwBtns" style={{ display:"flex", width: '100%', fontSize: '0px' }}>
         <a href="/en/casino/favorites/" className="non-out">
           <div className="btnHckd" style={{ width: '9.09091%', minWidth: '100px' }} ist="Любими">
             <img src={favImg} alt="Favorites" />favorites

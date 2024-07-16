@@ -305,7 +305,7 @@ const dataSlice = createSlice({
       .addCase(resetState, (state, action) => {
         const stateToReset = action.payload;
         if (state.hasOwnProperty(stateToReset)) {
-          state[stateToReset] = initialState.matchesData[stateToReset];
+          state[stateToReset] = initialState.data[stateToReset];
         }
         state.error = null;
       })

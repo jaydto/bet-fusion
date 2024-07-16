@@ -319,11 +319,11 @@ const Header = React.memo((props) => {
              </Row>
            )} */}
 
-              {notShowMobileNav &&
+              {/* {notShowMobileNav &&
                 !slip &&
                 !jackpot &&
                 !checkDesktop &&
-                !pathname.includes("match") && <MobileNav1 />}
+                !pathname.includes("match") && <MobileNav1 />} */}
 
               <Offcanvas
                 style={{

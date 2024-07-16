@@ -3,6 +3,8 @@ import CasinoCarouselLoader from '../pages/new-casino/CasinoCarouseld';
 import MobileNavCasino from './mobileCasino';
 import Lobby from './lobby';
 import useWindowDimensions from '../header/Dimensions';
+import Right from '../right';
+import Footer from '../footer/footer';
 
 const CasinoIndex=()=> {
   const {width}=useWindowDimensions()
@@ -12,6 +14,12 @@ const CasinoIndex=()=> {
     <CasinoCarouselLoader/>
     {width < 991 && <MobileNavCasino/>}
    <Lobby/>
+   <div className='ipad-show'>
+   <Right kiron={true} virtualLeague={true}/>
+   </div>
+   <div className='desktop-only-show '>
+   <Footer/>
+   </div>
    </div>
    
    

@@ -602,7 +602,7 @@ section.pageContent .side.center.desktop {
   width: calc(100% - 220px);
   margin-left: 220px;
   display: inline-block;
-  min-height: 460px;
+  min-height: 700px;
 }
 
 .no-mobile {

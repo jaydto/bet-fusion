@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import crashGamesImg from '../../assets/img/mobile/crash-games.png';
 import { Link } from 'react-router-dom';
 import KironCompetitions from '../pages/Kiron/competitions/KironCompetitions';
-
+import { setState as setVirtualGame,
+} from "../../redux/virtualsSlice";
 const SideCasinoMenu = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isCollapsed, setIsCollapsed] = useState({
     slots: true,
     virtualLeague: true
   });
+  const casino_games = useSelector((state) => state.virtuals.casino_games);
+  const casino_search = useSelector((state) => state.virtuals.casino_search);
   const smartsoft_categories = useSelector((state) => state.virtuals.smartsoft_categories);
+  const dispatch=useDispatch()
+  const [activeProvider, setActiveProvider] = useState(null);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -23,9 +28,42 @@ const SideCasinoMenu = () => {
     }));
   };
 
+
   // const filteredCategories = smartsoft_categories?.filter((category) =>
   //   category.default_description.toLowerCase().includes(searchQuery.toLowerCase())
   // );
+  const filterData = (searchTerm) => {
+    const filteredData = [];
+    if (searchTerm?.length >= 1) {
+      casino_games.forEach((obj) => {
+        Object.entries(obj).forEach(([key, gamesArray]) => {
+          // Check if gamesArray is an array
+          const provider = obj.provider;
+          if (Array.isArray(gamesArray)) {
+            // Check if any game matches the search term
+            gamesArray.forEach((game) => {
+              if (
+                (game?.gameName ?? game?.game_name)
+                  ?.toLowerCase()
+                  .includes(searchTerm.toLowerCase())
+              ) {
+                filteredData.push({ provider: provider, game: game });
+              }
+            });
+          }
+        });
+      });
+    }
+    dispatch(setVirtualGame("casino_search", filteredData));
+    setActiveProvider(searchTerm);
+
+    // return filteredData
+  };
+
+  const resetSearch = () => {
+    dispatch(setVirtualGame("casino_search", []));
+    setActiveProvider(null);
+  };
 
   return (
     <ul className="sideCasinoMenu">
@@ -105,8 +143,17 @@ const SideCasinoMenu = () => {
         </div>
         {isCollapsed['slots'] && (
           <div className="items providerFilt">
+             <div onClick={resetSearch} className={!activeProvider ? ' text-light' : ''}>
+              <label>
+                <span>All</span>
+                <div className="checkboxx"></div>
+              </label>
+            </div>
             {smartsoft_categories?.map((value) => (
-              <div key={value.default_description} provider-list={value.default_description}>
+              <div key={value.default_description} provider-list={value.default_description} 
+              className={activeProvider === value.default_description ? ' text-light' : ''}
+
+              onClick={() => filterData(value.default_description)}>
                 <label>
                   <span>{value.default_description}</span>
                   <input type="checkbox" filter-value={value.default_description} className="providerbox" />
@@ -114,6 +161,7 @@ const SideCasinoMenu = () => {
                 </label>
               </div>
             ))}
+           
           </div>
         )}
       </li>

@@ -10,7 +10,7 @@ const CasinoIndex=()=> {
   const {width}=useWindowDimensions()
 
   return (
-   <div style={{marginTop:'6.7rem'}}>
+   <div style={{marginTop:'6.1rem'}}>
     <CasinoCarouselLoader/>
     {width < 991 && <MobileNavCasino/>}
    <Lobby/>

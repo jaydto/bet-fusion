@@ -133,7 +133,9 @@ body {
   color: var(--footer-color);
   padding: 10px;
   margin-top: 10px;
-  box-shadow: 10px 10px 10px 10px var(--CrashKali-header-bg);
+  /* box-shadow: 10px 10px 10px 10px var(--CrashKali-header-bg); */
+  max-width: 991px;
+  margin: auto;
 }
 
 .active_link {
@@ -2121,8 +2123,15 @@ img.nare-league {
   transform: rotate(45deg);
 }
 
-
 @media (min-width: 992px) {
+
+  .desktop-footer  {
+    /* max-width: 991px; */
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto  auto;
+    grid-auto-rows: minmax(auto, auto);
+}
   .login-page.user-page{
     /* box-shadow:5px 7px 30px 8px var(--btn-color); */
   }
@@ -2139,7 +2148,7 @@ img.nare-league {
     top:100px!important;
   }
   .flex-container.height-default-body {
-    margin-top: 20px;
+    margin-top: 15px;
   }
   .close-history-filter.deposit-modal {
     right: 89%;
@@ -2485,7 +2494,7 @@ img.nare-league {
 } */
 .codecCountry .dropdown .dropdown-menu {
   color: var(--light);
-  background-color: var(--CrashKali-body-bg) !important;
+  background-color: var(--CrashKali-header-bg) !important;
 }
 .codecCountry .dropdown .dropdown-menu a {
   color: var(--light);
@@ -2495,7 +2504,7 @@ img.nare-league {
 
 .filters-modal .modal-content,
 .filters-modal.exclude .modal-content {
-  background-color: var(--CrashKali-body-bg);
+  background-color: var(--CrashKali-header-bg);
 }
 .bg-deposit-modal-btn.cancel-filter-markets {
   background: none !important;
@@ -2522,6 +2531,15 @@ img.nare-league {
   transition: display linear 0.7s;
 }
 @media (max-width: 991px) {
+  .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding: 10px 10px!important;
+    background: #112170!important;
+    width: 96%;
+    border-radius: 4px;
+  }
   .header-nav-container{
     display: none;
   }
@@ -2923,7 +2941,7 @@ img.nare-league {
   }
 
   .filters-modal .modal-content {
-    background-color: var(--CrashKali-body-bg);
+    background-color: var(--CrashKali-header-bg);
     color: #fff;
     position: fixed;
     bottom: 0;

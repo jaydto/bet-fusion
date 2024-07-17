@@ -38,13 +38,13 @@ const Footer = React.memo((props) => {
       }
     >
       <div
-        className={`row ${profile_side && " d-flex flex-column "} ${
+        className={`row ${profile_side && " d-flex flex-column  "}  desktop-footer ${
           sidebar && "d-flex flex-column justify-content-center px-2"
         }`}
       >
         <div
           className={`col-xs-12 col-sm-6 col-md-3 ${
-            sidebar ? "col-lg-12" : "col-lg-3"
+            sidebar ? "col-lg-12" : "col-lg-12"
           } text-white`}
           style={deposit2 && { width: "50%" }}
         >
@@ -89,7 +89,7 @@ const Footer = React.memo((props) => {
         </div>
         <div
           className={`col-xs-12 col-sm-6 col-md-3 ${
-            sidebar ? "col-lg-12" : "col-lg-4"
+            sidebar ? "col-lg-12" : "col-lg-12"
           } `}
           style={deposit2 && { width: "50%" }}
         >
@@ -118,7 +118,7 @@ const Footer = React.memo((props) => {
         </div>
         <div
           className={`col-xs-12 col-sm-6 col-md-3 ${
-            sidebar ? "col-lg-12" : "col-lg-4"
+            sidebar ? "col-lg-12" : "col-lg-12"
           } mobile-only`}
           style={deposit2 && { width: "50%" }}
         >
@@ -133,7 +133,7 @@ const Footer = React.memo((props) => {
                 }
               }
             >
-              <p style={{}} className={`${sidebar && "transaction d-block"}`}>
+              <p style={{}} className={`${sidebar && " d-block"}`}>
                 This is a real-money gambling app. Please gamble responsibly and
                 only bet what you can afford. For gambling addiction help and
                 support, please contact CustomerCare at (+254701087777), or
@@ -159,11 +159,10 @@ const Footer = React.memo((props) => {
             </li>
           </ul>
         </div>
-        <div
-          className={`col-xs-12 col-sm-6 col-md-3 ${
-            sidebar ? "col-lg-12" : "col-lg-4"
+        <div style={{gridColumnStart:"span 2"}}
+          className={`col-xs-12 col-sm-6 col-md-3 ${deposit2 ?'w-50':'' }${
+            sidebar ? "col-lg-12" : "col-lg-12"
           } `}
-          style={deposit2 && { width: "50%" }}
         >
           <h5 className={`${sidebar && "px-3"}`}>LEGAL</h5>
           <ul>
@@ -195,7 +194,7 @@ const Footer = React.memo((props) => {
             >
               <p
                 style={{}}
-                className={`mt-1 ${sidebar && "transaction d-block"}`}
+                className={`mt-1 ${sidebar && " d-block"}`}
               >
                 This is a real-money gambling app. Please gamble responsibly and
                 only bet what you can afford. For gambling addiction help and

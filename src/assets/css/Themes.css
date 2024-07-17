@@ -1,5 +1,6 @@
 :root {
-    --CrashKali-primary: rgba(5, 49, 104, 0.75);
+    /* --CrashKali-primary: rgba(5, 49, 104, 0.75); */
+    --CrashKali-primary: var(--Crashkali-lite);
     --CrashKali-secondary: #08306B;
     --CrashKali-footer:#08306B;
     --footer-color:#fff;

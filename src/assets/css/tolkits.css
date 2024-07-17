@@ -120,7 +120,7 @@ input, select, textarea {
 }
 
 .mobile-menu {
-    background-color:#16202C!important;
+    background-color:var(--CrashKali-header-bg);
     position: fixed;
     bottom: 0;
     visibility:visible;

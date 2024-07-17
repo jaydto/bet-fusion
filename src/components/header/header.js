@@ -252,7 +252,7 @@ const Header = React.memo((props) => {
                       className="col-1 button-toggle space-button desktop-menu"
                       style={{
                         width: "4.1rem",
-                        overflowY: "auto",
+                        overflowY: "hidden",
                         marginLeft: "0px",
                       }}
                     >

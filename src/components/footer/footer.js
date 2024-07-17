@@ -43,7 +43,7 @@ const Footer = React.memo((props) => {
         }`}
       >
         <div
-          className={`col-xs-12 col-sm-6 col-md-3 ${
+          className={`col-xs-12 col-sm-12 col-md-12 ${
             sidebar ? "col-lg-12" : "col-lg-12"
           } text-white`}
           style={deposit2 && { width: "50%" }}
@@ -88,7 +88,7 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
         <div
-          className={`col-xs-12 col-sm-6 col-md-3 ${
+          className={`col-xs-12 col-sm-12 col-md-12 ${
             sidebar ? "col-lg-12" : "col-lg-12"
           } `}
           style={deposit2 && { width: "50%" }}
@@ -117,7 +117,7 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
         <div
-          className={`col-xs-12 col-sm-6 col-md-3 ${
+          className={`col-xs-12 col-sm-12 col-md-12 ${
             sidebar ? "col-lg-12" : "col-lg-12"
           } mobile-only`}
           style={deposit2 && { width: "50%" }}
@@ -160,7 +160,7 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
         <div style={{gridColumnStart:"span 2"}}
-          className={`col-xs-12 col-sm-6 col-md-3 ${deposit2 ?'w-50':'' }${
+          className={`col-xs-12 col-sm-12 col-md-12 ${deposit2 ?'w-50':'' }${
             sidebar ? "col-lg-12" : "col-lg-12"
           } `}
         >

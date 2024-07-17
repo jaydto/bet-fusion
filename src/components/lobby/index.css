@@ -1,6 +1,6 @@
 @media screen and (min-width: 1680px) {
   .grid-layout {
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -22,6 +22,12 @@
   .grid-item.span-2 {
     grid-column-end: span 2;
     grid-row-end: span 2;
+  }
+}
+
+@media screen and (max-width:991px){
+  .grid-layout{
+    padding:5px 1px!important;
   }
 }
 
@@ -978,16 +984,17 @@ section.pageContent .side.center.desktop {
 }
 .sportsNav {
   position: relative;
-  background: #15171d;
+  background: var(--CrashKali-header-bg);
   width: 100%;
   z-index: 2;
   overflow: hidden;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
-  -webkit-transition: bottom 0.2s ease-out;
-  -moz-transition: bottom 0.2s ease-out;
-  -o-transition: bottom 0.2s ease-out;
   transition: bottom 0.2s ease-out;
+  border-bottom: 1px solid var(--CrashKali-footer);
+}
+.sportsNav::-webkit-scrollbar{
+  display: none;
 }
 body.mobile.casino section.sportsNav#casinoMenu .btnHckd {
   line-height: 40px;

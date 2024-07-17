@@ -494,9 +494,11 @@ const DepositForm = (props) => {
   const userData = useSelector((state) => state.auth.user);
 
   const [user, setUser] = useState(getFromLocalStorage("user"));
+
   useEffect(() => {
     setUser(userData || getFromLocalStorage("user"));
   }, [userData]);
+  
   const initialValues = {
     amount: depositValues || 100,
     msisdn: user?.msisdn,

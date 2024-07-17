@@ -23,6 +23,7 @@ const initialState = {
     points_message: null,
     withdrawal_message: null,
     deposits_message: null,
+    show_deposit_modal:false,
     deposits_confirm_message: null,
     self_exclsuion_message: null,
     self_exclsuion_time: null,

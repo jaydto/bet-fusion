@@ -21,6 +21,10 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
 import useWindowDimensions from "../../header/Dimensions";
 import { userPromoPoints } from "../../../redux/authSlice";
+import WithdrawProfile from "./component/WithdrawProfile";
+import DepositForm from "./component/depositCard";
+import WithdrawForm from "./component/withdrawCard";
+import SupportContainer from "./component/supportContainer";
 
 const NewProfile = React.memo(() => {
   const userData = useSelector((state) => state.auth.user);
@@ -65,7 +69,7 @@ const NewProfile = React.memo(() => {
     <>
       <div>
         <div className="profile-container-desktop d-flex">
-          <div className="col mobile-full-width">
+          <div className="col mobile-full-width" style={{background:"var(--CrashKali-header-bg)"}}>
             <div className="iphone">
               <div className="content mb-4 px-4">
                 <div className="d-flex flex-column justify-content-center align-items-center">
@@ -161,6 +165,26 @@ const NewProfile = React.memo(() => {
                   )}
 
                 <Link
+                className="mt-4"
+                  to="/bet-history?competition_id=2"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <div className="transaction ">
+                    <div className="t-details">
+                      <div className="t-title">My Bets</div>
+                    </div>
+                    <div className="t-amount">
+                      {/*<i className="fas fa-bars" style={{fontSize: "24px"}}></i>*/}
+                      <FontAwesomeIcon
+                        icon={faBars}
+                        style={{ fontSize: "24px" }}
+                      />
+                    </div>
+                  </div>
+                </Link>
+
+
+                {/* <Link
                   to="/deposit"
                   style={{ textDecoration: "none", color: "black" }}
                 >
@@ -183,49 +207,15 @@ const NewProfile = React.memo(() => {
                       </div>
                     </div>
                   </div>
-                </Link>
-                <div
-                  onClick={() => navigate("/withdraw")}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <div className="transaction">
-                    <div className="t-icon-container">
-                      <div className="icon">
-                        {/*<i className="fas fa-download"></i>*/}
-                        <FontAwesomeIcon icon={faDownload} />
-                      </div>
-                    </div>
-                    <div className="t-details">
-                      <div className="t-title">Withdraw</div>
-                    </div>
+                </Link> */}
+                <DepositForm/>
 
-                    <div className="t-amount">
-                        <FontAwesomeIcon
-                          icon={faAngleRight}
-                          className={"back-navigation-icon"}
-                        />
-                      </div>
-                  </div>
-                </div>
+                <WithdrawForm/>
+                
+               
 
-                <Link
-                  to="/bet-history?competition_id=2"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <div className="transaction">
-                    <div className="t-details">
-                      <div className="t-title">My Bets</div>
-                    </div>
-                    <div className="t-amount">
-                      {/*<i className="fas fa-bars" style={{fontSize: "24px"}}></i>*/}
-                      <FontAwesomeIcon
-                        icon={faBars}
-                        style={{ fontSize: "24px" }}
-                      />
-                    </div>
-                  </div>
-                </Link>
-                <Link
+                <SupportContainer/>
+                {/* <Link
                   to={"#"}
                   style={{ textDecoration: "none", color: "black" }}
                   onClick={() => clearHistory()}
@@ -236,14 +226,13 @@ const NewProfile = React.memo(() => {
                       <div className="t-title">Log Out</div>
                     </div>
                     <div className="t-amount">
-                      {/*<i className="fas fa-power-off" style={{fontSize: "24px"}}></i>*/}
                       <FontAwesomeIcon
                         icon={faPowerOff}
                         style={{ fontSize: "24px" }}
                       />
                     </div>
                   </div>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

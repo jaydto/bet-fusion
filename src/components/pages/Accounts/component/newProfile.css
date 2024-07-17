@@ -3,8 +3,8 @@
     justify-content: center;
 }
 .iphone {
-    background-color: var(--profile-bg-page);
-    height: 100vh;
+    /* background-color: var(--profile-bg-page); */
+    /* height: 100vh; */
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -165,7 +165,195 @@ a.text-logout{
     font-weight: bold;
     padding-bottom: 10px;
 }
+/* deposit card */
+.deposit {
+    margin-bottom: 15px;
+}
+.account__section {
+    text-align: left;
+}
+.global-card__type--block {
+    border: 1px solid var(--light-gray-border);
+    background-color: var(--black-dark-20);
+    border-radius: 8px;
+    padding: 15px;
+    width:100%;
+}
+.account__section__title {
+    margin: 0;
+    margin-bottom: 5px;
+    color: var(--light);
+    font-weight: var(--font-weight-medium);
+    padding-right: 18px;
+}
+.account__section__desc {
+    margin: 0;
+    color: var(--light-dark-blue);
+    font-weight: var(--font-weight-lighter);
+    padding-right: 18px;
+}
+.account__section__button-group {
+    margin-bottom: 15px;
+}
+.account__section .button.rounded {
+    background: var(--line-11);
+}
+.button__group .button {
+    margin-right: 5px;
+}
+.button {
+    display: inline-block;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: var(--black);
+    padding: 10px 15px;
+    border: none;
+    margin: 0;
+    background: var(--light-gray);
+    cursor: pointer;
+    font-size: var(--font-medium);
+    cursor: pointer;
+}
+button, input, textarea, select {
+    outline: none;
+    appearance: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+.account .input {
+    font-weight: var(--font-weight-lighter);
+}
+.deposit {
+    margin-bottom: 15px;
+}
+.input__container {
+    padding-bottom: 10px;
+}
+.account__section {
+    text-align: left;
+}
+.account .input input {
+    background: var(--white);
+    border-radius: 4px;
+}
+.account .input {
+    font-weight: var(--font-weight-lighter);
+}
+.account .input__desc {
+    font-size: var(--font-smallest);
+}
+.account .input__desc small {
+    color: var(--light-dark-blue);
+    font-weight: var(--font-weight-lighter);
+    font-size: var(--font-normal);
+    margin-top: 5px;
+    display: block;
+}
+.button.account__section__submit {
+    padding: 10px 70px;
+    border-radius: 4px;
+}
+.button__secondary {
+    /* background: var(--CrashKali-odds-body); */
+    color: var(--always-white);
+    border-radius: 8px;
+}
+.button.button__disabled {
+    background: var(--CrashKali-odds-body);
+    color: var(--always-white);
+    /* border-radius: 8px; */
+    border-radius: 4px;
+    padding: 10px 70px;
+}
+.button {
+    display: inline-block;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: var(--black);
+    padding: 10px 15px;
+    border: none;
+    margin: 0;
+    background: var(--CrashKali-button-login);
+    cursor: pointer;
+    font-size: var(--font-medium);
+    cursor: pointer;
+}
+/* end card */
 
+/* support */
+.button.account-section{
+    background: transparent;
+    border: 1px solid var(--bet-history)
+
+}
+.overlay-menu__strocked-card {
+   
+    padding: 20px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.account__section__support {
+    margin-top: 15px;
+}
+.account__section__support .overlay-menu__section__header {
+    margin: 0;
+    margin-bottom: 16px;
+}
+.account__section__support__title {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: var(--font-large);
+    font-weight: var(--font-weight-medium);
+}
+.button.no-padding {
+    padding: 0;
+}
+.account_section.button{
+    background:transparent;
+}
+.button.with-black-caret {
+    background-repeat: no-repeat;
+    background-position: 98% center;
+    background-image: url("data:image/svg+xml,%3Csvg width='9' height='13' class='button__caret' viewBox='0 0 9 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.79297 7.21484C7.92969 7.10547 8.01172 6.94141 8.01172 6.75C8.01172 6.58594 7.92969 6.42188 7.79297 6.28516L2.48828 0.980469C2.35156 0.871094 2.1875 0.789062 2.02344 0.789062C1.83203 0.789062 1.66797 0.871094 1.55859 0.980469L0.957031 1.58203C0.820312 1.71875 0.738281 1.88281 0.738281 2.04688C0.738281 2.23828 0.792969 2.40234 0.929688 2.51172L5.16797 6.75L0.929688 10.9883C0.792969 11.125 0.738281 11.2891 0.738281 11.4531C0.738281 11.6445 0.820312 11.8086 0.957031 11.918L1.55859 12.5195C1.66797 12.6562 1.83203 12.7109 2.02344 12.7109C2.1875 12.7109 2.35156 12.6562 2.48828 12.5195L7.79297 7.21484Z' fill='gray'/%3E%3C/svg%3E%0A");
+}
+.button.full {
+    display: block;
+    width: 100%;
+}
+.account__section__support button {
+    font-weight: var(--font-weight-lighter);
+    background: none;
+    color: var(--CrashKali-button-login);
+    text-align: left;
+    padding: 0;
+}
+.account__section__support--line.full {
+    width: 100%;
+}
+.account__section__support--line {
+    background: var(--line-11);
+    width: 200px;
+    height: 0.5px;
+    margin: 20px auto;
+}
+.account__section__support--line {
+    background: var(--CrashKali-body-bg);
+    width: 200px;
+    height: 0.5px;
+    margin: 12px auto;
+}
+.account__section__desc.tc {
+    font-size: var(--font-smallest);
+}
+.account__section__desc {
+    margin: 0;
+    color: var(--alert-slip-color);
+    font-weight: var(
+    --font-medium);
+    padding-right: 18px;
+}
+/* end support */
 .t-details {
     width: 55%;
 }
@@ -339,6 +527,7 @@ a.text-logout{
         width: 100%;
         height: 100%;
         color:var(--light);
+        overflow-y: auto;
 
 
     }

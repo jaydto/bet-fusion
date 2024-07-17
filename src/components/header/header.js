@@ -33,6 +33,7 @@ import {
 } from "../../redux/navigationAction";
 import Header2 from "./Header2";
 import useWindowDimensions from "./Dimensions";
+import DepositModal from "../modals/DepositModal";
 
 const ProfileMenu = React.lazy(() => import("./profile-menu"));
 const HeaderNav = React.lazy(() => import("./header-nav"));
@@ -54,6 +55,9 @@ const Header = React.memo((props) => {
 
   const dispatchRedux = useDispatch();
   const { width } = useWindowDimensions();
+  const showDepositModal = useSelector(
+    (state) => state.data.show_deposit_modal
+  );
 
   const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
   const notShowHeaderNav = dispatchRedux(shouldShowHeader(pathname));
@@ -207,6 +211,8 @@ const Header = React.memo((props) => {
 
   return (
     <>
+      {showDepositModal && <DepositModal />}
+
       {notShowHeaderNav && (
         <div className={"d-flex flex-column"}>
           <Navbar
@@ -274,7 +280,11 @@ const Header = React.memo((props) => {
                     />
 
                     <ul className="header-nav-container">
-                      <li className={`${pathname === "/virtual-league" ? "active" : ""} header-nav-item`}>
+                      <li
+                        className={`${
+                          pathname === "/virtual-league" ? "active" : ""
+                        } header-nav-item`}
+                      >
                         <div
                           className="url-link fm anl cg ox "
                           title="Casino"

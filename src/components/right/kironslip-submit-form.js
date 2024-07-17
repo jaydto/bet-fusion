@@ -521,141 +521,141 @@ const KironslipSubmitForm = React.memo(
             return str.replace(/-+/g, "-");
         };
 
-        // const calculateMultiBetBoostAmount = () => {
-        //     let settings = getFromLocalStorage("settings");
+        const calculateMultiBetBoostAmount = () => {
+            let settings = getFromLocalStorage("settings");
 
-        //     let giftMinGames = Number(settings?.kironGifts?.giftBoostMinLegs);
+            let giftMinGames = Number(settings?.kironGifts?.giftBoostMinLegs);
 
-        //     let betslips = getKironSlip() || {};
+            let betslips = getKironSlip() || {};
 
-        //      // Filter out expired matches based on your array of expired matches
-        //     const validBetslips = Object.entries(betslips || {}).filter(([match_id, match]) => !expiredParentMatchIds.includes(match_id));
+             // Filter out expired matches based on your array of expired matches
+            const validBetslips = Object.entries(betslips || {}).filter(([match_id, match]) => !expiredParentMatchIds.includes(match_id));
 
            
 
-        //     if (validBetslips.length < giftMinGames) {
+            if (validBetslips.length < giftMinGames) {
                 
-        //         setHasMultiBetBoost(false);
+                setHasMultiBetBoost(false);
 
-        //         dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
-
-
-        //     }
-
-        //     let boost = 0;
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
 
 
-        //     // let odds = Object.values(validBetslips || [])?.filter(
-        //     //     (slip) =>
-        //     //         slip.bet_type !== "1" &&
-        //     //         Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds
-        //     // );
-        //     let odds = validBetslips?.filter(
-        //         ([match_id, slip]) => {
-        //             return slip.bet_type !== "1" && Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds;
-        //         }
-        //     );
+            }
+
+            let boost = 0;
+
+
+            // let odds = Object.values(validBetslips || [])?.filter(
+            //     (slip) =>
+            //         slip.bet_type !== "1" &&
+            //         Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds
+            // );
+            let odds = validBetslips?.filter(
+                ([match_id, slip]) => {
+                    return slip.bet_type !== "1" && Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds;
+                }
+            );
 
            
 
-        //     let giftQualificationOdds = odds.length;
+            let giftQualificationOdds = odds.length;
 
-        //     console.log("information oon nare boost is here ")
-
-
-        //     let awardGifts =
-        //         Number(settings?.kironGifts?.awardGiftBoost) === 1 &&
-        //         Number(user?.gift_balance || 0) > 0;
-
-        //     setAwardMultiGift(awardGifts);
-        //     if(!awardGifts){
-        //         setMultiBoostAmount(0)
-        //         setMultiBoostMessage("")
-        //         dispatchRedux(setMatchBetslipOptions('kiron_betslip_options',0))
-
-        //     }
-        //     else if (Number(giftQualificationOdds) < Number(giftMinGames)) {
-        //         let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
-
-        //         dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
-        //                     remainingGames > 1 ? "s" : ""
-        //                 } with odds of  ${
-        //                     settings?.kironGifts?.giftBoostMinOdds
-        //                 } or above to boost your winnings.`}}))
+            console.log("information oon nare boost is here ")
 
 
-        //         setMultiBoostMessage(
-        //             `Congratulations, you qualify for a Gift. Add ${remainingGames} more game${
-        //                 remainingGames > 1 ? "s" : ""
-        //             } with odds of  ${
-        //                 settings?.kironGifts?.giftBoostMinOdds
-        //             } or above to redeem your gift.`
-        //         );
+            let awardGifts =
+                Number(settings?.kironGifts?.awardGiftBoost) === 1 &&
+                Number(user?.gift_balance || 0) > 0;
 
-        //         setMultiBoostAmount(0)
+            setAwardMultiGift(awardGifts);
+            if(!awardGifts){
+                setMultiBoostAmount(0)
+                setMultiBoostMessage("")
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options',0))
 
+            }
+            else if (Number(giftQualificationOdds) < Number(giftMinGames)) {
+                let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
 
-
-        //     }
-        //     else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
-        //         boost = ((Number(settings?.kironGifts?.giftBoostPercentage)||20)/ 100) * stake;
-        //         console.log("boost information", boost)
-
-        //         if(isNaN(boost)){
-        //             boost=0
-        //         }
-
-        //         if (boost >= Number(settings?.kironGifts?.maxGiftBoostAmount)) {
-        //             boost = Number(settings?.kironGifts?.maxGiftBoostAmount);
-        //         }
-        //         if (boost >= 1) {
-        //             setMultiBoostAmount(boost);
-        //             setHasMultiBetBoost(true);
-        //             console.log("boost information", boost)
-
-        //             let boostedStake = Number(stake) + Number(boost);
-        //             boostedStake = formatNumber(boostedStake);
-        //             dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
-        //                         boost +
-        //                         " on your stake. Your new stake is " +
-        //                         boostedStake }}))
-        //             setMultiBoostMessage(
-        //                 "Congratulations! we have boosted you stake from KES " +
-        //                 stake +
-        //                 " to " +
-        //                 boostedStake
-        //             );
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
+                            remainingGames > 1 ? "s" : ""
+                        } with odds of  ${
+                            settings?.kironGifts?.giftBoostMinOdds
+                        } or above to boost your winnings.`}}))
 
 
-        //         }
-        //         else{
-        //             setMultiBoostAmount(boost);
-        //             setHasMultiBetBoost(true);
-        //             dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
-        //                         }}))
+                setMultiBoostMessage(
+                    `Congratulations, you qualify for a Gift. Add ${remainingGames} more game${
+                        remainingGames > 1 ? "s" : ""
+                    } with odds of  ${
+                        settings?.kironGifts?.giftBoostMinOdds
+                    } or above to redeem your gift.`
+                );
+
+                setMultiBoostAmount(0)
 
 
-        //             setMultiBoostMessage(
-        //                 "You  Have Qualified for a Nare Boost " 
-        //             );
+
+            }
+            else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
+                boost = ((Number(settings?.kironGifts?.giftBoostPercentage)||20)/ 100) * stake;
+                console.log("boost information", boost)
+
+                if(isNaN(boost)){
+                    boost=0
+                }
+
+                if (boost >= Number(settings?.kironGifts?.maxGiftBoostAmount)) {
+                    boost = Number(settings?.kironGifts?.maxGiftBoostAmount);
+                }
+                if (boost >= 1) {
+                    setMultiBoostAmount(boost);
+                    setHasMultiBetBoost(true);
+                    console.log("boost information", boost)
+
+                    let boostedStake = Number(stake) + Number(boost);
+                    boostedStake = formatNumber(boostedStake);
+                    dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
+                                boost +
+                                " on your stake. Your new stake is " +
+                                boostedStake }}))
+                    setMultiBoostMessage(
+                        "Congratulations! we have boosted you stake from KES " +
+                        stake +
+                        " to " +
+                        boostedStake
+                    );
 
 
-        //         }
-        //     }
-        //     else{
-        //         setMultiBoostAmount(0)
+                }
+                else{
+                    setMultiBoostAmount(boost);
+                    setHasMultiBetBoost(true);
+                    dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
+                                }}))
 
-        //         dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color:'not_qualified'}}))
+
+                    setMultiBoostMessage(
+                        "You  Have Qualified for a Nare Boost " 
+                    );
 
 
-        //         setMultiBoostMessage("")
+                }
+            }
+            else{
+                setMultiBoostAmount(0)
 
-        //     }
-        // };
+                dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color:'not_qualified'}}))
 
-        // useEffect(() => {
-        //     calculateMultiBetBoostAmount();
-        // }, [betslip, stake, expiredParentMatchIds]);
+
+                setMultiBoostMessage("")
+
+            }
+        };
+
+        useEffect(() => {
+            calculateMultiBetBoostAmount();
+        }, [betslip, stake, expiredParentMatchIds]);
 
 
         const closeAlert = () => {
@@ -718,6 +718,7 @@ const KironslipSubmitForm = React.memo(
                     return (
                         <FormikForm name="betslip-submit-form">
                             <Alert/>
+                            
                             {!message && 
                                awardMultiGift &&
                                  (

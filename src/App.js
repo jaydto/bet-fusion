@@ -160,7 +160,7 @@ const App =
              <Header />
                 <Suspense fallback={<></>}>
                     <Routes>
-                        <Route path="*" element={<Navigate to="/404"/>}/>
+                        {/* <Route path="*" element={<Navigate to="/404"/>}/> */}
                       
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/404" element={<PageNotFound/>}/>

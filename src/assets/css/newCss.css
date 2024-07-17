@@ -700,8 +700,8 @@ label {
   font-size: 14px;
 }
 .counrtryCodec {
-  background: var(--CrashKali-header-bg);
-  margin-left: 8px;
+  background: var(--CrashKali-primary);
+  margin-left: 4px;
 }
 .transaction {
   cursor: default;
@@ -716,7 +716,7 @@ label {
 }
 
 input {
-  background: var(--CrashKali-input) !important;
+  background: var(--CrashKali-primary)!important;
   border-radius: 3px !important;
   color: var(--light) !important;
   font-weight: bold !important;
@@ -794,7 +794,7 @@ select::after {
 }
 
 .width-centric-page {
-  width: 36vw;
+  width: 50vw;
 }
 
 .all-markkets-search {
@@ -815,7 +815,7 @@ select::after {
 }
 .width-page-centric {
   /* box-shadow: 5px 7px 30px 8px var(--btn-color); */
-  width: 60%;
+  width: 80%;
   margin: auto;
   margin-top:15rem;
 }
@@ -1304,8 +1304,9 @@ img.nare-league {
 }
 
 .input-color-icon {
-  background: var(--CrashKali-input) !important;
+  background: var(--CrashKali-primary) !important;
   color:var(--light);
+  /* height: 100%; */
 }
 
 .deposit-buttons-value {
@@ -2093,8 +2094,8 @@ img.nare-league {
 }
 
 .checkbox-container .custom-checkbox {
-  width: 15px;
-  height: 14px;
+  width: 19px;
+  height: 20px;
   border: 2px solid #ccc;
   border-radius: 4px;
   position: relative;
@@ -2138,7 +2139,7 @@ img.nare-league {
     top:100px!important;
   }
   .flex-container.height-default-body {
-    margin-top: 51px;
+    margin-top: 20px;
   }
   .close-history-filter.deposit-modal {
     right: 89%;

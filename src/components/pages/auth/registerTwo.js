@@ -40,7 +40,8 @@ const FormTitle = () => {
   return (
     <div
       className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3 text-center w-100 top-login-mobile"
-      style={{ margin: "0px" }}
+      style={{ margin: "0px",  
+    }}
     >
       <div>
         <div
@@ -193,8 +194,9 @@ const Register = () => {
   return (
     <>
       <div style={{ height: "100vh" }}>
-        <Row justify="center" className="align-items-stretch h-100">
+        <Row justify="center" className="align-items-stretch h-100" style={{ backgroundColor:"var(--CrashKali-header-bg)"}}>
           <div
+          
             className={
               "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
             }

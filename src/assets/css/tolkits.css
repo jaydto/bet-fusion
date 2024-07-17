@@ -16221,7 +16221,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 .c-btn:focus {
     cursor: pointer;
     /*background-color: red;*/
-    color: #fff;
+    /* color: #fff; */
 }
 
 .change-match {

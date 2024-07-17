@@ -19,6 +19,7 @@ const backgroundStyle = {
   // background: `url(${gameDay})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
+  backgroundColor:"var(--CrashKali-header-bg)",
   //   backgroundPosition:"bottom",
   backgroundAttachment: "fixed",
 };

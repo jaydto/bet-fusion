@@ -450,7 +450,7 @@ section.pageContent .side.left {
 ul.sideCasinoMenu {
   position: absolute;
   left: 0px;
-  top: 15px;
+  top: 1px;
   width:220px;
 }
 ul.sideCasinoMenu > li.search {

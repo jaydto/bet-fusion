@@ -1813,6 +1813,9 @@ img.nare-league {
 }
 
 @media (min-width: 1200px) and (max-width: 1259px) {
+  .image-size.logo-top{
+    margin-bottom:0px!important;
+  }
   .market-groups-container {
     top: 107px !important;
   }

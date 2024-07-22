@@ -23,7 +23,6 @@ const defaultVisibleCount = {
   slots: 3,
 };
 
-const spanPattern = [0, 7, 3, 0, 7, 3]; // Define the pattern for span-2 class application
 
 const CasinoGamesComponent = () => {
   const dispatch = useDispatch();
@@ -35,6 +34,7 @@ const CasinoGamesComponent = () => {
   const [visibleItems, setVisibleItems] = useState(
     sections.reduce((acc, section) => ({ ...acc, [section]: 7 }), {})
   );
+  const competitionData = useSelector((state) => state.virtualLeague.competitions_data) || getFromLocalStorage('kiron-competitions')
 
   const navigate = useNavigate();
   const sectionRefs = useRef({});
@@ -162,6 +162,50 @@ const CasinoGamesComponent = () => {
     );
   };
 
+  const renderVirtualLeague = () => {
+    const gamesToDisplay = competitionData.slice(0, visibleItems["virtual League"]);
+    return gamesToDisplay.map((competition, index) => (
+      <div
+        key={competition.competition_id}
+        className={`grid-item`}
+        data-provider="virtual-league"
+        data-category="virtual-league"
+        data-order={index}
+        data-id={competition.competition_id}
+        ref={(el) => {
+          if (!sectionRefs.current["virtual League"]) {
+            sectionRefs.current["virtual League"] = el;
+          }
+        }}
+      >
+        <div
+          className="jpOverlay"
+         
+        ></div>
+        <div className="gamePanel">
+          <div
+            className="img"
+            style={{
+              backgroundImage: `url(${competition.image_url})`,
+              width: "-webkit-fill-available",
+            }}
+          ></div>
+          <div className="reaCover">
+            <div className="link Real">
+              <Link to={`virtual-league/competition_id=${competition?.competition_id}`}>View Competition</Link>
+            </div>
+          </div>
+        </div>
+        <div className="imgCover">
+          <h4>{competition.competition_name}</h4>
+          <a className="infoBtn">
+            <div>i</div>
+          </a>
+        </div>
+      </div>
+    ));
+  };
+
   const renderCasinoSearch = (games, section) => {
     const gamesToDisplay = games.slice(0, visibleItems[section]);
     return gamesToDisplay.map((game, gameIndex) => (
@@ -255,6 +299,11 @@ const CasinoGamesComponent = () => {
             )}
           </div>
         </div>
+          { (section === "virtual League") ? 
+          <div className="gamesCont grid-layout slots">
+            {renderVirtualLeague()}
+            </div>
+          :
 
         <div className="gamesCont grid-layout slots">
           {length > 0 ? (
@@ -266,7 +315,7 @@ const CasinoGamesComponent = () => {
           ) : (
             <p>No games available.</p>
           )}
-        </div>
+        </div>}
       </div>
     );
   };

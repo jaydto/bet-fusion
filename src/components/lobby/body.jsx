@@ -1,10 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { casinoList } from "../../redux/virtualsSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../utils/local-storage";
-import OverlayIimage from "../../assets/img/mobile/overlayImage.png";
+import OverlayImage from "../../assets/img/mobile/overlayImage.png";
+
+const sections = [
+  "smartSoft",
+  "popular",
+  "crash games",
+  "instant",
+  "virtual League",
+  "slots",
+];
+
+const defaultVisibleCount = {
+  smartSoft: 0,
+  popular: 3,
+  "crash games": 0,
+  instant: 3,
+  "virtual League": 0,
+  slots: 3,
+};
+
+const spanPattern = [0, 7, 3, 0, 7, 3]; // Define the pattern for span-2 class application
 
 const CasinoGamesComponent = () => {
   const dispatch = useDispatch();
@@ -13,13 +32,17 @@ const CasinoGamesComponent = () => {
   const casino_search = useSelector((state) => state.virtuals.casino_search);
 
   const [user, setUser] = useState(getFromLocalStorage("user"));
+  const [visibleItems, setVisibleItems] = useState(
+    sections.reduce((acc, section) => ({ ...acc, [section]: 7 }), {})
+  );
+
   const navigate = useNavigate();
+  const sectionRefs = useRef({});
 
   useEffect(() => {
-    // Fetch data when component mounts or when needed
-    getSmartGames("slots"); // Assuming "slots" is the category you want to fetch
+    getSmartGames("slots");
   }, []);
-  
+
   useEffect(() => {
     if (userData) {
       setUser(userData || getFromLocalStorage("user"));
@@ -37,12 +60,11 @@ const CasinoGamesComponent = () => {
       provider: "smart-soft",
     };
 
-    // Assuming `casinoList` is your action creator dispatched with Redux
     dispatch(casinoList(data));
   };
 
   const handleButtonClick = (event, game_id, gameCategory) => {
-    event.stopPropagation(); // Prevent event from propagating to parent element
+    event.stopPropagation();
 
     const redirectToSmartPlay = () => {
       navigate(
@@ -57,71 +79,92 @@ const CasinoGamesComponent = () => {
     }
   };
 
-  const renderCasinoGames = (games) => {
-    return games.map((providerGames, providerIndex) =>
-      providerGames[Object.keys(providerGames)[0]].map((game, gameIndex) => (
-        <div
-          key={`${providerIndex}-${gameIndex}`}
-          className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}
-          data-provider={game.provider}
-          data-category="slots"
-          data-order={gameIndex}
-          data-id={game.gameId}
-        >
-          <div className="jpOverlay"         style={{backgroundImage:`url(${OverlayIimage})`}}
-></div>
-          <div className="gamePanel">
-            <div
-              className="img"
-              style={{
-                backgroundImage: `url(${game?.game_icon ?? game?.image_url})`,
-                width: "-webkit-fill-available",
-              }}
-            ></div>
+  const handleSeeMore = (section, totalLength) => {
+    setVisibleItems((prevVisibleItems) => ({
+      ...prevVisibleItems,
+      [section]: totalLength,
+    }));
+    if (sectionRefs.current[section]) {
+      sectionRefs.current[section].scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
-            <div className="reaCover">
+  const handleSeeLess = (section) => {
+    setVisibleItems((prevVisibleItems) => ({
+      ...prevVisibleItems,
+      [section]: 7,
+    }));
+  };
+
+  const renderCasinoGames = (games, section) => {
+    const gamesToDisplay = games.slice(0, visibleItems[section]);
+    return gamesToDisplay.flatMap((providerGames, providerIndex) =>
+      providerGames[Object.keys(providerGames)[0]]
+        .slice(0, visibleItems[section])
+        .map((game, gameIndex) => (
+          <div
+            key={`${providerIndex}-${gameIndex}`}
+            className={`grid-item ${
+              gameIndex === defaultVisibleCount[section] ? "span-2" : ""
+            }`}
+            data-provider={game.provider}
+            data-category="slots"
+            data-order={gameIndex}
+            data-id={game.gameId}
+          >
+            <div
+              className="jpOverlay"
+              style={{ backgroundImage: `url(${OverlayImage})` }}
+            ></div>
+            <div className="gamePanel">
               <div
-                data-real="1"
-                className="link Real"
-                onClick={(event) =>
-                  handleButtonClick(
-                    event,
-                    game?.game_id ?? game?.gameName ?? game?.key,
-                    game?.gameCategory
-                  )
-                }
-                to={`/smart-play?game=${game?.game_id}&category=${
-                  game?.gameCategory
-                }&status=live`}
-                target="_self"
-              >
-                <div>Play now</div>
+                className="img"
+                style={{
+                  backgroundImage: `url(${game?.game_icon ?? game?.image_url})`,
+                  width: "-webkit-fill-available",
+                }}
+              ></div>
+              <div className="reaCover">
+                <div
+                  data-real="1"
+                  className="link Real"
+                  onClick={(event) =>
+                    handleButtonClick(
+                      event,
+                      game?.game_id ?? game?.gameName ?? game?.key,
+                      game?.gameCategory
+                    )
+                  }
+                >
+                  <div>Play now</div>
+                </div>
               </div>
             </div>
+            <div className="imgCover">
+              <h4>{game?.game_name ?? game?.gameName}</h4>
+              <a className="infoBtn">
+                <div>i</div>
+              </a>
+              <Link
+                data-real="0"
+                className="link Fun"
+                to={`/smart-play?game=${game?.game_id}&category=${game?.gameCategory}&status=demo`}
+                target="_self"
+              >
+                <div>Demo</div>
+              </Link>
+            </div>
           </div>
-          <div className="imgCover">
-            <h4>{game?.game_name ?? game?.gameName}</h4>
-            <a className="infoBtn">
-              <div>i</div>
-            </a>
-            <Link
-              data-real="0"
-              className="link Fun"
-              to={`/smart-play?game=${game?.game_id}&category=${
-                game?.gameCategory
-              }&status=demo`}
-              target="_self"
-            >
-              <div>Demo</div>
-            </Link>
-          </div>
-        </div>
-      ))
+        ))
     );
   };
 
-  const renderCasinoSearch = (games) => {
-    return games.map((game, gameIndex) => (
+  const renderCasinoSearch = (games, section) => {
+    const gamesToDisplay = games.slice(0, visibleItems[section]);
+    return gamesToDisplay.map((game, gameIndex) => (
       <div
         key={`${game.provider}-${game.game.gameId}`}
         className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}
@@ -129,18 +172,26 @@ const CasinoGamesComponent = () => {
         data-category={game.game.gameCategory}
         data-order={gameIndex}
         data-id={game.game.gameId}
+        ref={(el) => {
+          if (!sectionRefs.current[section]) {
+            sectionRefs.current[section] = el;
+          }
+        }}
       >
-        <div className="jpOverlay"    style={{backgroundImage:`url(${OverlayIimage})`}}
-></div>
+        <div
+          className="jpOverlay"
+          style={{ backgroundImage: `url(${OverlayImage})` }}
+        ></div>
         <div className="gamePanel">
           <div
             className="img"
             style={{
-              backgroundImage: `url(${game.game?.game_icon ?? game.game?.image_url})`,
+              backgroundImage: `url(${
+                game.game?.game_icon ?? game.game?.image_url
+              })`,
               width: "-webkit-fill-available",
             }}
           ></div>
-
           <div className="reaCover">
             <div
               data-real="1"
@@ -152,10 +203,6 @@ const CasinoGamesComponent = () => {
                   game.game?.gameCategory
                 )
               }
-              to={`/smart-play?game=${game.game?.game_id}&category=${
-                game.game?.gameCategory
-              }&status=live`}
-              target="_self"
             >
               <div>Play now</div>
             </div>
@@ -169,9 +216,7 @@ const CasinoGamesComponent = () => {
           <Link
             data-real="0"
             className="link Fun"
-            to={`/smart-play?game=${game.game?.game_id}&category=${
-              game.game?.gameCategory
-            }&status=demo`}
+            to={`/smart-play?game=${game.game?.game_id}&category=${game.game?.gameCategory}&status=demo`}
             target="_self"
           >
             <div>Demo</div>
@@ -181,15 +226,52 @@ const CasinoGamesComponent = () => {
     ));
   };
 
-  
+  const renderSection = (section) => {
+    const data = casino_search.length > 0 ? casino_search : casino_games;
+    const allGames = data.flatMap(
+      (providerGames) => providerGames[Object.keys(providerGames)[0]]
+    );
+    const length = allGames.length;
 
-  return (
-    <section className="gamesCont grid-layout slots">
-      {casino_search.length > 0
-        ? renderCasinoSearch(casino_search)
-        : renderCasinoGames(casino_games)}
-    </section>
-  );
+    return (
+      <div
+        key={section}
+        className="section"
+        ref={(el) => {
+          if (!sectionRefs.current[section]) {
+            sectionRefs.current[section] = el;
+          }
+        }}
+      >
+        <div className="d-flex justify-content-between px-4 section-lobby-header">
+          <h2>{section}</h2>
+          <div className="see-more-less">
+            {visibleItems[section] < length ? (
+              <button onClick={() => handleSeeMore(section, length)}>
+                See More
+              </button>
+            ) : (
+              <button onClick={() => handleSeeLess(section)}>See Less</button>
+            )}
+          </div>
+        </div>
+
+        <div className="gamesCont grid-layout slots">
+          {length > 0 ? (
+            casino_search.length > 0 ? (
+              renderCasinoSearch(data, section)
+            ) : (
+              renderCasinoGames(data, section)
+            )
+          ) : (
+            <p>No games available.</p>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  return <div>{sections.map(renderSection)}</div>;
 };
 
 export default CasinoGamesComponent;

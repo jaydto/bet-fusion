@@ -29,16 +29,68 @@
   .grid-layout{
     padding:5px 1px!important;
   }
+  .newJPDisplay[levels="3"] > .jplevels {
+    width: calc((100% - 20px) / 2)!important;
+}
+.newJPDisplay{
+  display: flex!important;
+}
+.newJPDisplay > .jplevels{
+  height: 50px!important;
+}
+.newJPDisplay > .jplevels > .currency{
+  line-height: 0px!important;
+}
+.odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value{
+  font-size:15px!important;
 }
 
+}
+@media only screen and (max-width: 900px) {
+.grid-layout {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+.grid-item:first-child {
+  width: 100% !important;
+
+}
+.grid-item.span-2 {
+  width: 100% !important;
+}
+.grid-item.span-2:nth-child(1) {
+  border: 4px solid #ffc400;
+  border-radius: 5px;
+}
+}
+@media only screen and (max-width: 600px) {
+ .grid-item {
+  width: 46.4% !important;
+}
+}
 /* body.desktop {
     min-width: 1280px;
 } */
 
-.grid-item:first-child {
-  grid-column-end: span 2;
-  grid-row-end: span 2;
+
+.see-more-less button {
+  color: var(--CrashKali-button-login);
+  cursor: pointer;
+  font-size: 10px;
+  margin-right: 15px;
+  min-width: 80px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  font-size: 14px;
 }
+.section-lobby-header{
+  color:var(--light);
+}
+
 .grid-item.span-2:nth-child(1) {
   border: 4px solid #ffc400;
   border-radius: 5px;
@@ -919,7 +971,6 @@ section.pageContent .side.center.desktop {
 }
 .newJPDisplay > .jplevels > .jpName[name="Silver"] {
   color: #d6d6d6;
-  background-image: url(//www.palmsbet.co.ke/images/levels-silver.png);
   background-size: 50%;
 }
 .newJPDisplay[data-provider="Casino Technology"] > .jplevels > .jpName {

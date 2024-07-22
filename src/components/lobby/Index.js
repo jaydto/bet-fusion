@@ -12,7 +12,8 @@ const CasinoIndex=()=> {
   return (
    <div style={{marginTop:'6.1rem'}}>
     <CasinoCarouselLoader/>
-    {width < 991 && <MobileNavCasino/>}
+    {/* {width < 991 &&  */}
+    {/* } */}
    <Lobby/>
    <div className='ipad-show'>
    <Right kiron={true} virtualLeague={true}/>

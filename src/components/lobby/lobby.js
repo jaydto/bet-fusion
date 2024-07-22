@@ -3,6 +3,7 @@ import SideCasinoMenu from './sideSection'
 import TopSection from './topSection'
 import CasinoGamesComponent from './body'
 import useWindowDimensions from '../header/Dimensions';
+import MobileNavCasino from './mobileCasino';
 
 
 const Lobby=(props)=> {
@@ -16,8 +17,8 @@ const Lobby=(props)=> {
         </div>
         <div className={`side center slots ${width < 991 ? `mobile` : `desktop`}`}>
             
-          {/* <TopSection/> */}
-
+          <MobileNavCasino/>
+          <TopSection/>
             <CasinoGamesComponent/>
 
         </div>

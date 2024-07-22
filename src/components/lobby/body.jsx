@@ -7,10 +7,10 @@ import OverlayImage from "../../assets/img/mobile/overlayImage.png";
 
 const sections = [
   "smartSoft",
+  "virtual League",
   "popular",
   "crash games",
   "instant",
-  "virtual League",
   "slots",
 ];
 
@@ -172,11 +172,7 @@ const CasinoGamesComponent = () => {
         data-category="virtual-league"
         data-order={index}
         data-id={competition.competition_id}
-        ref={(el) => {
-          if (!sectionRefs.current["virtual League"]) {
-            sectionRefs.current["virtual League"] = el;
-          }
-        }}
+        
       >
         <div
           className="jpOverlay"
@@ -192,7 +188,7 @@ const CasinoGamesComponent = () => {
           ></div>
           <div className="reaCover">
             <div className="link Real">
-              <Link to={`virtual-league/competition_id=${competition?.competition_id}`}>View Competition</Link>
+              <Link to={`virtual-league?competition_id=${competition?.competition_id}`}>View Competition</Link>
             </div>
           </div>
         </div>
@@ -216,11 +212,11 @@ const CasinoGamesComponent = () => {
         data-category={game.game.gameCategory}
         data-order={gameIndex}
         data-id={game.game.gameId}
-        ref={(el) => {
-          if (!sectionRefs.current[section]) {
-            sectionRefs.current[section] = el;
-          }
-        }}
+        // ref={(el) => {
+        //   if (!sectionRefs.current[section]) {
+        //     sectionRefs.current[section] = el;
+        //   }
+        // }}
       >
         <div
           className="jpOverlay"
@@ -320,7 +316,11 @@ const CasinoGamesComponent = () => {
     );
   };
 
-  return <div>{sections.map(renderSection)}</div>;
+  return <div ref={(el) => {
+    if (!sectionRefs.current["virtual League"]) {
+      sectionRefs.current["virtual League"] = el;
+    }
+  }}>{sections.map(renderSection)}</div>;
 };
 
 export default CasinoGamesComponent;

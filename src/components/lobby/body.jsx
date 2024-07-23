@@ -101,7 +101,7 @@ const CasinoGamesComponent = () => {
 
   const renderCasinoGames = (games, section) => {
     const gamesToDisplay = games?.slice(0, visibleItems[section]);
-    return gamesToDisplay.flatMap((providerGames, providerIndex) =>
+    return gamesToDisplay?.flatMap((providerGames, providerIndex) =>
       providerGames[Object.keys(providerGames)[0]]
         ?.slice(0, visibleItems[section])
         ?.map((game, gameIndex) => (
@@ -164,7 +164,7 @@ const CasinoGamesComponent = () => {
 
   const renderVirtualLeague = () => {
     const gamesToDisplay = competitionData?.slice(0, visibleItems["virtual League"]);
-    return gamesToDisplay.map((competition, index) => (
+    return gamesToDisplay?.map((competition, index) => (
       <div
         key={competition.competition_id}
         className={`grid-item`}
@@ -204,7 +204,7 @@ const CasinoGamesComponent = () => {
 
   const renderCasinoSearch = (games, section) => {
     const gamesToDisplay = games?.slice(0, visibleItems[section]);
-    return gamesToDisplay.map((game, gameIndex) => (
+    return gamesToDisplay?.map((game, gameIndex) => (
       <div
         key={`${game.provider}-${game.game.gameId}`}
         className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}

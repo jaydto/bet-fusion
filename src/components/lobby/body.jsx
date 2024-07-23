@@ -16,11 +16,11 @@ const sections = [
 
 const defaultVisibleCount = {
   smartSoft: 0,
-  popular: 3,
+  popular: 4,
   "crash games": 0,
-  instant: 3,
+  instant: 4,
   "virtual League": 0,
-  slots: 3,
+  slots: 4,
 };
 
 
@@ -32,7 +32,7 @@ const CasinoGamesComponent = () => {
 
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const [visibleItems, setVisibleItems] = useState(
-    sections.reduce((acc, section) => ({ ...acc, [section]: 7 }), {})
+    sections.reduce((acc, section) => ({ ...acc, [section]: 9 }), {})
   );
   const competitionData = useSelector((state) => state.virtualLeague.competitions_data) || getFromLocalStorage('kiron-competitions')
 
@@ -95,7 +95,7 @@ const CasinoGamesComponent = () => {
   const handleSeeLess = (section) => {
     setVisibleItems((prevVisibleItems) => ({
       ...prevVisibleItems,
-      [section]: 7,
+      [section]: 9,
     }));
   };
 

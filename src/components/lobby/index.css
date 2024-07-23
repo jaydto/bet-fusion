@@ -1,17 +1,17 @@
 @media screen and (min-width: 1680px) {
   .grid-layout {
-    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
   }
 }
 @media screen and (min-width: 1280px) {
   .grid-layout {
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto;
   }
 }
 
 @media screen and (min-width: 980px) {
   .grid-layout {
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
   }
 }
 

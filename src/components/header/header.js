@@ -306,10 +306,10 @@ const Header = React.memo((props) => {
 
                 {/*todo check information provided for a user*/}
                 <div
-                  className={` col-10 change-size desk-top`}
+                  className={` change-size desk-top`}
                   id="navbar-collapse-main "
                 >
-                  <div className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3">
+                  <div className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3 ">
                     {user ? (
                       <ProfileMenu user={user} profile={checkDesktop} />
                     ) : (

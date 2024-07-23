@@ -26,6 +26,9 @@
 }
 
 @media screen and (max-width:991px){
+  .jpHeader{
+    display:none!important;
+  }
   .grid-layout{
     padding:5px 1px!important;
   }
@@ -1110,4 +1113,5 @@ section.pageContent .filters ul {
   margin: 0;
   font-size: 0;
   width: 100%;
+  overflow-x: hidden;
 }

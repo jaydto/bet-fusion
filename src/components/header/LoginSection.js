@@ -39,7 +39,7 @@ const LoginSection= React.memo(
                 </div>
             </div>
             <div style={{float: "right"}} className={` d-flex justify-content-center align-items-center flex-column w-100 container-fluid login-top`}>
-                <div className={`w-100`}>
+                <div className={`w-100 d-flex flex-row align-items-center`}>
                     <Link to={'/login'} className={`cg text-light border-0`} type="submit">
                         <span className={'login-text'}>LOGIN</span>
                     </Link>

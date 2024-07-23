@@ -10,7 +10,7 @@ const CasinoIndex=()=> {
   const {width}=useWindowDimensions()
 
   return (
-   <div style={{marginTop:'6.1rem'}}>
+   <div style={{marginTop:'6.1rem', overflowX:'hidden'}}>
     <CasinoCarouselLoader/>
     {/* {width < 991 &&  */}
     {/* } */}

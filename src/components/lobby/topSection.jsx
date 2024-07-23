@@ -3,6 +3,7 @@ import LazyLoad from 'react-lazyload';
 import Gold from "../../assets/img/mobile/levels-gold.png"
 import Silver from "../../assets/img/mobile/levels-silver.png"
 import Bronze from "../../assets/img/mobile/levels-bronze.png"
+import WinCounter from './winCounter';
 
 const TopSection = () => {
   return (
@@ -22,10 +23,10 @@ const TopSection = () => {
               <div className="sideMiddle"></div>
               <div className="sideRight"></div>
               <div className="jpValCont">
-                <div className="valJP odometer odometer-theme-default" id="apalmsbetcokeGold">
-                  <div className="odometer-inside">
+                {/* <div className="valJP odometer odometer-theme-default" id="apalmsbetcokeGold"> */}
+                  {/* <div className="odometer-inside"> */}
                     {/* Replace with actual values from your application */}
-                    <span className="odometer-digit">
+                    {/* <span className="odometer-digit">
                       <span className="odometer-digit-spacer">8</span>
                       <span className="odometer-digit-inner">
                         <span className="odometer-ribbon">
@@ -34,12 +35,13 @@ const TopSection = () => {
                           </span>
                         </span>
                       </span>
-                    </span>
+                    </span> */}
                     {/* Repeat similar spans for other digits */}
-                    <span className="odometer-formatting-mark"> </span>
+                    {/* <span className="odometer-formatting-mark"> </span> */}
+                    <WinCounter counter={3000}/>
                     {/* Example structure; replace with actual values */}
-                  </div>
-                </div>
+                  {/* </div> */}
+                {/* </div> */}
               </div>
               <div className="currency">KES</div>
             </div>
@@ -49,24 +51,9 @@ const TopSection = () => {
               <div className="sideMiddle"></div>
               <div className="sideRight"></div>
               <div className="jpValCont">
-                <div className="valJP odometer odometer-theme-default" id="apalmsbetcokeSilver">
-                  <div className="odometer-inside">
-                    {/* Repeat similar spans for other digits */}
-                    <span className="odometer-digit">
-                      <span className="odometer-digit-spacer">8</span>
-                      <span className="odometer-digit-inner">
-                        <span className="odometer-ribbon">
-                          <span className="odometer-ribbon-inner">
-                            <span className="odometer-value">4</span>
-                          </span>
-                        </span>
-                      </span>
-                    </span>
-                    {/* Repeat similar spans for other digits */}
-                    <span className="odometer-formatting-mark"> </span>
-                    {/* Example structure; replace with actual values */}
-                  </div>
-                </div>
+                {/*  */}
+                <WinCounter counter={10000}/>
+
               </div>
               <div className="currency">KES</div>
             </div>
@@ -76,24 +63,9 @@ const TopSection = () => {
               <div className="sideMiddle"></div>
               <div className="sideRight"></div>
               <div className="jpValCont">
-                <div className="valJP odometer odometer-theme-default" id="apalmsbetcokeBronze">
-                  <div className="odometer-inside">
-                    {/* Repeat similar spans for other digits */}
-                    <span className="odometer-digit">
-                      <span className="odometer-digit-spacer">8</span>
-                      <span className="odometer-digit-inner">
-                        <span className="odometer-ribbon">
-                          <span className="odometer-ribbon-inner">
-                            <span className="odometer-value">4</span>
-                          </span>
-                        </span>
-                      </span>
-                    </span>
-                    {/* Repeat similar spans for other digits */}
-                    <span className="odometer-formatting-mark"> </span>
-                    {/* Example structure; replace with actual values */}
-                  </div>
-                </div>
+                {/*  */}
+                <WinCounter counter={7000}/>
+
               </div>
               <div className="currency">KES</div>
 

@@ -10,7 +10,7 @@ const sections = [
   
   "popular",
   "crash games",
-  "instant",
+  "instant games",
   "virtual League",
   "slots",
 ];
@@ -19,7 +19,7 @@ const defaultVisibleCount = {
   // smartSoft: 0,
   popular: 4,
   "crash games": 0,
-  instant: 4,
+  "instant games": 4,
   "virtual League": 0,
   slots: 4,
 };

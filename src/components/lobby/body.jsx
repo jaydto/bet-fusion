@@ -100,11 +100,11 @@ const CasinoGamesComponent = () => {
   };
 
   const renderCasinoGames = (games, section) => {
-    const gamesToDisplay = games.slice(0, visibleItems[section]);
+    const gamesToDisplay = games?.slice(0, visibleItems[section]);
     return gamesToDisplay.flatMap((providerGames, providerIndex) =>
       providerGames[Object.keys(providerGames)[0]]
-        .slice(0, visibleItems[section])
-        .map((game, gameIndex) => (
+        ?.slice(0, visibleItems[section])
+        ?.map((game, gameIndex) => (
           <div
             key={`${providerIndex}-${gameIndex}`}
             className={`grid-item ${
@@ -163,7 +163,7 @@ const CasinoGamesComponent = () => {
   };
 
   const renderVirtualLeague = () => {
-    const gamesToDisplay = competitionData.slice(0, visibleItems["virtual League"]);
+    const gamesToDisplay = competitionData?.slice(0, visibleItems["virtual League"]);
     return gamesToDisplay.map((competition, index) => (
       <div
         key={competition.competition_id}
@@ -203,7 +203,7 @@ const CasinoGamesComponent = () => {
   };
 
   const renderCasinoSearch = (games, section) => {
-    const gamesToDisplay = games.slice(0, visibleItems[section]);
+    const gamesToDisplay = games?.slice(0, visibleItems[section]);
     return gamesToDisplay.map((game, gameIndex) => (
       <div
         key={`${game.provider}-${game.game.gameId}`}

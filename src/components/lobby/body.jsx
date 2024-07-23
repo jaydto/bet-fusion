@@ -6,16 +6,17 @@ import { getFromLocalStorage } from "../utils/local-storage";
 import OverlayImage from "../../assets/img/mobile/overlayImage.png";
 
 const sections = [
-  "smartSoft",
-  "virtual League",
+  // "smartSoft",
+  
   "popular",
   "crash games",
   "instant",
+  "virtual League",
   "slots",
 ];
 
 const defaultVisibleCount = {
-  smartSoft: 0,
+  // smartSoft: 0,
   popular: 4,
   "crash games": 0,
   instant: 4,
@@ -284,14 +285,14 @@ const CasinoGamesComponent = () => {
         }}
       >
         <div className="d-flex justify-content-between px-4 section-lobby-header">
-          <h2>{section}</h2>
+          <h2 style={{textTransform: "capitalize"}}>{section}</h2>
           <div className="see-more-less">
             {visibleItems[section] < length ? (
-              <button onClick={() => handleSeeMore(section, length)}>
+              <button style={{textTransform: "capitalize"}} onClick={() => handleSeeMore(section, length)}>
                 See More
               </button>
             ) : (
-              <button onClick={() => handleSeeLess(section)}>See Less</button>
+              <button style={{textTransform: "capitalize"}} onClick={() => handleSeeLess(section)}>See Less</button>
             )}
           </div>
         </div>

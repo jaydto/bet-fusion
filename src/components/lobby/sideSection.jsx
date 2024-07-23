@@ -142,20 +142,20 @@ const SideCasinoMenu = () => {
           </div>
         </div>
         {isCollapsed['slots'] && (
-          <div className="items providerFilt">
+          <div className="items providerFilt" style={{textTransform: "capitalize"}}>
              <div onClick={resetSearch} className={!activeProvider ? ' text-light' : ''}>
               <label>
-                <span>All</span>
+                <span style={{textTransform: "capitalize"}}>All</span>
                 <div className="checkboxx"></div>
               </label>
             </div>
             {smartsoft_categories?.map((value) => (
-              <div key={value.default_description} provider-list={value.default_description} 
+              <div style={{textTransform: "capitalize"}} key={value.default_description} provider-list={value.default_description} 
               className={activeProvider === value.default_description ? ' text-light' : ''}
 
               onClick={() => filterData(value.default_description)}>
                 <label>
-                  <span>{value.default_description}</span>
+                  <span style={{textTransform: "capitalize"}}>{value.default_description}</span>
                   <input type="checkbox" filter-value={value.default_description} className="providerbox" />
                   <div className="checkboxx"></div>
                 </label>

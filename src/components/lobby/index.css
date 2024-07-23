@@ -662,7 +662,7 @@ section.pageContent .side.center.desktop {
   width: -moz-calc(100% - 220px);
   width: -o-calc(100% - 220px);
   width: calc(100% - 220px);
-  margin-left: 232px;
+  margin-left: 223px;
   display: inline-block;
   min-height: 700px;
 }

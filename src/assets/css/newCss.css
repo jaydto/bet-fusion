@@ -2128,6 +2128,10 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+  .footer-mobile-none {
+    
+    background:var(--CrashKali-footer);
+  }
 
   .desktop-footer  {
     /* max-width: 991px; */
@@ -3623,6 +3627,7 @@ img.nare-league {
 
   .footer-mobile-none {
     display: none;
+    background:var(--CrashKali-footer);
   }
 
   .kiron-betslip-size {

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { setState as setVirtualGame, casinoList, fetchCasinoGames } from "../../redux/virtualsSlice";
+import { setState as setVirtualGame, casinoList } from "../../redux/virtualsSlice";
 import { RenderCasinoSearch } from './body';
 import { getFromLocalStorage } from '../utils/local-storage';
 import CasinoLayout from './casinoLayout';
+import Loader from './casinoLoader';
 
 const CasinoOptions = () => {
   const { provider, category } = useParams();
@@ -12,36 +13,40 @@ const CasinoOptions = () => {
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const casino_search = useSelector((state) => state.virtuals.casino_search);
   const [filteredData, setFilteredData] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.user);
-  const [user, setUser] = useState(getFromLocalStorage("user"));
+  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
-    console.log("provider information", provider, "category information", category);
-    if (casino_games.length === 0 && provider.toLowerCase() === 'smartsoft') {
-      fetchCasinoGamesFromAPI();
-    } else if (provider.toLowerCase() !== 'smartsoft') {
-      getGamesByCategory(category, provider);
-    } else {
-      filterData(category, 'gameCategory');
-    }
+    const fetchData = async () => {
+      try {
+        if (casino_games.length === 0 && provider.toLowerCase() === 'smartsoft') {
+          await fetchCasinoGamesFromAPI();
+        } else if (provider.toLowerCase() !== 'smartsoft') {
+          await getGamesByCategory(category, provider);
+        } else {
+          filterData(category, 'gameCategory');
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false); // Set loading to false once data is fetched
+      }
+    };
+
+    fetchData();
   }, [provider, category, casino_games]);
 
   const fetchCasinoGamesFromAPI = async () => {
-    let endpoint = "/v2/smartsoft-games";
-    let method = "POST";
-
     const data = {
-      endpoint: endpoint,
-      method: method,
+      endpoint: "/v2/smartsoft-games",
+      method: "POST",
       category: "Slots",
       provider: "smart-soft",
     };
 
     dispatch(casinoList(data));
   };
-
-
 
   const getGamesByCategory = async (category, provider) => {
     const data = {
@@ -56,7 +61,6 @@ const CasinoOptions = () => {
 
   const filterData = (searchTerm, searchKey = 'gameName') => {
     const filteredData = [];
-    console.log("Filtering data with search term:", searchTerm, "and search key:", searchKey);
   
     if (searchTerm?.length >= 1) {
       casino_games.forEach((obj) => {
@@ -73,20 +77,15 @@ const CasinoOptions = () => {
         });
       });
     }
-  
-    console.log("Filtered data:", filteredData);
+
     dispatch(setVirtualGame("casino_search", filteredData));
   };
-  
-
 
   const handleButtonClick = (event, game_id, gameCategory) => {
     event.stopPropagation();
 
     const redirectToSmartPlay = () => {
-      navigate(
-        `/smart-play?game=${game_id}&category=${gameCategory}&status=live`
-      );
+      navigate(`/smart-play?game=${game_id}&category=${gameCategory}&status=live`);
     };
 
     if (user) {
@@ -96,8 +95,6 @@ const CasinoOptions = () => {
     }
   };
 
-  console.log("casino search information", casino_search);
-
   return (
     <CasinoLayout>
       <div>
@@ -105,9 +102,15 @@ const CasinoOptions = () => {
           <h2 style={{ textTransform: "capitalize" }}>{provider} - {category}</h2>
         </div>
         <div className="gamesCont grid-layout slots">
-          {casino_search?.length > 0 ? (
+          {loading ? (
+            <Loader /> // Show loader while data is being fetched
+          ) : casino_search?.length > 0 ? (
             <RenderCasinoSearch games={casino_search} section={category} visibleItems={20} handleButtonClick={handleButtonClick} />
-          ) : null}
+          ) : (
+            <div className="no-data-message">
+              <p>No games available for this category.</p>
+            </div>
+          )}
         </div>
       </div>
     </CasinoLayout>

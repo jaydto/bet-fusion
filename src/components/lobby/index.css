@@ -26,6 +26,9 @@
 }
 
 @media screen and (max-width:991px){
+  .gamesCont.grid-layout.slots{
+    margin-bottom:5rem;
+  }
   .jpHeader{
     display:none!important;
   }
@@ -124,6 +127,13 @@
 .btnHckd{
   color:var(--light)!important;
 }
+.no-data-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #888;
+}
+
 .grid-item {
   font-size: 14px;
   font-weight: bold;

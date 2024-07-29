@@ -58,9 +58,13 @@
   width: 100% !important;
 
 }
-.grid-item.span-2 {
-  width: 100% !important;
+.grid-item.span-2, .grid-item.span-3 {
+  width: 46.3% !important;
 }
+/* .grid-item.span-2 {
+  width: 100% !important;
+} */
+
 .grid-item.span-2:nth-child(1) {
   border: 4px solid #ffc400;
   border-radius: 5px;
@@ -68,9 +72,22 @@
 }
 @media only screen and (max-width: 600px) {
  .grid-item {
-  width: 46.4% !important;
+  /* width: 46.4% !important; */
+  width: 30.4% !important;
+}
+.grid-item.span-2, .grid-item.span-3 {
+  width: 46.3% !important;
 }
 }
+@media only screen and (max-width: 400px) {
+  .grid-item {
+   /* width: 46.4% !important; */
+   width: 29.4% !important;
+ }
+ .grid-item.span-2, .grid-item.span-3 {
+   width: 45.3% !important;
+ }
+ }
 /* body.desktop {
     min-width: 1280px;
 } */
@@ -262,7 +279,8 @@
 }
 /* button play */
 .grid-item>div.gamePanel>.reaCover>.Real>div {
-  background-color: #cba03e;
+  background-color: var(--CrashKali-button-login
+  );
   padding: 4px 8px;
   border-radius: 16px;
 }
@@ -317,7 +335,8 @@
   left: 50%;
   top: 30%;
   padding: 2px;
-  border: 1px solid #cba03e;
+  /* border: 1px solid #cba03e; */
+  border: 1px solid var(--CrashKali-button-login);
   color: #050707;
   border-radius: 18px;
   font-weight: bold;
@@ -326,7 +345,8 @@
   transform: translate(-50%, -50%);
 }
 .grid-item > div.gamePanel > .reaCover > .Real > div {
-  background-color: #cba03e;
+  background-color: var(--CrashKali-button-login);
+  /* background-color: #cba03e; */
   padding: 4px 8px;
   border-radius: 16px;
 }
@@ -727,21 +747,24 @@ section.pageContent .side.center.desktop {
 .grid-item:not(.addmoregames):hover>.imgCover {
   position: absolute;
   left: 0;
-  top: 60%;
+  top: 55%;
+  /* top: 60%; */
   width: 100%;
-  height: 70%;
+  /* height: 70%; */
+  height: 57%;
   opacity: 1;
 }
 .grid-item:not(.addmoregames):not(.nohover):hover>div {
   background-size: auto 140%;
 }
 .grid-item.span-2:hover, .grid-item.span-2:hover {
-  transform: translate3d(0, 0%, 0) scale(1.1);
+  /* transform: translate3d(0, 00) scale(1.1); */
 }
 .grid-item:hover, .grid-item:hover, .grid-item:hover, body.freespins .grid-item:hover {
   z-index: 2;
-  transform: translate3d(0, -10%, 0) scale(1.1);
-  border: 1px solid #cba03f;
+  /* transform: translate3d(0, -10%, 0) scale(1.1); */
+  /* border: 1px solid #cba03f; */
+  border: 1px solid var(--CrashKali-button-login);
 }
 .newJPDisplay[levels="3"] > .jplevels {
   width: calc((100% - 280px) / 3);

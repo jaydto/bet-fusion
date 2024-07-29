@@ -4,6 +4,7 @@ import { casinoList } from "../../redux/virtualsSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../utils/local-storage";
 import OverlayImage from "../../assets/img/mobile/overlayImage.png";
+import useWindowDimensions from "../header/Dimensions";
 
 const sections = [
   // "smartSoft",
@@ -15,14 +16,7 @@ const sections = [
   "slots",
 ];
 
-const defaultVisibleCount = {
-  // smartSoft: 0,
-  popular: 4,
-  "crash games": 0,
-  "instant games": 4,
-  "virtual League": 0,
-  slots: 4,
-};
+
 
 
 const CasinoGamesComponent = () => {
@@ -30,6 +24,7 @@ const CasinoGamesComponent = () => {
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const userData = useSelector((state) => state.auth.user);
   const casino_search = useSelector((state) => state.virtuals.casino_search);
+  const {width}=useWindowDimensions()
 
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const [visibleItems, setVisibleItems] = useState(
@@ -39,6 +34,14 @@ const CasinoGamesComponent = () => {
 
   const navigate = useNavigate();
   const sectionRefs = useRef({});
+  const defaultVisibleCount = {
+    // smartSoft: 0,
+    popular:0,
+    "crash games":  width<991 ? 0 : 4,
+    "instant games":0,
+    "virtual League":  0,
+    slots:   width<991 ? 0 : 4,
+  };
 
   useEffect(() => {
     getSmartGames("slots");
@@ -109,7 +112,7 @@ const CasinoGamesComponent = () => {
           <div
             key={`${providerIndex}-${gameIndex}`}
             className={`grid-item ${
-              gameIndex === defaultVisibleCount[section] ? "span-2" : ""
+              gameIndex === defaultVisibleCount[section] ? "span-2" :gameIndex ===1?"span-3" : ""
             }`}
             data-provider={game.provider}
             data-category="slots"

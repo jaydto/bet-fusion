@@ -13,10 +13,69 @@ const sections = [
   "crash games",
   "instant games",
   "virtual League",
-  "slots",
+  "Slots",
 ];
 
-
+export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonClick }) => {
+  const gamesToDisplay = games?.slice(0, visibleItems[section]);
+  console.log("games to display")
+  return gamesToDisplay?.map((game, gameIndex) => (
+    <div
+      key={`${game.provider}-${game.game.gameId}`}
+      // className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}
+      className={`grid-item `}
+      data-provider={game.provider}
+      data-category={game.game.gameCategory}
+      data-order={gameIndex}
+      data-id={game.game.gameId}
+    >
+      <div
+        className="jpOverlay"
+        style={{ backgroundImage: `url(${OverlayImage})` }}
+      ></div>
+      <div className="gamePanel">
+        <div
+          className="img"
+          style={{
+            backgroundImage: `url(${
+              game.game?.game_icon ?? game.game?.image_url
+            })`,
+            width: "-webkit-fill-available",
+          }}
+        ></div>
+        <div className="reaCover">
+          <div
+            data-real="1"
+            className="link Real"
+            onClick={(event) =>
+              handleButtonClick(
+                event,
+                game.game?.game_id ?? game.game?.gameName ?? game.game?.key,
+                game.game?.gameCategory
+              )
+            }
+          >
+            <div>Play now</div>
+          </div>
+        </div>
+      </div>
+      <div className="imgCover">
+        <h4>{game.game?.game_name ?? game.game?.gameName}</h4>
+        <a className="infoBtn">
+          <div>i</div>
+        </a>
+        <Link
+          data-real="0"
+          className="link Fun"
+          to={`/smart-play?game=${game.game?.game_id}&category=${game.game?.gameCategory}&status=demo`}
+          target="_self"
+        >
+          <div>Demo</div>
+        </Link>
+      </div>
+    </div>
+  ));
+};
 
 
 const CasinoGamesComponent = () => {
@@ -40,11 +99,11 @@ const CasinoGamesComponent = () => {
     "crash games":  width<991 ? 0 : 4,
     "instant games":0,
     "virtual League":  0,
-    slots:   width<991 ? 0 : 4,
+    Slots:   width<991 ? 0 : 4,
   };
 
   useEffect(() => {
-    getSmartGames("slots");
+    getSmartGames("Slots");
   }, []);
 
   useEffect(() => {
@@ -115,7 +174,7 @@ const CasinoGamesComponent = () => {
               gameIndex === defaultVisibleCount[section] ? "span-2" :gameIndex ===1?"span-3" : ""
             }`}
             data-provider={game.provider}
-            data-category="slots"
+            data-category="Slots"
             data-order={gameIndex}
             data-id={game.gameId}
           >
@@ -206,70 +265,7 @@ const CasinoGamesComponent = () => {
     ));
   };
 
-  const renderCasinoSearch = (games, section) => {
-    const gamesToDisplay = games?.slice(0, visibleItems[section]);
-    return gamesToDisplay?.map((game, gameIndex) => (
-      <div
-        key={`${game.provider}-${game.game.gameId}`}
-        className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}
-        data-provider={game.provider}
-        data-category={game.game.gameCategory}
-        data-order={gameIndex}
-        data-id={game.game.gameId}
-        // ref={(el) => {
-        //   if (!sectionRefs.current[section]) {
-        //     sectionRefs.current[section] = el;
-        //   }
-        // }}
-      >
-        <div
-          className="jpOverlay"
-          style={{ backgroundImage: `url(${OverlayImage})` }}
-        ></div>
-        <div className="gamePanel">
-          <div
-            className="img"
-            style={{
-              backgroundImage: `url(${
-                game.game?.game_icon ?? game.game?.image_url
-              })`,
-              width: "-webkit-fill-available",
-            }}
-          ></div>
-          <div className="reaCover">
-            <div
-              data-real="1"
-              className="link Real"
-              onClick={(event) =>
-                handleButtonClick(
-                  event,
-                  game.game?.game_id ?? game.game?.gameName ?? game.game?.key,
-                  game.game?.gameCategory
-                )
-              }
-            >
-              <div>Play now</div>
-            </div>
-          </div>
-        </div>
-        <div className="imgCover">
-          <h4>{game.game?.game_name ?? game.game?.gameName}</h4>
-          <a className="infoBtn">
-            <div>i</div>
-          </a>
-          <Link
-            data-real="0"
-            className="link Fun"
-            to={`/smart-play?game=${game.game?.game_id}&category=${game.game?.gameCategory}&status=demo`}
-            target="_self"
-          >
-            <div>Demo</div>
-          </Link>
-        </div>
-      </div>
-    ));
-  };
-
+  
   const renderSection = (section) => {
     const data = casino_search.length > 0 ? casino_search : casino_games;
     const allGames = data.flatMap(
@@ -308,7 +304,8 @@ const CasinoGamesComponent = () => {
         <div className="gamesCont grid-layout slots">
           {length > 0 ? (
             casino_search.length > 0 ? (
-              renderCasinoSearch(data, section)
+              <RenderCasinoSearch games={data} section={section} visibleItems={visibleItems} handleButtonClick={handleButtonClick}  // Pass the handleButtonClick function here
+              />
             ) : (
               renderCasinoGames(data, section)
             )

@@ -7,6 +7,7 @@ import {resetState} from "./redux/authSlice";
 import {Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import Header from './components/header/header';
 import CasinoIndex from './components/lobby/Index';
+import CasinoOptions from './components/lobby/casinoOptions';
 
 const Deposit3 = React.lazy(() => import("./components/pages/deposit-withraw/Deposit3"));
 
@@ -165,6 +166,7 @@ const App =
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/404" element={<PageNotFound/>}/>
                         <Route exact path="/casino" element={<NewCasino/>}/>
+                        <Route path="/casino-options/:provider/:category" element={<CasinoOptions />} />
                        
                         <Route exact path="/smart-play" element={<SmartPlay/>}/>
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>

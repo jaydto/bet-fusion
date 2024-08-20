@@ -132,6 +132,17 @@
     color: #fff;
     font-size: 1em;
     text-transform: capitalize;
+    margin-top:2rem;
+}
+.standing-wrapper-live {
+    margin:0;
+    width: 100%;
+    float: left;
+    border-bottom: none;
+    font-weight: 400;
+    color: #fff;
+    font-size: 1em;
+    text-transform: capitalize;
 }
 .standing-heading-r {
     color: #000;

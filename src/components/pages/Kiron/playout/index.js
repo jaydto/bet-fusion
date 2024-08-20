@@ -84,7 +84,7 @@ const KironPlayouts = React.memo((props) => {
 
   return (
     <>
-      <section className="standing-wrapper text-center pt-2 pb-2">
+      <section className="standing-wrapper-live text-center pt-2 pb-2">
         <div className="w-100">
           <div className="w-100">
             <div className="col-12 py-1 standings-container-heading playouts d-flex align-items-center justify-content-between px-3">
@@ -232,7 +232,7 @@ const KironPlayouts = React.memo((props) => {
                           <div className=" d-flex align-items-center justify-content-center gap-3 pb-3">
                             <span className="mr-2  text-muted-1 d-flex align-items-center justify-content-start">
                               <span className="" style={{ fontSize: "10px" }}>
-                                HT:$&nbsp;
+                                HT:&nbsp;
                               </span>
                               <span className="" style={{ fontSize: "10px" }}>
                                 {play_time >= 45

@@ -115,7 +115,7 @@ const KironResults =
                                 </div>
                             ))}
                         </>
-                    )) : <SkeletonLoader/>
+                    )) :loadingData ? <SkeletonLoader/>:<></>
                 }
 
             </>

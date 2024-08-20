@@ -445,7 +445,7 @@
         z-index: 100;
     }
     .league-games-wrapper.playout {
-        margin-top: 7.4rem;
+        margin-top: 8.4rem!important;
     }
     .skeleton-loader{
         margin-top:0rem!important;

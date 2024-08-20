@@ -35,24 +35,24 @@ const SlipTabs = (props) => {
     const nare_league = url.searchParams.get("nare-league")
     const pathname = window.location.pathname;
     return (
-        <div className={"full-mobile mb-1 "}>
+        <div className={"full-mobile mb-1 header-slips"}>
             <Row className="top-matches d-flex flex-row ">
                 {pathname === "/betslip-jackpot" &&
                     <div className="col  text-center">
-                        <Link className={`cursor-pointer rounded border-0 w-100 bold home-tabs header-slips`}
+                        <Link className={`cursor-pointer rounded border-0 w-100 bold home-tabs `}
                               to={'/betslip-jackpot?' + getLink()}>
                             <span className="col-sm-11 main-header">JACKPOT</span>
                         </Link>
                     </div>}
                 {pathname === '/betslip-nare' && <div className="col text-center">
-                    <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs header-slips`}
+                    <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs `}
                           to={'/betslip-nare?' + getLink()}>
                         <span className="col-sm-11 main-header">NARESLIP</span>
                     </Link>
                 </div>}
                 {pathname === '/betslip-slip' &&
                     <div className="col text-center">
-                        <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs header-slips`}
+                        <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs `}
                               to={'/betslip-slip?' + getLink()}>
                             <span className="col-sm-11 main-header">BETSLIP</span>
                         </Link>

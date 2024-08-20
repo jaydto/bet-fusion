@@ -31,7 +31,7 @@
 }
 
 .contain::-webkit-scrollbar-track {
-    background-color: var(--betnare-primary); /* Set the color of the scrollbar track */
+    background-color: var(--CrashKali-primary); /* Set the color of the scrollbar track */
 }
 
 .contain::-webkit-scrollbar-thumb {

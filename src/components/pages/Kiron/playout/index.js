@@ -111,7 +111,7 @@ const KironPlayouts = React.memo((props) => {
                   <div key={index}>
                     <div className="live-match-selection pt-3 pb-1">
                       <div className="container">
-                        <div className="row px-3 py-2">
+                        <div className="row px-3 pt-2">
                           <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center flex-column">
                             <div className="d-flex align-items-center justify-content-start w-100">
                               <span className="team-jersey">
@@ -232,7 +232,7 @@ const KironPlayouts = React.memo((props) => {
                           <div className=" d-flex align-items-center justify-content-center gap-3 pb-3">
                             <span className="mr-2  text-muted-1 d-flex align-items-center justify-content-start">
                               <span className="" style={{ fontSize: "10px" }}>
-                                HT:{" "}
+                                HT:$&nbsp;
                               </span>
                               <span className="" style={{ fontSize: "10px" }}>
                                 {play_time >= 45

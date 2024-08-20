@@ -6909,7 +6909,7 @@ ul.sport {
     
     /* Track */
     ::-webkit-scrollbar-track {
-        background: var(--betnare-primary);
+        background: var(--CrashKali-primary);
     }
     
     
@@ -16340,7 +16340,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     font-size: 13px;
     color: white;
     text-align: left;
-    box-shadow: 0 4px 8px 0 var(--betnare-primary), 0 6px 20px 0 var(--btn-color)!important;
+    box-shadow: 0 4px 8px 0 var(--CrashKali-primary), 0 6px 20px 0 var(--btn-color)!important;
 }
 
 .promotion-header {

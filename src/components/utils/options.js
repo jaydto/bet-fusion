@@ -11,7 +11,7 @@ const LinkOption = React.memo(
 
 
         return (
-            <option value={`/?${to}`} {...rest} >
+            <option value={`/virtual-league?${to}`} {...rest} >
                 {children}
             </option>
         );

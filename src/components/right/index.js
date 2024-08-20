@@ -104,6 +104,7 @@ const Right = React.memo((props) => {
 
   return (
     <div
+    style={width<991?{width:"0px"}:{}}
       className={`${
         width > 991 &&
         `col ${test ? "" : "gn"} 

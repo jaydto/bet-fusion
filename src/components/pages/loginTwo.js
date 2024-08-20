@@ -47,7 +47,7 @@ const LoginTwo = React.memo((props) => {
             className={
               " top-spacing d-flex justify-content-around m-auto px-1 align-items-center"
             }
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/')}
           >
             <span
               className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "

@@ -461,6 +461,10 @@
         margin-top: 10.2rem!important;
         position: relative;
     }
+    .kiron-body-betslip {
+        margin-top: 4.2rem!important;
+        position: relative;
+    }
     .kiron-matches-header {
         position: fixed;
         z-index: 1999;
@@ -519,8 +523,8 @@
     .event{
         background:var(--CrashKali-primary)!important
     }
-    .kiron-body{
-        margin-top:7.6rem;
+    .kiron-body-betslip {
+        margin-top: 8.7rem!important;
         position: relative;
     }
     .kiron-matches-header {
@@ -639,6 +643,10 @@
     }
     .kiron-body {
         margin-top: 12.9rem;
+        position: relative;
+    }
+    .kiron-body-betslip {
+        margin-top: 1rem;
         position: relative;
     }
     .kiron-body-pages {

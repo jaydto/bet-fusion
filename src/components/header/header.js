@@ -36,7 +36,6 @@ import useWindowDimensions from "./Dimensions";
 import DepositModal from "../modals/DepositModal";
 
 const ProfileMenu = React.lazy(() => import("./profile-menu"));
-const HeaderNav = React.lazy(() => import("./header-nav"));
 
 const Header = React.memo((props) => {
   const { slip, scrollPosition, jackpot } = props;

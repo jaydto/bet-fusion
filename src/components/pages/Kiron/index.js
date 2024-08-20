@@ -92,7 +92,7 @@ const TestKiron = React.memo(() => {
                                     <KironCompetitions/>
                                     <KironTabs tab={location?.pathname?.replace("/", "")} user={userLogged}/>
                                 </div>
-                                <div className={`${(tab!=='nare-league'&&tab!=='kiron'&&tab!=='bet-history')?'kiron-body-pages':'kiron-body'}`}>
+                                <div className={`${(tab!=='nare-league'&&tab!=='kiron'&&tab!=='bet-history')?'kiron-body-pages':'kiron-body-betslip'}`}>
                                     {tab == "results" ? <KironResults/> : tab == "standing" ?
                                         <Standing/> : tab == "bet-history" ? <KironBetHistory/> :
                                             <>

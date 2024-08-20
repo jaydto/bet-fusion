@@ -45,7 +45,7 @@ const ProfileMenu = React.memo((props) => {
         <>
             {user && (
                 <>
-                    <div className="row w-100 d-flex align-items-center justify-content-end px-3 ">
+                    <div className=" w-100 d-flex align-items-center justify-content-end px-3 gap-3 ">
                         {showBalance && !profile &&
                             <div className="w-auto d-flex text-white align-items-end" title={'CASH'}>
                                 <div className={"profile-wrap text-muted-1"}>

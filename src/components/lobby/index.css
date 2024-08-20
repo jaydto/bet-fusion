@@ -61,6 +61,13 @@
   width: 100% !important;
 
 }
+.grid-item:first-child[data-provider="virtual-league"] {
+width:46.3%!important;
+}
+.grid-item[data-provider="virtual-league"] {
+  width:46.3%!important;
+  }
+
 .grid-item.span-2, .grid-item.span-3 {
   width: 46.3% !important;
 }

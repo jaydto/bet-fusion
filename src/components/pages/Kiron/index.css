@@ -9,6 +9,9 @@
 .size-info {
     width: 50%;
 }
+.slip-bottom-space-list{
+    margin-top:6px;
+}
 .space-bets {
     flex-direction: column !important;
 }

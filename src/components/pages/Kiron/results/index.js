@@ -67,7 +67,7 @@ const KironResults =
                                             <div className="league-wrapper-r">
                                                 <div className="matches-wrapper pt-2">
 
-                                                    <div className="live-match-selection pt-1 pb-1">
+                                                    <div className="live-match-selection-wrapper pt-1 pb-1">
                                                         <div className="container">
                                                             <div className="row px-3">
                                                                 <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center"><span

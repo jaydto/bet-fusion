@@ -61,7 +61,7 @@
     font-size: var(--font-medium);
     text-transform: none !important;
 }
-.live-match-selection {
+.live-match-selection-wrapper {
     border-bottom: 1px solid var(--bet-history);
     font-size: 1.13em;
     display: flex;

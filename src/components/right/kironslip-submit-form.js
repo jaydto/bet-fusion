@@ -241,7 +241,7 @@ const KironslipSubmitForm = React.memo(
                             key: "kironbetslip",
                             payload: {},
                         });
-                        return width < 991 ? navigate(-1) : "/"
+                        return width < 991 ? navigate(-1) : "/virtual-league"
                     } else {
                         const data = {
                             event: 'place_kiron_bet',
@@ -466,7 +466,7 @@ const KironslipSubmitForm = React.memo(
                     let betslip = removeFromKironSlip(match?.parent_match_id)
                     dispatch({type: "SET", key: 'kironbetslip', payload: betslip});
                     if (Object.keys(betslip).length === 0) {
-                        return navigate('/')
+                        return navigate('/virtual-league')
                     }
 
                 }

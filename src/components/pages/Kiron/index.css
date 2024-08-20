@@ -611,6 +611,7 @@
     }
     .skeleton-loader{
         margin-top:14rem;
+        background: var(--CrashKali-primary);
     }
     .standings-container-heading {
         position: fixed;

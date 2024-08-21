@@ -32,7 +32,7 @@
 }
 
 .opt-color{
-    background: var(--orange)!important;
+    background: var(--CrashKali-button-login)!important;
     color:var(--dark) !important;
     font-weight: bold;
 }

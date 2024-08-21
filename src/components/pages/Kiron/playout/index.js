@@ -227,7 +227,7 @@ const KironPlayouts = React.memo((props) => {
                             </div>
                           </div>
                         </div>
-                        {/* {play_time >= 45 && ( */}
+                        {play_time >= 45 && (
                         <div className="row px-3">
                           <div className=" d-flex align-items-center justify-content-center gap-3 pb-3">
                             <span className="mr-2  text-muted-1 d-flex align-items-center justify-content-start">
@@ -257,7 +257,7 @@ const KironPlayouts = React.memo((props) => {
                             </span>
                           </div>
                         </div>
-                        {/* // )} */}
+                        )} 
                       </div>
                     </div>
                     {results?.bet_pick !== null && (

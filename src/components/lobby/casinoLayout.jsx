@@ -10,7 +10,7 @@ const CasinoLayout = ({ children }) => {
     const {width}=useWindowDimensions()
 
   return (
-    <div style={{ marginTop: '6.1rem',overflowX:'hidden' }}>
+    <div style={{ marginTop: '5.1rem',overflowX:'hidden' }}>
       <CasinoCarouselLoader />
       <section className='pageContent'>
         <div className={`side left non-mobile ${width < 991 ? `d-none` : ``}`}>

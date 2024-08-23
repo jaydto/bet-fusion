@@ -223,7 +223,7 @@ const Footer = React.memo((props) => {
         </div>
       </div>
       {(user && sidebar) ? (
-        <div className={"row "}>
+        <div className={"row w-50"}>
           <div className={"w-100 sidebar-mobile"}>
             {" "}
             <a

@@ -25,14 +25,6 @@ import {
   getFromLocalStorage,
   setTrackingData,
 } from "../../utils/local-storage";
-// import { Notify } from "../../header/top-login";
-
-// const backgroundStyle = {
-//   background: `url(${gameDay})`,
-//   backgroundRepeat: "no-repeat",
-//   backgroundSize: "cover",
-//   backgroundAttachment: "fixed",
-// };
 
 const FormTitle = () => {
   const navigate = useNavigate();
@@ -97,26 +89,23 @@ const Register = () => {
 
   useEffect(() => {
     if (successMessage?.success?.status === 201) {
-      const message = {
-        status: 201,
-        message: "Registration successful!",
-      };
-      // Notify(message);
-
+      console.log("successMessage", successMessage);
+      
+      notification.success({
+        message: "Registration Successful",
+        description:successMessage?.success.message?? "You have successfully registered!",
+        placement: "topLeft",
+      });
       const timeoutId = setTimeout(() => {
         if (settings?.accountConfiguration?.verificationEnabled !== "0") {
           navigate("/verify");
         } else {
           navigate("/login");
         }
-      }, 1650);
+      }, 100);
       return () => clearTimeout(timeoutId);
     } else if (errorMessage) {
-      const message = {
-        status: 400,
-        message: errorMessage || "Error attempting to Register",
-      };
-
+    
       const data = {
         event: "sign_up_failed",
         message: "sign up failed",
@@ -135,38 +124,7 @@ const Register = () => {
     promo_code: "",
   };
 
-  // const handleSubmit = (values) => {
-  //   const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
-  //   const msisdn = values.countryCode + formattedMsisdn;
-  //   const payload = {
-  //     promo_code: values.promo_code,
-  //     msisdn: msisdn,
-  //     password: values.password,
-  //   };
 
-  //   setTrackingData(payload);
-  //   dispatch(signupUser(payload))
-  //     .then(() => {
-  //       if (values.utm_source !== undefined) {
-  //         if (values.utm_source === "eskimi") {
-  //           window.esk("track", "Conversion");
-  //         }
-  //         if (values.utm_source === "google") {
-  //           window.gtag_report_conversion(window.location);
-  //         }
-  //       }
-  //       clearTrackingData();
-  //       gaEventTracker("Sign Up", {
-  //         msisdn,
-  //         promo_code: values.promo_code || "no promo code",
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       // handle error
-  //     });
-  // };
-
-  const [api, contextHolder] = notification.useNotification();
 
   const handleSubmit = (values) => {
     const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
@@ -180,11 +138,7 @@ const Register = () => {
     setTrackingData(payload);
     dispatch(signupUser(payload))
       .then(() => {
-        notification.success({
-          message: "Registration Successful",
-          description: "You have successfully registered!",
-          placement: "topLeft",
-        });
+      
 
         if (values.utm_source !== undefined) {
           if (values.utm_source === "eskimi") {
@@ -263,37 +217,37 @@ const Register = () => {
                               initialValues={initialValues}
                               onSubmit={(values) => {
                                 handleSubmit(values);
-                                if (
-                                  successMessage &&
-                                  appConfig?.accountConfiguration
-                                    ?.verificationEnabled === "1"
-                                ) {
-                                  const timeoutId = setTimeout(() => {
-                                    if (
-                                      settings?.accountConfiguration
-                                        ?.verificationEnabled !== "0"
-                                    ) {
-                                      navigate("/verify");
-                                    } else {
-                                      navigate("/login");
-                                    }
-                                  }, 1500);
-                                  return () => clearTimeout(timeoutId);
-                                } else if (errorMessage) {
-                                  notification.error({
-                                    message: "Registration Failed",
-                                    description:
-                                      errorMessage ||
-                                      "Error attempting to Register",
-                                    placement: "topLeft",
-                                  });
+                                // // if (
+                                // //   successMessage &&
+                                // //   appConfig?.accountConfiguration
+                                // //     ?.verificationEnabled === "1"
+                                // // ) {
+                                // //   const timeoutId = setTimeout(() => {
+                                // //     if (
+                                // //       settings?.accountConfiguration
+                                // //         ?.verificationEnabled !== "0"
+                                // //     ) {
+                                // //       navigate("/verify");
+                                // //     } else {
+                                // //       navigate("/login");
+                                // //     }
+                                // //   }, 1500);
+                                // //   return () => clearTimeout(timeoutId);
+                                // // } else if (errorMessage) {
+                                // //   notification.error({
+                                // //     message: "Registration Failed",
+                                // //     description:
+                                // //       errorMessage ||
+                                // //       "Error attempting to Register",
+                                // //     placement: "topLeft",
+                                // //   });
 
-                                  gaEventTracker("Sign Up Failed", {
-                                    msisdn: values.msisdn,
-                                    event: "sign_up_failed",
-                                    message: "sign up failed",
-                                  });
-                                }
+                                //   gaEventTracker("Sign Up Failed", {
+                                //     msisdn: values.msisdn,
+                                //     event: "sign_up_failed",
+                                //     message: "sign up failed",
+                                //   });
+                                // }
                               }}
                               validate={validate}
                               validateOnChange={false}

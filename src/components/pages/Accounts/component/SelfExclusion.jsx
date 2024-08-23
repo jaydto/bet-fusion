@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { setState } from "../../../../redux/dataSlice";
 import { notification } from "antd";
-import Notify from "../../../utils/Notify";
 
 // import { Dropdown, DropdownButton } from 'react-bootstrap';
 
@@ -143,7 +142,8 @@ const SelfExclusion = () => {
 
                      notification.success({
                       message: "Self Excluded",
-                      description: response.payload.success
+                      description: response.payload.success,
+                      placement:"topLeft"
                     });
                     //  Delay the redirection to the logout page (e.g., 3 seconds)
                      setTimeout(() => {
@@ -153,15 +153,13 @@ const SelfExclusion = () => {
             }
             else if(userSelfExclusion.rejected.match(response)){
                
-                    // notification.error({
-                    //   message: "Error",
-                    //   description: response.error.message
-                    // });
-                    message={
-                        status: 200,
-                        message: response.errormessage
-                    }
-                    Notify(message);
+                  
+                    notification.error({
+                      message: "Error",
+                      description: response.error.message,
+                      placement:"topLeft"
+
+                    })
 
                     
             

@@ -19,34 +19,6 @@ import kenyan from "../../assets/svg/kenya.svg";
 import { Dropdown, Image } from "react-bootstrap";
 import { notification } from "antd";
 
-export const Notify = (message) => {
-  let options = {
-    position: toast.POSITION.TOP_RIGHT,
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    toastId: 673738 /* this is hack to prevent multiple toasts */,
-  };
-  if (message.status === 200 || message.status === 201) {
-    toast.success(`🚀 ${message.message}`, options);
-  } else {
-    toast(
-      <div className={"d-flex"}>
-        <LazyLoadImage
-          src={fire}
-          alt=""
-          style={{ height: "20px", width: "26px" }}
-        />
-        <span>{message.message}</span>
-      </div>,
-      options
-    );
-  }
-};
-
 const HeaderLogin = React.memo((props) => {
   const { setUser, login } = props;
   const dispatchRedux = useDispatch();
@@ -63,10 +35,17 @@ const HeaderLogin = React.memo((props) => {
 
   const dispatchUser = useCallback(() => {
     if (successMessage !== null) {
-      // console.log("calling info here now user", successMessage)
-      Notify(successMessage);
+      // Use Ant Design notification to display the success message
+      notification.success({
+        message: "Success",
+        description: successMessage.message, // assuming `successMessage` has a `message` field
+        placement: "topLeft", // Set placement to top-left
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
 
-      if (successMessage.status == 200) {
+      if (successMessage.status === 200) {
         setLocalStorage("user", successMessage.user);
         setUser(successMessage.user);
       }
@@ -79,26 +58,39 @@ const HeaderLogin = React.memo((props) => {
     dispatchUser();
   }, [dispatchUser]);
 
+  useEffect(() => {
+    if  (errorMessage) {
+      
+    notification.error({
+      message: "Login Error",
+      description: errorMessage, // assuming `successMessage` has a `message` field
+      placement: "topLeft", // Set placement to top-left
+      onClick: () => {
+        console.log("Notification Clicked!");
+      },
+    });
+  }
+  }, [errorMessage]);
 
-  const [api, contextHolder] = notification.useNotification();
-  const [notificationMessage, setNotificationMessage] = useState(null);
+  // const [api, contextHolder] = notification.useNotification();
+  // const [notificationMessage, setNotificationMessage] = useState(null);
   const gaEventTracker = useAnalyticsEventTracker("Login");
 
-  const openNotificationWithIcon = (type, message, description) => {
-    api[type]({
-      message: message || 'Login',
-      description: description || 'Notification',
-      placement: 'topLeft',
-    });
-  };
+  // const openNotificationWithIcon = (type, message, description) => {
+  //   api[type]({
+  //     message: message || 'Login',
+  //     description: description || 'Notification',
+  //     placement: 'topLeft',
+  //   });
+  // };
 
-  useEffect(() => {
-    if (notificationMessage) {
-      const { type, message, description } = notificationMessage;
-      openNotificationWithIcon(type, message, description);
-      setNotificationMessage(null); // Reset notification after displaying
-    }
-  }, [notificationMessage]);
+  // useEffect(() => {
+  //   if (notificationMessage) {
+  //     const { type, message, description } = notificationMessage;
+  //     openNotificationWithIcon(type, message, description);
+  //     setNotificationMessage(null); // Reset notification after displaying
+  //   }
+  // }, [notificationMessage]);
 
   const handleSubmit = (values) => {
     const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
@@ -108,30 +100,30 @@ const HeaderLogin = React.memo((props) => {
       password: values?.password,
     };
 
-    dispatchRedux(loginUser(initialValues))
-      .then((response) => {
-        if (loginUser.rejected.match(response)) {
-          setNotificationMessage({
-            type: 'error',
-            message: 'Login Failed',
-            description: response.error.message || "Error attempting to login",
-          });
-        } else if (response.payload && (response.payload.status === 200 || response.payload.status === 201)) {
-          setNotificationMessage({
-            type: 'success',
-            message: 'Login Successful',
-            description: response.payload.message || "Login successful",
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Error in handleSubmit:", error);
-        setNotificationMessage({
-          type: 'error',
-          message: 'Login Failed',
-          description: 'Unexpected error occurred.',
-        });
-      });
+    dispatchRedux(loginUser(initialValues));
+    // .then((response) => {
+    //   if (loginUser.rejected.match(response)) {
+    //     setNotificationMessage({
+    //       type: 'error',
+    //       message: 'Login Failed',
+    //       description: response.error.message || "Error attempting to login",
+    //     });
+    //   } else if (response.payload && (response.payload.status === 200 || response.payload.status === 201)) {
+    //     setNotificationMessage({
+    //       type: 'success',
+    //       message: 'Login Successful',
+    //       description: response.payload.message || "Login successful",
+    //     });
+    //   }
+    // })
+    // .catch((error) => {
+    //   console.error("Error in handleSubmit:", error);
+    //   setNotificationMessage({
+    //     type: 'error',
+    //     message: 'Login Failed',
+    //     description: 'Unexpected error occurred.',
+    //   });
+    // });
   };
 
   const validate = (values) => {
@@ -165,7 +157,7 @@ const HeaderLogin = React.memo((props) => {
         },
       });
     };
-  
+
     return (
       <button
         type="button"
@@ -173,8 +165,7 @@ const HeaderLogin = React.memo((props) => {
         onClick={handleClick}
         style={{ color: "var(--light)", display: "flex", alignItems: "center" }}
       >
-        Kenya
-        &nbsp;
+        Kenya &nbsp;
         <img
           className="image-kenya"
           src={kenyan}
@@ -189,8 +180,6 @@ const HeaderLogin = React.memo((props) => {
       </button>
     );
   };
-  
-  
 
   const MyLoginForm = (props) => {
     const { errors, values, setFieldValue } = props;
@@ -223,7 +212,6 @@ const HeaderLogin = React.memo((props) => {
                 className="input-group input-color-icon w-100 "
                 style={{ display: "flex" }}
               >
-                
                 <input
                   type="text"
                   name="msisdn"
@@ -318,7 +306,6 @@ const HeaderLogin = React.memo((props) => {
                     You are using CrashKali
                   </span>
                   <CountryButton onFieldChanged={onFieldChanged} />
-                  
                 </span>
               </div>
             </div>

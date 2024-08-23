@@ -1,14 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Col, Row } from "antd";
-import authImg from "../../assets/img/logo.png";
-import gameDay from "../../assets/svg/game_bg.svg";
+import React, {  useContext, useEffect, useState } from "react";
+import {  Row } from "antd";
 
 import { Link, useNavigate } from "react-router-dom";
 import HeaderLogin from "../header/top-login";
 import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
-import { toast } from "react-toastify";
-import only18 from "../../assets/img/auth/18only.png";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+
 
 import { StoreContext } from "../../context/store";
 import { useSelector } from "react-redux";

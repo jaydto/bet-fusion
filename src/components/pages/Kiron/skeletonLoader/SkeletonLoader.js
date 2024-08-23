@@ -11,7 +11,7 @@ const SkeletonLoader = React.memo(
         backgroundImage: "-webkit-linear-gradient(left, var(--btn-color) 0px, #ddd 40px, var(--btn-color) 80px)"
     }
     return (
-        <div className=" skeleton-loader" id="skeleton-loader">
+        <div className=" skeleton-loader mt-5" id="skeleton-loader">
             <div className="col-sm-12 col-md-12">
                 <div className="movie--isloading">
                     <div className="loading-content">

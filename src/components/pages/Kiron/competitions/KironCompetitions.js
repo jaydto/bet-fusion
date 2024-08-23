@@ -86,7 +86,7 @@ const KironCompetitions = React.memo(
                                     <div
                                         className={`country-flag-icon ${(pathname.includes(`competition_id=${kiron_options?.competition_id}`)) ? ' active-league ' : " "} justify-content-center`}>
                                         <Link
-                                            to={`${sideLobby?'/virtual-league':''}${!sideLobby?pathLocation.includes('bet-history') ? '/' : pathLocation:''}?competition_id=${kiron_options?.competition_id||active_competition}`}
+                                            to={`${sideLobby?'/virtual-league':''}${!sideLobby?pathLocation.includes('bet-history') ? '/virtual-league' : pathLocation:''}?competition_id=${kiron_options?.competition_id||active_competition}`}
                                             onClick={() => setActiveCompetition(kiron_options?.competition_id)}>
                                 <span className="icon">
                                    <LazyLoadImage

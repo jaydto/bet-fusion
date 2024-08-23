@@ -8,7 +8,6 @@ import {Button} from "react-bootstrap";
 import useWindowDimensions from "../../header/Dimensions";
 import {StoreContext } from "../../../context/store"
 import SearchComponent from "./searchField";
-import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 
@@ -65,9 +64,7 @@ const SpribeGame = React.memo(
             {/* <OnlineCheck setIsOnline={setIsOnline} isOnline={isOnline}/> */}
             <div>
                 <div className="d-flex flex-row ">
-                    <div className="stats-desktop top-nare-games">
-                        <SideBar loadCompetitions/>
-                    </div>
+                    
                     <div className="gz home  " style={{width: '100%'}}>
                         <div className="col-md-12 d-flex flex-column">
                             <div className="col-md-12">

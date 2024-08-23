@@ -9,7 +9,6 @@ import '../../test.css'
 import 'react-accessible-accordion/dist/fancy-example.css';
 import React, {useEffect} from "react";
 import Header from '../../header/header'
-import SideBar from '../../sidebar/awesome/Sidebar'
 import Footer from '../../footer/footer'
 import Right from '../../right/index'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -41,7 +40,6 @@ const DisputeResolution = () => {
     return (
         <div className={'flex-item'}>
             <div className="flex-container height-default-body top-diff-pages">
-                <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">
                         <div className="homepage">

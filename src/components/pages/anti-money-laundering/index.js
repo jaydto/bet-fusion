@@ -18,7 +18,6 @@ import { setState } from "../../../redux/dataSlice";
 const Header = React.lazy(()=>import('../../header/header'));
 const Footer = React.lazy(()=>import('../../footer/footer'));
 const Right = React.lazy(()=>import('../../right/index'));
-const SideBar = React.lazy(()=>import('../../sidebar/awesome/Sidebar'));
 
 const AntiMoneyLaundering = () => {
     useEffect(() => {
@@ -42,7 +41,6 @@ const AntiMoneyLaundering = () => {
     return (
         <div className={'flex-item'}>
             <div className="flex-container height-default-body top-diff-pages">
-                <div className="item1"> <SideBar loadCompetitions/></div>
                 <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">
                         <div className="homepage">

@@ -21,9 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import { setState } from "../../../redux/dataSlice";
 
-const SideBar = React.lazy(() => import("../../sidebar/awesome/Sidebar"));
 const Footer = React.lazy(() => import("../../footer/footer"));
-const Right = React.lazy(() => import("../../right/index"));
 
 const ResponsibleGambling = React.memo(() => {
   const { width } = useWindowDimensions();

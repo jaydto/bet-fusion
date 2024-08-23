@@ -16,8 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../redux/dataSlice";
 
 const Footer = React.lazy(() => import("../footer/footer"));
-const SideBar = React.lazy(() => import("../sidebar/awesome/Sidebar"));
-const Right = React.lazy(() => import("../right/index"));
+
 
 const HowToPlay = React.memo((props) => {
   useEffect(() => {

@@ -7,7 +7,6 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Button} from "react-bootstrap";
 import SearchComponent from "./searchField";
 import {StoreContext } from "../../../context/store"
-import SideBar from "../../sidebar/awesome/Sidebar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 
@@ -46,7 +45,6 @@ const navigate=useNavigate()
                     <div className="gz home z" style={{width: '100%'}}>
                         <div className="col-md-12 d-flex flex-column">
                             <div className="col-md-12 d-flex">
-                                <div className="stats-desktop"><SideBar loadCompetitions/></div>
 
                                 <div className="homepage smart-images">
                                     <div className={'d-flex w-100 flex-column justify-content-between xgames-container'}>

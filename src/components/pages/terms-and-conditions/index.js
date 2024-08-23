@@ -12,7 +12,6 @@ import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {useNavigate} from "react-router-dom";
 
 const Footer = React.lazy(() => import('../../footer/footer'));
-const SideBar = React.lazy(() => import('../../sidebar/awesome/Sidebar'));
 const Right = React.lazy(() => import('../../right/index'));
 const General = React.lazy(() => import('./general'));
 const AccountUsage = React.lazy(() => import('./account-usage'));
@@ -52,8 +51,7 @@ const TermsAndConditions = React.memo(
                     <ToastContainer/>
                 </div>
                 <div className="flex-container height-default-body top-diff-pages">
-                    {/* <div className="item1" ><SideBar
-                        loadCompetitions/></div> */}
+              
                     <div className={`item2 `} >
                         <div className="home" style={{margin:"auto", maxWidth: "991px"}}>
                             <div className="homepage mobile-full-height">

@@ -5,7 +5,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
     background: var(--kiron-competition);
-    max-height:59px;
+    max-height:61px;
 }
 .country-flag-icon .icon img {
     width: 47px;
@@ -13,8 +13,8 @@
 }
 .league-countries {
     width: 100%;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
     display: flex;
     flex-direction: row;
     justify-content: center;

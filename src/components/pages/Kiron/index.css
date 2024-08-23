@@ -246,6 +246,7 @@
     background-color: green;
     padding: 5px 5px;
     color: white;
+    border-radius: 2px;
     animation: scoreblink 1s linear infinite;
 }
 @keyframes scoreblink{
@@ -499,7 +500,7 @@
 
 @media (min-width:992px){
     .kiron-playout-score-animation {
-        padding: 1px 8px!important;
+        padding: 0px 8px!important;
     }
     .col-results-page-1{
         width:46%
@@ -584,7 +585,7 @@
 }
 @media (max-width:991px){
     .kiron-playout-score-animation {
-        padding: 1px 7px!important;
+        padding: 0px 6px!important;
     }
     .kiron-tabs-padding:nth-child(3){
         border-right:none!important;

@@ -204,7 +204,7 @@ const SmartPlay = React.memo(
                                     <div className={` ${isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""}`}>
                                         {demo && (
                                             <div>
-                                                <div className="alert alert-info">
+                                                <div className="alert alert-warning">
                                                     This is {game} demo. To play the real game, please Log In.
                                                     &nbsp;<FontAwesomeIcon icon={faFire} style={{color: "orangered"}}/>
                                                 </div>

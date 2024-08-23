@@ -67,7 +67,7 @@ export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonC
         <Link
           data-real="0"
           className="link Fun"
-          to={`/smart-play?game=${game.game?.game_id}&category=${game.game?.gameCategory}&status=demo`}
+          to={`/smart-play?game=${game.game?.game_id ?? game.game?.gameName ?? game.game?.key}&category=${game.game?.gameCategory}&status=demo`}
           target="_self"
         >
           <div>Demo</div>

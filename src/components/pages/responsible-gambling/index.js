@@ -74,7 +74,7 @@ const ResponsibleGambling = React.memo(() => {
         }
       >
         <div className="d-flex flex-row justify-content-between mt-5">
-          <div className="home" style={{margin:"auto", width:"991px"}}>
+          <div className="home" style={{margin:"auto", maxWidth:"991px"}}>
             <div className="homepage" >
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>

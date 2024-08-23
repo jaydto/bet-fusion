@@ -338,11 +338,12 @@ const SelfExclusion = () => {
   };
 
   return (
-    <div>
+    <div className="row">
       <h2 className={"text-light w-100 py-1 px-2 self-exclusion_form"}>
         Select Duration of Self Exclusion{" "}
       </h2>
-      <DateRangePicker
+      <div>
+      <DateRangePicker 
         ranges={[dateRange]}
         onChange={handleDateRangeChange}
         months={2}
@@ -353,6 +354,8 @@ const SelfExclusion = () => {
         presets={customPresets} // Use custom presets
         showSelectionPreview={true}
       />
+      </div>
+      
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group self-exclusion_form mb-3">
           {/* <label htmlFor="reason_for_self_exclusion">Reason for Self Exclusion:</label> */}
@@ -373,7 +376,7 @@ const SelfExclusion = () => {
             type="submit"
             className="update_button"
             disabled={loading}
-            style={{ width: "63%" }}
+            style={{ width: "50%" }}
           >
             {loading && <div className="loader"></div>}
             Self Exclude

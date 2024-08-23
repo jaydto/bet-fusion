@@ -17,7 +17,7 @@
     background: var(--CrashKali-header-bg);
     /* border: 3px solid #ffcc80; */
     border-radius: 5px;
-    padding: 3px 0px ;
+    padding: 0px 0px ;
     height: max-content;
     /* overflow-y: scroll; */
 }
@@ -150,7 +150,7 @@
         flex-wrap: nowrap;
         /* background-color: #bbdefb; */
         height: 100vh;
-        padding: 0px 0px 22px 0px;
+        padding: 0px 0px 1px 0px;
         /*gap: 5px;*/
     }
     .flex-container{

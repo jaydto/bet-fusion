@@ -55,25 +55,17 @@ const ResponsibleGambling = React.memo(() => {
     }
   }, [userData]);
 
-  const preExpandedItems = [1,2,3,4,5,6,7]; // Add all the keys here
-//   const generateUuid = () => uuidv4();
+  const preExpandedItems = [1, 2, 3, 4, 5, 6, 7]; // Add all the keys here
+  //   const generateUuid = () => uuidv4();
 
-//   const preExpandedItems = items.map(() => generateUuid()); // Generate UUIDs for preExpanded
+  //   const preExpandedItems = items.map(() => generateUuid()); // Generate UUIDs for preExpanded
 
   return (
-    <>
-      <div
-        className={
-          width <= 575
-            ? user
-              ? "user_logged responsible-gambling"
-              : "amt"
-            : "amt"
-        }
-      >
-        <div className="d-flex flex-row justify-content-between mt-5">
-          <div className="home" style={{margin:"auto", maxWidth:"991px"}}>
-            <div className="homepage" >
+    <div className={"flex-item"}>
+    <div className="flex-container height-default-body top-diff-pages">
+      <div className="item2" style={{ width: "100%" }}>
+          <div className="home" >
+            <div className="homepage" style={{ margin: "auto", maxWidth: "991px" }}>
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>
                   <span
@@ -268,9 +260,9 @@ const ResponsibleGambling = React.memo(() => {
                             advertisements are factually correct and do not
                             target underage or vulnerable gamblers, such as
                             players who have self-excluded themselves from
-                            gambling. CrashKali seek permission from the customer
-                            prior to engaging in direct marketing through use of
-                            the customer’s personal details.
+                            gambling. CrashKali seek permission from the
+                            customer prior to engaging in direct marketing
+                            through use of the customer’s personal details.
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>
@@ -292,21 +284,22 @@ const ResponsibleGambling = React.memo(() => {
                   </div>
                 </Tab>
                 <Tab
-                  eventKey="self_exclusinon"
+                  
+                  eventKey="self_exclusion"
                   title="Self Exclusion"
                   className={"background-primary"}
                 >
-                  <SelfExclusion />
+                  <div className="col-md-12 mt-2 text-white accordion-container">
+                    <SelfExclusion />
+                  </div>
                 </Tab>
               </Tabs>
             </div>
           </div>
         </div>
       </div>
-      <div className={"footer-mobile-none"}>
-        <Footer />
-      </div>
-    </>
+     
+    </div>
   );
 });
 

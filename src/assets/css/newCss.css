@@ -2135,6 +2135,9 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+  .top-diff-pages {
+    margin-top: 1rem !important;
+  }
   .footer-mobile-none {
     
     background:var(--CrashKali-footer);
@@ -2549,7 +2552,7 @@ img.nare-league {
   .slip-max-height {
     display: grid;
     align-items: flex-start;
-    height: 87vh !important;
+    height: 86vh !important;
   }
   .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout ul {
     list-style-type: none;

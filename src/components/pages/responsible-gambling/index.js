@@ -64,8 +64,8 @@ const ResponsibleGambling = React.memo(() => {
     <div className={"flex-item"}>
     <div className="flex-container height-default-body top-diff-pages">
       <div className="item2" style={{ width: "100%" }}>
-          <div className="home" >
-            <div className="homepage" style={{ margin: "auto", maxWidth: "991px" }}>
+          <div className="home "  style={{ margin: "auto", maxWidth: "991px" }}>
+            <div className="homepage mobile-full-height">
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>
                   <span
@@ -112,7 +112,6 @@ const ResponsibleGambling = React.memo(() => {
                     target="_blank"
                     style={{ color: "var(--aqua-text)" }}
                   >
-                    {" "}
                     Responsible Gambling Website
                   </a>{" "}
                   ).

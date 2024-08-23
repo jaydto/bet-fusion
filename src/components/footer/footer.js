@@ -143,7 +143,6 @@ const Footer = React.memo((props) => {
                   target="_blank"
                   style={{ color: "var(--aqua-text)" }}
                 >
-                  {" "}
                   Responsible Gambling Website
                 </a>{" "}
                 ).
@@ -205,7 +204,7 @@ const Footer = React.memo((props) => {
                   target="_blank"
                   style={{ color: "var(--aqua-text)" }}
                 >
-                  {`${sidebar && "px-3"}`}
+                
                   Responsible Gambling Website
                 </a>{" "}
                 ).

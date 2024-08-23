@@ -260,17 +260,17 @@ const KironPlayouts = React.memo((props) => {
                                 
                                 <span
                                   className="bold text-muted-2"
-                                  style={{ fontSize: "12px" }}
+                                  style={{ fontSize: "12px", marginLeft:"-25px" }}
                                 >
                                   <span style={{ fontSize: "10px" }} className="text-muted-1">
-                                  HT:&nbsp;&nbsp;
+                                  HT&nbsp;&nbsp;
                                 </span>
                                   {
                                     results.home_scores.filter(
                                       (score) => score <= 45
                                     ).length
                                   }
-                                  &nbsp;:&nbsp;
+                                  &nbsp;:&nbsp;&nbsp;
                                   {
                                     results.away_scores.filter(
                                       (score) => score <= 45

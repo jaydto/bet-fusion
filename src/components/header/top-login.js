@@ -17,6 +17,7 @@ import { loginUser, resetState } from "../../redux/authSlice";
 import { StoreContext } from "../../context/store";
 import kenyan from "../../assets/svg/kenya.svg";
 import { Dropdown, Image } from "react-bootstrap";
+import { notification } from "antd";
 
 export const Notify = (message) => {
   let options = {
@@ -78,7 +79,26 @@ const HeaderLogin = React.memo((props) => {
     dispatchUser();
   }, [dispatchUser]);
 
+
+  const [api, contextHolder] = notification.useNotification();
+  const [notificationMessage, setNotificationMessage] = useState(null);
   const gaEventTracker = useAnalyticsEventTracker("Login");
+
+  const openNotificationWithIcon = (type, message, description) => {
+    api[type]({
+      message: message || 'Login',
+      description: description || 'Notification',
+      placement: 'topLeft',
+    });
+  };
+
+  useEffect(() => {
+    if (notificationMessage) {
+      const { type, message, description } = notificationMessage;
+      openNotificationWithIcon(type, message, description);
+      setNotificationMessage(null); // Reset notification after displaying
+    }
+  }, [notificationMessage]);
 
   const handleSubmit = (values) => {
     const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
@@ -87,26 +107,30 @@ const HeaderLogin = React.memo((props) => {
       msisdn: values?.countryCode + formattedMsisdn,
       password: values?.password,
     };
-    let message = "";
+
     dispatchRedux(loginUser(initialValues))
       .then((response) => {
         if (loginUser.rejected.match(response)) {
-          message = {
-            status: 401,
-            message: response.error.message || "Error attempting to login",
-          };
+          setNotificationMessage({
+            type: 'error',
+            message: 'Login Failed',
+            description: response.error.message || "Error attempting to login",
+          });
+        } else if (response.payload && (response.payload.status === 200 || response.payload.status === 201)) {
+          setNotificationMessage({
+            type: 'success',
+            message: 'Login Successful',
+            description: response.payload.message || "Login successful",
+          });
         }
-        if (successMessage) {
-          message = {
-            status: successMessage.status,
-            message: successMessage?.message || "",
-          };
-        }
-        // const
-        Notify(message);
       })
       .catch((error) => {
         console.error("Error in handleSubmit:", error);
+        setNotificationMessage({
+          type: 'error',
+          message: 'Login Failed',
+          description: 'Unexpected error occurred.',
+        });
       });
   };
 

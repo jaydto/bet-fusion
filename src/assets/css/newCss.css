@@ -1232,6 +1232,11 @@ input[type="checkbox"] {
   color:rgb(177 204 232 / 75%) !important;
 }
 
+.text-muted-2{
+  /* color:rgb(121 145 170 / 75%) !important; */
+  color:hsla(0, 0%, 98%, 0.914) !important;
+}
+
 .header-nav-container> .header-nav-item{
   list-style: none;
   list-style-type: none;

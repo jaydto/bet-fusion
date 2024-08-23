@@ -3,19 +3,25 @@ import "./results.css";
 import { StoreContext } from "../../../../context/store";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
-import {virtualLeaguePlayouts, resetState} from "../../../../redux/virtualLeague"; // Import useDispatch hook
+import {
+  virtualLeaguePlayouts,
+  resetState,
+} from "../../../../redux/virtualLeague"; // Import useDispatch hook
 
 const KironPlayouts = React.memo((props) => {
   const { state, dispatch } = useContext(StoreContext);
   let timeVar;
   const dispatchRedux = useDispatch();
-  const playouts_data = useSelector((state) => state.virtualLeague.playouts_data)
-  const competition_id = useSelector((state) => state.virtualLeague.competition_id)
-  const loading = useSelector((state) => state.virtualLeague.loading)
+  const playouts_data = useSelector(
+    (state) => state.virtualLeague.playouts_data
+  );
+  const competition_id = useSelector(
+    (state) => state.virtualLeague.competition_id
+  );
+  const loading = useSelector((state) => state.virtualLeague.loading);
   const round_id = useSelector((state) => state.virtualLeague.round_id);
   const play_time = useSelector((state) => state.virtualLeague.play_time);
   const Ended = useSelector((state) => state.virtualLeague.ended);
-
 
   const fetchData = () => {
     const data = {
@@ -109,7 +115,7 @@ const KironPlayouts = React.memo((props) => {
               <div className="matches-wrapper pt-2">
                 {playouts_data?.playouts?.map((results, index) => (
                   <div key={index}>
-                    <div className="live-match-selection pt-3 pb-1">
+                    <div className="live-match-selection pt-2 pb-1">
                       <div className="container">
                         <div className="row px-3 pt-2">
                           <div className="col-results-page-1 text-right pt-1 d-flex justify-content-between align-items-center flex-column">
@@ -131,15 +137,6 @@ const KironPlayouts = React.memo((props) => {
                                   {results.home_team}
                                 </span>
                               </a>
-                            </div>
-                            <div className="col-results-page-1 text-right pt-1  d-flex text-muted-1 h6">
-                              {results.home_scores
-                                .filter((score) => score <= play_time)
-                                .map((score, i) => (
-                                  <div key={i} className="score-time">
-                                    <span>{score}'</span>
-                                  </div>
-                                ))}
                             </div>
                           </div>
                           <div className="col-results-page-2 d-flex flex-column gap-1 align-items-center ">
@@ -216,48 +213,89 @@ const KironPlayouts = React.memo((props) => {
                                 />
                               </span>
                             </div>
-                            <div className="col-results-page-3 text-left pt-1 d-flex text-muted-1 h6">
-                              {results.away_scores
-                                .filter((score) => score <= play_time)
-                                .map((score, i) => (
-                                  <div key={i} className="score-time">
-                                    <span>{score}'</span>
-                                  </div>
-                                ))}
-                            </div>
                           </div>
                         </div>
-                        {play_time >= 45 && (
-                        <div className="row px-3">
-                          <div className=" d-flex align-items-center justify-content-center gap-3 pb-3">
-                            <span className="mr-2  text-muted-1 d-flex align-items-center justify-content-start">
-                              <span className="" style={{ fontSize: "10px" }}>
-                                HT:&nbsp;
-                              </span>
-                              <span className="" style={{ fontSize: "10px" }}>
-                                {play_time >= 45
-                                  ? results.home_scores.filter(
+
+                        <div className="d-flex align-items-center px-5 justify-content-center">
+                          <div className="col-results-page-1 text-right pt-1 d-flex text-muted-1 h6  d-flex justify-content-start align-items-center">
+                            {results.home_scores
+                              .filter((score) => score <= play_time)
+                              .map((score, i) => (
+                                <div key={i} className="score-time">
+                                  <span>{score}'&nbsp;&nbsp;</span>
+                                </div>
+                              ))}
+                          </div>
+
+                          {/* {play_time >= 45 && (
+                              <div className="d-flex align-items-center justify-content-center gap-3 pb-0 col-2">
+                                <span className="text-muted-1 d-flex align-items-center justify-content-center">
+                                  <span style={{ fontSize: "10px" }}>
+                                    HT:&nbsp;
+                                  </span>
+                                  <span style={{ fontSize: "10px" }}>
+                                    {
+                                      results.home_scores.filter(
+                                        (score) => score <= 45
+                                      ).length
+                                    }
+                                  </span>
+                                </span>
+                                <span className="separator-style text-muted-1"></span>
+                                <span
+                                  className="text-muted-1"
+                                  style={{ fontSize: "10px" }}
+                                >
+                                  {
+                                    results.away_scores.filter(
                                       (score) => score <= 45
                                     ).length
-                                  : 0}
+                                  }
+                                </span>
+                              </div>
+                            )} */}
+                          {play_time >= 45 && (
+                            <div className="d-flex align-items-center justify-content-center gap-3 pb-0 col-2">
+                              <span className="text-muted-1 d-flex align-items-center justify-content-center ">
+                                
+                                <span
+                                  className="bold text-muted-2"
+                                  style={{ fontSize: "12px" }}
+                                >
+                                  <span style={{ fontSize: "10px" }} className="text-muted-1">
+                                  HT:&nbsp;&nbsp;
+                                </span>
+                                  {
+                                    results.home_scores.filter(
+                                      (score) => score <= 45
+                                    ).length
+                                  }
+                                  &nbsp;:&nbsp;
+                                  {
+                                    results.away_scores.filter(
+                                      (score) => score <= 45
+                                    ).length
+                                  }
+                                </span>
                               </span>
-                            </span>
-                            <span
-                              className={"separator-style text-muted-1"}
-                            ></span>
-                            <span
-                              className="mr-2 text-muted-1"
-                              style={{ fontSize: "10px" }}
-                            >
-                              {play_time >= 45
-                                ? results.away_scores.filter(
-                                    (score) => score <= 45
-                                  ).length
-                                : 0}
-                            </span>
+
+                              <span
+                                className="bold text-muted-2"
+                                style={{ fontSize: "12px" }}
+                              ></span>
+                            </div>
+                          )}
+
+                          <div className="col-results-page-3 text-left pt-1 d-flex text-muted-1 h6 d-flex justify-content-end align-items-center">
+                            {results.away_scores
+                              .filter((score) => score <= play_time)
+                              .map((score, i) => (
+                                <div key={i} className="score-time">
+                                  <span>{score}'&nbsp;&nbsp;</span>
+                                </div>
+                              ))}
                           </div>
                         </div>
-                        )} 
                       </div>
                     </div>
                     {results?.bet_pick !== null && (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from "antd";
+import { Row, Col, notification } from "antd";
 import authImg from "../../../assets/img/logo.png";
 import "./stepper.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -25,14 +25,14 @@ import {
   getFromLocalStorage,
   setTrackingData,
 } from "../../utils/local-storage";
-import { Notify } from "../../header/top-login";
+// import { Notify } from "../../header/top-login";
 
-const backgroundStyle = {
-  background: `url(${gameDay})`,
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  backgroundAttachment: "fixed",
-};
+// const backgroundStyle = {
+//   background: `url(${gameDay})`,
+//   backgroundRepeat: "no-repeat",
+//   backgroundSize: "cover",
+//   backgroundAttachment: "fixed",
+// };
 
 const FormTitle = () => {
   const navigate = useNavigate();
@@ -40,8 +40,7 @@ const FormTitle = () => {
   return (
     <div
       className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3 text-center w-100 top-login-mobile"
-      style={{ margin: "0px",  
-    }}
+      style={{ margin: "0px" }}
     >
       <div>
         <div
@@ -102,7 +101,7 @@ const Register = () => {
         status: 201,
         message: "Registration successful!",
       };
-      Notify(message);
+      // Notify(message);
 
       const timeoutId = setTimeout(() => {
         if (settings?.accountConfiguration?.verificationEnabled !== "0") {
@@ -123,7 +122,7 @@ const Register = () => {
         message: "sign up failed",
       };
       gaEventTracker("Sign Up Failed", data);
-      Notify(message);
+      // Notify(message);
     }
   }, [successMessage, errorMessage, navigate, settings, gaEventTracker]);
 
@@ -135,6 +134,39 @@ const Register = () => {
     repeat_password: "",
     promo_code: "",
   };
+
+  // const handleSubmit = (values) => {
+  //   const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
+  //   const msisdn = values.countryCode + formattedMsisdn;
+  //   const payload = {
+  //     promo_code: values.promo_code,
+  //     msisdn: msisdn,
+  //     password: values.password,
+  //   };
+
+  //   setTrackingData(payload);
+  //   dispatch(signupUser(payload))
+  //     .then(() => {
+  //       if (values.utm_source !== undefined) {
+  //         if (values.utm_source === "eskimi") {
+  //           window.esk("track", "Conversion");
+  //         }
+  //         if (values.utm_source === "google") {
+  //           window.gtag_report_conversion(window.location);
+  //         }
+  //       }
+  //       clearTrackingData();
+  //       gaEventTracker("Sign Up", {
+  //         msisdn,
+  //         promo_code: values.promo_code || "no promo code",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       // handle error
+  //     });
+  // };
+
+  const [api, contextHolder] = notification.useNotification();
 
   const handleSubmit = (values) => {
     const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
@@ -148,6 +180,12 @@ const Register = () => {
     setTrackingData(payload);
     dispatch(signupUser(payload))
       .then(() => {
+        notification.success({
+          message: "Registration Successful",
+          description: "You have successfully registered!",
+          placement: "topLeft",
+        });
+
         if (values.utm_source !== undefined) {
           if (values.utm_source === "eskimi") {
             window.esk("track", "Conversion");
@@ -163,7 +201,11 @@ const Register = () => {
         });
       })
       .catch((error) => {
-        // handle error
+        notification.error({
+          message: "Registration Failed",
+          description: error?.message || "Error attempting to Register",
+          placement: "topLeft",
+        });
       });
   };
 
@@ -194,9 +236,12 @@ const Register = () => {
   return (
     <>
       <div style={{ height: "100vh" }}>
-        <Row justify="center" className="align-items-stretch h-100" style={{ backgroundColor:"var(--CrashKali-header-bg)"}}>
+        <Row
+          justify="center"
+          className="align-items-stretch h-100"
+          style={{ backgroundColor: "var(--CrashKali-header-bg)" }}
+        >
           <div
-          
             className={
               "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
             }
@@ -235,12 +280,14 @@ const Register = () => {
                                   }, 1500);
                                   return () => clearTimeout(timeoutId);
                                 } else if (errorMessage) {
-                                  Notify({
-                                    status: 400,
-                                    message:
+                                  notification.error({
+                                    message: "Registration Failed",
+                                    description:
                                       errorMessage ||
                                       "Error attempting to Register",
+                                    placement: "topLeft",
                                   });
+
                                   gaEventTracker("Sign Up Failed", {
                                     msisdn: values.msisdn,
                                     event: "sign_up_failed",
@@ -452,7 +499,8 @@ const Register = () => {
                                               errors.agreementCheckbox &&
                                               "text-danger"
                                             }`}
-                                          /> &nbsp;
+                                          />{" "}
+                                          &nbsp;
                                           <span className="custom-checkbox"></span>
                                           <span className="pl-2">
                                             I agree to the{" "}

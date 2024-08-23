@@ -16,6 +16,7 @@ import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import {userBalance} from "../../redux/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {setState as setMatchBetslipOptions} from "../../redux/bettingSlice";
+import { notification } from "antd";
 
 const Float = (equation, precision = 4) => {
     return Math.round(equation * 10 ** precision) / 10 ** precision;
@@ -161,111 +162,129 @@ const KironslipSubmitForm = React.memo(
                 </>
             );
         };
-        // useEffect(() => {
-        //     ipAddress();
-        // }, [ipAddress]);
+       
         const gaEventTracker = useAnalyticsEventTracker('Place Kiron Bet')
 
+
+
+        const [api, contextHolder] = notification.useNotification();
+        const navigate = useNavigate()
+
+
         const handlePlaceBet = useCallback(
-            (values, {setSubmitting, resetForm, setStatus, setErrors}) => {
-                // let bs = Object.values(betslip || []);
-
-                let slipHasOddsChange = false;
-
-                if (slipHasOddsChange === true) {
-                    setMessage({
-                        status: 400,
-                        message:
-                            "Slip has events with changed odds, tick " +
-                            " accept odds all odds change box to accept and place bet",
-                    });
-                    setSubmitting(false);
-                    return false;
-                }
-
-
-                const betDataArray = kiron && Object.values(betslip).map(bet => ({
-                    parent_match_id: parseInt(bet.parent_match_id),
-                    market_id: parseInt(bet.market_id),
-                    competition_id: bet.competition_id,
-                    round_id: bet.round_id,
-                    outcome_id: bet.outcome_id,
-                    odd_type: bet.odd_type,
-                    odd_value: parseFloat(bet.odd_value)
-                }));
-
-                let payload = {
-                    bet_string: 'web',
-                    channelID: 'web',
-                    app_name: width <= 767 ? "mobile":width>767&&width<=967? "tablet":'desktop',
-                    amount: values.bet_amount,
-                    bet_data: betDataArray
-                }
-
-                let endpoint = "/v1/nare-league/bet"
-                let method = "POST";
-                let use_jwt = false;
-
-                makeRequest({
-                    url: endpoint,
-                    method: method,
-                    data: payload,
-                    use_jwt: use_jwt,
-                }).then(([status, response]) => {
-                    if (status === 200 || status == 201 || status == 204) {
-                        const data = {
-                            event: 'place_kiron_bet',
-                            data: payload
-                        }
-                        gaEventTracker("Kiron Bet Placed", data)
-                        setMessage(response);
-                        let betslips = getKironSlip()
-                        Object.entries(betslips || {})?.map(([match_id, match]) => {
-                            removeFromKironSlip(match_id)
-                            let match_selector = match?.parent_match_id + "_selectedK"
-                            let ucn = clean_rep(
-                                match?.parent_match_id + "" + match?.market_id + "" + match?.odd_key)
-
-
-                            dispatch({type: "SET", key: match_selector, payload: "remove." + ucn});
-
-                        });
-                        clearKironSlip()
-                        setMessage({
-                            status: 201,
-                            message: response?.message,
-                        });
-                        setBetslipsData(null);
-                        dispatch({
-                            type: "SET",
-                            key: "kironbetslip",
-                            payload: {},
-                        });
-                        return width < 991 ? navigate(-1) : "/virtual-league"
-                    } else {
-                        const data = {
-                            event: 'place_kiron_bet',
-                            message: response?.message
-                        }
-                        gaEventTracker("Kiron Bet Failed", data)
-                        let response_message = response?.message;
-                        if (response_message === "" || response_message === undefined) {
-                            response_message = response?.error;
-                            if (response_message === "" || response_message === undefined) {
-                                response_message =
-                                    "Something went wrong. Please try again later or contact support. 0701 087 777";
-                            }
-                        }
-                        let qmessage = {
-                            status: status,
-                            message: response_message,
-                        };
-                        setMessage(qmessage);
-                    }
-                    setSubmitting(false);
+            (values, { setSubmitting, resetForm, setStatus, setErrors }) => {
+              let slipHasOddsChange = false;
+          
+              if (slipHasOddsChange === true) {
+                setMessage({
+                  status: 400,
+                  message:
+                    "Slip has events with changed odds, tick " +
+                    "accept odds all odds change box to accept and place bet",
                 });
+                setSubmitting(false);
+                return false;
+              }
+          
+              const betDataArray =
+                kiron &&
+                Object.values(betslip).map((bet) => ({
+                  parent_match_id: parseInt(bet.parent_match_id),
+                  market_id: parseInt(bet.market_id),
+                  competition_id: bet.competition_id,
+                  round_id: bet.round_id,
+                  outcome_id: bet.outcome_id,
+                  odd_type: bet.odd_type,
+                  odd_value: parseFloat(bet.odd_value),
+                }));
+          
+              let payload = {
+                bet_string: "web",
+                channelID: "web",
+                app_name:
+                  width <= 767 ? "mobile" : width > 767 && width <= 967 ? "tablet" : "desktop",
+                amount: values.bet_amount,
+                bet_data: betDataArray,
+              };
+          
+              let endpoint = "/v1/nare-league/bet";
+              let method = "POST";
+              let use_jwt = false;
+          
+              makeRequest({
+                url: endpoint,
+                method: method,
+                data: payload,
+                use_jwt: use_jwt,
+              }).then(([status, response]) => {
+                if (status === 200 || status === 201 || status === 204) {
+                  const data = {
+                    event: "place_kiron_bet",
+                    data: payload,
+                  };
+                  gaEventTracker("Kiron Bet Placed", data);
+          
+                  notification.success({
+                    message: "Bet Placed Successfully",
+                    description: response?.message || "Your bet has been placed successfully!",
+                    placement: "topLeft",
+                  });
+          
+                  let betslips = getKironSlip();
+                  Object.entries(betslips || {}).map(([match_id, match]) => {
+                    removeFromKironSlip(match_id);
+                    let match_selector = match?.parent_match_id + "_selectedK";
+                    let ucn = clean_rep(
+                      match?.parent_match_id + "" + match?.market_id + "" + match?.odd_key
+                    );
+          
+                    dispatch({ type: "SET", key: match_selector, payload: "remove." + ucn });
+                  });
+                  clearKironSlip();
+                  setMessage({
+                    status: 201,
+                    message: response?.message,
+                  });
+                  setBetslipsData(null);
+                  dispatch({
+                    type: "SET",
+                    key: "kironbetslip",
+                    payload: {},
+                  });
+          
+                  return width < 991 ? navigate(-1) : navigate("/virtual-league");
+                } else {
+                  const data = {
+                    event: "place_kiron_bet",
+                    message: response?.message,
+                  };
+                  gaEventTracker("Kiron Bet Failed", data);
+          
+                  let response_message = response?.message;
+                  if (response_message === "" || response_message === undefined) {
+                    response_message = response?.error;
+                    if (response_message === "" || response_message === undefined) {
+                      response_message =
+                        "Something went wrong. Please try again later or contact support. 0701 087 777";
+                    }
+                  }
+                  let qmessage = {
+                    status: status,
+                    message: response_message,
+                  };
+                  setMessage(qmessage);
+          
+                  notification.error({
+                    message: "Bet Placement Failed",
+                    description: response_message,
+                    placement: "topLeft",
+                  });
+                }
+                setSubmitting(false);
+              });
             }
-        );
+            
+          );
 
         const updateWinnings = useCallback(() => {
             if (betslip) {
@@ -333,7 +352,6 @@ const KironslipSubmitForm = React.memo(
             }
         }, [betslip, stake, totalOdds, multiBoostAmount]);
 
-        const navigate = useNavigate()
         const handleRemoveAll = useCallback(() => {
             let betslips = getKironSlip()
             Object.entries(betslips || {})?.map(([match_id, match]) => {
@@ -521,141 +539,7 @@ const KironslipSubmitForm = React.memo(
             return str.replace(/-+/g, "-");
         };
 
-        // const calculateMultiBetBoostAmount = () => {
-        //     let settings = getFromLocalStorage("settings");
-
-        //     let giftMinGames = Number(settings?.kironGifts?.giftBoostMinLegs);
-
-        //     let betslips = getKironSlip() || {};
-
-        //      // Filter out expired matches based on your array of expired matches
-        //     const validBetslips = Object.entries(betslips || {}).filter(([match_id, match]) => !expiredParentMatchIds.includes(match_id));
-
-           
-
-        //     if (validBetslips.length < giftMinGames) {
-                
-        //         setHasMultiBetBoost(false);
-
-        //         dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false,  alert_slip_color:'not_qualified'}}))
-
-
-        //     }
-
-        //     let boost = 0;
-
-
-        //     // let odds = Object.values(validBetslips || [])?.filter(
-        //     //     (slip) =>
-        //     //         slip.bet_type !== "1" &&
-        //     //         Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds
-        //     // );
-        //     let odds = validBetslips?.filter(
-        //         ([match_id, slip]) => {
-        //             return slip.bet_type !== "1" && Number(slip.odd_value) >= settings?.kironGifts?.giftBoostMinOdds;
-        //         }
-        //     );
-
-           
-
-        //     let giftQualificationOdds = odds.length;
-
-        //     console.log("information oon nare boost is here ")
-
-
-        //     let awardGifts =
-        //         Number(settings?.kironGifts?.awardGiftBoost) === 1 &&
-        //         Number(user?.gift_balance || 0) > 0;
-
-        //     setAwardMultiGift(awardGifts);
-        //     if(!awardGifts){
-        //         setMultiBoostAmount(0)
-        //         setMultiBoostMessage("")
-        //         dispatchRedux(setMatchBetslipOptions('kiron_betslip_options',0))
-
-        //     }
-        //     else if (Number(giftQualificationOdds) < Number(giftMinGames)) {
-        //         let remainingGames = Number(giftMinGames) - Number(giftQualificationOdds);
-
-        //         dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{remaining_games:remainingGames, hasBoost:false, alert_slip_color:'not_qualified', multiboostmessage: ` Add ${remainingGames} more game${
-        //                     remainingGames > 1 ? "s" : ""
-        //                 } with odds of  ${
-        //                     settings?.kironGifts?.giftBoostMinOdds
-        //                 } or above to boost your winnings.`}}))
-
-
-        //         setMultiBoostMessage(
-        //             `Congratulations, you qualify for a Gift. Add ${remainingGames} more game${
-        //                 remainingGames > 1 ? "s" : ""
-        //             } with odds of  ${
-        //                 settings?.kironGifts?.giftBoostMinOdds
-        //             } or above to redeem your gift.`
-        //         );
-
-        //         setMultiBoostAmount(0)
-
-
-
-        //     }
-        //     else if (Number(giftQualificationOdds) >= Number(giftMinGames)) {
-        //         boost = ((Number(settings?.kironGifts?.giftBoostPercentage)||20)/ 100) * stake;
-        //         console.log("boost information", boost)
-
-        //         if(isNaN(boost)){
-        //             boost=0
-        //         }
-
-        //         if (boost >= Number(settings?.kironGifts?.maxGiftBoostAmount)) {
-        //             boost = Number(settings?.kironGifts?.maxGiftBoostAmount);
-        //         }
-        //         if (boost >= 1) {
-        //             setMultiBoostAmount(boost);
-        //             setHasMultiBetBoost(true);
-        //             console.log("boost information", boost)
-
-        //             let boostedStake = Number(stake) + Number(boost);
-        //             boostedStake = formatNumber(boostedStake);
-        //             dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:true, alert_slip_color: 'valid', remaining_games: 0, multiboostmessage:"Congratulations! we have gifted you KES " +
-        //                         boost +
-        //                         " on your stake. Your new stake is " +
-        //                         boostedStake }}))
-        //             setMultiBoostMessage(
-        //                 "Congratulations! we have boosted you stake from KES " +
-        //                 stake +
-        //                 " to " +
-        //                 boostedStake
-        //             );
-
-
-        //         }
-        //         else{
-        //             setMultiBoostAmount(boost);
-        //             setHasMultiBetBoost(true);
-        //             dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:true,remaining_games: 0, alert_slip_color:'valid',multiboostmessage: "You Have Qualified for a Nare Boost  " 
-        //                         }}))
-
-
-        //             setMultiBoostMessage(
-        //                 "You  Have Qualified for a Nare Boost " 
-        //             );
-
-
-        //         }
-        //     }
-        //     else{
-        //         setMultiBoostAmount(0)
-
-        //         dispatchRedux(setMatchBetslipOptions('kiron_betslip_options', {...betslip_options,...{hasBoost:false, alert_slip_color:'not_qualified'}}))
-
-
-        //         setMultiBoostMessage("")
-
-        //     }
-        // };
-
-        // useEffect(() => {
-        //     calculateMultiBetBoostAmount();
-        // }, [betslip, stake, expiredParentMatchIds]);
+       
 
 
         const closeAlert = () => {

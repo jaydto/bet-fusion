@@ -2540,6 +2540,8 @@ img.nare-league {
 .ant-notification{
   font-size: 10px!important;
   padding: 10px!important;
+  top: 1rem!important;
+  z-index: 99999!important;
 }
 .size-all-markets .gz.home {
   margin-bottom: 5rem !important;
@@ -2583,9 +2585,7 @@ img.nare-league {
 .ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
   top:119px!important;
 }
-.ant-notification{
-  top:119px!important;
-}
+
 /* end  notification */
  
   .optional-action {

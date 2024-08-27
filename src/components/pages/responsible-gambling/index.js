@@ -62,7 +62,7 @@ const ResponsibleGambling = React.memo(() => {
 
   return (
     <div className={"flex-item"}>
-    <div className="flex-container height-default-body top-diff-pages">
+    <div className="flex-container height-default-body top-diff-pages exclusion">
       <div className="item2" style={{ width: "100%" }}>
           <div className="home "  style={{ margin: "auto", maxWidth: "991px" }}>
             <div className="homepage mobile-full-height">

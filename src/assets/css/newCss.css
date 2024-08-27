@@ -1782,7 +1782,7 @@ img.nare-league {
   .pro-sidebar {
     color: #adadad;
     height: 100%;
-    /* width: var(--width-side-sm) !important; */
+    width: var(--width-side-sm) !important;
     min-width: 100% !important;
     text-align: left;
     transition: width, left, right, 0.3s;
@@ -2137,6 +2137,9 @@ img.nare-league {
 @media (min-width: 992px) {
   .top-diff-pages {
     margin-top: 1rem !important;
+  }
+  .top-diff-pages.exclusion, .top-diff-pages.privacy, .top-diff-pages.cookie, .top-diff-pages.play, .top-diff-pages.money, .top-diff-pages.resolution {
+    margin-top: 4.5rem!important;
   }
   .footer-mobile-none {
     
@@ -3793,6 +3796,13 @@ img.nare-league {
   /* .desktop-menu{
     display:none;
   } */
+  .top-diff-pages {
+    margin-top: 0rem !important;
+  }
+  .top-diff-pages.exclusion, .top-diff-pages.privacy, .top-diff-pages.cookie, .top-diff-pages.play, .top-diff-pages.money, .top-diff-pages.resolution {
+    margin-top: 4rem!important;
+  }
+  
   .user_logged.casino {
     margin-top: 0.7rem !important;
   }

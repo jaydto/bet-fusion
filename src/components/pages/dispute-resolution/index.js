@@ -39,11 +39,11 @@ const DisputeResolution = () => {
 
     return (
         <div className={'flex-item'}>
-            <div className="flex-container height-default-body top-diff-pages">
+            <div className="flex-container height-default-body top-diff-pages resolution">
                 <div className="item2" style={{width:'100%'}}>
                     <div className="gz home w-100">
                         <div className="homepage">
-                            <div className='col-md-12 primary-bg p-4 text-center'>
+                            <div className='col-md-12 primary-bg px-2 text-center pt-3'>
                                 <div className={'d-flex align-items-center'}>
                                             <span className={'spacing-backbutton remove-backbutton-on-desktop'}
                                                   onClick={() => navigate('/')}>
@@ -54,7 +54,7 @@ const DisputeResolution = () => {
                                                  opacity: '0.7'
                                              }}/>
                                             </span>
-                                    <h4 className="inline-block">
+                                    <h4 className="inline-block pt-3">
                                     DISPUTE RESOLUTION POLICY
                                 </h4>
                                 </div>

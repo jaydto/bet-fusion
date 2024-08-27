@@ -40,7 +40,7 @@ const HowToPlay = React.memo((props) => {
   }, []);
   return (
     <div className={"flex-item"}>
-      <div className="flex-container height-default-body top-diff-pages">
+      <div className="flex-container height-default-body top-diff-pages play">
         <div className="item2" style={{ width: "100%" }}>
           <div className=" home" style={{ margin: "auto", maxWidth: "991px" }}>
             <div className="homepage">

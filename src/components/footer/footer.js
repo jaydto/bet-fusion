@@ -31,10 +31,11 @@ const Footer = React.memo((props) => {
     <footer
       className={`footer-custom ${deposit2 && "d-flex flex-column card"} `}
       style={
-        (deposit2 || profile_side) && {
+        (deposit2 || profile_side)&& {
           background: "transparent",
           paddingLeft: "33px",
         }
+        // : sidebar&&{ background: "var(--CrashKali-header-bg)" }
       }
     >
       <div

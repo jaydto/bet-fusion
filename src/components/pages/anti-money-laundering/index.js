@@ -40,11 +40,11 @@ const AntiMoneyLaundering = () => {
   const navigate = useNavigate();
   return (
     <div className={"flex-item"}>
-      <div className="flex-container height-default-body top-diff-pages">
+      <div className="flex-container height-default-body top-diff-pages money">
         <div className="item2" style={{ width: "100%" }}>
           <div className="home" style={{ margin: "auto", maxWidth: "991px" }}>
             <div className="homepage">
-              <div className="col-md-12 primary-bg p-4 text-center">
+              <div className="col-md-12 primary-bg px-2 text-center pt-3">
                 <div className={"d-flex align-items-center"}>
                   <span
                     className={
@@ -62,7 +62,7 @@ const AntiMoneyLaundering = () => {
                       }}
                     />
                   </span>
-                  <h4 className="inline-block">ANTI-MONEY LAUNDERING</h4>
+                  <h4 className="inline-block pt-3">ANTI-MONEY LAUNDERING</h4>
                 </div>
               </div>
               <div className="col-md-12 mt-1 text-white p-1 text-center"></div>

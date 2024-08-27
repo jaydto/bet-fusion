@@ -144,7 +144,7 @@ const SelfExclusion = () => {
                      notification.success({
                       message: "Self Excluded",
                       description: response.payload.success,
-                      placement:"topLeft",
+                      placement:"top",
                       className: 'ant-notification'
 
                     });
@@ -162,7 +162,7 @@ const SelfExclusion = () => {
                       description: response.error.message,
                       className: 'ant-notification',
 
-                      placement:"topLeft"
+                      placement:"top"
 
                     })
 

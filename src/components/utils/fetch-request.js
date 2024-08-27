@@ -50,7 +50,7 @@ instance.interceptors.response.use(
             message: "Session expired",
             className: 'ant-notification',
             description: "Please login again",
-            placement:"topLeft"
+            placement:"top"
           });
            // Delay the redirection to the logout page (e.g., 3 seconds)
            setTimeout(() => {

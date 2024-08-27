@@ -96,7 +96,7 @@ const Register = () => {
         message: "Registration Successful",
         description:successMessage?.success.message?? "You have successfully registered!",
         className: 'ant-notification',
-        placement: "topLeft",
+        placement: "top",
       });
       const timeoutId = setTimeout(() => {
         if (settings?.accountConfiguration?.verificationEnabled !== "0") {
@@ -161,7 +161,7 @@ const Register = () => {
           message: "Registration Failed",
           description: error?.message || "Error attempting to Register",
           className: 'ant-notification',
-          placement: "topLeft",
+          placement: "top",
         });
       });
   };
@@ -220,37 +220,7 @@ const Register = () => {
                               initialValues={initialValues}
                               onSubmit={(values) => {
                                 handleSubmit(values);
-                                // // if (
-                                // //   successMessage &&
-                                // //   appConfig?.accountConfiguration
-                                // //     ?.verificationEnabled === "1"
-                                // // ) {
-                                // //   const timeoutId = setTimeout(() => {
-                                // //     if (
-                                // //       settings?.accountConfiguration
-                                // //         ?.verificationEnabled !== "0"
-                                // //     ) {
-                                // //       navigate("/verify");
-                                // //     } else {
-                                // //       navigate("/login");
-                                // //     }
-                                // //   }, 1500);
-                                // //   return () => clearTimeout(timeoutId);
-                                // // } else if (errorMessage) {
-                                // //   notification.error({
-                                // //     message: "Registration Failed",
-                                // //     description:
-                                // //       errorMessage ||
-                                // //       "Error attempting to Register",
-                                // //     placement: "topLeft",
-                                // //   });
-
-                                //   gaEventTracker("Sign Up Failed", {
-                                //     msisdn: values.msisdn,
-                                //     event: "sign_up_failed",
-                                //     message: "sign up failed",
-                                //   });
-                                // }
+                               
                               }}
                               validate={validate}
                               validateOnChange={false}

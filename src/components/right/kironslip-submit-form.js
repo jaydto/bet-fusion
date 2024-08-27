@@ -228,7 +228,7 @@ const KironslipSubmitForm = React.memo(
                     message: "Bet Placed Successfully",
                     className: 'ant-notification',
                     description: response?.message || "Your bet has been placed successfully!",
-                    placement: "topLeft",
+                    placement: "top",
                   });
           
                   let betslips = getKironSlip();
@@ -279,7 +279,7 @@ const KironslipSubmitForm = React.memo(
                     message: "Bet Placement Failed",
                     description: response_message,
                     className: 'ant-notification',
-                    placement: "topLeft",
+                    placement: "top",
                   });
                 }
                 setSubmitting(false);

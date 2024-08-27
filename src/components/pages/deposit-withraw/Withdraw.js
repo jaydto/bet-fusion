@@ -295,7 +295,7 @@ const MyWithdrawForm = (props) => {
           message: "Warning",
           description: minWithdrawalAmount.message,
           className: 'ant-notification',
-          placement: "topLeft", // Set the placement as needed
+          placement: "top", // Set the placement as needed
         });
         newValue = value;
       } else if (Number(value) > Number(maxWithdrawal)) {
@@ -303,7 +303,7 @@ const MyWithdrawForm = (props) => {
           message: "Warning",
           className: 'ant-notification',
           description: maxWithdrawalAmount.message,
-          placement: "topLeft", // Set the placement as needed
+          placement: "top", // Set the placement as needed
         });
         newValue = maxWithdrawal;
       } else {

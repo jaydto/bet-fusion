@@ -41,7 +41,7 @@ const HeaderLogin = React.memo((props) => {
         message: "Success",
         description: successMessage.message, // assuming `successMessage` has a `message` field
         className: 'ant-notification',
-        placement: "topLeft", // Set placement to top-left
+        placement: "top", // Set placement to top-left
         onClick: () => {
           console.log("Notification Clicked!");
         },
@@ -67,7 +67,7 @@ const HeaderLogin = React.memo((props) => {
       message: "Login Error",
       description: errorMessage, // assuming `successMessage` has a `message` field
       className: 'ant-notification',
-      placement: "topLeft", // Set placement to top-left
+      placement: "top", // Set placement to top-left
       onClick: () => {
         console.log("Notification Clicked!");
       },
@@ -79,21 +79,7 @@ const HeaderLogin = React.memo((props) => {
   // const [notificationMessage, setNotificationMessage] = useState(null);
   const gaEventTracker = useAnalyticsEventTracker("Login");
 
-  // const openNotificationWithIcon = (type, message, description) => {
-  //   api[type]({
-  //     message: message || 'Login',
-  //     description: description || 'Notification',
-  //     placement: 'topLeft',
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   if (notificationMessage) {
-  //     const { type, message, description } = notificationMessage;
-  //     openNotificationWithIcon(type, message, description);
-  //     setNotificationMessage(null); // Reset notification after displaying
-  //   }
-  // }, [notificationMessage]);
+ 
 
   const handleSubmit = (values) => {
     const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");

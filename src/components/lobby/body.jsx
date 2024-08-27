@@ -251,7 +251,7 @@ const CasinoGamesComponent = () => {
           ></div>
           <div className="reaCover">
             <div className="link Real">
-              <Link className="d-flex" to={`virtual-league?competition_id=${competition?.competition_id}`}>View Competition</Link>
+              <Link className="d-flex" to={`/?competition_id=${competition?.competition_id}`}>View Competition</Link>
             </div>
           </div>
         </div>

@@ -121,7 +121,7 @@ const HeaderNav = React.memo((props) => {
               }}
             >
               <span>
-                <strong>Virtual League</strong>
+                <strong>Casino</strong>
               </span>
             </div>
           </li>

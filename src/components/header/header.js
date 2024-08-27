@@ -197,7 +197,7 @@ const Header = React.memo((props) => {
 
   const LoginCheck = (game) => {
     {
-      navigate("/virtual-league");
+      navigate("/casino");
     }
   };
 
@@ -281,19 +281,19 @@ const Header = React.memo((props) => {
                     <ul className="header-nav-container">
                       <li
                         className={`${
-                          pathname === "/virtual-league" ? "active" : ""
+                          pathname === "/casino" ? "active" : ""
                         } header-nav-item`}
                       >
                         <div
                           className="url-link fm anl cg ox "
                           title="Casino"
                           onClick={() => {
-                            LoginCheck("virtual League");
-                            gaEventTracker("Visit Virtual League Page");
+                            LoginCheck("Casino");
+                            gaEventTracker("Visit Casino Page");
                           }}
                         >
                           <span>
-                            <strong>Virtual League</strong>
+                            <strong>Casino</strong>
                           </span>
                         </div>
                       </li>

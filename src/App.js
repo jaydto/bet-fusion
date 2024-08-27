@@ -165,15 +165,15 @@ const App =
                       
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/404" element={<PageNotFound/>}/>
-                        <Route exact path="/casino" element={<NewCasino/>}/>
+                        {/* <Route exact path="/casino" element={<NewCasino/>}/> */}
                         <Route path="/casino-options/:provider/:category" element={<CasinoOptions />} />
                        
                         <Route exact path="/smart-play" element={<SmartPlay/>}/>
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
-                        <Route exact path="/" element={<CasinoIndex/>}/>
+                        <Route exact path="/casino" element={<CasinoIndex/>}/>
 
 
-                        <Route exact path={"/virtual-League"} element={<Kiron/>}/>
+                        <Route exact path={"/"} element={<Kiron/>}/>
                         <Route exact path={"/results"} element={<Kiron/>}/>
                         <Route exact path={"/standing"} element={<Kiron/>}/>
                         <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>

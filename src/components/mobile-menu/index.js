@@ -308,7 +308,7 @@ const MobileMenu = React.memo((props) => {
                                 </td>
                                 <td className={`bloc-icon ${pathname === "/casino" ? "active" : ""}`}>
                                     <Link
-                                        to={`/virtual-league`}
+                                        to={`/`}
                                         onClick={() => gaEventTracker("Visit Casino Page")}
                                     >
                                         <LazyLoadImage src={VirtualLeague} style={{filter:"invert(1)"}}

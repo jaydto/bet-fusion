@@ -83,14 +83,7 @@ const ResetPassword2 = React.memo((props) => {
     );
   };
 
-  // const Alert = (props) => {
-  //   let c = resetSuccessPassword??resetSuccess ? "success" : "danger";
-  //   return (
-  //     <div role="alert" className={`fade alert alert-${c} show`}>
-  //       {resetPasswordMessage??resetMessage}
-  //     </div>
-  //   );
-  // };
+  
 
   return (
     <div style={{ height: "100vh", overflowX: "hidden" }}>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, Row } from "antd";
+import { Button, Col, notification, Row } from "antd";
 import authImg from "../../../assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import only18 from "../../../assets/img/auth/18only.png";
@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetPassword, resetSubmitForm, setState } from "../../../redux/authSlice";
 
 const backgroundStyle = {
-    background:`url(${gameDay})`,
+    // background:`url(${gameDay})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   //   backgroundPosition:"bottom",
@@ -31,6 +31,22 @@ const ResetPassword2 = React.memo((props) => {
   const navigate=useNavigate()
 
   const expand = "md";
+
+
+  useEffect(() => {
+    if  (resetMessage??resetPasswordMessage) {
+      
+    notification.error({
+      message: "Reset Password",
+      description: resetPasswordMessage??resetMessage, // assuming `successMessage` has a `message` field
+      className: 'ant-notification',
+      placement: "top", // Set placement to top-left
+      onClick: () => {
+        console.log("Notification Clicked!");
+      },
+    });
+  }
+  }, [resetMessage, resetPasswordMessage]);
 
 
 
@@ -67,19 +83,22 @@ const ResetPassword2 = React.memo((props) => {
     );
   };
 
-  const Alert = (props) => {
-    let c = resetSuccessPassword??resetSuccess ? "success" : "danger";
-    return (
-      <div role="alert" className={`fade alert alert-${c} show`}>
-        {resetPasswordMessage??resetMessage}
-      </div>
-    );
-  };
+  // const Alert = (props) => {
+  //   let c = resetSuccessPassword??resetSuccess ? "success" : "danger";
+  //   return (
+  //     <div role="alert" className={`fade alert alert-${c} show`}>
+  //       {resetPasswordMessage??resetMessage}
+  //     </div>
+  //   );
+  // };
 
   return (
-    <div style={{ height: "100vh" }}>
-      <Row justify="center" className="align-items-stretch h-100">
-        
+    <div style={{ height: "100vh", overflowX: "hidden" }}>
+<Row
+        justify="center"
+        className="align-items-stretch h-100"
+        style={backgroundStyle}
+      >        
         <div
           className={
             "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
@@ -87,7 +106,8 @@ const ResetPassword2 = React.memo((props) => {
         >
           <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
             <div
-              className={`width-page-centric reset-pass ${
+            
+              className={`width-page-centric reset-pass mt-0 ${
                 otpSent && "pass-reset-page"
               }`}
             >
@@ -101,7 +121,7 @@ const ResetPassword2 = React.memo((props) => {
                       <div className=" w-100">
                         <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
                           <div className="col-md-12 mt-2 text-white px-2 w-100">
-                            {resetMessage && <Alert />}
+                            {/* {resetMessage && <Alert />} */}
                             <div
                               className="modal-body pb-0 "
                               data-backdrop="static"

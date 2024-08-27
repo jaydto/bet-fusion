@@ -26,6 +26,7 @@ const HeaderLogin = React.memo((props) => {
   const errorMessage = useSelector((state) => state.auth.error);
   const loading = useSelector((state) => state.auth.loading);
   const { dispatch } = useContext(StoreContext);
+  //const [api, contextHolder] = notification.useNotification();
 
   const initialValues = {
     msisdn: "",
@@ -39,6 +40,7 @@ const HeaderLogin = React.memo((props) => {
       notification.success({
         message: "Success",
         description: successMessage.message, // assuming `successMessage` has a `message` field
+        className: 'ant-notification',
         placement: "topLeft", // Set placement to top-left
         onClick: () => {
           console.log("Notification Clicked!");
@@ -64,6 +66,7 @@ const HeaderLogin = React.memo((props) => {
     notification.error({
       message: "Login Error",
       description: errorMessage, // assuming `successMessage` has a `message` field
+      className: 'ant-notification',
       placement: "topLeft", // Set placement to top-left
       onClick: () => {
         console.log("Notification Clicked!");
@@ -72,7 +75,7 @@ const HeaderLogin = React.memo((props) => {
   }
   }, [errorMessage]);
 
-  // const [api, contextHolder] = notification.useNotification();
+  // //const [api, contextHolder] = notification.useNotification();
   // const [notificationMessage, setNotificationMessage] = useState(null);
   const gaEventTracker = useAnalyticsEventTracker("Login");
 
@@ -101,29 +104,7 @@ const HeaderLogin = React.memo((props) => {
     };
 
     dispatchRedux(loginUser(initialValues));
-    // .then((response) => {
-    //   if (loginUser.rejected.match(response)) {
-    //     setNotificationMessage({
-    //       type: 'error',
-    //       message: 'Login Failed',
-    //       description: response.error.message || "Error attempting to login",
-    //     });
-    //   } else if (response.payload && (response.payload.status === 200 || response.payload.status === 201)) {
-    //     setNotificationMessage({
-    //       type: 'success',
-    //       message: 'Login Successful',
-    //       description: response.payload.message || "Login successful",
-    //     });
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.error("Error in handleSubmit:", error);
-    //   setNotificationMessage({
-    //     type: 'error',
-    //     message: 'Login Failed',
-    //     description: 'Unexpected error occurred.',
-    //   });
-    // });
+    
   };
 
   const validate = (values) => {

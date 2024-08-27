@@ -264,6 +264,7 @@ const MyWithdrawForm = (props) => {
   const { errors, values, setFieldValue } = props;
   const appConfigs = useSelector((state) => state.data.app_config);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+  //const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
@@ -293,12 +294,14 @@ const MyWithdrawForm = (props) => {
         notification.open({
           message: "Warning",
           description: minWithdrawalAmount.message,
+          className: 'ant-notification',
           placement: "topLeft", // Set the placement as needed
         });
         newValue = value;
       } else if (Number(value) > Number(maxWithdrawal)) {
         notification.open({
           message: "Warning",
+          className: 'ant-notification',
           description: maxWithdrawalAmount.message,
           placement: "topLeft", // Set the placement as needed
         });

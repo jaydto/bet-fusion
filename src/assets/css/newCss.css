@@ -2537,6 +2537,10 @@ img.nare-league {
 .deposit-modal-footer.modal-footer {
   border-top: none !important;
 }
+.ant-notification{
+  font-size: 10px!important;
+  padding: 10px!important;
+}
 .size-all-markets .gz.home {
   margin-bottom: 5rem !important;
 }

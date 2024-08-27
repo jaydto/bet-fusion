@@ -37,6 +37,8 @@ const shouldSkipUserUpdate = () => {
 
 instance.interceptors.response.use(
   (response) => {
+    //const [api, contextHolder] = notification.useNotification();
+
     const status = response?.data.status;
     if (status === 401) {
       setSkipUserUpdateFlag();
@@ -46,7 +48,9 @@ instance.interceptors.response.use(
         navigate().then(() => {
           notification.error({
             message: "Session expired",
+            className: 'ant-notification',
             description: "Please login again",
+            placement:"topLeft"
           });
            // Delay the redirection to the logout page (e.g., 3 seconds)
            setTimeout(() => {

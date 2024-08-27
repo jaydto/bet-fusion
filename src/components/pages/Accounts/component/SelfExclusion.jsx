@@ -30,6 +30,7 @@ const SelfExclusion = () => {
   const bottomSheetRef = useRef();
   const bottom_sheet = useSelector((state) => state.data.show_exclusion_modal);
   // const games = virtualGameChoiceOptions();
+  //const [api, contextHolder] = notification.useNotification();
 
   const handleConfirmation = () => {
     dispatchRedux(setState("show_exclusion_modal", false)); // Hide the confirmation bottom sheet
@@ -143,7 +144,9 @@ const SelfExclusion = () => {
                      notification.success({
                       message: "Self Excluded",
                       description: response.payload.success,
-                      placement:"topLeft"
+                      placement:"topLeft",
+                      className: 'ant-notification'
+
                     });
                     //  Delay the redirection to the logout page (e.g., 3 seconds)
                      setTimeout(() => {
@@ -157,6 +160,8 @@ const SelfExclusion = () => {
                     notification.error({
                       message: "Error",
                       description: response.error.message,
+                      className: 'ant-notification',
+
                       placement:"topLeft"
 
                     })

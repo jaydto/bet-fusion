@@ -167,7 +167,7 @@ const KironslipSubmitForm = React.memo(
 
 
 
-        const [api, contextHolder] = notification.useNotification();
+        //const [api, contextHolder] = notification.useNotification();
         const navigate = useNavigate()
 
 
@@ -226,6 +226,7 @@ const KironslipSubmitForm = React.memo(
           
                   notification.success({
                     message: "Bet Placed Successfully",
+                    className: 'ant-notification',
                     description: response?.message || "Your bet has been placed successfully!",
                     placement: "topLeft",
                   });
@@ -277,6 +278,7 @@ const KironslipSubmitForm = React.memo(
                   notification.error({
                     message: "Bet Placement Failed",
                     description: response_message,
+                    className: 'ant-notification',
                     placement: "topLeft",
                   });
                 }

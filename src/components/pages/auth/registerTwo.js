@@ -72,6 +72,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+  //const [api, contextHolder] = notification.useNotification();
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
   const toggleShowConfirmPassword = () =>
@@ -94,6 +95,7 @@ const Register = () => {
       notification.success({
         message: "Registration Successful",
         description:successMessage?.success.message?? "You have successfully registered!",
+        className: 'ant-notification',
         placement: "topLeft",
       });
       const timeoutId = setTimeout(() => {
@@ -158,6 +160,7 @@ const Register = () => {
         notification.error({
           message: "Registration Failed",
           description: error?.message || "Error attempting to Register",
+          className: 'ant-notification',
           placement: "topLeft",
         });
       });

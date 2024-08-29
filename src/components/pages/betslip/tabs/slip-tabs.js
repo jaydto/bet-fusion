@@ -47,7 +47,7 @@ const SlipTabs = (props) => {
                 {pathname === '/betslip-nare' && <div className="col text-center">
                     <Link className={`cursor-pointer rounded border-0  w-100 bold home-tabs `}
                           to={'/betslip-nare?' + getLink()}>
-                        <span className="col-sm-11 main-header">NARESLIP</span>
+                        <span className="col-sm-11 main-header">BESLIP</span>
                     </Link>
                 </div>}
                 {pathname === '/betslip-slip' &&

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Col, Row } from "antd";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import { Col, notification, Row } from "antd";
 import authImg from "../../../assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -17,10 +17,7 @@ import { StoreContext } from "../../../context/store";
 import mpesa from "../../../assets/img/mpesa.png";
 import "./deposit.css";
 import Header2 from "../../header/Header2";
-import {
-  userDeposits,
-  setState,
-} from "../../../redux/dataSlice";
+import { userDeposits, setState, resetState } from "../../../redux/dataSlice";
 import { userBalance } from "../../../redux/authSlice";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -29,15 +26,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const backgroundStyle = {
-    background:`url(${gameDay})`,
+  background: `url(${gameDay})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-//   backgroundPosition:"bottom",
-  backgroundAttachment:"fixed"
+  //   backgroundPosition:"bottom",
+  backgroundAttachment: "fixed",
 };
 
 const Deposit3 = React.memo((props) => {
-  const [activeTab, setActiveTab] = useState(""); // Set the initially active tab here
   const dispatchRedux = useDispatch();
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
@@ -48,24 +44,8 @@ const Deposit3 = React.memo((props) => {
   const successMessageConfirmation = useSelector(
     (state) => state.data.deposits_confirm_message
   );
-  const [message, setMessage] = useState();
-  const [messageConfirmation, setMessageConfirmation] = useState();
+ 
 
-  useEffect(() => {
-    if (successMessageConfirmation) {
-      setMessageConfirmation(successMessageConfirmation);
-    } else if (errorMessage) {
-      setMessageConfirmation(errorMessage);
-    }
-  }, [successMessageConfirmation, errorMessage]);
-
-  useEffect(() => {
-    if (successMessage) {
-      setMessage(successMessage);
-    } else if (errorMessage) {
-      setMessage(errorMessage);
-    }
-  }, [successMessage, errorMessage]);
   useEffect(() => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
   }, [appConfigs]);
@@ -73,9 +53,6 @@ const Deposit3 = React.memo((props) => {
   useEffect(() => {
     setUser(userData || getFromLocalStorage("user"));
   }, [userData]);
-  const handleTabSelect = (eventKey) => {
-    setActiveTab(eventKey);
-  };
 
   const setUtmCampaign = () => {
     const utm_source = new URL(window.location).searchParams.get("utm_source");
@@ -125,11 +102,9 @@ const Deposit3 = React.memo((props) => {
     }
   }, [successMessage]);
 
- 
-
   const FormTitle = () => {
     const navigate = useNavigate();
-  
+
     return (
       <div
         className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3 text-center w-100 top-login-mobile"
@@ -151,11 +126,12 @@ const Deposit3 = React.memo((props) => {
                 className={"back-navigation-icon"}
               />{" "}
             </span>
-  
+
             <span className={"w-50 d-flex justify-content-center"}>
-            <h4 className="inline-block CrashKali-text-light">
-          DEPOSIT FUNDS (MOBILE MONEY)
-        </h4>            </span>
+              <h4 className="inline-block CrashKali-text-light">
+                DEPOSIT FUNDS (MOBILE MONEY)
+              </h4>{" "}
+            </span>
             <span className="w-25"></span>
           </div>
         </div>
@@ -178,28 +154,60 @@ const Deposit3 = React.memo((props) => {
     );
   });
 
-  const Alert = () => {
-    let c = successMessage ? "success" : "danger";
-    message &&
-      setTimeout(() => {
-        setMessage(null);
-      }, 5500);
-    return (
-      <>
-        {message && (
-          <div role="alert" className={`fade alert alert-${c} show`}>
-            {message}
-          </div>
-        )}{" "}
-      </>
-    );
-  };
+  const dispatchUser = useCallback(() => {
+    if (successMessage !== null || successMessageConfirmation !== null) {
+      // Use Ant Design notification to display the success message
+      notification.success({
+        message: "Success",
+        description: successMessage??successMessageConfirmation, // assuming `successMessage` has a `message` field
+        className: "ant-notification",
+        placement: "top", // Set placement to top-left
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
+    } else if (errorMessage !== null) {
+      notification.error({
+        message: "Error",
+        description: errorMessage, // assuming `errorMessage` has a `message` field
+        className: "ant-notification",
+        placement: "top", // Set placement to top-left
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
+    }
+  }, [successMessage,successMessageConfirmation, errorMessage]);
+
+  useEffect(() => {
+    dispatchUser();
+    setTimeout(() => {
+      dispatchRedux(resetState("deposits_message"));
+      dispatchRedux(resetState("deposits_confirm_message"));
+      dispatchRedux(resetState("error"));
+    }, 7500);
+  }, [dispatchUser]);
+
+  // const Alert = () => {
+  //   let c = successMessage ? "success" : "danger";
+  //   message &&
+  //     setTimeout(() => {
+  //       setMessage(null);
+  //     }, 5500);
+  //   return (
+  //     <>
+  //       {message && (
+  //         <div role="alert" className={`fade alert alert-${c} show`}>
+  //           {message}
+  //         </div>
+  //       )}{" "}
+  //     </>
+  //   );
+  // };
 
   return (
     <div style={{ height: "100vh" }}>
-      
       <Row justify="center" className="align-items-stretch h-100">
-        
         <div
           className={
             "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
@@ -210,26 +218,24 @@ const Deposit3 = React.memo((props) => {
               <FormTitle />
               {/*  */}
               <div className={"w-100"}>
-                    <div className={"d-flex"}>
-                      {/**/}
-                      <div className={"size-deposit"}>
-                        <div
-                          className={"d-flex flex-row justify-content-between"}
-                        >
-                          <div className=" w-100">
-                            <div className="homepage d-flex  flex-column align-items-center  login-page user-page">
-                              <Alert />
-                              <div className=" pb-0" data-backdrop="static">
-                                <DepositForm />
-                              </div>
-                            </div>
+                <div className={"d-flex"}>
+                  {/**/}
+                  <div className={"size-deposit"}>
+                    <div className={"d-flex flex-row justify-content-between"}>
+                      <div className=" w-100">
+                        <div className="homepage d-flex  flex-column align-items-center  login-page user-page">
+                          {/* <Alert /> */}
+                          <div className=" pb-0" data-backdrop="static">
+                            <DepositForm />
                           </div>
                         </div>
                       </div>
-                      {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-                      <div className="mt-4">{/*<LoginForm {...props}/>*/}</div>
                     </div>
                   </div>
+                  {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
+                  <div className="mt-4">{/*<LoginForm {...props}/>*/}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -277,8 +283,6 @@ const PaymentInstructions = (props) => {
     </>
   );
 };
-
-
 
 const DepositFormFields = (props) => {
   const {
@@ -456,26 +460,29 @@ const MyDepositForm = (props) => {
               setCurrentDepositValue={setCurrentDepositValue} // Pass setCurrentDepositValue here
               currentDepositValue={currentDepositValue} // Pass currentDepositValue here
             />
-            <div className={
-                            "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                        }>
-                <span
-                        
-                        style={{ color: "#ea5d0b",     fontSize: "15px",
-                        fontWeight: "600",
-                        boxshadow: "0 10px 20px rgba(0, 0, 0, 0.03)",
-                        padding: "7px 27px",
-                        border:" 1px solid",
-                        borderRadius: "10px"}}
-                        onClick={() => {
-                            setShowJisortModal(true);
-                        }}
-                        >
-                        Jisort
-                        </span>
-
+            <div
+              className={
+                "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
+              }
+            >
+              <span
+                style={{
+                  color: "#ea5d0b",
+                  fontSize: "15px",
+                  fontWeight: "600",
+                  boxshadow: "0 10px 20px rgba(0, 0, 0, 0.03)",
+                  padding: "7px 27px",
+                  border: " 1px solid",
+                  borderRadius: "10px",
+                }}
+                onClick={() => {
+                  setShowJisortModal(true);
+                }}
+              >
+                Jisort
+              </span>
             </div>
-           
+
             <div className={``}>
               <PaymentInstructions />
             </div>
@@ -498,7 +505,7 @@ const DepositForm = (props) => {
   useEffect(() => {
     setUser(userData || getFromLocalStorage("user"));
   }, [userData]);
-  
+
   const initialValues = {
     amount: depositValues || 100,
     msisdn: user?.msisdn,

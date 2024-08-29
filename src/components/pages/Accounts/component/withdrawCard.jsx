@@ -23,7 +23,7 @@ const WithdrawForm = () => {
     validationSchema: Yup.object().shape({
       amount: Yup.number()
         .required('Amount is required')
-        .min(50, 'Minimum amount is 50')
+        // .min(50, 'Minimum amount is 50')
         .max(300000, 'Maximum amount is 300,000')
         .positive('Amount must be positive')
         .integer('Amount must be a whole number'),
@@ -62,7 +62,7 @@ const WithdrawForm = () => {
           <div className="input__container deposit input account__section__input" style={{ marginBottom: '10px' }}>
             <input
               type="number"
-              min="50"
+              // min="50"
               max="300000"
               step="50"
               id="amount"
@@ -80,7 +80,7 @@ const WithdrawForm = () => {
               </div>
             ) : (
               <div className="input__desc">
-                <small>Daily M-PESA withdrawal Limits: Minimum KES50, Maximum KES300,000</small>
+                <small>Daily M-PESA withdrawal Limits:  Maximum KES300,000</small>
               </div>
             )}
           </div>

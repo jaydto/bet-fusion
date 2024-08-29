@@ -184,30 +184,7 @@ const NewProfile = React.memo(() => {
                 </Link>
 
 
-                {/* <Link
-                  to="/deposit"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <div className="transactions">
-                    <div className="transaction">
-                      <div className="t-icon-container">
-                        <div className="icon">
-                          <FontAwesomeIcon icon={faUpload} />
-                        </div>
-                      </div>
-                      <div className="t-details">
-                        <div className="t-title">Deposit</div>
-                      </div>
-
-                      <div className="t-amount">
-                        <FontAwesomeIcon
-                          icon={faAngleRight}
-                          className={"back-navigation-icon"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </Link> */}
+               
                 <DepositForm/>
 
                 <WithdrawForm/>
@@ -215,24 +192,7 @@ const NewProfile = React.memo(() => {
                
 
                 <SupportContainer/>
-                {/* <Link
-                  to={"#"}
-                  style={{ textDecoration: "none", color: "black" }}
-                  onClick={() => clearHistory()}
-                  className={"mb-5"}
-                >
-                  <div className="transaction">
-                    <div className="t-details">
-                      <div className="t-title">Log Out</div>
-                    </div>
-                    <div className="t-amount">
-                      <FontAwesomeIcon
-                        icon={faPowerOff}
-                        style={{ fontSize: "24px" }}
-                      />
-                    </div>
-                  </div>
-                </Link> */}
+                
               </div>
             </div>
           </div>

@@ -23,7 +23,7 @@ const DepositForm = () => {
     validationSchema: Yup.object().shape({
       amount: Yup.number()
         .required('Amount is required')
-        .min(10, 'Minimum amount is 10')
+        // .min(10, 'Minimum amount is 10')
         .positive('Amount must be positive')
         .integer('Amount must be a whole number'),
     }),
@@ -87,14 +87,14 @@ const DepositForm = () => {
               placeholder="Enter amount to deposit"
               className="text-light deposit-input form-control col-md-12 input-field"
             />
-            {formik.touched.amount && formik.errors.amount ? (
+            {formik.touched.amount && formik.errors.amount && (
               <div className="input__desc text-danger">
                 <small>{formik.errors.amount}</small>
               </div>
-            ) : (
-              <div className="input__desc">
-                <small>Minimum KES10</small>
-              </div>
+            // ) : (
+            //   <div className="input__desc">
+            //     <small>Minimum KES10</small>
+            //   </div>
             )}
           </div>
           <button

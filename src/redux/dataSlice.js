@@ -135,7 +135,7 @@ export const userWithdrawal = createAsyncThunk(
     if (status === 200) {
       return response;
     } else {
-      throw new Error(response || "Withdrawal Request failed");
+      throw new Error(response?.error || "Withdrawal Request failed");
     }
   }
 );

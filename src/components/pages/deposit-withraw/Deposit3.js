@@ -154,7 +154,7 @@ const Deposit3 = React.memo((props) => {
     );
   });
 
-  const dispatchUser = useCallback(() => {
+  const dispatchDepositMessage = useCallback(() => {
     if (successMessage !== null || successMessageConfirmation !== null) {
       // Use Ant Design notification to display the success message
       notification.success({
@@ -180,13 +180,13 @@ const Deposit3 = React.memo((props) => {
   }, [successMessage,successMessageConfirmation, errorMessage]);
 
   useEffect(() => {
-    dispatchUser();
+    dispatchDepositMessage();
     setTimeout(() => {
       dispatchRedux(resetState("deposits_message"));
       dispatchRedux(resetState("deposits_confirm_message"));
       dispatchRedux(resetState("error"));
     }, 7500);
-  }, [dispatchUser]);
+  }, [dispatchDepositMessage]);
 
   // const Alert = () => {
   //   let c = successMessage ? "success" : "danger";

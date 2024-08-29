@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFromLocalStorage, setTrackingData } from '../../../utils/local-storage';
-import { userWithdrawal } from '../../../../redux/dataSlice';
+import { resetState, userWithdrawal } from '../../../../redux/dataSlice';
+import { notification } from 'antd';
 
 const WithdrawForm = () => {
   const dispatchRedux = useDispatch();
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const loadingWithdraw = useSelector((state) => state.data.withdraw_loading);
+  const successMessage = useSelector((state) => state.data.withdrawal_message);
+  const errorMessage = useSelector((state) => state.data.error);
 
   useState(() => {
     setUser(userData || getFromLocalStorage("user"));
@@ -48,6 +51,39 @@ const WithdrawForm = () => {
       }
     },
   });
+
+  const dispatchWithdrawMessage = useCallback(() => {
+    if (successMessage !== null ) {
+      // Use Ant Design notification to display the success message
+      notification.success({
+        message: "Success",
+        description: successMessage, // assuming `successMessage` has a `message` field
+        className: "ant-notification",
+        placement: "top", // Set placement to top-left
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
+    // } else if (errorMessage !== null) {
+    //   notification.error({
+    //     message: "Error",
+    //     description: errorMessage, // assuming `errorMessage` has a `message` field
+    //     className: "ant-notification",
+    //     placement: "top", // Set placement to top-left
+    //     onClick: () => {
+    //       console.log("Notification Clicked!");
+    //     },
+    //   });
+    }
+  }, [successMessage, errorMessage]);
+
+  useEffect(() => {
+    dispatchWithdrawMessage();
+    setTimeout(() => {
+      dispatchRedux(resetState("withdrawal_message"));
+      dispatchRedux(resetState("error"));
+    }, 7500);
+  }, [dispatchWithdrawMessage]);
 
   const handleAmountChange = (event) => {
     formik.handleChange(event);

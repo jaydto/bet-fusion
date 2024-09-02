@@ -305,7 +305,7 @@ const KironBetHistory = React.memo((props) => {
                 className={"jackpot-image-caution"}
               />
               <p className={"jackpot-text-inactive"}>
-                There are no active bets at the moment
+                There are no recent bets at the moment
               </p>
             </div>
           )}
@@ -334,7 +334,7 @@ const KironBetHistory = React.memo((props) => {
                 className={"jackpot-image-caution"}
               />
               <p className={"jackpot-text-inactive"}>
-                There are no Archived bets at the moment
+                There are no older bets at the moment
               </p>
             </div>
           )}

@@ -214,7 +214,7 @@ const CasinoGamesComponent = () => {
               <Link
                 data-real="0"
                 className="link Fun"
-                to={`/smart-play?game=${game?.game_id}&category=${game?.gameCategory}&status=demo`}
+                to={`/smart-play?game=${game?.gameName}&category=${game?.gameCategory}&status=demo`}
                 target="_self"
               >
                 <div>Demo</div>

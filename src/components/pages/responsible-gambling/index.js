@@ -24,8 +24,7 @@ import { setState } from "../../../redux/dataSlice";
 const Footer = React.lazy(() => import("../../footer/footer"));
 
 const ResponsibleGambling = React.memo(() => {
-  const { width } = useWindowDimensions();
-  const { state } = useContext(StoreContext);
+  
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("responsible_gambling");
   const handleTabSelect = (eventKey) => {

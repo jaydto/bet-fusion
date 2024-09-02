@@ -115,7 +115,6 @@ const Right = React.memo((props) => {
          `
       }
          ${remove_mobile && " desktop-only-show "}
-         ${pathname.includes("bet-history") && " desktop-only-show "}
          ${pathname.includes("results") && " desktop-only-show "}
          ${pathname.includes("standing") && " desktop-only-show "}
          `}

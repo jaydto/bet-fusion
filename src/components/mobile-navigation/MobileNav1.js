@@ -50,21 +50,8 @@ const MobileNav1 = React.memo(
 
         
 
-        const getDefaultMarketsForSport = (allsports) => {
-            return allsports?.default_display_markets
-        }
+      
 
-        const getSportImageIcon = (sport_name, folder = 'sports', topLeagues = false) => {
-
-            let default_img = 'default_sport'
-            let sport_image;
-            try {
-                sport_image = topLeagues ? require(`../../../src/assets/${sport_name}`) : require(`../../../src/assets/svg/${folder}/${sport_name}.svg`);
-            } catch (error) {
-                sport_image = require(`../../../src/assets/svg/${folder}/${default_img}.svg`);
-            }
-            return sport_image
-        }
         const navigate = useNavigate()
         let url = new URL(window.location.href)
         let sport_id = url.searchParams.get('sport_id')
@@ -74,19 +61,8 @@ const MobileNav1 = React.memo(
 
         },[])
 
-        const launchAviator=(status)=>{
-            if(status==="demo"){
-                navigate("/nare-games/aviator?status=demo")
-            }else{
-                navigate("/nare-games/aviator?status=live")
-            }
-            
-        }
-
-        const launchJetX = () => {
-            navigate("/smart-play?game=JetX&category=JetX");
-          };
-
+       
+      
 
         return (<div className="menu-wrapper mobile-nav-remove ">
 

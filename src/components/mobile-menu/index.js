@@ -16,7 +16,7 @@ import {StoreContext } from "../../context/store";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useDispatch, useSelector} from "react-redux";
 import {getFromLocalStorage} from "../utils/local-storage";
-import {setMatchBetslip, setState as setMatchBetslipOptions} from "../../redux/bettingSlice";
+import { setState as setMatchBetslipOptions} from "../../redux/bettingSlice";
 
 const MobileMenu = React.memo((props) => {
 
@@ -118,7 +118,7 @@ const MobileMenu = React.memo((props) => {
     }, [winnings])
     const pathSlipSummary = ["/betslip-slip",
         "/betslip-nare", "/betslip-nare",
-        "standing", "bet-history", "/results",
+        "standing",  "/results",
         "/jackpot", "/casino", "/smart-soft",
         "/nare-games", "/promotions","/terms-and-conditions", "/profile"]
     const [countInfo, setCountInfo] = useState(true)

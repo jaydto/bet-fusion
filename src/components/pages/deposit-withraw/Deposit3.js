@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import JisortModal from "../../modals/JisortModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { WithdrawForm } from "./Withdraw";
 
 const backgroundStyle = {
   background: `url(${gameDay})`,
@@ -44,7 +45,8 @@ const Deposit3 = React.memo((props) => {
   const successMessageConfirmation = useSelector(
     (state) => state.data.deposits_confirm_message
   );
- 
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
@@ -102,7 +104,7 @@ const Deposit3 = React.memo((props) => {
     }
   }, [successMessage]);
 
-  const FormTitle = () => {
+  const FormTitle = ({tab}) => {
     const navigate = useNavigate();
 
     return (
@@ -128,8 +130,8 @@ const Deposit3 = React.memo((props) => {
             </span>
 
             <span className={"w-50 d-flex justify-content-center"}>
-              <h4 className="inline-block CrashKali-text-light">
-                DEPOSIT FUNDS (MOBILE MONEY)
+              <h4 className="inline-block CrashKali-text-light" style={{textTransform:"uppercase"}}>
+                {tab} FUNDS (MOBILE MONEY)
               </h4>{" "}
             </span>
             <span className="w-25"></span>
@@ -159,13 +161,14 @@ const Deposit3 = React.memo((props) => {
       // Use Ant Design notification to display the success message
       notification.success({
         message: "Success",
-        description: successMessage??successMessageConfirmation, // assuming `successMessage` has a `message` field
+        description: successMessage ?? successMessageConfirmation, // assuming `successMessage` has a `message` field
         className: "ant-notification",
         placement: "top", // Set placement to top-left
         onClick: () => {
           console.log("Notification Clicked!");
         },
       });
+      navigate("/")
     } else if (errorMessage !== null) {
       notification.error({
         message: "Error",
@@ -177,7 +180,7 @@ const Deposit3 = React.memo((props) => {
         },
       });
     }
-  }, [successMessage,successMessageConfirmation, errorMessage]);
+  }, [successMessage, successMessageConfirmation, errorMessage]);
 
   useEffect(() => {
     dispatchDepositMessage();
@@ -188,22 +191,10 @@ const Deposit3 = React.memo((props) => {
     }, 7500);
   }, [dispatchDepositMessage]);
 
-  // const Alert = () => {
-  //   let c = successMessage ? "success" : "danger";
-  //   message &&
-  //     setTimeout(() => {
-  //       setMessage(null);
-  //     }, 5500);
-  //   return (
-  //     <>
-  //       {message && (
-  //         <div role="alert" className={`fade alert alert-${c} show`}>
-  //           {message}
-  //         </div>
-  //       )}{" "}
-  //     </>
-  //   );
-  // };
+  const [activeTab, setActiveTab] = useState("deposit");
+  const handleTabSelect = (eventKey) => {
+    setActiveTab(eventKey);
+  };
 
   return (
     <div style={{ height: "100vh" }}>
@@ -215,7 +206,7 @@ const Deposit3 = React.memo((props) => {
         >
           <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
             <div className={"width-page-centric deposit-page"}>
-              <FormTitle />
+              <FormTitle tab={activeTab}/>
               {/*  */}
               <div className={"w-100"}>
                 <div className={"d-flex"}>
@@ -224,15 +215,34 @@ const Deposit3 = React.memo((props) => {
                     <div className={"d-flex flex-row justify-content-between"}>
                       <div className=" w-100">
                         <div className="homepage d-flex  flex-column align-items-center  login-page user-page">
-                          {/* <Alert /> */}
                           <div className=" pb-0" data-backdrop="static">
-                            <DepositForm />
+                            <Tabs
+                              variant={"tabs"}
+                              defaultActiveKey={activeTab}
+                              id=""
+                              className=" mb-3 px-3"
+                              justify
+                              onSelect={handleTabSelect}
+                            >
+                              <Tab
+                                eventKey="deposit"
+                                title="Deposit"
+                                className={""}
+                              >
+                                <DepositForm />
+                              </Tab>
+                              <Tab
+                              eventKey="withdraw"
+                              title="Withdraw"
+                              className={""}>
+                                <WithdrawForm/>
+                              </Tab>
+                            </Tabs>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
+                  </div>{" "}
                   <div className="mt-4">{/*<LoginForm {...props}/>*/}</div>
                 </div>
               </div>

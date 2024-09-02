@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Col, notification, Row } from "antd";
 import authImg from "../../../assets/img/logo.png";
 
@@ -14,20 +14,15 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Form, Formik } from "formik";
 import { StoreContext } from "../../../context/store";
 import mpesa from "../../../assets/img/mpesa.png";
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import "./deposit.css";
-import Header2 from "../../header/Header2";
-import Notify from "../../utils/Notify";
+
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { userWithdrawal } from "../../../redux/dataSlice";
+import { resetState, userWithdrawal } from "../../../redux/dataSlice";
 import { userBalance } from "../../../redux/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-const backgroundStyle = {
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-};
+
 
 const Withdraw = React.memo((props) => {
   const navigate = useNavigate();
@@ -107,22 +102,59 @@ const Withdraw = React.memo((props) => {
     );
   };
 
-  const Alert = (props) => {
-    let c = successMessage ? "success" : "danger";
-    message &&
-      setTimeout(() => {
-        setMessage(null);
-      }, 5500);
-    return (
-      <>
-        {message && (
-          <div role="alert" className={`fade alert alert-${c} show`}>
-            {message}
-          </div>
-        )}{" "}
-      </>
-    );
-  };
+  // const Alert = (props) => {
+  //   let c = successMessage ? "success" : "danger";
+  //   message &&
+  //     setTimeout(() => {
+  //       setMessage(null);
+  //     }, 5500);
+  //   return (
+  //     <>
+  //       {message && (
+  //         <div role="alert" className={`fade alert alert-${c} show`}>
+  //           {message}
+  //         </div>
+  //       )}{" "}
+  //     </>
+  //   );
+  // };
+
+  const dispatchWithdrawtMessage = useCallback(() => {
+    if (successMessage !== null ) {
+      // Use Ant Design notification to display the success message
+      notification.success({
+        message: "Success",
+        description: successMessage , // assuming `successMessage` has a `message` field
+        className: "ant-notification",
+        placement: "top", // Set placement to top-left
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
+      navigate("/")
+     }
+    //else if (errorMessage !== null) {
+    //   notification.error({
+    //     message: "Error",
+    //     description: errorMessage, // assuming `errorMessage` has a `message` field
+    //     className: "ant-notification",
+    //     placement: "top", // Set placement to top-left
+    //     onClick: () => {
+    //       console.log("Notification Clicked!");
+    //     },
+    //   });
+    // }
+  }, [successMessage, errorMessage]);
+
+  useEffect(() => {
+    dispatchWithdrawtMessage();
+    setTimeout(() => {
+      dispatchRedux(resetState("deposits_message"));
+      dispatchRedux(resetState("deposits_confirm_message"));
+      dispatchRedux(resetState("error"));
+    }, 7500);
+  }, [dispatchWithdrawtMessage]);
+
 
   return (
     <div style={{ height: "100vh" }}>
@@ -144,7 +176,7 @@ const Withdraw = React.memo((props) => {
                     <div className={"d-flex flex-row justify-content-between"}>
                       <div className=" w-100">
                         <div className="homepage d-flex  flex-column align-items-center  login-page user-page">
-                          <Alert />
+                          {/* <Alert /> */}
                           <div className=" pb-0" data-backdrop="static">
                             <WithdrawForm />
                           </div>
@@ -264,7 +296,6 @@ const MyWithdrawForm = (props) => {
   const { errors, values, setFieldValue } = props;
   const appConfigs = useSelector((state) => state.data.app_config);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-  //const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
     setSettings(appConfigs || getFromLocalStorage("settings"));
@@ -337,7 +368,7 @@ const MyWithdrawForm = (props) => {
     </Form>
   );
 };
-const WithdrawForm = (props) => {
+export const WithdrawForm = (props) => {
   const dispatchRedux = useDispatch();
   const app_config = useSelector((state) => state.data.app_config);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));

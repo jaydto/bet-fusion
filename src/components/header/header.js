@@ -356,7 +356,7 @@ const Header = React.memo((props) => {
                   onClick={toggle}
                 >
                   <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                    <div className="col-5  desktop-none">
+                    <div className="col-5 ">
                       <div>
                         <img
                           src={Logo}

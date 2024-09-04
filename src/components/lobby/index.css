@@ -84,6 +84,22 @@ width:46.3%!important;
  .grid-item {
   /* width: 46.4% !important; */
   width: 30.4% !important;
+  min-height:97px;
+}
+.grid-item > div.gamePanel > .reaCover > .Real > div {
+  
+  font-size: 7px;
+}
+.imgCover h4{
+  font-size: 12px;
+  white-space: wrap;
+}
+.grid-item > div.imgCover > a.Fun{
+  font-size: 10px!important;
+}
+.grid-item.span-2:nth-child(1) .jpOverlay{
+  width:75px!important;
+  height: 75px!important;
 }
 .grid-item.span-2, .grid-item.span-3 {
   width: 46.3% !important;

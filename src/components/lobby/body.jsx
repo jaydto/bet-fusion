@@ -16,8 +16,9 @@ const sections = [
   "Slots",
 ];
 
-export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonClick }) => {
+export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonClick, handleHoverStart, handleHoverEnd,handleLinkClick }) => {
   const gamesToDisplay = games?.slice(0, visibleItems[section]);
+  
   console.log("games to display")
   return gamesToDisplay?.map((game, gameIndex) => (
     <div
@@ -28,6 +29,8 @@ export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonC
       data-category={game.game.gameCategory}
       data-order={gameIndex}
       data-id={game.game.gameId}
+      onMouseEnter={() => handleHoverStart(game.game?.game_id ?? game.game?.gameName ?? game.game?.key)}
+      onMouseLeave={handleHoverEnd}
     >
       <div
         className="jpOverlay"
@@ -69,6 +72,7 @@ export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonC
           className="link Fun"
           to={`/smart-play?game=${game.game?.game_id ?? game.game?.gameName ?? game.game?.key}&category=${game.game?.gameCategory}&status=demo`}
           target="_self"
+          onClick={(event) => handleLinkClick(event, game.game?.game_id ?? game.game?.gameName ?? game.game?.key)}
         >
           <div>Demo</div>
         </Link>
@@ -87,7 +91,7 @@ const CasinoGamesComponent = () => {
 
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const [visibleItems, setVisibleItems] = useState(
-    sections.reduce((acc, section) => ({ ...acc, [section]: 9 }), {})
+    sections.reduce((acc, section) => ({ ...acc, [section]:width<991 ? 15 : 9 }), {})
   );
   const competitionData = useSelector((state) => state.virtualLeague.competitions_data) || getFromLocalStorage('kiron-competitions')
 
@@ -105,6 +109,25 @@ const CasinoGamesComponent = () => {
   useEffect(() => {
     getSmartGames("Slots");
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newWidth = window.innerWidth;
+      setVisibleItems(sections.reduce((acc, section) => ({
+        ...acc,
+        [section]: newWidth < 991 ? 11 : 9
+      }), {}));
+    };
+
+    // Set initial state
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, [sections]);
 
   useEffect(() => {
     if (userData) {
@@ -127,7 +150,9 @@ const CasinoGamesComponent = () => {
   };
 
   const handleButtonClick = (event, game_id, gameCategory) => {
-    event.stopPropagation();
+    console.log("game_id", game_id, "hovered id",hoveredGameId)
+    if (hoveredGameId === game_id || width>991) {
+    // event.stopPropagation();
 
     const redirectToSmartPlay = () => {
       navigate(
@@ -139,6 +164,18 @@ const CasinoGamesComponent = () => {
       redirectToSmartPlay();
     } else {
       navigate("/login");
+    }
+  }
+  else {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  };
+
+  const handleLinkClick = (event, gameId) => {
+    if (hoveredGameId !== gameId && width<991) {
+      event.preventDefault();
+      event.stopPropagation();
     }
   };
 
@@ -177,6 +214,8 @@ const CasinoGamesComponent = () => {
             data-category="Slots"
             data-order={gameIndex}
             data-id={game.gameId}
+            onMouseEnter={() => handleHoverStart(game?.game_id ?? game?.gameName ?? game?.key)}
+            onMouseLeave={handleHoverEnd}
           >
             <div
               className="jpOverlay"
@@ -216,6 +255,8 @@ const CasinoGamesComponent = () => {
                 className="link Fun"
                 to={`/smart-play?game=${game?.gameName}&category=${game?.gameCategory}&status=demo`}
                 target="_self"
+                onClick={(event) => handleLinkClick(event, game?.game_id ?? game?.gameName ?? game?.key)}
+
               >
                 <div>Demo</div>
               </Link>
@@ -265,6 +306,17 @@ const CasinoGamesComponent = () => {
     ));
   };
 
+  const [hoveredGameId, setHoveredGameId] = useState(null);
+
+  const handleHoverStart = (gameId) => {
+    console.log("hovering", gameId);
+    setHoveredGameId(gameId);
+  };
+
+  const handleHoverEnd = () => {
+    setHoveredGameId(null);
+  };
+
   
   const renderSection = (section) => {
     const data = casino_search.length > 0 ? casino_search : casino_games;
@@ -304,7 +356,7 @@ const CasinoGamesComponent = () => {
         <div className="gamesCont grid-layout slots">
           {length > 0 ? (
             casino_search.length > 0 ? (
-              <RenderCasinoSearch games={data} section={section} visibleItems={visibleItems} handleButtonClick={handleButtonClick}  // Pass the handleButtonClick function here
+              <RenderCasinoSearch games={data} section={section} visibleItems={visibleItems} handleButtonClick={handleButtonClick} handleHoverStart={handleHoverStart}  handleHoverEnd={handleHoverEnd} handleLinkClick={handleLinkClick}  // Pass the handleButtonClick function here
               />
             ) : (
               renderCasinoGames(data, section)

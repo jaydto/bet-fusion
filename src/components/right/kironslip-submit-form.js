@@ -174,6 +174,10 @@ const KironslipSubmitForm = React.memo(
         const handlePlaceBet = useCallback(
             (values, { setSubmitting, resetForm, setStatus, setErrors }) => {
               let slipHasOddsChange = false;
+
+              if (!user){
+                return
+              }
           
               if (slipHasOddsChange === true) {
                 setMessage({
@@ -210,6 +214,8 @@ const KironslipSubmitForm = React.memo(
               let endpoint = "/v1/nare-league/bet";
               let method = "POST";
               let use_jwt = false;
+
+
           
               makeRequest({
                 url: endpoint,
@@ -522,7 +528,7 @@ const KironslipSubmitForm = React.memo(
             }
 
             if (!values.bet_amount || values.bet_amount < 10) {
-                errors.bet_amount = "Enter valid bet amount";
+                errors.bet_amount = "Enter valid bet amount ,value can not be less than 10";
                 setMessage({status: 400, message: errors.bet_amount});
                 return errors;
             }
@@ -696,6 +702,9 @@ const KironslipSubmitForm = React.memo(
                                                 </div>
                                             </div>
                                         </div>
+                                        {errors.bet_amount && (
+                                            <div className="error d-flex justify-content-center" style={{color:"var(--color-site)"}}>{errors.bet_amount}</div>
+                                        )}
                                     </div>
                                     <div id="odd-change-text2">
                                         <div className={"d-flex bet-select-values w-100 mt-2 p-lg-2 p-md-2 py-sm-0"}

@@ -22,14 +22,14 @@ export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonC
   console.log("games to display")
   return gamesToDisplay?.map((game, gameIndex) => (
     <div
-      key={`${game.provider}-${game.game.gameId}`}
+      key={`${game?.provider}-${game.game.gameId}`}
       // className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}
       className={`grid-item `}
       data-provider={game.provider}
       data-category={game.game.gameCategory}
       data-order={gameIndex}
       data-id={game.game.gameId}
-      onMouseEnter={() => handleHoverStart(game.game?.game_id ?? game.game?.gameName ?? game.game?.key)}
+      onMouseEnter={() => handleHoverStart(game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key)}
       onMouseLeave={handleHoverEnd}
     >
       <div

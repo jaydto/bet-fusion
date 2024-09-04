@@ -25,7 +25,30 @@
   }
 }
 
+@media screen and (min-width: 992px) {  
+  .grid-item:not(.addmoregames):hover > .imgCover {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    /* top: 60%; */
+    width: 100%;
+    /* height: 70%; */
+    height: 50%;
+    opacity: 1;
+}
+}
+
 @media screen and (max-width: 991px) {
+  .grid-item:not(.addmoregames):hover > .imgCover {
+    position: absolute;
+    left: 0;
+    top: 45%;
+    /* top: 60%; */
+    width: 100%;
+    /* height: 70%; */
+    height: 56%;
+    opacity: 1;
+}
   .gamesCont.grid-layout.slots {
     margin-bottom: 5rem;
   }
@@ -801,16 +824,7 @@ section.pageContent .side.center.desktop {
     #252525 60%
   );
 }
-.grid-item:not(.addmoregames):hover > .imgCover {
-  position: absolute;
-  left: 0;
-  top: 55%;
-  /* top: 60%; */
-  width: 100%;
-  /* height: 70%; */
-  height: 57%;
-  opacity: 1;
-}
+/* grid */
 .grid-item:not(.addmoregames):not(.nohover):hover > div {
   background-size: auto 140%;
 }

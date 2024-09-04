@@ -558,10 +558,9 @@ input.text-white {
 }
 
 .top-nav-login {
-  min-height: 60px;
   padding: 1px 0px 5px 0px;
   background: var(--CrashKali-header-bg);
-  max-height: 104px;
+ 
 }
 
 .pc .navbar-nav > li > a {
@@ -2135,6 +2134,10 @@ img.nare-league {
 }
 
 @media (min-width: 992px) {
+  .top-nav-login {
+    min-height: 50px;
+    max-height: 53px;
+}
   .top-diff-pages {
     margin-top: 1rem !important;
   }

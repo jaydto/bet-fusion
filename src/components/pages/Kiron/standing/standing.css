@@ -34,9 +34,10 @@
 .heading-standings{
     color: var(--dark);
 }
-.league-wrapper {
+.league-wrapper.standings {
     padding-bottom: 0 !important;
     min-height: auto !important;
+   
 }
 .standing-wrapper {
     width: 100%;
@@ -227,6 +228,20 @@ table tr td.standings-menu:nth-child(3) {
 tr td.standings-menu:nth-child(5) {
     width: 115px;
     text-align: center;
+}
+@media (min-width: 992px){
+    .league-wrapper.standings{
+        max-height:80vh!important;
+        overflow-x: hidden;
+    }
+   
+}
+@media (max-width: 991px){
+    .league-wrapper.standings{
+        max-height:90vh!important;
+        overflow-x: hidden;
+    }
+   
 }
 @media (max-width:767px){
     table tr td.standings-menu:first-child {

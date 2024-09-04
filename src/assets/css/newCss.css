@@ -2136,7 +2136,8 @@ img.nare-league {
 @media (min-width: 992px) {
   .top-nav-login {
     min-height: 50px;
-    max-height: 53px;
+    height: 63px;
+    max-height: 63px;
 }
   .top-diff-pages {
     margin-top: 1rem !important;

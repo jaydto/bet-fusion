@@ -50,7 +50,7 @@ const Standing = () => {
                     </div>
                 </div>
             </section>
-            <div className="league-wrapper">
+            <div className="league-wrapper standings">
                 <div className="match-standing-wrapper pt-0">
                     {!loadingData ? <table className={"mx-1 table"}>
                         <tbody style={{background: 'var(--CrashKali-body-bg)'}}>

@@ -46,14 +46,8 @@ export const UserInfo = React.memo(
         const urlPath = window.location.pathname
         const showBalance = (!urlPath.includes("nare-games") && !urlPath.includes("gameplay") && !urlPath.includes("smart-play"))
 
-        const showSearchBar = () => {
-            // setSearching(true)
-            dispatch({type: "SET", key: "searching", payload: true})
-            // searchInputRef.current.focus()
-            gaEventTracker('Clicked on Search')
-        }
+      
 
-        console.log("userdata", user)
         return (
             <>
                 {user &&

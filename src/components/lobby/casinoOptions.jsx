@@ -143,7 +143,7 @@ const handleHoverEnd = () => {
           <RenderCasinoSearch
             games={casino_search}
             section={category}
-            visibleItems={20}
+            visibleItems={{}}
             handleButtonClick={handleButtonClick}
             handleHoverEnd={handleHoverEnd}
             handleHoverStart={handleHoverStart}

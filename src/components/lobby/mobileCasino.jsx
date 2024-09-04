@@ -8,17 +8,23 @@ import newestImg from '../../assets/img/mobile/New.png';
 import recommendedImg from '../../assets/img/mobile/Rec.png';
 import instantGamesImg from '../../assets/img/mobile/Instant_Games_Icon_200x200.png';
 import './index.css';
+import { useDispatch } from 'react-redux';
+import { setState } from '../../redux/virtualsSlice';
 
 const MobileNavCasino = () => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState('All'); // Set initial active item
+  const dispatch = useDispatch();
 
   const handleItemClick = (category, provider = "smartSoft") => {
     console.log("activeItem", category)
     // Set the active item
     setActiveItem(category);
     if(category==='All'){
+      dispatch(setState("casino_search", []));
+
       return navigate("/casino")
+
     }
     // Navigate to casino-options with selected category
     navigate(`/casino/${provider}/${category}`);

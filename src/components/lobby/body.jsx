@@ -25,7 +25,12 @@ export const RenderCasinoSearch = ({
   handleHoverEnd,
   handleLinkClick,
 }) => {
-  const gamesToDisplay = games?.slice(0, visibleItems[section]);
+  
+
+  const gamesToDisplay = Object.keys(visibleItems).length === 0
+  ? games
+  : games?.slice(0, visibleItems[section]);
+  
 
 
  

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import favImg from '../../assets/img/mobile/fav-1.png';
 import crashGamesImg from '../../assets/img/mobile/crash-games.png';
 import slotImg from '../../assets/img/mobile/Slot.png';
@@ -13,7 +13,9 @@ import { setState } from '../../redux/virtualsSlice';
 
 const MobileNavCasino = () => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState('All'); // Set initial active item
+  const { provider, category } = useParams();
+
+  const [activeItem, setActiveItem] = useState(category??'All'); // Set initial active item
   const dispatch = useDispatch();
 
   const handleItemClick = (category, provider = "smartSoft") => {

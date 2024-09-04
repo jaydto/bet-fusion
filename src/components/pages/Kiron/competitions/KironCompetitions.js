@@ -82,7 +82,7 @@ const KironCompetitions = React.memo(
                                 <div className={'error-message-periods'}>{error}</div>
                             </div> :
                             competitionData?.map((kiron_options, index) => (
-                                <div key={index} className="league-countries">
+                                <div key={index} className={`league-countries ${sideLobby?'side-lobby':''}`}>
                                     <div
                                         className={`country-flag-icon ${(pathname.includes(`competition_id=${kiron_options?.competition_id}`)) ? ' active-league ' : " "} justify-content-center`}>
                                         <Link

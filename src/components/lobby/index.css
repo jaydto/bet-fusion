@@ -25,104 +25,119 @@
   }
 }
 
-@media screen and (max-width:991px){
-  .gamesCont.grid-layout.slots{
-    margin-bottom:5rem;
+@media screen and (max-width: 991px) {
+  .gamesCont.grid-layout.slots {
+    margin-bottom: 5rem;
   }
-  .jpHeader{
-    display:none!important;
+  .jpHeader {
+    display: none !important;
   }
-  .grid-layout{
-    padding:5px 1px!important;
+  .grid-layout {
+    padding: 5px 1px !important;
   }
   .newJPDisplay[levels="3"] > .jplevels {
-    width: calc((100% - 20px) / 2)!important;
+    width: calc((100% - 20px) / 2) !important;
+  }
+  .newJPDisplay {
+    display: flex !important;
+  }
+  .newJPDisplay > .jplevels {
+    height: 50px !important;
+  }
+  .newJPDisplay > .jplevels > .currency {
+    line-height: 0px !important;
+  }
+  .odometer.odometer-auto-theme .odometer-digit .odometer-value,
+  .odometer.odometer-theme-default .odometer-digit .odometer-value {
+    font-size: 15px !important;
+  }
 }
-.newJPDisplay{
-  display: flex!important;
+@media only screen and (max-width: 900px) {
+  .grid-layout {
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+  .grid-item:first-child {
+    width: 100% !important;
+  }
+  .grid-item:first-child[data-provider="virtual-league"] {
+    width: 46.3% !important;
+  }
+  .grid-item[data-provider="virtual-league"] {
+    width: 46.3% !important;
+  }
+
+  .grid-item.span-2,
+  .grid-item.span-3 {
+    width: 46.3% !important;
+  }
+  /* .grid-item.span-2 {
+  width: 100% !important;
+} */
+
+  .grid-item.span-2:nth-child(1) {
+    border: 4px solid #ffc400;
+    border-radius: 5px;
+  }
 }
-.newJPDisplay > .jplevels{
-  height: 50px!important;
-}
-.newJPDisplay > .jplevels > .currency{
-  line-height: 0px!important;
-}
-.odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value{
-  font-size:15px!important;
-}
+.btnHckd.active {
+  /* background-color: #16202C !important; */
+  border-bottom: thin solid var(--CrashKali-button-login) !important;
+  color: var(--CrashKali-button-login) !important;
+  font-weight: 800 !important;
+  font-size: 12px ;
+
 
 }
 @media only screen and (max-width: 900px) {
-.grid-layout {
-  display: flex !important;
-  flex-wrap: wrap !important;
-}
-.grid-item:first-child {
-  width: 100% !important;
+  .btnHckd.active {
+    border-radius: 4px;
+    font-size: 13px !important;
 
-}
-.grid-item:first-child[data-provider="virtual-league"] {
-width:46.3%!important;
-}
-.grid-item[data-provider="virtual-league"] {
-  width:46.3%!important;
+
   }
-
-.grid-item.span-2, .grid-item.span-3 {
-  width: 46.3% !important;
-}
-/* .grid-item.span-2 {
-  width: 100% !important;
-} */
-
-.grid-item.span-2:nth-child(1) {
-  border: 4px solid #ffc400;
-  border-radius: 5px;
-}
-}
-@media only screen and (max-width: 600px) {
- .grid-item {
-  /* width: 46.4% !important; */
-  width: 30.4% !important;
-  min-height:97px;
-}
-.grid-item > div.gamePanel > .reaCover > .Real > div {
-  
-  font-size: 7px;
-}
-.imgCover h4{
-  font-size: 10px;
-  word-break: break-all;
-  white-space: wrap;
-}
-.grid-item.span-2 .imgCover h4,
-.grid-item.span-3 .imgCover h4 {
-  font-size: 12px;
-}
-.grid-item > div.imgCover > a.Fun{
-  font-size: 9px!important;
-}
-.grid-item.span-2:nth-child(1) .jpOverlay{
-  width:75px!important;
-  height: 75px!important;
-}
-.grid-item.span-2, .grid-item.span-3 {
-  width: 46.3% !important;
-}
+  .grid-item {
+    /* width: 46.4% !important; */
+    width: 30.4% !important;
+    min-height: 97px;
+  }
+  .grid-item > div.gamePanel > .reaCover > .Real > div {
+    font-size: 7px;
+  }
+  .imgCover h4 {
+    font-size: 10px;
+    word-break: break-all;
+    white-space: wrap;
+  }
+  .grid-item.span-2 .imgCover h4,
+  .grid-item.span-3 .imgCover h4 {
+    font-size: 12px;
+  }
+  .grid-item > div.imgCover > a.Fun {
+    font-size: 9px !important;
+  }
+  .grid-item.span-2:nth-child(1) .jpOverlay {
+    width: 75px !important;
+    height: 75px !important;
+  }
+  .grid-item.span-2,
+  .grid-item.span-3 {
+    width: 46.3% !important;
+  }
 }
 @media only screen and (max-width: 400px) {
   .grid-item {
-   /* width: 46.4% !important; */
-   width: 29.4% !important;
- }
- .grid-item.span-2, .grid-item.span-3 {
-   width: 45.3% !important;
- }
- }
+    /* width: 46.4% !important; */
+    width: 29.4% !important;
+  }
+  .grid-item.span-2,
+  .grid-item.span-3 {
+    width: 45.3% !important;
+  }
+}
 /* body.desktop {
     min-width: 1280px;
 } */
-
 
 .see-more-less button {
   color: var(--CrashKali-button-login);
@@ -138,8 +153,8 @@ width:46.3%!important;
   border: none;
   font-size: 14px;
 }
-.section-lobby-header{
-  color:var(--light);
+.section-lobby-header {
+  color: var(--light);
 }
 
 .grid-item.span-2:nth-child(1) {
@@ -152,8 +167,8 @@ width:46.3%!important;
   margin: 5px;
   /* background: rgba(3, 23, 30, 1); */
 }
-.btnHckd{
-  color:var(--light)!important;
+.btnHckd {
+  color: var(--light) !important;
 }
 .no-data-message {
   text-align: center;
@@ -189,17 +204,17 @@ width:46.3%!important;
   background-size: 120px 120px;
 }
 .grid-item:not(.nohover)[data-provider="SmartSoft"] .jpOverlay {
-    /* background: url('/assets/img/mobile/overlayImage.png'); */
+  /* background: url('/assets/img/mobile/overlayImage.png'); */
 }
 .grid-item:not(.nohover)[data-provider="SmartSoft"] .jpOverlay {
-    /* background: url('/Users/apple/Projects/crash_kali/frontend/crash-kali-web/src/assets/img/mobile/overlayImage.png'); */
-    /* filter: invert(1); */
-    background-blend-mode: color;
-    /* backdrop-filter: saturate(0.5); */
-    /* background-origin: border-box; */
-    background-size: contain;
+  /* background: url('/Users/apple/Projects/crash_kali/frontend/crash-kali-web/src/assets/img/mobile/overlayImage.png'); */
+  /* filter: invert(1); */
+  background-blend-mode: color;
+  /* backdrop-filter: saturate(0.5); */
+  /* background-origin: border-box; */
+  background-size: contain;
 }
-  
+
 .grid-item[data-provider] .jpOverlay {
   position: absolute;
   width: 60px;
@@ -290,19 +305,19 @@ width:46.3%!important;
   transform: translate3d(0, -10%, 0) scale(1.1);
   border: 1px solid #cba03f;
 }
-.grid-item>div.gamePanel>* {
+.grid-item > div.gamePanel > * {
   -webkit-transition: all 0.15s linear;
   -moz-transition: all 0.15s linear;
   -o-transition: all 0.15s linear;
   transition: all 0.15s linear;
 }
-.grid-item:not(.nohover):hover>div>.img {
+.grid-item:not(.nohover):hover > div > .img {
   filter: blur(0px);
   -webkit-filter: blur(0px);
   transform: scale(1.1);
   background-position: center -20px;
 }
-.grid-item>div.gamePanel>.img {
+.grid-item > div.gamePanel > .img {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -319,17 +334,16 @@ width:46.3%!important;
   border-radius: 5px;
 }
 /* button play */
-.grid-item>div.gamePanel>.reaCover>.Real>div {
-  background-color: var(--CrashKali-button-login
-  );
+.grid-item > div.gamePanel > .reaCover > .Real > div {
+  background-color: var(--CrashKali-button-login);
   padding: 4px 8px;
   border-radius: 16px;
 }
-.grid-item>div.gamePanel>.reaCover>.Real>a{
-  color:var(--light);
+.grid-item > div.gamePanel > .reaCover > .Real > a {
+  color: var(--light);
   font-weight: 700;
 }
-.grid-item>div.gamePanel .reaCover>.Real {
+.grid-item > div.gamePanel .reaCover > .Real {
   position: absolute;
   left: 50%;
   top: 30%;
@@ -342,11 +356,11 @@ width:46.3%!important;
   overflow: hidden;
   transform: translate(-50%, -50%);
 }
-.grid-item:not(.nohover):hover>div.gamePanel>.reaCover {
+.grid-item:not(.nohover):hover > div.gamePanel > .reaCover {
   height: 100%;
   background: #15171db3;
 }
-.grid-item>div.gamePanel>.reaCover {
+.grid-item > div.gamePanel > .reaCover {
   position: absolute;
   overflow: hidden;
   width: 100%;
@@ -515,7 +529,7 @@ ul.sideCasinoMenu {
   position: absolute;
   left: 0px;
   top: 1px;
-  width:220px;
+  width: 220px;
 }
 ul.sideCasinoMenu > li.search {
   background-color: #1b1e25;
@@ -551,13 +565,14 @@ ul.sideCasinoMenu > li.category {
 li.active {
   cursor: default;
 }
-ul.sideCasinoMenu > li.category.active > a , 
-  ul.sideCasinoMenu > li.category.active > .category-options {
+ul.sideCasinoMenu > li.category.active > a,
+ul.sideCasinoMenu > li.category.active > .category-options {
   /* color: #ffd814; */
   color: white;
   background: #2b2f36;
 }
-ul.sideCasinoMenu > li.category > a, ul.sideCasinoMenu > li.category > .category-sections  {
+ul.sideCasinoMenu > li.category > a,
+ul.sideCasinoMenu > li.category > .category-sections {
   display: block;
   padding: 14px 12px;
   font-size: 14px;
@@ -652,12 +667,11 @@ ul.sideCasinoMenu > li.category {
   text-transform: initial;
   position: relative;
 }
-.category-item > .provider{
-  position:relative;
-  background:#162136!important;
-  
+.category-item > .provider {
+  position: relative;
+  background: #162136 !important;
 }
-.category-item.counter{
+.category-item.counter {
   float: right;
   line-height: 10px;
   font-size: 12px;
@@ -670,13 +684,15 @@ ul.sideCasinoMenu > li.category {
   color: #ffffffd1;
   font-weight: 500;
 }
- .category-item > .provider:after {
+.category-item > .provider:after {
   content: "\25bc";
   color: #bac1cf;
   font-size: 8px;
   float: right;
 }
-ul.sideCasinoMenu > li.category > a , ul.sideCasinoMenu > li.category > .category-options, .category-item > .provider{
+ul.sideCasinoMenu > li.category > a,
+ul.sideCasinoMenu > li.category > .category-options,
+.category-item > .provider {
   display: block;
   padding: 14px 12px;
   font-size: 14px;
@@ -785,7 +801,7 @@ section.pageContent .side.center.desktop {
     #252525 60%
   );
 }
-.grid-item:not(.addmoregames):hover>.imgCover {
+.grid-item:not(.addmoregames):hover > .imgCover {
   position: absolute;
   left: 0;
   top: 55%;
@@ -795,13 +811,17 @@ section.pageContent .side.center.desktop {
   height: 57%;
   opacity: 1;
 }
-.grid-item:not(.addmoregames):not(.nohover):hover>div {
+.grid-item:not(.addmoregames):not(.nohover):hover > div {
   background-size: auto 140%;
 }
-.grid-item.span-2:hover, .grid-item.span-2:hover {
+.grid-item.span-2:hover,
+.grid-item.span-2:hover {
   /* transform: translate3d(0, 00) scale(1.1); */
 }
-.grid-item:hover, .grid-item:hover, .grid-item:hover, body.freespins .grid-item:hover {
+.grid-item:hover,
+.grid-item:hover,
+.grid-item:hover,
+body.freespins .grid-item:hover {
   z-index: 2;
   /* transform: translate3d(0, -10%, 0) scale(1.1); */
   /* border: 1px solid #cba03f; */
@@ -1099,7 +1119,6 @@ section.pageContent .side.center.desktop {
   background-size: 50%;
 }
 
-
 /* mobile styles */
 .mobile.casino section.sportsNav#casinoMenu {
   position: relative;
@@ -1115,7 +1134,7 @@ section.pageContent .side.center.desktop {
   transition: bottom 0.2s ease-out;
   border-bottom: 1px solid var(--CrashKali-footer);
 }
-.sportsNav::-webkit-scrollbar{
+.sportsNav::-webkit-scrollbar {
   display: none;
 }
 body.mobile.casino section.sportsNav#casinoMenu .btnHckd {

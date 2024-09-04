@@ -281,7 +281,7 @@ const Header = React.memo((props) => {
                     <ul className="header-nav-container">
                       <li
                         className={`${
-                          pathname === "/casino" ? "active" : ""
+                          (pathname.includes("casino") || pathname == "/casino" )? "active" : ""
                         } header-nav-item`}
                       >
                         <div

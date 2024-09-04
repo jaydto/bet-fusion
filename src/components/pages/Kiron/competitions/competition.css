@@ -20,6 +20,11 @@
     justify-content: center;
     align-items: center;
 }
+.league-countries.side-lobby{
+    padding-top: 0.5rem!important;
+
+
+}
 .league-countries .country-flag-icon {
     flex: 1 1;
 }

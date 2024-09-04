@@ -195,7 +195,7 @@ const CasinoGamesComponent = () => {
   const handleSeeLess = (section) => {
     setVisibleItems((prevVisibleItems) => ({
       ...prevVisibleItems,
-      [section]: 9,
+      [section]: width<991? 11:9,
     }));
   };
 

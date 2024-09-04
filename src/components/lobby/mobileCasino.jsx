@@ -59,7 +59,8 @@ const MobileNavCasino = () => {
         <div
           className={`btnHckd ${activeItem === 'crash-games' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
-          onClick={() => handleItemClick('crash-games')}
+          // onClick={() => handleItemClick('crash-games')}
+          onClick={() => navigate("/smart-play?game=JetX&category=JetX&status=live")}
         >
           <img src={crashGamesImg} alt="JetX" />JetX
         </div>

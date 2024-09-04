@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import favImg from '../../assets/img/mobile/fav-1.png';
 import crashGamesImg from '../../assets/img/mobile/crash-games.png';
 import slotImg from '../../assets/img/mobile/Slot.png';
+import casinoChip from '../../assets/svg/casinoChip.svg';
 import newestImg from '../../assets/img/mobile/New.png';
 import recommendedImg from '../../assets/img/mobile/Rec.png';
 import instantGamesImg from '../../assets/img/mobile/Instant_Games_Icon_200x200.png';
@@ -10,19 +11,29 @@ import './index.css';
 
 const MobileNavCasino = () => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState('Slots'); // Set initial active item
+  const [activeItem, setActiveItem] = useState('All'); // Set initial active item
 
   const handleItemClick = (category, provider = "smartSoft") => {
     console.log("activeItem", category)
     // Set the active item
     setActiveItem(category);
+    if(category==='All'){
+      return navigate("/casino")
+    }
     // Navigate to casino-options with selected category
-    navigate(`/casino-options/${provider}/${category}`);
+    navigate(`/casino/${provider}/${category}`);
   };
 
   return (
     <section className="sportsNav non-desktop done" id="casinoMenu">
       <div className="nwBtns" style={{ display: "flex", width: '100%', fontSize: '0px', justifyContent: 'space-around' }}>
+      <div
+          className={`btnHckd ${activeItem === 'All' ? 'active' : ''}`}
+          style={{ width: '9.09091%', minWidth: '100px' }}
+          onClick={() => handleItemClick('All', 'all')}
+        >
+          <img src={casinoChip} alt="All" />All
+        </div>
       <div
           className={`btnHckd ${activeItem === 'Slots' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
@@ -33,7 +44,7 @@ const MobileNavCasino = () => {
         <div
           className={`btnHckd ${activeItem === 'favorites' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
-          onClick={() => handleItemClick('favorites', 'favorites')}
+          onClick={() => handleItemClick('favorites')}
         >
           <img src={favImg} alt="Favorites" />favorites
         </div>

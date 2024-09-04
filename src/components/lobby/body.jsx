@@ -8,7 +8,7 @@ import useWindowDimensions from "../header/Dimensions";
 
 const sections = [
   // "smartSoft",
-  
+
   "popular",
   "crash games",
   "instant games",
@@ -16,21 +16,38 @@ const sections = [
   "Slots",
 ];
 
-export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonClick, handleHoverStart, handleHoverEnd,handleLinkClick }) => {
+export const RenderCasinoSearch = ({
+  games,
+  section,
+  visibleItems,
+  handleButtonClick,
+  handleHoverStart,
+  handleHoverEnd,
+  handleLinkClick,
+}) => {
   const gamesToDisplay = games?.slice(0, visibleItems[section]);
-  
-  console.log("games to display")
+
+
+ 
+
   return gamesToDisplay?.map((game, gameIndex) => (
     <div
       key={`${game?.provider}-${game.game.gameId}`}
       // className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}
-      className={`grid-item `}
+      className={`grid-item ${
+        gameIndex === 0 ? "span-2" : gameIndex === 1 ? "span-3" : ""
+      }`}
       data-provider={game.provider}
       data-category={game.game.gameCategory}
       data-order={gameIndex}
       data-id={game.game.gameId}
-      onMouseEnter={() => handleHoverStart(game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key)}
-      onMouseLeave={handleHoverEnd}
+      onMouseEnter={
+        () =>
+              handleHoverStart(
+                game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key
+              )
+      }
+      onMouseLeave={ handleHoverEnd }
     >
       <div
         className="jpOverlay"
@@ -70,9 +87,16 @@ export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonC
         <Link
           data-real="0"
           className="link Fun"
-          to={`/smart-play?game=${game.game?.game_id ?? game.game?.gameName ?? game.game?.key}&category=${game.game?.gameCategory}&status=demo`}
+          to={`/smart-play?game=${
+            game.game?.game_id ?? game.game?.gameName ?? game.game?.key
+          }&category=${game.game?.gameCategory}&status=demo`}
           target="_self"
-          onClick={(event) => handleLinkClick(event, game.game?.game_id ?? game.game?.gameName ?? game.game?.key)}
+          onClick={(event) =>
+            handleLinkClick(
+              event,
+              game.game?.game_id ?? game.game?.gameName ?? game.game?.key
+            )
+          }
         >
           <div>Demo</div>
         </Link>
@@ -81,52 +105,63 @@ export const RenderCasinoSearch = ({ games, section, visibleItems, handleButtonC
   ));
 };
 
-
 const CasinoGamesComponent = () => {
   const dispatch = useDispatch();
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const userData = useSelector((state) => state.auth.user);
   const casino_search = useSelector((state) => state.virtuals.casino_search);
-  const {width}=useWindowDimensions()
+  const { width } = useWindowDimensions();
 
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const [visibleItems, setVisibleItems] = useState(
-    sections.reduce((acc, section) => ({ ...acc, [section]:width<991 ? 15 : 9 }), {})
+    sections.reduce(
+      (acc, section) => ({ ...acc, [section]: width < 991 ? 15 : 9 }),
+      {}
+    )
   );
-  const competitionData = useSelector((state) => state.virtualLeague.competitions_data) || getFromLocalStorage('kiron-competitions')
+  const competitionData =
+    useSelector((state) => state.virtualLeague.competitions_data) ||
+    getFromLocalStorage("kiron-competitions");
 
   const navigate = useNavigate();
   const sectionRefs = useRef({});
   const defaultVisibleCount = {
     // smartSoft: 0,
-    popular:0,
-    "crash games":  width<991 ? 0 : 4,
-    "instant games":0,
-    "virtual League":  0,
-    Slots:   width<991 ? 0 : 4,
+    popular: 0,
+    "crash games": width < 991 ? 0 : 4,
+    "instant games": 0,
+    "virtual League": 0,
+    Slots: width < 991 ? 0 : 4,
   };
 
   useEffect(() => {
     getSmartGames("Slots");
   }, []);
 
+
+
   useEffect(() => {
     const handleResize = () => {
       const newWidth = window.innerWidth;
-      setVisibleItems(sections.reduce((acc, section) => ({
-        ...acc,
-        [section]: newWidth < 991 ? 11 : 9
-      }), {}));
+      setVisibleItems(
+        sections.reduce(
+          (acc, section) => ({
+            ...acc,
+            [section]: newWidth < 991 ? 11 : 9,
+          }),
+          {}
+        )
+      );
     };
 
     // Set initial state
     handleResize();
 
     // Add event listener
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Clean up event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [sections]);
 
   useEffect(() => {
@@ -150,30 +185,29 @@ const CasinoGamesComponent = () => {
   };
 
   const handleButtonClick = (event, game_id, gameCategory) => {
-    console.log("game_id", game_id, "hovered id",hoveredGameId)
-    if (hoveredGameId === game_id || width>991) {
-    // event.stopPropagation();
+    console.log("game_id", game_id, "hovered id", hoveredGameId);
+    if (hoveredGameId === game_id || width > 991) {
+      // event.stopPropagation();
 
-    const redirectToSmartPlay = () => {
-      navigate(
-        `/smart-play?game=${game_id}&category=${gameCategory}&status=live`
-      );
-    };
+      const redirectToSmartPlay = () => {
+        navigate(
+          `/smart-play?game=${game_id}&category=${gameCategory}&status=live`
+        );
+      };
 
-    if (user) {
-      redirectToSmartPlay();
+      if (user) {
+        redirectToSmartPlay();
+      } else {
+        navigate("/login");
+      }
     } else {
-      navigate("/login");
+      event.preventDefault();
+      event.stopPropagation();
     }
-  }
-  else {
-    event.preventDefault();
-    event.stopPropagation();
-  }
   };
 
   const handleLinkClick = (event, gameId) => {
-    if (hoveredGameId !== gameId && width<991) {
+    if (hoveredGameId !== gameId && width < 991) {
       event.preventDefault();
       event.stopPropagation();
     }
@@ -195,7 +229,7 @@ const CasinoGamesComponent = () => {
   const handleSeeLess = (section) => {
     setVisibleItems((prevVisibleItems) => ({
       ...prevVisibleItems,
-      [section]: width<991? 11:9,
+      [section]: width < 991 ? 11 : 9,
     }));
   };
 
@@ -208,13 +242,19 @@ const CasinoGamesComponent = () => {
           <div
             key={`${providerIndex}-${gameIndex}`}
             className={`grid-item ${
-              gameIndex === defaultVisibleCount[section] ? "span-2" :gameIndex ===1?"span-3" : ""
+              gameIndex === defaultVisibleCount[section]
+                ? "span-2"
+                : gameIndex === 1
+                ? "span-3"
+                : ""
             }`}
             data-provider={game.provider}
             data-category="Slots"
             data-order={gameIndex}
             data-id={game.gameId}
-            onMouseEnter={() => handleHoverStart(game?.game_id ?? game?.gameName ?? game?.key)}
+            onMouseEnter={() =>
+              handleHoverStart(game?.game_id ?? game?.gameName ?? game?.key)
+            }
             onMouseLeave={handleHoverEnd}
           >
             <div
@@ -255,8 +295,12 @@ const CasinoGamesComponent = () => {
                 className="link Fun"
                 to={`/smart-play?game=${game?.gameName}&category=${game?.gameCategory}&status=demo`}
                 target="_self"
-                onClick={(event) => handleLinkClick(event, game?.game_id ?? game?.gameName ?? game?.key)}
-
+                onClick={(event) =>
+                  handleLinkClick(
+                    event,
+                    game?.game_id ?? game?.gameName ?? game?.key
+                  )
+                }
               >
                 <div>Demo</div>
               </Link>
@@ -267,7 +311,10 @@ const CasinoGamesComponent = () => {
   };
 
   const renderVirtualLeague = () => {
-    const gamesToDisplay = competitionData?.slice(0, visibleItems["virtual League"]);
+    const gamesToDisplay = competitionData?.slice(
+      0,
+      visibleItems["virtual League"]
+    );
     return gamesToDisplay?.map((competition, index) => (
       <div
         key={competition.competition_id}
@@ -276,12 +323,8 @@ const CasinoGamesComponent = () => {
         data-category="virtual-league"
         data-order={index}
         data-id={competition.competition_id}
-        
       >
-        <div
-          className="jpOverlay"
-         
-        ></div>
+        <div className="jpOverlay"></div>
         <div className="gamePanel">
           <div
             className="img"
@@ -292,7 +335,12 @@ const CasinoGamesComponent = () => {
           ></div>
           <div className="reaCover">
             <div className="link Real">
-              <Link className="d-flex" to={`/?competition_id=${competition?.competition_id}`}>View Competition</Link>
+              <Link
+                className="d-flex"
+                to={`/?competition_id=${competition?.competition_id}`}
+              >
+                View Competition
+              </Link>
             </div>
           </div>
         </div>
@@ -309,15 +357,15 @@ const CasinoGamesComponent = () => {
   const [hoveredGameId, setHoveredGameId] = useState(null);
 
   const handleHoverStart = (gameId) => {
-    console.log("hovering", gameId);
-    setHoveredGameId(gameId);
+   
+      setHoveredGameId(gameId);
+    
   };
 
   const handleHoverEnd = () => {
-    setHoveredGameId(null);
+      setHoveredGameId(null);
   };
 
-  
   const renderSection = (section) => {
     const data = casino_search.length > 0 ? casino_search : casino_games;
     const allGames = data.flatMap(
@@ -336,44 +384,65 @@ const CasinoGamesComponent = () => {
         }}
       >
         <div className="d-flex justify-content-between px-4 section-lobby-header">
-          <h2 style={{textTransform: "capitalize"}}>{section}</h2>
+          <h2 style={{ textTransform: "capitalize" }}>{section}</h2>
           <div className="see-more-less">
             {visibleItems[section] < length ? (
-              <button style={{textTransform: "capitalize"}} onClick={() => handleSeeMore(section, length)}>
+              <button
+                style={{ textTransform: "capitalize" }}
+                onClick={() => handleSeeMore(section, length)}
+              >
                 See More
               </button>
             ) : (
-              <button style={{textTransform: "capitalize"}} onClick={() => handleSeeLess(section)}>See Less</button>
+              <button
+                style={{ textTransform: "capitalize" }}
+                onClick={() => handleSeeLess(section)}
+              >
+                See Less
+              </button>
             )}
           </div>
         </div>
-          { (section === "virtual League") ? 
+        {section === "virtual League" ? (
           <div className="gamesCont grid-layout slots">
             {renderVirtualLeague()}
-            </div>
-          :
-
-        <div className="gamesCont grid-layout slots">
-          {length > 0 ? (
-            casino_search.length > 0 ? (
-              <RenderCasinoSearch games={data} section={section} visibleItems={visibleItems} handleButtonClick={handleButtonClick} handleHoverStart={handleHoverStart}  handleHoverEnd={handleHoverEnd} handleLinkClick={handleLinkClick}  // Pass the handleButtonClick function here
-              />
+          </div>
+        ) : (
+          <div className="gamesCont grid-layout slots">
+            {length > 0 ? (
+              casino_search.length > 0 ? (
+                <RenderCasinoSearch
+                  games={data}
+                  section={section}
+                  visibleItems={visibleItems}
+                  handleButtonClick={handleButtonClick}
+                  handleHoverStart={handleHoverStart}
+                  handleHoverEnd={handleHoverEnd}
+                  handleLinkClick={handleLinkClick}
+                />
+              ) : (
+                renderCasinoGames(data, section)
+              )
             ) : (
-              renderCasinoGames(data, section)
-            )
-          ) : (
-            <p>No games available.</p>
-          )}
-        </div>}
+              <p>No games available.</p>
+            )}
+          </div>
+        )}
       </div>
     );
   };
 
-  return <div ref={(el) => {
-    if (!sectionRefs.current["virtual League"]) {
-      sectionRefs.current["virtual League"] = el;
-    }
-  }}>{sections.map(renderSection)}</div>;
+  return (
+    <div
+      ref={(el) => {
+        if (!sectionRefs.current["virtual League"]) {
+          sectionRefs.current["virtual League"] = el;
+        }
+      }}
+    >
+      {sections.map(renderSection)}
+    </div>
+  );
 };
 
 export default CasinoGamesComponent;

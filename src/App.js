@@ -166,7 +166,7 @@ const App =
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/404" element={<PageNotFound/>}/>
                         {/* <Route exact path="/casino" element={<NewCasino/>}/> */}
-                        <Route path="/casino-options/:provider/:category" element={<CasinoOptions />} />
+                        <Route path="/casino/:provider/:category" element={<CasinoIndex />} />
                        
                         <Route exact path="/smart-play" element={<SmartPlay/>}/>
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>

@@ -4,6 +4,7 @@ import CasinoGamesComponent from "./body";
 import CasinoLayout from "./casinoLayout";
 import { useParams } from "react-router-dom";
 import CasinoOptions from "./casinoOptions";
+import './index.css';
 
 const CasinoIndex = () => {
   const { provider, category } = useParams();

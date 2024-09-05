@@ -9,7 +9,6 @@ import casinoChip from '../../assets/svg/casinoChip.svg';
 import crash from '../../assets/img/mobile/fire.png';
 import popular from '../../assets/img/mobile/crash.png';
 import instantGamesImg from '../../assets/img/mobile/Instant_Games_Icon_200x200.png';
-import './index.css';
 import { useDispatch } from 'react-redux';
 import { setState } from '../../redux/virtualsSlice';
 

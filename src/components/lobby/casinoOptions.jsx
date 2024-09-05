@@ -105,6 +105,8 @@ const CasinoOptions = ({ provider, category }) => {
 
   const fetchData = useCallback(async () => {
     try {
+      dispatch(setVirtualGame("casino_search", []));
+
       if (casino_games.length === 0) {
         // fetchCategoryGames(category);
         fetchAllCategoriesData(category);

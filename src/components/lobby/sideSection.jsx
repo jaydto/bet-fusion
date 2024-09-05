@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import crashGamesImg from '../../assets/img/mobile/crash-games.png';
-import { Link, useNavigate } from 'react-router-dom';
-import KironCompetitions from '../pages/Kiron/competitions/KironCompetitions';
-import { setState as setVirtualGame,
-} from "../../redux/virtualsSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import crashGamesImg from "../../assets/img/mobile/crash-games.png";
+import { Link, useNavigate } from "react-router-dom";
+import KironCompetitions from "../pages/Kiron/competitions/KironCompetitions";
+import { setState as setVirtualGame } from "../../redux/virtualsSlice";
 const SideCasinoMenu = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [isCollapsed, setIsCollapsed] = useState({
     slots: true,
-    virtualLeague: true
+    virtualLeague: true,
   });
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const casino_search = useSelector((state) => state.virtuals.casino_search);
-  const smartsoft_categories = useSelector((state) => state.virtuals.smartsoft_categories);
-  const dispatch=useDispatch()
+  const smartsoft_categories = useSelector(
+    (state) => state.virtuals.smartsoft_categories
+  );
+  const dispatch = useDispatch();
   const [activeProvider, setActiveProvider] = useState(null);
 
   const handleSearchChange = (e) => {
@@ -29,26 +30,25 @@ const SideCasinoMenu = () => {
     }));
   };
 
-
   const resetSearch = () => {
     dispatch(setVirtualGame("casino_search", []));
     setActiveProvider(null);
-    navigate('/')
+    navigate("/casino");
   };
 
-  const handleCategoryClick = ( category,provider="smartSoft") => {
-    navigate(`/casino-options/${provider}/${category}`);
+  const handleCategoryClick = (category, provider = "smartSoft") => {
+    navigate(`/casino/${provider}/${category}`);
+
     setActiveProvider(category);
-
   };
 
-   // Determine if the current URL matches `/casino-options`
-   useEffect(() => {
-    const pathParts = window.location.pathname.split('/');
-    if (pathParts[1] === 'casino-options' && pathParts[3]) {
+  // Determine if the current URL matches `/casino`
+  useEffect(() => {
+    const pathParts = window.location.pathname.split("/");
+    if (pathParts[1] === "casino" && pathParts[3]) {
       setActiveProvider(pathParts[3]);
     } else {
-      setActiveProvider(null); // Reset active category if not on casino-options
+      setActiveProvider(null); // Reset active category if not on casino
     }
   }, [window.location.pathname]);
 
@@ -90,9 +90,20 @@ const SideCasinoMenu = () => {
       </li> */}
 
       <li className="category subCat" data-category="crash-games">
-        <Link to="/smart-play?game=JetX&category=JetX&status=live" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Link
+          to="/smart-play?game=JetX&category=JetX&status=live"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           <span>JetX</span>
-          <img style={{ width: '30px' }} src={crashGamesImg} alt="crash-games" />
+          <img
+            style={{ width: "30px" }}
+            src={crashGamesImg}
+            alt="crash-games"
+          />
         </Link>
       </li>
 
@@ -102,55 +113,92 @@ const SideCasinoMenu = () => {
 
       <li className="category subCat active" data-category="slots">
         <div className="category-options">
-          <span>Providers</span>       
+          <span>Providers</span>
         </div>
         <div className="counter">2</div>
         <div className="category-item providerFilt">
-          <div provider-list="VirtualLeague" className='provider' onClick={() => toggleCollapse('virtualLeague')} style={{ cursor: 'pointer' }} >
+          <div
+            provider-list="VirtualLeague"
+            className="provider"
+            onClick={() => toggleCollapse("virtualLeague")}
+            style={{ cursor: "pointer" }}
+          >
             <label>
-              <span>Virtual League</span>  
+              <span>Virtual League</span>
 
-              <input type="checkbox" filter-value="SmartSoft" className="providerbox" />
+              <input
+                type="checkbox"
+                filter-value="SmartSoft"
+                className="providerbox"
+              />
               <div className="checkboxx"></div>
             </label>
           </div>
         </div>
-        {isCollapsed['virtualLeague'] && (
-        <KironCompetitions sideLobby={true}/>
-          )}
+        {isCollapsed["virtualLeague"] && <KironCompetitions sideLobby={true} />}
         <div className="category-item providerFilt">
-          <div provider-list="SmartSoft" className='provider' onClick={() => toggleCollapse('slots')} style={{ cursor: 'pointer' }} >
+          <div
+            provider-list="SmartSoft"
+            className="provider"
+            onClick={() => toggleCollapse("slots")}
+            style={{ cursor: "pointer" }}
+          >
             <label>
-              <span>SmartSoft</span>  <div className="category-item counter">{smartsoft_categories?.length}</div>
-
-              <input type="checkbox" filter-value="SmartSoft" className="providerbox" />
+              <span>SmartSoft</span>{" "}
+              <div className="category-item counter">
+                {smartsoft_categories?.length}
+              </div>
+              <input
+                type="checkbox"
+                filter-value="SmartSoft"
+                className="providerbox"
+              />
               <div className="checkboxx"></div>
             </label>
           </div>
         </div>
-        {isCollapsed['slots'] && (
-          <div className="items providerFilt" style={{textTransform: "capitalize"}}>
-             <div onClick={resetSearch} className={!activeProvider ? ' text-light' : ''}>
+        {isCollapsed["slots"] && (
+          <div
+            className="items providerFilt"
+            style={{ textTransform: "capitalize" }}
+          >
+            <div
+              onClick={resetSearch}
+              className={!activeProvider ? " text-light" : ""}
+            >
               <label>
-                <span style={{textTransform: "capitalize"}}>All</span>
+                <span style={{ textTransform: "capitalize" }}>All</span>
                 <div className="checkboxx"></div>
               </label>
             </div>
             {smartsoft_categories?.map((value) => (
-              <div style={{textTransform: "capitalize"}} key={value.default_description} provider-list={value.default_description} 
-              className={activeProvider === value.default_description ? ' text-light' : ''}
-
-              // onClick={() => filterData(value.default_description)}
-              onClick={() => handleCategoryClick(value.default_description,'smartSoft')}
+              <div
+                style={{ textTransform: "capitalize" }}
+                key={value.default_description}
+                provider-list={value.default_description}
+                className={
+                  activeProvider === value.default_description
+                    ? " text-light"
+                    : ""
+                }
+                // onClick={() => filterData(value.default_description)}
+                onClick={() => {
+                  handleCategoryClick(value.default_description, "smartSoft");
+                }}
               >
                 <label>
-                  <span style={{textTransform: "capitalize"}}>{value.default_description}</span>
-                  <input type="checkbox" filter-value={value.default_description} className="providerbox" />
+                  <span style={{ textTransform: "capitalize" }}>
+                    {value.default_description}
+                  </span>
+                  <input
+                    type="checkbox"
+                    filter-value={value.default_description}
+                    className="providerbox"
+                  />
                   <div className="checkboxx"></div>
                 </label>
               </div>
             ))}
-           
           </div>
         )}
       </li>
@@ -163,6 +211,6 @@ const SideCasinoMenu = () => {
       </li> */}
     </ul>
   );
-}
+};
 
 export default SideCasinoMenu;

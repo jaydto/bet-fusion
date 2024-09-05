@@ -8,18 +8,16 @@ import useWindowDimensions from "../header/Dimensions";
 
 const sections = [
   "popular",
-  "recommended",
   "crash games",
-  // "instant games",
+  "instant games",
   "virtual League",
   "Slots",
 ];
 
 export const categoryEndpoints = {
   popular: { endpoint: "/v1/fetch-casino-popular", provider: "" },
-  recommended: { endpoint: "/v1/fetch-casino-hot", provider: "" },
   "crash games": { endpoint: "/v1/crash-games", provider: "" },
-  // "instant games": { endpoint: null, provider: "" },
+  "instant games": { endpoint: "/v1/fetch-casino-hot", provider: "" },
   "virtual League": { endpoint: null, provider: "" },
   Slots: { endpoint: "/v2/smartsoft-games", provider: "smart-soft" },
 };
@@ -141,8 +139,8 @@ const CasinoGamesComponent = () => {
   const defaultVisibleCount = {
     // smartSoft: 0,
     popular: 0,
-    recommended: 0,
     "crash games": width < 991 ? 0 : 0,
+    "instant games": 0,
     // "instant games": 0,
     "virtual League": 0,
     Slots: width < 991 ? 0 : 4,

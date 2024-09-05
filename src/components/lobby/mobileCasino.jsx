@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import favImg from '../../assets/img/mobile/fav-1.png';
+// import favImg from '../../assets/img/mobile/fav-1.png';
 import crashGamesImg from '../../assets/img/mobile/crash-games.png';
 import slotImg from '../../assets/img/mobile/Slot.png';
 import casinoChip from '../../assets/svg/casinoChip.svg';
-import newestImg from '../../assets/img/mobile/New.png';
-import recommendedImg from '../../assets/img/mobile/Rec.png';
+// import newestImg from '../../assets/img/mobile/New.png';
+// import recommendedImg from '../../assets/img/mobile/Rec.png';
+import crash from '../../assets/img/mobile/fire.png';
+import popular from '../../assets/img/mobile/crash.png';
 import instantGamesImg from '../../assets/img/mobile/Instant_Games_Icon_200x200.png';
 import './index.css';
 import { useDispatch } from 'react-redux';
@@ -54,8 +56,24 @@ const MobileNavCasino = () => {
           style={{ width: '9.09091%', minWidth: '100px' }}
           onClick={() => handleItemClick('favorites')}
         >
-          <img src={favImg} alt="Favorites" />favorites
+          <img src={Newest} alt="Favorites" />favorites
         </div> */}
+       
+       
+        <div
+          className={`btnHckd ${activeItem === 'popular' ? 'active' : ''}`}
+          style={{ width: '9.09091%', minWidth: '100px' }}
+          onClick={() => handleItemClick('popular',"Popular")}
+        >
+           <img src={popular} alt="Popular" />Popular
+        </div>
+        <div
+          className={`btnHckd ${activeItem === 'crash games' ? 'active' : ''}`}
+          style={{ width: '9.09091%', minWidth: '100px' }}
+          onClick={() => handleItemClick('crash games', 'Crash games')}
+        >
+          <img src={crash} alt="Crash Games" />Crash Games
+        </div>
         <div
           className={`btnHckd ${activeItem === 'jetX' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
@@ -64,28 +82,14 @@ const MobileNavCasino = () => {
         >
           <img src={crashGamesImg} alt="JetX" />JetX
         </div>
-       
-        {/* <div
-          className={`btnHckd ${activeItem === 'newest' ? 'active' : ''}`}
-          style={{ width: '9.09091%', minWidth: '100px' }}
-          onClick={() => handleItemClick('newest')}
-        >
-          <img src={newestImg} alt="Newest" />Newest
-        </div> */}
          <div
-          className={`btnHckd ${activeItem === 'recommended' ? 'active' : ''}`}
+          className={`btnHckd ${activeItem === 'instant games' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
-          onClick={() => handleItemClick('recommended','Recommended')}
+          onClick={() => handleItemClick('instant games','Instant Games')}
         >
-          <img src={recommendedImg} alt="Recommended" />Recommended
+          <img src={instantGamesImg} alt="Instant Games" />Instant games
         </div> 
-        <div
-          className={`btnHckd ${activeItem === 'crash games' ? 'active' : ''}`}
-          style={{ width: '9.09091%', minWidth: '100px' }}
-          onClick={() => handleItemClick('crash games', 'Crash games')}
-        >
-          <img src={instantGamesImg} alt="Crash Games" />Crash Games
-        </div>
+     
       </div>
     </section>
   );

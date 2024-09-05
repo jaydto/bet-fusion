@@ -63,27 +63,7 @@ const CasinoOptions = ({ provider, category }) => {
     dispatch(setVirtualGame("casino_search", displayedGames));
   };
 
-  // const fetchCategoryGames = (category) => {
-  //   const payload = categoryEndpoints[category];
-  //   const provider = category === "Slots" ? "smart-soft" : "";
-  
-  //   console.log("endpoint received", payload.endpoint); // Debug log
-  
-  //   if (!payload.endpoint) {
-  //     console.log(`No endpoint for category: ${category}`); // Error handling log
-  //     return;
-  //   }
-  
-  //   const data = {
-  //     endpoint:payload.endpoint,
-  //     method: "POST",
-  //     category,
-  //     provider,
-  //   };
-  
-  //   console.log("Data to dispatch:", data); // Log the data being dispatched
-  //   dispatch(casinoList(data));
-  // };
+
 
   const fetchAllCategoriesData = async (category_option) => {
     // Fetch the specified category first

@@ -40,6 +40,7 @@ const initialState = {
     loading: false,
     error: null,
     casino_games: [],
+    provider_data: {},
     casino_search: [],
     show_modal: null,
     casino_categories: null,

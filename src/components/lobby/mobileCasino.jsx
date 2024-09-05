@@ -49,15 +49,15 @@ const MobileNavCasino = () => {
         >
           <img src={slotImg} alt="Slot" />Slots
         </div>
-        <div
+        {/* <div
           className={`btnHckd ${activeItem === 'favorites' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
           onClick={() => handleItemClick('favorites')}
         >
           <img src={favImg} alt="Favorites" />favorites
-        </div>
+        </div> */}
         <div
-          className={`btnHckd ${activeItem === 'crash-games' ? 'active' : ''}`}
+          className={`btnHckd ${activeItem === 'jetX' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
           // onClick={() => handleItemClick('crash-games')}
           onClick={() => navigate("/smart-play?game=JetX&category=JetX&status=live")}
@@ -65,26 +65,26 @@ const MobileNavCasino = () => {
           <img src={crashGamesImg} alt="JetX" />JetX
         </div>
        
-        <div
+        {/* <div
           className={`btnHckd ${activeItem === 'newest' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
           onClick={() => handleItemClick('newest')}
         >
           <img src={newestImg} alt="Newest" />Newest
-        </div>
-        <div
+        </div> */}
+         <div
           className={`btnHckd ${activeItem === 'recommended' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
-          onClick={() => handleItemClick('recommended')}
+          onClick={() => handleItemClick('recommended','Recommended')}
         >
           <img src={recommendedImg} alt="Recommended" />Recommended
-        </div>
+        </div> 
         <div
-          className={`btnHckd ${activeItem === 'instant-game' ? 'active' : ''}`}
+          className={`btnHckd ${activeItem === 'crash games' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
-          onClick={() => handleItemClick('instant-game')}
+          onClick={() => handleItemClick('crash games', 'Crash games')}
         >
-          <img src={instantGamesImg} alt="Instant Games" />Instant Games
+          <img src={instantGamesImg} alt="Crash Games" />Crash Games
         </div>
       </div>
     </section>

@@ -7,14 +7,22 @@ import OverlayImage from "../../assets/img/mobile/overlayImage.png";
 import useWindowDimensions from "../header/Dimensions";
 
 const sections = [
-  // "smartSoft",
-
   "popular",
+  "recommended",
   "crash games",
-  "instant games",
+  // "instant games",
   "virtual League",
   "Slots",
 ];
+
+export const categoryEndpoints = {
+  popular: { endpoint: "/v1/fetch-casino-popular", provider: "" },
+  recommended: { endpoint: "/v1/fetch-casino-hot", provider: "" },
+  "crash games": { endpoint: "/v1/crash-games", provider: "" },
+  // "instant games": { endpoint: null, provider: "" },
+  "virtual League": { endpoint: null, provider: "" },
+  Slots: { endpoint: "/v2/smartsoft-games", provider: "smart-soft" },
+};
 
 export const RenderCasinoSearch = ({
   games,
@@ -24,35 +32,35 @@ export const RenderCasinoSearch = ({
   handleHoverStart,
   handleHoverEnd,
   handleLinkClick,
+  special = true,
 }) => {
-  
-
-  const gamesToDisplay = Object.keys(visibleItems).length === 0
-  ? games
-  : games?.slice(0, visibleItems[section]);
-  
-
-
- 
+  const gamesToDisplay =
+    Object.keys(visibleItems).length === 0
+      ? games
+      : games?.slice(0, visibleItems[section]);
 
   return gamesToDisplay?.map((game, gameIndex) => (
     <div
       key={`${game?.provider}-${game.game.gameId}`}
-      // className={`grid-item ${gameIndex === 0 ? "span-2" : ""}`}
       className={`grid-item ${
-        gameIndex === 0 ? "span-2" : gameIndex === 1 ? "span-3" : ""
+        special
+          ? gameIndex === 0
+            ? "span-2"
+            : gameIndex === 1
+            ? "span-3"
+            : ""
+          : ""
       }`}
       data-provider={game.provider}
       data-category={game.game.gameCategory}
       data-order={gameIndex}
       data-id={game.game.gameId}
-      onMouseEnter={
-        () =>
-              handleHoverStart(
-                game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key
-              )
+      onMouseEnter={() =>
+        handleHoverStart(
+          game?.game?.game_id ?? game?.game?.gameName ?? game?.game?.key
+        )
       }
-      onMouseLeave={ handleHoverEnd }
+      onMouseLeave={handleHoverEnd}
     >
       <div
         className="jpOverlay"
@@ -133,17 +141,16 @@ const CasinoGamesComponent = () => {
   const defaultVisibleCount = {
     // smartSoft: 0,
     popular: 0,
-    "crash games": width < 991 ? 0 : 4,
-    "instant games": 0,
+    recommended: 0,
+    "crash games": width < 991 ? 0 : 0,
+    // "instant games": 0,
     "virtual League": 0,
     Slots: width < 991 ? 0 : 4,
   };
 
-  useEffect(() => {
-    getSmartGames("Slots");
-  }, []);
-
-
+  // useEffect(() => {
+  //   fetchAllCategoriesData()
+  // }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -175,19 +182,28 @@ const CasinoGamesComponent = () => {
     }
   }, [userData]);
 
-  const getSmartGames = async (category) => {
-    let endpoint = "/v2/smartsoft-games";
-    let method = "POST";
+  const fetchAllCategoriesData = async () => {
+    for (const [category, { endpoint, provider }] of Object.entries(
+      categoryEndpoints
+    )) {
+      if (endpoint) {
+        const method = "POST";
+        const data = {
+          endpoint: endpoint,
+          method: method,
+          category: category,
+          provider: provider,
+        };
 
-    const data = {
-      endpoint: endpoint,
-      method: method,
-      category: category,
-      provider: "smart-soft",
-    };
-
-    dispatch(casinoList(data));
+        // Dispatch the action to fetch data
+        await dispatch(casinoList(data));
+      }
+    }
   };
+
+  useEffect(() => {
+    fetchAllCategoriesData(); // Fetch data for all categories when the component mounts
+  }, []);
 
   const handleButtonClick = (event, game_id, gameCategory) => {
     console.log("game_id", game_id, "hovered id", hoveredGameId);
@@ -239,79 +255,88 @@ const CasinoGamesComponent = () => {
   };
 
   const renderCasinoGames = (games, section) => {
-    const gamesToDisplay = games?.slice(0, visibleItems[section]);
-    return gamesToDisplay?.flatMap((providerGames, providerIndex) =>
-      providerGames[Object.keys(providerGames)[0]]
-        ?.slice(0, visibleItems[section])
-        ?.map((game, gameIndex) => (
+    const filteredGames = games
+      .filter((gameSection) => gameSection[section]) // Filter games that match the section
+      .map((gameSection) => {
+        return {
+          [section]: gameSection[section].slice(0, visibleItems[section]), // Slice the filtered games
+        };
+      });
+
+    // Debugging logs for understanding filtered output
+    console.log("filteredGames", filteredGames);
+
+    // Now display the filtered and sliced games
+    return filteredGames?.flatMap((providerGames, providerIndex) =>
+      providerGames[section]?.map((game, gameIndex) => (
+        <div
+          key={`${providerIndex}-${gameIndex}`}
+          className={`grid-item ${
+            gameIndex === defaultVisibleCount[section]
+              ? "span-2"
+              : gameIndex === 1
+              ? "span-3"
+              : ""
+          }`}
+          data-provider={game.provider}
+          data-category="Slots"
+          data-order={gameIndex}
+          data-id={game.gameId}
+          onMouseEnter={() =>
+            handleHoverStart(game?.game_id ?? game?.gameName ?? game?.key)
+          }
+          onMouseLeave={handleHoverEnd}
+        >
           <div
-            key={`${providerIndex}-${gameIndex}`}
-            className={`grid-item ${
-              gameIndex === defaultVisibleCount[section]
-                ? "span-2"
-                : gameIndex === 1
-                ? "span-3"
-                : ""
-            }`}
-            data-provider={game.provider}
-            data-category="Slots"
-            data-order={gameIndex}
-            data-id={game.gameId}
-            onMouseEnter={() =>
-              handleHoverStart(game?.game_id ?? game?.gameName ?? game?.key)
-            }
-            onMouseLeave={handleHoverEnd}
-          >
+            className="jpOverlay"
+            style={{ backgroundImage: `url(${OverlayImage})` }}
+          ></div>
+          <div className="gamePanel">
             <div
-              className="jpOverlay"
-              style={{ backgroundImage: `url(${OverlayImage})` }}
+              className="img"
+              style={{
+                backgroundImage: `url(${game?.game_icon ?? game?.image_url})`,
+                width: "-webkit-fill-available",
+              }}
             ></div>
-            <div className="gamePanel">
+            <div className="reaCover">
               <div
-                className="img"
-                style={{
-                  backgroundImage: `url(${game?.game_icon ?? game?.image_url})`,
-                  width: "-webkit-fill-available",
-                }}
-              ></div>
-              <div className="reaCover">
-                <div
-                  data-real="1"
-                  className="link Real"
-                  onClick={(event) =>
-                    handleButtonClick(
-                      event,
-                      game?.game_id ?? game?.gameName ?? game?.key,
-                      game?.gameCategory
-                    )
-                  }
-                >
-                  <div>Play now</div>
-                </div>
-              </div>
-            </div>
-            <div className="imgCover">
-              <h4>{game?.game_name ?? game?.gameName}</h4>
-              <a className="infoBtn">
-                <div>i</div>
-              </a>
-              <Link
-                data-real="0"
-                className="link Fun"
-                to={`/smart-play?game=${game?.gameName}&category=${game?.gameCategory}&status=demo`}
-                target="_self"
+                data-real="1"
+                className="link Real"
                 onClick={(event) =>
-                  handleLinkClick(
+                  handleButtonClick(
                     event,
-                    game?.game_id ?? game?.gameName ?? game?.key
+                    game?.game_id ?? game?.gameName ?? game?.key,
+                    game?.gameCategory
                   )
                 }
               >
-                <div>Demo</div>
-              </Link>
+                <div>Play now</div>
+              </div>
             </div>
           </div>
-        ))
+          <div className="imgCover">
+            <h4>{game?.game_name ?? game?.gameName}</h4>
+            <a className="infoBtn">
+              <div>i</div>
+            </a>
+            <Link
+              data-real="0"
+              className="link Fun"
+              to={`/smart-play?game=${game?.gameName}&category=${game?.gameCategory}&status=demo`}
+              target="_self"
+              onClick={(event) =>
+                handleLinkClick(
+                  event,
+                  game?.game_id ?? game?.gameName ?? game?.key
+                )
+              }
+            >
+              <div>Demo</div>
+            </Link>
+          </div>
+        </div>
+      ))
     );
   };
 
@@ -362,21 +387,22 @@ const CasinoGamesComponent = () => {
   const [hoveredGameId, setHoveredGameId] = useState(null);
 
   const handleHoverStart = (gameId) => {
-   
-      setHoveredGameId(gameId);
-    
+    setHoveredGameId(gameId);
   };
 
   const handleHoverEnd = () => {
-      setHoveredGameId(null);
+    setHoveredGameId(null);
   };
 
   const renderSection = (section) => {
+    console.log("render section", section);
     const data = casino_search.length > 0 ? casino_search : casino_games;
     const allGames = data.flatMap(
       (providerGames) => providerGames[Object.keys(providerGames)[0]]
     );
     const length = allGames.length;
+
+    console.log("render section length", length);
 
     return (
       <div

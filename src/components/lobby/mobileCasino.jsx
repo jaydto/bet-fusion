@@ -22,9 +22,10 @@ const MobileNavCasino = () => {
   const handleItemClick = (category, provider = "smartSoft") => {
     console.log("activeItem", category)
     // Set the active item
+    dispatch(setState("casino_search", []));
+
     setActiveItem(category);
     if(category==='All'){
-      dispatch(setState("casino_search", []));
 
       return navigate("/casino")
 

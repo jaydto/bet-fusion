@@ -318,21 +318,7 @@ const Header = React.memo((props) => {
                 </div>
               </div>
 
-              {/* {!checkDesktop && (
-             <Row
-               className={`second-nav ck pc os app-navbar ${
-                 user ? " app-header-nav-login " : " app-header-nav "
-               } to-navcheck `}
-             >
-               <HeaderNav />
-             </Row>
-           )} */}
-
-              {/* {notShowMobileNav &&
-                !slip &&
-                !jackpot &&
-                !checkDesktop &&
-                !pathname.includes("match") && <MobileNav1 />} */}
+             
 
               <Offcanvas
                 style={{

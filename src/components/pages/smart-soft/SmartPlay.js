@@ -67,7 +67,7 @@ const SmartPlay = React.memo(
         const {width} = useWindowDimensions();
         const [isCustomFullscreen, setCustomFullscreen] = useState(false);
 
-        const [iframeHeight, setIframeHeight] = useState(700); // Initial height
+        const [iframeHeight, setIframeHeight] = useState(85); // Initial height
 
         // Define the CSS style for the iframe
         const iframeStyle = {
@@ -78,15 +78,20 @@ const SmartPlay = React.memo(
         const maxIframeHeight =
             width > 991 ?
                 isCustomFullscreen ?
-                    window.innerHeight * 2 :
+                    window.innerHeight * 2.5 :
                     window.innerHeight * 0.82 :
                 window.innerHeight * 0.92; // Maximum height is 77% desktop  and 92% mobile of the screen height
 
         // // Function to update the iframe height
         const updateIframeHeight = useCallback(() => {
+            if (!isCustomFullscreen) {
+                setIframeHeight(85);
+            }
+            else{
+                setIframeHeight(90);
+            }
             // console.log("this was called to resize", maxIframeHeight)
-            setIframeHeight(isCustomFullscreen ? 660 : 800); // Set the fixed height here
-        }, []);
+        }, [isCustomFullscreen]);
 
 
         useEffect(() => {
@@ -216,7 +221,7 @@ const SmartPlay = React.memo(
                                                 src={gameUrl} title="Gadme"
                                                 style={{
                                                     ...iframeStyle,
-                                                    height: `${Math.min(iframeHeight, maxIframeHeight)}px`,
+                                                    height: `${Math.min(iframeHeight, maxIframeHeight)}svh`,
                                                 }}
                                         ></iframe>
                                     </div>}

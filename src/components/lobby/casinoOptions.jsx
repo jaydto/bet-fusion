@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   setState as setVirtualGame,
   casinoList,
 } from "../../redux/virtualsSlice";
-import { RenderCasinoSearch } from "./body";
+import { categoryEndpoints, RenderCasinoSearch } from "./body";
 import Loader from "./casinoLoader";
 import useWindowDimensions from "../header/Dimensions";
 
@@ -18,51 +18,7 @@ const CasinoOptions = ({ provider, category }) => {
   const user = useSelector((state) => state.auth.user);
   const { width } = useWindowDimensions();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (
-          casino_games.length === 0 &&
-          provider.toLowerCase() === "smartsoft"
-        ) {
-          await fetchCasinoGamesFromAPI();
-        } else if (provider.toLowerCase() !== "smartsoft") {
-          await getGamesByCategory(category, provider);
-        } else {
-          filterData(category, "gameCategory");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false); // Set loading to false once data is fetched
-      }
-    };
-
-    fetchData();
-  }, [provider, category, casino_games]);
-
-  const fetchCasinoGamesFromAPI = async () => {
-    const data = {
-      endpoint: "/v2/smartsoft-games",
-      method: "POST",
-      category: "Slots",
-      provider: "smart-soft",
-    };
-
-    dispatch(casinoList(data));
-  };
-
-  const getGamesByCategory = async (category, provider) => {
-    const data = {
-      endpoint: "/v2/games",
-      method: "POST",
-      category: category,
-      provider: provider,
-    };
-
-    dispatch(casinoList(data));
-  };
-
+ 
   const filterData = (searchTerm, searchKey = "gameName") => {
     const filteredData = [];
 
@@ -88,6 +44,106 @@ const CasinoOptions = ({ provider, category }) => {
     dispatch(setVirtualGame("casino_search", filteredData));
   };
 
+  const getFilteredGames = (casino_games, section) => {
+    const filteredGames = casino_games
+      .filter((gameSection) => gameSection[section]) // Filter games that match the section
+      .map((gameSection) => ({
+        [section]: gameSection[section], // No slicing, return the entire array
+      }));
+
+    console.log("filteredGames", filteredGames); // Debugging filtered output
+
+    const displayedGames = filteredGames?.flatMap((providerGames) =>
+      providerGames[section]?.map((game) => ({
+        provider: providerGames.provider,
+        game,
+      }))
+    );
+
+    dispatch(setVirtualGame("casino_search", displayedGames));
+  };
+
+  // const fetchCategoryGames = (category) => {
+  //   const payload = categoryEndpoints[category];
+  //   const provider = category === "Slots" ? "smart-soft" : "";
+  
+  //   console.log("endpoint received", payload.endpoint); // Debug log
+  
+  //   if (!payload.endpoint) {
+  //     console.log(`No endpoint for category: ${category}`); // Error handling log
+  //     return;
+  //   }
+  
+  //   const data = {
+  //     endpoint:payload.endpoint,
+  //     method: "POST",
+  //     category,
+  //     provider,
+  //   };
+  
+  //   console.log("Data to dispatch:", data); // Log the data being dispatched
+  //   dispatch(casinoList(data));
+  // };
+
+  const fetchAllCategoriesData = async (category_option) => {
+    // Fetch the specified category first
+    if (categoryEndpoints[category_option]) {
+      const { endpoint, provider } = categoryEndpoints[category_option];
+  
+      if (endpoint) {
+        const method = "POST";
+        const data = {
+          endpoint: endpoint,
+          method: method,
+          category: category_option,
+          provider: provider,
+        };
+  
+        // Dispatch the action to fetch data for the selected category option first
+        await dispatch(casinoList(data));
+      }
+    }
+  
+    // Now fetch the rest of the categories (excluding the already fetched category_option)
+    for (const [category, { endpoint, provider }] of Object.entries(categoryEndpoints)) {
+      if (category !== category_option && endpoint) {
+        const method = "POST";
+        const data = {
+          endpoint: endpoint,
+          method: method,
+          category: category,
+          provider: provider,
+        };
+  
+        // Dispatch the action to fetch data for the remaining categories
+        await dispatch(casinoList(data));
+      }
+    }
+  };
+  
+  
+
+  const fetchData = useCallback(async () => {
+    try {
+      if (casino_games.length === 0) {
+        // fetchCategoryGames(category);
+        fetchAllCategoriesData(category);
+      } else if (provider !== "smartSoft") {
+        getFilteredGames(casino_games, category);
+      } else {
+        filterData(category, "gameCategory");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Set loading to false once data is fetched
+    }
+  }, [casino_games, category,provider]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   const handleButtonClick = (event, game_id, gameCategory) => {
     console.log("game_id", game_id, "hovered id", hoveredGameId);
     if (hoveredGameId === game_id || width > 991) {
@@ -111,16 +167,12 @@ const CasinoOptions = ({ provider, category }) => {
   const [hoveredGameId, setHoveredGameId] = useState(null);
 
   const handleHoverStart = (gameId) => {
-   
     setHoveredGameId(gameId);
-  
-};
+  };
 
-const handleHoverEnd = () => {
+  const handleHoverEnd = () => {
     setHoveredGameId(null);
-}
-
-
+  };
 
   const handleLinkClick = (event, gameId) => {
     if (hoveredGameId !== gameId && width < 991) {
@@ -148,6 +200,9 @@ const handleHoverEnd = () => {
             handleHoverEnd={handleHoverEnd}
             handleHoverStart={handleHoverStart}
             handleLinkClick={handleLinkClick}
+            // special={provider==="smartSoft"?true:false}
+            special={false}
+
           />
         ) : (
           <div className="no-data-message">

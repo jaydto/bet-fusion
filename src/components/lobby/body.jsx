@@ -8,16 +8,16 @@ import useWindowDimensions from "../header/Dimensions";
 
 const sections = [
   "popular",
-  "hot",
+  "recommended",
   "crash games",
   // "instant games",
   "virtual League",
   "Slots",
 ];
 
-const categoryEndpoints = {
+export const categoryEndpoints = {
   popular: { endpoint: "/v1/fetch-casino-popular", provider: "" },
-  hot: { endpoint: "/v1/fetch-casino-hot", provider: "" },
+  recommended: { endpoint: "/v1/fetch-casino-hot", provider: "" },
   "crash games": { endpoint: "/v1/crash-games", provider: "" },
   // "instant games": { endpoint: null, provider: "" },
   "virtual League": { endpoint: null, provider: "" },
@@ -32,6 +32,7 @@ export const RenderCasinoSearch = ({
   handleHoverStart,
   handleHoverEnd,
   handleLinkClick,
+  special = true,
 }) => {
   const gamesToDisplay =
     Object.keys(visibleItems).length === 0
@@ -42,7 +43,13 @@ export const RenderCasinoSearch = ({
     <div
       key={`${game?.provider}-${game.game.gameId}`}
       className={`grid-item ${
-        gameIndex === 0 ? "span-2" : gameIndex === 1 ? "span-3" : ""
+        special
+          ? gameIndex === 0
+            ? "span-2"
+            : gameIndex === 1
+            ? "span-3"
+            : ""
+          : ""
       }`}
       data-provider={game.provider}
       data-category={game.game.gameCategory}
@@ -134,7 +141,7 @@ const CasinoGamesComponent = () => {
   const defaultVisibleCount = {
     // smartSoft: 0,
     popular: 0,
-    hot: 0,
+    recommended: 0,
     "crash games": width < 991 ? 0 : 0,
     // "instant games": 0,
     "virtual League": 0,
@@ -174,8 +181,6 @@ const CasinoGamesComponent = () => {
       setUser(userData || getFromLocalStorage("user"));
     }
   }, [userData]);
-
- 
 
   const fetchAllCategoriesData = async () => {
     for (const [category, { endpoint, provider }] of Object.entries(
@@ -282,7 +287,6 @@ const CasinoGamesComponent = () => {
           }
           onMouseLeave={handleHoverEnd}
         >
-        
           <div
             className="jpOverlay"
             style={{ backgroundImage: `url(${OverlayImage})` }}
@@ -335,8 +339,6 @@ const CasinoGamesComponent = () => {
       ))
     );
   };
-
-
 
   const renderVirtualLeague = () => {
     const gamesToDisplay = competitionData?.slice(

@@ -57,7 +57,7 @@ const MobileNavCasino = () => {
           <img src={favImg} alt="Favorites" />favorites
         </div> */}
         <div
-          className={`btnHckd ${activeItem === 'crash-games' ? 'active' : ''}`}
+          className={`btnHckd ${activeItem === 'jetX' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
           // onClick={() => handleItemClick('crash-games')}
           onClick={() => navigate("/smart-play?game=JetX&category=JetX&status=live")}
@@ -72,13 +72,13 @@ const MobileNavCasino = () => {
         >
           <img src={newestImg} alt="Newest" />Newest
         </div> */}
-        {/* <div
+         <div
           className={`btnHckd ${activeItem === 'recommended' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}
-          onClick={() => handleItemClick('recommended')}
+          onClick={() => handleItemClick('recommended','Recommended')}
         >
           <img src={recommendedImg} alt="Recommended" />Recommended
-        </div> */}
+        </div> 
         <div
           className={`btnHckd ${activeItem === 'crash games' ? 'active' : ''}`}
           style={{ width: '9.09091%', minWidth: '100px' }}

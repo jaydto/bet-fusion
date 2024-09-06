@@ -4,7 +4,6 @@ import DepositModal from "../modals/DepositModal";
 const DepositTriggerButton = ({ isOpen, setIsOpen }) => {
   // Function to toggle modal visibility
   const toggleDepositModal = () => {
-    console.log("isOpen", isOpen)
     setIsOpen(!isOpen);
   };
 

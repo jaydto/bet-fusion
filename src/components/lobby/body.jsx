@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../utils/local-storage";
 import OverlayImage from "../../assets/img/mobile/overlayImage.png";
 import useWindowDimensions from "../header/Dimensions";
+import Loader from "./casinoLoader";
 
 const sections = [
   "popular",
@@ -122,7 +123,7 @@ const CasinoGamesComponent = () => {
   const userData = useSelector((state) => state.auth.user);
   const casino_search = useSelector((state) => state.virtuals.casino_search);
   const { width } = useWindowDimensions();
-
+  const loading= useSelector((state) => state.virtuals.loading);
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const [visibleItems, setVisibleItems] = useState(
     sections.reduce(
@@ -204,7 +205,6 @@ const CasinoGamesComponent = () => {
   }, []);
 
   const handleButtonClick = (event, game_id, gameCategory) => {
-    console.log("game_id", game_id, "hovered id", hoveredGameId);
     if (hoveredGameId === game_id || width > 991) {
       // event.stopPropagation();
 
@@ -261,8 +261,6 @@ const CasinoGamesComponent = () => {
         };
       });
 
-    // Debugging logs for understanding filtered output
-    console.log("filteredGames", filteredGames);
 
     // Now display the filtered and sliced games
     return filteredGames?.flatMap((providerGames, providerIndex) =>
@@ -393,14 +391,13 @@ const CasinoGamesComponent = () => {
   };
 
   const renderSection = (section) => {
-    console.log("render section", section);
     const data = casino_search.length > 0 ? casino_search : casino_games;
     const allGames = data.flatMap(
       (providerGames) => providerGames[Object.keys(providerGames)[0]]
     );
     const length = allGames.length;
 
-    console.log("render section length", length);
+
 
     return (
       <div
@@ -432,14 +429,16 @@ const CasinoGamesComponent = () => {
             )}
           </div>
         </div>
-        {section === "virtual League" ? (
+        {
+        section === "virtual League" ? (
           <div className="gamesCont grid-layout slots">
             {renderVirtualLeague()}
           </div>
         ) : (
           <div className="gamesCont grid-layout slots">
-            {length > 0 ? (
-              casino_search.length > 0 ? (
+            {length > 0 ?
+             (
+              casino_search.length > 0 ?loading ?<Loader/> : (
                 <RenderCasinoSearch
                   games={data}
                   section={section}

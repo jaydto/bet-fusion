@@ -11,8 +11,8 @@ const SideCasinoMenu = () => {
     virtualLeague: true,
   });
   const navigate = useNavigate();
-  const casino_games = useSelector((state) => state.virtuals.casino_games);
-  const casino_search = useSelector((state) => state.virtuals.casino_search);
+  // const casino_games = useSelector((state) => state.virtuals.casino_games);
+  // const casino_search = useSelector((state) => state.virtuals.casino_search);
   const smartsoft_categories = useSelector(
     (state) => state.virtuals.smartsoft_categories
   );
@@ -37,9 +37,10 @@ const SideCasinoMenu = () => {
   };
 
   const handleCategoryClick = (category, provider = "smartSoft") => {
-    navigate(`/casino/${provider}/${category}`);
-
     setActiveProvider(category);
+
+    return navigate(`/casino/${provider}/${category}`);
+
   };
 
   // Determine if the current URL matches `/casino`

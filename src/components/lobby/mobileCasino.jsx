@@ -20,8 +20,8 @@ const MobileNavCasino = () => {
   const dispatch = useDispatch();
 
   const handleItemClick = (category, provider = "smartSoft") => {
-    console.log("activeItem", category)
     // Set the active item
+    dispatch(setState("loading", true));
     dispatch(setState("casino_search", []));
 
     setActiveItem(category);

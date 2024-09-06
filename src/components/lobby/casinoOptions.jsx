@@ -13,15 +13,17 @@ const CasinoOptions = ({ provider, category }) => {
   const dispatch = useDispatch();
   const casino_games = useSelector((state) => state.virtuals.casino_games);
   const casino_search = useSelector((state) => state.virtuals.casino_search);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const loading = useSelector((state) => state.virtuals.loading);
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const { width } = useWindowDimensions();
 
- 
   const filterData = (searchTerm, searchKey = "gameName") => {
-    const filteredData = [];
-
+    dispatch(setVirtualGame("loading", true));
+    dispatch(setVirtualGame("casino_search", [])); // Clear the existing casino_search
+  
+    const filteredData = []; // Ensure it's an empty array every time
+    
     if (searchTerm?.length >= 1) {
       casino_games.forEach((obj) => {
         Object.entries(obj).forEach(([key, gamesArray]) => {
@@ -40,10 +42,11 @@ const CasinoOptions = ({ provider, category }) => {
         });
       });
     }
-
+  
+    dispatch(setVirtualGame("loading", false));
     dispatch(setVirtualGame("casino_search", filteredData));
   };
-
+  
   const getFilteredGames = (casino_games, section) => {
     const filteredGames = casino_games
       .filter((gameSection) => gameSection[section]) // Filter games that match the section
@@ -51,25 +54,21 @@ const CasinoOptions = ({ provider, category }) => {
         [section]: gameSection[section], // No slicing, return the entire array
       }));
 
-    console.log("filteredGames", filteredGames); // Debugging filtered output
-
     const displayedGames = filteredGames?.flatMap((providerGames) =>
       providerGames[section]?.map((game) => ({
         provider: providerGames.provider,
         game,
       }))
     );
-
+    dispatch(setVirtualGame("loading", false));
     dispatch(setVirtualGame("casino_search", displayedGames));
   };
-
-
 
   const fetchAllCategoriesData = async (category_option) => {
     // Fetch the specified category first
     if (categoryEndpoints[category_option]) {
       const { endpoint, provider } = categoryEndpoints[category_option];
-  
+
       if (endpoint) {
         const method = "POST";
         const data = {
@@ -78,14 +77,16 @@ const CasinoOptions = ({ provider, category }) => {
           category: category_option,
           provider: provider,
         };
-  
+
         // Dispatch the action to fetch data for the selected category option first
         await dispatch(casinoList(data));
       }
     }
-  
+
     // Now fetch the rest of the categories (excluding the already fetched category_option)
-    for (const [category, { endpoint, provider }] of Object.entries(categoryEndpoints)) {
+    for (const [category, { endpoint, provider }] of Object.entries(
+      categoryEndpoints
+    )) {
       if (category !== category_option && endpoint) {
         const method = "POST";
         const data = {
@@ -94,14 +95,12 @@ const CasinoOptions = ({ provider, category }) => {
           category: category,
           provider: provider,
         };
-  
+
         // Dispatch the action to fetch data for the remaining categories
         await dispatch(casinoList(data));
       }
     }
   };
-  
-  
 
   const fetchData = useCallback(async () => {
     try {
@@ -118,16 +117,15 @@ const CasinoOptions = ({ provider, category }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setLoading(false); // Set loading to false once data is fetched
+      dispatch(setVirtualGame("loading", false));
     }
-  }, [casino_games, category,provider]);
+  }, [casino_games, category, provider, loading]);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   const handleButtonClick = (event, game_id, gameCategory) => {
-    console.log("game_id", game_id, "hovered id", hoveredGameId);
     if (hoveredGameId === game_id || width > 991) {
       const redirectToSmartPlay = () => {
         navigate(
@@ -171,9 +169,7 @@ const CasinoOptions = ({ provider, category }) => {
         </h2>
       </div>
       <div className="gamesCont grid-layout slots">
-        {loading ? (
-          <Loader /> // Show loader while data is being fetched
-        ) : casino_search?.length > 0 ? (
+        {casino_search.length > 0 && !loading ? (
           <RenderCasinoSearch
             games={casino_search}
             section={category}
@@ -182,10 +178,10 @@ const CasinoOptions = ({ provider, category }) => {
             handleHoverEnd={handleHoverEnd}
             handleHoverStart={handleHoverStart}
             handleLinkClick={handleLinkClick}
-            // special={provider==="smartSoft"?true:false}
             special={false}
-
           />
+        ) : loading ? (
+          <Loader /> // Show loader while data is being fetched
         ) : (
           <div className="no-data-message">
             <p>No games available for this category.</p>

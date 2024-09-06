@@ -100,36 +100,7 @@ const virtualsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      // .addCase(casinoList.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   state.error = null;
-      //   const { response, category, provider } = action.payload;
-      //   // console.log("casino_games_data", category);
-
-      //   // Create a Set of existing categories
-      //   const existingCategories = new Set(state.casino_games.map(game => Object.keys(game)[0]));
-
-      //   if (existingCategories.has(category)) {
-      //     // If the category already exists, update its data
-      //     state.casino_games = state.casino_games.map(game => {
-      //       const key = Object.keys(game)[0];
-      //       if (key === category) {
-      //         return { [category]: response.data??response.games, provider:provider };
-      //       }
-      //       return game;
-      //     });
-      //   } else {
-      //     // If the category doesn't exist, add it to casino_games
-      //     state.casino_games.push({ [category]: response.data??response.games, provider:provider });
-      //   }
-      //   if(provider.toLowerCase()=='pragmatic'){
-      //     state.casino_categories = response.types;
-      //   }
-      //   if(provider.toLowerCase()=='smart-soft'){
-      //     state.smartsoft_categories = response.types;
-      //   }
-
-      // })
+     
       .addCase(casinoList.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;

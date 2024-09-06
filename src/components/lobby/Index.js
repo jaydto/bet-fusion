@@ -20,7 +20,7 @@ const CasinoIndex = () => {
       dispatch(setVirtualGame("casino_search", []));
     }
   
-    },[] )
+    },[provider] )
 
   return (
     <CasinoLayout>

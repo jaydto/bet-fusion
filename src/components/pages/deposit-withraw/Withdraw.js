@@ -392,17 +392,13 @@ export const WithdrawForm = (props) => {
     amount: 100,
     msisdn: user?.msisdn,
   };
-  // const gaEventTracker = useAnalyticsEventTracker('Withdraw')
 
   const handleSubmit = (values) => {
     setTrackingData(values);
     const data = { user: values };
+
     dispatchRedux(userWithdrawal(data));
-    // const data = {
-    //     msisdn: state?.user?.msisdn,
-    //     amount: values?.amount
-    // }
-    // gaEventTracker('Withdraw', data)
+   
   };
 
   const validate = (values) => {

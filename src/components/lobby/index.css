@@ -132,6 +132,8 @@
   .btnHckd.active {
     border-radius: 4px;
     font-size: 13px !important;
+    border-bottom: none!important;
+
 
 
   }

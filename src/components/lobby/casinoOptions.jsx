@@ -165,7 +165,7 @@ const CasinoOptions = ({ provider, category }) => {
     <div>
       <div className="d-flex justify-content-between px-4 section-lobby-header">
         <h2 style={{ textTransform: "capitalize" }}>
-          {provider} - {category}
+          {provider==="smartSoft" ? provider+"-":""}  {category}
         </h2>
       </div>
       <div className="gamesCont grid-layout slots">

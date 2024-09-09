@@ -37,11 +37,14 @@ const WithdrawForm = () => {
         msisdn: user?.msisdn,
       };
 
+      const data = { user: initialValues };
+
+
       try {
         // Simulate API call delay (replace with actual API call)
 
-        setTrackingData(initialValues);
-        dispatchRedux(userWithdrawal(initialValues));
+        setTrackingData(data);
+        dispatchRedux(userWithdrawal(data));
         
         // Reset form after successful withdrawal
         resetForm();
@@ -64,16 +67,7 @@ const WithdrawForm = () => {
           console.log("Notification Clicked!");
         },
       });
-    // } else if (errorMessage !== null) {
-    //   notification.error({
-    //     message: "Error",
-    //     description: errorMessage, // assuming `errorMessage` has a `message` field
-    //     className: "ant-notification",
-    //     placement: "top", // Set placement to top-left
-    //     onClick: () => {
-    //       console.log("Notification Clicked!");
-    //     },
-    //   });
+ 
     }
   }, [successMessage, errorMessage]);
 
@@ -83,6 +77,12 @@ const WithdrawForm = () => {
       dispatchRedux(resetState("withdrawal_message"));
       dispatchRedux(resetState("error"));
     }, 7500);
+
+    return () => {
+      dispatchRedux(resetState("withdrawal_message"));
+      dispatchRedux(resetState("error"));
+
+    }
   }, [dispatchWithdrawMessage]);
 
   const handleAmountChange = (event) => {

@@ -161,9 +161,9 @@ const Deposit3 = React.memo((props) => {
       // Use Ant Design notification to display the success message
       notification.success({
         message: "Success",
-        description: successMessage ?? successMessageConfirmation, // assuming `successMessage` has a `message` field
+        description: successMessage ?? successMessageConfirmation, 
         className: "ant-notification",
-        placement: "top", // Set placement to top-left
+        placement: "top", // Set placement to top
         onClick: () => {
           console.log("Notification Clicked!");
         },
@@ -172,9 +172,9 @@ const Deposit3 = React.memo((props) => {
     } else if (errorMessage !== null) {
       notification.error({
         message: "Error",
-        description: errorMessage, // assuming `errorMessage` has a `message` field
+        description: errorMessage,
         className: "ant-notification",
-        placement: "top", // Set placement to top-left
+        placement: "top", // Set placement to top
         onClick: () => {
           console.log("Notification Clicked!");
         },

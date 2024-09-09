@@ -60,9 +60,9 @@ const WithdrawForm = () => {
       // Use Ant Design notification to display the success message
       notification.success({
         message: "Success",
-        description: successMessage, // assuming `successMessage` has a `message` field
+        description: successMessage, 
         className: "ant-notification",
-        placement: "top", // Set placement to top-left
+        placement: "top", // Set placement to top
         onClick: () => {
           console.log("Notification Clicked!");
         },

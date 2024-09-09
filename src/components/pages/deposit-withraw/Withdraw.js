@@ -36,15 +36,8 @@ const Withdraw = React.memo((props) => {
     setUser(userData || getFromLocalStorage("user"));
   }, [userData]);
 
-  const [message, setMessage] = useState();
 
-  useEffect(() => {
-    if (successMessage) {
-      setMessage(successMessage);
-    } else if (errorMessage) {
-      setMessage(errorMessage);
-    }
-  }, [successMessage, errorMessage]);
+
 
   const updateUserOnHistory = () => {
     if (!user) {
@@ -102,48 +95,22 @@ const Withdraw = React.memo((props) => {
     );
   };
 
-  // const Alert = (props) => {
-  //   let c = successMessage ? "success" : "danger";
-  //   message &&
-  //     setTimeout(() => {
-  //       setMessage(null);
-  //     }, 5500);
-  //   return (
-  //     <>
-  //       {message && (
-  //         <div role="alert" className={`fade alert alert-${c} show`}>
-  //           {message}
-  //         </div>
-  //       )}{" "}
-  //     </>
-  //   );
-  // };
 
   const dispatchWithdrawtMessage = useCallback(() => {
     if (successMessage !== null ) {
-      // Use Ant Design notification to display the success message
+      // display the success message
       notification.success({
         message: "Success",
-        description: successMessage , // assuming `successMessage` has a `message` field
+        description: successMessage , 
         className: "ant-notification",
-        placement: "top", // Set placement to top-left
+        placement: "top", // Set placement to top
         onClick: () => {
           console.log("Notification Clicked!");
         },
       });
       navigate("/")
      }
-    //else if (errorMessage !== null) {
-    //   notification.error({
-    //     message: "Error",
-    //     description: errorMessage, // assuming `errorMessage` has a `message` field
-    //     className: "ant-notification",
-    //     placement: "top", // Set placement to top-left
-    //     onClick: () => {
-    //       console.log("Notification Clicked!");
-    //     },
-    //   });
-    // }
+
   }, [successMessage, errorMessage]);
 
   useEffect(() => {
@@ -226,7 +193,6 @@ const PaymentInstructions = (props) => {
 
 const WithdrawFormFields = (props) => {
   const { values, errors, onFieldChanged } = props;
-  const { state, dispatch } = useContext(StoreContext);
   const loading = useSelector((state) => state.data.withdraw_loading);
 
   return (
@@ -326,7 +292,7 @@ const MyWithdrawForm = (props) => {
           message: "Warning",
           description: minWithdrawalAmount.message,
           className: 'ant-notification',
-          placement: "top", // Set the placement as needed
+          placement: "top", // Set the placement 
         });
         newValue = value;
       } else if (Number(value) > Number(maxWithdrawal)) {
@@ -334,7 +300,7 @@ const MyWithdrawForm = (props) => {
           message: "Warning",
           className: 'ant-notification',
           description: maxWithdrawalAmount.message,
-          placement: "top", // Set the placement as needed
+          placement: "top", // Set the placement 
         });
         newValue = maxWithdrawal;
       } else {

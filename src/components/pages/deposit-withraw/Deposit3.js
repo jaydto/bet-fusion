@@ -26,13 +26,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { WithdrawForm } from "./Withdraw";
 
-const backgroundStyle = {
-  background: `url(${gameDay})`,
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  //   backgroundPosition:"bottom",
-  backgroundAttachment: "fixed",
-};
+
 
 const Deposit3 = React.memo((props) => {
   const dispatchRedux = useDispatch();

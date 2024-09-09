@@ -20,7 +20,6 @@ import { userBalance } from "../../../redux/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
-
 const Withdraw = React.memo((props) => {
   const navigate = useNavigate();
   const successMessage = useSelector((state) => state.data.withdrawal_message);
@@ -32,9 +31,6 @@ const Withdraw = React.memo((props) => {
   useEffect(() => {
     setUser(userData || getFromLocalStorage("user"));
   }, [userData]);
-
-
-
 
   const updateUserOnHistory = () => {
     if (!user) {
@@ -92,22 +88,20 @@ const Withdraw = React.memo((props) => {
     );
   };
 
-
   const dispatchWithdrawtMessage = useCallback(() => {
-    if (successMessage !== null ) {
+    if (successMessage !== null) {
       // display the success message
       notification.success({
         message: "Success",
-        description: successMessage , 
+        description: successMessage,
         className: "ant-notification",
         placement: "top", // Set placement to top
         onClick: () => {
           console.log("Notification Clicked!");
         },
       });
-      navigate("/")
-     }
-
+      navigate("/");
+    }
   }, [successMessage, errorMessage]);
 
   useEffect(() => {
@@ -118,7 +112,6 @@ const Withdraw = React.memo((props) => {
       dispatchRedux(resetState("error"));
     }, 7500);
   }, [dispatchWithdrawtMessage]);
-
 
   return (
     <div style={{ height: "100vh" }}>
@@ -288,16 +281,16 @@ const MyWithdrawForm = (props) => {
         notification.open({
           message: "Warning",
           description: minWithdrawalAmount.message,
-          className: 'ant-notification',
-          placement: "top", // Set the placement 
+          className: "ant-notification",
+          placement: "top", // Set the placement
         });
         newValue = value;
       } else if (Number(value) > Number(maxWithdrawal)) {
         notification.open({
           message: "Warning",
-          className: 'ant-notification',
+          className: "ant-notification",
           description: maxWithdrawalAmount.message,
-          placement: "top", // Set the placement 
+          placement: "top", // Set the placement
         });
         newValue = maxWithdrawal;
       } else {
@@ -339,6 +332,8 @@ export const WithdrawForm = (props) => {
   const withdrawalLimits = settings?.withdrawalLimits;
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
+  const successMessage = useSelector((state) => state.data.withdrawal_message);
+  const errorMessage = useSelector((state) => state.data.error);
 
   useEffect(() => {
     if (userData) {
@@ -361,8 +356,35 @@ export const WithdrawForm = (props) => {
     const data = { user: values };
 
     dispatchRedux(userWithdrawal(data));
-   
   };
+
+  const dispatchWithdrawMessage = useCallback(() => {
+    if (successMessage !== null) {
+      // Use Ant Design notification to display the success message
+      notification.success({
+        message: "Success",
+        description: successMessage,
+        className: "ant-notification",
+        placement: "top", // Set placement to top
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
+    }
+  }, [successMessage, errorMessage]);
+
+  useEffect(() => {
+    dispatchWithdrawMessage();
+    setTimeout(() => {
+      dispatchRedux(resetState("withdrawal_message"));
+      dispatchRedux(resetState("error"));
+    }, 7500);
+
+    return () => {
+      dispatchRedux(resetState("withdrawal_message"));
+      dispatchRedux(resetState("error"));
+    };
+  }, [dispatchWithdrawMessage]);
 
   const validate = (values) => {
     let errors = {};

@@ -1,18 +1,15 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Col, notification, Row } from "antd";
-import authImg from "../../../assets/img/logo.png";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   getFromLocalStorage,
   setTrackingData,
 } from "../../utils/local-storage";
-import only18 from "../../../assets/img/auth/18only.png";
-import backgroundURL from "../../../assets/img/auth/img-17.webp";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Form, Formik } from "formik";
-import { StoreContext } from "../../../context/store";
 import mpesa from "../../../assets/img/mpesa.png";
 import "./deposit.css";
 

@@ -135,7 +135,8 @@ export const userWithdrawal = createAsyncThunk(
     if (status === 200) {
       return response;
     } else {
-      throw new Error(response?.error || "Withdrawal Request failed");
+      console.log("response withdraw", response)
+      throw new Error(response || "Withdrawal Request failed");
     }
   }
 );
@@ -151,6 +152,7 @@ export const userDeposits = createAsyncThunk(
     if (status === 200) {
       return response;
     } else {
+      console.log("response deposit", response)
       throw new Error(response?.error || "Fetching Deposit failed");
     }
   }

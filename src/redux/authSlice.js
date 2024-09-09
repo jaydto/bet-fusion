@@ -29,10 +29,10 @@ export const signupUser = createAsyncThunk(
       method: "POST",
       data: signupData,
     });
-    if (status === 200) {
+    if (status === 200 ) {
       return response;
     } else {
-      throw new Error(response?.error || "Signup failed");
+      throw new Error(response?.error || response?.success?.message || "Signup failed");
     }
   }
 );
@@ -290,12 +290,14 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(signupUser.fulfilled, (state, action) => {
+        console.log("action made", action)
         state.user_sign_up = action.payload;
         state.loading = false;
         state.error = null;
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.loading = false;
+        console.log("action error", action)
         state.error = action.error.message;
       })
       .addCase(forgotPassword.pending, (state) => {

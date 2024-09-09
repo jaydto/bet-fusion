@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, notification } from "antd";
-import authImg from "../../../assets/img/logo.png";
-import "./stepper.css";
-import { Link, useNavigate } from "react-router-dom";
-import only18 from "../../../assets/img/auth/18only.png";
-import gameDay from "../../../assets/svg/game_bg.svg";
-import kenyan from "../../../assets/svg/kenya.svg";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Row,  notification } from "antd";
+import {  useNavigate } from "react-router-dom";
+
 import {
   faAngleLeft,
   faEye,
@@ -18,13 +12,14 @@ import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../../redux/authSlice";
 import { configSettings } from "../../../redux/dataSlice";
-import { Dropdown } from "react-bootstrap";
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import {
   clearTrackingData,
   getFromLocalStorage,
   setTrackingData,
 } from "../../utils/local-storage";
+import { CountryButton } from "../../header/top-login";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 
 const FormTitle = () => {
   const navigate = useNavigate();
@@ -66,13 +61,12 @@ const Register = () => {
   const navigate = useNavigate();
   const successMessage = useSelector((state) => state.auth.user_sign_up);
   const appConfig = useSelector((state) => state.data.app_config);
-  const errorMessage = useSelector((state) => state.data.error);
+  const errorMessage = useSelector((state) => state.auth.error);
   const gaEventTracker = useAnalyticsEventTracker("SignUp");
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-  //const [api, contextHolder] = notification.useNotification();
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
   const toggleShowConfirmPassword = () =>
@@ -89,6 +83,7 @@ const Register = () => {
   }, [appConfig]);
 
   useEffect(() => {
+    console.log("errorMessage", errorMessage)
     if (successMessage?.success?.status === 201) {
       console.log("successMessage", successMessage);
       
@@ -106,14 +101,34 @@ const Register = () => {
         }
       }, 100);
       return () => clearTimeout(timeoutId);
-    } else if (errorMessage) {
+    } else if(successMessage?.success?.status === 400) {
+      const data = {
+        event: "sign_up_failed",
+        message: "sign up failed",
+      };
+      gaEventTracker("Sign Up Failed", data);
+      notification.error({
+        message: "Registration Failed",
+        description: successMessage?.success?.message ?? "Something went wrong!",
+        className: 'ant-notification',
+        placement: "top",
+      });
+      navigate("/login");
+      
+    }
+    else if (errorMessage) {
     
       const data = {
         event: "sign_up_failed",
         message: "sign up failed",
       };
       gaEventTracker("Sign Up Failed", data);
-      // Notify(message);
+      notification.error({
+        message: "Registration Failed",
+        description: errorMessage?? "Something went wrong!",
+        className: 'ant-notification',
+        placement: "top",
+      });
     }
   }, [successMessage, errorMessage, navigate, settings, gaEventTracker]);
 
@@ -245,7 +260,7 @@ const Register = () => {
                                           style={{ display: "contents" }}
                                         >
                                           <div className="input-group-text border-0 input-color-icon codecCountry">
-                                            <Dropdown
+                                            {/* <Dropdown
                                               onSelect={(selectedOption) =>
                                                 handleChange({
                                                   target: {
@@ -294,7 +309,8 @@ const Register = () => {
                                                   />
                                                 </Dropdown.Item>
                                               </Dropdown.Menu>
-                                            </Dropdown>
+                                            </Dropdown> */}
+                                            <CountryButton onFieldChanged={handleChange}/>
                                           </div>
                                         </div>
                                         <input

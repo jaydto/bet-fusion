@@ -19,6 +19,41 @@ import kenyan from "../../assets/svg/kenya.svg";
 import { Dropdown, Image } from "react-bootstrap";
 import { notification } from "antd";
 
+
+export const CountryButton = ({ onFieldChanged }) => {
+  const handleClick = () => {
+    // Simulating selecting Kenya (254 is the country code for Kenya)
+    onFieldChanged({
+      target: {
+        name: "countryCode",
+        value: "254",
+      },
+    });
+  };
+
+  return (
+    <button
+      type="button"
+      className="btn counrtryCodec"
+      onClick={handleClick}
+      style={{ color: "var(--light)", display: "flex", alignItems: "center" }}
+    >
+      Kenya &nbsp;
+      <img
+        className="image-kenya"
+        src={kenyan}
+        style={{
+          width: "17px",
+          height: "11px",
+          marginTop: "2px",
+        }}
+        alt="Kenya"
+        title="Kenya"
+      />
+    </button>
+  );
+};
+
 const HeaderLogin = React.memo((props) => {
   const { setUser, login } = props;
   const dispatchRedux = useDispatch();
@@ -40,7 +75,7 @@ const HeaderLogin = React.memo((props) => {
       notification.success({
         message: "Success",
         description: successMessage.message, // assuming `successMessage` has a `message` field
-        className: 'ant-notification',
+        className: "ant-notification",
         placement: "top", // Set placement to top-left
         onClick: () => {
           console.log("Notification Clicked!");
@@ -61,25 +96,22 @@ const HeaderLogin = React.memo((props) => {
   }, [dispatchUser]);
 
   useEffect(() => {
-    if  (errorMessage) {
-      
-    notification.error({
-      message: "Login Error",
-      description: errorMessage, // assuming `successMessage` has a `message` field
-      className: 'ant-notification',
-      placement: "top", // Set placement to top-left
-      onClick: () => {
-        console.log("Notification Clicked!");
-      },
-    });
-  }
+    if (errorMessage) {
+      notification.error({
+        message: "Login Error",
+        description: errorMessage, // assuming `successMessage` has a `message` field
+        className: "ant-notification",
+        placement: "top", // Set placement to top-left
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
+    }
   }, [errorMessage]);
 
   // //const [api, contextHolder] = notification.useNotification();
   // const [notificationMessage, setNotificationMessage] = useState(null);
   const gaEventTracker = useAnalyticsEventTracker("Login");
-
- 
 
   const handleSubmit = (values) => {
     const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
@@ -90,7 +122,6 @@ const HeaderLogin = React.memo((props) => {
     };
 
     dispatchRedux(loginUser(initialValues));
-    
   };
 
   const validate = (values) => {
@@ -114,39 +145,7 @@ const HeaderLogin = React.memo((props) => {
     return errors;
   };
 
-  const CountryButton = ({ onFieldChanged }) => {
-    const handleClick = () => {
-      // Simulating selecting Kenya (254 is the country code for Kenya)
-      onFieldChanged({
-        target: {
-          name: "countryCode",
-          value: "254",
-        },
-      });
-    };
 
-    return (
-      <button
-        type="button"
-        className="btn counrtryCodec"
-        onClick={handleClick}
-        style={{ color: "var(--light)", display: "flex", alignItems: "center" }}
-      >
-        Kenya &nbsp;
-        <img
-          className="image-kenya"
-          src={kenyan}
-          style={{
-            width: "17px",
-            height: "11px",
-            marginTop: "2px",
-          }}
-          alt="Kenya"
-          title="Kenya"
-        />
-      </button>
-    );
-  };
 
   const MyLoginForm = (props) => {
     const { errors, values, setFieldValue } = props;

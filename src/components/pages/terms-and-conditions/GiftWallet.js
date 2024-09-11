@@ -24,10 +24,10 @@ const GiftWallet = () => {
 </ol>
 
                 <br/>
-                <strong className="text-decoration-underline">HOW TO GET THE NARE BOOSTER GIFTS</strong>
+                <strong className="text-decoration-underline">HOW TO GET THE BOOSTER GIFTS</strong>
                 <ol>
                     <li>REGISTER on CrashKali.</li>
-                    <li>Get UPTO 3,000 of registration as Free Nare Booster to be used on CrashKali
+                    <li>Get UPTO 3,000 of registration as Free Booster to be used on CrashKali
                         when placing bets (in the Betslip)
                     </li>
                     <li>Start using your BOOSTERS immediately on your 1 st Cash Bet.

@@ -123,7 +123,7 @@ const KironPlayouts = React.memo((props) => {
                               <span className="team-jersey">
                                 <LazyLoadImage
                                   src={results?.home_team_image}
-                                  alt="Nare League"
+                                  alt="Virtual League"
                                 />
                               </span>
                               <a
@@ -209,7 +209,7 @@ const KironPlayouts = React.memo((props) => {
                               <span className="team-jersey">
                                 <LazyLoadImage
                                   src={results?.away_team_image}
-                                  alt="Nare League"
+                                  alt="Virtual League"
                                 />
                               </span>
                             </div>

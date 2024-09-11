@@ -606,13 +606,13 @@ For more information on our safeguarding and security measures, please contact u
                       <p>Should you have any further queries or questions about the processing of your Personal Data, our full contact details are as follows:</p>
                       <ol className="list-count-type">
                         <li>
-                        Name: Beyond Intoch
+                        Name: Crash Kali
                         </li>
                         
-                          <li>Email address:{ <a href="mailto:operations@CrashKali.com ">operations@CrashKali.com</a> }</li>
+                          {/* <li>Email address:{ <a href="mailto:operations@CrashKali.com ">operations@CrashKali.com</a> }</li> */}
                         
-                          <li>Adress : 
-                            </li>
+                          {/* <li>Adress : 
+                            </li> */}
                         <li>Telephone number:0791888222 </li>
                         <li> Data Protection Officer</li>
                       </ol>

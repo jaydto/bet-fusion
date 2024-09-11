@@ -247,8 +247,8 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
                               CrashKali offers Customer Care support round the
-                              clock. We are reachable via 0701087777 on Mobile,
-                              WhatsApp Number – 0701087777. You can also reach
+                              clock. We are reachable via 0791888222 on Mobile,
+                              WhatsApp Number – 0791888222. You can also reach
                               us through E-Mail onsupport@CrashKali.com
                             </p>
                           </AccordionItemPanel>

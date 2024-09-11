@@ -410,7 +410,7 @@ const SelfExclusion = () => {
               platform. For further assistance or guidance please reach out to
               customer care
             </p>
-            <p className="bold text-center text-light"> @ 0701087777</p>
+            <p className="bold text-center text-light"> @ 0791888222</p>
           </div>
           <div className={"d-flex justify-content-center w-100 gap-2"}>
             <strong style={{ color: "var(--orange)" }}>Time</strong>{" "}

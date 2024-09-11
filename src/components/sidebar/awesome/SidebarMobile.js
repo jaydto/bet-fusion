@@ -85,7 +85,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMobilePhone} className={'svg-mobile'} />
-                            <a href={"tel:0701087777"} onClick={handleClose}>Call Customer Care</a>
+                            <a href={"tel:0791888222"} onClick={handleClose}>Call Customer Care</a>
                         </div>
                     </MenuItem>
                 </Menu>

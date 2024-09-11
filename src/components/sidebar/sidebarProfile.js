@@ -122,7 +122,7 @@ const SidebarProfile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
                             <FontAwesomeIcon icon={faPhoneFlip} style={{fontSize:'24px'}}/>
-                            <a href={'javascript:void(0)'} className={'text-profile'}>0701087777</a>
+                            <a href={'javascript:void(0)'} className={'text-profile'}>0791888222</a>
                         </div>
                     </MenuItem>
                 </Menu>

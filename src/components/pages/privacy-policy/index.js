@@ -611,8 +611,9 @@ For more information on our safeguarding and security measures, please contact u
                         
                           <li>Email address:{ <a href="mailto:operations@CrashKali.com ">operations@CrashKali.com</a> }</li>
                         
-                          <li>Adress : Argwins Kothek Road , Hurlingham, Nairobi, Kenya</li>
-                        <li>Telephone number:0701 087777 </li>
+                          <li>Adress : 
+                            </li>
+                        <li>Telephone number:0791888222 </li>
                         <li> Data Protection Officer</li>
                       </ol>
                     </AccordionItemPanel>

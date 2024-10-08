@@ -311,7 +311,7 @@ const Header = React.memo((props) => {
                           }}
                         >
                           <span>
-                            <strong>Promo</strong>
+                            <strong>Promos</strong>
                           </span>
                         </div>
                       </li>

@@ -97,14 +97,15 @@ const SidebarMobile = React.memo(
                         </div>
                     </MenuItem>
                 </Menu>
-                {/* <Menu>
+                <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMobileAndroid} className={'svg-mobile'} />
-                            <a href={"https://cdn.CrashKali.com/CrashKaliapp.apk"} onClick={handleClose}>Download App </a>
+                            <Link to={"/promotions"} onClick={handleClose}>Promo</Link>
+
                         </div>
                     </MenuItem>
-                </Menu> */}
+                </Menu>
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
                         <a className={"d-flex gap-4 align-items-center"} href={"https://wa.me/+254791888222"} target={"_blank"} rel="noreferrer" onClick={handleClose}>

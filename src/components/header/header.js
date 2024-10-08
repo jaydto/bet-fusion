@@ -278,7 +278,7 @@ const Header = React.memo((props) => {
                       }
                     />
 
-                    <ul className="header-nav-container">
+                    <ul className="header-nav-container d-flex">
                       <li
                         className={`${
                           (pathname.includes("casino") || pathname == "/casino" )? "active" : ""
@@ -297,8 +297,28 @@ const Header = React.memo((props) => {
                           </span>
                         </div>
                       </li>
+                      <li
+                        className={`${
+                          (pathname.includes("promotions") || pathname == "/promotions" )? "active" : ""
+                        } header-nav-item`}
+                      >
+                        <div
+                          className="url-link fm anl cg ox desktop-only "
+                          title="Promotion"
+                          onClick={() => {
+                            navigate("/promotions")
+                            gaEventTracker("Visit Promotion Page");
+                          }}
+                        >
+                          <span>
+                            <strong>Promo</strong>
+                          </span>
+                        </div>
+                      </li>
                     </ul>
                   </div>
+
+                  
 
                   <UserInfo profile={checkDesktop} user={user} />
                 </Navbar.Brand>

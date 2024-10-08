@@ -65,20 +65,14 @@ const VerifyAccount = React.lazy(
 const ProtectedRoute = React.lazy(
     () => import('./components/utils/protected-route')
 );
+const Promotions = React.lazy(() => import('./components/pages/promotions/Promotions'))
 
-const PrintMatches = React.lazy(() => import('./components/pages/downloads'))
+const Promo = React.lazy(() => import('./components/pages/promotions/Promo'))
 
-const NewCasino = React.lazy(() => import('./components/pages/new-casino/NewCasino'))
 
 const LeaderBoard = React.lazy(() => import('./components/pages/LeaderBoards/LeaderBoards'))
 const JetxLeaderBoard = React.lazy(() => import('./components/pages/LeaderBoards/JetxLeaderBoards'))
 
-
-const CasinoGamePlay = React.lazy(() => import('./components/pages/new-casino/GamePlay'))
-
-const SpribeGamePlay = React.lazy(() => import('./components/pages/virtuals/SpribeGamePlay'))
-
-const SpribeGames = React.lazy(() => import('./components/pages/virtuals/SpribeGames'))
 
 const SmartSoftPlay = React.lazy(() => import('./components/pages/smart-soft/smart-soft'))
 
@@ -172,7 +166,8 @@ const App =
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
                         <Route exact path="/casino" element={<CasinoIndex/>}/>
 
-
+                        <Route exact path="/promotions" element={<Promotions/>}/>
+                        <Route exact path="/promo" element={<Promo/>}/>
                         <Route exact path={"/"} element={<Kiron/>}/>
                         <Route exact path={"/results"} element={<Kiron/>}/>
                         <Route exact path={"/standing"} element={<Kiron/>}/>

@@ -52,12 +52,7 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import {
-  favoriteMarkets,
-  favoriteMarketsData,
-  marketGroups,
-  resetState,
-} from "../../redux/matchesSlice";
+
 import {
   getSelected,
   getSelectedResult,
@@ -1488,35 +1483,7 @@ export const MatchHeaderRow = React.memo((props) => {
   const navigation_link = useSelector((state) => state.data.navigation_link);
   const pathname = window.location.pathname;
 
-  const closeFilter = (option) => {
-    // reset filters
-    // navigate to the right condition
-    if (option === "sport") {
-      dispatchRedux(resetState("active_sport"));
-      dispatchRedux(setState("navigation_link", null));
-    } else if (option === "search") {
-      dispatchRedux(resetState("search"));
-    } else if (option === "sub_type") {
-      dispatchRedux(resetState("active_sub_type"));
-    }
-
-    if (navigation_link) {
-      if (pathname.includes("live")) {
-        navigate("/live");
-      } else {
-        navigate(`${navigation_link}`);
-        dispatchRedux(setState("navigation_link", null));
-      }
-    } else {
-      // If there is no previous navigation, go home or live home
-      if (pathname.includes("live")) {
-        navigate("/live");
-      } else {
-        navigate("/");
-      }
-    }
-    dispatchRedux(setState("active_link", 79));
-  };
+ 
 
   return (
     <Row
@@ -1549,7 +1516,7 @@ export const MatchHeaderRow = React.memo((props) => {
                       <FontAwesomeIcon
                         icon={faXmark}
                         className={"close-filter"}
-                        onClick={() => closeFilter("search")}
+                       
                       />
                       {search}
                     </span>
@@ -1563,7 +1530,6 @@ export const MatchHeaderRow = React.memo((props) => {
                       <FontAwesomeIcon
                         icon={faXmark}
                         className={"close-filter"}
-                        onClick={() => closeFilter("sport")}
                       />
                       {active_sport}
                     </span>
@@ -1578,7 +1544,6 @@ export const MatchHeaderRow = React.memo((props) => {
                       <FontAwesomeIcon
                         icon={faXmark}
                         className={"close-filter"}
-                        onClick={() => closeFilter("sub_type")}
                       />
                       {active_sub_type}
                     </span>

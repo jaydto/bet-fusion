@@ -79,7 +79,7 @@ const Promo = () => {
                     />
                   </span>
                   <div className="shadow-sm d-flex justify-content-center col-8 p-2 shadow-sm promotion-header text-white">
-                    BETNARE PROMOTIONS
+                    PROMOTIONS
                   </div>
                 </div>
                 <div className="col">

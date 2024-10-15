@@ -1,25 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, notification, Row } from "antd";
-import authImg from "../../../assets/img/logo.png";
-import { Link, useNavigate } from "react-router-dom";
-import only18 from "../../../assets/img/auth/18only.png";
-import gameDay from "../../../assets/svg/game_bg.svg";
+import React, { useEffect, useState } from "react";
+import {  notification, Row } from "antd";
+import { useNavigate } from "react-router-dom";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import makeRequest from "../../utils/fetch-request";
 import { Form, Formik } from "formik";
-import { StoreContext } from "../../../context/store";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPassword, resetSubmitForm, setState } from "../../../redux/authSlice";
 
 const backgroundStyle = {
     // background:`url(${gameDay})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+    // backgroundRepeat: "no-repeat",
+    // backgroundSize: "cover",
+    backgroundColor: "var(--CrashKali-header-bg)" 
   //   backgroundPosition:"bottom",
-    backgroundAttachment:"fixed"
+    // backgroundAttachment:"fixed"
   };
 
 const ResetPassword2 = React.memo((props) => {
@@ -53,13 +48,13 @@ const ResetPassword2 = React.memo((props) => {
   const FormTitle = () => {
     return (
       <div
-        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile"
-        style={{ margin: "0px" }}
+        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile "
+        style={{ margin: "0px"}}
       >
         <div>
           <div
             className={
-              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center"
+              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator "
             }
             onClick={() => navigate(-1)}
           >

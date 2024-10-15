@@ -3793,6 +3793,11 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
+
+  .top-separator {
+    box-shadow: 25px -12px 7px 11px var(--CrashKali-footer);
+    margin-bottom: 30px!important;
+}
   /* .navbar-expand-md .navbar-toggler.desktop-menu{
     display: none!important;
 

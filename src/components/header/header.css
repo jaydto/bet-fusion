@@ -74,4 +74,20 @@
   .hidden-mobile-class {
     display: none;
   }
+  /* .rounded-md {
+    font-size: 14px;
+    font-weight: 500;
+
+} */
 }
+
+@media (max-width: 480px) {
+    .\!size-4 {
+        height: 1.5rem !important;
+        width: 1.5rem !important;
+      }
+      .rounded-md {
+        font-size: 14px!important;
+        font-weight: 500;
+      }
+  }

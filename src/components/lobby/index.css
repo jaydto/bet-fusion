@@ -25,12 +25,20 @@
   }
 }
 
-@media screen and (min-width: 992px) { 
+@media screen and (min-width: 992px) {
+  #casinoMenu .btnHckd{
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px!important;
+  }
+  #casinoMenu .btnHckd img{
+    margin: 4px 10px;
+  }
   .grid-item > div.gamePanel .reaCover > .Real {
-    
-    top: 25%!important;
-    font-size: 12px!important;
-} 
+    top: 25% !important;
+    font-size: 12px !important;
+  }
   .grid-item:not(.addmoregames):hover > .imgCover {
     position: absolute;
     left: 0;
@@ -40,21 +48,19 @@
     /* height: 70%; */
     height: 50%;
     opacity: 1;
-}
+  }
 }
 
 @media screen and (max-width: 991px) {
-
   .grid-item[data-provider] .jpOverlay {
-    height:45px!important;
-    width: 45px!important;
+    height: 45px !important;
+    width: 45px !important;
   }
-  
+
   .grid-item > div.gamePanel .reaCover > .Real {
-    
-    top: 25%!important;
-    font-size: 10px!important;
-}
+    top: 25% !important;
+    font-size: 10px !important;
+  }
   .grid-item:not(.addmoregames):hover > .imgCover {
     position: absolute;
     left: 0;
@@ -64,9 +70,12 @@
     /* height: 70%; */
     height: 48%;
     opacity: 1;
-}
+  }
+  .side.center.slots.mobile {
+    margin-bottom: 5.5rem!important;
+  }
   .gamesCont.grid-layout.slots {
-    margin-bottom: 5rem;
+    margin-bottom: 0rem;
   }
   .jpHeader {
     display: none !important;
@@ -124,18 +133,13 @@
   border-bottom: thin solid var(--CrashKali-button-login) !important;
   color: var(--CrashKali-button-login) !important;
   font-weight: 800 !important;
-  font-size: 12px ;
-
-
+  font-size: 12px;
 }
 @media only screen and (max-width: 900px) {
   .btnHckd.active {
     border-radius: 4px;
     font-size: 13px !important;
-    border-bottom: none!important;
-
-
-
+    border-bottom: none !important;
   }
   .grid-item {
     /* width: 46.4% !important; */
@@ -383,8 +387,8 @@
 .grid-item > div.gamePanel > .reaCover > .Real > a {
   color: inherit;
   font-weight: 700;
-  background:var(--CrashKali-button-login);
-  border-radius:16px;
+  background: var(--CrashKali-button-login);
+  border-radius: 16px;
 }
 .grid-item > div.gamePanel .reaCover > .Real {
   position: absolute;
@@ -1192,7 +1196,7 @@ body.mobile.casino section.sportsNav#casinoMenu .btnHckd {
   background-position: center 5px;
   background-size: 32px 32px;
   background-repeat: no-repeat;
-  margin: 5px 0 10px;
+  /* margin: 5px 0 10px; */
 }
 .btnHckd {
   min-width: 120px;
@@ -1209,7 +1213,7 @@ body.mobile.casino section.sportsNav#casinoMenu .btnHckd {
   background-position: center 5px;
   background-size: 32px 32px;
   background-repeat: no-repeat;
-  margin: 5px 0;
+  /* margin: 5px 0; */
 }
 #casinoMenu .btnHckd img {
   margin-top: 7px;
@@ -1219,7 +1223,7 @@ body.mobile.casino section.sportsNav#casinoMenu .btnHckd {
   margin-right: auto;
   display: block;
   padding: 4px;
-  width: 40px;
+  width: 35px;
   height: auto;
 }
 section.pageContent .filters ul {

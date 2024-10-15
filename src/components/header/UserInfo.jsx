@@ -95,7 +95,7 @@ export const UserInfo = React.memo(
                         </div> */}
                     </div>}
                 <>
-                    {!user && <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2"
+                    {!user && <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2 mb-2"
                                    style={{marginLeft: 'auto'}}>
                         {/* {pathname !== '/signup' && <div className="remove-verify">
                             <Link className="cg  login-color login-size btn bg-success text-light"

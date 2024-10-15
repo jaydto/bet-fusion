@@ -31,9 +31,10 @@ import {
   shouldShowMobileNav,
   shouldShowHeader,
 } from "../../redux/navigationAction";
-import Header2 from "./Header2";
+import './header.css'
 import useWindowDimensions from "./Dimensions";
 import DepositModal from "../modals/DepositModal";
+import NavLinks from "./NavLinks";
 
 const ProfileMenu = React.lazy(() => import("./profile-menu"));
 
@@ -244,7 +245,7 @@ const Header = React.memo((props) => {
                   title="CrashKali"
                 >
                   <div
-                    className="col-4 logo-CrashKali resize-mobile d-flex align-items-center mb-2"
+                    className="col-7 logo-CrashKali resize-mobile d-flex align-items-center mb-2"
                     style={{ marginLeft: "2px" }}
                   >
                     <div
@@ -278,7 +279,7 @@ const Header = React.memo((props) => {
                       }
                     />
 
-                    <ul className="header-nav-container d-flex">
+                    {/* <ul className="header-nav-container d-flex">
                       <li
                         className={`${
                           (pathname.includes("casino") || pathname == "/casino" )? "active" : ""
@@ -315,7 +316,8 @@ const Header = React.memo((props) => {
                           </span>
                         </div>
                       </li>
-                    </ul>
+                    </ul> */}
+                    <NavLinks/>
                   </div>
 
                   

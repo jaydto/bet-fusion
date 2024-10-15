@@ -273,7 +273,7 @@ const CasinoGamesComponent = () => {
               : gameIndex === 1
               ? "span-3"
               : ""
-          }`}
+          } `}
           data-provider={game.provider}
           data-category="Slots"
           data-order={gameIndex}

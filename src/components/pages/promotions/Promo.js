@@ -281,7 +281,7 @@ const Promo = () => {
                       </div>
                     </div>
 
-                    <PromoCards />
+                    {/* <PromoCards /> */}
                   </div>
                 </div>
               </div>

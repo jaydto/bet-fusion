@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import QuickLogin from "./quick-login";
 import CompanyInfo from "./company-info";
 import { Badge } from "react-bootstrap";
-import Kironslip from "./kironslip";
 import MobileMenu from "../mobile-menu";
 import useWindowDimensions from "../header/Dimensions";
 import { StoreContext } from "../../context/store";
@@ -155,8 +154,7 @@ const Right = React.memo((props) => {
                 </button>
                 <div id="betslip" className="betslip">
                   
-                    <Kironslip kiron={kiron} />
-                 
+                 {/* Todo */}
                 </div>
                 <QuickLogin />
               </div>

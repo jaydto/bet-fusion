@@ -50,14 +50,7 @@ const SidebarProfile = React.memo(
                     </MenuItem>
                 </Menu>
 
-                <Menu>
-                    <MenuItem className={"d-flex justify-content-between"}>
-                        <Link  className={"d-flex gap-4 align-items-center px-3"} to={"/bet-history?id=2"}>
-                            <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:'24px'}}/>
-                            <div className={'text-profile'} >My Bets</div>
-                        </Link>
-                    </MenuItem>
-                </Menu>
+                
                 
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
@@ -82,7 +75,7 @@ const SidebarProfile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
                             <FontAwesomeIcon icon={faMobile} style={{fontSize:'24px'}}/>
-                            <a href={"/https://cdn.CrashKali.com/CrashKaliapp.apk"} className={'text-profile'} onClick={() => {
+                            <a href={"/https://cdn.BetTena.com/BetTenaapp.apk"} className={'text-profile'} onClick={() => {
                                 gaEventTracker('Visit App Page');
                             }}>App
                             </a>

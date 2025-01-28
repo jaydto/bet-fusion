@@ -269,7 +269,7 @@ const HeaderLogin = React.memo((props) => {
                 </Link>
                 <span className="d-flex align-items-center">
                   <span className="text-warning h4 m-0">
-                    You are using CrashKali
+                    You are using BetTena
                   </span>
                   <CountryButton onFieldChanged={onFieldChanged} />
                 </span>

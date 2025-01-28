@@ -242,10 +242,10 @@ const Header = React.memo((props) => {
               <div className={"d-flex w-100 directions-header-nav"}>
                 <Navbar.Brand
                   className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
-                  title="CrashKali"
+                  title="BetTena"
                 >
                   <div
-                    className="col-7 logo-CrashKali resize-mobile d-flex align-items-center mb-2"
+                    className="col-7 logo-BetTena resize-mobile d-flex align-items-center mb-2"
                     style={{ marginLeft: "2px" }}
                   >
                     <div
@@ -265,10 +265,10 @@ const Header = React.memo((props) => {
                     <img
                       src={Logo}
                       onClick={() => navigate("/")}
-                      alt="CrashKali"
-                      title="CrashKali"
+                      alt="BetTena"
+                      title="BetTena"
                       effects="blur"
-                      className={`image-size ${!user && "logo-top"}`}
+                      className={`image-size ${!user && "logo-top"} d-none`}
                       style={
                         user
                           ? { marginBottom: "0px" }
@@ -368,8 +368,9 @@ const Header = React.memo((props) => {
                       <div>
                         <img
                           src={Logo}
-                          alt="CrashKali"
-                          title="CrashKali"
+                          alt="BetTena"
+                          title="BetTena"
+                          className="d-none"
                           effects="blur"
                         />
                       </div>

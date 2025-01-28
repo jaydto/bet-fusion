@@ -1,7 +1,7 @@
 body {
-  font-size: var(--CrashKali-font-size-nav);
+  font-size: var(--BetTena-font-size-nav);
   line-height: var(--body-line-weight);
-  background: var(--CrashKali-body-bg);
+  background: var(--BetTena-body-bg);
   max-width: 100% !important;
 }
 .btn-button-bg{
@@ -87,7 +87,7 @@ body {
 }
 
 .decode-bg {
-  background: var(--CrashKali-header-bg) !important;
+  background: var(--BetTena-header-bg) !important;
 }
 
 .c-btn-header {
@@ -114,11 +114,11 @@ body {
 }
 
 .decode-bg {
-  background: var(--CrashKali-primary);
+  background: var(--BetTena-primary);
 }
 
 .loadmore {
-  background: var(--CrashKali-button-login);
+  background: var(--BetTena-button-login);
   border: none;
   width: 100%;
   color: var(--light);
@@ -130,11 +130,11 @@ body {
   color: whitesmoke;
   border-bottom: 0px solid #fff;
   font-size: 15px;
-  background: var(--CrashKali-footer);
+  background: var(--BetTena-footer);
   color: var(--footer-color);
   padding: 10px;
   margin-top: 10px;
-  /* box-shadow: 10px 10px 10px 10px var(--CrashKali-header-bg); */
+  /* box-shadow: 10px 10px 10px 10px var(--BetTena-header-bg); */
   max-width: 991px;
   margin: auto;
 }
@@ -196,10 +196,10 @@ input.text-white {
   color: var(--dark) !important;
 }
 .login-button2:active {
-  background: var(--CrashKali-button-login) !important ;
+  background: var(--BetTena-button-login) !important ;
 }
 .login-button2:disabled {
-  background: var(--CrashKali-button-login) !important ;
+  background: var(--BetTena-button-login) !important ;
 }
 
 .shadow-testimonials {
@@ -219,7 +219,7 @@ input.text-white {
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
   padding: 5px 10px;
   border-radius: 6px;
 }
@@ -239,7 +239,7 @@ input.text-white {
 }
 
 .b-icon {
-  color: var(--CrashKali-button-login) !important;
+  color: var(--BetTena-button-login) !important;
 }
 
 .Toastify__toast-container--top-right {
@@ -259,7 +259,7 @@ input.text-white {
 .clip-get-size {
   -webkit-clip-path: circle(50% at 11% 20%);
   clip-path: circle(50% at 11% 20%);
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
 }
 
 .casino-scroll::-webkit-scrollbar {
@@ -267,13 +267,13 @@ input.text-white {
 }
 
 .directions-header-nav {
-  /*background: var(--CrashKali-header-bg);*/
+  /*background: var(--BetTena-header-bg);*/
 }
 
 .top-nav {
   top: -2px;
   padding-top: 10px;
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
   background-size: cover;
   background-position: center center;
   padding-bottom: 17px;
@@ -297,7 +297,7 @@ input.text-white {
 
 .betslip-header {
   clear: both;
-  background: var(--CrashKali-body-bg);
+  background: var(--BetTena-body-bg);
   border-radius: var(--button-radius);
   color: #fff;
   cursor: pointer;
@@ -309,7 +309,7 @@ input.text-white {
 }
 
 .card-bet-details {
-  background: var(--CrashKali-primary) !important;
+  background: var(--BetTena-primary) !important;
   color: var(--white) !important;
   padding: 10px;
   margin-bottom: 5px;
@@ -325,7 +325,7 @@ input.text-white {
 }
 
 .accordion-item.bet-history-kiron {
-  background: var(--CrashKali-primary) !important;
+  background: var(--BetTena-primary) !important;
 }
 
 .ReactModal__Overlay {
@@ -376,13 +376,13 @@ input.text-white {
   border-radius: 6px;
   font-size: 16px;
   font-weight: 600;
-  background-color: var(--CrashKali-button-login);
+  background-color: var(--BetTena-button-login);
 }
 
 .accordion-button.bet-history-button {
   padding: 10px;
   padding-left: 7px;
-  background: var(--CrashKali-body-bg) !important;
+  background: var(--BetTena-body-bg) !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
@@ -437,12 +437,12 @@ input.text-white {
 }
 
 .match-status {
-  color: var(--CrashKali-button-login) !important;
+  color: var(--BetTena-button-login) !important;
   white-space: nowrap;
 }
 
 .live-status {
-  color: var(--CrashKali-live);
+  color: var(--BetTena-live);
 }
 
 #xgames-header {
@@ -467,7 +467,7 @@ input.text-white {
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
-  background-color: var(--CrashKali-primary) !important;
+  background-color: var(--BetTena-primary) !important;
 }
 
 .pro-sidebar.collapsed
@@ -476,7 +476,7 @@ input.text-white {
   > .pro-menu-item.pro-sub-menu
   > .pro-inner-list-item
   > .popper-inner {
-  background-color: var(--CrashKali-body-bg) !important;
+  background-color: var(--BetTena-body-bg) !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
@@ -516,7 +516,7 @@ input.text-white {
 }
 
 .betslip-container {
-  background: var(--CrashKali-header-bg) !important;
+  background: var(--BetTena-header-bg) !important;
   width: 100%;
 }
 
@@ -552,14 +552,14 @@ input.text-white {
 }
 
 .second-nav-list {
-  box-shadow: -3px 0px 0px 0px var(--CrashKali-header-bg);
-  -webkit-box-shadow: -3px 0px 0px 0px var(--CrashKali-header-bg);
-  -moz-box-shadow: -3px 0px 0px 0px var(--CrashKali-header-bg);
+  box-shadow: -3px 0px 0px 0px var(--BetTena-header-bg);
+  -webkit-box-shadow: -3px 0px 0px 0px var(--BetTena-header-bg);
+  -moz-box-shadow: -3px 0px 0px 0px var(--BetTena-header-bg);
 }
 
 .top-nav-login {
   padding: 1px 0px 5px 0px;
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
  
 }
 
@@ -576,13 +576,13 @@ input.text-white {
   width: 19px !important;
   margin-top: -6px !important;
   border-radius: 16px;
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
   margin-bottom: -7px;
 }
 
 .bet-body {
   font-size: var(--font-size-bet-body);
-  background: var(--CrashKali-input);
+  background: var(--BetTena-input);
 }
 
 b,
@@ -594,7 +594,7 @@ strong {
   color: var(--aqua-text);
 }
 
-/*top navigation CrashKali-web*/
+/*top navigation BetTena-web*/
 .myButton {
   border-radius: 8px;
   color: #fff;
@@ -621,7 +621,7 @@ strong {
 
 .main-navigations {
   /*line-height: 2.2 !important;*/
-  background: var(--CrashKali-body-bg);
+  background: var(--BetTena-body-bg);
   position: sticky;
   top: 5rem;
   z-index: 1999;
@@ -652,14 +652,14 @@ strong {
   opacity: 1;
   position: sticky;
   z-index: 2000;
-  background: var(--CrashKali-body-bg);
+  background: var(--BetTena-body-bg);
   max-height: 40.5px;
   min-height: 40.5px;
 }
 
 /*end top navigation web */
 .login-text:hover {
-  color: var(--CrashKali-button-login);
+  color: var(--BetTena-button-login);
 }
 
 .profile-top-nav {
@@ -667,7 +667,7 @@ strong {
 }
 
 .search-results-box {
-  background: var(--CrashKali-input);
+  background: var(--BetTena-input);
   color: var(--light);
   margin-top: 3px;
   width: 41.2%;
@@ -689,7 +689,7 @@ strong {
   height:4rem;
   align-items:center;
   justify-content: center;
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
   border: 1px solid white;
   border-radius: 1rem;
   color: var(--light);
@@ -703,23 +703,23 @@ label {
   font-size: 14px;
 }
 .counrtryCodec {
-  background: var(--CrashKali-primary);
+  background: var(--BetTena-primary);
   margin-left: 4px;
 }
 .transaction {
   cursor: default;
-  padding: 22px 20px;
+  padding: 5px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--profile-card);
+  background-color: var(--profile-card-1);
   box-shadow: 0 14px 28px rgba(0,0,0,0.02), 0 10px 10px rgba(0,0,0,0.0);
   border-radius: 12px;
   margin-bottom: 20px;
 }
 
 input {
-  background: var(--CrashKali-primary)!important;
+  background: var(--BetTena-primary)!important;
   border-radius: 3px !important;
   color: var(--light) !important;
   font-weight: bold !important;
@@ -748,7 +748,7 @@ input {
   /* margin-left: auto; */
   display: flex;
   justify-content: start;
-  background: var(--CrashKali-body-bg);
+  background: var(--BetTena-body-bg);
 }
 ol.list-count-type {
   list-style: circle !important;
@@ -801,13 +801,13 @@ select::after {
 }
 
 .all-markkets-search {
-  background: var(--CrashKali-input) !important;
+  background: var(--BetTena-input) !important;
   border: none !important;
   border-radius: var(--button-radius) !important;
 }
 
 .all-markkets-search input {
-  background: var(--CrashKali-input) !important;
+  background: var(--BetTena-input) !important;
   border: none !important;
   color: #fff !important;
 }
@@ -844,7 +844,7 @@ select::after {
   display: flex !important;
 }
 
-.CrashKali-text-light {
+.BetTena-text-light {
   color: var(--light) !important;
   line-height: 1.5;
 }
@@ -872,13 +872,13 @@ select::after {
 }
 
 .login-button.button-page {
-  background: var(--CrashKali-button-login);
+  background: var(--BetTena-button-login);
   color: var(--dark)!important;
   font-weight: 600;
 }
 
 .deposit-withdraw-button.button-page {
-  background: var(--CrashKali-button-login);
+  background: var(--BetTena-button-login);
   color: var(--dark);
 }
 
@@ -899,7 +899,7 @@ select::after {
 }
 
 .header-styling-mobile {
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
   color: var(--light);
   padding: 5px 1px 5px 1px !important;
   font-size: 9px !important;
@@ -917,7 +917,7 @@ select::after {
 }
 
 .matches .top-matches.more-markets {
-  background: var(--CrashKali-body-bg) !important;
+  background: var(--BetTena-body-bg) !important;
   margin-bottom: 1px;
 }
 
@@ -1069,7 +1069,7 @@ input[type="checkbox"] {
 
 .second-nav {
   /*background: #1f2f38 !important;*/
-  font-size: var(--CrashKali-font-size-nav);
+  font-size: var(--BetTena-font-size-nav);
   box-shadow: 0 1px 2px #16202c;
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 1px 2px #16202c;
@@ -1138,7 +1138,7 @@ input[type="checkbox"] {
 
 .profile-width-side {
   min-width: 316px !important;
-  background: var(--CrashKali-header-bg) !important;
+  background: var(--BetTena-header-bg) !important;
   padding-left: 0rem;
   margin-top: 0rem;
   padding-left: 2.5rem;
@@ -1278,7 +1278,7 @@ input[type="checkbox"] {
   top: 0px; /* Adjust the position based on your layout */
   right: 0px; /* Adjust the position based on your layout */
   z-index: 10000; /* Ensure the button is on top of the overlay */
-  background-color: var(--CrashKali-body-bg); /* Button background color */
+  background-color: var(--BetTena-body-bg); /* Button background color */
   padding: 15px 20px;
   border-radius: 4px;
   cursor: pointer;
@@ -1312,7 +1312,7 @@ img.nare-league {
 }
 
 .input-color-icon {
-  background: var(--CrashKali-primary) !important;
+  background: var(--BetTena-primary) !important;
   color:var(--light);
   /* height: 100%; */
 }
@@ -1342,7 +1342,7 @@ img.nare-league {
 }
 
 .header-sports {
-  /* background: var(--CrashKali-header-bg); */
+  /* background: var(--BetTena-header-bg); */
   opacity: 1 !important;
   top: 100px;
 }
@@ -1410,7 +1410,7 @@ img.nare-league {
   border: 1px solid rgb(59 55 55 / 20%);
   position: relative;
   transition: 0.3s;
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
 }
 
 .original-button::before {
@@ -1912,7 +1912,7 @@ img.nare-league {
     z-index: 1999 !important;
     opacity: 1;
     background: var(--testimonial);
-    border: 1px solid var(--CrashKali-button-login) !important;
+    border: 1px solid var(--BetTena-button-login) !important;
   }
 
   .sticky-user {
@@ -2074,7 +2074,7 @@ img.nare-league {
 }
 #countryCode {
   color: var(--light);
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
   border-radius: 10px;
   margin-left: 10px;
   font-size: 11px;
@@ -2147,7 +2147,7 @@ img.nare-league {
   }
   .footer-mobile-none {
     
-    background:var(--CrashKali-footer);
+    background:var(--BetTena-footer);
   }
 
   .desktop-footer  {
@@ -2275,7 +2275,7 @@ img.nare-league {
   .market-groups-container {
     max-width: 61.2vw;
     z-index: 1000;
-    background: var(--CrashKali-header-bg);
+    background: var(--BetTena-header-bg);
   }
 
   .details-items .team .team-info {
@@ -2312,7 +2312,7 @@ img.nare-league {
   }
 
   .btn.login-button2:hover {
-    background: var(--CrashKali-button-login) !important;
+    background: var(--BetTena-button-login) !important;
   }
 
   .bet-align-right {
@@ -2329,7 +2329,7 @@ img.nare-league {
     opacity: 1;
     border-radius: 3px;
     top: -8rem;
-    background: var(--CrashKali-body-bg) !important;
+    background: var(--BetTena-body-bg) !important;
   }
 
   .os {
@@ -2519,7 +2519,7 @@ img.nare-league {
 } */
 .codecCountry .dropdown .dropdown-menu {
   color: var(--light);
-  background-color: var(--CrashKali-header-bg) !important;
+  background-color: var(--BetTena-header-bg) !important;
 }
 .codecCountry .dropdown .dropdown-menu a {
   color: var(--light);
@@ -2529,7 +2529,7 @@ img.nare-league {
 
 .filters-modal .modal-content,
 .filters-modal.exclude .modal-content {
-  background-color: var(--CrashKali-header-bg);
+  background-color: var(--BetTena-header-bg);
 }
 .bg-deposit-modal-btn.cancel-filter-markets {
   background: none !important;
@@ -2572,7 +2572,7 @@ img.nare-league {
     padding: 0;
     margin: 0;
     padding: 10px 10px!important;
-    background: #112170!important;
+    background: var(--BetTena-lite)!important;
     width: 96%;
     border-radius: 4px;
   }
@@ -2869,7 +2869,7 @@ img.nare-league {
     margin-top:0px;
   }
 
-  .logo-CrashKali {
+  .logo-BetTena {
     display: flex;
     align-items: center;
   }
@@ -2914,7 +2914,7 @@ img.nare-league {
   .market-groups-container {
     max-width: 100vw;
     z-idex: 2001;
-    background: var(--CrashKali-header-bg);
+    background: var(--BetTena-header-bg);
   }
 
   .outcome-h {
@@ -2975,14 +2975,14 @@ img.nare-league {
   }
 
   .filters-modal .modal-content {
-    background-color: var(--CrashKali-header-bg);
+    background-color: var(--BetTena-header-bg);
     color: #fff;
     position: fixed;
     bottom: 0;
   }
 
   .filters-modal.exclude .modal-content {
-    background-color: var(--CrashKali-body-bg);
+    background-color: var(--BetTena-body-bg);
     color: #fff;
     position: fixed;
   }
@@ -3021,17 +3021,17 @@ img.nare-league {
 
   .slip-count-value {
     position: absolute;
-    background: var(--CrashKali-button-login) !important;
+    background: var(--BetTena-button-login) !important;
     top: -10px;
     left: 4px;
   }
 
   .mobile-menu tbody.slip-menu-prematch {
     margin: 0px 10px;
-    box-shadow: 10px 10px 10px 10px var(--CrashKali-side-bg);
+    box-shadow: 10px 10px 10px 10px var(--BetTena-side-bg);
     border-radius: 10px;
     position: relative;
-    background: var(--CrashKali-body-bg);
+    background: var(--BetTena-body-bg);
   }
 
   .slip-count-option {
@@ -3046,7 +3046,7 @@ img.nare-league {
 
   .close-prompt {
     margin-bottom: -6px !important;
-    /* background: var(--CrashKali-button-login); */
+    /* background: var(--BetTena-button-login); */
     border-radius: 10px;
     margin-right: -17px;
   }
@@ -3080,7 +3080,7 @@ img.nare-league {
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
     width: 56px;
-    box-shadow: 1px 1px 3px 1px var(--CrashKali-body-bg);
+    box-shadow: 1px 1px 3px 1px var(--BetTena-body-bg);
     margin-top: -2px;
   }
 
@@ -3090,14 +3090,14 @@ img.nare-league {
   }
 
   .info-slip-bets {
-    background: var(--CrashKali-button-login);
+    background: var(--BetTena-button-login);
     width: 100%;
     height: 2rem;
     align-items: center;
   }
 
   .info_bet_alert {
-    /*background: var(--CrashKali-button-login);*/
+    /*background: var(--BetTena-button-login);*/
     width: 100%;
     height: 2rem;
     align-items: center;
@@ -3209,7 +3209,7 @@ img.nare-league {
   .box-shadow-table-submit-form {
     padding: 5px;
     border-radius: 10px;
-    border: thin solid var(--CrashKali-input);
+    border: thin solid var(--BetTena-input);
     line-height: 0.7;
   }
 
@@ -3271,11 +3271,11 @@ img.nare-league {
   }
 
   .btn.login-button:hover {
-    background: var(--CrashKali-button-login) !important;
+    background: var(--BetTena-button-login) !important;
   }
 
   .btn.login-button2:hover {
-    background: var(--CrashKali-button-login) !important;
+    background: var(--BetTena-button-login) !important;
   }
 
   .top-matches a.odds-container-size {
@@ -3319,7 +3319,7 @@ img.nare-league {
   .bottom {
     position: sticky;
     bottom: 18rem;
-    background: var(--CrashKali-body-bg);
+    background: var(--BetTena-body-bg);
   }
 
   .slip-bottom-betlip-active {
@@ -3342,7 +3342,7 @@ img.nare-league {
   .sticky-logged-in-testimony {
     top: 0px;
     border-radius: 7px;
-    border: 1px solid var(--CrashKali-button-login) !important;
+    border: 1px solid var(--BetTena-button-login) !important;
     line-height: 1.5;
   }
 
@@ -3391,7 +3391,7 @@ img.nare-league {
     position: absolute;
     top: -9rem;
     right: -13rem;
-    background: var(--CrashKali-body-bg) !important;
+    background: var(--BetTena-body-bg) !important;
   }
 
  
@@ -3479,7 +3479,7 @@ img.nare-league {
     height: 1px;
     width: 93%;
     margin: auto;
-    background: var(--CrashKali-secondary);
+    background: var(--BetTena-secondary);
   }
   .svg-mobile {
     min-width: 16px !important;
@@ -3515,7 +3515,7 @@ img.nare-league {
   }
 
   .search-results-box {
-    background: var(--CrashKali-input);
+    background: var(--BetTena-input);
     color: var(--light);
     margin-top: 3px;
     width: 82%;
@@ -3582,7 +3582,7 @@ img.nare-league {
   }
 
   .second-nav {
-    font-size: var(--CrashKali-font-size-small);
+    font-size: var(--BetTena-font-size-small);
   }
 
   .sticky-user {
@@ -3649,7 +3649,7 @@ img.nare-league {
 
   .footer-mobile-none {
     display: none;
-    background:var(--CrashKali-footer);
+    background:var(--BetTena-footer);
   }
 
   .kiron-betslip-size {
@@ -3743,7 +3743,7 @@ img.nare-league {
   .slip-tabs {
     background: repeating-linear-gradient(
       45deg,
-      var(--CrashKali-header-bg),
+      var(--BetTena-header-bg),
       transparent 100px
     );
   }
@@ -3795,7 +3795,7 @@ img.nare-league {
 @media (max-width: 767px) {
 
   .top-separator {
-    box-shadow: 25px -12px 7px 11px var(--CrashKali-footer);
+    box-shadow: 25px -12px 7px 11px var(--BetTena-footer);
     margin-bottom: 30px!important;
 }
   /* .navbar-expand-md .navbar-toggler.desktop-menu{
@@ -3917,7 +3917,7 @@ img.nare-league {
     position: sticky;
     top: 0px;
     z-index: 1999 !important;
-    border: 1px solid var(--CrashKali-button-login) !important;
+    border: 1px solid var(--BetTena-button-login) !important;
     line-height: 1.5;
     border-radius: 6px;
   }
@@ -4336,7 +4336,7 @@ img.nare-league {
   .sticky-testimony {
     top: 0px;
     border-radius: 7px;
-    border: 1px solid var(--CrashKali-button-login) !important;
+    border: 1px solid var(--BetTena-button-login) !important;
   }
 
   .highlight-menu {
@@ -4346,7 +4346,7 @@ img.nare-league {
 
 @media (max-width: 420px) {
   .search-results-box {
-    background: var(--CrashKali-input);
+    background: var(--BetTena-input);
     color: var(--light);
     margin-top: 3px;
     width: 80%;
@@ -4373,8 +4373,8 @@ img.nare-league {
 }
 
 .lite-top-color {
-  border: thin solid var(--CrashKali-input);
-  color: var(--CrashKali-button-login);
+  border: thin solid var(--BetTena-input);
+  color: var(--BetTena-button-login);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -4385,7 +4385,7 @@ img.nare-league {
 
 .lite-top-color .color-app-text {
   width: 100%;
-  color: var(--CrashKali-button-login);
+  color: var(--BetTena-button-login);
   text-align: center;
 }
 
@@ -4395,7 +4395,7 @@ img.nare-league {
   }
   .app-navbar .e img {
     max-width: 100px !important;
-    background: var(--CrashKali-header-bg);
+    background: var(--BetTena-header-bg);
     height: 30px;
   }
 
@@ -4442,7 +4442,7 @@ img.nare-league {
   .sticky-logged-in-testimony {
     top: 0px;
     border-radius: 4px;
-    border: 1px solid var(--CrashKali-button-login) !important;
+    border: 1px solid var(--BetTena-button-login) !important;
     line-height: 1.5;
   }
 }

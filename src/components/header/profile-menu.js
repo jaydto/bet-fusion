@@ -54,19 +54,7 @@ const ProfileMenu = React.memo((props) => {
                             </div>
                         }
 
-                        <div className="w-auto d-flex text-white align-items-start">
-                            <div className={"profile-wrap text-muted-1"}>
-                                <Link
-                                    to={"/bet-history?competition_id=2"}
-                                    style={{ fontSize: "14px" }}
-                                    title={'MY BETS'}>
-                                    <span className="text-muted-1">
-                                        <span className="text-muted-1"> <FontAwesomeIcon icon={faBook} /></span>
-                                        <strong> My Bets</strong>
-                                    </span>
-                                </Link>
-                            </div>
-                        </div>
+                       
                         <div className="w-auto d-flex text-white align-items-end text-muted-1" title={'PROFILE'}>
                             {!profile && <Link className={"profile-wrap"} to={'/profile'}>
                                 <div className="font-btn text-muted-1">

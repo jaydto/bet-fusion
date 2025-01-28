@@ -1,49 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>https://www.CrashKali.com/</loc>
+        <loc>https://www.BetTena.com/</loc>
     </url>
     <url>
-        <loc>https://CrashKali.com/signup</loc>
+        <loc>https://BetTena.com/signup</loc>
     </url>
    
     <url>
-        <loc>https://CrashKali.com/login</loc>
+        <loc>https://BetTena.com/login</loc>
     </url>
     <url>
-        <loc>https://CrashKali.com/signup/verify</loc>
+        <loc>https://BetTena.com/signup/verify</loc>
     </url>
     
     <url>
-        <loc>https://CrashKali.com/bet-history</loc>
+        <loc>https://BetTena.com/bet-history</loc>
     </url>
    
     <url>
-        <loc>https://CrashKali.com/terms-and-conditions</loc>
+        <loc>https://BetTena.com/terms-and-conditions</loc>
     </url>
    
   
     <url>
-        <loc>https://www.CrashKali.com/standings</loc>
+        <loc>https://www.BetTena.com/standings</loc>
     </url> <url>
-        <loc>https://www.CrashKali.com/results</loc>
+        <loc>https://www.BetTena.com/results</loc>
     </url>
 
     
     <url>
-        <loc>https://CrashKali.com/casino</loc>
+        <loc>https://BetTena.com/</loc>
+    </url>
+    
+    <url>
+        <loc>https://BetTena.com/smart-play?game=JetX&amp;category=JetX</loc>
     </url>
     <url>
-        <loc>https://CrashKali.com/smart-soft</loc>
+        <loc>https://BetTena.com/smart-play?game=FootballX&amp;category=Games</loc>
     </url>
     <url>
-        <loc>https://CrashKali.com/smart-play?game=JetX&amp;category=JetX</loc>
-    </url>
-    <url>
-        <loc>https://CrashKali.com/smart-play?game=FootballX&amp;category=Games</loc>
-    </url>
-    <url>
-        <loc>https://CrashKali.com//nare-games/aviator</loc>
+        <loc>https://BetTena.com//nare-games/aviator</loc>
     </url>
 
 </urlset>

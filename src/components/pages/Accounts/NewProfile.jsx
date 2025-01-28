@@ -3,13 +3,15 @@ import "./component/newProfile.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faAngleRight,
+  faAngleRight,
   faBars,
   faCoins,
   faDownload,
+  faGift,
   faPowerOff,
   faUpload,
   faUserCircle,
+  faWallet,
 } from "@fortawesome/free-solid-svg-icons";
 import { formatNumber } from "../../utils/betslip";
 import {
@@ -69,37 +71,42 @@ const NewProfile = React.memo(() => {
     <>
       <div>
         <div className="profile-container-desktop d-flex">
-          <div className="col mobile-full-width" style={{background:"var(--CrashKali-header-bg)"}}>
+          <div
+            className="col mobile-full-width"
+            style={{ background: "var(--BetTena-header-bg)" }}
+          >
             <div className="iphone">
               <div className="content mb-4 px-4">
                 <div className="d-flex flex-column justify-content-center align-items-center">
-                  <FontAwesomeIcon 
-                  style={{fontSize:"35px", marginTop:"2rem"}}
+                  <FontAwesomeIcon
+                    style={{ fontSize: "35px", marginTop: "2rem" }}
                     icon={faUserCircle}
                     size="lg"
                     className="bars h2 text-success"
                   />
                   <span className="h4 text-warning">{user?.msisdn}</span>
                 </div>
-                <div className="card">
+                <div className="card mb-3">
                   <div className="upper-row">
-                    <div className="card-item">
-                      {/*todo balance*/}
-                      <span className="t-label">Cash Balance</span>
-                      <span>
-                        <span className="dollar">
+                    <div className="card-item d-flex  align-items-center px-2">
+                      {/* Cash Balance with Wallet Icon in Column Layout */}
+                      <FontAwesomeIcon icon={faWallet} className="mb-2  icon-large icon-white " />
+                      <div className="balance-container d-flex flex-column align-items-start px-3">
+                        <div className="t-label">Balance</div>
+                        <div className="dollar">
                           Ksh {formatNumber(user?.balance) || 0}
-                        </span>
-                      </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="card-item">
-                      {/*todo bonus*/}
-                      <span className="t-label">Bonus Balance</span>
-                      <span>
-                        <span className="dollar">
+                    <div className="card-item d-flex  align-items-center px-2">
+                      {/* Bonus Balance with Gift Icon in Column Layout */}
+                      <FontAwesomeIcon icon={faGift} className="mb-2 icon-large icon-white " />
+                      <div className="balance-container d-flex flex-column align-items-start px-3">
+                        <div className="t-label">Bonus </div>
+                        <div className="dollar">
                           Ksh {formatNumber(user?.bonus) || 0}
-                        </span>
-                      </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -164,35 +171,11 @@ const NewProfile = React.memo(() => {
                     </Link>
                   )}
 
-                <Link
-                className="mt-4"
-                  to="/bet-history?competition_id=2"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <div className="transaction ">
-                    <div className="t-details">
-                      <div className="t-title">My Bets</div>
-                    </div>
-                    <div className="t-amount">
-                      {/*<i className="fas fa-bars" style={{fontSize: "24px"}}></i>*/}
-                      <FontAwesomeIcon
-                        icon={faBars}
-                        style={{ fontSize: "24px" }}
-                      />
-                    </div>
-                  </div>
-                </Link>
+                <DepositForm />
 
+                <WithdrawForm />
 
-               
-                <DepositForm/>
-
-                <WithdrawForm/>
-                
-               
-
-                <SupportContainer/>
-                
+                <SupportContainer />
               </div>
             </div>
           </div>

@@ -44,7 +44,7 @@
     z-index: -1;
 }
 .background-profile{
-    background: var(--CrashKali-header-bg)!important;
+    background: var(--BetTena-header-bg)!important;
     color:var(--light);
 }
 .text-profile-light{
@@ -75,9 +75,9 @@
 }
 .card {
     align-self: stretch;
-    background-color: var(--black);
     border-radius: 12px;
     display: flex;
+    background: crimson;
     flex-direction:column;
     box-shadow: 0 14px 28px rgba(0,0,0,0.02), 0 10px 10px rgba(0,0,0,0.0);
 }
@@ -85,19 +85,17 @@
     position: sticky;
     top: 0px;
     width: 100%;
-    background: var(--CrashKali-header-bg);
+    background: var(--BetTena-header-bg);
 }
 .upper-row {
     display: flex;
-    justify-content: space-evenly;
-    padding-top: 10px
+    justify-content: space-between;
+    padding-top: 0px
 }
 .card-item {
     margin: 10px 22px;
     display: flex;
-    flex-direction: column;
-    background: black;
-    padding: 24px;
+    padding: 10px;
     border-radius: 20px;
 }
 .t-label{
@@ -126,9 +124,15 @@ a.text-logout{
 }
 .lower-row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
+
+  
+  .icon-white {
+    color: var(--light)
+  }
+  
 .lower-row::before {
     content: '';
     display: block;
@@ -185,6 +189,7 @@ a.text-logout{
     color: var(--light);
     font-weight: var(--font-weight-medium);
     padding-right: 18px;
+    font-size: 13px;
 }
 .account__section__desc {
     margin: 0;
@@ -254,12 +259,12 @@ button, input, textarea, select {
     border-radius: 4px;
 }
 .button__secondary {
-    /* background: var(--CrashKali-odds-body); */
+    /* background: var(--BetTena-odds-body); */
     color: var(--always-white);
     border-radius: 8px;
 }
 .button.button__disabled {
-    background: var(--CrashKali-odds-body);
+    background: var(--BetTena-odds-body);
     color: var(--always-white);
     /* border-radius: 8px; */
     border-radius: 4px;
@@ -273,7 +278,7 @@ button, input, textarea, select {
     padding: 10px 15px;
     border: none;
     margin: 0;
-    background: var(--CrashKali-button-login);
+    background: var(--BetTena-button-login);
     cursor: pointer;
     font-size: var(--font-medium);
     cursor: pointer;
@@ -324,7 +329,7 @@ button, input, textarea, select {
 .account__section__support button {
     font-weight: var(--font-weight-lighter);
     background: none;
-    color: var(--CrashKali-button-login);
+    color: var(--BetTena-button-login);
     text-align: left;
     padding: 0;
 }
@@ -338,7 +343,7 @@ button, input, textarea, select {
     margin: 20px auto;
 }
 .account__section__support--line {
-    background: var(--CrashKali-body-bg);
+    background: var(--BetTena-body-bg);
     width: 200px;
     height: 0.5px;
     margin: 12px auto;
@@ -451,6 +456,9 @@ button, input, textarea, select {
     box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(0, 0, 0, 0.15);
 }
 @media (min-width:992px){
+    .icon-large {
+        font-size: 5rem; /* Adjust the size as needed */
+      }
     .content {
         margin-top: 7rem!important;
         top: 12rem;
@@ -503,6 +511,9 @@ button, input, textarea, select {
     border-radius: 10px;
 }
 @media (max-width: 991px){
+    .icon-large {
+        font-size: 3rem; /* Adjust the size as needed */
+      }
     .promo-active-profile-img {
 
         max-height: 120px;

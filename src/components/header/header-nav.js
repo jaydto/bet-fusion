@@ -54,7 +54,7 @@ const HeaderNav = React.memo((props) => {
 
 
   const checkEnvironment = () => {
-    setTest(window.location.hostname === "test.CrashKali.com");
+    setTest(window.location.hostname === "test.BetTena.com");
   };
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const HeaderNav = React.memo((props) => {
   const LoginCheck = (game) => {
     {
       // if (user !== null) {
-      navigate("/casino");
+      navigate("/");
       // } else {
       //     setLocalStorage("ActiveLink", '/casino')
       //     navigate('/login')
@@ -111,7 +111,7 @@ const HeaderNav = React.memo((props) => {
             </Link>
           </li>
 
-          <li className={`${pathname === "/casino" ? "active" : ""}`}>
+          <li className={`${pathname === "/" ? "active" : ""}`}>
             <div
               className="url-link fm anl cg ox "
               title="Casino"

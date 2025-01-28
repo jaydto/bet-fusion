@@ -48,7 +48,7 @@ const Misconduct = () => {
                             sexual
                             comments, sends spam, threatening messages, uses verbal abuse or
                             slurs
-                            CrashKali’s and its employees. Any violation of this policy will
+                            BetTena’s and its employees. Any violation of this policy will
                             result in
                             the end of the conversation and suspension of player’s account
                             for an
@@ -64,7 +64,7 @@ const Misconduct = () => {
                     <li>
                         The use of any software program which facilitates artificial
                         intelligence is strictly prohibited. Prohibited software may include
-                        software which CrashKali believes allows player to cheat or gives one
+                        software which BetTena believes allows player to cheat or gives one
                         player an unjust advantage while wagering on the website. The
                         Company
                         reserves the right to take action in order to detect and prevent the

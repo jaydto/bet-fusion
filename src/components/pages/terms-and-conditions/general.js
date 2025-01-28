@@ -21,24 +21,24 @@ const General = () => {
                         Kenya.
                     </li>
                     <li> The term "CLIENT" references any individual person that expressly or impliedly agrees to all
-                        terms and conditions of CrashKali by opening an account and placing bets on games on the company’s
+                        terms and conditions of BetTena by opening an account and placing bets on games on the company’s
                         website.
                     </li>
-                    <li> All CLIENTS accessing the CrashKali’ website agree to abide by the following terms and conditions
+                    <li> All CLIENTS accessing the BetTena’ website agree to abide by the following terms and conditions
                         governing the use of its services (the "Agreement").
                     </li>
-                    <li> This agreement and any other agreement between the CLIENT and CrashKali are subject to the laws
+                    <li> This agreement and any other agreement between the CLIENT and BetTena are subject to the laws
                         of Kenya.
                     </li>
                     <li> This Agreement describes the terms, conditions and risks applicable to the CLIENT using of
-                        CrashKali’ services available under the domains of <a href={'/'}> www.CrashKali.com</a> (the "SITE”
+                        BetTena’ services available under the domains of <a href={'/'}> www.BetTena.com</a> (the "SITE”
                         If the CLIENT has
                         any questions regarding this Agreement, please contact Customer Support.
                     </li>
                     <li> The CLIENT must read, agree with, and accept all of the terms and conditions contained in this
                         Agreement without modifications, which include those terms and conditions expressly set forth
                         below and those incorporated by reference, before the CLIENT may become an active, registered
-                        CLIENT of CrashKali. By continuing to access or use the SITE, the CLIENT agrees to follow the
+                        CLIENT of BetTena. By continuing to access or use the SITE, the CLIENT agrees to follow the
                         terms and conditions of this Agreement.
                     </li>
                     <li> This Agreement is effective upon acceptance of the registration for newly registering CLIENTS
@@ -69,38 +69,38 @@ const General = () => {
                         republic, and the parties hereby irrevocably consent to the personal jurisdiction and venue
                         therein.
                     </li>
-                    <li> CrashKali will not be liable in any way to any persons in the event of force majeure, including
+                    <li> BetTena will not be liable in any way to any persons in the event of force majeure, including
                         but not limited to strike, terrorist activities, political crisis, war, natural catastrophe, or
                         for the act of any government or legal authority. In the event that any provision in this
                         Agreement is held to be invalid or unenforceable, the remaining provisions will remain in full
                         force and effect.
                     </li>
 
-                    <li> CrashKali will not be responsible for any saturation of the telecommunication networks,
+                    <li> BetTena will not be responsible for any saturation of the telecommunication networks,
                         cyber-attacks, hacking etc., which could lead to a total or partial access reduction to its
                         services, loss of data by itself or by other contracted independent service providers on whom
                         the Company will wholly or partially be reliant on to deliver the services.
                     </li>
 
-                    <li> CrashKali will not be held liable and will be held harmless by the
+                    <li> BetTena will not be held liable and will be held harmless by the
                         CLIENT for any damages, losses, costs, loss of profits or any other
                         disadvantage a CLIENT may incur in connection with any disconnection
                         from or the non-availability of any of the products offered by
-                        CrashKali for whatever reason.
+                        BetTena for whatever reason.
                     </li>
 
                     <li> Failure of a party to enforce any right or provision of this
                         Agreement will not be deemed a waiver of such right or provision.
                     </li>
 
-                    <li> CrashKali may assign this Agreement or any rights and/or obligations
+                    <li> BetTena may assign this Agreement or any rights and/or obligations
                         hereunder without the CLIENT’s consent.
                     </li>
 
-                    <li> CrashKali may amend the terms of this Agreement from time to time by
+                    <li> BetTena may amend the terms of this Agreement from time to time by
                         posting the amended terms on the WEBSITE. The CLIENT continuing
                         usage of
-                        CrashKali’ services after the date of amendment is acceptance of the
+                        BetTena’ services after the date of amendment is acceptance of the
                         amended terms and conditions, whether or not the changes have been
                         acknowledged.
                     </li>
@@ -108,12 +108,12 @@ const General = () => {
                     <li> The CLIENT will ultimately be responsible for checking the company’s website for any changes
                         and should they wish to discontinue use of the services offered after a change is enacted in the
                         terms and conditions, the CLIENT will be entitled to withdraw their uncommitted funds by sending
-                        an email to ccare@CrashKali.com. The company will cease to have any continued obligation towards
+                        an email to ccare@BetTena.com. The company will cease to have any continued obligation towards
                         the CLIENT from the day of receipt of the email, through to the withdrawal of funds and
                         thereafter.
                     </li>
                     <li>
-                        CrashKali undertakes to respect the CLIENT’s privacy in line with the Company’s Privacy Policy.
+                        BetTena undertakes to respect the CLIENT’s privacy in line with the Company’s Privacy Policy.
                     </li>
                 </ol>
             </AccordionItemPanel>

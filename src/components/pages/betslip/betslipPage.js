@@ -4,7 +4,6 @@ import Right from "../../right";
 
 import SlipTabs from "./tabs/slip-tabs";
 
-import KironSlip from "../../right/kironslip";
 import Header from "../../header/header";
 import { ToastContainer } from "react-toastify";
 import { getFromLocalStorage } from "../../utils/local-storage";
@@ -164,10 +163,7 @@ const BetslipPage = React.memo(() => {
                   style={{ height: "100%" }}
                 >
                  
-                    <KironSlip
-                      kironValidation={nareData}
-                      kiron={nare_league || pathname === "/betslip-nare"}
-                    />
+                   {/* todo */}
                   
                 </div>
               </div>

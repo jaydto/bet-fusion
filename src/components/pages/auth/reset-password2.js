@@ -12,7 +12,7 @@ const backgroundStyle = {
     // background:`url(${gameDay})`,
     // backgroundRepeat: "no-repeat",
     // backgroundSize: "cover",
-    backgroundColor: "var(--CrashKali-header-bg)" 
+    backgroundColor: "var(--BetTena-header-bg)" 
   //   backgroundPosition:"bottom",
     // backgroundAttachment:"fixed"
   };

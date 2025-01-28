@@ -6,8 +6,7 @@ import {getFromLocalStorage, setLocalStorage} from "./components/utils/local-sto
 import {resetState} from "./redux/authSlice";
 import {Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import Header from './components/header/header';
-import CasinoIndex from './components/lobby/Index';
-import CasinoOptions from './components/lobby/casinoOptions';
+
 
 const Deposit3 = React.lazy(() => import("./components/pages/deposit-withraw/Deposit3"));
 
@@ -83,13 +82,15 @@ const SmartPlay = React.lazy(() => import('./components/pages/smart-soft/SmartPl
 const PageNotFound = React.lazy(() => import('./components/pages/404/NotFound'))
 
 
-const Kiron = React.lazy(() => import('./components/pages/Kiron'))
 
 const BetslipPage = React.lazy(() => import("./components/pages/betslip/betslipPage"))
 
 const Login = React.lazy(() => import('./components/pages/loginTwo'));
 
 const NewProfile = React.lazy(() => import( "./components/pages/Accounts/NewProfile"));
+
+
+const CasinoGames=React.lazy(()=> import("./components/pages/casino/index"))
 
 
 const Logout = () => {
@@ -160,19 +161,14 @@ const App =
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/404" element={<PageNotFound/>}/>
                         {/* <Route exact path="/casino" element={<NewCasino/>}/> */}
-                        <Route path="/casino/:provider/:category" element={<CasinoIndex />} />
                        
                         <Route exact path="/smart-play" element={<SmartPlay/>}/>
                         <Route exact path="/smart-soft" element={<SmartSoftPlay/>}/>
-                        <Route exact path="/casino" element={<CasinoIndex/>}/>
+                        <Route exact path="/" element={<CasinoGames/>}/>
 
                         <Route exact path="/promotions" element={<Promotions/>}/>
                         <Route exact path="/promo" element={<Promo/>}/>
-                        <Route exact path={"/"} element={<Kiron/>}/>
-                        <Route exact path={"/results"} element={<Kiron/>}/>
-                        <Route exact path={"/standing"} element={<Kiron/>}/>
-                        <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
-                        <Route exact path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
+                      
 
                         <Route exact path={"/profile"} element={<ProtectedRoute><NewProfile/></ProtectedRoute>}/>
                         <Route exact path={"/betslip"} element={<BetslipPage/>}/>
@@ -191,8 +187,6 @@ const App =
                         <Route exact path="/signup" element={<Signup/>}/>
                         <Route exact path="/leader-board" element={<LeaderBoard/>}/>
                         <Route exact path="/leader-boardx" element={<JetxLeaderBoard/>}/>
-                        <Route path={"/bet-history/:betID"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
-                        <Route path={"/bet-history"} element={<ProtectedRoute><Kiron/></ProtectedRoute>}/>
                         <Route exact path="/reset-password" element={<ResetPassword/>}/>
                         <Route exact path="/verify" element={<VerifyAccount/>}/>
                         <Route exact path="/logout" element={<Logout/>}/>

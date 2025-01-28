@@ -199,23 +199,23 @@ const MyDepositConfirmationForm = (props) => {
 // const ConfirmationInstructions = (props) => {
 //     return (
 //       <>
-//         <label className="CrashKali-text-light">Missing Deposit?</label>
+//         <label className="BetTena-text-light">Missing Deposit?</label>
 //         <div className="container d-flex flex-column">
 //           <div className="row">
-//             <div className="col CrashKali-text-light">
+//             <div className="col BetTena-text-light">
 //               {" "}
 //               1. Enter Mpesa Transaction code when your deposit has not reflected
 //               in your account.
 //             </div>
 //           </div>
 //           <div className="row">
-//             <div className="col CrashKali-text-light">
+//             <div className="col BetTena-text-light">
 //               {" "}
 //               2. Click on confirm deposit..
 //             </div>
 //           </div>
 //           <div className="row">
-//             <div className="col CrashKali-text-light">
+//             <div className="col BetTena-text-light">
 //               {" "}
 //               3. Your deposit will be credited to your account.
 //             </div>

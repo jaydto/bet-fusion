@@ -75,17 +75,7 @@ export const UserInfo = React.memo(
                                           </span>
                             </div>
                         </div>}
-                        <div className={'mybets-remove-on-mobile px-2'}>
-                            <Link
-                                to={ "/bet-history?competition_id=2"}
-                                className={"deposit-button size-font-user-action"}>
-                                          <span className={"text-success"}>
-                                           <span className=" "> <FontAwesomeIcon
-                                               icon={faList}/></span>&nbsp;
-                                              MY BETS
-                                          </span>
-                            </Link>
-                        </div>
+                       
                        
                         {/* <div className="col-1 button-toggle space-button"
                              style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>

@@ -91,19 +91,19 @@
 }
 
 .flex-item.jackpot-container >div {
-    background: var(--CrashKali-primary);
+    background: var(--BetTena-primary);
     border-radius: 5px;
     padding: 0px 0px!important;
     height: max-content;
 }
 .jackpot-page-structure{
-    background:var(--CrashKali-body-bg)
+    background:var(--BetTena-body-bg)
 }
 .flex-container.jackpot{
     flex-grow:20!important;
 }
 .jp-header-banner{
-    background:var(--CrashKali-body-bg)
+    background:var(--BetTena-body-bg)
 }
 
 .predict-prices {
@@ -282,7 +282,7 @@
 }
 .article-container {
     padding: 36px 30px 10px 30px;
-    background-color: var(--CrashKali-body-bg);
+    background-color: var(--BetTena-body-bg);
     margin-top: 20px;
     border: 1px solid var(--aqua-text);
     border-radius: 4px;

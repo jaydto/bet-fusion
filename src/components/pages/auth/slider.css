@@ -123,7 +123,7 @@
         top: -37px;
         font-weight: 700;
         left: 263px;
-        background-color: var(--CrashKali-live);
+        background-color: var(--BetTena-live);
     }
 }
 @media (max-width:991px){
@@ -157,6 +157,6 @@
         border-radius: 5px;
         top: -26px;
         left: 250px;
-        background-color: var(--CrashKali-live);
+        background-color: var(--BetTena-live);
     }
 }

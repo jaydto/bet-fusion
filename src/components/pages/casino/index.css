@@ -1,0 +1,47 @@
+.main-sports-transition-group {
+    display: flex;
+    overflow-x: auto;
+    padding: 0px 10px;
+    gap: 16px;
+  }
+  
+  .sports-list-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .sports-list-item.active .sports-list__item__label {
+    font-weight: bold;
+  }
+  .casino__filters{
+    overflow-x: auto;
+  }
+  .casino__filters::-webkit-scrollbar {
+    display: none;
+  }
+  .sports-list__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 50px;
+  }
+  
+  .sports-list__item__icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+  
+  .sports-list__item__label {
+    font-size: 14px;
+  }
+  
+  .new-alert-badge {
+    background-color: red;
+    color: white;
+    font-size: 10px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    margin-right: 8px;
+  }
+  

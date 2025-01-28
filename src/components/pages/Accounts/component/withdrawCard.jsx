@@ -93,7 +93,7 @@ const WithdrawForm = () => {
     <div className="account__section__container deposit account__section transaction">
       <div className="account__section global-card__type--block">
         <h3 className="account__section__title deposit__title t-label">Withdraw</h3>
-        <p className="account__section__desc deposit__desc">Withdraw from your CrashKali account</p>
+        <p className="account__section__desc deposit__desc">Withdraw from your BetTena account</p>
         <form onSubmit={formik.handleSubmit}>
           <div className="input__container deposit input account__section__input" style={{ marginBottom: '10px' }}>
             <input

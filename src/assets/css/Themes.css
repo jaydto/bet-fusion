@@ -1,23 +1,24 @@
 :root {
-    /* --CrashKali-primary: rgba(5, 49, 104, 0.75); */
-    --CrashKali-primary: var(--Crashkali-lite);
-    --CrashKali-secondary: #08306B;
-    --CrashKali-footer:#08306B;
+    /* --BetTena-primary: rgba(5, 49, 104, 0.75); */
+    --BetTena-primary: var(--BetTena-lite);
+    --BetTena-secondary: #061429;
+    --BetTena-footer:#061429;
     --footer-color:#fff;
-    --CrashKali-button-login: #f5821f;
+    --BetTena-button-login: #f5821f;
     --btn-color-action: #f5821f;
-    --CrashKali-button-register: #ffffff;
+    --BetTena-button-register: #ffffff;
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
-    --CrashKali-header-bg:#030d41;
-    --Crashkali-lite:#032558;
-    --CrashKali-body-bg:#08306B;
+    --BetTena-header-bg:#07111f;
+    --BetTena-lite:#040a25;
+    --BetTena-body-bg:#061429;
     --hot:#f66203;
     --profile-card:#040b2e;
     --black:#000;
+    --profile-card-1:#161a2d;
     --bs-gutter-x: 20px;
     --bs-cyan:#3f9ad1;
     --kiron-button:#004f9e;
-    --profile-bg-page:#072858;
+    --profile-bg-page:#07111f;
     --side-bg:#04104c;
     
     --faded-color:rgb(105, 129, 154);
@@ -54,19 +55,19 @@
     --color-link-sports:#FFC428 ;
     --light2:#a7d1f6;
 
-    --CrashKali-live:red;
+    --BetTena-live:red;
     --slip-separator-color:rgb(51, 76, 92);
     --color-site: #ce3d10;
-    --CrashKali-side-bg:#121a23;
+    --BetTena-side-bg:#121a23;
     --betslip-header:#4c372a;
     --betslip-mybets:#cd28ec;
     --mybets-slip:#1e2d3b;
     --button-radius:3px;
-    --CrashKali-odds-body:#2d3641;
-    --CrashKali-input:#030d41;
-    --CrashKali-shadow-borders:#2c3c44;
-    --CrashKali-font-size-nav:14px;
-    --CrashKali-font-size-small:12px;
+    --BetTena-odds-body:#2d3641;
+    --BetTena-input:#030d41;
+    --BetTena-shadow-borders:#2c3c44;
+    --BetTena-font-size-nav:14px;
+    --BetTena-font-size-small:12px;
     --font-size-side:1.5rem;
     --font-size-side-sm:1.3rem;
     --body-line-weight:2;
@@ -133,7 +134,7 @@
     --orange:orange;
     --secondary:#fdd835;
     --tabs-home:#000;
-    --CrashKali-mobile-nav:#192533;
+    --BetTena-mobile-nav:#192533;
     --font-tiny:8px;
     --font-weight-normal:normal;
     --always-white:#fff;
@@ -148,28 +149,28 @@
     /* light mode variables go here */
     --tabs-home:#fofofo;
     --testimonial:#fofofo;
-    --CrashKali-primary:#f0f0f0;
+    --BetTena-primary:#f0f0f0;
     --top-header-nav:#f0f0f0;
     --footer-color:#05070a;
     --footer-links:#05070a;
-    --CrashKali-secondary: #fff;
-    --CrashKali-button-login: #f5821f;
-    --CrashKali-footer:#adadad;
+    --BetTena-secondary: #fff;
+    --BetTena-button-login: #f5821f;
+    --BetTena-footer:#adadad;
     --mybets-slip:#f0f0f0;
     --jackpot-header:#f0f0f0;
-    --CrashKali-button-register: #ffffff;
+    --BetTena-button-register: #ffffff;
     --banner-background: url(../../assets/img/auth/img-17.webp)!important;
     --betslip-header:#4c372a;
-    --CrashKali-side-bg:#fff;
-    --CrashKali-header-bg:#f0f0f0;
+    --BetTena-side-bg:#fff;
+    --BetTena-header-bg:#f0f0f0;
     --viax-betslip-bg:#fff;
     --betslip-mybets:#fff;
     --button-radius:3px;
-    --CrashKali-odds-body:#fff;
-    --CrashKali-input:#2c3c44;
-    --CrashKali-shadow-borders:#fff;
-    --CrashKali-font-size-nav:14px;
-    --CrashKali-font-size-small:12px;
+    --BetTena-odds-body:#fff;
+    --BetTena-input:#2c3c44;
+    --BetTena-shadow-borders:#fff;
+    --BetTena-font-size-nav:14px;
+    --BetTena-font-size-small:12px;
     --font-size-side:1.8rem;
     --font-size-side-sm:1.3rem;
     --body-line-weight:2;
@@ -185,7 +186,7 @@
     --aqua:#adadad;
     --tab-color: #adadad;
     --cancel:#030928;
-    --CrashKali-light-blue:#4f768e;
+    --BetTena-light-blue:#4f768e;
     --light-blue-variant:#334c5c;
     --secondary:#fdd835;
     --variant2:#1f2f38;
@@ -195,5 +196,5 @@
     --kiron-competition:#fafafa;
     --toggle-btn:#000;
     --picked:#fdd835;
-    --CrashKali-body-bg:#fafafa;
+    --BetTena-body-bg:#fafafa;
 }

@@ -28,9 +28,9 @@ const Header2 = React.memo(
 						variant="dark" style={{paddingLeft: '0px', paddingBottom: '0px'}}>
 					<Container fluid
 							   className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="CrashKali"
+						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="BetTena"
 									  style={{paddingLeft: '0px', paddingBottom: '0px'}}>
-							<Link to={'/'} className={'CrashKali-text-light'}>
+							<Link to={'/'} className={'BetTena-text-light'}>
 								<FontAwesomeIcon icon={faArrowLeftLong}/> Home
 							</Link>
 
@@ -39,8 +39,8 @@ const Header2 = React.memo(
 								style={{marginLeft: 'auto'}}>
 
 								<Link to={{pathname: "/"}} className=" resize-mobile">
-									<LazyLoadImage src={Logo} alt="CrashKali" title="CrashKali" effects="blur"
-												   className={"image-size "}/>
+									<LazyLoadImage src={Logo} alt="BetTena" title="BetTena" effects="blur"
+												   className={"image-size d-none "}/>
 								</Link>
 							</div>
 
@@ -58,7 +58,7 @@ const Header2 = React.memo(
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
 									<div className="col-3">
 										<div>
-											<LazyLoadImage src={Logo} alt="CrashKali" title="CrashKali" effects="blur"/>
+											<LazyLoadImage src={Logo} alt="BetTena" title="BetTena" effects="blur" className="d-none"/>
 										</div>
 									</div>
 								</Offcanvas.Title>

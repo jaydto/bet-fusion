@@ -35,7 +35,7 @@ const Footer = React.memo((props) => {
           background: "transparent",
           paddingLeft: "33px",
         }
-        // : sidebar&&{ background: "var(--CrashKali-header-bg)" }
+        // : sidebar&&{ background: "var(--BetTena-header-bg)" }
       }
     >
       <div
@@ -49,13 +49,13 @@ const Footer = React.memo((props) => {
           } text-white`}
           style={deposit2 && { width: "50%" }}
         >
-          <h5 className={`${sidebar && "px-3"}`}>CrashKali</h5>
+          <h5 className={`${sidebar && "px-3"}`}>BetTena</h5>
           <ul className={`${sidebar && "transaction flex-column"}`}>
             <li className="">P.O.BOX 00100 NAIROBI KENYA</li>
             <li className="">
-              <a href="mailto:care@ke.CrashKali.com" target={"_blank"}>
+              <a href="mailto:care@ke.BetTena.com" target={"_blank"}>
                 <FontAwesomeIcon icon={faEnvelope} />
-                support@CrashKali.com
+                support@BetTena.com
               </a>
             </li>
             <div className={`${sidebar && "d-flex align-items-center"}`}>
@@ -65,7 +65,7 @@ const Footer = React.memo((props) => {
                 } `}
               >
                 <a
-                  href="http://facebook.com/CrashKali-101164702604689"
+                  href="http://facebook.com/BetTena-101164702604689"
                   target={"_blank"}
                   className={`${sidebar && "d-flex align-items-center"} `}
                 >
@@ -78,7 +78,7 @@ const Footer = React.memo((props) => {
                 } `}
               >
                 <a
-                  href="https://instagram.com/CrashKalike?igshid=YmMyMTA2M2Y="
+                  href="https://instagram.com/BetTenake?igshid=YmMyMTA2M2Y="
                   target={"_blank"}
                   className={`${sidebar && "d-flex align-items-center"} `}
                 >

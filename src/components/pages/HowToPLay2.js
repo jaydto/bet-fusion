@@ -103,14 +103,14 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem uuid={"13"}>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    Why should I register with CrashKali?
+                                    Why should I register with BetTena?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Registration allows you to open a CrashKali
+                                    Registration allows you to open a BetTena
                                     account free of charge and under no
-                                    obligation. Your CrashKali account will help
+                                    obligation. Your BetTena account will help
                                     you manage your bets and other account
                                     details. You need to deposit actual money
                                     into your account before you can place bets.
@@ -120,12 +120,12 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    How do I Register with CrashKali?
+                                    How do I Register with BetTena?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Step 1 Please visit www.CrashKali.com and
+                                    Step 1 Please visit www.BetTena.com and
                                     click on the Register Now link on the top
                                     RIGHT corner of the website. Please read the
                                     Terms and Conditions and fill in all the
@@ -140,7 +140,7 @@ const HowToPlay = React.memo((props) => {
                                   <p>
                                     A confirmation message appears to confirm
                                     that your registration was successful.
-                                    CrashKali!
+                                    BetTena!
                                   </p>
                                 </AccordionItemPanel>
                               </AccordionItem>
@@ -152,7 +152,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I withdraw cash from my CrashKali account?
+                              How do I withdraw cash from my BetTena account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -179,11 +179,11 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I log into my CrashKali account?
+                              How do I log into my BetTena account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
-                            Once you have registered you can access your CrashKali
+                            Once you have registered you can access your BetTena
                             account by entering your phone number as USERNAME
                             and  PASSWORD as PASSWORD
                           </AccordionItemPanel>
@@ -191,7 +191,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my transaction from my CrashKali
+                              How do I check my transaction from my BetTena
                               account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
@@ -205,7 +205,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my bets from my CrashKali account?
+                              How do I check my bets from my BetTena account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -225,13 +225,13 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
                               Why wait 90 Minutes when you can play Virtuals and
-                              WIN Big in Minutes? CrashKali offers a variety of
+                              WIN Big in Minutes? BetTena offers a variety of
                               Virtual games ranging from; Fantastic football
                               league, Horse racing , Force 1 racing , Greyhound
                               racing and Penalty shootout. Log into
-                              https://CrashKali.com/ to get the Virtual
+                              https://BetTena.com/ to get the Virtual
                               experience. Stake low, Win High & Fast with
-                              CrashKali Virtuals.
+                              BetTena Virtuals.
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>
@@ -240,16 +240,16 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              What is the CrashKali Customer care number?
+                              What is the BetTena Customer care number?
                             </AccordionItemButton>
                           </AccordionItemHeading>
 
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
-                              CrashKali offers Customer Care support round the
+                              BetTena offers Customer Care support round the
                               clock. We are reachable via 0791888222 on Mobile,
                               WhatsApp Number – 0791888222. You can also reach
-                              us through E-Mail onsupport@CrashKali.com
+                              us through E-Mail onsupport@BetTena.com
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>

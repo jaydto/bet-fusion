@@ -66,7 +66,7 @@ const CookiePolicy = () => {
               </div>
               <div className="col-md-12 mt-2 text-white p-2 ">
                 <p>
-                  CrashKali uses cookies on our website. By using our services,
+                  BetTena uses cookies on our website. By using our services,
                   you consent to the use of cookies. Our Cookies Policy
                   explains, what cookies are, how we use cookies and how third
                   parties we may partner with may use cookies on the service,
@@ -111,7 +111,7 @@ const CookiePolicy = () => {
                     </AccordionItemHeading>
                     <AccordionItemPanel className="accordion-item-panel">
                       <p>
-                        CrashKali uses cookies to enable certain functions of
+                        BetTena uses cookies to enable certain functions of
                         the service, to provide analytics. To store your
                         preferences and to enable us to deliver advertisements.
                       </p>

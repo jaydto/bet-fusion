@@ -11,7 +11,7 @@ const TopSection = () => {
       {/* Importing external stylesheets should be done in your main application */}
       <div id="jp-main-container-combined">
         <div parent-provider="Casino Technology">
-          <div className="newJPDisplay" data-provider="Casino Technology" data-name="crashkali.com" levels="3">
+          <div className="newJPDisplay" data-provider="Casino Technology" data-name="BetTena.com" levels="3">
             <a className="jpHeader" href="#">
               <div className="jpHeader">
                 <span>Amazing Games</span>

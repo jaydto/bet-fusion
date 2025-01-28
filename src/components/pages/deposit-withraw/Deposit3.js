@@ -124,7 +124,7 @@ const Deposit3 = React.memo((props) => {
             </span>
 
             <span className={"w-50 d-flex justify-content-center"}>
-              <h4 className="inline-block CrashKali-text-light" style={{textTransform:"uppercase"}}>
+              <h4 className="inline-block BetTena-text-light" style={{textTransform:"uppercase"}}>
                 {tab} FUNDS (MOBILE MONEY)
               </h4>{" "}
             </span>
@@ -138,7 +138,7 @@ const Deposit3 = React.memo((props) => {
   const Offer = React.memo(() => {
     return (
       <ul className={"paybill-offers-list-items"}>
-        {settings?.CrashKaliDeposit?.map((deposit, index) => {
+        {settings?.BetTenaDeposit?.map((deposit, index) => {
           return (
             <li key={index}>
               {index + 1}. Only pay KES {deposit?.deposit_amount} to{" "}
@@ -251,34 +251,34 @@ const Deposit3 = React.memo((props) => {
 const PaymentInstructions = (props) => {
   return (
     <>
-      <label className="CrashKali-text-light">Deposit Instructions</label>
+      <label className="BetTena-text-light">Deposit Instructions</label>
       <div className="container d-flex flex-column">
         <div className="row">
-          <div className="col CrashKali-text-light">
+          <div className="col BetTena-text-light">
             {" "}
             1. Enter the amount you want to deposit.
           </div>
         </div>
         <div className="row">
-          <div className="col CrashKali-text-light">
+          <div className="col BetTena-text-light">
             {" "}
             2. Click on the deposit button.
           </div>
         </div>
         <div className="row">
-          <div className="col CrashKali-text-light">
+          <div className="col BetTena-text-light">
             {" "}
             3. Check your phone for an M-Pesa Request.
           </div>
         </div>
         <div className="row">
-          <div className="col CrashKali-text-light">
+          <div className="col BetTena-text-light">
             {" "}
             4. Enter your M-Pesa Pin to confirm the transaction.
           </div>
         </div>
         <div className="row">
-          <div className="col CrashKali-text-light">
+          <div className="col BetTena-text-light">
             {" "}
             5. On successful payment, you will receive an M-Pesa Confirmation.
           </div>
@@ -355,8 +355,8 @@ const DepositFormFields = (props) => {
           aria-label="Basic example"
         >
           <div className={"d-flex flex-wrap col-12 justify-content-between"}>
-            {settings?.CrashKaliDeposit &&
-              settings?.CrashKaliDeposit?.map((deposit, index) => {
+            {settings?.BetTenaDeposit &&
+              settings?.BetTenaDeposit?.map((deposit, index) => {
                 return (
                   <div key={index} className={"col-3"}>
                     <button

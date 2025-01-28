@@ -88,7 +88,7 @@ const AntiMoneyLaundering = () => {
                         illegal activity.
                       </p>
                       <p>
-                        CrashKali is obliged to block such funds and to
+                        BetTena is obliged to block such funds and to
                         undertake measure as provided in the AML policy rules.
                       </p>
 

@@ -130,8 +130,8 @@
 }
 .btnHckd.active {
   /* background-color: #16202C !important; */
-  border-bottom: thin solid var(--CrashKali-button-login) !important;
-  color: var(--CrashKali-button-login) !important;
+  border-bottom: thin solid var(--BetTena-button-login) !important;
+  color: var(--BetTena-button-login) !important;
   font-weight: 800 !important;
   font-size: 12px;
 }
@@ -185,7 +185,7 @@
 } */
 
 .see-more-less button {
-  color: var(--CrashKali-button-login);
+  color: var(--BetTena-button-login);
   cursor: pointer;
   font-size: 10px;
   margin-right: 15px;
@@ -380,14 +380,14 @@
 }
 /* button play */
 .grid-item > div.gamePanel > .reaCover > .Real > div {
-  background-color: var(--CrashKali-button-login);
+  background-color: var(--BetTena-button-login);
   padding: 4px 8px;
   border-radius: 16px;
 }
 .grid-item > div.gamePanel > .reaCover > .Real > a {
   color: inherit;
   font-weight: 700;
-  background: var(--CrashKali-button-login);
+  background: var(--BetTena-button-login);
   border-radius: 16px;
 }
 .grid-item > div.gamePanel .reaCover > .Real {
@@ -438,7 +438,7 @@
   top: 30%;
   padding: 2px;
   /* border: 1px solid #cba03e; */
-  border: 1px solid var(--CrashKali-button-login);
+  border: 1px solid var(--BetTena-button-login);
   color: #050707;
   border-radius: 18px;
   font-weight: bold;
@@ -447,7 +447,7 @@
   transform: translate(-50%, -50%);
 }
 .grid-item > div.gamePanel > .reaCover > .Real > div {
-  background-color: var(--CrashKali-button-login);
+  background-color: var(--BetTena-button-login);
   /* background-color: #cba03e; */
   padding: 4px 8px;
   border-radius: 16px;
@@ -561,7 +561,7 @@
 
 section.pageContent {
   position: relative;
-  background-color: var(--CrashKali-header-bg);
+  background-color: var(--BetTena-header-bg);
   padding-bottom: 1px;
 }
 
@@ -863,7 +863,7 @@ body.freespins .grid-item:hover {
   z-index: 2;
   /* transform: translate3d(0, -10%, 0) scale(1.1); */
   /* border: 1px solid #cba03f; */
-  border: 1px solid var(--CrashKali-button-login);
+  border: 1px solid var(--BetTena-button-login);
 }
 .newJPDisplay[levels="3"] > .jplevels {
   width: calc((100% - 280px) / 3);
@@ -1163,14 +1163,14 @@ body.freespins .grid-item:hover {
 }
 .sportsNav {
   position: relative;
-  background: var(--CrashKali-header-bg);
+  background: var(--BetTena-header-bg);
   width: 100%;
   z-index: 2;
   overflow: hidden;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   transition: bottom 0.2s ease-out;
-  border-bottom: 1px solid var(--CrashKali-footer);
+  border-bottom: 1px solid var(--BetTena-footer);
 }
 .sportsNav::-webkit-scrollbar {
   display: none;

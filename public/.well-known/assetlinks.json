@@ -2,7 +2,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.CrashKali.app",
+      "package_name": "com.BetTena.app",
       "sha256_cert_fingerprints":
       ["4D:E4:94:4A:D8:A7:2D:58:EA:99:7D:1B:44:A8:E8:16:A9:6E:04:A7:CB:11:2F:14:21:D2:3E:87:55:8C:03:C4"]
     }

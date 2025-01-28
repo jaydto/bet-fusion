@@ -4,78 +4,78 @@ const CrashGames = () => {
   const sections = [
     {
       title: "Flying High",
-      link: "/en-ke/crash-games/all",
+      link: "#all",
       games: [
         {
           title: "Aviator",
-          link: "/en-ke/crash-games/spribe_aviator",
+          link: "#spribe_aviator",
           image: "https://cdn.betika.com/int_assets/crash-games/aviator-banner-910x367.png",
         },
         {
           title: "Aviatrix",
-          link: "/en-ke/crash-games/1",
+          link: "#1",
           image: "https://cdn.betika.com/int_assets/crash-games/aviatrix/2000x456.jpg",
         },
         {
           title: "Comet Crash",
-          link: "/en-ke/crash-games/stp_crash_crashx_comet",
+          link: "#stp_crash_crashx_comet",
           image: "https://cdn.betika.com/int_assets/crash-games/Commet-Crash/910x367.jpg",
         },
       ],
     },
     {
       title: "Popular",
-      link: "/en-ke/crash-games/all",
+      link: "#all",
       games: [
         {
           title: "JetX",
-          link: "/en-ke/crash-games/smartsoft_1",
+          link: "#smartsoft_1",
           image: "https://cdn.betika.com/int_assets/crash-games/JetXSmartsoft/1308x780.jpg",
         },
         {
           title: "Flying High",
-          link: "/en-ke/crash-games/2201",
+          link: "#2201",
           image: "https://cdn.betika.com/int_assets/crash-games/High-Flyer/1308x780.jpg",
         },
         {
           title: "Big Bass Crash",
-          link: "/en-ke/crash-games/1320",
+          link: "#1320",
           image: "https://cdn.betika.com/int_assets/cd/Spaceman-BBCrashPragmatic/Big-Bass-Crash/PNG/1308x780.png",
         },
       ],
     },
     {
       title: "Just Landed",
-      link: "/en-ke/crash-games/all",
+      link: "#all",
       games: [
         {
           title: "RollX",
-          link: "/en-ke/crash-games/smartsoft_5",
+          link: "#smartsoft_5",
           image: "https://cdn.betika.com/int_assets/crash-games/roll-x/1000x1334_Roll_X.png",
         },
         {
           title: "Crash Classic Lite",
-          link: "/en-ke/crash-games/1008",
+          link: "#1008",
           image: "https://cdn.betika.com/int_assets/crash_games/CrashClassic-1000x1334.jpg",
         },
         {
           title: "B!",
-          link: "/en-ke/crash-games/stp_boom_crashx_superstar",
+          link: "#stp_boom_crashx_superstar",
           image: "https://cdn.betika.com/int_assets/cd/BB-Crash/1000x1334.jpg",
         },
         {
           title: "Crash Royale",
-          link: "/en-ke/crash-games/imoon_1001",
+          link: "#imoon_1001",
           image: "https://cdn.betika.com/int_assets/crash-games/Crash-Royale/1000x1334.jpg",
         },
         {
           title: "Buruka",
-          link: "/en-ke/crash-games/imoon_102",
+          link: "#imoon_102",
           image: "https://cdn.betika.com/int_assets/crash-games/BURUKA/1000x1334.jpg",
         },
         {
           title: "Spaceman",
-          link: "/en-ke/crash-games/1301",
+          link: "#1301",
           image: "https://cdn.betika.com/int_assets/cd/Spaceman-BBCrashPragmatic/Spaceman/PNG/1000x1334.png",
         },
       ],
@@ -114,7 +114,7 @@ const CrashGames = () => {
                 <img
                   src={game.image}
                   alt={game.title}
-                  style={{minHeight:"75px"}}
+                  style={{minHeight:"75px", height:"-webkit-fill-available"}}
 
                   title={game.title}
                   className="img-fluid rounded"

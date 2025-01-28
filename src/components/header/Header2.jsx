@@ -8,7 +8,7 @@ import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setState} from "../../redux/dataSlice";
-import Logo from "../../assets/img/logo.png"
+import Logo from "../../assets/img/logo.jpeg"
 
 const Header2 = React.memo(
 	() => {
@@ -40,7 +40,7 @@ const Header2 = React.memo(
 
 								<Link to={{pathname: "/"}} className=" resize-mobile">
 									<LazyLoadImage src={Logo} alt="BetTena" title="BetTena" effects="blur"
-												   className={"image-size d-none "}/>
+												   className={"image-size  "}/>
 								</Link>
 							</div>
 
@@ -58,7 +58,7 @@ const Header2 = React.memo(
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
 									<div className="col-3">
 										<div>
-											<LazyLoadImage src={Logo} alt="BetTena" title="BetTena" effects="blur" className="d-none"/>
+											<LazyLoadImage src={Logo} alt="BetTena" title="BetTena" effects="blur" />
 										</div>
 									</div>
 								</Offcanvas.Title>

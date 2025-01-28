@@ -2,10 +2,10 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useRef,
+  
   useState,
 } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import { StoreContext } from "../../context/store";
 import { getFromLocalStorage } from "../utils/local-storage";
@@ -13,17 +13,14 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Navbar, Offcanvas } from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
-import MobileNav1 from "../mobile-navigation/MobileNav1";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faXmark } from "@fortawesome/free-solid-svg-icons";
+
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import ListGroup from "react-bootstrap/ListGroup";
 import LoginSection from "./LoginSection";
 import { UserInfo } from "./UserInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { configSettings, setState } from "../../redux/dataSlice";
 import { userBalance } from "../../redux/authSlice";
-import Logo from "../../assets/img/logo.png";
+import Logo from "../../assets/img/logo.jpeg";
 import {
   checkDesktopTopNavigation,
   checkNavigation,
@@ -268,10 +265,10 @@ const Header = React.memo((props) => {
                       alt="BetTena"
                       title="BetTena"
                       effects="blur"
-                      className={`image-size ${!user && "logo-top"} d-none`}
+                      className={`image-size ${!user && "logo-top"} `}
                       style={
                         user
-                          ? { marginBottom: "0px" }
+                          ? { marginBottom: "0px", paddingLeft: "7px" }
                           : {
                               marginBottom: "11px",
                               width: "auto",
@@ -279,44 +276,7 @@ const Header = React.memo((props) => {
                       }
                     />
 
-                    {/* <ul className="header-nav-container d-flex">
-                      <li
-                        className={`${
-                          (pathname.includes("casino") || pathname == "/casino" )? "active" : ""
-                        } header-nav-item`}
-                      >
-                        <div
-                          className="url-link fm anl cg ox "
-                          title="Casino"
-                          onClick={() => {
-                            LoginCheck("Casino");
-                            gaEventTracker("Visit Casino Page");
-                          }}
-                        >
-                          <span>
-                            <strong>Casino</strong>
-                          </span>
-                        </div>
-                      </li>
-                      <li
-                        className={`${
-                          (pathname.includes("promotions") || pathname == "/promotions" )? "active" : ""
-                        } header-nav-item`}
-                      >
-                        <div
-                          className="url-link fm anl cg ox desktop-only "
-                          title="Promotion"
-                          onClick={() => {
-                            navigate("/promotions")
-                            gaEventTracker("Visit Promotion Page");
-                          }}
-                        >
-                          <span>
-                            <strong>Promos</strong>
-                          </span>
-                        </div>
-                      </li>
-                    </ul> */}
+                    
                     <NavLinks/>
                   </div>
 
@@ -370,7 +330,7 @@ const Header = React.memo((props) => {
                           src={Logo}
                           alt="BetTena"
                           title="BetTena"
-                          className="d-none"
+                         
                           effects="blur"
                         />
                       </div>

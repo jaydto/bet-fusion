@@ -77,23 +77,12 @@ export const UserInfo = React.memo(
                         </div>}
                        
                        
-                        {/* <div className="col-1 button-toggle space-button"
-                             style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`}
-                                           className="px-3 py-3" onClick={toggle}
-                            />
-                        </div> */}
+                      
                     </div>}
                 <>
                     {!user && <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2 mb-2"
                                    style={{marginLeft: 'auto'}}>
-                        {/* {pathname !== '/signup' && <div className="remove-verify">
-                            <Link className="cg  login-color login-size btn bg-success text-light"
-                                  to={"/verify"} title="Verify Account"
-                                  onClick={() => gaEventTracker('Verify')}>
-                                <span className="register-label text-light">Verify</span>
-                            </Link>
-                        </div>} */}
+                      
                         {pathname !== '/signup' && <div className="">
                             <Link className="cg  login-color login-size btn btn-button-bg text-light"
                                   to={"/signup"} title="Join now"
@@ -107,11 +96,7 @@ export const UserInfo = React.memo(
                                 <span>Login</span>
                             </Link>}
                       
-                        {/* <div className="col-1 button-toggle space-button"
-                             style={{width: "4.1rem", overflowY: "auto", marginLeft: '20px'}}>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"lg"}`} className="px-3 py-3"
-                                           onClick={toggle}/>
-                        </div> */}
+                      
 
                     </div>}
                 </>

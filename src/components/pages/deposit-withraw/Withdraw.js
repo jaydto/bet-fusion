@@ -229,7 +229,7 @@ const WithdrawFormFields = (props) => {
         </div>
       </div>
       <div className="form-group row d-flex justify-content-left mb-4">
-        <div className=" d-flex align-items-start deposit-withdraw-button-desktop">
+        <div className=" d-flex align-items-start deposit-withdraw-button-desktop px-3">
           <button
             type={"submit"}
             className="btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center"
@@ -303,7 +303,7 @@ const MyWithdrawForm = (props) => {
   return (
     <Form className="shadow-sm rounded border-0">
       <div className="pt-0">
-        <div className="row d-flex align-items-center justify-content-center">
+        <div className="row d-flex align-items-center justify-content-center px-4">
           <div className="col-md-7 text-center">
             <div className={`col-md-7 text-center`}>
               <LazyLoadImage src={mpesa} alt="" />

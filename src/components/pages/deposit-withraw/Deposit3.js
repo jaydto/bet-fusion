@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Col, notification, Row } from "antd";
-import authImg from "../../../assets/img/logo.png";
+import authImg from "../../../assets/img/logo.jpeg";
 import { Link, useNavigate } from "react-router-dom";
 import {
   getFromLocalStorage,

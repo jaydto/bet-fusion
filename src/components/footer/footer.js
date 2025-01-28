@@ -50,7 +50,7 @@ const Footer = React.memo((props) => {
           style={deposit2 && { width: "50%" }}
         >
           <h5 className={`${sidebar && "px-3"}`}>BetTena</h5>
-          <ul className={`${sidebar && "transaction flex-column"}`}>
+          <ul className={`${sidebar && "transaction desktop-drawer flex-column"}`}>
             <li className="">P.O.BOX 00100 NAIROBI KENYA</li>
             <li className="">
               <a href="mailto:care@ke.BetTena.com" target={"_blank"}>
@@ -97,7 +97,7 @@ const Footer = React.memo((props) => {
           <h5 className={`${sidebar && "px-3"}`}>TERMS AND CONDITIONS</h5>
           <ul
             className={`${
-              sidebar && "transaction px-2 flex-column justify-content-center"
+              sidebar && "transaction desktop-drawer px-2 flex-column justify-content-center"
             }`}
           >
             <li className="">
@@ -166,12 +166,12 @@ const Footer = React.memo((props) => {
         >
           <h5 className={`${sidebar && "px-3"}`}>LEGAL</h5>
           <ul>
-            <li className={`text-danger ${sidebar && "transaction"}`}>
+            <li className={`text-danger ${sidebar && "transaction desktop-drawer"}`}>
               You must be 18 Years+ to use this website.
             </li>
             <div
               className={`${
-                sidebar && "d-flex align-items-center flex-column transaction"
+                sidebar && "d-flex  flex-column transaction desktop-drawer"
               }`}
             >
               <li className="">

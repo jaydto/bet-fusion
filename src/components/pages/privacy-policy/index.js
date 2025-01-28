@@ -613,7 +613,7 @@ For more information on our safeguarding and security measures, please contact u
                         
                           {/* <li>Adress : 
                             </li> */}
-                        <li>Telephone number:0791888222 </li>
+                        <li>Telephone number:0712345678 </li>
                         <li> Data Protection Officer</li>
                       </ol>
                     </AccordionItemPanel>

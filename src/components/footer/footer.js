@@ -137,7 +137,7 @@ const Footer = React.memo((props) => {
               <p style={{}} className={`${sidebar && " d-block"}`}>
                 This is a real-money gambling app. Please gamble responsibly and
                 only bet what you can afford. For gambling addiction help and
-                support, please contact CustomerCare at (+254791888222), or
+                support, please contact CustomerCare at (+254712345678), or
                 visit (
                 <a
                   href="https://responsiblegambling.or.ke/"
@@ -198,7 +198,7 @@ const Footer = React.memo((props) => {
               >
                 This is a real-money gambling app. Please gamble responsibly and
                 only bet what you can afford. For gambling addiction help and
-                support, please contact CustomerCare at (+254791888222), or
+                support, please contact CustomerCare at (+254712345678), or
                 visit (
                 <a
                   href="https://responsiblegambling.or.ke/"

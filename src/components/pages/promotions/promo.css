@@ -55,7 +55,7 @@
     opacity: 0.8;
 }
 .promo-button{
-    background: rgb(234, 93, 11);
+    background: var(--crimson);
     min-height: 3rem;
     opacity:0.9;
 }

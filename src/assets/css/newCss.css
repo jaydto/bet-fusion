@@ -884,8 +884,8 @@ select::after {
 }
 
 .deposit-withdraw-button.button-page {
-  background: var(--BetTena-button-login);
-  color: var(--dark);
+  background: var(--crimson);
+  color: var(--light);
 }
 
 .markets-container-data-check:empty {

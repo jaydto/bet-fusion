@@ -16084,7 +16084,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border: none;
     font-size: 14px;
     text-transform: uppercase;
-    background: var(--BetTena-button-login);
+    background: var(--crimson);
     color: var(--dark);
 }
 

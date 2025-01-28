@@ -606,7 +606,7 @@ For more information on our safeguarding and security measures, please contact u
                       <p>Should you have any further queries or questions about the processing of your Personal Data, our full contact details are as follows:</p>
                       <ol className="list-count-type">
                         <li>
-                        Name: Crash Kali
+                        Name: Bet Tena
                         </li>
                         
                           {/* <li>Email address:{ <a href="mailto:operations@BetTena.com ">operations@BetTena.com</a> }</li> */}

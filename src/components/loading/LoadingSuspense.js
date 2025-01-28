@@ -6,8 +6,8 @@ function Loading(props) {
         <div className="loading-container">
             <div className="logo-container d-flex flex-column align-items-center">
                 <span className={'bold'} style={{fontSize: "3.5rem", fontWeight:"800"}}>
-                     <span style={{color: "var(--hot)"}}>Crash</span> <span
-                    className={'text-light'}>Kali</span>
+                     <span style={{color: "var(--purple)"}}>BET</span><span
+                    style={{color: "var(--crimson)"}}>tena</span>
                  </span>
             </div>
         </div>

@@ -9,6 +9,10 @@
     cursor: pointer;
     transition: all 0.2s ease;
   }
+  .btn-primary.active-category{
+    background-color: #39036f!important;
+    border: #39036f;
+  }
   
   .sports-list-item.active .sports-list__item__label {
     font-weight: bold;

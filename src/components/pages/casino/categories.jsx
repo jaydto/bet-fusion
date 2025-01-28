@@ -52,7 +52,7 @@ const CasinoFilters = () => {
           key={filter}
           style={{ minWidth: "100px" }}
           className={`btn ${
-            activeFilter === filter ? "btn-primary" : "btn-outline-secondary"
+            activeFilter === filter ? "btn-primary active-category" : "btn-outline-secondary"
           } btn-sm me-2`}
           onClick={() => setActiveFilter(filter)}
         >

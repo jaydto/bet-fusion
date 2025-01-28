@@ -49,9 +49,9 @@ const CrashGames = () => {
       link: "#all",
       games: [
         {
-          title: "RollX",
-          link: "#smartsoft_5",
-          image: "https://cdn.betika.com/int_assets/crash-games/roll-x/1000x1334_Roll_X.png",
+          title: "Tradeblazer",
+          link: "#tradeblazer",
+          image: "https://cdn.betika.com/int_assets/crash-games/tradeblazer/tradeblazer_1000x1334.jpg",
         },
         {
           title: "Crash Classic Lite",
@@ -59,9 +59,9 @@ const CrashGames = () => {
           image: "https://cdn.betika.com/int_assets/crash_games/CrashClassic-1000x1334.jpg",
         },
         {
-          title: "B!",
-          link: "#stp_boom_crashx_superstar",
-          image: "https://cdn.betika.com/int_assets/cd/BB-Crash/1000x1334.jpg",
+          title: "Cashow!",
+          link: "#stp_crashx_superstar",
+          image: "https://cdn.betika.com/int_assets/crash-games/Cashshow/1000x1334.png",
         },
         {
           title: "Crash Royale",

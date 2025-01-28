@@ -99,7 +99,7 @@ const CrashGames = () => {
             } g-3 mt-1 text-light`}
           >
             {section.games.map((game, gameIndex) => (
-              (gameIndex==0 && section.title)=="Flying High"?<div key={gameIndex} className="col-12">
+              (gameIndex==0 && section.title)=="Flying High"?<div key={gameIndex} className="col-12 d-flex justify-content-center">
               <a href={game.link} className="text-decoration-none">
                 <img
                   src={game.image}

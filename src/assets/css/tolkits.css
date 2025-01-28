@@ -872,7 +872,7 @@ background: var(--BetTena-body-bg)!important;
     padding: 0px;
 }
 .button-text-color-on-yellow{
-    color:var(--dark)
+    color:var(--light)
 }
 
 .matches .top-matches.match {

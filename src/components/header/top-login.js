@@ -194,9 +194,9 @@ const HeaderLogin = React.memo((props) => {
               )}
               <br />
               <span
-                className={`sticky-hidden text-warning d-flex justify-content-end font-input my-2`}
+                className={`sticky-hidden text-warning faded-color d-flex justify-content-end font-input my-2`}
               >
-                <div className={`text-warning`}>
+                <div className={`text-warning faded-color`}>
                   <Switch
                     id={"remember-me"}
                     {...label}
@@ -262,13 +262,13 @@ const HeaderLogin = React.memo((props) => {
                   onClick={() => gaEventTracker("Reset Password")}
                 >
                   <span
-                    className={`sticky-hidden text-warning px-2 d-flex justify-content-end"`}
+                    className={`sticky-hidden text-warning faded-color px-2 d-flex justify-content-end"`}
                   >
                     Forgot Password?
                   </span>
                 </Link>
                 <span className="d-flex align-items-center">
-                  <span className="text-warning h4 m-0">
+                  <span className="text-warning faded-color h4 m-0">
                     You are using BetTena
                   </span>
                   <CountryButton onFieldChanged={onFieldChanged} />
@@ -313,7 +313,7 @@ const HeaderLogin = React.memo((props) => {
                   onClick={() => gaEventTracker("Register")}
                 >
                   <span
-                    className={`text-warning font-input } register-label my-3`}
+                    className={`text-warning faded-color font-input } register-label my-3`}
                   >
                     Dont have an account! Register now{" "}
                   </span>

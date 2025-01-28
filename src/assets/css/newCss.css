@@ -5,7 +5,7 @@ body {
   max-width: 100% !important;
 }
 .btn-button-bg{
-  background:var(--btn-color-action)!important;
+  background:var(--crimson)!important;
 }
 
 .line-on-slip-items-container {
@@ -193,13 +193,19 @@ input.text-white {
 }
 
 .cg.login-button2 {
-  color: var(--dark) !important;
+  color: var(--light) !important;
 }
 .login-button2:active {
-  background: var(--BetTena-button-login) !important ;
+  background: var(--crimson) !important ;
 }
 .login-button2:disabled {
-  background: var(--BetTena-button-login) !important ;
+  background: var(--crimson) !important ;
+}
+.text-warning.faded-color{
+  color:var(--fade-color)!important
+}
+.bg-warning.deposit-button.size-font-user-action{
+  background: var(--crimson)!important
 }
 
 .shadow-testimonials {
@@ -887,9 +893,9 @@ select::after {
 }
 
 .login-button2 {
-  color: #000;
+  color: var(--light);
   /*background: #527994FF;*/
-  background-color: var(--btn-color-action);
+  background-color: var(--crimson);
   border-color: #24367e;
   height: 29px;
   padding: 0px 10px;
@@ -1222,7 +1228,7 @@ input[type="checkbox"] {
 .deposit-button-header {
     
   border-radius: 4px;
-  color: var(--dark);
+  color: var(--light);
   padding: 7px 13px;
 }
 
@@ -2315,7 +2321,7 @@ img.nare-league {
   }
 
   .btn.login-button2:hover {
-    background: var(--BetTena-button-login) !important;
+    background: var(--crimson) !important;
   }
 
   .bet-align-right {
@@ -3274,11 +3280,11 @@ img.nare-league {
   }
 
   .btn.login-button:hover {
-    background: var(--BetTena-button-login) !important;
+    background: var(--crimson) !important;
   }
 
   .btn.login-button2:hover {
-    background: var(--BetTena-button-login) !important;
+    background: var(--crimson) !important;
   }
 
   .top-matches a.odds-container-size {

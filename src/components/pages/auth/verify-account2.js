@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useRef} from 'react'
 import {Col, Row} from "antd";
-import authImg from '../../../assets/img/Logo.webp'
-import logo from '../../../assets/img/Logo.webp'
+import authImg from '../../../assets/img/logo.jpeg'
 import fire from '../../../assets/svg/fire.svg'
 
 import {Link} from "react-router-dom";

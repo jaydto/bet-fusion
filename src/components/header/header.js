@@ -20,7 +20,7 @@ import { UserInfo } from "./UserInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { configSettings, setState } from "../../redux/dataSlice";
 import { userBalance } from "../../redux/authSlice";
-import Logo from "../../assets/img/logo.jpeg";
+import Logo from "../../assets/img/logo.webp";
 import {
   checkDesktopTopNavigation,
   checkNavigation,
@@ -270,7 +270,7 @@ const Header = React.memo((props) => {
                         user
                           ? { marginBottom: "0px", paddingLeft: "7px" }
                           : {
-                              marginBottom: "11px",
+                              // marginBottom: "11px",
                               width: "auto",
                             }
                       }

@@ -803,7 +803,7 @@ section.pageContent .side.center.desktop {
   margin: 15px auto;
   /* max-width: 1280px; */
   display: block;
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: 'Inter', sans-serif;
   color: white;
   position: relative;
 }

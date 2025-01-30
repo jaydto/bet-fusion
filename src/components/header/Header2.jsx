@@ -8,7 +8,7 @@ import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setState} from "../../redux/dataSlice";
-import Logo from "../../assets/img/logo.jpeg"
+import Logo from "../../assets/img/logo.webp"
 
 const Header2 = React.memo(
 	() => {

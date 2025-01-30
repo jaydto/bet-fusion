@@ -1,65 +1,118 @@
 .main-sports-transition-group {
-    display: flex;
-    overflow-x: auto;
-    padding: 0px 10px;
-    gap: 16px;
-  }
-  
-  .sports-list-item {
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .btn-primary.active-category{
-    background-color: #39036f!important;
-    border: #39036f;
-  }
-  
-  .sports-list-item.active .sports-list__item__label {
-    font-weight: bold;
-  }
-  .casino__filters{
-    overflow-x: auto;
-  }
-  .casino__filters::-webkit-scrollbar {
-    display: none;
-  }
-  .sports-list__item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-width: 50px;
-  }
-  
-  .sports-list__item__icon {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
-  }
-  
-  .sports-list__item__label {
-    font-size: 14px;
-  }
-  .bg-section-header{
-    background: #1E2D42 !important;
+  display: flex;
+  overflow-x: auto;
+  padding: 0px 10px;
+  gap: 16px;
+}
 
+.sports-list-item {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-primary.active-category {
+  background-color: #39036f !important;
+  border: #39036f;
+}
+
+.sports-list-item.active .sports-list__item__label {
+  font-weight: bold;
+}
+.casino__filters {
+  overflow-x: auto;
+}
+.casino__filters::-webkit-scrollbar {
+  display: none;
+}
+.sports-list__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 50px;
+}
+
+.sports-list__item__icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.sports-list__item__label {
+  font-size: 14px;
+}
+.bg-section-header {
+  background: #1e2d42 !important;
+}
+
+button.bt-cat {
+  border: none;
+}
+.cat-p {
+  background: #1e2d42;
+}
+.bg-cat-1 {
+  background: #1e2d42 !important;
+  width: inherit;
+}
+.pointer-1 {
+  left: 0px;
+}
+.pointer-2 {
+  right: 0px;
+}
+
+#search-casino .form-control {
+  border-radius: 25px; /* To match pill shape */
+}
+
+input.search-cat:focus{
+  border: none!important;
+
+}
+
+#search-casino .input-group-text {
+  background-color: transparent !important;
+  border: 2px solid crimson!important;
+  border-radius: 15px;
+}
+
+.actBtns button {
+  opacity: 1;
+}
+
+.actBtns button:hover {
+  opacity: 0.75; /* Hover effect */
+}
+
+
+.new-alert-badge {
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+.scrol-cat::-webkit-scrollbar {
+  display: none;
+}
+
+
+@media (max-width: 991px) {
+  .image-size-casino {
+    min-height: 110px;
+  }
+  .category-pointers {
+    top: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .image-size-casino {
+    min-height: 195px;
   }
   
-  .new-alert-badge {
-    background-color: red;
-    color: white;
-    font-size: 10px;
-    padding: 2px 4px;
-    border-radius: 3px;
-    margin-right: 8px;
+  .category-pointers {
+    top: 50%;
   }
-  
-  @media (max-width: 991px) {
-    .image-size-casino {
-      min-height: 110px;
-    }
-  }
-  @media (min-width: 992px) {
-    .image-size-casino {
-      min-height: 195px;
-    }
-  }
+}

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
-import authImg from '../../../assets/img/logo.jpeg'
+import authImg from '../../../assets/img/logo.webp'
 import fire from '../../../assets/svg/fire.svg'
 import {Link, useNavigate} from "react-router-dom";
 import {getFromLocalStorage} from "../../utils/local-storage";

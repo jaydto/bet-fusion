@@ -1646,13 +1646,13 @@ img.nare-league {
   }
 
   .logo-top {
-    margin-top: 13px;
+    /* margin-top: 13px; */
   }
 
   .app-navbar .e img {
     max-width: 188px;
     height: 32px;
-    margin-left: -5px;
+    margin-left: -1px;
   }
 
   .top-sticky-hidden {
@@ -1987,6 +1987,7 @@ img.nare-league {
   }
   .app-navbar .e img {
     max-width: 156px !important;
+    padding-left: 10px!important;
   }
 
   .app-navbar .e img {
@@ -4409,7 +4410,7 @@ img.nare-league {
   }
 
   .button-toggle {
-    margin-left: 6px !important;
+    margin-left: 1px !important;
   }
 
   .login-size {

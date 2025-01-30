@@ -13,9 +13,9 @@
     word-break: break-word;
     text-decoration: none;
 }
-.app-color{
+/* .app-color{
 
-}
+} */
 .lite-top-color {
     border: thin solid var(--BetTena-input);
     color: var(--BetTena-button-login);

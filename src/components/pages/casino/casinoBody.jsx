@@ -114,10 +114,8 @@ const CrashGames = () => {
                 <img
                   src={game.image}
                   alt={game.title}
-                  style={{minHeight:"75px", height:"-webkit-fill-available"}}
-
                   title={game.title}
-                  className="img-fluid rounded"
+                  className="img-fluid rounded image-size-casino"
                 />
               </a>
             </div>

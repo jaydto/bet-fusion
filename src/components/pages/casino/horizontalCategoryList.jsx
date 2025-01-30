@@ -61,10 +61,10 @@ const HorizontalCategoryList = ({
           {categories.map((category) => (
             <button
               key={category.id}
-              className={`px-4 py-2 d-flex align-items-center rounded-lg shadow-sm transition-all  bt-cat ${
+              className={`px-4 py-2 bg-cat-1 d-flex align-items-center rounded-lg shadow-sm transition-all  bt-cat ${
                 activeCategory === category.id
-                  ? "bg-primary text-white"
-                  : "bg-cat-1 text-light"
+                  ? "activeBt text-white"
+                  : "text-light"
               }`}
               onClick={() => onCategoryClick(category.id)}
             >

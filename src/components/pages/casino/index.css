@@ -50,7 +50,14 @@ button.bt-cat {
   background: #1e2d42;
 }
 .bg-cat-1 {
-  background: #1e2d42 !important;
+  background: #1e2d42;
+  width: inherit;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.bg-cat-1.activeBt {
+  background: crimson !important;
   width: inherit;
 }
 .pointer-1 {

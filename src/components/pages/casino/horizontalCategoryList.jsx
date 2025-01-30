@@ -57,7 +57,7 @@ const HorizontalCategoryList = ({
         >
           <FaChevronLeft />
         </button>
-        <div ref={scrollRef} className="d-flex overflow-auto px-2 w-100 scrol-cat">
+        <div ref={scrollRef} className="d-flex overflow-auto px-4 w-100 scrol-cat">
           {categories.map((category) => (
             <button
               key={category.id}

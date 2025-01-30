@@ -1,6 +1,5 @@
 import React from 'react';
-import CustomerCare from '../../assets/img/banner/customer-care/Customer_Care_Banner.webp'
-import Paybill from '../../assets/img/banner/customer-care/Paybill.webp'
+
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const CompanyInfo = React.memo(
@@ -16,7 +15,7 @@ const CompanyInfo = React.memo(
                         {/*<LazyLoadImage src={contact} alt=" " />*/}
                         </span>
                             <span className="col-sm-8">
-                            <LazyLoadImage src={Paybill} alt="" className='w-100' style={{borderRadius: "10px"}}/>
+                            {/* <LazyLoadImage src={Paybill} alt="" className='w-100' style={{borderRadius: "10px"}}/> */}
                         </span>
                         </div>
                     </div>
@@ -26,7 +25,7 @@ const CompanyInfo = React.memo(
                         {/*<LazyLoadImage src={contact} alt=" " />*/}
                         </span>
                             <span className="col-sm-8 mt-4">
-                            <LazyLoadImage src={CustomerCare} alt="" className='w-100' style={{borderRadius: "10px"}}/>
+                            {/* <LazyLoadImage src={CustomerCare} alt="" className='w-100' style={{borderRadius: "10px"}}/> */}
                         </span>
                         </div>
                     </div>

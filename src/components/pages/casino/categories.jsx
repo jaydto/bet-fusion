@@ -25,7 +25,7 @@ const CasinoFilters = () => {
   );
 
   return (
-    <div className="casino__filters sticky-top d-flex gap-2 bg-dark shadow-sm p-3 rounded">
+    <div className="casino__filters sticky-top d-flex gap-2 bg-section-header shadow-sm p-3 rounded">
       {/* Search Icon */}
       <button
         className="btn btn-outline-secondary btn-sm"

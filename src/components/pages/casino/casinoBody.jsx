@@ -86,7 +86,7 @@ const CrashGames = () => {
     <div className="container mt-1">
       {sections.map((section, index) => (
         <div key={index} className="mb-4">
-          <div className="d-flex justify-content-between align-items-center bg-dark py-2 px-3">
+          <div className="d-flex justify-content-between align-items-center bg-section-header py-2 px-3">
             {/* <h5 className="mb-0">{section.title}</h5> */}
             <a href={section.link} className="text-decoration-none text-light">
             {section.title}

@@ -39,6 +39,10 @@
   .sports-list__item__label {
     font-size: 14px;
   }
+  .bg-section-header{
+    background: #1E2D42 !important;
+
+  }
   
   .new-alert-badge {
     background-color: red;

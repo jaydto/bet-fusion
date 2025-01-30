@@ -5,12 +5,11 @@ import CasinoFilters from "./categories";
 import HorizontalCategoryList from "./horizontalCategoryList";
 import iconData from "./icondata";
 import "./index.css";
-import SportsList from "./sportList";
 
 const Index = () => {
 
   // Step 1: Set up state for active category
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(1);
 
   // Step 2: Function to handle category click and set the active category
   const onCategoryClick = (categoryId) => {

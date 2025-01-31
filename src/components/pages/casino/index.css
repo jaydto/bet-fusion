@@ -46,6 +46,9 @@
 button.bt-cat {
   border: none;
 }
+.inter-font {
+  font-family: 'Inter', sans-serif;
+}
 .cat-p {
   background: #1e2d42;
 }

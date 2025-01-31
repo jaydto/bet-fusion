@@ -94,7 +94,7 @@ const CrashGames = () => {
             </a>
           </div>
           <div
-            className={`row ${
+            className={`row inter-font ${
               section.title === "Just Landed" ? "row-cols-4" : "row-cols-2"
             } g-3 mt-1 text-light`}
           >

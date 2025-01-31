@@ -41,6 +41,7 @@
 }
 .bg-section-header {
   background: #1e2d42 !important;
+  /* font-weight: bold; */
 }
 
 button.bt-cat {

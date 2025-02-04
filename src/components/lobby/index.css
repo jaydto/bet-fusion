@@ -252,7 +252,6 @@
   /* background: url('/assets/img/mobile/overlayImage.png'); */
 }
 .grid-item:not(.nohover)[data-provider="SmartSoft"] .jpOverlay {
-  /* background: url('/Users/apple/Projects/crash_kali/frontend/crash-kali-web/src/assets/img/mobile/overlayImage.png'); */
   /* filter: invert(1); */
   background-blend-mode: color;
   /* backdrop-filter: saturate(0.5); */

@@ -382,7 +382,7 @@ input.text-white {
   border-radius: 6px;
   font-size: 16px;
   font-weight: 600;
-  background-color: var(--BetTena-button-login);
+  background-color: var(--crimson);
 }
 
 .accordion-button.bet-history-button {

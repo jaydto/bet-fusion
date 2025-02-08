@@ -3,19 +3,19 @@
   "name": "BetTena",
   "icons": [
     {
-      "src": "fire.ico",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
 
-      "src": "fire2.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "50x50"
     },
     {
 
-      "src": "fire2.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "50x50"
     }

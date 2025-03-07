@@ -210,10 +210,11 @@ const GamePlay = React.memo((props) => {
 
   const handleRealGameClick = () => {
     // Update the URL search params to set status to "live"
-    url.searchParams.set("status", "live");
+    url.searchParams.set("status", "0");
     setGameStatus("live");
 
     window.history.pushState({}, "", url); // Update the URL without reloading
+
   };
 
   return (

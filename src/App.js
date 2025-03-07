@@ -6,6 +6,7 @@ import {getFromLocalStorage, setLocalStorage} from "./components/utils/local-sto
 import {resetState} from "./redux/authSlice";
 import {Navigate, Route, Routes, useNavigate,} from 'react-router-dom'
 import Header from './components/header/header';
+import GamePlay from './components/pages/casino/GamePlay';
 
 
 const Deposit3 = React.lazy(() => import("./components/pages/deposit-withraw/Deposit3"));
@@ -169,6 +170,7 @@ const App =
                         <Route exact path="/promotions" element={<Promotions/>}/>
                         <Route exact path="/promo" element={<Promo/>}/>
                       
+                        <Route exact path="/game-play" element={<GamePlay />} />
 
                         <Route exact path={"/profile"} element={<ProtectedRoute><NewProfile/></ProtectedRoute>}/>
                         <Route exact path={"/betslip"} element={<BetslipPage/>}/>

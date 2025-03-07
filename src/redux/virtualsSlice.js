@@ -79,6 +79,21 @@ export const favoriteCasinoData = createAsyncThunk(
   }
 );
 
+export const casinoGames = createAsyncThunk(
+  "virtuals/casinoGamesData",
+  async ({ endpoint, method }) => {
+    const [status, response] = await makeRequest({
+      url: endpoint,
+      method: method,
+    });
+    if (status === 200) {
+      return response;
+    } else {
+      throw new Error(response?.error || "casinoGames failed");
+    }
+  }
+);
+
 export const setState = createAction("virtuals/set", (stateToSet, data) => {
   return { payload: { stateToSet, data } };
 });
@@ -89,6 +104,22 @@ const virtualsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+    .addCase(casinoGames.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+      state.casino_game_url = null;
+      state.fetching = true;
+    })
+    .addCase(casinoGames.fulfilled, (state, action) => {
+      state.loading = false;
+      state.casino_games_data = action.payload?.data;
+      state.casino_games_types = action.payload?.types;
+      state.casino_games_providers = action.payload?.providers;
+    })
+    .addCase(casinoGames.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    })
       .addCase(setState, (state, action) => {
         const { stateToSet, data } = action.payload;
         if (state.hasOwnProperty(stateToSet)) {

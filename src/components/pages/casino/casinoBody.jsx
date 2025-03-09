@@ -223,6 +223,7 @@ const CrashGames = () => {
         if (typeDescription) {
           categorizedGames[typeDescription].push({
             id: game.id,
+            game_id: game.game_id,
             title: game.game_name,
             image:
               game.image_url ||
@@ -236,6 +237,7 @@ const CrashGames = () => {
       // Step 4: Assign games without categories to "Others"
       categorizedGames["Others"].push({
         id: game.id,
+        game_id: game.game_id,
         title: game.game_name,
         image:
           game.image_url ||
@@ -353,7 +355,7 @@ const CrashGames = () => {
                       <button
                         className="overlay-btn"
                         onClick={(event) =>
-                          handleGameClick(event, game.id, false)
+                          handleGameClick(event, game.game_id, false)
                         }
                       >
                         Play
@@ -361,7 +363,7 @@ const CrashGames = () => {
                       <button
                         className="overlay-btn"
                         onClick={(event) =>
-                          handleGameClick(event, game.id, true)
+                          handleGameClick(event, game.game_id, true)
                         }
                       >
                         Demo

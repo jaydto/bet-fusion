@@ -42,11 +42,11 @@ const GamePlay = React.memo((props) => {
 
     let method = "POST";
 
-    console.log("user ",user?.profile_id);
+    console.log("user ", user?.profile_id);
 
     let payload = {
       playerId: user?.profile_id,
-      isDemo: isDemo=== "1" ? true : false,
+      isDemo: isDemo === "1" ? true : false,
       gameId: game,
     };
 
@@ -62,14 +62,13 @@ const GamePlay = React.memo((props) => {
           gaEventTracker("Playing AtomGame", data);
           setUserToken(user?.profile_id);
           setUserID(user?.profile_id);
-          if(isDemo==="1"){
+          if (isDemo === "1") {
             setGamePlay(result?.gameLaunchUrl);
             setGameUrlLoaded(true);
-          }else{
+          } else {
             setGamePlay(result?.gameLaunchUrl);
             setGameUrlLoaded(true);
           }
-         
         } else {
           const data = {
             user_id: user?.profile_id,
@@ -186,18 +185,18 @@ const GamePlay = React.memo((props) => {
 
   useEffect(() => {
     const switchToDemoMode = (demo_url) => {
-      setGamePlay(demo_url);
+      createToken(status); // Create token if user exists and status is live
       setGameUrlLoaded(true);
     };
+    console.log("user", user);
 
     if (status === "0") {
       if (user) {
+        if (status === "1") {
+          setGameStatus("demo");
+        }
+        console.log("calling endpoint")
         createToken(status); // Create token if user exists and status is live
-      } else {
-        createToken(status);
-
-        setGameStatus("demo");
-       
       }
     } else {
       setGameStatus("demo");
@@ -214,7 +213,6 @@ const GamePlay = React.memo((props) => {
     setGameStatus("live");
 
     window.history.pushState({}, "", url); // Update the URL without reloading
-
   };
 
   return (
@@ -245,7 +243,7 @@ const GamePlay = React.memo((props) => {
                     isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""
                   }`}
                 >
-                 <GameDemoAlert
+                  <GameDemoAlert
                     game={game}
                     user={user}
                     gameStatus={gameStatus}

@@ -16,6 +16,7 @@ import GameDemoAlert from "../../Alerts/GameDemoAlert";
 const GamePlay = React.memo((props) => {
   const url = new URL(window.location);
   const game = url.searchParams.get("game");
+  const gameName = url.searchParams.get("game_name");
   const type = url.searchParams.get("category");
   const demo_url = url.searchParams.get("demo_url");
 
@@ -244,7 +245,7 @@ const GamePlay = React.memo((props) => {
                   }`}
                 >
                   <GameDemoAlert
-                    game={game}
+                    game={gameName}
                     user={user}
                     gameStatus={gameStatus}
                     handleRealGameClick={handleRealGameClick}

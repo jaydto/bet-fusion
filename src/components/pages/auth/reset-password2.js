@@ -404,13 +404,13 @@ const PasswordResetForm = React.memo((props) => {
     mobile:  mobile_v,
   };
 
-  useEffect(() => {
-    if (resetSuccessPassword) {
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
-    }
-  }, [resetSuccessPassword]);
+  useEffect(()=>{
+    if(resetSuccessPassword){
+    setTimeout(() => {
+              navigate("/");
+            }, 3000);
+        }
+  },[resetSuccessPassword])
 
   const handleSubmitPasswordReset = (values) => {
     values.mobile = mobile;

@@ -272,12 +272,12 @@ const CrashGames = () => {
 
   const navigate = useNavigate();
 
-  const handleGameClick = (event, gameId, isDemo) => {
+  const handleGameClick = (event, gameId, isDemo, game_name) => {
     event.stopPropagation(); // Prevent event bubbling if needed
     console.log("Game ID:", gameId, "Demo Mode:", isDemo);
 
     user?.profile_id
-      ? navigate(`/game-play?game=${gameId}&status=${isDemo ? "1" : "0"}`)
+      ? navigate(`/game-play?game=${gameId}&status=${isDemo ? "1" : "0"}&game_name=${game_name}`)
       : navigate("/login");
   };
 
@@ -318,7 +318,7 @@ const CrashGames = () => {
                       <button
                         className="overlay-btn"
                         onClick={(event) =>
-                          handleGameClick(event, game.id, false)
+                          handleGameClick(event, game.id, false, game.title)
                         }
                       >
                         Play
@@ -326,7 +326,7 @@ const CrashGames = () => {
                       <button
                         className="overlay-btn"
                         onClick={(event) =>
-                          handleGameClick(event, game.id, true)
+                          handleGameClick(event, game.id, true, game.title)
                         }
                       >
                         Demo
@@ -355,7 +355,7 @@ const CrashGames = () => {
                       <button
                         className="overlay-btn"
                         onClick={(event) =>
-                          handleGameClick(event, game.game_id, false)
+                          handleGameClick(event, game.game_id, false,game.title)
                         }
                       >
                         Play
@@ -363,7 +363,7 @@ const CrashGames = () => {
                       <button
                         className="overlay-btn"
                         onClick={(event) =>
-                          handleGameClick(event, game.game_id, true)
+                          handleGameClick(event, game.game_id, true,game.title)
                         }
                       >
                         Demo

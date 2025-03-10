@@ -222,7 +222,7 @@ const GamePlay = React.memo((props) => {
       <div className="amt top-smartsoft gameplay">
         <FullscreenButton
           onClick={() => toggleFullscreen()}
-          navigation={"/casino"}
+          navigation={"/"}
           isCustomFullScreen={isCustomFullscreen}
         />
         <div className="d-flex flex-row justify-content-between">

@@ -58,8 +58,10 @@ export const forgotPassword = createAsyncThunk(
 export const resetPassword = createAsyncThunk(
   'auth/resetPassword',
   async (values, { getState }) => {
+      console.log("Values in resetPassword action:", values);  // Log here
       const state = getState();
-      values.mobile = state?.mobile;
+      values.mobile = state?.auth?.reset_mobile;  // Make sure this is correct
+
       const endpoint = '/v1/reset-password';
 
       const [status, response] = await makeRequest({
@@ -68,15 +70,14 @@ export const resetPassword = createAsyncThunk(
           data: values
       });
 
-    
-
       if (status === 200 || status === 201) {
-        return response; // Return an object with both user and data properties
+        return response; // Return user data if successful
       } else {
         throw new Error(response?.error?.message || "Reset Password failed");
       }
   }
 );
+
 // Thunk action for submitting the form
 // Async thunk for verifying the password reset token
 export const verifyPassword = createAsyncThunk(

@@ -102,8 +102,8 @@ const initialState = {
     resetSuccessPassword: false,
     resetPasswordError: null,
     resetPasswordMessage: null,
+    reset_mobile: null,
     otp_sent: false,
-    reset_mobile:null,
     reset_id:null
 
   }, // Initial state for the auth reducer

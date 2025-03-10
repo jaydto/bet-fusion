@@ -1,62 +1,66 @@
-import React, { useEffect, useState } from "react";
-import {  notification, Row } from "antd";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Col, Row } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import only18 from "../../../assets/img/auth/18only.png";
+import backgroundURL from "../../../assets/img/auth/img-17.webp";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleLeft,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
+import makeRequest from "../../utils/fetch-request";
 import { Form, Formik } from "formik";
+import { StoreContext } from "../../../context/store";
+import {
+  resetPassword,
+  resetSubmitForm,
+  setState,
+} from "../../../redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPassword, resetSubmitForm, setState } from "../../../redux/authSlice";
 
 const backgroundStyle = {
-    // background:`url(${gameDay})`,
-    // backgroundRepeat: "no-repeat",
-    // backgroundSize: "cover",
-    backgroundColor: "var(--BetTena-header-bg)" 
-  //   backgroundPosition:"bottom",
-    // backgroundAttachment:"fixed"
-  };
+  backgroundImage: `url(${backgroundURL})`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+};
 
 const ResetPassword2 = React.memo((props) => {
-  const resetSuccess = useSelector((state) => state.auth.resetSuccess);
-  const resetSuccessPassword = useSelector((state) => state.auth.resetSuccessPassword);
-  const resetMessage = useSelector((state) => state.auth.resetMessage);
-  const resetPasswordMessage = useSelector((state) => state.auth.resetPasswordMessage);
+  const resetSuccess = useSelector((state) => state.auth.reset_success);
+  const resetSuccessPassword = useSelector(
+    (state) => state.auth.reset_success_password
+  );
+  const resetMessage = useSelector((state) => state.auth.reset_message);
+  const resetPasswordMessage = useSelector(
+    (state) => state.auth.reset_password_message
+  );
   const otpSent = useSelector((state) => state.auth.otp_sent);
-  const navigate=useNavigate()
 
   const expand = "md";
-
+  const navigate = useNavigate();
+  const dispatchRedux = useDispatch();
 
   useEffect(() => {
-    if  (resetMessage??resetPasswordMessage) {
-      
-    notification.error({
-      message: "Reset Password",
-      description: resetPasswordMessage??resetMessage, // assuming `successMessage` has a `message` field
-      className: 'ant-notification',
-      placement: "top", // Set placement to top-left
-      onClick: () => {
-        console.log("Notification Clicked!");
-      },
-    });
-  }
-  }, [resetMessage, resetPasswordMessage]);
-
-
+    // Set the initial state to false on first render
+    dispatchRedux(setState("otp_sent", false));
+    dispatchRedux(setState("resetPasswordMessage", null));
+    dispatchRedux(setState("resetMessage", null));
+  }, []);
 
   const FormTitle = () => {
     return (
       <div
-        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile "
-        style={{ margin: "0px"}}
+        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile"
+        style={{ margin: "0px" }}
       >
         <div>
           <div
             className={
-              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator "
+              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator"
             }
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/")}
           >
             <span
               className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "
@@ -69,7 +73,9 @@ const ResetPassword2 = React.memo((props) => {
             </span>
 
             <span className={"w-50 d-flex justify-content-center"}>
-            <h4 className="inline-block">RECOVER YOUR ACCOUNT</h4>
+              <h4 className="inline-block form-title-centric">
+                RECOVER YOUR ACCOUNT
+              </h4>
             </span>
             <span className="w-25"></span>
           </div>
@@ -78,15 +84,18 @@ const ResetPassword2 = React.memo((props) => {
     );
   };
 
-  
+  const Alert = (props) => {
+    let c = resetSuccessPassword ?? resetSuccess ? "success" : "danger";
+    return (
+      <div role="alert" className={`fade alert alert-${c} show`}>
+        {resetPasswordMessage ?? resetMessage}
+      </div>
+    );
+  };
 
   return (
-    <div style={{ height: "100vh", overflowX: "hidden" }}>
-<Row
-        justify="center"
-        className="align-items-stretch h-100"
-        style={backgroundStyle}
-      >        
+    <div style={{ height: "100vh" }}>
+      <Row justify="center" className="align-items-stretch h-100">
         <div
           className={
             "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
@@ -94,8 +103,7 @@ const ResetPassword2 = React.memo((props) => {
         >
           <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
             <div
-            
-              className={`width-page-centric reset-pass mt-0 ${
+              className={`width-page-centric reset-pass ${
                 otpSent && "pass-reset-page"
               }`}
             >
@@ -109,7 +117,9 @@ const ResetPassword2 = React.memo((props) => {
                       <div className=" w-100">
                         <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
                           <div className="col-md-12 mt-2 text-white px-2 w-100">
-                            {/* {resetMessage && <Alert />} */}
+                            {(resetPasswordMessage ?? resetMessage) && (
+                              <Alert />
+                            )}
                             <div
                               className="modal-body pb-0 "
                               data-backdrop="static"
@@ -136,12 +146,18 @@ const ResetPassword2 = React.memo((props) => {
 const MyOtpForm = React.memo((props) => {
   const { errors, values, submitForm, setFieldValue } = props;
   const otpSent = useSelector((state) => state.auth.otp_sent);
+  const dispatchRedux = useDispatch();
 
   const onFieldChanged = (ev) => {
     let field = ev.target.name;
     let value = ev.target.value;
     setFieldValue(field, value);
   };
+
+  const handleAlreadyHaveOtp = () => {
+    dispatchRedux(setState("otp_sent", true));
+  };
+
   return (
     <Form className={`${otpSent ? "d-none" : ""}`}>
       <div className="pt-0">
@@ -171,8 +187,8 @@ const MyOtpForm = React.memo((props) => {
           <div className="form-group row d-flex justify-content-left mb-4">
             <div className="col">
               <button
-                type="submit"
                 disabled={otpSent || !values.mobile}
+                type="submit"
                 className=" btn btn-lg w-100 button-radius input-field btn-font  login-button btn button-page reset-text"
                 style={{
                   whiteSpace: "nowrap",
@@ -184,6 +200,22 @@ const MyOtpForm = React.memo((props) => {
               </button>
             </div>
           </div>
+          <div className="form-group row d-flex justify-content-left mb-4">
+            <div className="col">
+              <button
+                type="button"
+                className="btn btn-lg w-100 button-radius input-field"
+                style={{
+                  color: "white",
+                  fontSize: "12px",
+                  whiteSpace: "nowrap",
+                }}
+                onClick={handleAlreadyHaveOtp}
+              >
+                Already have an OTP ?
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </Form>
@@ -191,22 +223,21 @@ const MyOtpForm = React.memo((props) => {
 });
 
 const MyPasswordResetForm = React.memo((props) => {
-  // const { state } = useContext(StoreContext);
   const otpSent = useSelector((state) => state.auth.otp_sent);
-  const { errors, values, setFieldValue, submitForm } = props;
-  const dispatchRedux=useDispatch()
+  const dispatchRedux = useDispatch();
+  const { errors, values, submitForm, setFieldValue } = props;
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
-  const clearActions=()=>{
-    dispatchRedux(setState("otp_sent",false));
-    dispatchRedux(setState("resetMessage",null));
-    dispatchRedux(setState("resetMessage",null));
-    dispatchRedux(setState("resetSuccess",false));
-    dispatchRedux(setState("reset_id",null));
-  }
+  const clearActions = () => {
+    dispatchRedux(setState("otp_sent", false));
+    dispatchRedux(setState("reset_message", null));
+    dispatchRedux(setState("reset_password_message", null));
+    dispatchRedux(setState("reset_success", null));
+    dispatchRedux(setState("reset_success_password", null));
+    dispatchRedux(setState("reset_id", null));
+  };
 
   const onFieldChanged = (ev) => {
     let field = ev.target.name;
@@ -340,17 +371,16 @@ const MyPasswordResetForm = React.memo((props) => {
               </button>
             </div>
           </div>
-          <div className="mt-3 d-flex justify-content-between">
-                <button
-                  className="button btn-prev"
-                  type="button"
-                  onClick={clearActions}
-                >
-                  Previous
-                </button>
 
-        
-          </div>    
+          <div className="mt-3 d-flex justify-content-between">
+            <button
+              className="button btn-prev"
+              type="button"
+              onClick={clearActions}
+            >
+              Previous
+            </button>
+          </div>
         </div>
       </div>
     </Form>
@@ -361,37 +391,39 @@ const PasswordResetForm = React.memo((props) => {
   const mobile = useSelector((state) => state.auth.reset_mobile);
   const resetID = useSelector((state) => state.auth.reset_id);
   const dispatchRedux = useDispatch();
+  const mobile_v=useSelector((state) => state.auth.reset_mobile);
   const navigate = useNavigate();
-  const resetSuccessPassword=useSelector((state)=>state.auth.resetSuccessPassword)
-
+  const resetSuccessPassword = useSelector(
+    (state) => state.auth.reset_success_password
+  );
   const initialResetFormValues = {
     id: "",
     code: "",
     password: "",
     repeat_password: "",
+    mobile:  mobile_v,
   };
+
+  useEffect(() => {
+    if (resetSuccessPassword) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  }, [resetSuccessPassword]);
 
   const handleSubmitPasswordReset = (values) => {
     values.mobile = mobile;
     values.id = resetID;
 
-    try {
-       dispatchRedux(
-        resetPassword(values)
+    console.log("doing reset values", values);
 
-      );
+    try {
+      dispatchRedux(resetPassword(values));
     } catch (error) {
       console.error("Password reset failed:", error.message);
     }
   };
-
-  useEffect(()=>{
-    if(resetSuccessPassword){
-    setTimeout(() => {
-              navigate("/");
-            }, 3000);
-        }
-  },[resetSuccessPassword])
 
   const validatePasswordReset = (password_reset_values) => {
     let password_reset_errors = {};
@@ -436,7 +468,7 @@ const PasswordResetForm = React.memo((props) => {
 });
 
 const OptForm = React.memo((props) => {
-  const dispatchRedux = useDispatch()
+  const dispatchRedux = useDispatch();
   const initialValues = {
     mobile: "",
   };
@@ -450,9 +482,9 @@ const OptForm = React.memo((props) => {
     return errors;
   };
 
-  const handleSubmit =  (values) => {
+  const handleSubmit = (values) => {
     try {
-       dispatchRedux(resetSubmitForm(values));
+      dispatchRedux(resetSubmitForm(values));
     } catch (error) {
       console.error("Form submission failed:", error.message);
     }

@@ -114,7 +114,7 @@ export const resetSubmitForm = createAsyncThunk(
 
     console.log("values", values)
 
-      const endpoint = '/v1/code';
+      const endpoint = '/v1/code?page=resetPass';
 
       const [status, response] = await makeRequest({
           url: endpoint,

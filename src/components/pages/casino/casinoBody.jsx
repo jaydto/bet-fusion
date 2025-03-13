@@ -293,7 +293,7 @@ const CrashGames = () => {
           </div>
           <div
             className={`row inter-font ${
-              section.title === "Others" ? "row-cols-4" : "row-cols-2"
+              section.title === "Others" ? "row-cols-4" : "row-cols-3"
             } g-3 mt-1 text-light`}
           >
             {section.games.map((game, gameIndex) =>

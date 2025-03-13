@@ -1,16 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import only18 from "../../../assets/img/auth/18only.png";
-import backgroundURL from "../../../assets/img/auth/img-17.webp";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faEye,
-  faEyeSlash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import makeRequest from "../../utils/fetch-request";
 import { Form, Formik } from "formik";
 import { StoreContext } from "../../../context/store";
@@ -22,7 +16,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const backgroundStyle = {
-  backgroundImage: `url(${backgroundURL})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
 };
@@ -36,10 +29,12 @@ const ResetPassword2 = React.memo((props) => {
   const resetPasswordMessage = useSelector(
     (state) => state.auth.reset_password_message
   );
-  const otpSent = useSelector((state) => state.auth.otp_sent);
+  const code = new URL(window.location).searchParams.get("code");
+  const otpSentFromState = useSelector((state) => state.auth.otp_sent);
+  const otpSent = code ? true : otpSentFromState;
 
   const expand = "md";
-  const navigate = useNavigate();
+
   const dispatchRedux = useDispatch();
 
   useEffect(() => {
@@ -52,34 +47,10 @@ const ResetPassword2 = React.memo((props) => {
   const FormTitle = () => {
     return (
       <div
-        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile"
+        className="col-md-12 col-md-12  pt-4 text-center text-light py-3 text-center w-100 top-login-mobile"
         style={{ margin: "0px" }}
       >
-        <div>
-          <div
-            className={
-              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator"
-            }
-            onClick={() => navigate("/")}
-          >
-            <span
-              className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "
-              style={{ cursor: "pointer" }}
-            >
-              <FontAwesomeIcon
-                icon={faAngleLeft}
-                className={"back-navigation-icon"}
-              />{" "}
-            </span>
-
-            <span className={"w-50 d-flex justify-content-center"}>
-              <h4 className="inline-block form-title-centric">
-                RECOVER YOUR ACCOUNT
-              </h4>
-            </span>
-            <span className="w-25"></span>
-          </div>
-        </div>
+        <h4 className="inline-block">RECOVER YOUR ACCOUNT</h4>
       </div>
     );
   };
@@ -96,6 +67,7 @@ const ResetPassword2 = React.memo((props) => {
   return (
     <div style={{ height: "100vh" }}>
       <Row justify="center" className="align-items-stretch h-100">
+      
         <div
           className={
             "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
@@ -145,7 +117,10 @@ const ResetPassword2 = React.memo((props) => {
 });
 const MyOtpForm = React.memo((props) => {
   const { errors, values, submitForm, setFieldValue } = props;
-  const otpSent = useSelector((state) => state.auth.otp_sent);
+  const code = new URL(window.location).searchParams.get("code");
+  const otpSentFromState = useSelector((state) => state.auth.otp_sent);
+  const otpSent = code ? true : otpSentFromState;
+
   const dispatchRedux = useDispatch();
 
   const onFieldChanged = (ev) => {
@@ -223,13 +198,17 @@ const MyOtpForm = React.memo((props) => {
 });
 
 const MyPasswordResetForm = React.memo((props) => {
-  const otpSent = useSelector((state) => state.auth.otp_sent);
+  const code = new URL(window.location).searchParams.get("code");
+  const otpSentFromState = useSelector((state) => state.auth.otp_sent);
+  const otpSent = code ? true : otpSentFromState;
+
   const dispatchRedux = useDispatch();
   const { errors, values, submitForm, setFieldValue } = props;
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
   const clearActions = () => {
     dispatchRedux(setState("otp_sent", false));
     dispatchRedux(setState("reset_message", null));
@@ -238,6 +217,25 @@ const MyPasswordResetForm = React.memo((props) => {
     dispatchRedux(setState("reset_success_password", null));
     dispatchRedux(setState("reset_id", null));
   };
+
+  const verifyAccount = () => {
+    let code = new URL(window.location).searchParams.get("code");
+    let msisdn = new URL(window.location).searchParams.get("msisdn");
+
+    if (code) {
+      setFieldValue("code", code);
+      dispatchRedux(setState("otp_sent", true));
+
+    }
+    if (msisdn) {
+      setFieldValue("mobile", msisdn);
+      dispatchRedux(setState("reset_mobile", msisdn));
+    }
+  };
+
+  useEffect(() => {
+    verifyAccount();
+  }, []);
 
   const onFieldChanged = (ev) => {
     let field = ev.target.name;
@@ -367,7 +365,7 @@ const MyPasswordResetForm = React.memo((props) => {
                 type="submit"
                 className="w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page"
               >
-                Reset Password
+                Reset PasswordT
               </button>
             </div>
           </div>
@@ -388,10 +386,11 @@ const MyPasswordResetForm = React.memo((props) => {
 });
 
 const PasswordResetForm = React.memo((props) => {
+
   const mobile = useSelector((state) => state.auth.reset_mobile);
+
   const resetID = useSelector((state) => state.auth.reset_id);
   const dispatchRedux = useDispatch();
-  const mobile_v=useSelector((state) => state.auth.reset_mobile);
   const navigate = useNavigate();
   const resetSuccessPassword = useSelector(
     (state) => state.auth.reset_success_password
@@ -401,22 +400,25 @@ const PasswordResetForm = React.memo((props) => {
     code: "",
     password: "",
     repeat_password: "",
-    mobile:  mobile_v,
   };
 
-  useEffect(()=>{
-    if(resetSuccessPassword){
-    setTimeout(() => {
-              navigate("/");
-            }, 3000);
-        }
-  },[resetSuccessPassword])
+  useEffect(() => {
+    if (resetSuccessPassword) {
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    }
+  }, [resetSuccessPassword]);
 
   const handleSubmitPasswordReset = (values) => {
+    console.log("Before modification:", values);
+    console.log("Current mobile:", mobile);
+    console.log("Current resetID:", resetID);
+
     values.mobile = mobile;
     values.id = resetID;
 
-    console.log("doing reset values", values);
+    console.log("After modification:", values);
 
     try {
       dispatchRedux(resetPassword(values));

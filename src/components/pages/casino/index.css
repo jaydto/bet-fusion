@@ -112,6 +112,7 @@ button.bt-cat {
   text-align: center;
   display: flex;
   justify-content: center;
+  white-space: nowrap;
 }
 .bg-cat-1.activeBt {
   background: crimson !important;

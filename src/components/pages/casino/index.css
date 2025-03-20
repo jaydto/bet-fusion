@@ -166,6 +166,7 @@ input.search-cat:focus{
 @media (max-width: 991px) {
   .image-size-casino {
     min-height: 110px;
+    height: -webkit-fill-available;
   }
   .category-pointers {
     top: 50%;
@@ -175,6 +176,7 @@ input.search-cat:focus{
 @media (min-width: 992px) {
   .image-size-casino {
     min-height: 195px;
+    max-height: 220px;
   }
   
   .category-pointers {

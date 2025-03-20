@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { casinoGames, casinoList } from "../../../redux/virtualsSlice";
+import { casinoGames } from "../../../redux/virtualsSlice";
 import { useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import CasinoSkeletonLoader from "./casino-skeleton";
 
 const CrashGames = ({ activeCategory }) => {
   const dispatch = useDispatch();
-  const user = getFromLocalStorage("user"); // Always get the user from local storage
+  const user = getFromLocalStorage("user");
 
   const casino_games = useSelector((state) => state.virtuals.casino_games_data);
   const loading = useSelector((state) => state.virtuals.loading);
   const casino_types = useSelector(
     (state) => state.virtuals.casino_games_types
-  );
-  const casino_providers = useSelector(
-    (state) => state.virtuals.casino_games_providers
   );
 
   const fetchGames = async () => {
@@ -31,15 +28,11 @@ const CrashGames = ({ activeCategory }) => {
     }
   }, [casino_games.length]);
 
-  // **Mapping Casino Games to Types**
+  // Categorizing games
   const categorizedGames = {};
-
-  // Step 1: Create categories from casino_types
   casino_types.forEach((type) => {
     categorizedGames[type.game_type_description] = [];
   });
-
-  // Step 2: Add "Others" category
   categorizedGames["Others"] = [];
 
   const defaultImages = [
@@ -50,16 +43,6 @@ const CrashGames = ({ activeCategory }) => {
     "https://cdn.betika.com/int_assets/crash-games/Crash-Royale/1000x1334.jpg",
   ];
 
-  const defaultSection1 = [
-    "https://cdn.betika.com/int_assets/crash-games/aviatrix/2000x456.jpg",
-    "https://cdn.betika.com/int_assets/crash-games/JetXSmartsoft/1308x780.jpg",
-    "https://cdn.betika.com/int_assets/crash-games/High-Flyer/1308x780.jpg",
-    "https://cdn.betika.com/int_assets/cd/Spaceman-BBCrashPragmatic/Big-Bass-Crash/PNG/1308x780.png",
-    "https://cdn.betika.com/int_assets/crash-games/aviator-banner-910x367.png",
-    "https://cdn.betika.com/int_assets/crash-games/Commet-Crash/910x367.jpg",
-  ];
-
-  // Step 3: Assign each game to the correct category
   casino_games.forEach((game) => {
     if (game.categories && game.categories.length > 0) {
       game.categories.forEach((category) => {
@@ -74,13 +57,12 @@ const CrashGames = ({ activeCategory }) => {
             image:
               game.image_url ||
               game.display_image_url ||
-              defaultSection1[game.id % defaultSection1.length], // Cycles through the three images
+              defaultImages[game.id % defaultImages.length],
             link: game.demo_launch_url || "#",
           });
         }
       });
     } else {
-      // Step 4: Assign games without categories to "Others"
       categorizedGames["Others"].push({
         id: game.id,
         game_id: game.game_id,
@@ -88,39 +70,32 @@ const CrashGames = ({ activeCategory }) => {
         image:
           game.image_url ||
           game.display_image_url ||
-          defaultImages[game.id % defaultImages.length], // Cycles through the three images
+          defaultImages[game.id % defaultImages.length],
         link: game.demo_launch_url || "#",
       });
     }
   });
 
-  // Step 5: Convert the categorized games into sections
   const sections = Object.keys(categorizedGames).map((key) => ({
     title: key,
     games: categorizedGames[key],
   }));
 
-  const [hoveredGame, setHoveredGame] = useState(null);
-  const [overlayVisible, setOverlayVisible] = useState({});
+  const [expandedSection, setExpandedSection] = useState(null);
 
-  // const toggleOverlay = (gameId) => {
-  //   setOverlayVisible((prev) => ({
-  //     ...prev,
-  //     [gameId]: !prev[gameId], // Toggle overlay visibility on click
-  //   }));
-  // };
-
-  const toggleOverlay = (event, gameId) => {
-    event.preventDefault(); // Prevent page scroll/jump
-    setOverlayVisible((prev) => (prev === gameId ? null : gameId));
+  const toggleSection = (title) => {
+    setExpandedSection(expandedSection === title ? null : title);
   };
+
+  const filteredSections =
+    activeCategory !== "All"
+      ? sections.filter((section) => section.title === activeCategory)
+      : sections;
 
   const navigate = useNavigate();
 
   const handleGameClick = (event, gameId, isDemo, game_name) => {
-    event.stopPropagation(); // Prevent event bubbling if needed
-    console.log("Game ID:", gameId, "Demo Mode:", isDemo);
-
+    event.stopPropagation();
     user?.profile_id
       ? navigate(
           `/game-play?game=${gameId}&status=${
@@ -130,80 +105,53 @@ const CrashGames = ({ activeCategory }) => {
       : navigate("/login");
   };
 
-  // const filteredSections = activeCategory
-  // ? sections.filter((section) => section.title === activeCategory)
-  // : sections; // Show all if no category selected
+  useEffect(() => {
+    setExpandedSection(null); // Reset expanded section when active category changes
+  }, [activeCategory]);
 
-  const filteredSections =
-    activeCategory !== "All"
-      ? sections.filter((section) => section.title === activeCategory)
-      : sections; // Show all if "All" is selected
-
-  console.log("Filtered Sections:", filteredSections);
-  console.log("Filtered Sections:", sections);
   return (
     <div className="container mt-1">
       {loading ? (
         <CasinoSkeletonLoader />
       ) : (
-        filteredSections.map((section, index) => (
-          <div key={index} className="mb-4">
-            <div className="d-flex justify-content-between align-items-center bg-section-header py-2 px-3">
-              <a href="#" className="text-decoration-none text-light">
-                {section.title}
-                <i className="ms-1 bi bi-arrow-right"></i>
-              </a>
-            </div>
-            <div
-              className={`row inter-font ${
-                section.title === "Others" ? "row-cols-4" : "row-cols-3"
-              } g-3 mt-1 text-light`}
-            >
-              {section.games.map((game, gameIndex) =>
-                gameIndex === 0 && section.title === "Lottery" ? (
-                  <div
-                    key={gameIndex}
-                    className="col-12 d-flex justify-content-center casino-game-wrapper"
-                    onClick={(event) => toggleOverlay(event, game.id)}
-                    onMouseEnter={() => setHoveredGame(game.id)}
-                    onMouseLeave={() => setHoveredGame(null)}
+        (expandedSection
+          ? sections.filter((section) => section.title === expandedSection)
+          : filteredSections
+        ).map((section, index) => {
+          const isExpanded = expandedSection === section.title;
+          const visibleGames =
+            activeCategory !== "All" || isExpanded
+              ? section.games
+              : section.games.slice(0, 6);
+
+          return (
+            <div key={index} className="mb-4">
+              <div className="d-flex justify-content-between align-items-center bg-section-header py-2 px-3">
+                <a href="#" className="text-decoration-none text-light">
+                  {section.title}
+                </a>
+                {section.games.length > 6 && (
+                  <button
+                    className="btn btn-sm btn-link text-light"
+                    onClick={() => toggleSection(section.title)}
                   >
-                    <a href={game.link} className="text-decoration-none">
-                      <img
-                        src={game.image}
-                        alt={game.title}
-                        title={game.title}
-                        className="img-fluid rounded"
-                      />
-                    </a>
-                    {(hoveredGame === game.id || overlayVisible[game.id]) && (
-                      <div className="overlay">
-                        <button
-                          className="overlay-btn"
-                          onClick={(event) =>
-                            handleGameClick(event, game.id, false, game.title)
-                          }
-                        >
-                          Play
-                        </button>
-                        <button
-                          className="overlay-btn"
-                          onClick={(event) =>
-                            handleGameClick(event, game.id, true, game.title)
-                          }
-                        >
-                          Demo
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ) : (
+                    {isExpanded ? "Less" : "More"}
+                  </button>
+                )}
+              </div>
+
+              <div
+                className={`row inter-font ${
+                  section.title === "Others" ? "row-cols-4" : "row-cols-3"
+                } g-3 mt-1 text-light`}
+              >
+                {visibleGames.map((game, gameIndex) => (
                   <div
                     key={gameIndex}
                     className="col casino-game-wrapper"
-                    onClick={(event) => toggleOverlay(event, game.id)}
-                    onMouseEnter={() => setHoveredGame(game.id)}
-                    onMouseLeave={() => setHoveredGame(null)}
+                    onClick={(event) =>
+                      handleGameClick(event, game.game_id, false, game.title)
+                    }
                   >
                     <a href={game.link} className="text-decoration-none">
                       <img
@@ -213,42 +161,12 @@ const CrashGames = ({ activeCategory }) => {
                         className="img-fluid rounded image-size-casino"
                       />
                     </a>
-                    {(hoveredGame === game.id || overlayVisible[game.id]) && (
-                      <div className="overlay">
-                        <button
-                          className="overlay-btn"
-                          onClick={(event) =>
-                            handleGameClick(
-                              event,
-                              game.game_id,
-                              false,
-                              game.title
-                            )
-                          }
-                        >
-                          Play
-                        </button>
-                        <button
-                          className="overlay-btn"
-                          onClick={(event) =>
-                            handleGameClick(
-                              event,
-                              game.game_id,
-                              true,
-                              game.title
-                            )
-                          }
-                        >
-                          Demo
-                        </button>
-                      </div>
-                    )}
                   </div>
-                )
-              )}
+                ))}
+              </div>
             </div>
-          </div>
-        ))
+          );
+        })
       )}
     </div>
   );

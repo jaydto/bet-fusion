@@ -40,13 +40,13 @@
   
   @keyframes shimmer {
     0% {
-      background: #827994;
+      background: #231f2b;
     }
     50% {
-      background: #17161a;
+      background: #1a191e;
     }
     100% {
-      background: #827994;
+      background: #231f2b;
     }
   }
   

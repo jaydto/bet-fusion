@@ -164,8 +164,18 @@ input.search-cat:focus{
 
 
 @media (max-width: 991px) {
-  .image-size-casino {
+  
+  .casino-game-wrapper img{
     min-height: 110px;
+    height: -webkit-fill-available;
+
+  }
+  .elongate .casino-game-wrapper img{
+    min-height: 170px;
+    height: -webkit-fill-available;
+
+  }
+  .casino-game-wrapper a span{
     height: -webkit-fill-available;
   }
   .category-pointers {
@@ -174,9 +184,27 @@ input.search-cat:focus{
 }
 
 @media (min-width: 992px) {
-  .image-size-casino {
+  .casino-game-wrapper img {
     min-height: 195px;
     max-height: 220px;
+
+  }
+
+  .casino-game-wrapper a span{
+    max-height: 220px;
+    width:-webkit-fill-available;
+  }
+
+  .elongate .casino-game-wrapper img {
+    min-height: 280px;
+    max-height: 300px;
+
+  }
+  
+
+  .elongate .casino-game-wrapper a span{
+    max-height: 280px;
+    width:-webkit-fill-available;
   }
   
   .category-pointers {

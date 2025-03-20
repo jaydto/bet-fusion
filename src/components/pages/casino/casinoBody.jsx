@@ -130,7 +130,7 @@ const CrashGames = ({ activeCategory }) => {
                 <a href="#" className="text-decoration-none text-light">
                   {section.title}
                 </a>
-                {section.games.length > 6 && (
+                {activeCategory === "All" && section.games.length > 6 && (
                   <button
                     className="btn btn-sm btn-link text-light"
                     onClick={() => toggleSection(section.title)}

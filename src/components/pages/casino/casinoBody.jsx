@@ -95,8 +95,17 @@ const CrashGames = ({ activeCategory }) => {
 
   const navigate = useNavigate();
 
+  const [hoveredGame, setHoveredGame] = useState(null);
+  const [overlayVisible, setOverlayVisible] = useState({});
+  const toggleOverlay = (event, gameId) => {
+    event.preventDefault(); // Prevent page scroll/jump
+    setOverlayVisible((prev) => (prev === gameId ? null : gameId));
+  };
+
   const handleGameClick = (event, gameId, isDemo, game_name) => {
-    event.stopPropagation();
+    event.stopPropagation(); // Prevent event bubbling if needed
+    console.log("Game ID:", gameId, "Demo Mode:", isDemo);
+
     user?.profile_id
       ? navigate(
           `/game-play?game=${gameId}&status=${
@@ -110,118 +119,138 @@ const CrashGames = ({ activeCategory }) => {
     setExpandedSection(null); // Reset expanded section when active category changes
   }, [activeCategory]);
 
-    // --- Scroll to Top Button Logic ---
-    const [showScrollTop, setShowScrollTop] = useState(false);
+  // --- Scroll to Top Button Logic ---
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-    useEffect(() => {
-      const handleScroll = () => {
-        if (window.scrollY > 200) {
-          setShowScrollTop(true);
-        } else {
-          setShowScrollTop(false);
-        }
-      };
-  
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-  
-    const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
     };
 
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-return (
-  <div className="container mt-1">
-    {loading ? (
-      <CasinoSkeletonLoader />
-    ) : (
-      (expandedSection
-        ? sections.filter((section) => section.title === expandedSection)
-        : filteredSections
-      ).map((section, index) => {
-        const isExpanded = expandedSection === section.title;
-        const visibleGames =
-          activeCategory !== "All" || isExpanded
-            ? section.games
-            : section.games.slice(0, section.title === "Others" ? 8 : 6);
+  return (
+    <div className="container mt-1">
+      {loading ? (
+        <CasinoSkeletonLoader />
+      ) : (
+        (expandedSection
+          ? sections.filter((section) => section.title === expandedSection)
+          : filteredSections
+        ).map((section, index) => {
+          const isExpanded = expandedSection === section.title;
+          const visibleGames =
+            activeCategory !== "All" || isExpanded
+              ? section.games
+              : section.games.slice(0, section.title === "Others" ? 8 : 6);
 
-        return (
-          <div key={index} className="mb-4">
-            <div className="d-flex justify-content-between align-items-center bg-section-header py-2 px-3">
-              <a href="#" className="text-decoration-none text-light">
-                {section.title}
-              </a>
-              {activeCategory === "All" && section.games.length > 6 && (
-                <button
-                  className="btn btn-sm btn-link text-light"
-                  onClick={() => toggleSection(section.title)}
-                >
-                  {isExpanded ? "Less" : "More"}
-                </button>
-              )}
+          return (
+            <div key={index} className="mb-4">
+              <div className="d-flex justify-content-between align-items-center bg-section-header py-2 px-3">
+                <a href="#" className="text-decoration-none text-light">
+                  {section.title}
+                </a>
+                {activeCategory === "All" && section.games.length > 6 && (
+                  <button
+                    className="btn btn-sm btn-link text-light"
+                    onClick={() => toggleSection(section.title)}
+                  >
+                    {isExpanded ? "Less" : "More"}
+                  </button>
+                )}
+              </div>
+
+              <div
+                className={`row inter-font ${
+                  section.title === "Others"
+                    ? "row-cols-3 row-cols-md-4 row-cols-lg-4Z elongate"
+                    : "row-cols-3"
+                } g-3 mt-1 text-light`}
+              >
+                {visibleGames.map((game, gameIndex) => (
+                  <div
+                    key={gameIndex}
+                    className="col casino-game-wrapper"
+                    onClick={(event) => toggleOverlay(event, game.game_id)}
+                    onMouseEnter={() => setHoveredGame(game.game_id)}
+                    onMouseLeave={() => setHoveredGame(null)}
+                  >
+                    <a href={game.link} className="text-decoration-none">
+                      <LazyLoadImage
+                        src={game.image}
+                        alt={game.title}
+                        effect="blur"
+                        title={game.title}
+                        className="img-fluid rounded image-size-casino"
+                      />
+                    </a>
+                    {(hoveredGame === game?.game_id || overlayVisible[game?.game_id]) && (
+                      <div className="overlay">
+                        <button
+                          className="overlay-btn"
+                          onClick={(event) =>
+                            handleGameClick(event, game?.game_id, false, game.title)
+                          }
+                        >
+                          Play
+                        </button>
+                        <button
+                          className="overlay-btn"
+                          onClick={(event) =>
+                            handleGameClick(event, game?.game_id, true, game.title)
+                          }
+                        >
+                          Demo
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
+          );
+        })
+      )}
 
-            <div
-              className={`row inter-font ${
-                section.title === "Others" ? "row-cols-3 row-cols-md-4 row-cols-lg-4 elongate" : "row-cols-3"
-              } g-3 mt-1 text-light`}
-            >
-              {visibleGames.map((game, gameIndex) => (
-                <div
-                  key={gameIndex}
-                  className="col casino-game-wrapper"
-                  onClick={(event) =>
-                    handleGameClick(event, game.game_id, false, game.title)
-                  }
-                >
-                  <a href={game.link} className="text-decoration-none">
-                    <LazyLoadImage
-                      src={game.image}
-                      alt={game.title}
-                      effect="blur"
-                      title={game.title}
-                      className="img-fluid rounded image-size-casino"
-                    />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      })
-    )}
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button className="scroll-to-top" onClick={scrollToTop}>
+          ▲
+        </button>
+      )}
 
-    {/* Scroll to Top Button */}
-    {showScrollTop && (
-      <button className="scroll-to-top" onClick={scrollToTop}>
-        ▲
-      </button>
-    )}
-
-    {/* Scroll-to-top button CSS */}
-    <style jsx>{`
-      .scroll-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1001;
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 50%;
-        font-size: 18px;
-        cursor: pointer;
-        transition: opacity 0.3s ease-in-out;
-      }
-      .scroll-to-top:hover {
-        background: rgba(0, 0, 0, 0.8);
-      }
-    `}</style>
-  </div>
-);
+      {/* Scroll-to-top button CSS */}
+      <style jsx>{`
+        .scroll-to-top {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 1001;
+          background: rgba(0, 0, 0, 0.6);
+          color: white;
+          border: none;
+          padding: 10px 15px;
+          border-radius: 50%;
+          font-size: 18px;
+          cursor: pointer;
+          transition: opacity 0.3s ease-in-out;
+        }
+        .scroll-to-top:hover {
+          background: rgba(0, 0, 0, 0.8);
+        }
+      `}</style>
+    </div>
+  );
 };
 
 export default CrashGames;

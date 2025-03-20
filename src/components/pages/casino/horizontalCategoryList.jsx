@@ -39,6 +39,8 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
   const scrollRef = useRef(null);
   const casinoTypes = useSelector((state) => state.virtuals.casino_games_types);
   const loading = useSelector((state) => state.virtuals.loading);
+
+  
   // if (loading) return null; // Hide the section when loading
 
   // Add "All" category as default

@@ -1,0 +1,101 @@
+.modal-overlay.search-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 48%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20000;
+}
+.casino-search-item img {
+  border-radius: 8px;
+}
+
+.btn-active {
+  background-color: var(--betnare-button-login);
+  color: var(--dark);
+  border-radius: 8px;
+}
+.btn-group .btn.casino-btn {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+.btn-active:hover {
+  background-color: var(--betnare-button-login);
+  color: var(--dark);
+  border: none;
+}
+
+.btn-inactive {
+  background-color: var(--odd-button);
+  color: var(--light);
+  border-radius: 8px;
+}
+.btn-inactive:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+}
+
+.modal-content.search-modal {
+  background-color: var(--betnare-side-bg);
+  color: var(--light);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 90%;
+  overflow: auto;
+  background-color: var(--BetTena-body-bg);
+}
+
+@media (min-width: 768px) {
+  .modal-content.search-modal {
+    width: 40%;
+    max-height: 53vh;
+
+  }
+  .casino-search-content {
+    flex: 0 0 32%;
+    min-width: 32%;
+  }
+  .casino-search-content .game-card .game-image-wrapper img {
+  }
+}
+
+/* Adjust for mobile as a bottom sheet */
+@media (max-width: 767px) {
+  .casino-search-content {
+    flex: 1 0 44%;
+    min-width: 20%;
+    margin-left: 10px;
+  }
+  .casino-search-content .game-card .game-image-wrapper img {
+  }
+  .modal-content.search-modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px 10px 0 0;
+    padding: 20px;
+    max-height: 43vh;
+
+  }
+}
+
+/* Button styling */
+.btn-danger-search {
+  background-color: var(--odd-button); /* Button background color */
+  color: var(--light); /* Button text color */
+  border: none;
+}
+
+/* Optional: Button hover effect */
+.btn-danger-search:hover {
+  background-color: lighten(var(--odd-button), 10%); /* Lightens on hover */
+}

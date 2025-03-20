@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaSearch, FaArrowRight, FaFilter } from "react-icons/fa";
+import { StoreContext } from "../../../context/store";
 
 const SearchCasino = () => {
   const [isFocused, setIsFocused] = useState(false);
+    const { state, dispatch } = useContext(StoreContext);
+  
+    const dismissSearch = () => {
+      dispatch({ type: "SET", key: "searching", payload: false });
+    };
+  
+    const handleSearch = () => {
+      dispatch({ type: "SET", key: "searching", payload: true });
+    };
 
   return (
     <div className="d-flex justify-content-end mt-1 mx-4 mx-lg-0 align-items-center">
@@ -31,8 +41,12 @@ const SearchCasino = () => {
               transition: "background-color 0.3s ease-in-out", // Smooth background color transition
               borderRadius: "50px", // Rounded corners for the input
             }}
-            onFocus={() => setIsFocused(true)} // When input is focused
-            onBlur={() => setIsFocused(false)} // When input is blurred
+            onFocus={() => {
+              setIsFocused(true);
+              handleSearch(); // Call handleSearch on focus
+            }}
+            onClick={handleSearch} // Call handleSearch on click
+            onBlur={() => setIsFocused(false)}
           />
           </span>
          

@@ -12,7 +12,42 @@
 }
 .casino-search-item img {
   border-radius: 8px;
+  height:-webkit-fill-available;
 }
+.overlay-search {
+  pointer-events: auto;
+}
+.casino-search-item img {
+  pointer-events: none;
+}
+
+.casino-search-item {
+  position: relative;
+  height: -webkit-fill-available;
+  display: inline-block;
+}
+
+.overlay-search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 999; 
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+
+.casino-search-item:hover .overlay-search {
+  opacity: 1;
+}
+
 
 .btn-active {
   background-color: var(--betnare-button-login);
@@ -68,6 +103,9 @@
 
 /* Adjust for mobile as a bottom sheet */
 @media (max-width: 767px) {
+  .casino-search-item:hover .overlay-search{
+    display: inline-grid;
+  }
   .casino-search-content {
     flex: 1 0 44%;
     min-width: 20%;

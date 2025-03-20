@@ -181,9 +181,10 @@ const CrashGames = ({ activeCategory }) => {
                   <div
                     key={gameIndex}
                     className="col casino-game-wrapper"
-                    onClick={(event) => toggleOverlay(event, game.game_id)}
-                    onMouseEnter={() => setHoveredGame(game.game_id)}
+                    onClick={(event) => toggleOverlay(event, game.id)}
+                    onMouseEnter={() => setHoveredGame(game.id)}
                     onMouseLeave={() => setHoveredGame(null)}
+                   
                   >
                     <a href={game.link} className="text-decoration-none">
                       <LazyLoadImage
@@ -194,26 +195,26 @@ const CrashGames = ({ activeCategory }) => {
                         className="img-fluid rounded image-size-casino"
                       />
                     </a>
-                    {(hoveredGame === game?.game_id || overlayVisible[game?.game_id]) && (
-                      <div className="overlay">
-                        <button
-                          className="overlay-btn"
-                          onClick={(event) =>
-                            handleGameClick(event, game?.game_id, false, game.title)
-                          }
-                        >
-                          Play
-                        </button>
-                        <button
-                          className="overlay-btn"
-                          onClick={(event) =>
-                            handleGameClick(event, game?.game_id, true, game.title)
-                          }
-                        >
-                          Demo
-                        </button>
-                      </div>
-                    )}
+                    {(hoveredGame === game?.id || overlayVisible[game?.id]) && (
+                    <div className="overlay">
+                      <button
+                        className="overlay-btn"
+                        onClick={(event) =>
+                          handleGameClick(event, game.game_id, false, game.title)
+                        }
+                      >
+                        Play
+                      </button>
+                      <button
+                        className="overlay-btn"
+                        onClick={(event) =>
+                          handleGameClick(event, game.game_id, true, game.title)
+                        }
+                      >
+                        Demo
+                      </button>
+                    </div>
+                  )}
                   </div>
                 ))}
               </div>

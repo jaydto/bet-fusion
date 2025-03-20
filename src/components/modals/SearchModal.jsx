@@ -8,6 +8,8 @@ import "./searchModal.css";
 import { casinoGamesSearch, setState } from "../../redux/virtualsSlice";
 import { FaSearch } from "react-icons/fa";
 import { getFromLocalStorage } from "../utils/local-storage";
+import LazyLoad from "react-lazyload";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const SearchModal = () => {
   const { state, dispatch } = useContext(StoreContext);
@@ -171,9 +173,10 @@ const SearchModal = () => {
                     }
                   }}
                 >
-                  <img
+                  <LazyLoadImage
                     src={game.image_url}
                     alt={game.game_name}
+                    effect="black-and-white"
                     className="casino-search-thumbnail"
                   />
                  

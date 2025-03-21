@@ -152,7 +152,7 @@ const CrashGames = ({ activeCategory }) => {
           const visibleGames =
             activeCategory !== "All" || isExpanded
               ? section.games
-              : section.games.slice(0, section.title === "Others" ? 8 : 6);
+              : section.games.slice(0, section.title === "Others" ? 8 :section.title === "Popular" ? 3 : 6);
 
           return (
             <div key={index} className="mb-4">

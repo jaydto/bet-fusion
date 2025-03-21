@@ -125,7 +125,7 @@ button.bt-cat {
   right: 0px;
 }
 
-#search-casino .form-control {
+.search-casino .form-control {
   border-radius: 25px; /* To match pill shape */
 }
 
@@ -134,7 +134,7 @@ input.search-cat:focus{
 
 }
 
-#search-casino .input-group-text {
+.search-casino .input-group-text {
   background-color: transparent !important;
   border: 2px solid crimson!important;
   border-radius: 15px;

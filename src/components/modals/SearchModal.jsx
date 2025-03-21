@@ -115,9 +115,9 @@ const SearchModal = () => {
   return (
     <div className="modal-overlay search-modal-overlay">
       <div className="modal-content search-modal" ref={modalRef}>
-        <div className="mb-3 w-100">
+        <div className="mb-3 w-100 ">
           <div
-            className={`input-group input-group-lg w-100 my-1 position-relative rounded-pill ${
+            className={`input-group input-group-lg w-100 my-1 position-relative rounded-pill search-casino ${
               isFocused ? "border-purple" : ""
             }`}
             style={{
@@ -125,7 +125,7 @@ const SearchModal = () => {
               transition: "border-color 0.3s ease-in-out", // Smooth transition for the border
             }}
           >
-            <span className="input-group-text bg-transparent d-flex align-items-center justify-content-center">
+            <span className="input-group-text bg-transparent d-flex align-items-center justify-content-center  ">
               <FaSearch size={20} className="text-white" />
               <input
                 type="text"

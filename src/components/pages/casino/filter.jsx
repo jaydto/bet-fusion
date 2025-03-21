@@ -19,7 +19,7 @@ const SearchCasino = () => {
       <div
         id="search-casino"
         name="search-casino-form"
-        className="d-flex w-100 my-1 position-relative"
+        className="d-flex w-100 my-1 position-relative search-casino"
       >
         <div
           className={`input-group input-group-lg w-100 my-1 position-relative rounded-pill ${

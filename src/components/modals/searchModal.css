@@ -14,6 +14,10 @@
   border-radius: 8px;
   height:-webkit-fill-available;
 }
+.casino-search-item span{
+  height: -webkit-fill-available;
+  min-height: 70px;
+}
 .overlay-search {
   pointer-events: auto;
 }

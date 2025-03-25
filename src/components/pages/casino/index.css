@@ -167,16 +167,16 @@ input.search-cat:focus{
   
   .casino-game-wrapper img{
     min-height: 110px;
-    height: -webkit-fill-available;
+    /* height: ; */
 
   }
   .elongate .casino-game-wrapper img{
     min-height: 170px;
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
 
   }
   .casino-game-wrapper a span{
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
   }
   .category-pointers {
     top: 50%;

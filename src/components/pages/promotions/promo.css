@@ -108,14 +108,3 @@ hr {
         min-height:20rem!important;
     }
 }
-@media (min-width: 992px){
-    .promo-image {
-        min-height: 14rem!important;
-    }
-    .promotions-app-top{
-        margin-top:6rem;
-    }
-    .promo-styling{
-        /* width:33% !important */
-    }
-}

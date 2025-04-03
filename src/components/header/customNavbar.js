@@ -5,8 +5,10 @@ import NavLinks from "./NavLinks";
 import { UserInfo } from "./UserInfo";
 import Menu from "../../assets/img/menu.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import useWindowDimensions from "./Dimensions";
 
 const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
+  const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
   return (
@@ -23,13 +25,15 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
           className="col-1 button-toggle space-button desktop-menu"
           style={{
             width: "4.1rem",
-            overflowY: "hidden",
+            overflow: "hidden",
             marginLeft: "0px",
           }}
         >
           <LazyLoadImage
             src={Menu}
-            onClick={toggleMenu}
+            onClick={
+              width < 768 ? toggleMenu : () => console.log("Menu Clicked!")
+            }
             alt="Menu"
             title="Menu"
             className="menu-size"
@@ -50,7 +54,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
           }
         />
 
-        <NavLinks />
+        {/* <NavLinks /> */}
       </div>
 
       <UserInfo profile={checkDesktop} user={user} />

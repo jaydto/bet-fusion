@@ -34,7 +34,6 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import CustomNavbarBrand from "./customNavbar";
 
-const ProfileMenu = React.lazy(() => import("./profile-menu"));
 
 const Header = React.memo((props) => {
   const { slip, scrollPosition, jackpot } = props;
@@ -271,7 +270,7 @@ const Header = React.memo((props) => {
                 ? "fixed-top-nav fixed"
                 : "fixed-top-nav"
             }
-         ${changeNav && width < 991 ? "d-none" : ""}
+         ${changeNav ? "d-none" : ""}
          mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${
            slip || showDownload ? "top-betslip-page-fix" : ""
          } ${user ? "top-nav-login" : "top-nav-login"}`}
@@ -284,7 +283,7 @@ const Header = React.memo((props) => {
                   ? "optional-action"
                   : "optional-action active"
               }  ${
-                showDownload ? "d-none" : "d-sm-flex d-lg-none d-md-none w-100"
+                showDownload ? "d-none" : "d-sm-flex  d-md-none w-100"
               }`}
             >
               <CallToAction
@@ -307,64 +306,8 @@ const Header = React.memo((props) => {
                   user={user}
                   checkDesktop={checkDesktop}
                 />
-                {/* <Navbar.Brand
-                  className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
-                  title="BetDonjo"
-                >
-                  <div
-                    className="col-7 logo-BetDonjo resize-mobile d-flex align-items-center mb-2"
-                    style={{ marginLeft: "2px" }}
-                  >
-                    <div
-                      className="col-1 button-toggle space-button desktop-menu"
-                      style={{
-                        width: "4.1rem",
-                        overflowY: "hidden",
-                        marginLeft: "0px",
-                      }}
-                    >
-                      <Navbar.Toggle
-                        aria-controls={`offcanvasNavbar-expand-${"lg"}`}
-                        className="px-3 py-3 desktop-menu"
-                        onClick={toggleMenu}
-                      />
-                    </div>
-                    <img
-                      src={Logo}
-                      onClick={() => navigate("/")}
-                      alt="BetDonjo"
-                      title="BetDonjo"
-                      effects="blur"
-                      className={`image-size ${!user && "logo-top"} `}
-                      style={
-                        user
-                          ? { marginBottom: "0px", paddingLeft: "7px" }
-                          : {
-                              // marginBottom: "11px",
-                              width: "auto",
-                            }
-                      }
-                    />
-
-                    <NavLinks />
-                  </div>
-
-                  <UserInfo profile={checkDesktop} user={user} />
-                </Navbar.Brand> */}
-
-                {/*todo check information provided for a user*/}
-                <div
-                  className={` change-size desk-top`}
-                  id="navbar-collapse-main "
-                >
-                  <div className="col-md-11 col-sm-12 col-lg-7 right fix-view-2 disable-ipad to-navcheck justify-content-end pt-lg-0 pt-md-3 ">
-                    {user ? (
-                      <ProfileMenu user={user} profile={checkDesktop} />
-                    ) : (
-                      <LoginSection />
-                    )}
-                  </div>
-                </div>
+               
+              
               </div>
 
               <Offcanvas

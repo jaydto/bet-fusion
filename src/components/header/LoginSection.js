@@ -38,21 +38,7 @@ const LoginSection= React.memo(
                     </Link>
                 </div>
             </div>
-            <div style={{float: "right"}} className={` d-flex justify-content-center align-items-center flex-column w-100 container-fluid login-top`}>
-                <div className={`w-100 d-flex flex-row align-items-center`}>
-                    <Link to={'/login'} className={`cg text-light border-0`} type="submit">
-                        <span className={'login-text'}>LOGIN</span>
-                    </Link>
-                    <Link className="cg register-button btn btn-button-bg-2" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')} >
-                        <span className="register-label bold">REGISTER </span>
-                    </Link>
-
-                    {/*<div className="cg " onClick={()=>handleThemeChange()}>*/}
-                    {/*    {!themeLight?<FontAwesomeIcon icon={faAdjust} style={{fontSize:'20px'}} className={'text-light'}/>:<FontAwesomeIcon icon={faSun} className={'text-warning'} style={{fontSize:'20px'}}/>}*/}
-                    {/*</div>*/}
-                </div>
-
-            </div>
+          
 
         </div>
     )

@@ -5025,38 +5025,6 @@ input[type="button"].btn-block {
     }
 }
 
-@media (min-width: 992px) {
-    .mobile-menu.mobile-menu-jackpot {
-        background-color: #16202C !important;
-        position: -webkit-sticky;
-        position: sticky!important;
-        /* position: fixed; */
-        bottom: 0;
-        visibility: visible;
-        height: 100px;
-        width: 100%;
-        z-index: 2000 !important;
-        font-size: 13px !important;
-        display: flex;
-        justify-content: space-around;
-    }
-    .opacity-reduce-txt.vs-styling {
-        font-size: var(--font-size-large);}
-    .container-size{
-        width:100%!important
-    }
-    .by {
-        width: 100%;
-    }
-    .off-canvas {
-        display: block;
-        width: 40%!important;
-        /* margin-top: 4rem!important; */
-    }
-    .desktop-none{
-        display:none!important;
-    }
-}
 
 
 
@@ -5493,215 +5461,7 @@ input[type="button"].btn-block {
     }
 }
 
-@media (min-width: 992px) {
-    .gf, .gj, .gn, .gr, .gv, .gz, .hd, .hh, .hl, .hp, .ht, .hx {
-        float: left;
-    }
 
-    .hx {
-        width: 100%;
-    }
-
-    .ht {
-        width: 91.66666667%;
-    }
-
-    .hp {
-        width: 83.33333333%;
-    }
-
-    .hl {
-        width: 75%;
-    }
-
-    .hh {
-        width: 66.66666667%;
-    }
-
-    .hd {
-        width: 58.33333333%;
-    }
-
-    .gz {
-        width: 56%;
-    }
-
-    .gv {
-        width: 41.66666667%;
-    }
-
-    .gr {
-        width: 33.33333333%;
-    }
-
-    .gn {
-        width: 22%;
-    }
-
-    .gj {
-        width: 16.66666667%;
-    }
-
-    .gf {
-        width: 8.33333333%;
-    }
-
-    .la {
-        right: 100%;
-    }
-
-    .lb {
-        right: 91.66666667%;
-    }
-
-    .lc {
-        right: 83.33333333%;
-    }
-
-    .ld {
-        right: 75%;
-    }
-
-    .le {
-        right: 66.66666667%;
-    }
-
-    .lf {
-        right: 58.33333333%;
-    }
-
-    .lg {
-        right: 50%;
-    }
-
-    .lh {
-        right: 41.66666667%;
-    }
-
-    .li {
-        right: 33.33333333%;
-    }
-
-    .lj {
-        right: 25%;
-    }
-
-    .lk {
-        right: 16.66666667%;
-    }
-
-    .ll {
-        right: 8.33333333%;
-    }
-
-    .lm {
-        right: auto;
-    }
-
-    .ln {
-        left: 100%;
-    }
-
-    .lo {
-        left: 91.66666667%;
-    }
-
-    .lp {
-        left: 83.33333333%;
-    }
-
-    .lq {
-        left: 75%;
-    }
-
-    .lr {
-        left: 66.66666667%;
-    }
-
-    .ls {
-        left: 58.33333333%;
-    }
-
-    .lt {
-        left: 50%;
-    }
-
-    .lu {
-        left: 41.66666667%;
-    }
-
-    .lv {
-        left: 33.33333333%;
-    }
-
-    .lw {
-        left: 25%;
-    }
-
-    .lx {
-        left: 16.66666667%;
-    }
-
-    .ly {
-        left: 8.33333333%;
-    }
-
-    .lz {
-        left: auto;
-    }
-
-    .ma {
-        margin-left: 100%;
-    }
-
-    .mb {
-        margin-left: 91.66666667%;
-    }
-
-    .mc {
-        margin-left: 83.33333333%;
-    }
-
-    .md {
-        margin-left: 75%;
-    }
-
-    .me {
-        margin-left: 66.66666667%;
-    }
-
-    .mf {
-        margin-left: 58.33333333%;
-    }
-
-    .mg {
-        margin-left: 50%;
-    }
-
-    .mh {
-        margin-left: 41.66666667%;
-    }
-
-    .mi {
-        margin-left: 33.33333333%;
-    }
-
-    .mj {
-        margin-left: 25%;
-    }
-
-    .mk {
-        margin-left: 16.66666667%;
-    }
-
-    .ml {
-        margin-left: 8.33333333%;
-    }
-
-    .mm {
-        margin-left: 0%;
-    }
-}
 
 
 .fade {
@@ -7664,27 +7424,7 @@ ul.sport {
         margin-top: 105px !important;
     }
 }
-@media (min-width: 992px){
-    .betslip td.tax-info {
-        padding: 7px 1px!important;
-        font-size: 10px;
-        font-weight: 600;
-    }
-    .betslip td{
-        padding: 2px 2px!important;
-        white-space: nowrap;
-    }
-    .tablet-only{
-        display: none!important;
-    }
-    .tablet-view{
-        display:flex;
-    }
-    /*todo display buttons login register verify*/
-    .mobile-profile1{
-        display:flex;
-    }
-}
+
 @media (min-width:768px) and (max-width: 991px){
     .amt {
         margin-top: 113px !important;
@@ -7796,9 +7536,9 @@ ul.sport {
         display: none;
 
     }
-    .to-navcheck{
+    /* .to-navcheck{
         display: none;
-    }
+    } */
     .desktop-ipad-size{
         display: block!important;
     }
@@ -7893,130 +7633,6 @@ ul.sport {
     }
 
  }
-@media (max-width: 1200px){
-    .print-width{
-        width:130px;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1200px) {
-
-    /*.change-display {*/
-    /*    flex-wrap: nowrap;*/
-    /*    font-size: 11px;*/
-    /*    display: grid !important;*/
-    /*    !*code needed to commented out after commenting out casino option*!*/
-    /*    !*grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]80px[col5]120px[col6]120px[col7]140px[col8]120px[col9]90px[col10]70px[col11]108px[col-end];*!*/
-    /*    grid-template-columns: [col0]0px[col1]60px[col2]70px[col3]100px[col4]200px[col5]80px[col7]110px[col8]130px[col9]120px[col10]100px[col11]105px[col12]0[col-end];*/
-    /*    overflow: auto;*/
-    /*}*/
- }
-@media (min-width: 992px) and (max-width: 1160px) {
-    .small{
-        width:auto!important;
-    }
-
-    .top-matches .side {
-        width: 35px;
-        height: 24px;
-    }
-    /*.bet-fix {*/
-    /*    flex-direction: row !important;*/
-    /*    !*margin-left:auto!important;*!*/
-    /*}*/
-
-    .btn-spacing {
-        word-spacing: 1px;
-        font-size: 11px;
-        font-weight: 700;
-    }
-
-    .by {
-        width: 100%;
-    }
-
-
-}
-
-@media (min-width: 1160px) {
-    .fix-print {
-        font-size: 12px;
-    }
-
-    .font-btn {
-        font-weight: 200;
-        font-size: 14px;
-        display: flex;
-        justify-content: flex-start;
-        letter-spacing: 1px;
-        align-items: center;
-        text-tranform: capitalize;
-    }
-
-    .btn-spacing {
-        font-size: 15px;
-    }
-
-    .app-header-nav {
-        /* margin-top: 48px; */
-        margin-top: 49px;
-    }
-    .app-header-nav-login {
-        margin-top: 48px;
-    }
-
-    .shrink-header .second-nav {
-        top: 68px;
-    }
-
-    .amt {
-        /*margin-top: 130px !important;*/
-        scroll-margin-top: 140px;
-    }
-}
-
-@media (min-width: 1400px) {
-    .team_category_game {
-        display: flex;
-        align-items: center;
-    }
-    .compt-teams .compt-teams-item{
-        overflow-x: hidden;
-        width: 200px!important;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    .team_category_game small {
-        overflow-x: hidden;
-        width: 200px!important;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    .separations{
-        gap:14%!important;
-    }
-    .space-between {
-        width: 45% !important;
-        /*gap: 18%;*/
-    }
-}
-
-@media (min-width: 1800px) {
-    .space-between {
-        width: 45% !important;
-        gap: 26%;
-    }
-}
-
-@media (min-width: 1500px) {
-    .gap-size{
-        gap:40%;
-    }
-
-    .c-btn-header {
-        min-width: 52px !important;
-    }
-}
 
 
 @media (min-width: 768px) {
@@ -8241,263 +7857,6 @@ ul.sport {
 }
 
 
-@media (min-width: 992px) {
-    .gf,
-    .gj,
-    .gn,
-    .gr,
-    .gv,
-    .gz,
-    .hd,
-    .hh,
-    .hl,
-    .hp,
-    .ht,
-    .hx {
-        float: left;
-    }
-
-    .hx {
-        width: 100%;
-    }
-
-    .ht {
-        width: 91.66666667%;
-    }
-
-    .hp {
-        width: 83.33333333%;
-    }
-
-    .hl {
-        width: 75%;
-    }
-
-    .hh {
-        width: 66.66666667%;
-    }
-
-    .hd {
-        width: 58.33333333%;
-    }
-
-    .gz {
-        width: 62%;
-    }
-
-    .gv {
-        width: 41.66666667%;
-    }
-
-    .gr {
-        width: 33.33333333%;
-    }
-
-    .gn {
-        width: 23%;
-        padding: 0px 2px;
-    }
-
-    .gj {
-        width: 16.66666667%;
-    }
-
-    .gf {
-        width: 8.33333333%;
-    }
-
-    .la {
-        right: 100%;
-    }
-
-    .lb {
-        right: 91.66666667%;
-    }
-
-    .lc {
-        right: 83.33333333%;
-    }
-
-    .ld {
-        right: 75%;
-    }
-
-    .le {
-        right: 66.66666667%;
-    }
-
-    .lf {
-        right: 58.33333333%;
-    }
-
-    .lg {
-        right: 50%;
-    }
-
-    .lh {
-        right: 41.66666667%;
-    }
-
-    .li {
-        right: 33.33333333%;
-    }
-
-    .lj {
-        right: 25%;
-    }
-
-    .lk {
-        right: 16.66666667%;
-    }
-
-    .ll {
-        right: 8.33333333%;
-    }
-
-    .lm {
-        right: auto;
-    }
-
-    .ln {
-        left: 100%;
-    }
-
-    .lo {
-        left: 91.66666667%;
-    }
-
-    .lp {
-        left: 83.33333333%;
-    }
-
-    .lq {
-        left: 75%;
-    }
-
-    .lr {
-        left: 66.66666667%;
-    }
-
-    .ls {
-        left: 58.33333333%;
-    }
-
-    .lt {
-        left: 50%;
-    }
-
-    .lu {
-        left: 41.66666667%;
-    }
-
-    .lv {
-        left: 33.33333333%;
-    }
-
-    .lw {
-        left: 25%;
-    }
-
-    .lx {
-        left: 16.66666667%;
-    }
-
-    .ly {
-        left: 8.33333333%;
-    }
-
-    .lz {
-        left: auto;
-    }
-
-    .ma {
-        margin-left: 100%;
-    }
-
-    .mb {
-        margin-left: 91.66666667%;
-    }
-
-    .mc {
-        margin-left: 83.33333333%;
-    }
-
-    .md {
-        margin-left: 75%;
-    }
-
-    .me {
-        margin-left: 66.66666667%;
-    }
-
-    .mf {
-        margin-left: 58.33333333%;
-    }
-
-    .mg {
-        margin-left: 50%;
-    }
-
-    .mh {
-        margin-left: 41.66666667%;
-    }
-
-    .mi {
-        margin-left: 33.33333333%;
-    }
-
-    .mj {
-        margin-left: 25%;
-    }
-
-    .mk {
-        margin-left: 16.66666667%;
-    }
-
-    .ml {
-        margin-left: 8.33333333%;
-    }
-
-    .mm {
-        margin-left: 0%;
-    }
-}
-
-@media (min-width: 1900px) {
-    .gz {
-        width: 66%
-    }
-}
-
-@media (min-width: 2000px) {
-    .gz {
-        width: 74%
-    }
-}
-
-@media (min-width: 1400px) {
-    .gz {
-        width: 62%
-    }
-}
-
-@media (min-width: 1600px) {
-    .gz {
-        width: 64%
-    }
-}
-
-@media (min-width: 1700px) {
-    .gz {
-        width: 66%
-    }
-}
-
-@media (min-width: 1800px) {
-    .gz {
-        width: 70%
-    }
-}
 
 
 @media (min-width: 768px) {
@@ -10833,19 +10192,7 @@ button.close {
 /*    position: sticky;*/
 /*    top: 115px;*/
 /*}*/
-@media (min-width: 992px) {
 
-    .c-btn-header{
-        width: 100%;
-    }
-    .size-info {
-        width: 34%;
-    }
-
-    .ce {
-        width: 900px;
-    }
-}
 
 .tooltip {
     position: absolute;
@@ -11519,12 +10866,6 @@ button.close {
         display: block !important;
     }
 }
-@media (min-width: 992px){
-    .mobile-only{
-        display: none!important;
-        margin-top: 0.5rem;
-    }
-}
 
 @media (max-width: 767px) {
     .sh {
@@ -11604,34 +10945,7 @@ button.close {
     display:flex;
     justify-content:flex-end;
 }
-@media (min-width: 992px)  {
-    .justify-spacing-ipad{
-        justify-content:center!important;
-    }
 
-    .fix-view-2{
-        width:77.8% !important;
-    }
-    .desk-top{
-        margin-top:0.3rem;
-    }
-    .se {
-        display: block !important;
-    }
-
-    table.se {
-        display: table !important;
-    }
-
-    tr.se {
-        display: table-row !important;
-    }
-
-    th.se,
-    td.se {
-        display: table-cell !important;
-    }
-}
 /*@media (min-width: 768px) and (max-width: 1259px) {*/
 
 /*    .live-pro-sidebar{*/
@@ -11791,16 +11105,6 @@ button.close {
     }
 }
 
-@media (min-width: 992px) {
-    .casino-category-container {
-
-        width:fit-content;
-
-    }
-    .su {
-        display: none !important;
-    }
-}
 
 
 
@@ -11921,19 +11225,7 @@ body {
     }
 }
 
-@media (min-width: 992px) {
-    .tk {
-        text-align: left;
-    }
 
-    .tl {
-        text-align: right;
-    }
-
-    .tm {
-        text-align: center;
-    }
-}
 
 
 .alert-dark {
@@ -16441,11 +15733,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     }
 }
 
-@media screen and (max-width: 992px) {
-    .promotion-body img {
-        height: 100px;
-    }
-}
+
 
 @media screen and (max-width: 1440px) {
     .promotion-body img {

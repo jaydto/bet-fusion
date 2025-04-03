@@ -11,6 +11,9 @@ body {
   color:var(--dark);
   
 }
+.input-group{
+border-radius: 12px;
+}
 .donjo-button:hover, .donjo-button:active{
   background:var(--donjo-button)!important;
   color:var(--dark)!important;
@@ -27,7 +30,7 @@ body {
   font-size: 2rem;
 }
 .btn-button-bg{
-  background:var(--crimson)!important;
+  background:var(--login-btn-cl)!important;
 }
 
 .line-on-slip-items-container {
@@ -218,16 +221,16 @@ input.text-white {
   color: var(--light) !important;
 }
 .login-button2:active {
-  background: var(--crimson) !important ;
+  background: var(--login-btn-cl) !important ;
 }
 .login-button2:disabled {
-  background: var(--crimson) !important ;
+  background: var(--login-btn-cl) !important ;
 }
 .text-warning.faded-color{
   color:var(--fade-color)!important
 }
 .bg-warning.deposit-button.size-font-user-action{
-  background: var(--crimson)!important
+  background: var(--login-btn-cl)!important
 }
 
 .shadow-testimonials {
@@ -404,7 +407,7 @@ input.text-white {
   border-radius: 6px;
   font-size: 16px;
   font-weight: 600;
-  background-color: var(--crimson);
+  background-color: var(--login-btn-cl);
 }
 
 .accordion-button.bet-history-button {
@@ -731,7 +734,7 @@ label {
   font-size: 14px;
 }
 .counrtryCodec {
-  background: var(--bet-dojo-primary);
+  background: var(--input-bg);
   margin-left: 4px;
 }
 .transaction {
@@ -747,7 +750,7 @@ label {
 }
 
 input {
-  background: var(--bet-dojo-primary)!important;
+  background: var(--input-bg)!important;
   border-radius: 3px !important;
   color: var(--light) !important;
   font-weight: bold !important;
@@ -829,13 +832,13 @@ select::after {
 }
 
 .all-markkets-search {
-  background: var(--bet-dojo-input) !important;
+  background: var(--input-bg) !important;
   border: none !important;
   border-radius: var(--button-radius) !important;
 }
 
 .all-markkets-search input {
-  background: var(--bet-dojo-input) !important;
+  background: var(--input-bg) !important;
   border: none !important;
   color: #fff !important;
 }
@@ -900,14 +903,14 @@ select::after {
 }
 
 .login-button.button-page {
-  background: var(--crimson);
-  color: var(--light)!important;
+  background: var(--login-btn-cl);
+  color: var(--dark)!important;
   font-weight: 600;
 }
 
 .deposit-withdraw-button.button-page {
-  background: var(--crimson);
-  color: var(--light);
+  background: var(--login-btn-cl);
+  color: var(--dark);
 }
 
 .markets-container-data-check:empty {
@@ -917,10 +920,11 @@ select::after {
 .login-button2 {
   color: var(--light);
   /*background: #527994FF;*/
-  background-color: var(--crimson);
+  background-color: var(--login-btn-cl);
   border-color: #24367e;
   height: 29px;
   padding: 0px 10px;
+  color: var(--dark);
   margin-top: 1px;
   border-radius: 0.3rem;
   font-size: 14px !important;
@@ -1040,6 +1044,9 @@ width-page-centric.register-page {
   color: #ffffffb3;
   text-shadow: none !important;
   font-weight: 600;
+}
+.top-login-background-img-bg-down{
+  background:var(--bg-section-container)!important;
 }
 
 .login-color.cg {
@@ -1342,7 +1349,7 @@ img.nare-league {
 }
 
 .input-color-icon {
-  background: var(--bet-dojo-primary) !important;
+  background: var(--input-bg)!important;
   color:var(--light);
   /* height: 100%; */
 }
@@ -2128,7 +2135,7 @@ img.nare-league {
 
 .checkbox-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   cursor: pointer;
 }
 
@@ -2137,7 +2144,7 @@ img.nare-league {
 }
 
 .checkbox-container .custom-checkbox {
-  width: 19px;
+  width: 45px;
   height: 20px;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -2148,8 +2155,8 @@ img.nare-league {
 }
 
 .checkbox-container input[type="checkbox"]:checked + .custom-checkbox {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: var(--check-box);
+  border-color: var(--check-box);
 }
 
 .checkbox-container input[type="checkbox"]:checked + .custom-checkbox::after {
@@ -2159,7 +2166,8 @@ img.nare-league {
   left: 6px;
   width: 5px;
   height: 10px;
-  border: solid white;
+  border: solid ;
+  color: var(--dark);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
@@ -2346,7 +2354,7 @@ img.nare-league {
   }
 
   .btn.login-button2:hover {
-    background: var(--crimson) !important;
+    background: var(--login-btn-cl) !important;
   }
 
   .bet-align-right {
@@ -3305,11 +3313,11 @@ img.nare-league {
   }
 
   .btn.login-button:hover {
-    background: var(--crimson) !important;
+    background: var(--login-btn-cl) !important;
   }
 
   .btn.login-button2:hover {
-    background: var(--crimson) !important;
+    background: var(--login-btn-cl) !important;
   }
 
   .top-matches a.odds-container-size {
@@ -3875,7 +3883,7 @@ img.nare-league {
 @media (max-width: 767px) {
 
   .top-separator {
-    box-shadow: 25px -12px 7px 11px var(--bet-dojo-footer);
+    /* box-shadow: 25px -12px 7px 11px var(--bet-dojo-footer); */
     margin-bottom: 30px!important;
 }
   /* .navbar-expand-md .navbar-toggler.desktop-menu{

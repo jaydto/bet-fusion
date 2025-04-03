@@ -1,10 +1,9 @@
-import React, {  useContext, useEffect, useState } from "react";
-import {  Row } from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import { Row } from "antd";
 
 import { Link, useNavigate } from "react-router-dom";
 import HeaderLogin from "../header/top-login";
 import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
-
 
 import { StoreContext } from "../../context/store";
 import { useSelector } from "react-redux";
@@ -15,7 +14,7 @@ const backgroundStyle = {
   // background: `url(${gameDay})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  backgroundColor:"var(--bet-dojo-header-bg)",
+  backgroundColor: "var(--bet-dojo-header-bg)",
   //   backgroundPosition:"bottom",
   backgroundAttachment: "fixed",
 };
@@ -41,9 +40,9 @@ const LoginTwo = React.memo((props) => {
         <div>
           <div
             className={
-              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator"
+              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator py-3"
             }
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
           >
             <span
               className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "
@@ -53,10 +52,12 @@ const LoginTwo = React.memo((props) => {
                 icon={faAngleLeft}
                 className={"back-navigation-icon"}
               />{" "}
+                          <span className="px-3"> Back </span>
+
             </span>
 
             <span className={"w-50 d-flex justify-content-center"}>
-              <h4 className="inline-block form-title-centric">Login</h4>
+              {/* <h4 className="inline-block form-title-centric">Login</h4> */}
             </span>
             <span className="w-25"></span>
           </div>
@@ -69,7 +70,8 @@ const LoginTwo = React.memo((props) => {
     return (
       <p className={"text-white py-2 px-4 font-input text-center mb-4"}>
         Enter your phone number and password below to Login to your existing
-        account.
+        account. Otherwise click on Register with the same details to create a
+        new account.
       </p>
     );
   };

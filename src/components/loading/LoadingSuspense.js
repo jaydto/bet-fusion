@@ -8,7 +8,7 @@ function Loading(props) {
             <div className="logo-container d-flex flex-column align-items-center">
                 <span className={'bold'} style={{fontSize: "3.5rem", fontWeight:"800"}}>
                      {/* <span style={{color: "var(--light)"}}>BET</span><span
-                    style={{color: "var(--crimson)"}}>tena</span> */}
+                    style={{color: "var(--login-btn-cl)"}}>tena</span> */}
                     <img alt="BetDonjo" src={Logo} style={{width: "200px"}}/>
                  </span>
             </div>

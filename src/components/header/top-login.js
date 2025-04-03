@@ -19,7 +19,6 @@ import kenyan from "../../assets/svg/kenya.svg";
 import { Dropdown, Image } from "react-bootstrap";
 import { notification } from "antd";
 
-
 export const CountryButton = ({ onFieldChanged }) => {
   const handleClick = () => {
     // Simulating selecting Kenya (254 is the country code for Kenya)
@@ -145,8 +144,6 @@ const HeaderLogin = React.memo((props) => {
     return errors;
   };
 
-
-
   const MyLoginForm = (props) => {
     const { errors, values, setFieldValue } = props;
     const [showPassword, setShowPassword] = useState(false);
@@ -189,11 +186,17 @@ const HeaderLogin = React.memo((props) => {
                   value={values.msisdn}
                 />
               </div>
+
               {errors.msisdn && (
                 <div className="text-danger"> {errors.msisdn} </div>
               )}
+              <label className="mb-5 px-2 pb-3"  style={{color:"#FFFFFFB2"}}>
+                Enter your phone number
+              </label>
+
               <br />
-              <span
+
+              {/* <span
                 className={`sticky-hidden text-warning faded-color d-flex justify-content-end font-input my-2`}
               >
                 <div className={`text-warning faded-color`}>
@@ -207,7 +210,7 @@ const HeaderLogin = React.memo((props) => {
                   />{" "}
                   Remember Me
                 </div>
-              </span>
+              </span> */}
             </div>
 
             <div className={`w-100 `}>
@@ -221,12 +224,12 @@ const HeaderLogin = React.memo((props) => {
                   className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login  ${
                     errors.password && "text-danger"
                   } `}
-                  // data-action="grow"
-                  autoComplete={"on"}
-                  placeholder={"Password"}
+                  autoComplete="on"
+                  placeholder="Password"
                   onChange={(ev) => onFieldChanged(ev)}
                   value={values.password}
                 />
+
                 <div className=" col-2 input-group-append">
                   <div className="input-group-text  border-0 input-color-icon">
                     <button
@@ -253,8 +256,11 @@ const HeaderLogin = React.memo((props) => {
               {errors.password && (
                 <div className="text-danger"> {errors.password} </div>
               )}
+                              <label className="mb-5 px-2 pb-3" style={{color:"#FFFFFFB2"}}>Enter your password</label>
+
               <br />
               <input type="hidden" name="ref" value="{props.refURL}" />
+
               <div className="d-flex justify-content-between align-items-center">
                 <Link
                   to={"/reset-password"}
@@ -267,12 +273,12 @@ const HeaderLogin = React.memo((props) => {
                     Forgot Password?
                   </span>
                 </Link>
-                <span className="d-flex align-items-center">
+                {/* <span className="d-flex align-items-center">
                   <span className="text-warning faded-color h4 m-0">
                     You are using BetDonjo
                   </span>
                   <CountryButton onFieldChanged={onFieldChanged} />
-                </span>
+                </span> */}
               </div>
             </div>
 
@@ -313,9 +319,10 @@ const HeaderLogin = React.memo((props) => {
                   onClick={() => gaEventTracker("Register")}
                 >
                   <span
-                    className={`text-warning faded-color font-input } register-label my-3`}
+                    className={`faded-color font-input } register-label my-3`}
+                    style={{ textTransform: "uppercase", color: "#FFAA00" }}
                   >
-                    Dont have an account! Register now{" "}
+                    Create a New Account
                   </span>
                 </Link>
                 <Link

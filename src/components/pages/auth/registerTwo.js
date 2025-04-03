@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Row,  notification } from "antd";
-import {  useNavigate } from "react-router-dom";
+import { Row, notification } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   faAngleLeft,
@@ -32,7 +32,7 @@ const FormTitle = () => {
       <div>
         <div
           className={
-            " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator"
+            " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator py-3"
           }
           onClick={() => navigate(-1)}
         >
@@ -44,10 +44,11 @@ const FormTitle = () => {
               icon={faAngleLeft}
               className={"back-navigation-icon"}
             />{" "}
+            <span className="px-3"> Back </span>
           </span>
 
           <span className={"w-50 d-flex justify-content-center"}>
-            <h4 className="inline-block">SIGNUP | CREATE A NEW ACCOUNT</h4>
+            <h4 className="inline-block">REGISTER AT</h4>
           </span>
           <span className="w-25"></span>
         </div>
@@ -83,14 +84,16 @@ const Register = () => {
   }, [appConfig]);
 
   useEffect(() => {
-    console.log("errorMessage", errorMessage)
+    console.log("errorMessage", errorMessage);
     if (successMessage?.success?.status === 201) {
       console.log("successMessage", successMessage);
-      
+
       notification.success({
         message: "Registration Successful",
-        description:successMessage?.success.message?? "You have successfully registered!",
-        className: 'ant-notification',
+        description:
+          successMessage?.success.message ??
+          "You have successfully registered!",
+        className: "ant-notification",
         placement: "top",
       });
       const timeoutId = setTimeout(() => {
@@ -101,7 +104,7 @@ const Register = () => {
         }
       }, 100);
       return () => clearTimeout(timeoutId);
-    } else if(successMessage?.success?.status === 400) {
+    } else if (successMessage?.success?.status === 400) {
       const data = {
         event: "sign_up_failed",
         message: "sign up failed",
@@ -109,15 +112,13 @@ const Register = () => {
       gaEventTracker("Sign Up Failed", data);
       notification.error({
         message: "Registration Failed",
-        description: successMessage?.success?.message ?? "Something went wrong!",
-        className: 'ant-notification',
+        description:
+          successMessage?.success?.message ?? "Something went wrong!",
+        className: "ant-notification",
         placement: "top",
       });
       navigate("/login");
-      
-    }
-    else if (errorMessage) {
-    
+    } else if (errorMessage) {
       const data = {
         event: "sign_up_failed",
         message: "sign up failed",
@@ -125,8 +126,8 @@ const Register = () => {
       gaEventTracker("Sign Up Failed", data);
       notification.error({
         message: "Registration Failed",
-        description: errorMessage?? "Something went wrong!",
-        className: 'ant-notification',
+        description: errorMessage ?? "Something went wrong!",
+        className: "ant-notification",
         placement: "top",
       });
     }
@@ -141,8 +142,6 @@ const Register = () => {
     promo_code: "",
   };
 
-
-
   const handleSubmit = (values) => {
     const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
     const msisdn = values.countryCode + formattedMsisdn;
@@ -155,8 +154,6 @@ const Register = () => {
     setTrackingData(payload);
     dispatch(signupUser(payload))
       .then(() => {
-      
-
         if (values.utm_source !== undefined) {
           if (values.utm_source === "eskimi") {
             window.esk("track", "Conversion");
@@ -175,7 +172,7 @@ const Register = () => {
         notification.error({
           message: "Registration Failed",
           description: error?.message || "Error attempting to Register",
-          className: 'ant-notification',
+          className: "ant-notification",
           placement: "top",
         });
       });
@@ -235,7 +232,6 @@ const Register = () => {
                               initialValues={initialValues}
                               onSubmit={(values) => {
                                 handleSubmit(values);
-                               
                               }}
                               validate={validate}
                               validateOnChange={false}
@@ -250,76 +246,33 @@ const Register = () => {
                                 <Form onSubmit={handleSubmit}>
                                   <div className="form-group w-100 d-flex justify-content-center mt-5">
                                     <div className="col-md-12 w-100">
-                                      <label>Mobile Number</label>
+                                      <label
+                                        style={{ color: "var(--light" }}
+                                        className="px-2"
+                                      >
+                                        Mobile Number
+                                      </label>
                                       <div
                                         className="input-group input-color-icon w-100"
                                         style={{ display: "flex" }}
                                       >
-                                        <div
+                                        {/* <div
                                           className="col-5 input-group-append align-items-center justify-content-start"
                                           style={{ display: "contents" }}
                                         >
                                           <div className="input-group-text border-0 input-color-icon codecCountry">
-                                            {/* <Dropdown
-                                              onSelect={(selectedOption) =>
-                                                handleChange({
-                                                  target: {
-                                                    name: "countryCode",
-                                                    value: selectedOption,
-                                                  },
-                                                })
-                                              }
-                                            >
-                                              <Dropdown.Toggle
-                                                variant="link"
-                                                id="countryCode"
-                                                style={{
-                                                  color: "var(--light)",
-                                                }}
-                                              >
-                                                +{values.countryCode}&nbsp;
-                                                <img
-                                                  className="image-kenya"
-                                                  src={kenyan}
-                                                  style={{
-                                                    width: "17px",
-                                                    height: "11px",
-                                                    marginTop: "2px",
-                                                  }}
-                                                  alt="Kenya"
-                                                  title="Kenya"
-                                                />
-                                              </Dropdown.Toggle>
-                                              <Dropdown.Menu>
-                                                <Dropdown.Item
-                                                  eventKey="254"
-                                                  id="254"
-                                                >
-                                                  +254&nbsp;
-                                                  <img
-                                                    className="image-kenya"
-                                                    src={kenyan}
-                                                    style={{
-                                                      width: "17px",
-                                                      height: "11px",
-                                                      marginTop: "2px",
-                                                    }}
-                                                    alt="Kenya"
-                                                    title="Kenya"
-                                                  />
-                                                </Dropdown.Item>
-                                              </Dropdown.Menu>
-                                            </Dropdown> */}
-                                            <CountryButton onFieldChanged={handleChange}/>
+                                            <CountryButton
+                                              onFieldChanged={handleChange}
+                                            />
                                           </div>
-                                        </div>
+                                        </div> */}
                                         <input
                                           type="text"
                                           name="msisdn"
                                           className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login ${
                                             errors.msisdn && "text-danger"
                                           }`}
-                                          placeholder={"712345678"}
+                                          placeholder={"e.g 712345678"}
                                           onChange={handleChange}
                                           value={values.msisdn}
                                         />
@@ -329,12 +282,18 @@ const Register = () => {
                                           {errors.msisdn}
                                         </div>
                                       )}
+                                      <label
+                                        className="mb-5 px-2 pb-3"
+                                        style={{ color: "#FFFFFFB2" }}
+                                      >
+                                        Enter your phone number
+                                      </label>
                                     </div>
                                   </div>
 
-                                  <div className="form-group w-100 d-flex justify-content-center">
+                                  <div className="form-group w-100 d-flex justify-content-center mb-4">
                                     <div className="col-md-12 w-100">
-                                      <label>Password</label>
+                                      <label className="px-2">Password</label>
                                       <div
                                         className="input-group input-color-icon w-100"
                                         style={{ display: "flex" }}
@@ -347,7 +306,7 @@ const Register = () => {
                                           className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login ${
                                             errors.password && "text-danger"
                                           }`}
-                                          placeholder={"Password"}
+                                          placeholder={""}
                                           onChange={handleChange}
                                           value={values.password}
                                         />
@@ -357,6 +316,11 @@ const Register = () => {
                                           style={{ cursor: "pointer" }}
                                         >
                                           <FontAwesomeIcon
+                                            style={{
+                                              color: "var(--light)",
+                                              fontSize: "20px",
+                                              padding: "0px 5px 0px 5px",
+                                            }}
                                             icon={
                                               showPassword ? faEyeSlash : faEye
                                             }
@@ -368,12 +332,20 @@ const Register = () => {
                                           {errors.password}
                                         </div>
                                       )}
+                                      <label
+                                        className="mb-4 px-2 pb-2"
+                                        style={{ color: "#FFFFFFB2" }}
+                                      >
+                                        Enter your password
+                                      </label>
                                     </div>
                                   </div>
 
-                                  <div className="form-group w-100 d-flex justify-content-center">
+                                  <div className="form-group w-100 d-flex justify-content-center mb-4">
                                     <div className="col-md-12 w-100">
-                                      <label>Confirm Password</label>
+                                      <label className="px-2">
+                                        Confirm Password
+                                      </label>
                                       <div
                                         className="input-group input-color-icon w-100"
                                         style={{ display: "flex" }}
@@ -389,7 +361,7 @@ const Register = () => {
                                             errors.repeat_password &&
                                             "text-danger"
                                           }`}
-                                          placeholder={"Confirm Password"}
+                                          placeholder={""}
                                           onChange={handleChange}
                                           value={values.repeat_password}
                                         />
@@ -399,6 +371,11 @@ const Register = () => {
                                           style={{ cursor: "pointer" }}
                                         >
                                           <FontAwesomeIcon
+                                            style={{
+                                              color: "var(--light)",
+                                              fontSize: "20px",
+                                              padding: "0px 5px 0px 5px",
+                                            }}
                                             icon={
                                               showConfirmPassword
                                                 ? faEyeSlash
@@ -412,24 +389,38 @@ const Register = () => {
                                           {errors.repeat_password}
                                         </div>
                                       )}
+                                      <label
+                                        className="mb-4 px-2 pb-3"
+                                        style={{ color: "#FFFFFFB2" }}
+                                      >
+                                        Confirm your password
+                                      </label>
                                     </div>
                                   </div>
 
                                   <div className="form-group w-100 d-flex justify-content-center">
                                     <div className="col-md-12 w-100">
-                                      <label>Promo Code (optional)</label>
+                                      <label className="px-2">
+                                        Referral Code{" "}
+                                      </label>
                                       <input
                                         type="text"
                                         name="promo_code"
                                         className="input-field button-radius text-light deposit-input form-control col input-field-login"
-                                        placeholder={"Promo Code"}
+                                        placeholder={""}
                                         onChange={handleChange}
                                         value={values.promo_code}
                                       />
+                                      <label
+                                        className="mb-4 px-2 pb-3"
+                                        style={{ color: "#FFFFFFB2" }}
+                                      >
+                                        Optional
+                                      </label>
                                     </div>
                                   </div>
 
-                                  <div className="form-group w-100 d-flex justify-content-center">
+                                  <div className="form-group w-100 d-flex justify-content-center mb-3">
                                     <div className="col-md-12 w-100">
                                       <div className="checkbox p-2 d-flex align-items-center justify-content-center">
                                         <label className="checkbox-container">
@@ -446,12 +437,16 @@ const Register = () => {
                                           &nbsp;
                                           <span className="custom-checkbox"></span>
                                           <span className="pl-2">
-                                            I agree to the{" "}
                                             <a
                                               href="/terms-and-conditions"
-                                              className="text-warning"
+                                              style={{ color: "#FFFFFFB2" }}
                                             >
-                                              Terms & Conditions
+                                              By clicking Register you confirm
+                                              to have read in detail, understood
+                                              and agreed to the Terms and
+                                              Conditions , the Privacy policy
+                                              and also that you are over 18
+                                              years of age.
                                             </a>
                                           </span>
                                         </label>
@@ -464,7 +459,7 @@ const Register = () => {
                                     </div>
                                   </div>
 
-                                  <div className="form-group w-100 d-flex justify-content-center">
+                                  <div className="form-group w-100 d-flex justify-content-center mb-3">
                                     <div className="col-md-12 w-100">
                                       <button
                                         type="submit"
@@ -474,6 +469,24 @@ const Register = () => {
                                         Register
                                       </button>
                                     </div>
+                                  </div>
+
+                                  <div className="col-12 d-flex justify-content-center">
+                                    <Link
+                                      to={"/login"}
+                                      title="Login"
+                                      onClick={() => gaEventTracker("Login")}
+                                    >
+                                      <span
+                                        className={`faded-color font-input } register-label my-3`}
+                                        style={{
+                                          textTransform: "uppercase",
+                                          color: "#FFAA00",
+                                        }}
+                                      >
+                                        Log In here
+                                      </span>
+                                    </Link>
                                   </div>
                                 </Form>
                               )}

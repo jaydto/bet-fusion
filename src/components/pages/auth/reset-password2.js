@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import makeRequest from "../../utils/fetch-request";
 import { Form, Formik } from "formik";
 import { StoreContext } from "../../../context/store";
@@ -34,6 +34,7 @@ const ResetPassword2 = React.memo((props) => {
   const otpSent = code ? true : otpSentFromState;
 
   const expand = "md";
+  const navigate = useNavigate();
 
   const dispatchRedux = useDispatch();
 
@@ -44,16 +45,40 @@ const ResetPassword2 = React.memo((props) => {
     dispatchRedux(setState("resetMessage", null));
   }, []);
 
-  const FormTitle = () => {
-    return (
-      <div
-        className="col-md-12 col-md-12  pt-4 text-center text-light py-3 text-center w-100 top-login-mobile"
-        style={{ margin: "0px" }}
-      >
-        <h4 className="inline-block">RECOVER YOUR ACCOUNT</h4>
-      </div>
-    );
-  };
+   const FormTitle = () => {
+      return (
+        <div
+          className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile"
+          style={{ margin: "0px" }}
+        >
+          <div>
+            <div
+              className={
+                " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator py-3"
+              }
+              onClick={() => navigate("/")}
+            >
+              <span
+                className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "
+                style={{ cursor: "pointer" }}
+              >
+                <FontAwesomeIcon
+                  icon={faAngleLeft}
+                  className={"back-navigation-icon"}
+                />{" "}
+                            <span className="px-3"> Back </span>
+  
+              </span>
+  
+              <span className={"w-50 d-flex justify-content-center"}>
+                {/* <h4 className="inline-block form-title-centric">RECOVER YOUR ACCOUNT</h4> */}
+              </span>
+              <span className="w-25"></span>
+            </div>
+          </div>
+        </div>
+      );
+    };
 
   const Alert = (props) => {
     let c = resetSuccessPassword ?? resetSuccess ? "success" : "danger";

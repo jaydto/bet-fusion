@@ -1,8 +1,30 @@
 body {
-  font-size: var(--BetTena-font-size-nav);
+  font-size: var(--bet-dojo-font-size-nav);
   line-height: var(--body-line-weight);
-  background: var(--BetTena-body-bg);
+  background: var(--bet-dojo-body-bg);
   max-width: 100% !important;
+}
+.donjo-button{
+  background:var(--donjo-button);
+  border-radius:15.6px;
+  font-weight: 700;
+  color:var(--dark);
+  
+}
+.donjo-button:hover, .donjo-button:active{
+  background:var(--donjo-button)!important;
+  color:var(--dark)!important;
+
+
+}
+.btn-button-bg-2.cg {
+  background: inherit !important;
+  color: var(--dark) !important;
+  text-decoration: underline; /* Add this to underline the text */
+}
+
+.me-2{
+  font-size: 2rem;
 }
 .btn-button-bg{
   background:var(--crimson)!important;
@@ -87,7 +109,7 @@ body {
 }
 
 .decode-bg {
-  background: var(--BetTena-header-bg) !important;
+  background: var(--bet-dojo-header-bg) !important;
 }
 
 .c-btn-header {
@@ -114,11 +136,11 @@ body {
 }
 
 .decode-bg {
-  background: var(--BetTena-primary);
+  background: var(--bet-dojo-primary);
 }
 
 .loadmore {
-  background: var(--BetTena-button-login);
+  background: var(--bet-dojo-button-login);
   border: none;
   width: 100%;
   color: var(--light);
@@ -130,11 +152,11 @@ body {
   color: whitesmoke;
   border-bottom: 0px solid #fff;
   font-size: 15px;
-  background: var(--BetTena-footer);
+  background: var(--bet-dojo-footer);
   color: var(--footer-color);
   padding: 10px;
   margin-top: 10px;
-  /* box-shadow: 10px 10px 10px 10px var(--BetTena-header-bg); */
+  /* box-shadow: 10px 10px 10px 10px var(--bet-dojo-header-bg); */
   max-width: 991px;
   margin: auto;
 }
@@ -225,7 +247,7 @@ input.text-white {
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
   padding: 5px 10px;
   border-radius: 6px;
 }
@@ -245,7 +267,7 @@ input.text-white {
 }
 
 .b-icon {
-  color: var(--BetTena-button-login) !important;
+  color: var(--bet-dojo-button-login) !important;
 }
 
 .Toastify__toast-container--top-right {
@@ -265,7 +287,7 @@ input.text-white {
 .clip-get-size {
   -webkit-clip-path: circle(50% at 11% 20%);
   clip-path: circle(50% at 11% 20%);
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
 }
 
 .casino-scroll::-webkit-scrollbar {
@@ -273,13 +295,13 @@ input.text-white {
 }
 
 .directions-header-nav {
-  /*background: var(--BetTena-header-bg);*/
+  /*background: var(--bet-dojo-header-bg);*/
 }
 
 .top-nav {
   top: -2px;
   padding-top: 10px;
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
   background-size: cover;
   background-position: center center;
   padding-bottom: 17px;
@@ -303,7 +325,7 @@ input.text-white {
 
 .betslip-header {
   clear: both;
-  background: var(--BetTena-body-bg);
+  background: var(--bet-dojo-body-bg);
   border-radius: var(--button-radius);
   color: #fff;
   cursor: pointer;
@@ -315,7 +337,7 @@ input.text-white {
 }
 
 .card-bet-details {
-  background: var(--BetTena-primary) !important;
+  background: var(--bet-dojo-primary) !important;
   color: var(--white) !important;
   padding: 10px;
   margin-bottom: 5px;
@@ -331,7 +353,7 @@ input.text-white {
 }
 
 .accordion-item.bet-history-kiron {
-  background: var(--BetTena-primary) !important;
+  background: var(--bet-dojo-primary) !important;
 }
 
 .ReactModal__Overlay {
@@ -388,7 +410,7 @@ input.text-white {
 .accordion-button.bet-history-button {
   padding: 10px;
   padding-left: 7px;
-  background: var(--BetTena-body-bg) !important;
+  background: var(--bet-dojo-body-bg) !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-icon-wrapper {
@@ -443,12 +465,12 @@ input.text-white {
 }
 
 .match-status {
-  color: var(--BetTena-button-login) !important;
+  color: var(--bet-dojo-button-login) !important;
   white-space: nowrap;
 }
 
 .live-status {
-  color: var(--BetTena-live);
+  color: var(--bet-dojo-live);
 }
 
 #xgames-header {
@@ -473,7 +495,7 @@ input.text-white {
 }
 
 .pro-sidebar .pro-menu .pro-menu-item.pro-sub-menu .pro-inner-list-item {
-  background-color: var(--BetTena-primary) !important;
+  background-color: var(--bet-dojo-primary) !important;
 }
 
 .pro-sidebar.collapsed
@@ -482,7 +504,7 @@ input.text-white {
   > .pro-menu-item.pro-sub-menu
   > .pro-inner-list-item
   > .popper-inner {
-  background-color: var(--BetTena-body-bg) !important;
+  background-color: var(--bet-dojo-body-bg) !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
@@ -522,7 +544,7 @@ input.text-white {
 }
 
 .betslip-container {
-  background: var(--BetTena-header-bg) !important;
+  background: var(--bet-dojo-header-bg) !important;
   width: 100%;
 }
 
@@ -558,14 +580,14 @@ input.text-white {
 }
 
 .second-nav-list {
-  box-shadow: -3px 0px 0px 0px var(--BetTena-header-bg);
-  -webkit-box-shadow: -3px 0px 0px 0px var(--BetTena-header-bg);
-  -moz-box-shadow: -3px 0px 0px 0px var(--BetTena-header-bg);
+  box-shadow: -3px 0px 0px 0px var(--bet-dojo-header-bg);
+  -webkit-box-shadow: -3px 0px 0px 0px var(--bet-dojo-header-bg);
+  -moz-box-shadow: -3px 0px 0px 0px var(--bet-dojo-header-bg);
 }
 
 .top-nav-login {
   padding: 1px 0px 5px 0px;
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
  
 }
 
@@ -582,13 +604,13 @@ input.text-white {
   width: 19px !important;
   margin-top: -6px !important;
   border-radius: 16px;
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
   margin-bottom: -7px;
 }
 
 .bet-body {
   font-size: var(--font-size-bet-body);
-  background: var(--BetTena-input);
+  background: var(--bet-dojo-input);
 }
 
 b,
@@ -600,7 +622,7 @@ strong {
   color: var(--aqua-text);
 }
 
-/*top navigation BetTena-web*/
+/*top navigation BetDonjo-web*/
 .myButton {
   border-radius: 8px;
   color: #fff;
@@ -627,7 +649,7 @@ strong {
 
 .main-navigations {
   /*line-height: 2.2 !important;*/
-  background: var(--BetTena-body-bg);
+  background: var(--bet-dojo-body-bg);
   position: sticky;
   top: 5rem;
   z-index: 1999;
@@ -658,14 +680,14 @@ strong {
   opacity: 1;
   position: sticky;
   z-index: 2000;
-  background: var(--BetTena-body-bg);
+  background: var(--bet-dojo-body-bg);
   max-height: 40.5px;
   min-height: 40.5px;
 }
 
 /*end top navigation web */
 .login-text:hover {
-  color: var(--BetTena-button-login);
+  color: var(--bet-dojo-button-login);
 }
 
 .profile-top-nav {
@@ -673,7 +695,7 @@ strong {
 }
 
 .search-results-box {
-  background: var(--BetTena-input);
+  background: var(--bet-dojo-input);
   color: var(--light);
   margin-top: 3px;
   width: 41.2%;
@@ -695,7 +717,7 @@ strong {
   height:4rem;
   align-items:center;
   justify-content: center;
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
   border: 1px solid white;
   border-radius: 1rem;
   color: var(--light);
@@ -709,7 +731,7 @@ label {
   font-size: 14px;
 }
 .counrtryCodec {
-  background: var(--BetTena-primary);
+  background: var(--bet-dojo-primary);
   margin-left: 4px;
 }
 .transaction {
@@ -725,7 +747,7 @@ label {
 }
 
 input {
-  background: var(--BetTena-primary)!important;
+  background: var(--bet-dojo-primary)!important;
   border-radius: 3px !important;
   color: var(--light) !important;
   font-weight: bold !important;
@@ -754,7 +776,7 @@ input {
   /* margin-left: auto; */
   display: flex;
   justify-content: start;
-  background: var(--BetTena-body-bg);
+  background: var(--bet-dojo-body-bg);
 }
 ol.list-count-type {
   list-style: circle !important;
@@ -807,13 +829,13 @@ select::after {
 }
 
 .all-markkets-search {
-  background: var(--BetTena-input) !important;
+  background: var(--bet-dojo-input) !important;
   border: none !important;
   border-radius: var(--button-radius) !important;
 }
 
 .all-markkets-search input {
-  background: var(--BetTena-input) !important;
+  background: var(--bet-dojo-input) !important;
   border: none !important;
   color: #fff !important;
 }
@@ -850,7 +872,7 @@ select::after {
   display: flex !important;
 }
 
-.BetTena-text-light {
+.BetDonjo-text-light {
   color: var(--light) !important;
   line-height: 1.5;
 }
@@ -905,7 +927,7 @@ select::after {
 }
 
 .header-styling-mobile {
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
   color: var(--light);
   padding: 5px 1px 5px 1px !important;
   font-size: 9px !important;
@@ -923,7 +945,7 @@ select::after {
 }
 
 .matches .top-matches.more-markets {
-  background: var(--BetTena-body-bg) !important;
+  background: var(--bet-dojo-body-bg) !important;
   margin-bottom: 1px;
 }
 
@@ -1020,13 +1042,15 @@ width-page-centric.register-page {
   font-weight: 600;
 }
 
-.login-size {
-  background: #2d4352;
+.login-color.cg {
+  background: inherit;
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: 12px;
   margin-left: 5px;
-  height: 2.3rem;
+  /* height: 2.3rem; */
+  border: 1px solid var(--dark);
   line-height: 1;
+  color: var(--dark)!important;
   cursor: pointer;
 }
 
@@ -1075,7 +1099,7 @@ input[type="checkbox"] {
 
 .second-nav {
   /*background: #1f2f38 !important;*/
-  font-size: var(--BetTena-font-size-nav);
+  font-size: var(--bet-dojo-font-size-nav);
   box-shadow: 0 1px 2px #16202c;
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 1px 2px #16202c;
@@ -1144,7 +1168,7 @@ input[type="checkbox"] {
 
 .profile-width-side {
   min-width: 316px !important;
-  background: var(--BetTena-header-bg) !important;
+  background: var(--bet-dojo-header-bg) !important;
   padding-left: 0rem;
   margin-top: 0rem;
   padding-left: 2.5rem;
@@ -1284,7 +1308,7 @@ input[type="checkbox"] {
   top: 0px; /* Adjust the position based on your layout */
   right: 0px; /* Adjust the position based on your layout */
   z-index: 10000; /* Ensure the button is on top of the overlay */
-  background-color: var(--BetTena-body-bg); /* Button background color */
+  background-color: var(--bet-dojo-body-bg); /* Button background color */
   padding: 15px 20px;
   border-radius: 4px;
   cursor: pointer;
@@ -1318,7 +1342,7 @@ img.nare-league {
 }
 
 .input-color-icon {
-  background: var(--BetTena-primary) !important;
+  background: var(--bet-dojo-primary) !important;
   color:var(--light);
   /* height: 100%; */
 }
@@ -1348,7 +1372,7 @@ img.nare-league {
 }
 
 .header-sports {
-  /* background: var(--BetTena-header-bg); */
+  /* background: var(--bet-dojo-header-bg); */
   opacity: 1 !important;
   top: 100px;
 }
@@ -1416,7 +1440,7 @@ img.nare-league {
   border: 1px solid rgb(59 55 55 / 20%);
   position: relative;
   transition: 0.3s;
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
 }
 
 .original-button::before {
@@ -1918,7 +1942,7 @@ img.nare-league {
     z-index: 1999 !important;
     opacity: 1;
     background: var(--testimonial);
-    border: 1px solid var(--BetTena-button-login) !important;
+    border: 1px solid var(--bet-dojo-button-login) !important;
   }
 
   .sticky-user {
@@ -2081,7 +2105,7 @@ img.nare-league {
 }
 #countryCode {
   color: var(--light);
-  background: var(--BetTena-header-bg);
+  background: var(--bet-dojo-header-bg);
   border-radius: 10px;
   margin-left: 10px;
   font-size: 11px;
@@ -2157,7 +2181,7 @@ img.nare-league {
   }
   .footer-mobile-none {
     
-    background:var(--BetTena-footer);
+    background:var(--bet-dojo-footer);
   }
 
   .desktop-footer  {
@@ -2285,7 +2309,7 @@ img.nare-league {
   .market-groups-container {
     max-width: 61.2vw;
     z-index: 1000;
-    background: var(--BetTena-header-bg);
+    background: var(--bet-dojo-header-bg);
   }
 
   .details-items .team .team-info {
@@ -2339,7 +2363,7 @@ img.nare-league {
     opacity: 1;
     border-radius: 3px;
     top: -8rem;
-    background: var(--BetTena-body-bg) !important;
+    background: var(--bet-dojo-body-bg) !important;
   }
 
   .os {
@@ -2529,7 +2553,7 @@ img.nare-league {
 } */
 .codecCountry .dropdown .dropdown-menu {
   color: var(--light);
-  background-color: var(--BetTena-header-bg) !important;
+  background-color: var(--bet-dojo-header-bg) !important;
 }
 .codecCountry .dropdown .dropdown-menu a {
   color: var(--light);
@@ -2539,7 +2563,7 @@ img.nare-league {
 
 .filters-modal .modal-content,
 .filters-modal.exclude .modal-content {
-  background-color: var(--BetTena-header-bg);
+  background-color: var(--bet-dojo-header-bg);
 }
 .bg-deposit-modal-btn.cancel-filter-markets {
   background: none !important;
@@ -2582,7 +2606,7 @@ img.nare-league {
     padding: 0;
     margin: 0;
     padding: 10px 10px!important;
-    background: var(--BetTena-lite)!important;
+    background: var(--bet-dojo-lite)!important;
     width: 96%;
     border-radius: 4px;
   }
@@ -2879,7 +2903,7 @@ img.nare-league {
     margin-top:0px;
   }
 
-  .logo-BetTena {
+  .logo-BetDonjo {
     display: flex;
     align-items: center;
   }
@@ -2924,7 +2948,7 @@ img.nare-league {
   .market-groups-container {
     max-width: 100vw;
     z-idex: 2001;
-    background: var(--BetTena-header-bg);
+    background: var(--bet-dojo-header-bg);
   }
 
   .outcome-h {
@@ -2985,14 +3009,14 @@ img.nare-league {
   }
 
   .filters-modal .modal-content {
-    background-color: var(--BetTena-header-bg);
+    background-color: var(--bet-dojo-header-bg);
     color: #fff;
     position: fixed;
     bottom: 0;
   }
 
   .filters-modal.exclude .modal-content {
-    background-color: var(--BetTena-body-bg);
+    background-color: var(--bet-dojo-body-bg);
     color: #fff;
     position: fixed;
   }
@@ -3031,17 +3055,17 @@ img.nare-league {
 
   .slip-count-value {
     position: absolute;
-    background: var(--BetTena-button-login) !important;
+    background: var(--bet-dojo-button-login) !important;
     top: -10px;
     left: 4px;
   }
 
   .mobile-menu tbody.slip-menu-prematch {
     margin: 0px 10px;
-    box-shadow: 10px 10px 10px 10px var(--BetTena-side-bg);
+    box-shadow: 10px 10px 10px 10px var(--bet-dojo-side-bg);
     border-radius: 10px;
     position: relative;
-    background: var(--BetTena-body-bg);
+    background: var(--bet-dojo-body-bg);
   }
 
   .slip-count-option {
@@ -3056,7 +3080,7 @@ img.nare-league {
 
   .close-prompt {
     margin-bottom: -6px !important;
-    /* background: var(--BetTena-button-login); */
+    /* background: var(--bet-dojo-button-login); */
     border-radius: 10px;
     margin-right: -17px;
   }
@@ -3090,7 +3114,7 @@ img.nare-league {
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
     width: 56px;
-    box-shadow: 1px 1px 3px 1px var(--BetTena-body-bg);
+    box-shadow: 1px 1px 3px 1px var(--bet-dojo-body-bg);
     margin-top: -2px;
   }
 
@@ -3100,14 +3124,14 @@ img.nare-league {
   }
 
   .info-slip-bets {
-    background: var(--BetTena-button-login);
+    background: var(--bet-dojo-button-login);
     width: 100%;
     height: 2rem;
     align-items: center;
   }
 
   .info_bet_alert {
-    /*background: var(--BetTena-button-login);*/
+    /*background: var(--bet-dojo-button-login);*/
     width: 100%;
     height: 2rem;
     align-items: center;
@@ -3219,7 +3243,7 @@ img.nare-league {
   .box-shadow-table-submit-form {
     padding: 5px;
     border-radius: 10px;
-    border: thin solid var(--BetTena-input);
+    border: thin solid var(--bet-dojo-input);
     line-height: 0.7;
   }
 
@@ -3329,7 +3353,7 @@ img.nare-league {
   .bottom {
     position: sticky;
     bottom: 18rem;
-    background: var(--BetTena-body-bg);
+    background: var(--bet-dojo-body-bg);
   }
 
   .slip-bottom-betlip-active {
@@ -3352,7 +3376,7 @@ img.nare-league {
   .sticky-logged-in-testimony {
     top: 0px;
     border-radius: 7px;
-    border: 1px solid var(--BetTena-button-login) !important;
+    border: 1px solid var(--bet-dojo-button-login) !important;
     line-height: 1.5;
   }
 
@@ -3401,7 +3425,7 @@ img.nare-league {
     position: absolute;
     top: -9rem;
     right: -13rem;
-    background: var(--BetTena-body-bg) !important;
+    background: var(--bet-dojo-body-bg) !important;
   }
 
  
@@ -3435,6 +3459,52 @@ img.nare-league {
     align-items: center;
   }
 
+  .casino-t-image {
+    width: 34rem;
+    position: absolute;
+    left: -35px;
+    top: 5px;
+}
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 17vh; /* Slightly increased height for better effect */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.casino-carousel-container{
+  height: 18vh;
+}
+
+.carousel-background {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Extends the background slightly above */
+  background: var(--bet-dojo-header-bg); 
+  border-bottom-left-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+  z-index: 1;
+}
+
+.carousel-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, -30%); /* Centers and lifts */
+  z-index: 2;
+}
+
+
+.menu-size{
+  height: 2.9rem;
+  width: 4rem;
+}
+
   .lite-top {
     justify-content: center;
     align-items: center;
@@ -3446,7 +3516,7 @@ img.nare-league {
       0px 2px 2px 0px rgba(0, 0, 0, 0.24);
     color: var(--lite-top-color);
     font-weight: 700;
-    height: 3.5rem;
+    height: 45.75px;
     display: flex;
     align-items: center;
     border-radius: 1px;
@@ -3489,7 +3559,7 @@ img.nare-league {
     height: 1px;
     width: 93%;
     margin: auto;
-    background: var(--BetTena-secondary);
+    background: var(--bet-dojo-secondary);
   }
   .svg-mobile {
     min-width: 16px !important;
@@ -3525,7 +3595,7 @@ img.nare-league {
   }
 
   .search-results-box {
-    background: var(--BetTena-input);
+    background: var(--bet-dojo-input);
     color: var(--light);
     margin-top: 3px;
     width: 82%;
@@ -3592,7 +3662,7 @@ img.nare-league {
   }
 
   .second-nav {
-    font-size: var(--BetTena-font-size-small);
+    font-size: var(--bet-dojo-font-size-small);
   }
 
   .sticky-user {
@@ -3659,7 +3729,7 @@ img.nare-league {
 
   .footer-mobile-none {
     display: none;
-    background:var(--BetTena-footer);
+    background:var(--bet-dojo-footer);
   }
 
   .kiron-betslip-size {
@@ -3753,7 +3823,7 @@ img.nare-league {
   .slip-tabs {
     background: repeating-linear-gradient(
       45deg,
-      var(--BetTena-header-bg),
+      var(--bet-dojo-header-bg),
       transparent 100px
     );
   }
@@ -3805,7 +3875,7 @@ img.nare-league {
 @media (max-width: 767px) {
 
   .top-separator {
-    box-shadow: 25px -12px 7px 11px var(--BetTena-footer);
+    box-shadow: 25px -12px 7px 11px var(--bet-dojo-footer);
     margin-bottom: 30px!important;
 }
   /* .navbar-expand-md .navbar-toggler.desktop-menu{
@@ -3927,7 +3997,7 @@ img.nare-league {
     position: sticky;
     top: 0px;
     z-index: 1999 !important;
-    border: 1px solid var(--BetTena-button-login) !important;
+    border: 1px solid var(--bet-dojo-button-login) !important;
     line-height: 1.5;
     border-radius: 6px;
   }
@@ -3981,7 +4051,7 @@ img.nare-league {
 
   .image-size {
     width: 138px;
-    padding-top: 5px;
+    padding-top: 0px;
   }
 }
 
@@ -4164,6 +4234,7 @@ img.nare-league {
 
   .app-navbar .e img {
     max-width: 115px !important;
+    max-height: 40px !important;
   }
 
   .highlight-menu {
@@ -4346,7 +4417,7 @@ img.nare-league {
   .sticky-testimony {
     top: 0px;
     border-radius: 7px;
-    border: 1px solid var(--BetTena-button-login) !important;
+    border: 1px solid var(--bet-dojo-button-login) !important;
   }
 
   .highlight-menu {
@@ -4356,7 +4427,7 @@ img.nare-league {
 
 @media (max-width: 420px) {
   .search-results-box {
-    background: var(--BetTena-input);
+    background: var(--bet-dojo-input);
     color: var(--light);
     margin-top: 3px;
     width: 80%;
@@ -4383,8 +4454,8 @@ img.nare-league {
 }
 
 .lite-top-color {
-  border: thin solid var(--BetTena-input);
-  color: var(--BetTena-button-login);
+  border: thin solid var(--bet-dojo-input);
+  color: var(--bet-dojo-button-login);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -4395,7 +4466,7 @@ img.nare-league {
 
 .lite-top-color .color-app-text {
   width: 100%;
-  color: var(--BetTena-button-login);
+  color: var(--bet-dojo-button-login);
   text-align: center;
 }
 
@@ -4405,7 +4476,7 @@ img.nare-league {
   }
   .app-navbar .e img {
     max-width: 100px !important;
-    background: var(--BetTena-header-bg);
+    background: var(--bet-dojo-header-bg);
     height: 30px;
   }
 
@@ -4452,7 +4523,7 @@ img.nare-league {
   .sticky-logged-in-testimony {
     top: 0px;
     border-radius: 4px;
-    border: 1px solid var(--BetTena-button-login) !important;
+    border: 1px solid var(--bet-dojo-button-login) !important;
     line-height: 1.5;
   }
 }

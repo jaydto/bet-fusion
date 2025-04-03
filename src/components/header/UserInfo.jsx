@@ -84,10 +84,10 @@ export const UserInfo = React.memo(
                                    style={{marginLeft: 'auto'}}>
                       
                         {pathname !== '/signup' && <div className="">
-                            <Link className="cg  login-color login-size btn btn-button-bg text-light"
+                            <Link className="cg   login-size btn btn-button-bg-2 text-light"
                                   to={"/signup"} title="Join now"
                                   onClick={() => gaEventTracker('Register')}>
-                                <span className="button-text-color-on-yellow text-weight-md">Register</span>
+                                <span className=" text-weight-md">Register</span>
                             </Link>
                         </div>}
 

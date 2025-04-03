@@ -95,7 +95,7 @@ const DepositForm = () => {
     <div className="account__section__container deposit account__section transaction ">
       <div className="account__section global-card__type--block">
         <h3 className="account__section__title deposit__title t-label">Deposit</h3>
-        <p className="account__section__desc deposit__desc">Send money into your BetTena account</p>
+        <p className="account__section__desc deposit__desc">Send money into your BetDonjo account</p>
         <div className="button__group account__section__button-group" style={{ marginBottom: '10px', marginTop: '15px' }}>
           <button className="button rounded account__section__button deposit-buttons-value" onClick={() => formik.setFieldValue('amount', '100')}>
             +100

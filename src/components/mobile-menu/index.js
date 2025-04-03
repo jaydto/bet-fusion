@@ -167,12 +167,12 @@ const MobileMenu = React.memo((props) => {
                     </div>
                 </div>
             </div>
-            {/* {console.log("BetTena giftboost status information",(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
-                   Number(settings?.BetTenaGifts?.awardGiftBoost)===1) )} */}
+            {/* {console.log("BetDonjo giftboost status information",(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
+                   Number(settings?.BetDonjoGifts?.awardGiftBoost)===1) )} */}
 
             <table className={`${slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"}`}
                    style={!pathSlipSummary.includes(pathname) ? sumOfOdds === 1 ? {height: "50px"} : countInfo&&(pathname.includes("nare-league")?Number(settings?.kironGifts?.awardGiftBoost)===1:
-                   Number(settings?.BetTenaGifts?.awardGiftBoost)===1) ? {height: "92px"} : {height: "70px"} : {height: "50px"}}>
+                   Number(settings?.BetDonjoGifts?.awardGiftBoost)===1) ? {height: "92px"} : {height: "70px"} : {height: "50px"}}>
                    <tbody>
                 {slip_condition ?
                     <tr className={"mobile-menu-container"} onClick={()=>navigate(pathname.includes("nare-league")?"/betslip-nare?nare-league=true":"/betslip-slip")}>

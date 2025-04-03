@@ -17,8 +17,8 @@
 
 } */
 .lite-top-color {
-    border: thin solid var(--BetTena-input);
-    color: var(--BetTena-button-login);
+    border: thin solid var(--bet-dojo-input);
+    color: var(--bet-dojo-button-login);
     text-align: center;
     display: flex;
     justify-content: center;

@@ -43,7 +43,7 @@ const LoginSection= React.memo(
                     <Link to={'/login'} className={`cg text-light border-0`} type="submit">
                         <span className={'login-text'}>LOGIN</span>
                     </Link>
-                    <Link className="cg register-button btn btn-button-bg" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')} >
+                    <Link className="cg register-button btn btn-button-bg-2" to={"/signup"} title="Join now" onClick={() => gaEventTracker('Register')} >
                         <span className="register-label bold">REGISTER </span>
                     </Link>
 

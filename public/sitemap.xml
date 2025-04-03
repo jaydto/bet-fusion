@@ -1,47 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>https://www.BetTena.com/</loc>
+        <loc>https://www.BetDonjo.com/</loc>
     </url>
     <url>
-        <loc>https://BetTena.com/signup</loc>
+        <loc>https://BetDonjo.com/signup</loc>
     </url>
    
     <url>
-        <loc>https://BetTena.com/login</loc>
+        <loc>https://BetDonjo.com/login</loc>
     </url>
     <url>
-        <loc>https://BetTena.com/signup/verify</loc>
+        <loc>https://BetDonjo.com/signup/verify</loc>
     </url>
     
     <url>
-        <loc>https://BetTena.com/bet-history</loc>
+        <loc>https://BetDonjo.com/bet-history</loc>
     </url>
    
     <url>
-        <loc>https://BetTena.com/terms-and-conditions</loc>
+        <loc>https://BetDonjo.com/terms-and-conditions</loc>
     </url>
    
   
     <url>
-        <loc>https://www.BetTena.com/standings</loc>
+        <loc>https://www.BetDonjo.com/standings</loc>
     </url> <url>
-        <loc>https://www.BetTena.com/results</loc>
+        <loc>https://www.BetDonjo.com/results</loc>
     </url>
 
     
     <url>
-        <loc>https://BetTena.com/</loc>
+        <loc>https://BetDonjo.com/</loc>
     </url>
     
     <url>
-        <loc>https://BetTena.com/smart-play?game=JetX&amp;category=JetX</loc>
+        <loc>https://BetDonjo.com/smart-play?game=JetX&amp;category=JetX</loc>
     </url>
     <url>
-        <loc>https://BetTena.com/smart-play?game=FootballX&amp;category=Games</loc>
+        <loc>https://BetDonjo.com/smart-play?game=FootballX&amp;category=Games</loc>
     </url>
     <url>
-        <loc>https://BetTena.com//nare-games/aviator</loc>
+        <loc>https://BetDonjo.com//nare-games/aviator</loc>
     </url>
 
 </urlset>

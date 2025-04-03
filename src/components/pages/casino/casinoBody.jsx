@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import CasinoSkeletonLoader from "./casino-skeleton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import casinoBackground from "../../../assets/img/art-board.png";
+import bgSection from "../../../assets/img/section-header.png";
 
 const CrashGames = ({ activeCategory }) => {
   const dispatch = useDispatch();
@@ -144,83 +146,116 @@ const CrashGames = ({ activeCategory }) => {
       {loading ? (
         <CasinoSkeletonLoader />
       ) : (
-        (expandedSection
-          ? sections.filter((section) => section.title === expandedSection)
-          : filteredSections
-        ).map((section, index) => {
-          const isExpanded = expandedSection === section.title;
-          const visibleGames =
-            activeCategory !== "All" || isExpanded
-              ? section.games
-              : section.games.slice(0, section.title === "Others" ? 8 :section.title === "Popular" ? 3 : 6);
+        <>
+          <ImageCard imageSrc={casinoBackground} altText="Promo" />
+          {(expandedSection
+            ? sections.filter((section) => section.title === expandedSection)
+            : filteredSections
+          ).map((section, index) => {
+            const isExpanded = expandedSection === section.title;
+            const visibleGames =
+              activeCategory !== "All" || isExpanded
+                ? section.games
+                : section.games.slice(
+                    0,
+                    section.title === "Others"
+                      ? 8
+                      : section.title === "Popular"
+                      ? 3
+                      : 6
+                  );
 
-          return (
-            <div key={index} className="mb-4">
-              <div className="d-flex justify-content-between align-items-center bg-section-header py-2 px-3">
-                <a href="#" className="text-decoration-none text-light">
-                  {section.title}
-                </a>
-                {activeCategory === "All" && section.games.length > 6 && (
-                  <button
-                    className="btn btn-sm btn-link text-light"
-                    onClick={() => toggleSection(section.title)}
+            return (
+              <div key={index} className="mb-2 casino-body">
+                <div className="d-flex justify-content-between align-items-center bg-section-header py-0 position-relative">
+                  
+                  <LazyLoadImage
+                    src={bgSection} // Assuming bgSection is the image URL
+                    alt={""}
+                    effect="blur"
+                    className="section-header-image  "
+                    
+                  />
+                  <a
+                    href="#"
+                    className="text-decoration-none text-light position-absolute   translate-middle z-4 title-header"
                   >
-                    {isExpanded ? "Less" : "More"}
-                  </button>
-                )}
-              </div>
+                    {section.title}
+                  </a>
 
-              <div
-                className={`row inter-font ${
-                  section.title === "Others"
-                    ? "row-cols-3 row-cols-md-4 row-cols-lg-4Z elongate"
-                    : "row-cols-3"
-                } g-3 mt-1 text-light`}
-              >
-                {visibleGames.map((game, gameIndex) => (
-                  <div
-                    key={gameIndex}
-                    className="col casino-game-wrapper"
-                    onClick={(event) => toggleOverlay(event, game.id)}
-                    onMouseEnter={() => setHoveredGame(game.id)}
-                    onMouseLeave={() => setHoveredGame(null)}
-                   
-                  >
-                    <a href={game.link} className="text-decoration-none">
-                      <LazyLoadImage
-                        src={game.image}
-                        alt={game.title}
-                        effect="blur"
-                        title={game.title}
-                        className="img-fluid rounded image-size-casino"
-                      />
-                    </a>
-                    {(hoveredGame === game?.id || overlayVisible[game?.id]) && (
-                    <div className="overlay">
-                      <button
-                        className="overlay-btn"
-                        onClick={(event) =>
-                          handleGameClick(event, game.game_id, false, game.title)
-                        }
-                      >
-                        Play
-                      </button>
-                      <button
-                        className="overlay-btn"
-                        onClick={(event) =>
-                          handleGameClick(event, game.game_id, true, game.title)
-                        }
-                      >
-                        Demo
-                      </button>
-                    </div>
+                  {/* More button */}
+                  {activeCategory === "All" && section.games.length > 6 && (
+                    <button
+                      className="btn btn-sm btn-link text-light position-absolute   translate-middle z-4 more-button"
+                      onClick={() => toggleSection(section.title)}
+                    >
+                      {isExpanded ? "Less" : "More"}
+                    </button>
                   )}
-                  </div>
-                ))}
+                </div>
+
+                <div
+                  className={`row inter-font ${
+                    section.title === "Others"
+                      ? "row-cols-3 row-cols-md-4 row-cols-lg-4Z elongate"
+                      : "row-cols-3"
+                  } g-3 mt-1 text-light`}
+                >
+                  {visibleGames.map((game, gameIndex) => (
+                    <div
+                      key={gameIndex}
+                      className="col casino-game-wrapper"
+                      onClick={(event) => toggleOverlay(event, game.id)}
+                      onMouseEnter={() => setHoveredGame(game.id)}
+                      onMouseLeave={() => setHoveredGame(null)}
+                    >
+                      <a href={game.link} className="text-decoration-none">
+                        <LazyLoadImage
+                          src={game.image}
+                          alt={game.title}
+                          effect="blur"
+                          title={game.title}
+                          className="img-fluid rounded image-size-casino"
+                        />
+                      </a>
+                      {(hoveredGame === game?.id ||
+                        overlayVisible[game?.id]) && (
+                        <div className="overlay">
+                          <button
+                            className="overlay-btn"
+                            onClick={(event) =>
+                              handleGameClick(
+                                event,
+                                game.game_id,
+                                false,
+                                game.title
+                              )
+                            }
+                          >
+                            Play
+                          </button>
+                          <button
+                            className="overlay-btn"
+                            onClick={(event) =>
+                              handleGameClick(
+                                event,
+                                game.game_id,
+                                true,
+                                game.title
+                              )
+                            }
+                          >
+                            Demo
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          );
-        })
+            );
+          })}
+        </>
       )}
 
       {/* Scroll to Top Button */}
@@ -255,3 +290,11 @@ const CrashGames = ({ activeCategory }) => {
 };
 
 export default CrashGames;
+
+const ImageCard = ({ imageSrc, altText }) => {
+  return (
+    <div className="card image-card">
+      <LazyLoadImage src={imageSrc} alt={altText} className="card-img-top" />
+    </div>
+  );
+};

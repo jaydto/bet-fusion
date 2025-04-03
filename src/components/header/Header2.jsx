@@ -8,7 +8,7 @@ import SidebarMobile from "../sidebar/awesome/SidebarMobile";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setState} from "../../redux/dataSlice";
-import Logo from "../../assets/img/logo.webp"
+import Logo from "../../assets/img/logo.png"
 
 const Header2 = React.memo(
 	() => {
@@ -28,9 +28,9 @@ const Header2 = React.memo(
 						variant="dark" style={{paddingLeft: '0px', paddingBottom: '0px'}}>
 					<Container fluid
 							   className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="BetTena"
+						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="BetDonjo"
 									  style={{paddingLeft: '0px', paddingBottom: '0px'}}>
-							<Link to={'/'} className={'BetTena-text-light'}>
+							<Link to={'/'} className={'BetDonjo-text-light'}>
 								<FontAwesomeIcon icon={faArrowLeftLong}/> Home
 							</Link>
 
@@ -39,7 +39,7 @@ const Header2 = React.memo(
 								style={{marginLeft: 'auto'}}>
 
 								<Link to={{pathname: "/"}} className=" resize-mobile">
-									<LazyLoadImage src={Logo} alt="BetTena" title="BetTena" effects="blur"
+									<LazyLoadImage src={Logo} alt="BetDonjo" title="BetDonjo" effects="blur"
 												   className={"image-size  "}/>
 								</Link>
 							</div>
@@ -58,7 +58,7 @@ const Header2 = React.memo(
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
 									<div className="col-3">
 										<div>
-											<LazyLoadImage src={Logo} alt="BetTena" title="BetTena" effects="blur" />
+											<LazyLoadImage src={Logo} alt="BetDonjo" title="BetDonjo" effects="blur" />
 										</div>
 									</div>
 								</Offcanvas.Title>

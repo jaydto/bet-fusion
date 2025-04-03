@@ -1,6 +1,6 @@
 import React from "react";
 import "./Loading.css"; // Create a CSS file for Loading styles
-import Logo  from "../../assets/img/logo.webp"
+import Logo  from "../../assets/img/logo.png"
 
 function Loading(props) {
     return (
@@ -9,7 +9,7 @@ function Loading(props) {
                 <span className={'bold'} style={{fontSize: "3.5rem", fontWeight:"800"}}>
                      {/* <span style={{color: "var(--light)"}}>BET</span><span
                     style={{color: "var(--crimson)"}}>tena</span> */}
-                    <img alt="Bettena" src={Logo} style={{width: "200px"}}/>
+                    <img alt="BetDonjo" src={Logo} style={{width: "200px"}}/>
                  </span>
             </div>
         </div>

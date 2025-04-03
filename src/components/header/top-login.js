@@ -269,7 +269,7 @@ const HeaderLogin = React.memo((props) => {
                 </Link>
                 <span className="d-flex align-items-center">
                   <span className="text-warning faded-color h4 m-0">
-                    You are using BetTena
+                    You are using BetDonjo
                   </span>
                   <CountryButton onFieldChanged={onFieldChanged} />
                 </span>

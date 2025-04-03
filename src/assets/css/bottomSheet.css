@@ -43,7 +43,7 @@
     font-size: 16px;
 }
 .active-market-display {
-    color: var(--BetTena-button-login)!important;
+    color: var(--bet-dojo-button-login)!important;
     font-size: 16px;
 }
 
@@ -74,7 +74,7 @@
     user-select: none;
     padding: 15px;
     margin-top: -15px;
-    background:var(--BetTena-body-bg)
+    background:var(--bet-dojo-body-bg)
 }
 .header .drag-icon span {
     height: 4px;
@@ -115,7 +115,7 @@
     }
     .bottom-sheet .content {
         overflow: auto;
-        background: var(--BetTena-body-bg);
+        background: var(--bet-dojo-body-bg);
         max-height: 100vh;
         height: 39vh;
         max-width: 1200%;
@@ -146,7 +146,7 @@
         overflow: auto;
         width: 100%;
         position: relative;
-        background: var(--BetTena-body-bg);
+        background: var(--bet-dojo-body-bg);
         max-height: 100vh;
         height: 37vh;
         max-width: 1200%;

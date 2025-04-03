@@ -13,10 +13,18 @@ import {
 } from "react-icons/fa";
 import SearchCasino from "./filter";
 import { CategorySkeletonLoader } from "./categorySkeleton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import star from "../../../assets/img/star-horizontal.png";
+import fire from "../../../assets/img/fire.png";
+import crash from "../../../assets/img/crash.png";
+import jackpot from "../../../assets/img/jackpot.png";
+import notification from "../../../assets/img/notification.png";
 
 const iconMap = {
-  popular: <FaStar />,
-  game_shows_new: <FaGamepad />,
+  popular: <LazyLoadImage src={fire} alt="popular" height={"20px"} />,
+  hot: <LazyLoadImage src={crash} alt="hot" height={"20px"} />,
+  casino: <LazyLoadImage src={jackpot} alt="hot" height={"20px"} />,
   fishing_and_hunting_new: <FaFish />,
   video_slot: <FaTicketAlt />,
   lottery_new: <FaDice />,
@@ -40,7 +48,6 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
   const casinoTypes = useSelector((state) => state.virtuals.casino_games_types);
   const loading = useSelector((state) => state.virtuals.loading);
 
-  
   // if (loading) return null; // Hide the section when loading
 
   // Add "All" category as default
@@ -70,42 +77,49 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
   return (
     <>
       <div className="position-relative w-100">
-        <button
-          className="bt-cat cat-p position-absolute category-pointers pointer-1 translate-middle-y text-white p-2 shadow z-index-10"
-          onClick={() => scroll("left")}
-        >
-          {"<"}
-        </button>
         {loading ? (
           <CategorySkeletonLoader />
         ) : (
           <div
             ref={scrollRef}
-            className="d-flex overflow-auto px-4 w-100 scrol-cat"
+            className="d-flex overflow-auto px-4 w-100 scrol-cat gap-2"
           >
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                className={`px-4 py-2 bg-cat-1 d-flex align-items-center rounded-lg shadow-sm transition-all bt-cat ${
-                  activeCategory === category.name
-                    ? "activeBt text-white"
-                    : "text-light"
-                }`}
-                onClick={() => onCategoryClick(category.name)}
-              >
-                {category.icon} <span className="ms-2">{category.name}</span>
-              </button>
-            ))}
+            {/* Floating button positioned at the start */}
+            <button className="floating-btn position-absolute top-50 start-0 translate-middle-y z-index-100">
+              <LazyLoadImage
+                src={star}
+                alt="Left Arrow"
+                onClick={() => scroll("left")}
+                height={"20px"}
+              />
+            </button>
+            <div className="d-flex gap-3 start-moved">
+              {/* Category Buttons */}
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  className={`category-btn  py-2 d-flex align-items-center rounded-lg shadow-sm transition-all ${
+                    activeCategory === category.name
+                      ? "active-category"
+                      : "inactive-category"
+                  }`}
+                  onClick={() => onCategoryClick(category.name)}
+                >
+                  {category.icon} <span className="ms-2">{category.name}</span>
+                </button>
+              ))}
+            </div>
           </div>
         )}
-        <button
-          className="bt-cat cat-p position-absolute category-pointers pointer-2 translate-middle-y text-white p-2 shadow z-index-10"
-          onClick={() => scroll("right")}
-        >
-          {">"}
+      </div>
+      {/* Notification Icon - Positioned below the categories */}
+      <div className="notification-icon-container  my-2">
+        <button className="notification-icon-btn">
+          <LazyLoadImage src={notification} alt="popular" height={"20px"} />
         </button>
       </div>
-      <SearchCasino />
+
+      {/* <SearchCasino /> */}
     </>
   );
 };

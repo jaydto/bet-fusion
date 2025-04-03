@@ -34,7 +34,7 @@ const SupportContainer = () => {
       <div className="account__section__support--line"></div>
 
       <div className="account__section">
-        <p className="account__section__desc tc">BetTena Mobile v6.0.1</p>
+        <p className="account__section__desc tc">BetDonjo Mobile v6.0.1</p>
       </div>
     </div>
   );

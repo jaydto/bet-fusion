@@ -80,7 +80,7 @@ const GamePlay = React.memo(
         }
 
         const configureDemoGame = () => {
-            setGameUrl(`https://demo.spribe.io/launch/${game || 'aviator'}?currency=USD&lang=EN&return_url=https://BetTena.com`)
+            setGameUrl(`https://demo.spribe.io/launch/${game || 'aviator'}?currency=USD&lang=EN&return_url=https://BetDonjo.com`)
             setGameUrlLoaded(true)
             setDemo(true)
         }

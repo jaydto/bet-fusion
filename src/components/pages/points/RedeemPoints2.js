@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Col, Row} from "antd";
-import authImg from '../../../assets/img/logo.webp'
+import authImg from '../../../assets/img/logo.png'
 import fire from '../../../assets/svg/fire.svg'
 import {Link, useNavigate} from "react-router-dom";
 import {getFromLocalStorage} from "../../utils/local-storage";
@@ -204,7 +204,7 @@ const RedeemPoints = React.memo(
                                     <p className="text-white px-3 d-flex align-items-center justify-content-center mt-3"
                                        style={{fontSize: "16px", opacity: '0.5px'}}>Bet ni Moto<LazyLoadImage src={fire}
                                                                                                               style={{width: "20px"}}
-                                                                                                              alt={'BetTena'}/>
+                                                                                                              alt={'BetDonjo'}/>
                                     </p>
                                 </Col>
                             </Row>

@@ -44,8 +44,8 @@ const CarouselLoader = React.memo(
                             }}
                             src={banner?.image_url}
                             onLoad={onImageLoaded}
-                            alt="BetTena"
-                            width={""}
+                            alt="BetDonjo"
+                            width={""}  
                             effects="blur"
                             onClick={() => {
                                 navigate(banner?.desktop_link_url)

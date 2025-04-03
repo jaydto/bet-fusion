@@ -14,6 +14,66 @@
   transform: scale(1.05);
 }
 
+.start-moved{
+  margin-left: 4.5rem;
+}
+/* Floating button style */
+.floating-btn {
+  position: absolute;
+  top: 50%;  /* Vertically center */
+  left: 0;   /* Align to the left of the scroll container */
+  transform: translateY(-50%);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: purple;
+  /* color: yellow; */
+  /* border: 2px solid yellow; */
+  padding: 8px 16px;
+  font-size: 1.2rem;
+  z-index: 100; /* Make sure it stays on top of other content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.notification-icon-btn{
+  background: inherit;
+  border: none;
+}
+/* Custom card styling */
+.image-card {
+  border-radius: 15px!important; /* Rounded corners */
+  border: 2px solid; /* Border with no color specified, inherits color from the parent */
+  border-color: inherit; /* Inherits the color of the border from the parent element */
+  overflow: hidden; /* Ensures that the rounded border applies correctly */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+  background: inherit;
+  margin: 2px 2px;
+}
+
+.card-img-top {
+  width: 100%;  /* Ensures the image takes the full width of the card */
+  height: auto; /* Maintains the image aspect ratio */
+}
+
+
+/* Category Buttons */
+.category-btn {
+  border-radius: 20px;
+  border: none;
+  background: var(--bg-cat-1, #2B2930); /* Default category button background */
+  color: white;
+  padding: 10px 29px 10px 20px;
+  font-weight: 500;
+  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+/* Inactive category style */
+.inactive-category {
+  border: 2px solid transparent;
+}
+
+/* Active category style */
+.active-category
+
+
 .overlay {
   position: absolute;
   top: 50%;
@@ -92,10 +152,88 @@
 .sports-list__item__label {
   font-size: 14px;
 }
-.bg-section-header {
-  background: #1e2d42 !important;
+.casino-body {
+  /* background: var(--bg-section-container) !important; */
+  background: var(--bg-section-container)!important;
+
   /* font-weight: bold; */
 }
+.bg-section-header{
+  background: var(--bg-card-dark)!important;
+
+}
+/* Title Container with Curved Bottom Right */
+.title-container {
+  width: 55%;
+  background-color: var(--bg-section-container);
+  padding: 10px 20px;
+  border-top-right-radius: 90px 100px;
+  border-bottom-right-radius: 24px 0px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Title Text */
+.title-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* More Button */
+.more-button {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+.section-header-image {
+  /* object-fit: cover; Ensures the image covers the entire container */
+  z-index: 1; /* Image stays behind the text and button */
+  width: 65%;
+  filter: opacity(0.5);
+}
+.title-header{
+  left: 10%;
+  top: 50%;
+}
+.more-button{
+  right: 0px;
+  top:50%;
+}
+
+.bg-section-header {
+  position: relative; /* Ensures the content is positioned above the image */
+  color: white; /* Adjust text color for visibility */
+}
+
+
+
+
+
+.translate-middle {
+  transform: translate(-50%, -50%);
+}
+
+.top-50 {
+  top: 50%;
+}
+
+.start-50 {
+  left: 50%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
 
 button.bt-cat {
   border: none;
@@ -166,12 +304,12 @@ input.search-cat:focus{
 @media (max-width: 991px) {
   
   .casino-game-wrapper img{
-    min-height: 110px;
+    min-height: 127px;
     /* height: ; */
 
   }
   .elongate .casino-game-wrapper img{
-    min-height: 170px;
+    min-height: 127px;
     /* height: -webkit-fill-available; */
 
   }
@@ -196,7 +334,7 @@ input.search-cat:focus{
   }
 
   .elongate .casino-game-wrapper img {
-    min-height: 280px;
+    min-height: 220px;
     max-height: 300px;
 
   }

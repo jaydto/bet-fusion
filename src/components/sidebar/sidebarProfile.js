@@ -75,7 +75,7 @@ const SidebarProfile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
                             <FontAwesomeIcon icon={faMobile} style={{fontSize:'24px'}}/>
-                            <a href={"/https://cdn.BetTena.com/BetTenaapp.apk"} className={'text-profile'} onClick={() => {
+                            <a href={"/https://cdn.BetDonjo.com/BetDonjoapp.apk"} className={'text-profile'} onClick={() => {
                                 gaEventTracker('Visit App Page');
                             }}>App
                             </a>

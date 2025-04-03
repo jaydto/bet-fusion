@@ -5,7 +5,7 @@
   }
   
   .casino-skeleton-section {
-    background: var(--BetTena-lite);
+    background: var(--bet-dojo-lite);
     padding: 15px;
     border-radius: 10px;
   }
@@ -25,7 +25,7 @@
   }
   
   .skeleton-card {
-    background: var(--BetTena-body-bg);
+    background: var(--bet-dojo-body-bg);
     border-radius: 8px;
     padding: 10px;
   }

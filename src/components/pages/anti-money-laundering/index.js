@@ -88,7 +88,7 @@ const AntiMoneyLaundering = () => {
                         illegal activity.
                       </p>
                       <p>
-                        BetTena is obliged to block such funds and to
+                        BetDonjo is obliged to block such funds and to
                         undertake measure as provided in the AML policy rules.
                       </p>
 

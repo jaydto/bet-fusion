@@ -77,7 +77,7 @@ const Withdraw = React.memo((props) => {
             </span>
 
             <span className={"w-50 d-flex justify-content-center"}>
-              <h4 className="inline-block BetTena-text-light">
+              <h4 className="inline-block BetDonjo-text-light">
                 WITHDRAW FUNDS (MOBILE MONEY)
               </h4>{" "}
             </span>
@@ -159,19 +159,19 @@ const PaymentInstructions = (props) => {
       <label className="header text-info">Withdrawal Instructions</label>
       <div className="container d-flex flex-column">
         <div className="row">
-          <div className="col BetTena-text-light">
+          <div className="col BetDonjo-text-light">
             {" "}
             1. Enter the amount you wish to withdraw.
           </div>
         </div>
         <div className="row">
-          <div className="col BetTena-text-light">
+          <div className="col BetDonjo-text-light">
             {" "}
             2. Click on the withdraw funds button.
           </div>
         </div>
         <div className="row">
-          <div className="col BetTena-text-light">
+          <div className="col BetDonjo-text-light">
             {" "}
             3. Check your phone for an M-Pesa Confirmation.
           </div>

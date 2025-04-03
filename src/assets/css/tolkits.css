@@ -120,7 +120,7 @@ input, select, textarea {
 }
 
 .mobile-menu {
-    background-color:var(--BetTena-header-bg);
+    background-color:var(--bet-dojo-header-bg);
     position: fixed;
     bottom: 0;
     visibility:visible;
@@ -300,7 +300,7 @@ video {
 }
 
 .header-menu{
-    background: var(--BetTena-body-bg);
+    background: var(--bet-dojo-body-bg);
 }
 
 .header-menu li.active:after {
@@ -311,7 +311,7 @@ video {
     height: 5px;
     left: 50%;
     transform: translate(-50%);
-    background: var(--BetTena-button-login);
+    background: var(--bet-dojo-button-login);
     bottom: 0;
     border-bottom: none;
     border-top-right-radius: 10px;
@@ -319,7 +319,7 @@ video {
 }
 
 .header-menu li.active a strong{
-    color:var(--BetTena-button-login)!important;
+    color:var(--bet-dojo-button-login)!important;
     font-weight:700;
 }
 
@@ -359,10 +359,10 @@ video {
 }
 
 .accordion-button.jackpot {
-background: var(--BetTena-body-bg)!important;
+background: var(--bet-dojo-body-bg)!important;
 }
 .accordion-button {
-background: var(--BetTena-body-bg)!important;
+background: var(--bet-dojo-body-bg)!important;
 }
 
 .no-border-radius {
@@ -481,12 +481,12 @@ background: var(--BetTena-body-bg)!important;
 }
 
 .accordion-container {
-    background: var(--BetTena-primary) !important;
+    background: var(--bet-dojo-primary) !important;
 
 }
 
 .accordion-item-panel {
-    background: var(--BetTena-primary);
+    background: var(--bet-dojo-primary);
     padding: 10px 35px;
     line-height: 30px;
     font-size: var(--font-size-large);
@@ -2017,7 +2017,7 @@ events-header {
 
 .top-nav-login {
     top: -2px;
-    padding-top: var(--BetTena-header-bg)!important;
+    padding-top: var(--bet-dojo-header-bg)!important;
     background-size: cover;
     background-position: center center;
     padding-bottom: 17px;
@@ -3472,7 +3472,7 @@ pre code {
 }
 
 table {
-    background-color: var(--BetTena-primary);
+    background-color: var(--bet-dojo-primary);
     width: 100%;
 }
 
@@ -4609,7 +4609,7 @@ fieldset[disabled] .fm.fl {
 }
 
 .primary-bg {
-    background: var(--BetTena-primary);
+    background: var(--bet-dojo-primary);
     color: var(--light);
 }
 
@@ -6309,7 +6309,7 @@ select[multiple].eq > .fj > .cg {
     position: relative;
     display: block;
     padding: 5px 15px;
-    background: var(--BetTena-primary);
+    background: var(--bet-dojo-primary);
     opacity: 0.8;
 }
 
@@ -6909,7 +6909,7 @@ ul.sport {
     
     /* Track */
     ::-webkit-scrollbar-track {
-        background: var(--BetTena-primary);
+        background: var(--bet-dojo-primary);
     }
     
     
@@ -7730,7 +7730,7 @@ ul.sport {
         display: inline-block;
         overflow-y: hidden;
         overflow-x: auto;
-        background:var(--BetTena-header-bg);
+        background:var(--bet-dojo-header-bg);
         /* background: orange!important; */
         -webkit-overflow-scrolling: touch;
         height: 55px;
@@ -7754,7 +7754,7 @@ ul.sport {
         white-space: nowrap;
         overflow-x: hidden;
         overflow-y: hidden;
-        background: var(--BetTena-header-bg);
+        background: var(--bet-dojo-header-bg);
         max-height: 59px;
     }
 
@@ -16139,8 +16139,8 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .background-primary {
-    background-color: var(--BetTena-lite);
-    /* background-color: var(--BetTena-header-bg); */
+    background-color: var(--bet-dojo-lite);
+    /* background-color: var(--bet-dojo-header-bg); */
 }
 
 .modal-50w {
@@ -16154,7 +16154,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 /*}*/
 
 .filters-modal .modal-content {
-    background-color: var(--BetTena-header-bg);
+    background-color: var(--bet-dojo-header-bg);
     color: #fff;
 }
 .market-item:hover {
@@ -16308,7 +16308,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    background-color: var(--BetTena-header-bg);
+    background-color: var(--bet-dojo-header-bg);
     color: white;
     border: none !important;
     line-height: 2;
@@ -16341,7 +16341,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     font-size: 13px;
     color: white;
     text-align: left;
-    box-shadow: 0 4px 8px 0 var(--BetTena-primary), 0 6px 20px 0 var(--btn-color)!important;
+    box-shadow: 0 4px 8px 0 var(--bet-dojo-primary), 0 6px 20px 0 var(--btn-color)!important;
 }
 
 .promotion-header {
@@ -16520,7 +16520,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .profile-bg {
     /*background: #253743;*/
-    background: var(--BetTena-primary);
+    background: var(--bet-dojo-primary);
 }
 
 .user-style {
@@ -18436,7 +18436,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
     border-color: rgba(0, 0, 0, 0.12);
 }
 /*.sr-bb .srt-base-1 {*/
-/*  background-color: var(--BetTena-body-bg);*/
+/*  background-color: var(--bet-dojo-body-bg);*/
 /*  color: var(--light);*/
 /*  border-color: rgba(0, 0, 0, 0.12);*/
 /*}*/

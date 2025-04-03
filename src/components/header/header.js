@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  
-  useState,
-} from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import { StoreContext } from "../../context/store";
@@ -13,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Navbar, Offcanvas } from "react-bootstrap";
 import SidebarMobile from "../sidebar/awesome/SidebarMobile";
+import { faAndroid } from "@fortawesome/free-brands-svg-icons";
 
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import LoginSection from "./LoginSection";
@@ -20,7 +15,8 @@ import { UserInfo } from "./UserInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { configSettings, setState } from "../../redux/dataSlice";
 import { userBalance } from "../../redux/authSlice";
-import Logo from "../../assets/img/logo.webp";
+import Logo from "../../assets/img/logo.png";
+import casino_table from "../../assets/img/casino_table.png";
 import {
   checkDesktopTopNavigation,
   checkNavigation,
@@ -28,10 +24,15 @@ import {
   shouldShowMobileNav,
   shouldShowHeader,
 } from "../../redux/navigationAction";
-import './header.css'
+import "./header.css";
 import useWindowDimensions from "./Dimensions";
 import DepositModal from "../modals/DepositModal";
 import NavLinks from "./NavLinks";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import CustomNavbarBrand from "./customNavbar";
 
 const ProfileMenu = React.lazy(() => import("./profile-menu"));
 
@@ -204,7 +205,58 @@ const Header = React.memo((props) => {
     dispatchRedux(setState("call_to_action", true));
   };
 
+  // const PromoActive = () => {
+  //   // console.log('appConfigs', appConfigs)
+
+  //   return (
+  //     settings || appConfigs) !== null ? (
+  //     Object.keys(
+  //       settings?.active_promotion?.mobile_promo ||
+  //         appConfigs?.active_promotion?.mobile_promo ||
+  //         {}
+  //     )?.map((key, index) => {
+  //       const promoValue = settings
+  //         ? settings.active_promotion.mobile_promo[key]
+  //         : appConfigs?.active_promotion?.mobile_promo[key];
+
+  //       if (key === "promo_message") {
+  //         return promoValue.split(" ").map((promoWord, indexWord) => {
+  //           if (indexWord % 2 === 0) {
+  //             return (
+  //               <strong key={indexWord} style={styles}>
+  //                 {promoWord}&nbsp;
+  //               </strong>
+  //             );
+  //           } else if (indexWord === promoValue.length - 1) {
+  //             return <span key={indexWord}>{promoWord}</span>;
+  //           } else {
+  //             return <span key={indexWord}>{promoWord}&nbsp;</span>;
+  //           }
+  //         });
+  //       }
+  //     })
+  //   ) : (
+  //     <></>
+  //   );
+  // };
+
   // console.log("notshowHeader", notShowHeaderNav)
+
+  const PromoActive = () => {
+    return (
+      <div className="row ">
+        <div className="d-flex flex-column justify-content-center">
+          <span
+            className="mb-1 h4"
+            style={{ color: "var(--donjo-text)", fontWeight: "800" }}
+          >
+            BetDonjo App
+          </span>
+          <span className="mb-0">Bet Like a Winner</span>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -227,22 +279,40 @@ const Header = React.memo((props) => {
             variant="dark"
           >
             <div
-              className={`${"optional-action"}  ${
+              className={`${
+                close_call_to_action
+                  ? "optional-action"
+                  : "optional-action active"
+              }  ${
                 showDownload ? "d-none" : "d-sm-flex d-lg-none d-md-none w-100"
               }`}
-            ></div>
+            >
+              <CallToAction
+                settings={settings}
+                appConfigs={appConfigs}
+                handleCloseCallToAction={handleCloseCallToAction} // Pass the handler down as a prop
+                navigate={navigate}
+                gaEventTracker={gaEventTracker}
+                PromoActive={PromoActive}
+              />
+            </div>
             <div
               className={
                 "w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main"
               }
             >
               <div className={"d-flex w-100 directions-header-nav"}>
-                <Navbar.Brand
+                <CustomNavbarBrand
+                  toggleMenu={toggleMenu}
+                  user={user}
+                  checkDesktop={checkDesktop}
+                />
+                {/* <Navbar.Brand
                   className={`e logo align-self-start menu-control d-flex justify-content-between w-100`}
-                  title="BetTena"
+                  title="BetDonjo"
                 >
                   <div
-                    className="col-7 logo-BetTena resize-mobile d-flex align-items-center mb-2"
+                    className="col-7 logo-BetDonjo resize-mobile d-flex align-items-center mb-2"
                     style={{ marginLeft: "2px" }}
                   >
                     <div
@@ -262,8 +332,8 @@ const Header = React.memo((props) => {
                     <img
                       src={Logo}
                       onClick={() => navigate("/")}
-                      alt="BetTena"
-                      title="BetTena"
+                      alt="BetDonjo"
+                      title="BetDonjo"
                       effects="blur"
                       className={`image-size ${!user && "logo-top"} `}
                       style={
@@ -276,14 +346,11 @@ const Header = React.memo((props) => {
                       }
                     />
 
-                    
-                    <NavLinks/>
+                    <NavLinks />
                   </div>
 
-                  
-
                   <UserInfo profile={checkDesktop} user={user} />
-                </Navbar.Brand>
+                </Navbar.Brand> */}
 
                 {/*todo check information provided for a user*/}
                 <div
@@ -299,8 +366,6 @@ const Header = React.memo((props) => {
                   </div>
                 </div>
               </div>
-
-             
 
               <Offcanvas
                 style={{
@@ -328,9 +393,8 @@ const Header = React.memo((props) => {
                       <div>
                         <img
                           src={Logo}
-                          alt="BetTena"
-                          title="BetTena"
-                         
+                          alt="BetDonjo"
+                          title="BetDonjo"
                           effects="blur"
                         />
                       </div>
@@ -349,3 +413,100 @@ const Header = React.memo((props) => {
   );
 });
 export default React.memo(Header);
+
+const CallToAction = ({
+  settings,
+  appConfigs,
+  handleCloseCallToAction,
+  gaEventTracker,
+  navigate,
+  PromoActive,
+}) => {
+  return (
+    // settings?.active_promotion?.app_promo?.promo_active === "1" && (
+    <div
+      title={"Promotion"}
+      className={"lite-top d-flex flex-column"}
+      // onClick={() => {
+      //   const activePromo = settings
+      //     ? settings?.active_promotion?.mobile_promo
+      //     : appConfigs?.active_promotion?.mobile_promo;
+
+      //   if (
+      //     activePromo &&
+      //     activePromo.promo_active === "1" &&
+      //     activePromo.promo_url
+      //   ) {
+      //     gaEventTracker(activePromo?.promo_utm);
+      //     navigate(
+      //       `${activePromo?.promo_url}?utm_source=${activePromo?.promo_utm}`
+      //     );
+      //   }
+      // }}
+    >
+      <div
+        className={"app-download-link  d-flex justify-content-between w-100"}
+      >
+        <div className="col-1">
+          <FontAwesomeIcon
+            icon={faXmark}
+            className={"close-call-action"}
+            onClick={(e) => handleCloseCallToAction(e)}
+          />
+        </div>
+        <span
+          className={
+            "color-app-text flashy col-11 d-flex align-items-center justify-content-center"
+          }
+        >
+          <span className="d-flex justify-content-between alighn-items-center w-100">
+            <div className="col-2">
+              <LazyLoadImage
+                src={casino_table}
+                alt=" "
+                className="casino-t-image"
+              />
+            </div>
+            <PromoActive />
+            <div className="col-3 d-flex align-items-center justify-content-end p-2">
+              <div className="py-1">
+                <button className="btn donjo-button  align-items-center px-1 d-flex  px-4 py-1">
+                  <FontAwesomeIcon icon={faAndroid} className="me-2" />
+                  <div className="d-flex flex-column justify-content-start align-items-start">
+                    <span>Free</span>
+                    <span> Download</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </span>
+        </span>
+      </div>
+    </div>
+    // )
+  );
+};
+
+// PropTypes for validation
+CallToAction.propTypes = {
+  settings: PropTypes.shape({
+    active_promotion: PropTypes.shape({
+      app_promo: PropTypes.shape({
+        promo_active: PropTypes.string,
+      }),
+      mobile_promo: PropTypes.shape({
+        promo_active: PropTypes.string,
+        promo_message: PropTypes.string,
+      }),
+    }),
+  }),
+  appConfigs: PropTypes.shape({
+    active_promotion: PropTypes.shape({
+      mobile_promo: PropTypes.shape({
+        promo_active: PropTypes.string,
+        promo_message: PropTypes.string,
+      }),
+    }),
+  }),
+  handleCloseCallToAction: PropTypes.func.isRequired, // Function to handle the close action
+};

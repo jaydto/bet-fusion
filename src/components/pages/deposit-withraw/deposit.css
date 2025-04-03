@@ -82,7 +82,7 @@
     text-align: center;
 }
 .deposit-button.login-button2:disabled{
-    background: var(--BetTena-button-login)!important;
+    background: var(--bet-dojo-button-login)!important;
     opacity:0.5!important;
     white-space:nowrap;
 }

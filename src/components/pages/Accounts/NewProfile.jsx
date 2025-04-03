@@ -73,7 +73,7 @@ const NewProfile = React.memo(() => {
         <div className="profile-container-desktop d-flex">
           <div
             className="col mobile-full-width"
-            style={{ background: "var(--BetTena-header-bg)" }}
+            style={{ background: "var(--bet-dojo-header-bg)" }}
           >
             <div className="iphone">
               <div className="content mb-4 px-4">

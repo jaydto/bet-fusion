@@ -15,7 +15,7 @@ const backgroundStyle = {
   // background: `url(${gameDay})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  backgroundColor:"var(--BetTena-header-bg)",
+  backgroundColor:"var(--bet-dojo-header-bg)",
   //   backgroundPosition:"bottom",
   backgroundAttachment: "fixed",
 };

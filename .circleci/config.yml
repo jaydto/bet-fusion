@@ -41,14 +41,14 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
       - deploy:
           requires:
             - build
           filters:
             branches:
               only:
-                - master
+                - main
 
 jobs:
   build:
@@ -91,10 +91,9 @@ jobs:
       - run:
           name: Build
           command: |
-            if [ $CIRCLE_BRANCH = 'master' ]; then
+            if [ $CIRCLE_BRANCH = 'main' ]; then
               CI="" npm run build
             fi
-
 
       - run:
           name: List Files in Build Directory

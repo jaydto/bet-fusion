@@ -37,7 +37,7 @@ workflows:
   build_and_deploy:
     jobs:
       - build:
-          context: crash-kali
+          context: bet-dojo
           filters:
             branches:
               only:
@@ -138,7 +138,7 @@ jobs:
       # Use AWS S3 orb to sync build files to S3 bucket
       - aws-s3/sync:
           from: ./build
-          to: s3://crash-kali
+          to: s3://bet-dojo
           aws-access-key-id: aws_user
           aws-secret-access-key: aws_password
           aws-region: aws_region

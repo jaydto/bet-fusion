@@ -208,7 +208,7 @@ const Register = () => {
         <Row
           justify="center"
           className="align-items-stretch h-100"
-          style={{ backgroundColor: "var(--bet-dojo-header-bg)" }}
+          // style={{ backgroundColor: "var(--bet-dojo-header-bg)" }}
         >
           <div
             className={

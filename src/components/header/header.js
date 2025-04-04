@@ -390,7 +390,7 @@ const CallToAction = ({
       <div
         className={"app-download-link  d-flex justify-content-between w-100"}
       >
-        <div className="col-1">
+        <div className="col-1 z-3 position-relative">
           <FontAwesomeIcon
             icon={faXmark}
             className={"close-call-action"}

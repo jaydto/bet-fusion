@@ -34,7 +34,6 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import CustomNavbarBrand from "./customNavbar";
 
-
 const Header = React.memo((props) => {
   const { slip, scrollPosition, jackpot } = props;
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
@@ -282,9 +281,7 @@ const Header = React.memo((props) => {
                 close_call_to_action
                   ? "optional-action"
                   : "optional-action active"
-              }  ${
-                showDownload ? "d-none" : "d-sm-flex  d-md-none w-100"
-              }`}
+              }  ${showDownload ? "d-none" : "w-100"}`}
             >
               <CallToAction
                 settings={settings}
@@ -297,7 +294,7 @@ const Header = React.memo((props) => {
             </div>
             <div
               className={
-                "w-100 d-flex justify-content-between mobile-change desktop-ipad-size top-header-main"
+                "w-100 d-flex justify-content-between desktop-ipad-size top-header-main"
               }
             >
               <div className={"d-flex w-100 directions-header-nav"}>
@@ -306,8 +303,6 @@ const Header = React.memo((props) => {
                   user={user}
                   checkDesktop={checkDesktop}
                 />
-               
-              
               </div>
 
               <Offcanvas

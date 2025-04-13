@@ -6,7 +6,7 @@
 
 .casino-game-wrapper img {
   width: 100%;
-  border-radius: 15px!important;
+  border-radius: 15px !important;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -14,14 +14,14 @@
   transform: scale(1.05);
 }
 
-.start-moved{
+.start-moved {
   margin-left: 4.5rem;
 }
 /* Floating button style */
 .floating-btn {
   position: absolute;
-  top: 50%;  /* Vertically center */
-  left: 0;   /* Align to the left of the scroll container */
+  top: 50%; /* Vertically center */
+  left: 0; /* Align to the left of the scroll container */
   transform: translateY(-50%);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -33,13 +33,13 @@
   z-index: 100; /* Make sure it stays on top of other content */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.notification-icon-btn{
+.notification-icon-btn {
   background: inherit;
   border: none;
 }
 /* Custom card styling */
 .image-card {
-  border-radius: 15px!important; /* Rounded corners */
+  border-radius: 15px !important; /* Rounded corners */
   border: 2px solid; /* Border with no color specified, inherits color from the parent */
   border-color: inherit; /* Inherits the color of the border from the parent element */
   overflow: hidden; /* Ensures that the rounded border applies correctly */
@@ -49,16 +49,15 @@
 }
 
 .card-img-top {
-  width: 100%;  /* Ensures the image takes the full width of the card */
+  width: 100%; /* Ensures the image takes the full width of the card */
   height: auto; /* Maintains the image aspect ratio */
 }
-
 
 /* Category Buttons */
 .category-btn {
   border-radius: 20px;
   border: none;
-  background: var(--bg-cat-1, #2B2930); /* Default category button background */
+  background: var(--bg-cat-1, #2b2930); /* Default category button background */
   color: white;
   padding: 10px 29px 10px 20px;
   font-weight: 500;
@@ -71,10 +70,7 @@
 }
 
 /* Active category style */
-.active-category
-
-
-.overlay {
+.active-category .overlay-casino {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -104,10 +100,35 @@
 }
 
 /* Mobile Click Support */
-@media (max-width: 768px) {
-  .overlay {
+.overlay-casino {
+  opacity: 1;
+  position: absolute;
+
+  z-index: 100;
+  top: 35%;
+}
+@media (min-width: 768px) {
+  .overlay-casino {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .overlay-casino {
     opacity: 1;
     flex-direction: column;
+    z-index: 100;
+    top: 25% !important;
+    display: flex;
+    align-items: center;
+    left: 50%;
+    right: 50%;
+    gap: 5px;
   }
 }
 
@@ -154,13 +175,13 @@
 }
 .casino-body {
   /* background: var(--bg-section-container) !important; */
-  background: var(--bg-section-container)!important;
+  background: var(--bg-section-container) !important;
+  padding-bottom: 20px;
 
   /* font-weight: bold; */
 }
-.bg-section-header{
-  background: var(--bg-card-dark)!important;
-
+.bg-section-header {
+  background: var(--bg-card-dark) !important;
 }
 /* Title Container with Curved Bottom Right */
 .title-container {
@@ -188,31 +209,25 @@
   transform: translateY(-50%);
 }
 
-
-
 .section-header-image {
   /* object-fit: cover; Ensures the image covers the entire container */
   z-index: 1; /* Image stays behind the text and button */
   width: 65%;
   filter: opacity(0.5);
 }
-.title-header{
+.title-header {
   left: 10%;
   top: 50%;
 }
-.more-button{
+.more-button {
   right: 0px;
-  top:50%;
+  top: 50%;
 }
 
 .bg-section-header {
   position: relative; /* Ensures the content is positioned above the image */
   color: white; /* Adjust text color for visibility */
 }
-
-
-
-
 
 .translate-middle {
   transform: translate(-50%, -50%);
@@ -234,12 +249,11 @@
   height: 100%;
 }
 
-
 button.bt-cat {
   border: none;
 }
 .inter-font {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 .cat-p {
   background: #1e2d42;
@@ -267,14 +281,13 @@ button.bt-cat {
   border-radius: 25px; /* To match pill shape */
 }
 
-input.search-cat:focus{
-  border: none!important;
-
+input.search-cat:focus {
+  border: none !important;
 }
 
 .search-casino .input-group-text {
   background-color: transparent !important;
-  border: 2px solid crimson!important;
+  border: 2px solid crimson !important;
   border-radius: 15px;
 }
 
@@ -285,7 +298,6 @@ input.search-cat:focus{
 .actBtns button:hover {
   opacity: 0.75; /* Hover effect */
 }
-
 
 .new-alert-badge {
   background-color: red;
@@ -300,20 +312,16 @@ input.search-cat:focus{
   display: none;
 }
 
-
 @media (max-width: 991px) {
-  
-  .casino-game-wrapper img{
+  .casino-game-wrapper img {
     min-height: 127px;
     /* height: ; */
-
   }
-  .elongate .casino-game-wrapper img{
+  .elongate .casino-game-wrapper img {
     min-height: 127px;
     /* height: -webkit-fill-available; */
-
   }
-  .casino-game-wrapper a span{
+  .casino-game-wrapper a span {
     /* height: -webkit-fill-available; */
   }
   .category-pointers {
@@ -325,26 +333,23 @@ input.search-cat:focus{
   .casino-game-wrapper img {
     min-height: 195px;
     max-height: 220px;
-
   }
 
-  .casino-game-wrapper a span{
+  .casino-game-wrapper a span {
     max-height: 220px;
-    width:-webkit-fill-available;
+    width: -webkit-fill-available;
   }
 
   .elongate .casino-game-wrapper img {
     min-height: 220px;
     max-height: 300px;
-
   }
-  
 
-  .elongate .casino-game-wrapper a span{
+  .elongate .casino-game-wrapper a span {
     max-height: 280px;
-    width:-webkit-fill-available;
+    width: -webkit-fill-available;
   }
-  
+
   .category-pointers {
     top: 50%;
   }

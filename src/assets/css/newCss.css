@@ -11,17 +11,68 @@ body {
   color:var(--dark);
   
 }
+.color-app-text {
+  color: var(--light);
+}
+
+.lite-top {
+  justify-content: center;
+  align-items: center;
+  transition-delay: 250ms;
+  transition-duration: 250ms;
+  width: 100%;
+  background: var(--app-download-link-color);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.12),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.24);
+  color: var(--lite-top-color);
+  font-weight: 700;
+  height: 45.75px;
+  display: flex;
+  align-items: center;
+  border-radius: 1px;
+}
+
+.lite-mode {
+  width: 46%;
+  text-align: center;
+}
+
+.app-download-link {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.lite-top a {
+  padding: 1px 10px !important;
+  color: var(--lite-top-color);
+  width: 100%;
+}
+
+.top-header-main {
+  position: sticky;
+  top: 0px;
+}
+.ipad-show {
+  display: flex !important;
+  margin-right: 0px;
+}
+.mobile-menu{
+  margin: auto;
+  max-width: 767px;
+}
 
 @media screen and (min-width: 992px) {
   .carousel-overlay{
     transform: translate(-50%, -45%) !important;
   }
   .casino-carousel-container{
-    height: 29vh !important;
+    height: 35vh !important;
 
   }
   .carousel-container{
-    height:26vh !important;
+    height:34vh !important;
 
   }
   
@@ -43,14 +94,14 @@ body {
 .carousel-container {
 position: relative;
 width: 100%;
-height: 17vh; /* Slightly increased height for better effect */
+height: 20vh; /* Slightly increased height for better effect */
 overflow: hidden;
 display: flex;
 align-items: center;
 justify-content: center;
 }
 .casino-carousel-container{
-height: 18vh;
+height: 21vh;
 }
 
 .carousel-background {
@@ -892,7 +943,7 @@ select::after {
 }
 
 .width-centric-page {
-  width: 50vw;
+  width: 40vw;
 }
 
 .all-markkets-search {
@@ -1959,10 +2010,11 @@ img.nare-league {
 }
 
 .mobile-menu-container {
-  width: 100vw;
+  background: var(--bottom-c);
 }
 .mobile-menu-container table {
-  width: 100vw;
+  max-width: 767px;
+  margin: auto;
 }
 .deposit-modal-top-title {
   margin-top: 3rem !important;
@@ -2079,6 +2131,7 @@ img.nare-league {
   transition: position linear 0.7s;
   margin: auto;
   max-width: 767px;
+  display: block;
 }
 .jp-tabs li button {
   color: var(--light) !important;
@@ -2141,6 +2194,28 @@ img.nare-league {
 .optional-action {
   transition: display linear 0.7s;
 }
+.bloc-icon {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 60px;
+  background: var(--bottom-c)!important;
+}
+.nav__betslip {
+  /* margin: -20px auto; */
+  height: 57px;
+  top: -60px;
+  left: 6%;
+  right: 50%;
+  width: 57px;
+  font-weight: 800;
+  position: absolute;
+  font-size: 14px;
+  border: none;
+}
+
 @media (max-width: 991px) {
   .slip-max-height {
     display: grid;
@@ -2835,15 +2910,7 @@ img.nare-league {
     width: 100% !important;
   }
 
-  .bloc-icon {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    flex-direction: column;
-    height: 65px;
-  }
+
 
   .btn.login-button:hover {
     background: var(--login-btn-cl) !important;
@@ -2991,9 +3058,7 @@ img.nare-league {
     width: 30px;
   }
 
-  .color-app-text {
-    color: var(--light);
-  }
+ 
 
   .app-color {
     display: flex;
@@ -3006,45 +3071,6 @@ img.nare-league {
   width: 4rem;
 }
 
-  .lite-top {
-    justify-content: center;
-    align-items: center;
-    transition-delay: 250ms;
-    transition-duration: 250ms;
-    width: 100%;
-    background: var(--app-download-link-color);
-    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.12),
-      0px 2px 2px 0px rgba(0, 0, 0, 0.24);
-    color: var(--lite-top-color);
-    font-weight: 700;
-    height: 45.75px;
-    display: flex;
-    align-items: center;
-    border-radius: 1px;
-  }
-
-  .lite-mode {
-    width: 46%;
-    text-align: center;
-  }
-
-  .app-download-link {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-  }
-
-  .lite-top a {
-    padding: 1px 10px !important;
-    color: var(--lite-top-color);
-    width: 100%;
-  }
-
-  .top-header-main {
-    position: sticky;
-    top: 0px;
-  }
 
   .line-on-slip-items-container {
     background: var(--betslip-list);
@@ -3223,10 +3249,7 @@ img.nare-league {
     display: none;
   }
 
-  .ipad-show {
-    display: flex !important;
-    margin-right: 0px;
-  }
+
 
   .footer-mobile-none {
     display: none;
@@ -3350,6 +3373,9 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
+  .scroll-to-top{
+    bottom:59px!important;
+  }
 
   .top-separator {
     /* box-shadow: 25px -12px 7px 11px var(--bet-dojo-footer); */
@@ -3579,15 +3605,7 @@ img.nare-league {
     margin-right: 2rem;
 }
 
-  .bloc-icon {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    flex-direction: column;
-    height: 57px;
-  }
+
 
   .more-options-font {
     font-size: 10px !important;

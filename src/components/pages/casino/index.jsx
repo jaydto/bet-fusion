@@ -17,7 +17,7 @@ const Index = () => {
   const pathname = window.location.pathname;
 
   return (
-    <div style={{ margin: "auto", maxWidth: "991px", marginTop: "6rem" }}>
+    <div style={{ margin: "auto", maxWidth: "991px", marginTop: "4rem" }}>
       {/* Menu / Sport List */}
       {/* <SportsList/> */}
       {pathname==="/" && <SearchModal />}

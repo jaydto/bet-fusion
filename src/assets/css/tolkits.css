@@ -120,7 +120,7 @@ input, select, textarea {
 }
 
 .mobile-menu {
-    background-color:var(--bet-dojo-header-bg);
+    background-color:var(--bottom-c);
     position: fixed;
     bottom: 0;
     visibility:visible;
@@ -7563,15 +7563,7 @@ ul.sport {
         border-radius: 100px;
         width: 30px;
     }
-    .nav__betslip {
-        margin: -7px auto;
-        height: 55px;
-        border-radius: 50%;
-        width: 55px;
-        font-weight: 800;
-        font-size: 14px;
-        border: none;
-    }
+  
     .tablet-only{
         display: flex!important;
     }
@@ -14845,11 +14837,7 @@ img.zoom-img {
         justify-content: center;
         align-items: flex-end;
     }
-    .active {
-        /*background-color: #16202C !important;*/
-        border-bottom: thin solid yellow;
-
-    }
+   
     .active > p{
         color: yellow;
     }

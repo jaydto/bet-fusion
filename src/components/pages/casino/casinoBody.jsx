@@ -7,6 +7,7 @@ import CasinoSkeletonLoader from "./casino-skeleton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import casinoBackground from "../../../assets/img/art-board.png";
 import bgSection from "../../../assets/img/section-header.png";
+import MobileMenu from "../../mobile-menu";
 
 const CrashGames = ({ activeCategory }) => {
   const dispatch = useDispatch();
@@ -142,7 +143,8 @@ const CrashGames = ({ activeCategory }) => {
   };
 
   return (
-    <div className="container mt-1">
+    <div>
+<div className="container mt-1" style={{marginBottom:"60px"}}>
       {loading ? (
         <CasinoSkeletonLoader />
       ) : (
@@ -220,7 +222,7 @@ const CrashGames = ({ activeCategory }) => {
                       </a>
                       {(hoveredGame === game?.id ||
                         overlayVisible[game?.id]) && (
-                        <div className="overlay">
+                        <div className="overlay-casino">
                           <button
                             className="overlay-btn"
                             onClick={(event) =>
@@ -286,6 +288,9 @@ const CrashGames = ({ activeCategory }) => {
         }
       `}</style>
     </div>
+    <MobileMenu/>
+    </div>
+    
   );
 };
 

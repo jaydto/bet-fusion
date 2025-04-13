@@ -5,7 +5,6 @@ import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import { setState } from "../../../redux/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { virtualGameChoiceOptions } from "../../matches";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "react-bootstrap";
@@ -26,11 +25,7 @@ const PromoCards = () => {
 
   const navigate = useNavigate();
 
-  const showBottomSheet = (data) => {
-    const options = virtualGameChoiceOptions(data);
-    setGames(options);
-    dispatchRedux(setState("promo_bottom_sheet", true));
-  };
+
   const collapseBottomSheet = () => {
     dispatchRedux(setState("promo_bottom_sheet", false));
   };

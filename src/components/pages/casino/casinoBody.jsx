@@ -9,6 +9,8 @@ import casinoBackground from "../../../assets/img/art-board.png";
 import more from "../../../assets/img/mobile/more-side.png";
 import bgSection from "../../../assets/img/section-header.png";
 import MobileMenu from "../../mobile-menu";
+import MpesaCard from "./mpesa-card";
+import Footer from "./footer";
 
 const CrashGames = ({ activeCategory }) => {
   const dispatch = useDispatch();
@@ -145,7 +147,7 @@ const CrashGames = ({ activeCategory }) => {
 
   return (
     <div>
-      <div className="container mt-1" style={{ marginBottom: "60px" }}>
+      <div className="container mt-1" >
         {loading ? (
           <CasinoSkeletonLoader />
         ) : (
@@ -226,6 +228,10 @@ const CrashGames = ({ activeCategory }) => {
                             title={game.title}
                             className="img-fluid rounded image-size-casino"
                           />
+                          <div className="game-title-section ">
+                            <div className="game-title text-center px-2">{game.title}</div>
+                          </div>
+                          
                         </a>
                         {(hoveredGame === game?.id ||
                           overlayVisible[game?.id]) && (
@@ -295,6 +301,8 @@ const CrashGames = ({ activeCategory }) => {
           }
         `}</style>
       </div>
+      <MpesaCard/>
+      <Footer/>
       <MobileMenu />
     </div>
   );

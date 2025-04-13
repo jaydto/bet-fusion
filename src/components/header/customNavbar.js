@@ -7,7 +7,7 @@ import Menu from "../../assets/img/menu.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useWindowDimensions from "./Dimensions";
 
-const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
+const   CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 

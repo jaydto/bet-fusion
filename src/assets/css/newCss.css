@@ -137,6 +137,7 @@ border-radius: 12px;
 .btn-button-bg-2.cg {
   background: inherit !important;
   color: var(--dark) !important;
+  border: none;
   text-decoration: underline; /* Add this to underline the text */
 }
 

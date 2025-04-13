@@ -6,7 +6,10 @@
 
 .casino-game-wrapper img {
   width: 100%;
-  border-radius: 15px !important;
+  border-top-right-radius: 7px !important;
+  border-top-left-radius: 7px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -172,6 +175,18 @@
 
 .sports-list__item__label {
   font-size: 14px;
+}
+.game-title{
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100px;
+}
+.game-title-section{
+  background: var(--game-title) !important;
+  color: var(--dark);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 .casino-body {
   /* background: var(--bg-section-container) !important; */

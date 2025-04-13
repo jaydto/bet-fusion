@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCloudDownloadAlt,
-  faCoins,
-  faList,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { formatNumber } from "../utils/betslip";
 import { Navbar } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";

@@ -4,12 +4,11 @@ body {
   background: var(--bet-dojo-body-bg);
   max-width: 100% !important;
 }
-.donjo-button{
-  background:var(--donjo-button);
-  border-radius:15.6px;
+.donjo-button {
+  background: var(--donjo-button);
+  border-radius: 15.6px;
   font-weight: 700;
-  color:var(--dark);
-  
+  color: var(--dark);
 }
 .color-app-text {
   color: var(--light);
@@ -58,24 +57,24 @@ body {
   display: flex !important;
   margin-right: 0px;
 }
-.mobile-menu{
+.mobile-menu {
   margin: auto;
   max-width: 767px;
 }
 
-@media screen and (min-width: 992px) {
-  .carousel-overlay{
+@media (min-width: 992px) {
+  .carousel-overlay {
     transform: translate(-50%, -45%) !important;
   }
-  .casino-carousel-container{
-    height: 35vh !important;
-
+  .casino-carousel-container {
+    height: 37vh !important;
   }
-  .carousel-container{
-    height:34vh !important;
-
+  .carousel-background {
+    bottom: 110px !important;
   }
-  
+  .carousel-container {
+    height: 36vh !important;
+  }
 }
 
 .optional-action {
@@ -92,47 +91,46 @@ body {
   top: 5px;
 }
 .carousel-container {
-position: relative;
-width: 100%;
-height: 20vh; /* Slightly increased height for better effect */
-overflow: hidden;
-display: flex;
-align-items: center;
-justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 20vh; /* Slightly increased height for better effect */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.casino-carousel-container{
-height: 21vh;
+.casino-carousel-container {
+  height: 21vh;
 }
 
 .carousel-background {
-position: absolute;
-bottom: 40px;
-left: 0;
-width: 100%;
-height: 100%; /* Extends the background slightly above */
-background: var(--bet-dojo-header-bg); 
-border-bottom-left-radius: 5rem;
-border-bottom-right-radius: 5rem;
-z-index: 1;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Extends the background slightly above */
+  background: var(--bet-dojo-header-bg);
+  border-bottom-left-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+  z-index: 1;
 }
 
 .carousel-overlay {
-position: absolute;
-top: 50%;
-left: 50%;
-width: 90%;
-transform: translate(-50%, -30%); /* Centers and lifts */
-z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, -30%); /* Centers and lifts */
+  z-index: 2;
 }
 
-.input-group{
-border-radius: 12px;
+.input-group {
+  border-radius: 12px;
 }
-.donjo-button:hover, .donjo-button:active{
-  background:var(--donjo-button)!important;
-  color:var(--dark)!important;
-
-
+.donjo-button:hover,
+.donjo-button:active {
+  background: var(--donjo-button) !important;
+  color: var(--dark) !important;
 }
 .btn-button-bg-2.cg {
   background: inherit !important;
@@ -141,11 +139,11 @@ border-radius: 12px;
   text-decoration: underline; /* Add this to underline the text */
 }
 
-.me-2{
+.me-2 {
   font-size: 2rem;
 }
-.btn-button-bg{
-  background:var(--login-btn-cl)!important;
+.btn-button-bg {
+  background: var(--login-btn-cl) !important;
 }
 
 .line-on-slip-items-container {
@@ -153,50 +151,48 @@ border-radius: 12px;
 }
 
 /* slip suspension options */
-.slip-optional-statuses{
-
+.slip-optional-statuses {
 }
 .bet-option.warn {
   /* background: var(--suspended)!important;
   opacity: 0.7; */
-  color:white!important;
+  color: white !important;
 }
-.slip-optional-statuses.warn{
-  background: var(--suspended)!important;
+.slip-optional-statuses.warn {
+  background: var(--suspended) !important;
   opacity: 0.7;
-  color:white!important;
+  color: white !important;
   margin: auto;
-  border-radius: 3px!important;
+  border-radius: 3px !important;
 }
 
 /* self-exclusion */
-.rdrDefinedRangesWrapper{
+.rdrDefinedRangesWrapper {
   display: none;
 }
-.rdrInputRange{
-  display:none!important;
+.rdrInputRange {
+  display: none !important;
 }
-#reason-dropdown{
+#reason-dropdown {
   width: 100%;
   background: var(--odds-button);
   padding: 12px;
-  font-size:14px;
+  font-size: 14px;
   font-weight: bold;
 }
-#reason-dropdown-data{
+#reason-dropdown-data {
   width: 100%;
   background: var(--odds-button);
   padding: 11px;
-  color:#fff;
+  color: #fff;
 }
-.form-group.self-exclusion_form div .dropdown-menu{
+.form-group.self-exclusion_form div .dropdown-menu {
   background: var(--odds-button);
   width: 100%;
-
 }
 /* end self excluison */
-.sr-bb .sr-br-cards-container__wrapper.srm-padding-top{
-  padding-top: 8px!important;
+.sr-bb .sr-br-cards-container__wrapper.srm-padding-top {
+  padding-top: 8px !important;
 }
 
 .link-color {
@@ -333,7 +329,7 @@ input.text-white {
 }
 
 .cg.login-button2 {
-  color: var(--light) !important;
+  color: var(--dark) !important;
 }
 .login-button2:active {
   background: var(--login-btn-cl) !important ;
@@ -341,11 +337,11 @@ input.text-white {
 .login-button2:disabled {
   background: var(--login-btn-cl) !important ;
 }
-.text-warning.faded-color{
-  color:var(--fade-color)!important
+.text-warning.faded-color {
+  color: var(--fade-color) !important;
 }
-.bg-warning.deposit-button.size-font-user-action{
-  background: inherit!important;
+.bg-warning.deposit-button.size-font-user-action {
+  background: inherit !important;
   color: var(--dark) !important;
 }
 
@@ -520,10 +516,11 @@ input.text-white {
   /* height: 41px; */
   padding: 4px 124px;
   margin: 5px;
+  color: var(--dark);
   border-radius: 6px;
   font-size: 16px;
   font-weight: 600;
-  background-color: var(--login-btn-cl);
+  background-color: var(--bet-dojo-header-bg);
 }
 
 .accordion-button.bet-history-button {
@@ -649,12 +646,12 @@ input.text-white {
   display: none !important;
 }
 
-.theodds.odd-fix.mkt-text{
-  color:var(--text-btn-color);
+.theodds.odd-fix.mkt-text {
+  color: var(--text-btn-color);
 }
 
 .top-matches button.picked {
-  background: var(--picked)!important;
+  background: var(--picked) !important;
   color: var(--dark) !important;
   font-size: 12px;
 }
@@ -707,7 +704,6 @@ input.text-white {
 .top-nav-login {
   padding: 1px 0px 5px 0px;
   background: var(--bet-dojo-header-bg);
- 
 }
 
 .pc .navbar-nav > li > a {
@@ -830,11 +826,12 @@ strong {
   transition-delay: 250ms;
   transition-property: position;
 }
-.logout-btn{
+.logout-btn {
   display: flex;
   width: 100%;
-  height:4rem;
-  align-items:center;
+  height: 4rem;
+  color:var(--dark)!important;
+  align-items: center;
   justify-content: center;
   background: var(--bet-dojo-header-bg);
   border: 1px solid white;
@@ -858,15 +855,15 @@ label {
   padding: 5px 20px;
   display: flex;
   justify-content: space-between;
-  
-  background-color: var(--profile-card-1);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.02), 0 10px 10px rgba(0,0,0,0.0);
+
+  background-color: var(--bg-section-container) !important;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.02), 0 10px 10px rgba(0, 0, 0, 0);
   border-radius: 12px;
   margin-bottom: 20px;
 }
 
 input {
-  background: var(--input-bg)!important;
+  background: var(--input-bg) !important;
   border-radius: 3px !important;
   color: var(--light) !important;
   font-weight: bold !important;
@@ -967,7 +964,7 @@ select::after {
   /* box-shadow: 5px 7px 30px 8px var(--btn-color); */
   width: 80%;
   margin: auto;
-  margin-top:15rem;
+  margin-top: 15rem;
 }
 
 .font-btn:hover {
@@ -1020,7 +1017,7 @@ select::after {
 
 .login-button.button-page {
   background: var(--login-btn-cl);
-  color: var(--dark)!important;
+  color: var(--dark) !important;
   font-weight: 600;
 }
 
@@ -1161,8 +1158,8 @@ width-page-centric.register-page {
   text-shadow: none !important;
   font-weight: 600;
 }
-.top-login-background-img-bg-down{
-  background:var(--bg-section-container)!important;
+.top-login-background-img-bg-down {
+  background: var(--bg-section-container) !important;
 }
 
 .login-color.cg {
@@ -1173,7 +1170,7 @@ width-page-centric.register-page {
   /* height: 2.3rem; */
   border: 1px solid var(--dark);
   line-height: 1;
-  color: var(--dark)!important;
+  color: var(--dark) !important;
   cursor: pointer;
 }
 
@@ -1373,29 +1370,27 @@ input[type="checkbox"] {
   position: sticky;
 }
 .deposit-button-header {
-    
   border-radius: 4px;
   color: var(--light);
   padding: 7px 13px;
 }
 
-.text-muted-1{
+.text-muted-1 {
   /* color:rgb(121 145 170 / 75%) !important; */
-  color:var(--dark) !important;
+  color: var(--dark) !important;
 }
 
-.text-muted-2{
+.text-muted-2 {
   /* color:rgb(121 145 170 / 75%) !important; */
-  color:hsla(0, 0%, 98%, 0.914) !important;
+  color: hsla(0, 0%, 98%, 0.914) !important;
 }
 
-.header-nav-container> .header-nav-item{
+.header-nav-container > .header-nav-item {
   list-style: none;
   list-style-type: none;
-  
 }
-.header-nav-container> .header-nav-item >div{
-  color:var(--gold)!important;
+.header-nav-container > .header-nav-item > div {
+  color: var(--gold) !important;
 }
 
 .custom-fullscreen-wrapper {
@@ -1465,8 +1460,8 @@ img.nare-league {
 }
 
 .input-color-icon {
-  background: var(--input-bg)!important;
-  color:var(--light);
+  background: var(--input-bg) !important;
+  color: var(--light);
   /* height: 100%; */
 }
 
@@ -1972,8 +1967,8 @@ img.nare-league {
 }
 
 @media (min-width: 1200px) and (max-width: 1259px) {
-  .image-size.logo-top{
-    margin-bottom:0px!important;
+  .image-size.logo-top {
+    margin-bottom: 0px !important;
   }
   .market-groups-container {
     top: 107px !important;
@@ -2004,8 +1999,6 @@ img.nare-league {
   }
 }
 
-
-
 .width-page-centric.deposit-page.withdraw {
   box-shadow: none !important;
 }
@@ -2026,7 +2019,6 @@ img.nare-league {
   }
 } */
 
-
 #countryCode {
   color: var(--light);
   background: var(--bet-dojo-header-bg);
@@ -2046,7 +2038,6 @@ img.nare-league {
   border-radius: 4px;
   padding: 1px 17px;
 }
-
 
 /* Add this CSS to your registration or a suitable CSS file in css */
 
@@ -2083,14 +2074,13 @@ img.nare-league {
   left: 6px;
   width: 5px;
   height: 10px;
-  border: solid ;
+  border: solid;
   color: var(--dark);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
 
-
-#app{
+#app {
   margin: auto;
   max-width: 767px;
 }
@@ -2153,7 +2143,7 @@ img.nare-league {
 } */
 .codecCountry .dropdown .dropdown-menu {
   color: var(--light);
-  background-color: var(--bet-dojo-header-bg) !important;
+  background-color: var(--bet-dojo-body-bg) !important;
 }
 .codecCountry .dropdown .dropdown-menu a {
   color: var(--light);
@@ -2163,7 +2153,7 @@ img.nare-league {
 
 .filters-modal .modal-content,
 .filters-modal.exclude .modal-content {
-  background-color: var(--bet-dojo-header-bg);
+  background-color: var(--bet-dojo-body-bg);
 }
 .bg-deposit-modal-btn.cancel-filter-markets {
   background: none !important;
@@ -2178,11 +2168,11 @@ img.nare-league {
 .deposit-modal-footer.modal-footer {
   border-top: none !important;
 }
-.ant-notification{
-  font-size: 10px!important;
-  padding: 10px!important;
-  top: 1rem!important;
-  z-index: 99999!important;
+.ant-notification {
+  font-size: 10px !important;
+  padding: 10px !important;
+  top: 1rem !important;
+  z-index: 99999 !important;
 }
 .size-all-markets .gz.home {
   margin-bottom: 5rem !important;
@@ -2202,7 +2192,7 @@ img.nare-league {
   align-items: center;
   flex-direction: column;
   height: 60px;
-  background: var(--bottom-c)!important;
+  background: var(--bottom-c) !important;
 }
 .nav__betslip {
   /* margin: -20px auto; */
@@ -2227,31 +2217,32 @@ img.nare-league {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    padding: 10px 10px!important;
-    background: var(--bet-dojo-lite)!important;
+    padding: 10px 10px !important;
+    background-color: var(--bet-dojo-body-bg)!important;
     width: 96%;
     border-radius: 4px;
   }
-  .header-nav-container{
+  .header-nav-container {
     display: none;
   }
 
-  .mobile-widget-position{
+  .mobile-widget-position {
     /* position:absolute; */
     width: 100%;
   }
 
   /* notification antd */
-.ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper
-{  top:119px!important;
-}
-.ant-notification-topRight.ant-notification-stack>.ant-notification-notice-wrapper{
-  top:119px!important;
-}
+  .ant-notification-topRight.ant-notification-stack
+    > .ant-notification-notice-wrapper {
+    top: 119px !important;
+  }
+  .ant-notification-topRight.ant-notification-stack
+    > .ant-notification-notice-wrapper {
+    top: 119px !important;
+  }
 
-/* end  notification */
- 
-  
+  /* end  notification */
+
   .top-position-mobile-view {
     margin-top: 10rem;
   }
@@ -2449,7 +2440,7 @@ img.nare-league {
   .top-smartsoft.gameplay {
     margin-top: 6rem !important;
   }
-  
+
   .top-spacing-page-no-download.competitions-page {
     margin-top: 10.4rem !important;
   }
@@ -2472,8 +2463,8 @@ img.nare-league {
   .update_button {
     /* height: 41px; */
     padding: 9px 119px !important;
-    width:90%!important;
-}
+    width: 90% !important;
+  }
   .desktop-only-show {
     display: none !important;
   }
@@ -2517,7 +2508,7 @@ img.nare-league {
   .width-page-centric.register-page {
     box-shadow: none !important;
     height: 78vh !important;
-    margin-top:0px;
+    margin-top: 0px;
   }
 
   .logo-BetDonjo {
@@ -2626,8 +2617,8 @@ img.nare-league {
   }
 
   .filters-modal .modal-content {
-    background-color: var(--bet-dojo-header-bg);
-    color: #fff;
+    background-color: var(--bet-dojo-body-bg);
+    color: var(--light);
     position: fixed;
     bottom: 0;
   }
@@ -2911,8 +2902,6 @@ img.nare-league {
     width: 100% !important;
   }
 
-
-
   .btn.login-button:hover {
     background: var(--login-btn-cl) !important;
   }
@@ -3013,8 +3002,6 @@ img.nare-league {
     top: var(--slip-tab);
   }
 
- 
-
   .odd-change-position {
     width: 100%;
   }
@@ -3037,8 +3024,6 @@ img.nare-league {
     background: var(--bet-dojo-body-bg) !important;
   }
 
- 
-
   .slip-bottom-betlip {
     margin-bottom: var(--slip-bottom) !important;
     /* overflow-y: scroll; */
@@ -3059,19 +3044,15 @@ img.nare-league {
     width: 30px;
   }
 
- 
-
   .app-color {
     display: flex;
     align-items: center;
   }
 
-
-.menu-size{
-  height: 2.9rem;
-  width: 4rem;
-}
-
+  .menu-size {
+    height: 2.9rem;
+    width: 4rem;
+  }
 
   .line-on-slip-items-container {
     background: var(--betslip-list);
@@ -3250,11 +3231,9 @@ img.nare-league {
     display: none;
   }
 
-
-
   .footer-mobile-none {
     display: none;
-    background:var(--bet-dojo-footer);
+    background: var(--bet-dojo-footer);
   }
 
   .kiron-betslip-size {
@@ -3315,7 +3294,6 @@ img.nare-league {
   }
 }
 
-
 @media (min-width: 768px) and (max-width: 991px) {
   .width-page-centric.reset-pass {
     width: 100vw !important;
@@ -3374,14 +3352,14 @@ img.nare-league {
 }
 
 @media (max-width: 767px) {
-  .scroll-to-top{
-    bottom:59px!important;
+  .scroll-to-top {
+    bottom: 59px !important;
   }
 
   .top-separator {
     /* box-shadow: 25px -12px 7px 11px var(--bet-dojo-footer); */
-    margin-bottom: 30px!important;
-}
+    margin-bottom: 30px !important;
+  }
   /* .navbar-expand-md .navbar-toggler.desktop-menu{
     display: none!important;
 
@@ -3392,16 +3370,20 @@ img.nare-league {
   .top-diff-pages {
     margin-top: 0rem !important;
   }
-  .top-diff-pages.exclusion, .top-diff-pages.privacy, .top-diff-pages.cookie, .top-diff-pages.play, .top-diff-pages.money, .top-diff-pages.resolution {
-    margin-top: 4rem!important;
+  .top-diff-pages.exclusion,
+  .top-diff-pages.privacy,
+  .top-diff-pages.cookie,
+  .top-diff-pages.play,
+  .top-diff-pages.money,
+  .top-diff-pages.resolution {
+    margin-top: 4rem !important;
   }
-  
+
   .user_logged.casino {
     margin-top: 0.7rem !important;
   }
-  .user_logged.virtuals{
+  .user_logged.virtuals {
     margin-top: 0.3rem;
-
   }
   .amt-virtual {
     margin-top: 0.3rem !important;
@@ -3604,9 +3586,7 @@ img.nare-league {
     position: absolute;
     width: 100vw;
     margin-right: 2rem;
-}
-
-
+  }
 
   .more-options-font {
     font-size: 10px !important;
@@ -3847,7 +3827,7 @@ img.nare-league {
     /* background-color: black; */
     /* background: rgb(51, 76, 92); */
     background: var(--btn-color);
-}
+  }
 
   .app-navbar .e img {
     margin-left: 0px;
@@ -4000,14 +3980,13 @@ img.nare-league {
   }
 
   .user_logged {
-    margin-top: 7.7rem ;
+    margin-top: 7.7rem;
   }
   .user_logged.casino {
     margin-top: 0.7rem !important;
   }
-  .user_logged.virtuals{
+  .user_logged.virtuals {
     margin-top: 0.3rem;
-
   }
   .amt-virtual {
     margin-top: 0.3rem !important;

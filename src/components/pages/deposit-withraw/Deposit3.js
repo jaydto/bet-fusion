@@ -214,7 +214,7 @@ const Deposit3 = React.memo((props) => {
                               variant={"tabs"}
                               defaultActiveKey={activeTab}
                               id=""
-                              className=" mb-3 px-3"
+                              className=" mb-3 px-3 mx-5"
                               justify
                               onSelect={handleTabSelect}
                             >

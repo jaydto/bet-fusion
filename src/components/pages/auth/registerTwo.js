@@ -272,7 +272,7 @@ const Register = () => {
                                           className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login ${
                                             errors.msisdn && "text-danger"
                                           }`}
-                                          placeholder={"e.g 712345678"}
+                                          placeholder={"e.g 111513541"}
                                           onChange={handleChange}
                                           value={values.msisdn}
                                         />

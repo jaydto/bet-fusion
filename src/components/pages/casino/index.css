@@ -188,6 +188,59 @@
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
 }
+
+/* Wrapper around the image to position the star icon */
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Positioning the FontAwesome star icon on the top-right corner */
+.badge-faster {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: var(--light);
+  padding: 4px;
+  border-top-right-radius: 23%;
+  border-bottom-left-radius: 26%;
+  z-index: 10;
+  font-size: 14px;
+}
+
+.badge-left-1{
+  position: absolute;
+  top: 20px;
+  left: 5px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: var(--light);
+  padding: 4px;
+  border-top-right-radius: 23%;
+  border-bottom-left-radius: 26%;
+  z-index: 10;
+  font-size: 14px;
+
+}
+
+.badge-left-t{
+  position: absolute;
+  top: -5px;
+  left: 1px;
+  color: var(--light);
+  padding: 4px;
+  border-top-right-radius: 23%;
+  border-bottom-left-radius: 26%;
+  z-index: 10;
+  font-size: 14px;
+
+}
+
+/* Optional: Center the star vertically */
+.badge-faster svg {
+  vertical-align: middle;
+}
+
 .casino-body {
   /* background: var(--bg-section-container) !important; */
   background: var(--bg-section-container) !important;
@@ -230,10 +283,7 @@
   width: 65%;
   filter: opacity(0.5);
 }
-.title-header {
-  left: 10%;
-  top: 50%;
-}
+
 .more-button {
   right: 0px;
   top: 50%;
@@ -342,9 +392,17 @@ input.search-cat:focus {
   .category-pointers {
     top: 50%;
   }
+  .title-header {
+    left: 22%;
+    top: 50%;
+  }
 }
 
 @media (min-width: 992px) {
+  .title-header {
+    left: 15%;
+    top: 50%;
+  }
   .casino-game-wrapper img {
     min-height: 195px;
     max-height: 220px;

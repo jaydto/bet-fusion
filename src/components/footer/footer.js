@@ -12,26 +12,23 @@ const Footer = React.memo((props) => {
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
 
-
-
   useEffect(() => {
     if (userData) {
       setUser(userData || getFromLocalStorage("user"));
     }
   }, [userData]);
 
-  const dispatchRedux=useDispatch()
-
+  const dispatchRedux = useDispatch();
 
   // const gaEventTracker = useAnalyticsEventTracker('Navigation');
   const handleClose = () => {
-      dispatchRedux(setState('show_menu', false))
+    dispatchRedux(setState("show_menu", false));
   };
   return (
     <footer
       className={`footer-custom ${deposit2 && "d-flex flex-column card"} `}
       style={
-        (deposit2 || profile_side)&& {
+        (deposit2 || profile_side) && {
           background: "transparent",
           paddingLeft: "33px",
         }
@@ -39,7 +36,9 @@ const Footer = React.memo((props) => {
       }
     >
       <div
-        className={`row ${profile_side && " d-flex flex-column  "}  desktop-footer ${
+        className={`row ${
+          profile_side && " d-flex flex-column  "
+        }  desktop-footer ${
           sidebar && "d-flex flex-column justify-content-center px-2"
         }`}
       >
@@ -50,7 +49,9 @@ const Footer = React.memo((props) => {
           style={deposit2 && { width: "50%" }}
         >
           <h5 className={`${sidebar && "px-3"}`}>BetDonjo</h5>
-          <ul className={`${sidebar && "transaction desktop-drawer flex-column"}`}>
+          <ul
+            className={`${sidebar && "transaction desktop-drawer flex-column"}`}
+          >
             <li className="">P.O.BOX 00100 NAIROBI KENYA</li>
             <li className="">
               <a href="mailto:care@ke.BetDonjo.com" target={"_blank"}>
@@ -97,7 +98,8 @@ const Footer = React.memo((props) => {
           <h5 className={`${sidebar && "px-3"}`}>TERMS AND CONDITIONS</h5>
           <ul
             className={`${
-              sidebar && "transaction desktop-drawer px-2 flex-column justify-content-center"
+              sidebar &&
+              "transaction desktop-drawer px-2 flex-column justify-content-center"
             }`}
           >
             <li className="">
@@ -137,7 +139,7 @@ const Footer = React.memo((props) => {
               <p style={{}} className={`${sidebar && " d-block"}`}>
                 This is a real-money gambling app. Please gamble responsibly and
                 only bet what you can afford. For gambling addiction help and
-                support, please contact CustomerCare at (+254712345678), or
+                support, please contact CustomerCare at (+254111513541), or
                 visit (
                 <a
                   href="https://responsiblegambling.or.ke/"
@@ -159,14 +161,19 @@ const Footer = React.memo((props) => {
             </li>
           </ul>
         </div>
-        <div style={{gridColumnStart:"span 2"}}
-          className={`col-xs-12 col-sm-12 col-md-12 ${deposit2 ?'w-50':'' }${
+        <div
+          style={{ gridColumnStart: "span 2" }}
+          className={`col-xs-12 col-sm-12 col-md-12 ${deposit2 ? "w-50" : ""}${
             sidebar ? "col-lg-12" : "col-lg-12"
           } `}
         >
           <h5 className={`${sidebar && "px-3"}`}>LEGAL</h5>
           <ul>
-            <li className={`text-danger ${sidebar && "transaction desktop-drawer"}`}>
+            <li
+              className={`text-danger ${
+                sidebar && "transaction desktop-drawer"
+              }`}
+            >
               You must be 18 Years+ to use this website.
             </li>
             <div
@@ -192,20 +199,19 @@ const Footer = React.memo((props) => {
                 }
               }
             >
-              <p
-                style={{}}
-                className={`mt-1 ${sidebar && " d-block"}`}
-              >
-                This is a real-money gambling app. Please gamble responsibly and
-                only bet what you can afford. For gambling addiction help and
-                support, please contact CustomerCare at (+254712345678), or
-                visit (
+              <p style={{}} className={`mt-1 ${sidebar && " d-block"}`}>
+                betdonjo.com is a real-money gambling platform. We encourage you
+                to gamble responsibly and only bet what you can afford to lose.
+                Please note that this is a real-money gambling app. You are
+                required to gamble responsibly and only bet what you can afford.
+                For gambling addiction help and support, please contact our
+                customer care at (+254111513541) or help@betdonjo.com or visit
+                (
                 <a
                   href="https://responsiblegambling.or.ke/"
                   target="_blank"
                   style={{ color: "var(--aqua-text)" }}
                 >
-                
                   Responsible Gambling Website
                 </a>{" "}
                 ).
@@ -222,7 +228,7 @@ const Footer = React.memo((props) => {
           </ul>
         </div>
       </div>
-      {(user && sidebar) ? (
+      {user && sidebar ? (
         <div className={"row w-50"}>
           <div className={"w-100 sidebar-mobile"}>
             {" "}

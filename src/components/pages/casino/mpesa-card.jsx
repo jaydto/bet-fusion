@@ -35,12 +35,13 @@ export default function MpesaCard() {
         </Button>
 
         {/* Text with a link */}
-        <p className=" small mb-0">
+        <p className=" small mb-0" style={{testWrap:"wrap", width:"100%"}}>
           If you have finished the payment and received transaction code from
-          MPESA.Please
+          MPESA.Please &nbsp;
           <Link
             to="/support"
-            className="text-success text-decoration-underline"
+            className=" text-decoration-underline"
+            style={{ color: "var(--game-title)" }}
           >
             fix status
           </Link>

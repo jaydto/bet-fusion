@@ -5,8 +5,12 @@ import CasinoFilters from "./categories";
 import HorizontalCategoryList from "./horizontalCategoryList";
 import "./index.css";
 import SearchModal from "../../modals/SearchModal";
+import { useSelector } from "react-redux";
 
 const Index = () => {
+  const close_call_to_action = useSelector(
+    (state) => state.data.call_to_action
+  );
   // Step 1: Set up state for active category
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -17,11 +21,16 @@ const Index = () => {
   const pathname = window.location.pathname;
 
   return (
-    <div style={{ margin: "auto", maxWidth: "991px", marginTop: "4rem" }}>
+    <div
+      style={{
+        margin: "auto",
+        maxWidth: "991px",
+        marginTop: close_call_to_action ? "1rem" : "4rem",
+      }}
+    >
       {/* Menu / Sport List */}
       {/* <SportsList/> */}
-      {pathname==="/" && <SearchModal />}
-
+      {pathname === "/" && <SearchModal />}
 
       <CasinoCarouselLoader />
 

@@ -7,10 +7,15 @@ import CasinoSkeletonLoader from "./casino-skeleton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import casinoBackground from "../../../assets/img/art-board.png";
 import more from "../../../assets/img/mobile/more-side.png";
+import people from "../../../assets/img/people1.gif";
+import hot from "../../../assets/img/hot.png";
 import bgSection from "../../../assets/img/section-header.png";
 import MobileMenu from "../../mobile-menu";
 import MpesaCard from "./mpesa-card";
 import Footer from "./footer";
+import CardGrid from "./Partneres";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const CrashGames = ({ activeCategory }) => {
   const dispatch = useDispatch();
@@ -147,7 +152,7 @@ const CrashGames = ({ activeCategory }) => {
 
   return (
     <div>
-      <div className="container mt-1" >
+      <div className="container mt-1">
         {loading ? (
           <CasinoSkeletonLoader />
         ) : (
@@ -181,9 +186,10 @@ const CrashGames = ({ activeCategory }) => {
                     />
                     <a
                       href="#"
-                      className="text-decoration-none text-light position-absolute   translate-middle z-4 title-header"
+                      className="text-decoration-none text-light position-absolute   translate-middle z-4 title-header  fw-bold fs-3 "
                     >
-                      {section.title}
+                      <b>{section.title} Games </b>&nbsp;({section.games.length}
+                      )
                     </a>
 
                     {/* More button */}
@@ -196,11 +202,7 @@ const CrashGames = ({ activeCategory }) => {
                           {isExpanded ? "Less" : "More"}
                         </button>
                         &nbsp;
-                        <LazyLoadImage
-                        src={more}
-                        width={70}
-                        height={10}
-                        />
+                        <LazyLoadImage src={more} width={70} height={10} />
                       </>
                     )}
                   </div>
@@ -228,10 +230,41 @@ const CrashGames = ({ activeCategory }) => {
                             title={game.title}
                             className="img-fluid rounded image-size-casino"
                           />
-                          <div className="game-title-section ">
-                            <div className="game-title text-center px-2">{game.title}</div>
+
+                          <div className="badge-left-t">
+                            <LazyLoadImage
+                              src={hot}
+                              alt={"count"}
+                              height={20}
+                              width={30}
+                              style={{ minHeight: "20px", minWidth: "30px" }}
+                              effect="blur"
+                              title={"12"}
+                              className="img-fluid rounded image-size-casino"
+                            />
                           </div>
-                          
+                          <div className="badge-left-1 fs-6">
+                            <LazyLoadImage
+                              src={people}
+                              alt={"count"}
+                              height={15}
+                              width={15}
+                              style={{ minHeight: "15px", minWidth: "15px" }}
+                              effect="blur"
+                              title={"12"}
+                              className="img-fluid rounded image-size-casino"
+                            />
+                            12
+                          </div>
+                          {/* FontAwesome Star Icon */}
+                          <div className="badge-faster">
+                            <FontAwesomeIcon icon={faStar} />
+                          </div>
+                          <div className="game-title-section ">
+                            <div className="game-title text-center px-2">
+                              {game.title}
+                            </div>
+                          </div>
                         </a>
                         {(hoveredGame === game?.id ||
                           overlayVisible[game?.id]) && (
@@ -301,8 +334,9 @@ const CrashGames = ({ activeCategory }) => {
           }
         `}</style>
       </div>
-      <MpesaCard/>
-      <Footer/>
+      <CardGrid />
+      <MpesaCard />
+      <Footer />
       <MobileMenu />
     </div>
   );

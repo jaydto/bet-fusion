@@ -55,8 +55,9 @@
     opacity: 0.8;
 }
 .promo-button{
-    background: var(--login-btn-cl);
+    background: var(--bet-dojo-header-bg) !important;
     min-height: 3rem;
+    color: var(--dark) !important;
     opacity:0.9;
 }
 .button-promotions{

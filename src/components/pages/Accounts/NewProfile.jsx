@@ -84,7 +84,7 @@ const NewProfile = React.memo(() => {
                     size="lg"
                     className="bars h2 text-success"
                   />
-                  <span className="h4 text-warning">{user?.msisdn}</span>
+                  <span className="h4 text-light">{user?.msisdn}</span>
                 </div>
                 <div className="card mb-3">
                   <div className="upper-row">

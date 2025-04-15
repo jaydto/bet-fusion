@@ -3,12 +3,15 @@
     justify-content: center;
 }
 .iphone {
-    /* background-color: var(--profile-bg-page); */
+    background-color: var(--bet-dojo-body-bg);
     /* height: 100vh; */
     width: 100%;
     overflow: hidden;
     position: relative;
     transform-origin: top center;
+}
+.button.deposit-buttons-value{
+    color:var(--light);
 }
 .header-profile {
     height: 8%;
@@ -278,7 +281,7 @@ button, input, textarea, select {
     padding: 10px 15px;
     border: none;
     margin: 0;
-    background: var(--bet-dojo-button-login);
+    background: var(--login-btn-cl);
     cursor: pointer;
     font-size: var(--font-medium);
     cursor: pointer;
@@ -495,7 +498,7 @@ button, input, textarea, select {
     }
     .iphone{
         overflow-y: auto;
-        width:991px;
+        width:100%;
         margin:auto;
     }
     .profile-container-desktop{

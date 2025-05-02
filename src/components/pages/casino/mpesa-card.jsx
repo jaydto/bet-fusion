@@ -8,7 +8,7 @@ export default function MpesaCard() {
     <Card className="mx-auto shadow-sm rounded-4 p-3" style={{ backgroundColor: "var(--card-c)", color:'var(--light'}}>
       <Card.Body>
         {/* Title */}
-        <h5 className="card-title mb-3">Mpesa Paybill: Ndichu</h5>
+        <h5 className="card-title mb-3">Mpesa Paybill: <span style={{color:"var(--game-title)"}}>Ndichu</span></h5>
 
         {/* Icon and text */}
         <div className="d-flex align-items-center mb-3">
@@ -28,10 +28,10 @@ export default function MpesaCard() {
         <Button
           as={Link}
           to="/link-account"
-          className="w-50 mb-3"
-          style={{ background: "var(--link-btn)", color: "var(--dark)", borderRadius:"10px", fontWeight:"600", padding:"5px", border:"none" }}
+          className="w-25 mb-3"
+          style={{ background: "var(--link-btn)", color: "var(--dark)", borderRadius:"10px", fontWeight:"700", padding:"5px", border:"none" }}
         >
-          Link your account
+          LINK ACCOUNT
         </Button>
 
         {/* Text with a link */}

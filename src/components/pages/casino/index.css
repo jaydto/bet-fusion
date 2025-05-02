@@ -176,13 +176,13 @@
 .sports-list__item__label {
   font-size: 14px;
 }
-.game-title{
+.game-title {
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100px;
 }
-.game-title-section{
+.game-title-section {
   background: var(--game-title) !important;
   color: var(--dark);
   border-bottom-left-radius: 7px;
@@ -209,7 +209,7 @@
   font-size: 14px;
 }
 
-.badge-left-1{
+.badge-left-1 {
   position: absolute;
   top: 20px;
   left: 5px;
@@ -220,10 +220,9 @@
   border-bottom-left-radius: 26%;
   z-index: 10;
   font-size: 14px;
-
 }
 
-.badge-left-t{
+.badge-left-t {
   position: absolute;
   top: -5px;
   left: 1px;
@@ -233,7 +232,6 @@
   border-bottom-left-radius: 26%;
   z-index: 10;
   font-size: 14px;
-
 }
 
 /* Optional: Center the star vertically */
@@ -377,6 +375,101 @@ input.search-cat:focus {
   display: none;
 }
 
+@media (max-width: 475px) {
+  .layout-casino-category {
+    position: absolute;
+    top: 3.9rem;
+  }
+  .casino-category-size {
+    height: 7.2rem;
+  }
+  .carousel-container {
+    height: 17vh !important;
+  }
+  .casino-carousel-container {
+    height: 17vh !important;
+  }
+}
+@media (max-width: 576px) and (min-width: 476px) {
+  .layout-casino-category {
+    position: absolute;
+    top: 4.7rem;
+  }
+  .casino-category-size {
+    height: 8.2rem;
+  }
+  .carousel-container {
+    height: 18vh !important;
+  }
+  .casino-carousel-container {
+    height: 19vh !important;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 577px) {
+  .layout-casino-category {
+    position: absolute;
+    top: 5rem;
+  }
+  .casino-category-size {
+    height: 8.5rem;
+  }
+  .carousel-container {
+    height: 25vh !important;
+  }
+  .casino-carousel-container {
+    height: 25vh !important;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .layout-casino-category {
+    position: absolute;
+    top: 5.4rem;
+  }
+  .casino-category-size {
+    height: 8rem;
+  }
+  .carousel-container {
+    height: 23vh !important;
+  }
+  .casino-carousel-container {
+    height: 23vh !important;
+  }
+}
+
+
+
+@media (orientation: landscape) and (min-width: 992px) {
+  .carousel-container {
+    height: 69vh !important;
+  }
+  .casino-carousel-container {
+    height: 45vh !important;
+  }
+}
+
+
+
+@media (orientation: landscape) and (max-width: 767px) {
+  .carousel-container {
+    height: 40vh !important;
+  }
+  .casino-carousel-container {
+    height: 43vh !important;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 768px) and (max-width: 991px) {
+  .carousel-container {
+    height: 47vh !important;
+  }
+  .casino-carousel-container {
+    height: 47vh !important;
+  }
+}
+
+
 @media (max-width: 991px) {
   .casino-game-wrapper img {
     min-height: 127px;
@@ -399,6 +492,21 @@ input.search-cat:focus {
 }
 
 @media (min-width: 992px) {
+
+  .carousel-container {
+    height: 45vh !important;
+  }
+  .casino-carousel-container {
+    height: 29vh !important;
+  }
+
+  .layout-casino-category {
+    position: absolute;
+    top: 4.4rem;
+  }
+  .casino-category-size {
+    height: 8.1rem;
+  }
   .title-header {
     left: 15%;
     top: 50%;
@@ -425,5 +533,22 @@ input.search-cat:focus {
 
   .category-pointers {
     top: 50%;
+  }
+}
+
+@media (max-width: 1260px) and (min-width: 1000px) {
+  .layout-casino-category {
+    position: absolute;
+    top: 8.6rem!important;
+  }
+  
+  .casino-category-size {
+    height: 10rem!important;
+  }
+  .carousel-container {
+    height: 71vh !important;
+  }
+  .casino-carousel-container {
+    height: 42vh !important;
   }
 }

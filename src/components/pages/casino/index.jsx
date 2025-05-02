@@ -26,7 +26,7 @@ const Index = () => {
       style={{
         margin: "auto",
         maxWidth: "991px",
-        marginTop: close_call_to_action ? "1rem" : "5.5rem",
+        marginTop: close_call_to_action ? "1rem" : "6rem",
       }}
     >
       {/* Menu / Sport List */}

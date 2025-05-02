@@ -80,16 +80,16 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
 
   return (
     <>
-      <div className="position-relative w-100" style={{ height: "7.2rem" }}>
+      <div className="position-relative w-100 casino-category-size" >
         {loading ? (
-          <div style={{ position: "absolute", top: "4rem" }}>
+          <div style={{ position: "absolute", top: "4.2rem" }} className="layout-casino-category">
             <CategorySkeletonLoader />
           </div>
         ) : (
           <div
-            style={{ position: "absolute", top: "4rem" }}
+            
             ref={scrollRef}
-            className="d-flex overflow-auto px-2 w-100 scrol-cat gap-2"
+            className="d-flex overflow-auto px-2 w-100 scrol-cat gap-2 layout-casino-category"
           >
             {/* Floating button positioned at the start */}
             {/* <button className="floating-btn position-absolute top-50 start-0 translate-middle-y z-index-100">

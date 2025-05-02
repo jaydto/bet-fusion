@@ -70,13 +70,13 @@ body {
     transform: translate(-50%, -42%) !important;
   }
   .casino-carousel-container {
-    height: 28vh !important;
+    height: 30vh !important;
   }
   .carousel-background {
     bottom: 110px !important;
   }
   .carousel-container {
-    height: 41vh !important;
+    height: 43vh !important;
   }
 }
 
@@ -96,14 +96,14 @@ body {
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 15vh; /* Slightly increased height for better effect */
+  height: 16vh; /* Slightly increased height for better effect */
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .casino-carousel-container {
-  height: 15vh;
+  height: 16vh;
 }
 
 .carousel-background {

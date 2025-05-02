@@ -246,7 +246,7 @@ const NewProfile = React.memo(() => {
                     Change Password <FontAwesomeIcon icon={faAngleRight} />
                   </div>
                 </div>
-                <p>Settings</p>
+                <p style={{ color: "var(--light)" }}>Settings</p>
                 {/* Theme Toggle */}
                 <div className="card mb-3 top-pr">
                   <div
@@ -255,7 +255,7 @@ const NewProfile = React.memo(() => {
                     style={{ cursor: "pointer" }}
                   >
                     <span>Light Theme</span>
-                    <FontAwesomeIcon icon={isLightTheme ? faSun : faMoon} />
+                    <span className="px-4"><FontAwesomeIcon color="var(--gold)" size="lg" icon={isLightTheme ?  faMoon: faSun} /></span>
                   </div>
 
                   <div className="upper-row text-light-p p-3 d-flex justify-content-between align-items-center">
@@ -268,7 +268,7 @@ const NewProfile = React.memo(() => {
                     />
                   </div>
                 </div>
-                <p>Support</p>
+                <p style={{ color: "var(--light)" }}>Support</p>
                 <div className="card mb-3 top-pr">
                   <div
                     className="upper-row text-light-p p-3"

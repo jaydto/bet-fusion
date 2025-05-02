@@ -350,7 +350,7 @@ input.search-cat:focus {
 
 .search-casino .input-group-text {
   background-color: transparent !important;
-  border: 2px solid crimson !important;
+  border: 2px solid var(--app-download-link-color)!important;
   border-radius: 15px;
 }
 

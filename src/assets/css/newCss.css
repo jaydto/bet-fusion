@@ -868,7 +868,7 @@ label {
   background: var(--withdraw-input) !important;
   border: none !important;
 }
-.text-light-p{
+.text-light-p {
   color: var(--light) !important;
 }
 .withdraw-input:focus {
@@ -2196,6 +2196,8 @@ img.nare-league {
 
 .deposit-modal-footer.modal-footer {
   border-top: none !important;
+  position: absolute!important;
+  bottom: 0px;
 }
 .ant-notification {
   font-size: 10px !important;
@@ -2249,13 +2251,24 @@ img.nare-league {
   color: var(--light);
   position: fixed;
   max-width: 767px;
+  height: 100vh;
+  overflow-y: auto;
   width: inherit;
   margin: auto;
   top: 0 !important;
 }
+.filters-modal.deposit-modal .modal-content::-webkit-scrollbar {
+  display: none;
+}
 
-.btn.login-button2:hover,.btn.deposit-button:hover{
-  background: var(--login-btn-cl)!important;
+.deposit-modal .modal-dialog {
+  background: var(--bet-dojo-body-bg) !important;
+  overflow-y: auto;
+}
+
+.btn.login-button2:hover,
+.btn.deposit-button:hover {
+  background: var(--login-btn-cl) !important;
 }
 
 @media (max-width: 991px) {
@@ -3406,8 +3419,14 @@ img.nare-league {
     z-index: 1999 !important;
   }
 }
+.deposit-modal-body{
+  max-height: 100%!important;
 
+}
 @media (max-width: 767px) {
+  .filters-modal.deposit-modal .modal-content {
+    width: 100% !important;
+  }
   .scroll-to-top {
     bottom: 59px !important;
   }

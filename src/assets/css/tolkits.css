@@ -15797,6 +15797,8 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 
 .modal-width {
     width: 94%;
+    min-height: 3rem;
+    overflow: hidden;
 }
 
 .page-404 .outer .middle {

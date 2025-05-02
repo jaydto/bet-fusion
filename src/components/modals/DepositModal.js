@@ -186,7 +186,7 @@ const DepositModal = React.memo(() => {
           </div>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className={""}>
+      <Modal.Body className={"deposit-modal-body"}>
         <DepositInstructions
           handleCardSelect={handleCardSelect}
           handleFavoriteSelect={handleFavoriteSelect}

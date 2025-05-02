@@ -160,7 +160,7 @@ const CrashGames = ({ activeCategory }) => {
   );
 
   return (
-    <div>
+    <div style={{ overflow: "hidden" , position: "relative"}}>
       {showDepositModal && <DepositModal />}
       {casino_search && <SearchModal />}
 

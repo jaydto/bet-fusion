@@ -257,7 +257,7 @@ const Header = React.memo((props) => {
 
   return (
     <>
-      {showDepositModal && <DepositModal />}
+      {/* {showDepositModal && <DepositModal />} */}
 
       {notShowHeaderNav && (
         <div className={"d-flex flex-column"}>

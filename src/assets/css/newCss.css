@@ -2248,7 +2248,14 @@ img.nare-league {
   background-color: var(--bet-dojo-body-bg);
   color: var(--light);
   position: fixed;
+  max-width: 767px;
+  width: inherit;
+  margin: auto;
   top: 0 !important;
+}
+
+.btn.login-button2:hover,.btn.deposit-button:hover{
+  background: var(--login-btn-cl)!important;
 }
 
 @media (max-width: 991px) {

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import CasinoCarouselLoader from "./carousel";
 import CrashGames from "./casinoBody";
-import CasinoFilters from "./categories";
 import HorizontalCategoryList from "./horizontalCategoryList";
 import "./index.css";
 import SearchModal from "../../modals/SearchModal";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import Broadcast from "./broadcast";
+
 
 const Index = () => {
   const close_call_to_action = useSelector(
@@ -26,7 +26,7 @@ const Index = () => {
       style={{
         margin: "auto",
         maxWidth: "991px",
-        marginTop: close_call_to_action ? "1rem" : "4rem",
+        marginTop: close_call_to_action ? "1rem" : "5.5rem",
       }}
     >
       {/* Menu / Sport List */}
@@ -38,7 +38,7 @@ const Index = () => {
       />
 
       <CasinoCarouselLoader />
-      <Broadcast/>
+      <Broadcast />
 
       {/* Casino Filters */}
       {/* <CasinoFilters/> */}

@@ -52,7 +52,11 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
 
   // Add "All" category as default
   const categories = [
-    { id: "all", name: "All", icon: <LazyLoadImage src={all} alt="hot" height={"20px"} /> }, // Default "All" category
+    {
+      id: "all",
+      name: "All",
+      icon: <LazyLoadImage src={all} alt="hot" height={"20px"} />,
+    }, // Default "All" category
     ...casinoTypes.map((category) => ({
       id: category.game_type_id,
       name: category.game_type_description,
@@ -76,11 +80,14 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
 
   return (
     <>
-      <div className="position-relative w-100" style={{ marginTop:"10rem" }}>
+      <div className="position-relative w-100" style={{ height: "7.2rem" }}>
         {loading ? (
-          <CategorySkeletonLoader />
+          <div style={{ position: "absolute", top: "4rem" }}>
+            <CategorySkeletonLoader />
+          </div>
         ) : (
           <div
+            style={{ position: "absolute", top: "4rem" }}
             ref={scrollRef}
             className="d-flex overflow-auto px-2 w-100 scrol-cat gap-2"
           >
@@ -114,7 +121,6 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
         )}
       </div>
       {/* Notification Icon - Positioned below the categories */}
-     
 
       {/* <SearchCasino /> */}
     </>

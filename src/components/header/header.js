@@ -50,7 +50,6 @@ const Header = React.memo((props) => {
   const pathname = `${path_origin?.pathname}${search_param}`;
 
   const dispatchRedux = useDispatch();
-  const { width } = useWindowDimensions();
   const showDepositModal = useSelector(
     (state) => state.data.show_deposit_modal
   );

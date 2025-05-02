@@ -12,11 +12,12 @@ import LazyLoad from "react-lazyload";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const SearchModal = () => {
-  const { state, dispatch } = useContext(StoreContext);
   const reduxDispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const [isFocused, setIsFocused] = useState(false);
+
+  const casino_search=useSelector((state) => state.virtuals.casino_search_modal);
 
   const [searchQuery, setSearchQuery] = useState("");
   const modalRef = useRef(null);
@@ -50,8 +51,7 @@ const SearchModal = () => {
   };
 
   const handleClose = () => {
-    dispatch({ type: "SET", key: "searching", payload: false });
-    dispatch({ type: "SET", key: "searching_nav", payload: false });
+    reduxDispatch(setState("casino_search_modal", false));
   };
 
   const gameSearch = async (query) => {
@@ -105,12 +105,12 @@ const SearchModal = () => {
   }, []);
 
   useEffect(() => {
-    if (state?.searching) {
+    if (casino_search) {
       searchInputRef.current?.focus();
     }
-  }, [state?.searching]);
+  }, [casino_search]);
 
-  if (!state?.searching) return null;
+  if (!casino_search) return null;
 
   return (
     <div className="modal-overlay search-modal-overlay">

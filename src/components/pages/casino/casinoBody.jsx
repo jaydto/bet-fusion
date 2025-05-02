@@ -16,6 +16,8 @@ import Footer from "./footer";
 import CardGrid from "./Partneres";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import DepositModal from "../../modals/DepositModal";
+import SearchModal from "../../modals/SearchModal";
 
 const CrashGames = ({ activeCategory }) => {
   const dispatch = useDispatch();
@@ -149,15 +151,25 @@ const CrashGames = ({ activeCategory }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const showDepositModal = useSelector(
+    (state) => state.data.show_deposit_modal
+  );
+
+  const casino_search = useSelector(
+    (state) => state.virtuals.casino_search_modal
+  );
 
   return (
     <div>
+      {showDepositModal && <DepositModal />}
+      {casino_search && <SearchModal />}
+
       <div className="container mt-1">
         {loading ? (
           <CasinoSkeletonLoader />
         ) : (
           <>
-            <ImageCard imageSrc={casinoBackground} altText="Promo" />
+            {/* <ImageCard imageSrc={casinoBackground} altText="Promo" /> */}
             {(expandedSection
               ? sections.filter((section) => section.title === expandedSection)
               : filteredSections

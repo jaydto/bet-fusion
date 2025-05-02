@@ -67,16 +67,16 @@ body {
     padding: 0px 125px 10px !important;
   }
   .carousel-overlay {
-    transform: translate(-50%, -45%) !important;
+    transform: translate(-50%, -42%) !important;
   }
   .casino-carousel-container {
-    height: 37vh !important;
+    height: 28vh !important;
   }
   .carousel-background {
     bottom: 110px !important;
   }
   .carousel-container {
-    height: 36vh !important;
+    height: 41vh !important;
   }
 }
 
@@ -867,6 +867,9 @@ label {
 .withdraw-input {
   background: var(--withdraw-input) !important;
   border: none !important;
+}
+.text-light-p{
+  color: var(--light) !important;
 }
 .withdraw-input:focus {
   border: none !important;

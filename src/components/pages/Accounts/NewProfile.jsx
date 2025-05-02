@@ -2,36 +2,25 @@ import React, { useEffect, useState } from "react";
 import "./component/newProfile.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleRight,
-  faBars,
-  faCoins,
-  faDownload,
-  faGift,
-  faPowerOff,
-  faUpload,
-  faUserCircle,
-  faWallet,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { formatNumber } from "../../utils/betslip";
 import {
   getFromLocalStorage,
   setLocalStorage,
 } from "../../utils/local-storage";
-import SidebarProfile from "../../sidebar/sidebarProfile";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
 import useWindowDimensions from "../../header/Dimensions";
 import { userPromoPoints } from "../../../redux/authSlice";
-import WithdrawProfile from "./component/WithdrawProfile";
-import DepositForm from "./component/depositCard";
+
 import WithdrawForm from "./component/withdrawCard";
-import SupportContainer from "./component/supportContainer";
 import bonus from "../../../assets/img/mobile/bonus.svg";
 import profilep from "../../../assets/img/mobile/profile-p.svg";
 import balance from "../../../assets/img/mobile/balance.svg";
 import DepositModal from "../../modals/DepositModal";
 import { setState } from "../../../redux/dataSlice";
+import JisortModal from "../../modals/JisortModal";
+import { Switch } from "@mui/material";
 
 const NewProfile = React.memo(() => {
   const userData = useSelector((state) => state.auth.user);
@@ -74,16 +63,42 @@ const NewProfile = React.memo(() => {
     (state) => state.data.show_deposit_modal
   );
 
+  const showJisortModal = useSelector((state) => state.data.show_jisort_modal);
+
   const navigate = useNavigate();
-  const hideModal = () => {
-    dispatchRedux(setState("show_deposit_modal", false));
+
+  const [isLightTheme, setIsLightTheme] = useState(false);
+  const [isDataSaverOn, setIsDataSaverOn] = useState(false);
+
+  const hideJisortModal = () => {
+    dispatchRedux(setState("show_jisort_modal", false));
+  };
+
+  const showJModal = () => {
+    dispatchRedux(setState("show_jisort_modal", true));
   };
   const showModal = () => {
     dispatchRedux(setState("show_deposit_modal", true));
   };
+
+  useEffect(() => {
+    const body = document.body;
+    if (isLightTheme) {
+      body.classList.add("light-theme");
+    } else {
+      body.classList.remove("light-theme");
+    }
+  }, [isLightTheme]);
+
   return (
     <>
       {showDepositModal && <DepositModal />}
+      {showJisortModal && (
+        <JisortModal
+          visible={showJisortModal}
+          setShowJisortModal={hideJisortModal}
+        />
+      )}
 
       <div>
         <div className="profile-container-desktop d-flex">
@@ -98,7 +113,7 @@ const NewProfile = React.memo(() => {
                     src={profilep}
                     className="mb-2 icon-large icon-white  bg-p-icon "
                   />
-                  <span className="h4 text-light">{user?.msisdn}</span>
+                  <span className="h4 text-light-p">{user?.msisdn}</span>
                 </div>
                 <div className="card mb-3 top-pr">
                   <div className="upper-row">
@@ -201,48 +216,64 @@ const NewProfile = React.memo(() => {
                     </Link>
                   )}
                 <div className="card mb-3 top-pr">
-                  <div className="upper-row text-light p-3">
+                  <div
+                    className="upper-row text-light-p p-3"
+                    onClick={showJModal}
+                  >
                     Enquire missing deposit{" "}
                     <FontAwesomeIcon icon={faAngleRight} />
                   </div>
                 </div>
                 <div className="card mb-3 top-pr">
-                  <div className="upper-row text-light p-3">
+                  <div className="upper-row text-light-p p-3">
                     Promotions <FontAwesomeIcon icon={faAngleRight} />
                   </div>
                 </div>
                 <div className="card mb-3 top-pr">
-                  <div className="upper-row text-light p-3">
+                  <div className="upper-row text-light-p p-3">
                     My Transactions <FontAwesomeIcon icon={faAngleRight} />
                   </div>
                 </div>
 
                 <WithdrawForm />
                 <div className="card mb-3 top-pr">
-                  <div className="upper-row text-light p-3">
+                  <div className="upper-row text-light-p p-3">
                     Gaming Records <FontAwesomeIcon icon={faAngleRight} />
                   </div>
                 </div>
                 <div className="card mb-3 top-pr">
-                  <div className="upper-row text-light p-3">
+                  <div className="upper-row text-light-p p-3">
                     Change Password <FontAwesomeIcon icon={faAngleRight} />
                   </div>
                 </div>
                 <p>Settings</p>
+                {/* Theme Toggle */}
                 <div className="card mb-3 top-pr">
-                  <div className="upper-row text-light p-3">
-                    Light theme
-                    <FontAwesomeIcon icon={faAngleRight} />
+                  <div
+                    className="upper-row text-light-p p-3 d-flex justify-content-between align-items-center"
+                    onClick={() => setIsLightTheme((prev) => !prev)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <span>Light Theme</span>
+                    <FontAwesomeIcon icon={isLightTheme ? faSun : faMoon} />
                   </div>
-                  <div className="upper-row text-light p-3">
-                    Data Saver
-                    <FontAwesomeIcon icon={faAngleRight} />
+
+                  <div className="upper-row text-light-p p-3 d-flex justify-content-between align-items-center">
+                    <span>Data Saver</span>
+                    <Switch
+                      checked={isDataSaverOn}
+                      onChange={() => setIsDataSaverOn((prev) => !prev)}
+                      color="primary"
+                      inputProps={{ "aria-label": "Data Saver Switch" }}
+                    />
                   </div>
                 </div>
-
                 <p>Support</p>
                 <div className="card mb-3 top-pr">
-                  <div className="upper-row text-light p-3">
+                  <div
+                    className="upper-row text-light-p p-3"
+                    onClick={() => navigate("/responsible-gambling")}
+                  >
                     Delete Account
                     <FontAwesomeIcon icon={faAngleRight} />
                   </div>

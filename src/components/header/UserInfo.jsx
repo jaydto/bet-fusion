@@ -8,7 +8,10 @@ import { StoreContext } from "../../context/store";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import { useDispatch, useSelector } from "react-redux";
 import { setState } from "../../redux/dataSlice";
+import { setState as setStateV } from "../../redux/virtualsSlice";
 import { shouldShowSearch } from "../../redux/navigationAction";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export const UserInfo = React.memo((props) => {
   const { profile } = props;
@@ -45,6 +48,14 @@ export const UserInfo = React.memo((props) => {
     !urlPath.includes("gameplay") &&
     !urlPath.includes("smart-play");
 
+    const casino_search = useSelector((state) => state.virtuals.casino_search);
+
+
+  const handleCasinoSearch=()=>{
+    dispatchRedux(setStateV("casino_search_modal", true));
+  }
+
+
   return (
     <>
       {user && (
@@ -60,20 +71,30 @@ export const UserInfo = React.memo((props) => {
               <span className="">DEPOSIT</span>
             </Link>
           </div>
-          {showBalance && (
-            <div>
-              <div
-                className={" cg   login-size btn btn-button-bg-2 text-light"}
-                style={{ marginRight: "12px" }}
-              >
-                <span className="text-muted-1">
-                  &nbsp;
-                  {/*todo here user balance*/}
-                  KSH {formatNumber(user?.balance) || 0.0}
-                </span>
-              </div>
-            </div>
-          )}
+          <FontAwesomeIcon
+            icon={faSearch}
+            onClick={handleCasinoSearch}
+            style={{
+              fontSize: "24px",
+              color: "var(--header-icon)",
+              fontWeight: "700",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+              // opacity: "0.7",
+            }}
+          />
+
+          <FontAwesomeIcon
+            icon={faBell}
+            style={{
+              fontSize: "24px",
+              color: "var(--header-icon)",
+              fontWeight: "700",
+              paddingRight: "10px",
+
+              // opacity: "0.7",
+            }}
+          />
         </div>
       )}
       <>

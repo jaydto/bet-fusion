@@ -13,7 +13,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const JisortModal = React.memo((props) => {
 
 
-  const { visible, payload, setShowJisortModal } = props;
+  const { visible,  setShowJisortModal } = props;
 
   const [isOpen, setIsOpen] = useState(visible);
   const dispatchRedux = useDispatch();
@@ -125,7 +125,7 @@ const DepositConfirmForm = (props) => {
   const initialValues = {
     confirmation_code: "",
   };
-  const gaEventTracker = useAnalyticsEventTracker("Deposit Confirmation");
+  // const gaEventTracker = useAnalyticsEventTracker("Deposit Confirmation");
 
   const handleSubmit = (values) => {
     setTrackingData(values);
@@ -183,47 +183,15 @@ const MyDepositConfirmationForm = (props) => {
 
                     <DepositConfirmFormFields onFieldChanged={onFieldChanged}
                                               values={values} errors={errors}
-                        // Pass confirmation code  here
 
                     />
-                    {/* <div className={``}>
-                        <ConfirmationInstructions/>
-                    </div> */}
+                    
 
                 </div>
             </div>
         </Form>
     );
 }
-
-// const ConfirmationInstructions = (props) => {
-//     return (
-//       <>
-//         <label className="BetDonjo-text-light">Missing Deposit?</label>
-//         <div className="container d-flex flex-column">
-//           <div className="row">
-//             <div className="col BetDonjo-text-light">
-//               {" "}
-//               1. Enter Mpesa Transaction code when your deposit has not reflected
-//               in your account.
-//             </div>
-//           </div>
-//           <div className="row">
-//             <div className="col BetDonjo-text-light">
-//               {" "}
-//               2. Click on confirm deposit..
-//             </div>
-//           </div>
-//           <div className="row">
-//             <div className="col BetDonjo-text-light">
-//               {" "}
-//               3. Your deposit will be credited to your account.
-//             </div>
-//           </div>
-//         </div>
-//       </>
-//     );
-//   };
 
 const DepositConfirmFormFields = (props) => {
     const {values, errors, onFieldChanged} = props;

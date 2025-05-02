@@ -199,7 +199,7 @@ const CrashGames = ({ activeCategory }) => {
                           className="btn btn-sm btn-link text-light position-absolute   translate-middle z-4 more-button"
                           onClick={() => toggleSection(section.title)}
                         >
-                          {isExpanded ? "Less" : "More"}
+                          {isExpanded ? "Less" : "All"}
                         </button>
                         &nbsp;
                         <LazyLoadImage src={more} width={70} height={10} />

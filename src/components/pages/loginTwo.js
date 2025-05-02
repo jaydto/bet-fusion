@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Row } from "antd";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeaderLogin from "../header/top-login";
 import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
 
@@ -9,6 +9,8 @@ import { StoreContext } from "../../context/store";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import Logo from "../../assets/img/logo.png"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const backgroundStyle = {
   // background: `url(${gameDay})`,
@@ -79,7 +81,7 @@ const LoginTwo = React.memo((props) => {
   const { state } = useContext(StoreContext);
 
   return (
-    <div style={{ height: "100vh", overflowX: "hidden" }}>
+    <div style={{ height: "100vh", overflowX: "hidden" }} className="login-page-section">
       <Row
         justify="center"
         className="align-items-stretch h-100"
@@ -95,6 +97,9 @@ const LoginTwo = React.memo((props) => {
               <FormTitle />
 
               <Row justify="center">
+                <div className="d-flex justify-content-center position-logo-user-pages">
+                  <LazyLoadImage src={Logo} alt="Logo" />
+                </div>
                 <LoginInstructions />
 
                 <div className={"d-flex"}>

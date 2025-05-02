@@ -19,7 +19,7 @@ const CasinoCarouselLoader = React.memo(() => {
     <div className="casino-carousel-container">
       <div className="carousel-container">
         {/* Background Div */}
-        <div className="carousel-background"></div>
+        {/* <div className="carousel-background"></div> */}
 
         {/* Carousel */}
         <Carousel

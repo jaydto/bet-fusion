@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useRef, useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 //Images
 // import aviator from "../../../src/assets/img/mobile/Aviator.svg"
 import league from "../../../src/assets/svg/game.svg"
 
 //SVGs
-import soccer from "../../assets/svg/sports/Soccer.svg"
 import casino1 from "../../assets/svg/casino.svg"
 
 
 import {getFromLocalStorage} from "../utils/local-storage";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import {StoreContext} from "../../context/store";
 
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {useDispatch, useSelector} from "react-redux";
@@ -21,7 +19,6 @@ import {setState} from "../../redux/dataSlice";
 const MobileNav1 = React.memo(
     () => {
 
-        const {state} = useContext(StoreContext);
 
         const scrollContainerRef = useRef(null);
 

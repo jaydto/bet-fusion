@@ -5,9 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import makeRequest from "../../utils/fetch-request";
 import { Form, Formik } from "formik";
-import { StoreContext } from "../../../context/store";
+import Logo from "../../../assets/img/logo.png"
+
 import {
   resetPassword,
   resetSubmitForm,
@@ -48,7 +48,7 @@ const ResetPassword2 = React.memo((props) => {
    const FormTitle = () => {
       return (
         <div
-          className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile"
+          className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile w-100"
           style={{ margin: "0px" }}
         >
           <div>
@@ -105,6 +105,10 @@ const ResetPassword2 = React.memo((props) => {
               }`}
             >
               <FormTitle />
+
+              <div className="d-flex justify-content-center position-logo-user-pages">
+                  <LazyLoadImage src={Logo} alt="Logo" />
+                </div>
 
               <Row justify="center">
                 <div className={"d-flex w-100"}>
@@ -401,6 +405,7 @@ const MyPasswordResetForm = React.memo((props) => {
               type="button"
               onClick={clearActions}
             >
+              <FontAwesomeIcon icon={faAngleLeft} />&nbsp;
               Previous
             </button>
           </div>

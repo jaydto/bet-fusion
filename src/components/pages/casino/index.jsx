@@ -6,6 +6,7 @@ import HorizontalCategoryList from "./horizontalCategoryList";
 import "./index.css";
 import SearchModal from "../../modals/SearchModal";
 import { useSelector } from "react-redux";
+import Broadcast from "./broadcast";
 
 const Index = () => {
   const close_call_to_action = useSelector(
@@ -31,15 +32,16 @@ const Index = () => {
       {/* Menu / Sport List */}
       {/* <SportsList/> */}
       {pathname === "/" && <SearchModal />}
-
-      <CasinoCarouselLoader />
-
-      {/* Casino Filters */}
-      {/* <CasinoFilters/> */}
       <HorizontalCategoryList
         activeCategory={activeCategory}
         onCategoryClick={onCategoryClick}
       />
+
+      <CasinoCarouselLoader />
+      <Broadcast/>
+
+      {/* Casino Filters */}
+      {/* <CasinoFilters/> */}
 
       <CrashGames activeCategory={activeCategory} />
     </div>

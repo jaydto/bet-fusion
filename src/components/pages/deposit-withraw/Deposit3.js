@@ -518,11 +518,7 @@ const DepositForm = (props) => {
 
   const handleSubmit = (values) => {
     setTrackingData(values);
-    // const data = {
-    //     msisdn: state?.user?.msisdn,
-    //     amount: values?.amount
-    // }
-    // gaEventTracker('Deposit', data)
+   
     dispatchRedux(userDeposits(values));
   };
 

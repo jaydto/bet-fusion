@@ -17,22 +17,23 @@ import {
   getFromLocalStorage,
   setTrackingData,
 } from "../../utils/local-storage";
-import { CountryButton } from "../../header/top-login";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import Logo from "../../../assets/img/logo.png"
 
 const FormTitle = () => {
   const navigate = useNavigate();
 
   return (
     <div
-      className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3 text-center w-100 top-login-mobile"
+      className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-1 text-center w-100 top-login-mobile"
       style={{ margin: "0px" }}
     >
       <div>
         <div
           className={
-            " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator py-3"
+            " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator pt-3 pb-0"
           }
           onClick={() => navigate(-1)}
         >
@@ -227,6 +228,9 @@ const Register = () => {
                         <div className="col-md-12 mt-lg-2 text-white p-lg-2 px-2 pb-2 w-100">
                           <div className="pb-0" data-backdrop="static">
                             <FormTitle />
+                            <div className="d-flex justify-content-center position-logo-user-pages">
+                  <LazyLoadImage src={Logo} alt="Logo" />
+                </div>
                             <ToastContainer />
                             <Formik
                               initialValues={initialValues}
@@ -244,7 +248,7 @@ const Register = () => {
                                 handleSubmit,
                               }) => (
                                 <Form onSubmit={handleSubmit}>
-                                  <div className="form-group w-100 d-flex justify-content-center mt-5">
+                                  <div className="form-group w-100 d-flex justify-content-center mt-2">
                                     <div className="col-md-12 w-100">
                                       <label
                                         style={{ color: "var(--light" }}

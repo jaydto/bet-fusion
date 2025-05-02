@@ -6574,7 +6574,7 @@ ul.sport {
 @media (max-width: 1258px) {
     /*fonts in login screen*/
     .font-input{
-        font-size:16px;
+        font-size:14px;
     }
     .btn-font{
         font-size:2rem!important;

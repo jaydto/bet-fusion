@@ -27,6 +27,11 @@ import WithdrawProfile from "./component/WithdrawProfile";
 import DepositForm from "./component/depositCard";
 import WithdrawForm from "./component/withdrawCard";
 import SupportContainer from "./component/supportContainer";
+import bonus from "../../../assets/img/mobile/bonus.svg";
+import profilep from "../../../assets/img/mobile/profile-p.svg";
+import balance from "../../../assets/img/mobile/balance.svg";
+import DepositModal from "../../modals/DepositModal";
+import { setState } from "../../../redux/dataSlice";
 
 const NewProfile = React.memo(() => {
   const userData = useSelector((state) => state.auth.user);
@@ -65,10 +70,21 @@ const NewProfile = React.memo(() => {
     setLocalStorage("user", null);
     return (window.location.href = "/logout");
   };
+  const showDepositModal = useSelector(
+    (state) => state.data.show_deposit_modal
+  );
 
   const navigate = useNavigate();
+  const hideModal = () => {
+    dispatchRedux(setState("show_deposit_modal", false));
+  };
+  const showModal = () => {
+    dispatchRedux(setState("show_deposit_modal", true));
+  };
   return (
     <>
+      {showDepositModal && <DepositModal />}
+
       <div>
         <div className="profile-container-desktop d-flex">
           <div
@@ -78,19 +94,20 @@ const NewProfile = React.memo(() => {
             <div className="iphone">
               <div className="content mb-4 px-4">
                 <div className="d-flex flex-column justify-content-center align-items-center">
-                  <FontAwesomeIcon
-                    style={{ fontSize: "35px", marginTop: "2rem" }}
-                    icon={faUserCircle}
-                    size="lg"
-                    className="bars h2 text-success"
+                  <LazyLoadImage
+                    src={profilep}
+                    className="mb-2 icon-large icon-white  bg-p-icon "
                   />
                   <span className="h4 text-light">{user?.msisdn}</span>
                 </div>
-                <div className="card mb-3">
+                <div className="card mb-3 top-pr">
                   <div className="upper-row">
                     <div className="card-item d-flex  align-items-center px-2">
                       {/* Cash Balance with Wallet Icon in Column Layout */}
-                      <FontAwesomeIcon icon={faWallet} className="mb-2  icon-large icon-white " />
+                      <LazyLoadImage
+                        src={balance}
+                        className="mb-2 icon-large icon-white "
+                      />
                       <div className="balance-container d-flex flex-column align-items-start px-3">
                         <div className="t-label">Balance</div>
                         <div className="dollar">
@@ -100,7 +117,10 @@ const NewProfile = React.memo(() => {
                     </div>
                     <div className="card-item d-flex  align-items-center px-2">
                       {/* Bonus Balance with Gift Icon in Column Layout */}
-                      <FontAwesomeIcon icon={faGift} className="mb-2 icon-large icon-white " />
+                      <LazyLoadImage
+                        src={bonus}
+                        className="mb-2 icon-large icon-white "
+                      />
                       <div className="balance-container d-flex flex-column align-items-start px-3">
                         <div className="t-label">Bonus </div>
                         <div className="dollar">
@@ -110,6 +130,16 @@ const NewProfile = React.memo(() => {
                     </div>
                   </div>
                 </div>
+
+                <button
+                  className={`w-100 button-radius input-field btn-font login-button2 mb-4 btn bold`}
+                  style={{ position: "relative", borderRadius: "12px" }}
+                  disabled={user ? false : true}
+                  onClick={showModal}
+                  type="submit"
+                >
+                  <span>Deposit</span>
+                </button>
 
                 {user?.promo_points?.end_date &&
                   new Date(user.promo_points.end_date) > new Date() && (
@@ -170,12 +200,55 @@ const NewProfile = React.memo(() => {
                       </div>
                     </Link>
                   )}
-
-                <DepositForm />
+                <div className="card mb-3 top-pr">
+                  <div className="upper-row text-light p-3">
+                    Enquire missing deposit{" "}
+                    <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </div>
+                <div className="card mb-3 top-pr">
+                  <div className="upper-row text-light p-3">
+                    Promotions <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </div>
+                <div className="card mb-3 top-pr">
+                  <div className="upper-row text-light p-3">
+                    My Transactions <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </div>
 
                 <WithdrawForm />
+                <div className="card mb-3 top-pr">
+                  <div className="upper-row text-light p-3">
+                    Gaming Records <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </div>
+                <div className="card mb-3 top-pr">
+                  <div className="upper-row text-light p-3">
+                    Change Password <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </div>
+                <p>Settings</p>
+                <div className="card mb-3 top-pr">
+                  <div className="upper-row text-light p-3">
+                    Light theme
+                    <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                  <div className="upper-row text-light p-3">
+                    Data Saver
+                    <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </div>
 
-                <SupportContainer />
+                <p>Support</p>
+                <div className="card mb-3 top-pr">
+                  <div className="upper-row text-light p-3">
+                    Delete Account
+                    <FontAwesomeIcon icon={faAngleRight} />
+                  </div>
+                </div>
+
+                {/* <SupportContainer /> */}
               </div>
             </div>
           </div>

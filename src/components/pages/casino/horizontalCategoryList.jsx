@@ -16,14 +16,14 @@ import { CategorySkeletonLoader } from "./categorySkeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import star from "../../../assets/img/star-horizontal.png";
+import all from "../../../assets/img/mobile/all.svg";
 import fire from "../../../assets/img/fire.png";
-import crash from "../../../assets/img/crash.png";
+import hot from "../../../assets/img/mobile/hot.svg";
 import jackpot from "../../../assets/img/jackpot.png";
-import notification from "../../../assets/img/notification.png";
 
 const iconMap = {
   popular: <LazyLoadImage src={fire} alt="popular" height={"20px"} />,
-  hot: <LazyLoadImage src={crash} alt="hot" height={"20px"} />,
+  hot: <LazyLoadImage src={hot} alt="hot" height={"20px"} />,
   casino: <LazyLoadImage src={jackpot} alt="hot" height={"20px"} />,
   fishing_and_hunting_new: <FaFish />,
   video_slot: <FaTicketAlt />,
@@ -52,7 +52,7 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
 
   // Add "All" category as default
   const categories = [
-    { id: "all", name: "All", icon: <FaCube /> }, // Default "All" category
+    { id: "all", name: "All", icon: <LazyLoadImage src={all} alt="hot" height={"20px"} /> }, // Default "All" category
     ...casinoTypes.map((category) => ({
       id: category.game_type_id,
       name: category.game_type_description,
@@ -76,24 +76,25 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
 
   return (
     <>
-      <div className="position-relative w-100">
+      <div className="position-relative w-100" style={{ marginTop:"10rem" }}>
         {loading ? (
           <CategorySkeletonLoader />
         ) : (
           <div
             ref={scrollRef}
-            className="d-flex overflow-auto px-4 w-100 scrol-cat gap-2"
+            className="d-flex overflow-auto px-2 w-100 scrol-cat gap-2"
           >
             {/* Floating button positioned at the start */}
-            <button className="floating-btn position-absolute top-50 start-0 translate-middle-y z-index-100">
+            {/* <button className="floating-btn position-absolute top-50 start-0 translate-middle-y z-index-100">
               <LazyLoadImage
                 src={star}
                 alt="Left Arrow"
                 onClick={() => scroll("left")}
                 height={"20px"}
               />
-            </button>
-            <div className="d-flex gap-3 start-moved">
+            </button> */}
+            {/* <div className="d-flex gap-3 start-moved"> */}
+            <div className="d-flex gap-3 ">
               {/* Category Buttons */}
               {categories.map((category) => (
                 <button
@@ -113,11 +114,7 @@ const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
         )}
       </div>
       {/* Notification Icon - Positioned below the categories */}
-      <div className="notification-icon-container  my-2">
-        <button className="notification-icon-btn">
-          <LazyLoadImage src={notification} alt="popular" height={"20px"} />
-        </button>
-      </div>
+     
 
       {/* <SearchCasino /> */}
     </>

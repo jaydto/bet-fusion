@@ -12,7 +12,7 @@ const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si0
 // export const BASE_URL = 'https://51.83.99.148:5000';
 // export const BASE_URL = 'http://staging.BetDonjo.com';
 // export const BASE_URL = 'https://api.BetDonjo.bet';
-export const BASE_URL = 'https://api.bettena.com'; 
+export const BASE_URL = 'https://api.betdonjo.com'; 
 
 const instance = axios.create({
   baseURL: BASE_URL,

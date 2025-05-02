@@ -3,7 +3,7 @@
     justify-content: center;
 }
 .iphone {
-    background-color: var(--bet-dojo-body-bg);
+    background-color: var(--dark);
     /* height: 100vh; */
     width: 100%;
     overflow: hidden;
@@ -76,13 +76,19 @@
     height: 100vh;
     justify-content: space-evenly;
 }
-.card {
+.card.top-pr {
+    background: var(--top-pr);
     align-self: stretch;
     border-radius: 12px;
     display: flex;
-    background: crimson;
     flex-direction:column;
     box-shadow: 0 14px 28px rgba(0,0,0,0.02), 0 10px 10px rgba(0,0,0,0.0);
+}
+.bg-p-icon {
+    background: var(--top-pr);
+    border-radius: 30px;
+    padding: 8px;
+    margin-top: 1.5rem;
 }
 .header-profile {
     position: sticky;
@@ -183,7 +189,7 @@ a.text-logout{
     border: 1px solid var(--light-gray-border);
     background-color: var(--black-dark-20);
     border-radius: 8px;
-    padding: 15px;
+    padding: 15px 7px;
     width:100%;
 }
 .account__section__title {
@@ -259,7 +265,8 @@ button, input, textarea, select {
 }
 .button.account__section__submit {
     padding: 10px 70px;
-    border-radius: 4px;
+    border-radius: 12px;
+    font-weight: 700;
 }
 .button__secondary {
     /* background: var(--bet-dojo-odds-body); */

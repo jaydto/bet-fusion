@@ -1,9 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import HomeSvg from "../../assets/img/mobile/home.png";
-import Affiliate from "../../assets/img/mobile/affiliate.png";
-import Deposit from "../../assets/img/mobile/deposit.png";
-import ProfileSvg from "../../assets/img/mobile/proile.png";
-import Promotions from "../../assets/img/mobile/promotions.png";
+import HomeSvg from "../../assets/img/mobile/Home.svg";
+import Affiliate from "../../assets/img/mobile/affiliate.svg";
+import Deposit from "../../assets/img/mobile/deposit.svg";
+import ProfileSvg from "../../assets/img/mobile/Profile.svg";
+import Promotions from "../../assets/img/mobile/promotions.svg";
 import CloseIcon from "../../assets/img/mobile/close_icon.png";
 
 import { Badge } from "react-bootstrap";
@@ -344,7 +344,7 @@ const MobileMenu = React.memo((props) => {
                           src={HomeSvg}
                           alt=""
                           effect="blur"
-                          style={{ width: "30px", height: "30px" }}
+                          style={{ width: "22px", height: "35px" }}
                         />
                         <p>Home</p>
                       </Link>
@@ -363,7 +363,7 @@ const MobileMenu = React.memo((props) => {
                           src={Affiliate}
                           alt=""
                           effect="blur"
-                          style={{ width: "30px", height: "30px" }}
+                          style={{ width: "30px", height: "35px" }}
                         />
                         <p>Affiliate</p>
                       </Link>
@@ -374,7 +374,7 @@ const MobileMenu = React.memo((props) => {
                     >
                       <Link
                         className="position-relative d-flex flex-column justify-content-center align-items-center"
-                        style={{marginBottom:"-30px"}}
+                        style={{marginBottom:"-34.5px"}}
                         to={{
                           pathname: `${`/deposit`}`,
                         }}
@@ -388,7 +388,7 @@ const MobileMenu = React.memo((props) => {
                               src={Deposit}
                               alt=""
                               effect="blur"
-                              style={{ width: "30px", height: "30px" }}
+                              style={{ width: "40px", height: "40px" }}
                             />
                           </Badge>
                         </div>
@@ -410,7 +410,7 @@ const MobileMenu = React.memo((props) => {
                           src={Promotions}
                           alt=""
                           effect="blur"
-                          style={{ width: "30px", height: "30px" }}
+                          style={{ width: "22px", height: "35px" }}
                         />
                         <p>Promotions</p>
                       </Link>
@@ -418,25 +418,27 @@ const MobileMenu = React.memo((props) => {
 
                     {user ? (
                       <td
-                        className={`bloc-icon ${
+                        className={`bloc-icon  text-center ${
                           pathname === "/profile" ? "active" : ""
                         }`}
                       >
                         <Link
-                          className="d-flex flex-column justify-content-center align-items-center"
+                          className=""
                           to={"/profile"}
                         >
                           <LazyLoadImage
                             src={ProfileSvg}
                             effect="blur"
                             alt=""
+                            style={{ width: "24px", height: "35px" }}
+
                           />
                           <p>Profile</p>
                         </Link>
                       </td>
                     ) : (
                       <td
-                        className={`bloc-icon ${
+                        className={`bloc-icon text-center ${
                           pathname === "/login" ? "active" : ""
                         }`}
                       >
@@ -445,7 +447,7 @@ const MobileMenu = React.memo((props) => {
                             src={ProfileSvg}
                             alt=""
                             effect="blur"
-                            style={{ width: "30px", height: "30px" }}
+                            style={{ width: "24px", height: "35px" }}
                           />
                           <p>Profile</p>
                         </Link>

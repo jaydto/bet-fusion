@@ -1000,7 +1000,11 @@ select::after {
   /* box-shadow: 5px 7px 30px 8px var(--btn-color); */
   width: 80%;
   margin: auto;
-  margin-top: 15rem;
+  margin-top: 7rem;
+}
+
+.position-logo-user-pages img{
+  width:635.594px;
 }
 
 .font-btn:hover {
@@ -1898,7 +1902,7 @@ img.nare-league {
   }
 
   .amt {
-    margin-top: 112px !important;
+    margin-top: 76px !important;
   }
 
   .stats-mobile {

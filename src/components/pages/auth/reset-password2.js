@@ -116,7 +116,7 @@ const ResetPassword2 = React.memo((props) => {
                   <div className={"w-100"}>
                     <div className={"d-flex flex-row justify-content-between"}>
                       <div className=" w-100">
-                        <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
+                        <div className="homepage d-flex flex-column align-items-center justify-content-center login-page" style={{margin:"auto", maxWidth:"767px"}}>
                           <div className="col-md-12 mt-2 text-white px-2 w-100">
                             {(resetPasswordMessage ?? resetMessage) && (
                               <Alert />

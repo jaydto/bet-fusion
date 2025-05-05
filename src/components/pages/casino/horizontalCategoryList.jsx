@@ -20,6 +20,7 @@ import all from "../../../assets/img/mobile/all.svg";
 import fire from "../../../assets/img/fire.png";
 import hot from "../../../assets/img/mobile/hot.svg";
 import jackpot from "../../../assets/img/jackpot.png";
+import rawCasinoData from './data.json';
 
 const iconMap = {
   popular: <LazyLoadImage src={fire} alt="popular" height={"20px"} />,
@@ -45,7 +46,9 @@ const iconMap = {
 
 const HorizontalCategoryList = ({ activeCategory, onCategoryClick }) => {
   const scrollRef = useRef(null);
-  const casinoTypes = useSelector((state) => state.virtuals.casino_games_types);
+  // const casinoTypes = useSelector((state) => state.virtuals.casino_games_types);
+    const casinoTypes= rawCasinoData.types;  // This replaces: useSelector(...)
+  
   const loading = useSelector((state) => state.virtuals.loading);
 
   // if (loading) return null; // Hide the section when loading

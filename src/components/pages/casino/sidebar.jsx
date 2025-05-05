@@ -59,7 +59,7 @@ const Sidebar = () => {
           theme="dark" // Optional: use "dark" for better built-in contrast
         >
           <SubMenu
-            key="aviator"
+            key="Games"
             title="Games"
             style={{ color: "var(--light)" }}
           >

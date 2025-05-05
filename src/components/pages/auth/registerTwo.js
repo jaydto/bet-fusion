@@ -247,7 +247,7 @@ const Register = () => {
                                 handleChange,
                                 handleSubmit,
                               }) => (
-                                <Form onSubmit={handleSubmit}>
+                                <Form onSubmit={handleSubmit} style={{maxWidth:"767px", margin:"auto"}}>
                                   <div className="form-group w-100 d-flex justify-content-center mt-2">
                                     <div className="col-md-12 w-100">
                                       <label

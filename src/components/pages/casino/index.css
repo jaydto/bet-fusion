@@ -466,6 +466,9 @@ input.search-cat:focus {
     height: 47vh !important;
   }
 }
+:where(.css-dev-only-do-not-override-1m63z2v).ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline, :where(.css-dev-only-do-not-override-1m63z2v).ant-menu-dark>.ant-menu.ant-menu-inline .ant-menu-sub.ant-menu-inline{
+  background: inherit!important;
+}
 
 @media (max-width: 991px) {
   .body-section{

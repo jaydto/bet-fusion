@@ -18,7 +18,7 @@ const Complaints = () => {
             <AccordionItemPanel className='accordion-item-panel'>
 
                 <p>
-                    BetDonjo is committed to provide the best quality of support for our
+                   jazabets is committed to provide the best quality of support for our
                     players.
                 </p>
                 <p>

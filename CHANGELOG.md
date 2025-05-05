@@ -1,4 +1,4 @@
-#### BetDonjo Changelog
+####jazabets Changelog
 
 ### Version 2.0.0 (2024-02-24)
 - **2.0.0** Casino Page Revamp:

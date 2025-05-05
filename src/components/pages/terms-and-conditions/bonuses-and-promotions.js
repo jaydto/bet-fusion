@@ -19,10 +19,10 @@ const BonusesAndPromotions = () => {
                 <ol>
                     <li>
                         Bonuses being offered and their details of crediting Bonus Money will be available on the Bonus/Promotions section of the website.
-                        The amount of Bonus Money is determined by BetDonjo and set out on the website.
+                        The amount of Bonus Money is determined byjazabets and set out on the website.
                     </li>
 
-                    <li>The CLIENT binds himself not to abuse the ability of opening accounts in order to benefit from bonus credits and other promotional offers that may be offered. The company reserves the right, in case of abusive behavior on the CLIENT’S part as related to bonus credits and/or to promotional offers by BetDonjo, to rescind or block
+                    <li>The CLIENT binds himself not to abuse the ability of opening accounts in order to benefit from bonus credits and other promotional offers that may be offered. The company reserves the right, in case of abusive behavior on the CLIENT’S part as related to bonus credits and/or to promotional offers byjazabets, to rescind or block
                         CLIENT accounts created to that end, as well as their transactions.</li>
                     <li>BetDonjo reserves the right to revoke and/or cancel any bonus and/or promotional winnings which are deemed to have occurred due to abuse and/or misuse of any promotional system.
                         In the event of any dispute, the general conditions set out in the complaints procedure on the company’s website will apply.</li>
@@ -57,12 +57,12 @@ const BonusesAndPromotions = () => {
                         derived from the bets placed successfully with the bonus can be withdrawn.
                     </li>
                     <li>
-                        If BetDonjo notices something suspicious about your activities with the bonus, then we may
+                        Ifjazabets notices something suspicious about your activities with the bonus, then we may
                         take it away. This includes very similar betting patterns between the referrer and the referred
                         account.
                     </li>
                     <li>
-                        BetDonjo bonus has no expiry.
+                       jazabets bonus has no expiry.
                     </li>
 
                 </ol>
@@ -100,9 +100,9 @@ const BonusesAndPromotions = () => {
                 </ol>
                 <p><strong><strong>NB;</strong> APART FROM JACKPOT BONUSES , THE REST CANNOT BE WITHDRAWN</strong></p>
 
-                <p><strong><strong>NB;</strong> BetDonjo has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.
+                <p><strong><strong>NB;</strong>jazabets has the right to amend the terms of the offer, cancel or renew the offer, or refuse to allow participation at any time without prior notice.
 Customers must provide ID documents, when required, to validate their identity (KYC). Failure to produce these documents when requested will result in the forfeit of any bonuses/winnings.
-If BetDonjo believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.</strong></p>
+Ifjazabets believes itself to be the victim of fraud or money laundering, the company has the right to close customers' accounts and freeze the remaining balance.</strong></p>
 
             </AccordionItemPanel>
         </AccordionItem>

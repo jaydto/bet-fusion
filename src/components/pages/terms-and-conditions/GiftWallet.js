@@ -18,7 +18,7 @@ const GiftWallet = () => {
             <AccordionItemPanel className='accordion-item-panel'>
 <ol>
     <li>
-        Register and Get the BetDonjo Bet Booster of UPTO 3,000/= FREE
+        Register and Get thejazabets Bet Booster of UPTO 3,000/= FREE
     </li>
     <li>The client is set to receive Up to 3,000/= to Unlock their Stake Booster once they REGISTER</li>
 </ol>
@@ -26,8 +26,8 @@ const GiftWallet = () => {
                 <br/>
                 <strong className="text-decoration-underline">HOW TO GET THE BOOSTER GIFTS</strong>
                 <ol>
-                    <li>REGISTER on BetDonjo.</li>
-                    <li>Get UPTO 3,000 of registration as Free Booster to be used on BetDonjo
+                    <li>REGISTER onjazabets.</li>
+                    <li>Get UPTO 3,000 of registration as Free Booster to be used onjazabets
                         when placing bets (in the Betslip)
                     </li>
                     <li>Start using your BOOSTERS immediately on your 1 st Cash Bet.
@@ -45,9 +45,9 @@ const GiftWallet = () => {
                         A minimum of 4 games on a Multi Bet.
                     </li>
                     <li>
-                        BetDonjo will top up your stake by 20% of the stake used.
-                        e.g., When you stake 50/= BetDonjo will boost your stake by 20% meaning
-                        your stake will be 60/=, if you place a Stake of 200/=, BetDonjo will boost it to
+                       jazabets will top up your stake by 20% of the stake used.
+                        e.g., When you stake 50/=jazabets will boost your stake by 20% meaning
+                        your stake will be 60/=, if you place a Stake of 200/=,jazabets will boost it to
                         240/=
                     </li>
                 </ol>
@@ -88,7 +88,7 @@ const GiftWallet = () => {
                         Only 1 Booster Gift can be used in 1 Betslip.
                     </li>
                     <li>
-                        In this promotion, BetDonjo only allows one chance to award Gifts per person /
+                        In this promotion,jazabets only allows one chance to award Gifts per person /
                         mobile number/ IP address/device number.
                     </li>
                     <li>
@@ -99,7 +99,7 @@ const GiftWallet = () => {
                     <li>
                         Under suspect of fraud or abuse of this promotion by any customer, we reserve ourselves the
                         right to remove Gifts and associated winnings from a given account or any associated accounts.
-                        BetDonjo reserves itself the rights to amend, cancel, reclaim or refuse any promotion at its own
+                       jazabets reserves itself the rights to amend, cancel, reclaim or refuse any promotion at its own
                         discretion.
                     </li>
 

@@ -103,14 +103,14 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem uuid={"13"}>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    Why should I register with BetDonjo?
+                                    Why should I register withjazabets?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Registration allows you to open a BetDonjo
+                                    Registration allows you to open ajazabets
                                     account free of charge and under no
-                                    obligation. Your BetDonjo account will help
+                                    obligation. Yourjazabets account will help
                                     you manage your bets and other account
                                     details. You need to deposit actual money
                                     into your account before you can place bets.
@@ -120,7 +120,7 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    How do I Register with BetDonjo?
+                                    How do I Register withjazabets?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
@@ -140,7 +140,7 @@ const HowToPlay = React.memo((props) => {
                                   <p>
                                     A confirmation message appears to confirm
                                     that your registration was successful.
-                                    BetDonjo!
+                                   jazabets!
                                   </p>
                                 </AccordionItemPanel>
                               </AccordionItem>
@@ -152,7 +152,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I withdraw cash from my BetDonjo account?
+                              How do I withdraw cash from myjazabets account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -179,11 +179,11 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I log into my BetDonjo account?
+                              How do I log into myjazabets account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
-                            Once you have registered you can access your BetDonjo
+                            Once you have registered you can access yourjazabets
                             account by entering your phone number as USERNAME
                             and  PASSWORD as PASSWORD
                           </AccordionItemPanel>
@@ -191,7 +191,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my transaction from my BetDonjo
+                              How do I check my transaction from myjazabets
                               account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
@@ -205,7 +205,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my bets from my BetDonjo account?
+                              How do I check my bets from myjazabets account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -225,13 +225,13 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
                               Why wait 90 Minutes when you can play Virtuals and
-                              WIN Big in Minutes? BetDonjo offers a variety of
+                              WIN Big in Minutes?jazabets offers a variety of
                               Virtual games ranging from; Fantastic football
                               league, Horse racing , Force 1 racing , Greyhound
                               racing and Penalty shootout. Log into
                               https://BetDonjo.com/ to get the Virtual
                               experience. Stake low, Win High & Fast with
-                              BetDonjo Virtuals.
+                             jazabets Virtuals.
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>
@@ -240,13 +240,13 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              What is the BetDonjo Customer care number?
+                              What is thejazabets Customer care number?
                             </AccordionItemButton>
                           </AccordionItemHeading>
 
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
-                              BetDonjo offers Customer Care support round the
+                             jazabets offers Customer Care support round the
                               clock. We are reachable via 0111513541 on Mobile,
                               WhatsApp Number – 0111513541. You can also reach
                               us through E-Mail onsupport@BetDonjo.com

@@ -88,7 +88,7 @@ const AntiMoneyLaundering = () => {
                         illegal activity.
                       </p>
                       <p>
-                        BetDonjo is obliged to block such funds and to
+                       jazabets is obliged to block such funds and to
                         undertake measure as provided in the AML policy rules.
                       </p>
 

@@ -34,7 +34,7 @@ const TermAndTermination = () => {
                         The term of the Agreement shall be for an indefinite period.
                     </li>
                     <li>
-                        BetDonjo shall have the right prior to accepting any bet, temporarily to
+                       jazabets shall have the right prior to accepting any bet, temporarily to
                         suspend or permanently to terminate, the provision of betting services
                         to a
                         CLIENT without providing any reason.

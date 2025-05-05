@@ -247,7 +247,7 @@ const Header = React.memo((props) => {
             className="mb-1 h4"
             style={{ color: "var(--donjo-text)", fontWeight: "800" }}
           >
-            BetDonjo App
+           jazabets App
           </span>
           <span className="mb-0">Bet Like a Winner</span>
         </div>

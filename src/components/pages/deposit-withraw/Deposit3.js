@@ -128,7 +128,7 @@ import { useNavigate } from "react-router-dom";
 //             </span>
 
 //             <span className={"w-50 d-flex justify-content-center"}>
-//               <h4 className="inline-block BetDonjo-text-light" style={{textTransform:"uppercase"}}>
+//               <h4 className="inline-blockjazabets-text-light" style={{textTransform:"uppercase"}}>
 //                 {tab} FUNDS (MOBILE MONEY)
 //               </h4>{" "}
 //             </span>
@@ -258,31 +258,31 @@ import { useNavigate } from "react-router-dom";
 //       <label className="BetDonjo-text-light">Deposit Instructions</label>
 //       <div className="container d-flex flex-column">
 //         <div className="row">
-//           <div className="col BetDonjo-text-light">
+//           <div className="coljazabets-text-light">
 //             {" "}
 //             1. Enter the amount you want to deposit.
 //           </div>
 //         </div>
 //         <div className="row">
-//           <div className="col BetDonjo-text-light">
+//           <div className="coljazabets-text-light">
 //             {" "}
 //             2. Click on the deposit button.
 //           </div>
 //         </div>
 //         <div className="row">
-//           <div className="col BetDonjo-text-light">
+//           <div className="coljazabets-text-light">
 //             {" "}
 //             3. Check your phone for an M-Pesa Request.
 //           </div>
 //         </div>
 //         <div className="row">
-//           <div className="col BetDonjo-text-light">
+//           <div className="coljazabets-text-light">
 //             {" "}
 //             4. Enter your M-Pesa Pin to confirm the transaction.
 //           </div>
 //         </div>
 //         <div className="row">
-//           <div className="col BetDonjo-text-light">
+//           <div className="coljazabets-text-light">
 //             {" "}
 //             5. On successful payment, you will receive an M-Pesa Confirmation.
 //           </div>

@@ -1,14 +1,12 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Layout, Row, Col, Typography, Space, Divider, Badge } from "antd";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import fb1 from "../../../assets/img/fb1.png";
 import tw from "../../../assets/img/t1.png";
 import int1 from "../../../assets/img/int1.png";
 import wh from "../../../assets/img/w1.png";
-import fb2 from "../../../assets/img/facebook.png";
-import em2 from "../../../assets/img/email.png";
-import ch2 from "../../../assets/img/contact.png";
-import footer from "../../../assets/img/footer.png";
+
 import Coop1 from "../../../assets/img/coop1.png";
 import Coop2 from "../../../assets/img/coop2.png";
 import Coop3 from "../../../assets/img/coop3.png";
@@ -16,225 +14,180 @@ import Coop4 from "../../../assets/img/coop4.png";
 import Coop5 from "../../../assets/img/coop5.png";
 import Coop6 from "../../../assets/img/coop6.png";
 import Coop7 from "../../../assets/img/coop7.png";
+import { ExclamationCircleOutlined, StopOutlined } from "@ant-design/icons";
 
-import Fair1 from "../../../assets/img/fair1.png";
-import Fair2 from "../../../assets/img/fair2.png";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Badge } from "antd";
+const { Footer: AntFooter } = Layout;
+const { Title, Paragraph, Text } = Typography;
 
 export default function Footer() {
+  const cooperationImages = [Coop1, Coop2, Coop3, Coop4, Coop5, Coop6, Coop7];
+
   return (
-    <footer
-      className="  mt-1 "
+    <AntFooter
       style={{
-        background: "var(--jaza-bets-lite)",
+        background: "var(--bg-card-dark)",
         color: "var(--light)",
-        marginBottom: "100px",
+        padding: "30px 20px",
+        marginBottom: 10,
       }}
     >
-      <Container>
-        <Row className="text-start px-4">
-          <Col md={12} sm={12} className="mb-4" style={{ fontSize: "12px" }}>
-            {/* <LazyLoadImage src={footer} alt="footer" className="img-fluid" /> */}
-            <p
-              style={{ marginBottom: "0px", paddingTop: "30px" }}
-              className="text-center"
-            >
-              WINNING STARTs HERE , Best Gambiling game site in
-              Africa
-            </p>
-            <hr style={{ marginTop: "0px" }} />
-          </Col>
-
-          {/* Links */}
-          <Col md={12} sm={12} className="">
-            <ul
-              className="list-unstyled d-flex align-items-center justify-content-center gap-3 "
-              style={{ fontSize: "12px" }}
-            >
-              <li>
-                <Link to="/about" className="text-decoration-none text-light ">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="text-decoration-none text-light ">
-                  T&C's
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-decoration-none text-light ">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </Col>
-
-          {/* Contacts */}
-          <Col md={12} sm={12} className="mb-4">
-            <ul
-              className="list-unstyled d-flex justify-content-center gap-3 align-items-center"
-              style={{ fontSize: "12px" }}
-            >
-              <li className="mb-1 d-flex justify-content-center  align-items-center flex-column">
-                <LazyLoadImage
-                  src={ch2}
-                  alt="footer"
-                  className="img-fluid"
-                  height={30}
-                  width={30}
-                />
-
-                <p>Live chat</p>
-              </li>
-              <li className="mb-1  d-flex justify-content-center  align-items-center flex-column">
-                <LazyLoadImage
-                  src={em2}
-                  alt="footer"
-                  className="img-fluid"
-                  height={30}
-                  width={30}
-                />
-                <p>Email</p>
-              </li>
-              <li className="mb-1  d-flex justify-content-center  align-items-center flex-column">
-                <LazyLoadImage
-                  src={fb2}
-                  alt="footer"
-                  className="img-fluid"
-                  height={30}
-                  width={30}
-                />
-                <p>Facebook</p>
-              </li>
-            </ul>
-          </Col>
-          <hr />
-
-          {/* Share */}
-          <Col md={12} sm={12} className="mb-4">
-            <h4 className="fw-bold text-center mb-3">Share With Friends</h4>
-            <div className="d-flex gap-3">
-              <ul
-                className="list-unstyled d-flex justify-content-center gap-5 align-items-center w-100"
-                style={{ fontSize: "12px" }}
-              >
-                <li className="mb-1  d-flex justify-content-center  align-items-center flex-column">
-                  <LazyLoadImage
-                    src={fb1}
-                    alt="footer"
-                    className="img-fluid"
-                    height={30}
-                    width={30}
-                  />
-                  <p className="mb-0">Facebook</p>
-                </li>
-
-                <li className="mb-1  d-flex justify-content-center  align-items-center flex-column">
-                  <LazyLoadImage
-                    src={tw}
-                    alt="footer"
-                    className="img-fluid"
-                    height={30}
-                    width={30}
-                  />
-                  <p className="mb-0">Twitter</p>
-                </li>
-                <li className="mb-1 d-flex justify-content-center  align-items-center flex-column">
-                  <LazyLoadImage
-                    src={wh}
-                    alt="footer"
-                    className="img-fluid"
-                    height={30}
-                    width={30}
-                  />
-
-                  <p className="mb-0">Whatsap</p>
-                </li>
-                <li className="mb-1  d-flex justify-content-center  align-items-center flex-column">
-                  <LazyLoadImage
-                    src={int1}
-                    alt="footer"
-                    className="img-fluid"
-                    height={30}
-                    width={30}
-                  />
-                  <p className="mb-0">Intagram</p>
-                </li>
-              </ul>
-            </div>
-            <p style={{ fontSize: "12px" }} className="text-center">
-              Invite friends,bet and earn KSH 1,000,000
-            </p>
-          </Col>
-          <hr />
-
-          {/* Cooperations */}
-          <Col md={12} sm={12} className="mb-4">
-            <h5 className="fw-bold text-center mb-4">Cooperations</h5>
-            <div className="d-flex flex-wrap gap-4">
-              {[Coop1, Coop2, Coop3, Coop4, Coop5, Coop6, Coop7].map(
-                (img, idx) => (
-                  <img
-                    key={idx}
-                    src={img}
-                    alt={`coop-${idx}`}
-                    width={50}
-                    height={30}
-                  />
-                )
-              )}
-            </div>
-          </Col>
-        </Row>
-
-        <hr />
-
-        <Row className="text-start px-4">
-        
-
-          {/* Licence */}
-          <Col md={12} sm={12} className="mb-3">
-            <h5 className="fw-bold text-cebter text-center fw-bold fs-3 mb-3">
+      <Row justify="center">
+        <Col
+          span={24}
+          style={{
+            padding: "16px",
+            color: "white",
+          }}
+        >
+          <Col span={24}>
+            <Title level={3} style={{ textAlign: "center", color: "white" }}>
               License
-            </h5>
-            <ul style={{ fontSize: "12px" }}>
-              <li className="d-flex align-items-center gap-2">
+            </Title>
+            <ul
+              style={{
+                fontSize: 12,
+                color: "white",
+                listStyle: "none",
+                paddingLeft: 0,
+              }}
+            >
+              <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 Players must be{" "}
                 <b style={{ color: "var(--game-title)" }}>18 or older.</b>
                 <Badge
-                  pill
-                  className="border border-warning bg-transparent text-white p-1 d-flex align-items-center justify-content-center rounded-pill"
+                  count="18+"
                   style={{
-                    padding: "2px 8px",
-                    fontSize: "11px",
-                    height: "25px",
-                    minWidth: "25px",
+                    backgroundColor: "transparent",
+                    border: "1px solid #ffc107",
+                    color: "white",
                   }}
-                >
-                  18+
-                </Badge>
+                />
               </li>
-
               <li>
                 Be Responsible. The addiction to gambling can cause
                 psychological harm.
               </li>
               <li>
-                Gikenoh Enterprise Limited, Kenya operates the betdonjo brand
-                and authorized and regulated by the BCLB (Betting Control and
-                Licensing Board) under the Betting, Lotteries and Gaming Act,
-                Cap 131,
+                Jazabets Enterprise Limited, Kenya operates thejazabets brand
+                and is authorized and regulated by the BCLB.
               </li>
               <li>
-                Laws of Kenya under License Numbers:{" "}
+                License Numbers:{" "}
                 <b style={{ color: "var(--game-title)" }}> BK 000</b>
               </li>
-              <li>©2025 Jazabets. All Rights reserved.</li>
             </ul>
           </Col>
-        </Row>
-      </Container>
-    </footer>
+          <Divider style={{ borderColor: "#434343" }} />
+          <Row gutter={[16, 16]}>
+            <Col span={24}>
+              <Title
+                level={5}
+                style={{
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <ExclamationCircleOutlined
+                  style={{ color: "#faad14", marginRight: 8 }}
+                />
+                Responsible Gambling
+              </Title>
+            </Col>
+
+            <Col span={24}>
+              <Paragraph style={{ color: "white", fontSize: "13px" }}>
+                Please note that this is a real-money gambling app. You are
+                required to gamble responsibly and only bet what you can afford.
+                For gambling addiction help and support, please contact our
+                customer care at{" "}
+                <span style={{ color: "#91d5ff" }}>0712 000 000</span> or visit{" "}
+                <Link href="/responsible-gambling" style={{ color: "#91d5ff" }}>
+                  /responsible-gambling
+                </Link>
+                .
+              </Paragraph>
+              <Paragraph style={{ color: "white", fontSize: "13px" }}>
+                You can also read about our Responsible Gambling Policy by{" "}
+                <Link href="/responsible-gambling" style={{ color: "#91d5ff" }}>
+                  clicking here
+                </Link>
+                .
+              </Paragraph>
+            </Col>
+          </Row>
+        </Col>
+
+        <Divider style={{ borderColor: "#434343" }} />
+        <Col span={24}>
+          <Paragraph
+            style={{
+              color: "white",
+              fontSize: "13px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <StopOutlined
+              style={{ color: "#ff4d4f", fontSize: "18px", marginRight: 8 }}
+            />
+            <strong>JazaBets</strong> does not support underage gambling. You
+            must be 18 years of age or older to register or play at JazaBets.
+          </Paragraph>
+        </Col>
+        <Divider style={{ borderColor: "#434343" }} />
+
+        <Col span={24}>
+          <Title level={5} style={{ textAlign: "center", color: "white" }}>
+            Cooperations
+          </Title>
+          <Row justify="center" gutter={[16, 16]} wrap>
+            {cooperationImages.map((img, idx) => (
+              <Col key={idx}>
+                <img src={img} alt={`coop-${idx}`} width={50} height={30} />
+              </Col>
+            ))}
+          </Row>
+        </Col>
+        <Divider style={{ borderColor: "#434343" }} />
+        <Col span={24}>
+          <Title level={4} style={{ textAlign: "center", color: "white" }}>
+            Share With Friends
+          </Title>
+          <Row justify="center" gutter={24}>
+            {[
+              { img: fb1, label: "Facebook" },
+              { img: tw, label: "Twitter" },
+              { img: wh, label: "WhatsApp" },
+              { img: int1, label: "Instagram" },
+            ].map((item, idx) => (
+              <Col key={idx}>
+                <Space direction="vertical" align="center">
+                  <LazyLoadImage
+                    src={item.img}
+                    alt={item.label}
+                    height={30}
+                    width={30}
+                  />
+                  <Text style={{ fontSize: 12, color: "white" }}>
+                    {item.label}
+                  </Text>
+                </Space>
+              </Col>
+            ))}
+          </Row>
+          <Paragraph
+            style={{
+              textAlign: "center",
+              fontSize: 12,
+              marginTop: 16,
+              color: "white",
+            }}
+          >
+            Invite friends, bet and earn KSH 1,000,000
+          </Paragraph>
+        </Col>
+      </Row>
+    </AntFooter>
   );
 }

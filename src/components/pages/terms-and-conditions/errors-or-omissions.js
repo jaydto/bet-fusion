@@ -74,7 +74,7 @@ const ErrorsOrOmissions = () => {
                     such circumstances being referred to as an "Error"
                 </strong>
                 <p>
-                    BetDonjo reserves the right to:
+                   jazabets reserves the right to:
                 </p>
                 <ul>
                     <li>

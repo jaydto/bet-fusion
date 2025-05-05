@@ -105,7 +105,7 @@ const WithdrawForm = () => {
           <LazyLoadImage src={mpesa} alt="Logo" />
         </div>
         <p className="account__section__desc deposit__desc">
-          Withdraw from your BetDonjo wallet
+          Withdraw from yourjazabets wallet
         </p>
         <form onSubmit={formik.handleSubmit}>
           <div

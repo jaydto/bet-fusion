@@ -14,7 +14,7 @@ const DepositInstructions = ({ handleFavoriteSelect, handleCardSelect }) => {
   return (
     <>
       <p className={"text-white py-2 px-4 font-input text-center mb-4"}>
-        Send money into your BetDonjo Account
+        Send money into yourjazabets Account
       </p>
       <p className={"text-white py-2 px-2 font-input text-start mb-4"}>
         Payment method

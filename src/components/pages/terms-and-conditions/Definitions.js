@@ -26,7 +26,7 @@ const General = () => {
                 <ol>
                     <li> "Registration Form" means the form to be filled in by the Player to open a User Account.
                     </li>
-                    <li> "Game" refers any gaming activity presented by BetDonjo on its Internet Sites and Mobile
+                    <li> "Game" refers any gaming activity presented byjazabets on its Internet Sites and Mobile
                         Applications for the benefit of the Users and as approved by the Regulatory Authority.
                     </li>
                     <li>“Mobile Applications” refers to any service or application running on a mobile device and shall
@@ -36,7 +36,7 @@ const General = () => {
                         other sites connected to it and accessible through links or other access paths.
                     </li>
                     <li>"Login and Password" means the login and password details that are automatically generated
-                        and/or chosen by a player upon registering with BetDonjo.
+                        and/or chosen by a player upon registering withjazabets.
                     </li>
                     <li> "Regulatory Authority" is the Betting Control and Licensing Board which is the main regulator
                         of betting, lotteries and gaming activities in Kenya.
@@ -65,11 +65,11 @@ const General = () => {
                         as "Money Player" wagering real money.
                     </li>
 
-                    <li> BetDonjo will not be held liable and will be held harmless by the
+                    <li>jazabets will not be held liable and will be held harmless by the
                         CLIENT for any damages, losses, costs, loss of profits or any other
                         disadvantage a CLIENT may incur in connection with any disconnection
                         from or the non-availability of any of the products offered by
-                        BetDonjo
+                       jazabets
                         for whatever reason.
                     </li>
 
@@ -87,7 +87,7 @@ const General = () => {
 
     
 
-                    <li> “Header” the BetDonjo header that provides quick access to your bet slip, "My bets", account
+                    <li> “Header” thejazabets header that provides quick access to your bet slip, "My bets", account
                         options and the Cashier
                     </li>
                     
@@ -108,7 +108,7 @@ const General = () => {
                         “My bets” the page that contains your betting history
                     </li>
                     <li>
-                        “Navigation bar” this is the main navigation bar located below the BetDonjo header. It enables
+                        “Navigation bar” this is the main navigation bar located below thejazabets header. It enables
                         quick access to sports and specific filters. It also offers a quick return to lobby page of the
                         mobile site
                     </li>

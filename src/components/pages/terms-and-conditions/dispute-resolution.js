@@ -23,12 +23,12 @@ const DisputeResolution = () => {
                         from time to time.
                     </li>
                     <li>
-                        If BetDonjo is unable to settle the dispute, BetDonjo will refer the
+                        Ifjazabets is unable to settle the dispute,jazabets will refer the
                         dispute to an arbiter, whose decision will be final (save in respect of
                         any manifest error) subject to full representation given to all parties
                         involved. No dispute regarding any bet/wager will result in litigation,
                         court action or objection to a bookmaker’s licence or permit (including
-                        any remote operator’s licence or personal licence) unless BetDonjo fails
+                        any remote operator’s licence or personal licence) unlessjazabets fails
                         to implement the decision given by arbitration.
                     </li>
                 </ol>

@@ -25,18 +25,18 @@ const Deposits = () => {
                         website (www.BetDonjo.com).
                     </li>
                     <li>
-                        BetDonjo reserves the right to impose certain conditions on the use
+                       jazabets reserves the right to impose certain conditions on the use
                         of
                         particular payment methods, only but not limited if enforced by
                         payment
                         providers’ requirements, or regulatory requirements in connection to
                         Social Responsibility Code of the license or if is connected to the
-                        suspicious activity of the particular player. BetDonjo retains the
+                        suspicious activity of the particular player.jazabets retains the
                         right
                         to change the payment methods available.
                     </li>
                     <li>
-                        BetDonjo does not guarantee that all methods of payment are available
+                       jazabets does not guarantee that all methods of payment are available
                         at all times but will do utmost to provide customers with continuous
                         service.
                     </li>
@@ -45,7 +45,7 @@ const Deposits = () => {
                         account in real time, other methods might take longer to process.
                     </li>
                     <li>
-                        BetDonjo reserves the right to request further information and
+                       jazabets reserves the right to request further information and
                         documentation regarding CLIENT'S age, identity and place of
                         residence
                         following any deposits or prior to any withdrawals, in particular
@@ -62,7 +62,7 @@ const Deposits = () => {
                         diverging data, we reserve the right to cancel the bets along with
                         the
                         payment of the account balance, unless the CLIENT can demonstrate
-                        entitlement to the balance by some other means. BetDonjo reserves the
+                        entitlement to the balance by some other means.jazabets reserves the
                         right to request an image of both sides of the debit/credit card
                         used to
                         deposit as supporting evidence in case a deposit comes from a non 3D
@@ -82,7 +82,7 @@ const Deposits = () => {
                     {/*    page.*/}
                     {/*</li>*/}
                     <li>
-                        The player acknowledges that BetDonjo reserves the right to request
+                        The player acknowledges thatjazabets reserves the right to request
                         proof of payments to player’s accounts to confirm a depositing
                         source or
                         complete verification process.

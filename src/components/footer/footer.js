@@ -200,7 +200,7 @@ const Footer = React.memo((props) => {
               }
             >
               <p style={{}} className={`mt-1 ${sidebar && " d-block"}`}>
-                betdonjo.com is a real-money gambling platform. We encourage you
+               jazabets.com is a real-money gambling platform. We encourage you
                 to gamble responsibly and only bet what you can afford to lose.
                 Please note that this is a real-money gambling app. You are
                 required to gamble responsibly and only bet what you can afford.

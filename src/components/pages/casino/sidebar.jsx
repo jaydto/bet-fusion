@@ -6,6 +6,7 @@ import {
   UserOutlined,
   PlayCircleOutlined,
   VideoCameraOutlined,
+  GiftOutlined,
 } from "@ant-design/icons";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
@@ -15,7 +16,7 @@ import ch2 from "../../../assets/img/contact.png";
 import Footer from "./footer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Logo from "../../../assets/img/logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const { Title, Paragraph, Text } = Typography;
 
 const { Sider } = Layout;
@@ -58,11 +59,7 @@ const Sidebar = () => {
           // style={{  background: 'var(--jaza-bets-body-bg)', color: 'var(--light)' }}
           theme="dark" // Optional: use "dark" for better built-in contrast
         >
-          <SubMenu
-            key="Games"
-            title="Games"
-            style={{ color: "var(--light)" }}
-          >
+          <SubMenu key="Games" title="Games" style={{ color: "var(--light)" }}>
             <Menu.Item
               key="1"
               icon={<FileTextOutlined />}
@@ -87,7 +84,7 @@ const Sidebar = () => {
               style={{ color: "var(--light)" }}
             >
               <a href="/player-to-score" style={{ color: "var(--light)" }}>
-               Jetx
+                Jetx
               </a>
             </Menu.Item>
             <Menu.Item
@@ -109,6 +106,16 @@ const Sidebar = () => {
               </a>
             </Menu.Item>
           </SubMenu>
+          {/* Promotions link */}
+          <Menu.Item
+            key="6"
+            icon={<GiftOutlined />}
+            style={{ color: "var(--light)" }}
+          >
+            <Link to="/promotions" style={{ color: "var(--light)" }}>
+              Promotions
+            </Link>
+          </Menu.Item>
         </Menu>
       </SimpleBar>
       {/* Footer inside sidebar */}
@@ -117,28 +124,28 @@ const Sidebar = () => {
       </div>
 
       <Col span={24} style={{ marginTop: 24 }}>
-          <Row justify="center" gutter={16}>
-            {[
-              { img: ch2, label: "Live chat" },
-              { img: em2, label: "Email" },
-              { img: fb2, label: "Facebook" },
-            ].map((item, idx) => (
-              <Col key={idx}>
-                <Space direction="vertical" align="center">
-                  <LazyLoadImage
-                    src={item.img}
-                    alt={item.label}
-                    height={30}
-                    width={30}
-                  />
-                  <Text style={{ color: "white", fontSize: 12 }}>
-                    {item.label}
-                  </Text>
-                </Space>
-              </Col>
-            ))}
-          </Row>
-        </Col>
+        <Row justify="center" gutter={16}>
+          {[
+            { img: ch2, label: "Live chat" },
+            { img: em2, label: "Email" },
+            { img: fb2, label: "Facebook" },
+          ].map((item, idx) => (
+            <Col key={idx}>
+              <Space direction="vertical" align="center">
+                <LazyLoadImage
+                  src={item.img}
+                  alt={item.label}
+                  height={30}
+                  width={30}
+                />
+                <Text style={{ color: "white", fontSize: 12 }}>
+                  {item.label}
+                </Text>
+              </Space>
+            </Col>
+          ))}
+        </Row>
+      </Col>
 
       <div
         style={{

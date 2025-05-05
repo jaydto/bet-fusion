@@ -165,7 +165,7 @@ const App = () => {
   }, []);
 
   const location = useLocation();
-  const sidebarRoutes = ["/", "/promotions", "/how-to-play", "/responsible-gambling","/cookie-policy","/privacy-policy","/dispute-resolution","/anti-money-laundering", "/terms-and-conditions"];
+  const sidebarRoutes = ["/", "/promotions", "/how-to-play", "/responsible-gambling","/cookie-policy","/privacy-policy","/dispute-resolution","/anti-money-laundering", "/terms-and-conditions","/promo"];
   const showSidebar = sidebarRoutes.includes(location.pathname);
   
   return flag ? (

@@ -78,8 +78,9 @@ hr {
     margin-top:5rem!important;
 }
 .desktop-promotions-info{
-    max-width:991px;
-    margin:auto;
+    /* max-width:991px;
+    margin:auto; */
+    margin-top: 6rem;
 }
 .promo-image{
     opacity:0.99;

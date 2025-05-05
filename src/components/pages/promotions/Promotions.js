@@ -15,7 +15,7 @@ const Promotions = () => {
             <ToastContainer/>
             <div >
                 <div className="d-flex flex-row">
-                    <div className="home promotions-app-top" style={{margin:"auto",maxWidth:"991px"}}>
+                    <div className="home promotions-app-top" >
                         <div className="homepage">
                             <h1>Promotions</h1>
                             <div className="col-md-12 d-flex flex-column">

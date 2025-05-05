@@ -535,11 +535,11 @@ input.search-cat:focus {
 @media (max-width: 1260px) and (min-width: 1000px) {
   .layout-casino-category {
     position: absolute;
-    top: 8.6rem !important;
+    top: 2.6rem !important;
   }
 
   .casino-category-size {
-    height: 10rem !important;
+    height: 8rem !important;
   }
   .carousel-container {
     height: 71vh !important;

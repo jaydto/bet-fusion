@@ -53,7 +53,7 @@ const TermAndTermination = () => {
                     <li>
                         The CLIENT may only terminate the agreement by providing written notice
                         to
-                        the customer support email atsupport@BetDonjo.com.
+                        the customer support email atsupport@Jazabets.com.
                     </li>
                 </ol>
 

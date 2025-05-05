@@ -9,7 +9,7 @@ function Loading(props) {
                 <span className={'bold'} style={{fontSize: "3.5rem", fontWeight:"800"}}>
                      {/* <span style={{color: "var(--light)"}}>BET</span><span
                     style={{color: "var(--login-btn-cl)"}}>tena</span> */}
-                    <img alt="BetDonjo" src={Logo} style={{width: "200px"}}/>
+                    <img alt="Jazabets" src={Logo} style={{width: "200px"}}/>
                  </span>
             </div>
         </div>

@@ -32,7 +32,7 @@ const General = () => {
                     <li>“Mobile Applications” refers to any service or application running on a mobile device and shall
                         include but not be limited to SMS, USSD, mobile apps and mobile sites.
                     </li>
-                    <li> "Internet Site", "Website" or "Site" shall mean the Internet Websites www.BetDonjo.com and all
+                    <li> "Internet Site", "Website" or "Site" shall mean the Internet Websites www.Jazabets.com and all
                         other sites connected to it and accessible through links or other access paths.
                     </li>
                     <li>"Login and Password" means the login and password details that are automatically generated
@@ -42,14 +42,14 @@ const General = () => {
                         of betting, lotteries and gaming activities in Kenya.
                     </li>
                     <li> "Service" shall include all betting services and game offer activities related to it and listed
-                        on www.BetDonjo.com including but not limited to online jackpot, live play, pre-match,
+                        on www.Jazabets.com including but not limited to online jackpot, live play, pre-match,
                         statistics, and sportsbook services.
                     </li>
                     <li>"Software" means the software licensed by us including all programs and databases and any other
                         derived content whether accessible or otherwise used by the CLIENT through the Internet Website
                         allowing the CLIENT to participate in the online sportsbook and casino.
                     </li>
-                    <li>"Us, We" or "BetDonjo " means Beyond Intoch Software Limited.</li>
+                    <li>"Us, We" or "Jazabets " means Beyond Intoch Software Limited.</li>
                     <li>"User Account", "Player Account", "Gaming Account" or "Account" mean a personal account opened
                         by an individual and maintained by the company as to allow this person to participate in the
                         online sportsbook and casino.

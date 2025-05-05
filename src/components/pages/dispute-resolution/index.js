@@ -87,7 +87,7 @@ const DisputeResolution = () => {
                                             </p>
                                             <p>
                                                 You can contact thejazabets Customer Services team by way of email
-                                               support@BetDonjo.com or call our customer care lines or inbox us through
+                                               support@Jazabets.com or call our customer care lines or inbox us through
                                                 our
                                                 social Media Pages Facebook,jazabets, Instagramjazabets etc. Queries
                                                 will

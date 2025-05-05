@@ -48,15 +48,15 @@ const Footer = React.memo((props) => {
           } text-white`}
           style={deposit2 && { width: "50%" }}
         >
-          <h5 className={`${sidebar && "px-3"}`}>BetDonjo</h5>
+          <h5 className={`${sidebar && "px-3"}`}>Jazabets</h5>
           <ul
             className={`${sidebar && "transaction desktop-drawer flex-column"}`}
           >
             <li className="">P.O.BOX 00100 NAIROBI KENYA</li>
             <li className="">
-              <a href="mailto:care@ke.BetDonjo.com" target={"_blank"}>
+              <a href="mailto:care@ke.Jazabets.com" target={"_blank"}>
                 <FontAwesomeIcon icon={faEnvelope} />
-                support@BetDonjo.com
+                support@Jazabets.com
               </a>
             </li>
             <div className={`${sidebar && "d-flex align-items-center"}`}>
@@ -66,7 +66,7 @@ const Footer = React.memo((props) => {
                 } `}
               >
                 <a
-                  href="http://facebook.com/BetDonjo-101164702604689"
+                  href="http://facebook.com/Jazabets-101164702604689"
                   target={"_blank"}
                   className={`${sidebar && "d-flex align-items-center"} `}
                 >
@@ -79,7 +79,7 @@ const Footer = React.memo((props) => {
                 } `}
               >
                 <a
-                  href="https://instagram.com/BetDonjoke?igshid=YmMyMTA2M2Y="
+                  href="https://instagram.com/Jazabetske?igshid=YmMyMTA2M2Y="
                   target={"_blank"}
                   className={`${sidebar && "d-flex align-items-center"} `}
                 >
@@ -205,7 +205,7 @@ const Footer = React.memo((props) => {
                 Please note that this is a real-money gambling app. You are
                 required to gamble responsibly and only bet what you can afford.
                 For gambling addiction help and support, please contact our
-                customer care at (+254111513541) or help@betdonjo.com or visit
+                customer care at (+254111513541) or help@Jazabets.com or visit
                 (
                 <a
                   href="https://responsiblegambling.or.ke/"

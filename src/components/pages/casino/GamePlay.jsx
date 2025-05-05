@@ -267,7 +267,7 @@ const GamePlay = React.memo((props) => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 });

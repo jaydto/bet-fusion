@@ -22,7 +22,7 @@ const Deposits = () => {
                         deposit methods availed on the company’s website. Further
                         information
                         about the deposit methods are included in the Deposit section on the
-                        website (www.BetDonjo.com).
+                        website (www.Jazabets.com).
                     </li>
                     <li>
                        jazabets reserves the right to impose certain conditions on the use

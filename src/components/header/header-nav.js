@@ -54,7 +54,7 @@ const HeaderNav = React.memo((props) => {
 
 
   const checkEnvironment = () => {
-    setTest(window.location.hostname === "test.BetDonjo.com");
+    setTest(window.location.hostname === "test.Jazabets.com");
   };
 
   useEffect(() => {

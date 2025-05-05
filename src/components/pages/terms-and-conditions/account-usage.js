@@ -151,7 +151,7 @@ const AccountUsage = React.memo(
                     <li>
                         If you would like information about tools to help you manage your
                         gambling activity, please visit our Responsible Gambling page by
-                        going to www.BetDonjo.com/responsible_gambling. You can also find
+                        going to www.Jazabets.com/responsible_gambling. You can also find
                         contact details for organizations where you can seek further support
                         if needed on this website.
 

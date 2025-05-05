@@ -44,7 +44,7 @@ const PrivacyPolicy = React.memo(() => {
     <div className={"flex-item"}>
       <div className="flex-container height-default-body top-diff-pages privacy">
         <div className="item2" style={{ width: "100%" }}>
-        <div className="home" style={{margin:"auto", maxWidth:"991px"}}>
+        <div className="home page-content-set" style={{ maxWidth:"991px"}}>
             <div className="homepage">
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>
@@ -116,7 +116,7 @@ const PrivacyPolicy = React.memo(() => {
                         2.1. 1.	"Applicable Laws" means the Data Protection Laws and any relevant international data protection laws;
                       </p>
                       <p>
-                        2.2. 2.	"BetDonjo Service(s)" has the meaning given to it in the Terms and Conditions and "Services" shall be construed accordingly;
+                        2.2. 2.	"Jazabets Service(s)" has the meaning given to it in the Terms and Conditions and "Services" shall be construed accordingly;
                       </p>
                       <p>
                         2.3. 3.	"Channel(s)" means thejazabets website, mobile app, social media platforms and any other platforms used to offer thejazabets Services;
@@ -166,7 +166,7 @@ const PrivacyPolicy = React.memo(() => {
                       </p>
 
                       <p>
-                        4.1.2.	Subscribe or register to our Services and products, including but not limited to: betting and gaming services offered at www.BetDonjo.com, promotional offers, tournaments, and competitions;
+                        4.1.2.	Subscribe or register to our Services and products, including but not limited to: betting and gaming services offered at www.Jazabets.com, promotional offers, tournaments, and competitions;
                       </p>
                       <p>
                         4.1.3.	Participate in any ofjazabets’s platforms, for example discussion boards on our website or social media platforms, promotions or surveys, report a problem with our mobile app, website, Services or products, or ask for more information on a Service or product;
@@ -350,7 +350,7 @@ const PrivacyPolicy = React.memo(() => {
                     In compliance with the relevant local and international data protection laws, we will only process your information in accordance with any of the lawful basis provided for under these laws which include:
                      <ul>
                       <li>1.	The performance of an agreement with you;</li>
-                      <li>2.	BetDonjo’s legitimate business interests;</li>
+                      <li>2.	Jazabets’s legitimate business interests;</li>
                       <li>3.	Compliance with any mandatory legal obligations;</li>
                       <li>4.	Your consent;</li>
                       <li>5.	Your vital interest; and</li>
@@ -481,7 +481,7 @@ We shall obtain your express consent prior to disclosing your Personal Data with
                       </p>
                       <li>To update your information, please contact us by sending an email to the email address provided in clause 20.</li>
                       <p><b>Safeguarding And Protection Of Information</b></p>
-                      <li>BetDonjo has put in place appropriate technical, operational and security measures to protect and prevent your Personal Data from unauthorized access, accidental loss, destruction or alteration. In addition, we limit access to your Personal Data to those employees, agents, contractors and third parties who have a business need to know this information. They shall only process your Personal Data on our instructions and shall be subject to a duty of strict confidentiality.
+                      <li>Jazabets has put in place appropriate technical, operational and security measures to protect and prevent your Personal Data from unauthorized access, accidental loss, destruction or alteration. In addition, we limit access to your Personal Data to those employees, agents, contractors and third parties who have a business need to know this information. They shall only process your Personal Data on our instructions and shall be subject to a duty of strict confidentiality.
 We have further put in place procedures to deal with any suspected and material Personal Data breaches and shall notify you and any applicable regulator of such a breach where we are legally required to do so.
 For more information on our safeguarding and security measures, please contact us with the information provided in clause 20.
 </li>
@@ -609,7 +609,7 @@ For more information on our safeguarding and security measures, please contact u
                         Name: Bet Tena
                         </li>
                         
-                          {/* <li>Email address:{ <a href="mailto:operations@BetDonjo.com ">operations@BetDonjo.com</a> }</li> */}
+                          {/* <li>Email address:{ <a href="mailto:operations@Jazabets.com ">operations@Jazabets.com</a> }</li> */}
                         
                           {/* <li>Adress : 
                             </li> */}

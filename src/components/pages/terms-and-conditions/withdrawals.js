@@ -37,7 +37,7 @@ const Withdrawals = () => {
                     </li>
                     <li>
                         Withdrawal methods information is included in the Withdrawal section
-                        on the website www.BetDonjo.com.
+                        on the website www.Jazabets.com.
                     </li>
                     <li>
                         Any expense related to withdrawal requests, if applicable and

@@ -24,7 +24,7 @@ const BonusesAndPromotions = () => {
 
                     <li>The CLIENT binds himself not to abuse the ability of opening accounts in order to benefit from bonus credits and other promotional offers that may be offered. The company reserves the right, in case of abusive behavior on the CLIENT’S part as related to bonus credits and/or to promotional offers byjazabets, to rescind or block
                         CLIENT accounts created to that end, as well as their transactions.</li>
-                    <li>BetDonjo reserves the right to revoke and/or cancel any bonus and/or promotional winnings which are deemed to have occurred due to abuse and/or misuse of any promotional system.
+                    <li>Jazabets reserves the right to revoke and/or cancel any bonus and/or promotional winnings which are deemed to have occurred due to abuse and/or misuse of any promotional system.
                         In the event of any dispute, the general conditions set out in the complaints procedure on the company’s website will apply.</li>
 
                     <li>The Bonus Money will be kept separately from the Real Money on the account.
@@ -67,7 +67,7 @@ const BonusesAndPromotions = () => {
 
                 </ol>
                 <br/>
-                <strong className="text-decoration-underline">BetDonjo Bonus Rules</strong>
+                <strong className="text-decoration-underline">Jazabets Bonus Rules</strong>
                 <br/>
                 <ol>
                     <li>

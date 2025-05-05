@@ -31,7 +31,7 @@ const General = () => {
                         of Kenya.
                     </li>
                     <li> This Agreement describes the terms, conditions and risks applicable to the CLIENT using of
-                       jazabets’ services available under the domains of <a href={'/'}> www.BetDonjo.com</a> (the "SITE”
+                       jazabets’ services available under the domains of <a href={'/'}> www.Jazabets.com</a> (the "SITE”
                         If the CLIENT has
                         any questions regarding this Agreement, please contact Customer Support.
                     </li>
@@ -108,7 +108,7 @@ const General = () => {
                     <li> The CLIENT will ultimately be responsible for checking the company’s website for any changes
                         and should they wish to discontinue use of the services offered after a change is enacted in the
                         terms and conditions, the CLIENT will be entitled to withdraw their uncommitted funds by sending
-                        an email to ccare@BetDonjo.com. The company will cease to have any continued obligation towards
+                        an email to ccare@Jazabets.com. The company will cease to have any continued obligation towards
                         the CLIENT from the day of receipt of the email, through to the withdrawal of funds and
                         thereafter.
                     </li>

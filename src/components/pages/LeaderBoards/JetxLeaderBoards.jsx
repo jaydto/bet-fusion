@@ -1088,7 +1088,7 @@ const JetxLeaderBoards = () => {
                                         </h3>
                                         <ul>
                                             <li>
-                                                1. The **BetDonjo @1 Anniversary Promo** runs from **July 26th, 2023** to
+                                                1. The **Jazabets @1 Anniversary Promo** runs from **July 26th, 2023** to
                                                 **August 3rd,
                                                 2023**.
                                             </li>

@@ -1,8 +1,8 @@
 :root {
   /* --jaza-bets-primary: rgba(5, 49, 104, 0.75); */
   --jaza-bets-primary: var(--jaza-bets-lite);
-  --jaza-bets-secondary: #13111d;
-  --jaza-bets-footer: #13111d;
+  --jaza-bets-secondary: #041f3d;
+  --jaza-bets-footer: #041f3d;
   --footer-color: #fff;
   --jaza-bets-button-login: #06fcd3;
   --btn-color-action: #06fcd3;

@@ -14,7 +14,11 @@ import Coop4 from "../../../assets/img/coop4.png";
 import Coop5 from "../../../assets/img/coop5.png";
 import Coop6 from "../../../assets/img/coop6.png";
 import Coop7 from "../../../assets/img/coop7.png";
-import { ExclamationCircleOutlined, StopOutlined } from "@ant-design/icons";
+import {
+  ExclamationCircleOutlined,
+  FileTextOutlined,
+  StopOutlined,
+} from "@ant-design/icons";
 
 const { Footer: AntFooter } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -116,9 +120,48 @@ export default function Footer() {
               </Paragraph>
             </Col>
           </Row>
+          <Divider style={{ borderColor: "#434343" }} />
+          <Row gutter={[16, 16]}>
+            <Col span={24}>
+              <Title
+                level={5}
+                style={{
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <FileTextOutlined
+                  style={{ color: "#91d5ff", marginRight: 8 }}
+                />
+                Terms and Conditions
+              </Title>
+            </Col>
+            {/* Links */}
+            <Col span={24}>
+              <Space direction="vertical">
+                <Link to="/terms-and-conditions" style={{ color: "white" }}>
+                  Terms and Conditions
+                </Link>
+                <Link to="/responsible-gambling" style={{ color: "white" }}>
+                  Responsible Gambling
+                </Link>
+                <Link to="/privacy-policy" style={{ color: "white" }}>
+                  Privacy Policy
+                </Link>
+                <Link to="/cookie-policy" style={{ color: "white" }}>
+                  Cookie Policy
+                </Link>
+                <Link to="/how-to-play" style={{ color: "white" }}>
+                  How To Play
+                </Link>
+              </Space>
+            </Col>
+          </Row>
         </Col>
 
-        <Divider style={{ borderColor: "#434343" }} />
+        <Divider style={{ borderColor: "rgba(255,255,255,0.2)" }} />
+
         <Col span={24}>
           <Paragraph
             style={{
@@ -131,8 +174,10 @@ export default function Footer() {
             <StopOutlined
               style={{ color: "#ff4d4f", fontSize: "18px", marginRight: 8 }}
             />
-            <strong>JazaBets</strong> does not support underage gambling. You
-            must be 18 years of age or older to register or play at JazaBets.
+            <span>
+              <b>JazaBets</b> does not support underage gambling. You must be 18
+              years of age or older to register or play at JazaBets.
+            </span>
           </Paragraph>
         </Col>
         <Divider style={{ borderColor: "#434343" }} />

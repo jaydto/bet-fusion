@@ -52,7 +52,7 @@ const DailyJackpotTermsAndConditions = () =>
                             pre-selected football matches. Thejazabets Daily Jackpot competition consists of predicting
                             results of 11 matches which are selected byjazabets Daily. </p>
                         <p>To take part and have a chance to win thejazabets jackpot you must get registered on
-                            www.BetDonjo.com and have at least KES20/= in yourjazabets account. If you correctly predict
+                            www.Jazabets.com and have at least KES20/= in yourjazabets account. If you correctly predict
                             all the 11 match results, you win the Daily Jackpot prize of Kshs 1,000,000/= </p>
                     </AccordionItemPanel>
                 </AccordionItem>
@@ -81,7 +81,7 @@ const DailyJackpotTermsAndConditions = () =>
                         <p>Example JP#12X21X… to 29877</p>
 
                         <h4 className='text-decoration-underline'>Jackpot rollover</h4>
-                        <p>BetDonjo may, at its own discretion, introduce a Jackpot rollover, in which jackpot totals
+                        <p>Jazabets may, at its own discretion, introduce a Jackpot rollover, in which jackpot totals
                             from jackpot competitions in prior days that have had no winners are accumulated
                             (rolled-over) and offered as a prize.</p>
 
@@ -122,11 +122,11 @@ const DailyJackpotTermsAndConditions = () =>
                             </li>
                             <li>
                                 To make your selections- On thejazabets Daily Jackpot competition entry page
-                                (www.BetDonjo.com/jackpot) make your predictions on the 11 pre-selected football matches
+                                (www.Jazabets.com/jackpot) make your predictions on the 11 pre-selected football matches
                                 (HOME WIN, DRAW, AWAY WIN). The stake amount of each combination is KES 20/=.
                             </li>
                             <li>
-                                <strong>NOTE;</strong>&nbsp;BetDonjo DOES NOT ACCEPT DOUBLE CHANCE COMBINATION ON THE
+                                <strong>NOTE;</strong>&nbsp;Jazabets DOES NOT ACCEPT DOUBLE CHANCE COMBINATION ON THE
                                 JACKPOT.
                             </li>
                             <li>
@@ -134,7 +134,7 @@ const DailyJackpotTermsAndConditions = () =>
                             </li>
                             <li>
                                 The Daily Jackpot bet can be placed by submitting predictions of the results of 11
-                                pre-selected football matches at (www.BetDonjo.com/jackpot) or through
+                                pre-selected football matches at (www.Jazabets.com/jackpot) or through
                             </li>
                             <ul>
                                 <li>
@@ -170,22 +170,22 @@ const DailyJackpotTermsAndConditions = () =>
                                 identity
                                 before any payment is made.
                             </li>
-                            <li>BetDonjo reserves the right to verify, with the relevant authorities, any identification
+                            <li>Jazabets reserves the right to verify, with the relevant authorities, any identification
                                 document presented, before making any payment.
                             </li>
                             <li>The period for claiming the prize is seven (7) days failure to whichjazabets may deem
                                 the
                                 prize forfeited, unless the period is extended at the sole discretion ofjazabets.
                             </li>
-                            <li>BetDonjo reserves the right to withhold up to 90% of any prize share until the
+                            <li>Jazabets reserves the right to withhold up to 90% of any prize share until the
                                 presentation
                                 day.
                             </li>
-                            <li>BetDonjo reserves the right to pay the whole amount of any prize share to a winner by
+                            <li>Jazabets reserves the right to pay the whole amount of any prize share to a winner by
                                 cheque
                                 or bank transfer.
                             </li>
-                            <li>BetDonjo’s decision is final and legally binding on all entrants in relation to all
+                            <li>Jazabets’s decision is final and legally binding on all entrants in relation to all
                                 aspects of
                                 the competition including (without limitation) allocation of the prizes and no
                                 correspondence will be entered into.

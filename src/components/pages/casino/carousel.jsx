@@ -3,8 +3,8 @@ import Carousel from "react-bootstrap/Carousel";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useNavigate } from "react-router-dom";
-import Banner1 from "../../../assets/img/banner/products/BetDonjo1.gif";
-// import Banner2 from "../../../assets/img/banner/products/BetDonjo2.webp";
+import Banner1 from "../../../assets/img/banner/products/Jazabets1.gif";
+// import Banner2 from "../../../assets/img/banner/products/Jazabets2.webp";
 
 const localBanners = [
   { title: "Banner 1", image_url: Banner1, link: "/casino" },

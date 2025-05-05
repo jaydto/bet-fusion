@@ -85,7 +85,7 @@
 }
 @media (min-width: 1260px){
     .flex-container{
-        margin-top:37px;
+        margin-top:29px;
     }
     .flex-item{
         justify-content: space-between;

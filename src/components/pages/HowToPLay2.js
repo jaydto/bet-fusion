@@ -42,7 +42,7 @@ const HowToPlay = React.memo((props) => {
     <div className={"flex-item"}>
       <div className="flex-container height-default-body top-diff-pages play">
         <div className="item2" style={{ width: "100%" }}>
-          <div className=" home" style={{ margin: "auto", maxWidth: "991px" }}>
+          <div className=" home page-content-set" style={{ maxWidth: "991px" }}>
             <div className="homepage">
               <div className="col-md-12 primary-bg p-4 text-center">
                 <div className={"d-flex align-items-center"}>
@@ -125,7 +125,7 @@ const HowToPlay = React.memo((props) => {
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Step 1 Please visit www.BetDonjo.com and
+                                    Step 1 Please visit www.Jazabets.com and
                                     click on the Register Now link on the top
                                     RIGHT corner of the website. Please read the
                                     Terms and Conditions and fill in all the
@@ -229,7 +229,7 @@ const HowToPlay = React.memo((props) => {
                               Virtual games ranging from; Fantastic football
                               league, Horse racing , Force 1 racing , Greyhound
                               racing and Penalty shootout. Log into
-                              https://BetDonjo.com/ to get the Virtual
+                              https://Jazabets.com/ to get the Virtual
                               experience. Stake low, Win High & Fast with
                              jazabets Virtuals.
                             </p>
@@ -249,7 +249,7 @@ const HowToPlay = React.memo((props) => {
                              jazabets offers Customer Care support round the
                               clock. We are reachable via 0111513541 on Mobile,
                               WhatsApp Number – 0111513541. You can also reach
-                              us through E-Mail onsupport@BetDonjo.com
+                              us through E-Mail onsupport@Jazabets.com
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>

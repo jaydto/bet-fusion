@@ -142,7 +142,7 @@ import { useNavigate } from "react-router-dom";
 //   const Offer = React.memo(() => {
 //     return (
 //       <ul className={"paybill-offers-list-items"}>
-//         {settings?.BetDonjoDeposit?.map((deposit, index) => {
+//         {settings?.JazabetsDeposit?.map((deposit, index) => {
 //           return (
 //             <li key={index}>
 //               {index + 1}. Only pay KES {deposit?.deposit_amount} to{" "}
@@ -255,7 +255,7 @@ import { useNavigate } from "react-router-dom";
 // const PaymentInstructions = (props) => {
 //   return (
 //     <>
-//       <label className="BetDonjo-text-light">Deposit Instructions</label>
+//       <label className="Jazabets-text-light">Deposit Instructions</label>
 //       <div className="container d-flex flex-column">
 //         <div className="row">
 //           <div className="coljazabets-text-light">
@@ -359,8 +359,8 @@ import { useNavigate } from "react-router-dom";
 //           aria-label="Basic example"
 //         >
 //           <div className={"d-flex flex-wrap col-12 justify-content-between"}>
-//             {settings?.BetDonjoDeposit &&
-//               settings?.BetDonjoDeposit?.map((deposit, index) => {
+//             {settings?.JazabetsDeposit &&
+//               settings?.JazabetsDeposit?.map((deposit, index) => {
 //                 return (
 //                   <div key={index} className={"col-3"}>
 //                     <button

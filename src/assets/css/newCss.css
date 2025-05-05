@@ -66,6 +66,10 @@ body {
 
 
 @media (min-width: 992px) {
+  .home.page-content-set{
+    margin: 55px auto auto auto; 
+
+  }
   .bg-section-header{
     min-height: 4rem;;
   }
@@ -1028,7 +1032,7 @@ select::after {
   display: flex !important;
 }
 
-.BetDonjo-text-light {
+.Jazabets-text-light {
   color: var(--light) !important;
   line-height: 1.5;
 }
@@ -2615,7 +2619,7 @@ img.nare-league {
     margin-top: 0px;
   }
 
-  .logo-BetDonjo {
+  .logo-Jazabets {
     display: flex;
     align-items: center;
   }

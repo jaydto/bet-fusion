@@ -196,8 +196,8 @@ const DepositModal = React.memo(() => {
         <div
           className={"d-flex justify-content-between align-items-center gap-2"}
         >
-          {settings?.BetDonjoDeposit &&
-            settings?.BetDonjoDeposit?.map((deposit, index) => (
+          {settings?.JazabetsDeposit &&
+            settings?.JazabetsDeposit?.map((deposit, index) => (
               <div key={index} className={""}>
                 <button
                   type="button"

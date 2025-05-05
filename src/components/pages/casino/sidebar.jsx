@@ -39,8 +39,8 @@ const Sidebar = () => {
         <LazyLoadImage
           src={Logo}
           onClick={() => navigate("/")}
-          alt="BetDonjo"
-          title="BetDonjo"
+          alt="Jazabets"
+          title="Jazabets"
           className={`image-size`}
         />
       </div>

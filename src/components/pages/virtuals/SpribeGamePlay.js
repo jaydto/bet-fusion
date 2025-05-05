@@ -246,9 +246,7 @@ const GamePlay = React.memo(
                     </div>
                 </div>
 
-                <div className={"mobile-remove"}>
-                    <Footer/>
-                </div>
+               \
 
             </div>
         )

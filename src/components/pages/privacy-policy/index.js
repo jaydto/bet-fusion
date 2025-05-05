@@ -625,11 +625,7 @@ For more information on our safeguarding and security measures, please contact u
           </div>
         </div>
       </div>
-      <div className="item6">
-        <div className={"footer-mobile-none"}>
-          <Footer />
-        </div>
-      </div>
+    
     </div>
   );
 });

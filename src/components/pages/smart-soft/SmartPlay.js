@@ -244,7 +244,6 @@ const SmartPlay = React.memo((props) => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 });

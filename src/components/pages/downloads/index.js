@@ -194,9 +194,7 @@ export default function MatchesList() {
 
                 </div>
             </div>
-            <div className={"footer-mobile-none"}>
-            <Footer/>
-            </div>
+            
         </>
     )
 }

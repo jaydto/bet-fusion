@@ -272,11 +272,7 @@ const HowToPlay = React.memo((props) => {
           </div>
         </div>
       </div>
-      <div className="item6">
-        <div className={"footer-mobile-none"}>
-          <Footer />
-        </div>
-      </div>
+    
     </div>
   );
 });

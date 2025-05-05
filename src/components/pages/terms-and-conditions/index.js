@@ -53,7 +53,7 @@ const TermsAndConditions = React.memo(
                 <div className="flex-container height-default-body top-diff-pages">
               
                     <div className={`item2 `} >
-                        <div className="home" style={{margin:"auto", maxWidth: "991px"}}>
+                        <div className="home" >
                             <div className="homepage mobile-full-height">
                                 <div className='col-md-12 primary-bg p-4 text-center'>
                                     <div className={'d-flex align-items-center'}>

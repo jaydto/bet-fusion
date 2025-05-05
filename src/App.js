@@ -165,8 +165,9 @@ const App = () => {
   }, []);
 
   const location = useLocation();
-  const showSidebar = location.pathname === "/";
-
+  const sidebarRoutes = ["/", "/promotions", "/how-to-play", "/responsible-gambling","/cookie-policy","/privacy-policy","/dispute-resolution","/anti-money-laundering", "/terms-and-conditions"];
+  const showSidebar = sidebarRoutes.includes(location.pathname);
+  
   return flag ? (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       {/* Sidebar (only for '/') */}

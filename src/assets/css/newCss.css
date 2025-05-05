@@ -67,7 +67,7 @@ body {
 
 @media (min-width: 992px) {
   .home.page-content-set{
-    margin: 55px auto auto auto; 
+    /* margin: 55px auto auto auto;  */
 
   }
   .bg-section-header{

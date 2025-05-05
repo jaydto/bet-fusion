@@ -32,7 +32,7 @@ const Footer = React.memo((props) => {
           background: "transparent",
           paddingLeft: "33px",
         }
-        // : sidebar&&{ background: "var(--bet-dojo-header-bg)" }
+        // : sidebar&&{ background: "var(--jaza-bets-header-bg)" }
       }
     >
       <div

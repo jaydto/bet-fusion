@@ -55,7 +55,7 @@
     opacity: 0.8;
 }
 .promo-button{
-    background: var(--bet-dojo-header-bg) !important;
+    background: var(--jaza-bets-header-bg) !important;
     min-height: 3rem;
     color: var(--dark) !important;
     opacity:0.9;

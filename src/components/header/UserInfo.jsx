@@ -100,8 +100,7 @@ export const UserInfo = React.memo((props) => {
       <>
         {!user && (
           <div
-            className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2 mb-2 col-lg-3"
-            style={{ marginLeft: "auto" }}
+            className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2 mb-2 col-lg-3 justify-content-end"
           >
             {pathname !== "/signup" && (
               <div className="">

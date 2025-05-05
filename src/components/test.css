@@ -6,7 +6,7 @@
     /* flex-flow: nowrap; */
     flex-direction: column;
     flex-wrap: nowrap;
-    background-color: var(--bet-dojo-body-bg);
+    background-color: var(--jaza-bets-body-bg);
     height: 100vh;
     padding: 15px 0px;
     gap: 0px;
@@ -14,7 +14,7 @@
 }
 
 .flex-item >div {
-    background: var(--bet-dojo-header-bg);
+    background: var(--jaza-bets-header-bg);
     /* border: 3px solid #ffcc80; */
     border-radius: 5px;
     padding: 0px 0px ;
@@ -37,7 +37,7 @@
     justify-content: space-between;
     /* flex-flow: nowrap; */
     flex-wrap: nowrap;
-    background-color: var(--bet-dojo-primary);
+    background-color: var(--jaza-bets-primary);
     height: 100%;
     padding: 15px;
     /*margin-top:63px;*/
@@ -67,7 +67,7 @@
     flex-grow:3;
 }
 .carousel.slide{
-    background: var(--bet-dojo-primary);
+    background: var(--jaza-bets-primary);
 
 }
 .item3 {
@@ -157,7 +157,7 @@
         flex-direction: column;
     }
     .flex-item >div{
-        background: var(--bet-dojo-primary);
+        background: var(--jaza-bets-primary);
     }
     .item2 {
         /* flex:2 1 auto; */
@@ -202,7 +202,7 @@
         box-shadow: none;
     }
     .flex-item >div {
-        background: var(--bet-dojo-primary);
+        background: var(--jaza-bets-primary);
         /* border: 3px solid #ffcc80; */
         border-radius: 5px;
         padding: 5px 0px;
@@ -218,7 +218,7 @@
         box-shadow: none;
     }
     .flex-item >div {
-        background: var(--bet-dojo-primary);
+        background: var(--jaza-bets-primary);
         /* border: 3px solid #ffcc80; */
         border-radius: 5px;
         padding: 1px 0px;

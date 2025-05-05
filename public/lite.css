@@ -17,8 +17,8 @@
 
 } */
 .lite-top-color {
-    border: thin solid var(--bet-dojo-input);
-    color: var(--bet-dojo-button-login);
+    border: thin solid var(--jaza-bets-input);
+    color: var(--jaza-bets-button-login);
     text-align: center;
     display: flex;
     justify-content: center;

@@ -18,9 +18,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import DepositModal from "../../modals/DepositModal";
 import SearchModal from "../../modals/SearchModal";
+import useWindowDimensions from "../../header/Dimensions";
 
 const CrashGames = ({ activeCategory }) => {
   const dispatch = useDispatch();
+  const {width}=useWindowDimensions();
   const user = getFromLocalStorage("user");
 
   const casino_games = useSelector((state) => state.virtuals.casino_games_data);
@@ -160,7 +162,7 @@ const CrashGames = ({ activeCategory }) => {
   );
 
   return (
-    <div style={{ overflow: "hidden" , position: "relative"}}>
+    <div style={{ overflow: "hidden", position: "relative" }}>
       {showDepositModal && <DepositModal />}
       {casino_search && <SearchModal />}
 
@@ -183,19 +185,19 @@ const CrashGames = ({ activeCategory }) => {
                       section.title === "Others"
                         ? 8
                         : section.title === "Popular"
-                        ? 3
+                        ? 4
                         : 6
                     );
 
               return (
                 <div key={index} className="mb-2 casino-body">
-                  <div className="d-flex justify-content-between align-items-center bg-section-header py-0 position-relative">
-                    <LazyLoadImage
+                  <div className="d-flex justify-content-between align-items-center bg-section-header py-3 position-relative">
+                    {/* <LazyLoadImage
                       src={bgSection} // Assuming bgSection is the image URL
                       alt={""}
                       effect="blur"
                       className="section-header-image  "
-                    />
+                    /> */}
                     <a
                       href="#"
                       className="text-decoration-none text-light position-absolute   translate-middle z-4 title-header  fw-bold fs-3 "
@@ -213,8 +215,8 @@ const CrashGames = ({ activeCategory }) => {
                         >
                           {isExpanded ? "Less" : "All"}
                         </button>
-                        &nbsp;
-                        <LazyLoadImage src={more} width={70} height={10} />
+                        {/* &nbsp;
+                        <LazyLoadImage src={more} width={70} height={10} /> */}
                       </>
                     )}
                   </div>
@@ -223,7 +225,13 @@ const CrashGames = ({ activeCategory }) => {
                     className={`row inter-font ${
                       section.title === "Others"
                         ? "row-cols-3 row-cols-md-4 row-cols-lg-4Z elongate"
-                        : "row-cols-3"
+                        : section.title === "Hot"
+                        ? width>=992?"row-cols-4":"row-cols-3"
+                        : section.title === "Popular"
+                        ? width>=992?"row-cols-4":"row-cols-2 flex-wrap"
+                        : isExpanded
+                        ? "row-cols-3"
+                        : width>=992?"row-cols-3 flex-wrap ":"row-cols-2 flex-wrap"
                     } g-3 mt-1 text-light`}
                   >
                     {visibleGames.map((game, gameIndex) => (
@@ -243,7 +251,7 @@ const CrashGames = ({ activeCategory }) => {
                             className="img-fluid rounded image-size-casino"
                           />
 
-                          <div className="badge-left-t">
+                          {/* <div className="badge-left-t">
                             <LazyLoadImage
                               src={hot}
                               alt={"count"}
@@ -267,16 +275,16 @@ const CrashGames = ({ activeCategory }) => {
                               className="img-fluid rounded image-size-casino"
                             />
                             12
-                          </div>
+                          </div> */}
                           {/* FontAwesome Star Icon */}
                           <div className="badge-faster">
                             <FontAwesomeIcon icon={faStar} />
                           </div>
-                          <div className="game-title-section ">
+                          {/* <div className="game-title-section ">
                             <div className="game-title text-center px-2">
                               {game.title}
                             </div>
-                          </div>
+                          </div> */}
                         </a>
                         {(hoveredGame === game?.id ||
                           overlayVisible[game?.id]) && (
@@ -346,11 +354,9 @@ const CrashGames = ({ activeCategory }) => {
           }
         `}</style>
       </div>
-      <CardGrid />
-      <MpesaCard />
+      {/* <CardGrid /> */}
+      {/* <MpesaCard /> */}
       <MobileMenu />
-
-   
     </div>
   );
 };

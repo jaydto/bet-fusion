@@ -2,7 +2,7 @@
     font-size:22px
 }
 .top-nav{
-    background: var(--bet-dojo-header-bg);
+    background: var(--jaza-bets-header-bg);
 }
 .deposit-buttons-value {
     padding: 5px 10px;
@@ -27,7 +27,7 @@
 }
 .flex-container.profile-style {
     margin-top: 0px;
-    background: var(--bet-dojo-header-bg);
+    background: var(--jaza-bets-header-bg);
 }
 .flex-item-profile {
 
@@ -57,7 +57,7 @@
     box-shadow: 2px 3px 10px 2px rgba(0,0,0,0.3);
 }
 .flex-item-profile >div{
-    background: var(--bet-dojo-primary);
+    background: var(--jaza-bets-primary);
     /*border: 3px solid #ffcc80;*/
     border-radius: 5px;
     padding: 8px 0px;
@@ -81,7 +81,7 @@
     justify-content: space-between;
     /* flex-flow: nowrap; */
     flex-wrap: nowrap;
-    background-color: var(--bet-dojo-primary);
+    background-color: var(--jaza-bets-primary);
     height: 100%;
     padding: 15px;
     margin-top:63px;
@@ -109,7 +109,7 @@
     /*-moz-box-shadow: 0px -1px 16px 6px rgba(0,0,0,0.75);*/
 }
 .carousel.slide{
-    background: var(--bet-dojo-primary);
+    background: var(--jaza-bets-primary);
 }
 .item-profile3 {
     /* flex:1 1 auto; */
@@ -118,7 +118,7 @@
 @media (min-width: 1260px){
     .profile-width-side {
         min-width: 310px!important;
-        background: var(--bet-dojo-header-bg)!important;
+        background: var(--jaza-bets-header-bg)!important;
         padding-left: 0rem;
         margin-top: 0rem;
         padding-left: 1.5rem;
@@ -179,7 +179,7 @@
     }
     profile-width-side {
         min-width: 342px!important;
-        background: var(--bet-dojo-header-bg)!important;
+        background: var(--jaza-bets-header-bg)!important;
         padding-left: 0rem;
         margin-top: 11rem;
     }
@@ -252,7 +252,7 @@
 @media (max-width: 991px){
     .styling-nav-profile {
         /* border-radius: 6px; */
-        background: var(--bet-dojo-header-bg);
+        background: var(--jaza-bets-header-bg);
     }
     .mobile-profile-links {
         display: flex;
@@ -309,7 +309,7 @@
         width:100vw;
     }
     .flex-item-profile >div{
-        background: var(--bet-dojo-header-bg);
+        background: var(--jaza-bets-header-bg);
         align-items: flex-start;
     }
     .profile-title{

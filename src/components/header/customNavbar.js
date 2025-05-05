@@ -7,35 +7,36 @@ import Menu from "../../assets/img/menu.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useWindowDimensions from "./Dimensions";
 
-const   CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
+const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
   return (
     <Navbar.Brand
-      className="e logo align-self-start menu-control d-flex justify-content-between w-100"
+      className="e logo align-self-start menu-control d-flex justify-content-between w-100 py-3"
       title="BetDonjo"
     >
       <div
-        className="col-7 logo-BetDonjo resize-mobile d-flex align-items-center mb-2"
+        className="col-7 logo-BetDonjo resize-mobile d-flex align-items-center "
         style={{ marginLeft: "2px" }}
       >
         {/* Custom Menu Icon */}
-        
 
+        <div className="logo-section">
+          <LazyLoadImage
+            src={Logo}
+            onClick={() => navigate("/")}
+            alt="BetDonjo"
+            title="BetDonjo"
+            className={`image-size ${!user && "logo-top"}`}
+            style={
+              user
+                ? { marginBottom: "0px", paddingLeft: "7px" }
+                : { width: "auto" }
+            }
+          />
+        </div>
         {/* Logo */}
-        <img
-          src={Logo}
-          onClick={() => navigate("/")}
-          alt="BetDonjo"
-          title="BetDonjo"
-          className={`image-size ${!user && "logo-top"}`}
-          style={
-            user
-              ? { marginBottom: "0px", paddingLeft: "7px" }
-              : { width: "auto" }
-          }
-        />
 
         {/* <NavLinks /> */}
       </div>

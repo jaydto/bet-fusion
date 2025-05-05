@@ -27,7 +27,7 @@ export default function Footer() {
     <footer
       className="  mt-1 "
       style={{
-        background: "#13111D",
+        background: "var(--jaza-bets-lite)",
         color: "var(--light)",
         marginBottom: "100px",
       }}
@@ -35,12 +35,12 @@ export default function Footer() {
       <Container>
         <Row className="text-start px-4">
           <Col md={12} sm={12} className="mb-4" style={{ fontSize: "12px" }}>
-            <LazyLoadImage src={footer} alt="footer" className="img-fluid" />
+            {/* <LazyLoadImage src={footer} alt="footer" className="img-fluid" /> */}
             <p
               style={{ marginBottom: "0px", paddingTop: "30px" }}
               className="text-center"
             >
-              WINNING STARTs HERE , Betdonjo , Best Gambiling game site in
+              WINNING STARTs HERE , Best Gambiling game site in
               Africa
             </p>
             <hr style={{ marginTop: "0px" }} />
@@ -191,15 +191,7 @@ export default function Footer() {
         <hr />
 
         <Row className="text-start px-4">
-          {/* Fairness */}
-          <Col md={6} className="mb-3">
-            <h5 className="fw-bold text-center mb-3">Fairness</h5>
-            <div className="d-flex gap-3 justify-content-center">
-              <img src={Fair1} alt="fair-1" width={100} />
-              <img src={Fair2} alt="fair-2" width={100} />
-            </div>
-          </Col>
-          <hr />
+        
 
           {/* Licence */}
           <Col md={6} className="mb-3">
@@ -236,9 +228,9 @@ export default function Footer() {
               </li>
               <li>
                 Laws of Kenya under License Numbers:{" "}
-                <b style={{ color: "var(--game-title)" }}> BK 0000816</b>
+                <b style={{ color: "var(--game-title)" }}> BK 000</b>
               </li>
-              <li>©2025 BetDonjo. All Rights reserved.</li>
+              <li>©2025 Jazabets. All Rights reserved.</li>
             </ul>
           </Col>
         </Row>

@@ -6,10 +6,8 @@
 
 .casino-game-wrapper img {
   width: 100%;
-  border-top-right-radius: 7px !important;
-  border-top-left-radius: 7px !important;
-  border-bottom-right-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
+  border-radius: 15px !important;
+
   transition: transform 0.3s ease-in-out;
 }
 
@@ -58,13 +56,17 @@
 
 /* Category Buttons */
 .category-btn {
-  border-radius: 20px;
-  border: none;
-  background: var(--bg-cat-1, #2b2930); /* Default category button background */
-  color: white;
-  padding: 10px 29px 10px 20px;
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 1px;
   font-weight: 500;
-  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 2px 0px,
+    rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
+  border-radius: 40px;
+  /* background: rgb(253, 244, 255); */
+  color: rgb(217, 70, 239);
 }
 
 /* Inactive category style */
@@ -350,7 +352,7 @@ input.search-cat:focus {
 
 .search-casino .input-group-text {
   background-color: transparent !important;
-  border: 2px solid var(--app-download-link-color)!important;
+  border: 2px solid var(--app-download-link-color) !important;
   border-radius: 15px;
 }
 
@@ -382,8 +384,8 @@ input.search-cat:focus {
   }
   .casino-category-size {
     height: 3.2rem;
-  }.casino-category-size
-  .carousel-container {
+  }
+  .casino-category-size .carousel-container {
     height: 17vh !important;
   }
   .casino-carousel-container {
@@ -425,10 +427,10 @@ input.search-cat:focus {
 @media (max-width: 991px) and (min-width: 768px) {
   .layout-casino-category {
     position: absolute;
-    top: 5.4rem;
+    top: 0.4rem;
   }
   .casino-category-size {
-    height: 8rem;
+    height: 3.7rem;
   }
   .carousel-container {
     height: 23vh !important;
@@ -437,8 +439,6 @@ input.search-cat:focus {
     height: 23vh !important;
   }
 }
-
-
 
 @media (orientation: landscape) and (min-width: 992px) {
   .carousel-container {
@@ -448,8 +448,6 @@ input.search-cat:focus {
     height: 45vh !important;
   }
 }
-
-
 
 @media (orientation: landscape) and (max-width: 767px) {
   .carousel-container {
@@ -468,7 +466,6 @@ input.search-cat:focus {
     height: 47vh !important;
   }
 }
-
 
 @media (max-width: 991px) {
   .casino-game-wrapper img {
@@ -492,7 +489,6 @@ input.search-cat:focus {
 }
 
 @media (min-width: 992px) {
-
   .carousel-container {
     height: 45vh !important;
   }
@@ -539,11 +535,11 @@ input.search-cat:focus {
 @media (max-width: 1260px) and (min-width: 1000px) {
   .layout-casino-category {
     position: absolute;
-    top: 8.6rem!important;
+    top: 8.6rem !important;
   }
-  
+
   .casino-category-size {
-    height: 10rem!important;
+    height: 10rem !important;
   }
   .carousel-container {
     height: 71vh !important;

@@ -3,7 +3,10 @@
     border-color: #d3e0e9;
 }
 
-
+.site-layout-background{
+    background-color: var(--jaza-bets-header-bg);
+  
+  }
 .nav__betslip.boost-message-count {
     height: 36px !important;
     width: 36px !important;
@@ -131,7 +134,7 @@
     color:var(--light) !important;
 }
 .BetDonjo-button-bg{
-    background: var(--bet-dojo-button-login) !important;
+    background: var(--jaza-bets-button-login) !important;
     font-weight:700!important;
 }
 .css-qbdosj-Input input::placeholder{
@@ -181,7 +184,7 @@
 }
 
 .bet-body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px var(--bet-dojo-primary);
+    -webkit-box-shadow: inset 0 0 6px var(--jaza-bets-primary);
 }
 
 .bet-body::-webkit-scrollbar-thumb {
@@ -296,10 +299,10 @@
 }
 
 .box-shadow-table-submit-form {
-    /* box-shadow: 10px 10px 10px 10px var(--bet-dojo-input); */
+    /* box-shadow: 10px 10px 10px 10px var(--jaza-bets-input); */
     padding: 5px;
     border-radius: 10px;
-    border: thin solid var(--bet-dojo-input);
+    border: thin solid var(--jaza-bets-input);
     opacity:0.9;
 }
 
@@ -375,7 +378,7 @@
     /* padding: 8px; */
     box-sizing: border-box;
     line-height: 0.8;
-    background: var(--bet-dojo-input);
+    background: var(--jaza-bets-input);
 }
 
 .container-styling-input-placebet {
@@ -384,7 +387,7 @@
 }
 
 .bg-input-placebet {
-    background: var(--bet-dojo-input);
+    background: var(--jaza-bets-input);
 }
 
 .bg-input-placebet {
@@ -398,7 +401,7 @@
     padding-left: 0px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
-    /* background: var(--bet-dojo-primary); */
+    /* background: var(--jaza-bets-primary); */
     padding-right: 10px;
 }
 
@@ -491,7 +494,7 @@ h4.inline-block {
 
 .betslip {
     /*background: #1c313b;*/
-    background: var(--bet-dojo-primary);
+    background: var(--jaza-bets-primary);
     /*padding: 5px;*/
     padding-top: 1px;
     font-size: 14px;
@@ -535,7 +538,7 @@ li.bet-option {
     color: var(--light);
     padding: 4px;
     text-shadow: none;
-    /* border-bottom: 1px solid var(--bet-dojo-primary); */
+    /* border-bottom: 1px solid var(--jaza-bets-primary); */
     /*overflow: hidden;*/
     line-height: 1.6;
     border-radius: 0px;
@@ -724,7 +727,7 @@ li.bet-option {
 
 .bet-odd {
     float: right;
-    color: var(--bet-dojo-button-login);
+    color: var(--jaza-bets-button-login);
     font-size: 11px;
     opacity: 0.9;
     padding-right: 10px;
@@ -952,11 +955,11 @@ li.bet-option {
 .market-group-pill {
     outline: none !important;
     border-radius: 15px !important;
-    background: var(--bet-dojo-odds-body);
+    background: var(--jaza-bets-odds-body);
     margin: 0px 4px;
     padding: 10px 5px;
     cursor: pointer;
-    border: 0.5px solid var(--bet-dojo-odds-body);
+    border: 0.5px solid var(--jaza-bets-odds-body);
 }
 
 

@@ -17,30 +17,35 @@ const Sidebar = () => {
   return (
     <Sider
       width={300}
-      style={{ background: '#fff' }}
+      style={{
+        background: 'var(--jaza-bets-body-bg)',
+        color: 'var(--light)',
+        // height: '100vh',
+      }}
     >
-      <div className="logo" />
-      <SimpleBar style={{ height: '100%' }}>
+      {/* <div className="logo" /> */}
+      <SimpleBar style={{ height: '100%', background: 'var(--jaza-bets-body-bg)', color: 'var(--light)' }}>
         <Menu
           mode="inline"
           defaultOpenKeys={['sports']}
-          style={{ height: '100%' }}
+          // style={{  background: 'var(--jaza-bets-body-bg)', color: 'var(--light)' }}
+          theme="dark" // Optional: use "dark" for better built-in contrast
         >
-          <SubMenu key="sports" title="Sports">
-            <Menu.Item key="1" icon={<FileTextOutlined />}>
-              <a href="/my-bets">My Bets</a>
+          <SubMenu key="sports" title="Sports" style={{ color: 'var(--light)' }}>
+            <Menu.Item key="1" icon={<FileTextOutlined />} style={{ color: 'var(--light)' }}>
+              <a href="/my-bets" style={{ color: 'var(--light)' }}>My Bets</a>
             </Menu.Item>
-            <Menu.Item key="2" icon={<FireOutlined />}>
-              <a href="/boosted-odds">Boosted Odds</a>
+            <Menu.Item key="2" icon={<FireOutlined />} style={{ color: 'var(--light)' }}>
+              <a href="/boosted-odds" style={{ color: 'var(--light)' }}>Boosted Odds</a>
             </Menu.Item>
-            <Menu.Item key="3" icon={<UserOutlined />}>
-              <a href="/player-to-score">Player to Score</a>
+            <Menu.Item key="3" icon={<UserOutlined />} style={{ color: 'var(--light)' }}>
+              <a href="/player-to-score" style={{ color: 'var(--light)' }}>Player to Score</a>
             </Menu.Item>
-            <Menu.Item key="4" icon={<PlayCircleOutlined />}>
-              <a href="/sports">Sports</a>
+            <Menu.Item key="4" icon={<PlayCircleOutlined />} style={{ color: 'var(--light)' }}>
+              <a href="/sports" style={{ color: 'var(--light)' }}>Sports</a>
             </Menu.Item>
-            <Menu.Item key="5" icon={<VideoCameraOutlined />}>
-              <a href="/sports/live">Live Games</a>
+            <Menu.Item key="5" icon={<VideoCameraOutlined />} style={{ color: 'var(--light)' }}>
+              <a href="/sports/live" style={{ color: 'var(--light)' }}>Live Games</a>
             </Menu.Item>
           </SubMenu>
         </Menu>

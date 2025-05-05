@@ -27,7 +27,7 @@ const Index = () => {
       style={{
         margin: "auto",
         // maxWidth: "1200px", // Increased for sidebar + content
-        marginTop: "5rem",
+        marginTop: "4.7rem",
         display: "flex",
         overflowX: "hidden",
         // gap: "1rem",
@@ -48,8 +48,8 @@ const Index = () => {
           onCategoryClick={onCategoryClick}
         />
 
-        <CasinoCarouselLoader />
-        <Broadcast />
+        {/* <CasinoCarouselLoader /> */}
+        {/* <Broadcast /> */}
         <CrashGames activeCategory={activeCategory} />
         <Footer />
       </div>

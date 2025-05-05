@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import HomeSvg from "../../assets/img/mobile/Home.svg";
 import Affiliate from "../../assets/img/mobile/affiliate.svg";
 import Deposit from "../../assets/img/mobile/deposit.svg";
-import ProfileSvg from "../../assets/img/mobile/Profile.svg";
+import MenuSvg from "../../assets/img/mobile/menu.svg";
 import Promotions from "../../assets/img/mobile/promotions.svg";
 import CloseIcon from "../../assets/img/mobile/close_icon.png";
 
@@ -329,14 +329,20 @@ const MobileMenu = React.memo((props) => {
                       </td>
                     </tr>
                   )}
-                  <tr className={"d-flex "} style={{backgroundColor: "var(--bottom-c)",  width:"100vw"}}>
+                  <tr
+                    className={"d-flex  justify-content-between align-items-center"}
+                    style={{
+                      backgroundColor: "var(--bottom-c)",
+                      width: "100vw",
+                    }}
+                  >
                     <td
                       className={`bloc-icon ${
                         pathname === "/" ? "active" : ""
                       }`}
                     >
                       <Link
-                        className="d-flex flex-column justify-content-center align-items-center"
+                        className="d-flex flex-row justify-content-center align-items-center gap-1"
                         to={"/"}
                         onClick={() => gaEventTracker("Visit Homepage")}
                       >
@@ -355,27 +361,7 @@ const MobileMenu = React.memo((props) => {
                       }`}
                     >
                       <Link
-                        className="d-flex flex-column justify-content-center align-items-center"
-                        to={"/"}
-                        onClick={() => gaEventTracker("Visit Homepage")}
-                      >
-                        <LazyLoadImage
-                          src={Affiliate}
-                          alt=""
-                          effect="blur"
-                          style={{ width: "30px", height: "35px" }}
-                        />
-                        <p>Affiliate</p>
-                      </Link>
-                    </td>
-
-                    <td
-                      className={`bloc-icon ${
-                        pathname === "/" ? "active" : ""
-                      }`}
-                    >
-                      <Link
-                        className="d-flex flex-column justify-content-center align-items-center"
+                        className="d-flex flex-row justify-content-center align-items-center gap-1"
                         to={"/"}
                         onClick={() => gaEventTracker("Visit Homepage")}
                       >
@@ -385,9 +371,30 @@ const MobileMenu = React.memo((props) => {
                           effect="blur"
                           style={{ width: "22px", height: "35px" }}
                         />
-                        <p>Promotions</p>
+                        <p>Promos</p>
                       </Link>
                     </td>
+                    <td
+                      className={`bloc-icon ${
+                        pathname === "/" ? "active" : ""
+                      }`}
+                    >
+                      <Link
+                        className="d-flex flex-row justify-content-center align-items-center gap-1"
+                        to={"/"}
+                        onClick={() => gaEventTracker("Visit Homepage")}
+                      >
+                        <LazyLoadImage
+                          src={Affiliate}
+                          alt=""
+                          effect="blur"
+                          style={{ width: "30px", height: "35px" }}
+                        />
+                        <p>My Bets</p>
+                      </Link>
+                    </td>
+
+                   
 
                     {user ? (
                       <td
@@ -396,17 +403,16 @@ const MobileMenu = React.memo((props) => {
                         }`}
                       >
                         <Link
-                          className=""
+                          className="d-flex align-items-center gap-1"
                           to={"/profile"}
                         >
                           <LazyLoadImage
-                            src={ProfileSvg}
+                            src={MenuSvg}
                             effect="blur"
                             alt=""
                             style={{ width: "24px", height: "35px" }}
-
                           />
-                          <p>Profile</p>
+                          <p>Menu</p>
                         </Link>
                       </td>
                     ) : (
@@ -415,14 +421,17 @@ const MobileMenu = React.memo((props) => {
                           pathname === "/login" ? "active" : ""
                         }`}
                       >
-                        <Link to={"/login"}>
+                        <Link
+                          className="d-flex align-items-center gap-1"
+                          to={"/login"}
+                        >
                           <LazyLoadImage
-                            src={ProfileSvg}
+                            src={MenuSvg}
                             alt=""
                             effect="blur"
                             style={{ width: "24px", height: "35px" }}
                           />
-                          <p>Profile</p>
+                          <p>Menu</p>
                         </Link>
                       </td>
                     )}

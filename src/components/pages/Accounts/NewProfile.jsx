@@ -104,7 +104,7 @@ const NewProfile = React.memo(() => {
         <div className="profile-container-desktop d-flex">
           <div
             className="col mobile-full-width"
-            style={{ background: "var(--bet-dojo-header-bg)" }}
+            style={{ background: "var(--jaza-bets-header-bg)" }}
           >
             <div className="iphone">
               <div className="content mb-4 px-4">
@@ -249,14 +249,14 @@ const NewProfile = React.memo(() => {
                 <p style={{ color: "var(--light)" }}>Settings</p>
                 {/* Theme Toggle */}
                 <div className="card mb-3 top-pr">
-                  <div
+                  {/* <div
                     className="upper-row text-light-p p-3 d-flex justify-content-between align-items-center"
                     onClick={() => setIsLightTheme((prev) => !prev)}
                     style={{ cursor: "pointer" }}
                   >
                     <span>Light Theme</span>
                     <span className="px-4"><FontAwesomeIcon color="var(--gold)" size="lg" icon={isLightTheme ?  faMoon: faSun} /></span>
-                  </div>
+                  </div> */}
 
                   <div className="upper-row text-light-p p-3 d-flex justify-content-between align-items-center">
                     <span>Data Saver</span>

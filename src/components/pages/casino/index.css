@@ -468,6 +468,9 @@ input.search-cat:focus {
 }
 
 @media (max-width: 991px) {
+  .body-section{
+    margin-bottom:4.5rem;
+  }
   .casino-game-wrapper img {
     min-height: 127px;
     /* height: ; */
@@ -531,6 +534,7 @@ input.search-cat:focus {
     top: 50%;
   }
 }
+
 
 @media (max-width: 1260px) and (min-width: 1000px) {
   .layout-casino-category {

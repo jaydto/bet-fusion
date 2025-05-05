@@ -166,7 +166,7 @@ const CrashGames = ({ activeCategory }) => {
       {showDepositModal && <DepositModal />}
       {casino_search && <SearchModal />}
 
-      <div className="container mt-1">
+      <div className="container mt-1 body-section">
         {loading ? (
           <CasinoSkeletonLoader />
         ) : (

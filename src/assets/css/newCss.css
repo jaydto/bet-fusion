@@ -57,6 +57,12 @@ body {
   display: flex !important;
   margin-right: 0px;
 }
+.ant-layout-sider::-webkit-scrollbar {
+  /* height: 0.5px;
+  width: 0.5px;
+  padding: 0.5px; */
+  display: none;
+}
 
 
 @media (min-width: 992px) {
@@ -66,6 +72,8 @@ body {
   .logo-section {
     width: 297px;
     border-right: 2px solid var(--bet-history);
+    background: var(--jaza-bets-header-bg);
+    /* display: none; */
   }
   .mobile-menu {
     /* margin: auto;
@@ -2282,6 +2290,10 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+  .logo-section {
+    width: 297px;
+    border-right: 2px solid var(--bet-history);}
+
   .bg-section-header{
     min-height: 3.5rem;;
   }

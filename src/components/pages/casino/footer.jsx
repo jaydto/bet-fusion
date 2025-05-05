@@ -194,7 +194,7 @@ export default function Footer() {
         
 
           {/* Licence */}
-          <Col md={6} className="mb-3">
+          <Col md={12} sm={12} className="mb-3">
             <h5 className="fw-bold text-cebter text-center fw-bold fs-3 mb-3">
               License
             </h5>

@@ -9,22 +9,41 @@ import {
 } from '@ant-design/icons';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import Footer from './footer';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Logo from "../../../assets/img/logo.png";
+import { useNavigate } from 'react-router-dom';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const Sidebar = () => {
+    const navigate = useNavigate();
   return (
     <Sider
       width={300}
       style={{
         background: 'var(--jaza-bets-body-bg)',
         color: 'var(--light)',
-        // height: '100vh',
+        position:"fixed",
+        overflowY:"auto",
+        height: '100vh',
+        overflowX:"hidden"
       }}
     >
-      {/* <div className="logo" /> */}
-      <SimpleBar style={{ height: '100%', background: 'var(--jaza-bets-body-bg)', color: 'var(--light)' }}>
+        <div className="logo-section">
+          <LazyLoadImage
+            src={Logo}
+            onClick={() => navigate("/")}
+            alt="BetDonjo"
+            title="BetDonjo"
+            className={`image-size`}
+           
+          />
+        </div>
+     
+      <div className="logo" />
+      <SimpleBar style={{  background: 'var(--jaza-bets-body-bg)', color: 'var(--light)' }}>
         <Menu
           mode="inline"
           defaultOpenKeys={['sports']}
@@ -50,6 +69,10 @@ const Sidebar = () => {
           </SubMenu>
         </Menu>
       </SimpleBar>
+       {/* Footer inside sidebar */}
+       <div style={{ maxHeight: 'auto', overflow: 'hidden' }}>
+        <Footer />
+      </div>
     </Sider>
   );
 };

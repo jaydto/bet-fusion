@@ -5,6 +5,8 @@
 
 .site-layout-background{
     background-color: var(--jaza-bets-header-bg);
+    z-index: 10000;
+    width: 300px;
   
   }
 .nav__betslip.boost-message-count {

@@ -13,11 +13,11 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
 
   return (
     <Navbar.Brand
-      className="e logo align-self-start menu-control d-flex justify-content-between w-100 py-3"
-      title="BetDonjo"
+      className="e logo align-self-start menu-control d-flex justify-content-between w-100 py-4"
+      title="Jazabets"
     >
       <div
-        className="col-7 logo-BetDonjo resize-mobile d-flex align-items-center "
+        className="col-7 logo-Jazabets resize-mobile d-flex align-items-center "
         style={{ marginLeft: "2px" }}
       >
         {/* Custom Menu Icon */}
@@ -26,8 +26,8 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
           <LazyLoadImage
             src={Logo}
             onClick={() => navigate("/")}
-            alt="BetDonjo"
-            title="BetDonjo"
+            alt="Jazabets"
+            title="Jazabets"
             className={`image-size ${!user && "logo-top"}`}
             style={
               user

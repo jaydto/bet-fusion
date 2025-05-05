@@ -27,18 +27,14 @@ const Index = () => {
       style={{
         margin: "auto",
         // maxWidth: "1200px", // Increased for sidebar + content
-        marginTop: "4.7rem",
+        marginTop: "5.9rem",
         display: "flex",
         overflowX: "hidden",
         // gap: "1rem",
         // padding: "0 1rem",
       }}
     >
-      {/* Sidebar - Desktop only */}
-      <aside className="sidebar site-layout-background">
-        {/* You can put category list, ads, etc. */}
-        <Sidebar/>
-      </aside>
+     
 
       {/* Main Content */}
       <div className="main-content" style={{ flex: 1 }}>
@@ -51,7 +47,7 @@ const Index = () => {
         {/* <CasinoCarouselLoader /> */}
         {/* <Broadcast /> */}
         <CrashGames activeCategory={activeCategory} />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

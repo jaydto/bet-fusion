@@ -21,24 +21,7 @@ const   CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
         style={{ marginLeft: "2px" }}
       >
         {/* Custom Menu Icon */}
-        <div
-          className="col-1 button-toggle space-button desktop-menu"
-          style={{
-            width: "4.1rem",
-            overflow: "hidden",
-            marginLeft: "0px",
-          }}
-        >
-          <LazyLoadImage
-            src={Menu}
-            onClick={
-              width < 768 ? toggleMenu : () => console.log("Menu Clicked!")
-            }
-            alt="Menu"
-            title="Menu"
-            className="menu-size"
-          />
-        </div>
+        
 
         {/* Logo */}
         <img

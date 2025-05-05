@@ -4,46 +4,55 @@ import CrashGames from "./casinoBody";
 import HorizontalCategoryList from "./horizontalCategoryList";
 import "./index.css";
 import SearchModal from "../../modals/SearchModal";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Broadcast from "./broadcast";
-
+import Sidebar from "./sidebar";
+import Footer from "./footer";
+import MobileMenu from "../../mobile-menu";
 
 const Index = () => {
   const close_call_to_action = useSelector(
     (state) => state.data.call_to_action
   );
-  // Step 1: Set up state for active category
   const [activeCategory, setActiveCategory] = useState("All");
+  const pathname = window.location.pathname;
 
-  // Step 2: Function to handle category click and set the active category
   const onCategoryClick = (categoryId) => {
     setActiveCategory(categoryId);
   };
-  const pathname = window.location.pathname;
 
   return (
     <div
+      className="main-layout"
       style={{
         margin: "auto",
-        maxWidth: "991px",
-        marginTop: close_call_to_action ? "1rem" : "6rem",
+        // maxWidth: "1200px", // Increased for sidebar + content
+        marginTop: "5rem",
+        display: "flex",
+        overflowX: "hidden",
+        // gap: "1rem",
+        // padding: "0 1rem",
       }}
     >
-      {/* Menu / Sport List */}
-      {/* <SportsList/> */}
-      {pathname === "/" && <SearchModal />}
-      <HorizontalCategoryList
-        activeCategory={activeCategory}
-        onCategoryClick={onCategoryClick}
-      />
+      {/* Sidebar - Desktop only */}
+      <aside className="sidebar site-layout-background">
+        {/* You can put category list, ads, etc. */}
+        <Sidebar/>
+      </aside>
 
-      <CasinoCarouselLoader />
-      <Broadcast />
+      {/* Main Content */}
+      <div className="main-content" style={{ flex: 1 }}>
+        {pathname === "/" && <SearchModal />}
+        <HorizontalCategoryList
+          activeCategory={activeCategory}
+          onCategoryClick={onCategoryClick}
+        />
 
-      {/* Casino Filters */}
-      {/* <CasinoFilters/> */}
-
-      <CrashGames activeCategory={activeCategory} />
+        <CasinoCarouselLoader />
+        <Broadcast />
+        <CrashGames activeCategory={activeCategory} />
+        <Footer />
+      </div>
     </div>
   );
 };

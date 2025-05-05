@@ -56,7 +56,7 @@ const Header = React.memo((props) => {
 
   const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
   const notShowHeaderNav = dispatchRedux(shouldShowHeader(pathname));
-  const showDownload = dispatchRedux(shouldShowDownload(pathname));
+  // const showDownload = dispatchRedux(shouldShowDownload(pathname));
   const changeNav = dispatchRedux(checkNavigation(pathname));
   const checkDesktop = dispatchRedux(checkDesktopTopNavigation(pathname));
   const close_call_to_action = useSelector(
@@ -264,13 +264,11 @@ const Header = React.memo((props) => {
           <Navbar
             expand="md"
             className={`${
-              close_call_to_action || showDownload
-                ? "fixed-top-nav fixed"
-                : "fixed-top-nav"
+               "fixed-top-nav"
             }
          ${changeNav ? "d-none" : ""}
          mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${
-           slip || showDownload ? "top-betslip-page-fix" : ""
+           slip  ? "top-betslip-page-fix" : ""
          } ${user ? "top-nav-login" : "top-nav-login"}`}
             fixed="top"
             variant="dark"
@@ -280,16 +278,16 @@ const Header = React.memo((props) => {
                 close_call_to_action
                   ? "optional-action"
                   : "optional-action active"
-              }  ${showDownload ? "d-none" : "w-100"}`}
+              }  w-100`}
             >
-              <CallToAction
+              {/* <CallToAction
                 settings={settings}
                 appConfigs={appConfigs}
                 handleCloseCallToAction={handleCloseCallToAction} // Pass the handler down as a prop
                 navigate={navigate}
                 gaEventTracker={gaEventTracker}
                 PromoActive={PromoActive}
-              />
+              /> */}
             </div>
             <div
               className={
@@ -304,44 +302,7 @@ const Header = React.memo((props) => {
                 />
               </div>
 
-              <Offcanvas
-                style={{
-                  width: "80%",
-                  height: "100%",
-                  zIndex: "9999",
-                  marginTop: "0px",
-                  overflowY: "auto",
-                }}
-                onHide={handleClose}
-                show={show}
-                className="off-canvas background-primary p-0"
-                id={`offcanvasNavbar-expand-${expand}`}
-                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                placement="start"
-              >
-                <Offcanvas.Header
-                  closeButton
-                  className="text-white"
-                  closeVariant={"white"}
-                  onClick={toggle}
-                >
-                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                    <div className="col-5 ">
-                      <div>
-                        <img
-                          src={Logo}
-                          alt="BetDonjo"
-                          title="BetDonjo"
-                          effects="blur"
-                        />
-                      </div>
-                    </div>
-                  </Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                  <SidebarMobile />
-                </Offcanvas.Body>
-              </Offcanvas>
+             
             </div>
           </Navbar>
         </div>

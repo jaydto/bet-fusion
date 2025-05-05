@@ -329,7 +329,7 @@ const MobileMenu = React.memo((props) => {
                       </td>
                     </tr>
                   )}
-                  <tr className={"d-flex "} style={{backgroundColor: "var(--bottom-c)", maxWidth:"767px", margin:"auto", width:"100vw"}}>
+                  <tr className={"d-flex "} style={{backgroundColor: "var(--bottom-c)",  width:"100vw"}}>
                     <td
                       className={`bloc-icon ${
                         pathname === "/" ? "active" : ""
@@ -369,33 +369,6 @@ const MobileMenu = React.memo((props) => {
                       </Link>
                     </td>
 
-                    <td
-                      className={`  bloc-icon bet-slip-footer-toggle text-white`}
-                    >
-                      <Link
-                        className="position-relative d-flex flex-column justify-content-center align-items-center"
-                        style={{marginBottom:"-34.5px"}}
-                        to={{
-                          pathname: `${`/deposit`}`,
-                        }}
-                      >
-                        <div style={{ width: "55px", position: "relative" }}>
-                          <Badge
-                            pill
-                            bg="warning nav__betslip d-flex justify-content-center align-items-center text-dark"
-                          >
-                            <LazyLoadImage
-                              src={Deposit}
-                              alt=""
-                              effect="blur"
-                              style={{ width: "40px", height: "40px" }}
-                            />
-                          </Badge>
-                        </div>
-                        <p>Deposit</p>
-
-                      </Link>
-                    </td>
                     <td
                       className={`bloc-icon ${
                         pathname === "/" ? "active" : ""

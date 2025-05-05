@@ -348,8 +348,9 @@ const CrashGames = ({ activeCategory }) => {
       </div>
       <CardGrid />
       <MpesaCard />
-      <Footer />
       <MobileMenu />
+
+   
     </div>
   );
 };

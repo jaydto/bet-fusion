@@ -70,7 +70,7 @@ body {
     min-height: 4rem;;
   }
   .logo-section {
-    width: 297px;
+    width: 298px;
     border-right: 2px solid var(--bet-history);
     background: var(--jaza-bets-header-bg);
     /* display: none; */

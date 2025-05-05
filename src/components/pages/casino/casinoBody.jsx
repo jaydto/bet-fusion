@@ -19,18 +19,21 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import DepositModal from "../../modals/DepositModal";
 import SearchModal from "../../modals/SearchModal";
 import useWindowDimensions from "../../header/Dimensions";
+import rawCasinoData from './data.json';
 
 const CrashGames = ({ activeCategory }) => {
   const dispatch = useDispatch();
   const {width}=useWindowDimensions();
   const user = getFromLocalStorage("user");
 
-  const casino_games = useSelector((state) => state.virtuals.casino_games_data);
+  // const casino_games = useSelector((state) => state.virtuals.casino_games_data);
   const loading = useSelector((state) => state.virtuals.loading);
-  const casino_types = useSelector(
-    (state) => state.virtuals.casino_games_types
-  );
-
+  // const casino_types = useSelector(
+  //   (state) => state.virtuals.casino_games_types
+  // );
+  const casino_games = rawCasinoData.data;   // This replaces: useSelector(...)
+  const casino_types = rawCasinoData.types;  // This replaces: useSelector(...)
+  
   const fetchGames = async () => {
     let endpoint = "/v1/casino-game-listing";
     let method = "GET";

@@ -1,448 +1,198 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import HomeSvg from "../../assets/img/mobile/Home.svg";
-import Affiliate from "../../assets/img/mobile/affiliate.svg";
-import Deposit from "../../assets/img/mobile/deposit.svg";
-import MenuSvg from "../../assets/img/mobile/menu.svg";
-import Promotions from "../../assets/img/mobile/promotions.svg";
-import CloseIcon from "../../assets/img/mobile/close_icon.png";
-
-import { Badge } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
-import { Link, useNavigate } from "react-router-dom";
-import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import { getBetslip, getKironSlip } from "../utils/betslip";
-import { StoreContext } from "../../context/store";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { Drawer, Menu, Badge, Progress, Typography } from "antd";
+import {
+  HomeOutlined,
+  GiftOutlined,
+  UserOutlined,
+  DollarOutlined,
+  AppstoreOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { getFromLocalStorage } from "../utils/local-storage";
+import { getBetslip, getKironSlip } from "../utils/betslip";
 import { setState as setMatchBetslipOptions } from "../../redux/bettingSlice";
+import Sidebar from "../pages/casino/sidebar";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import Logo from "../../assets/img/logo.png";
 
-const MobileMenu = React.memo((props) => {
+const { Text } = Typography;
+
+const MobileMenu = () => {
+  const [visible, setVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const navigate = useNavigate();
   const pathname = window.location.pathname;
 
-  const betItems = pathname.includes("nare-league")
-    ? getKironSlip()
-    : getBetslip();
-  const { state } = useContext(StoreContext);
-
-  const [betSlipMobile, setBetSlipMobile] = useState(false);
-  const gaEventTracker = useAnalyticsEventTracker("Navigation");
-
-  const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.user);
-  const [user, setUser] = useState(getFromLocalStorage("user"));
-  const remaining_games = useSelector((state) => state.betting.remaining_games);
-  const betslip_options = useSelector((state) => state.betting.betslip_options);
-  const kiron_betslip_options = useSelector(
-    (state) => state.betting.kiron_betslip_options
+  const isKiron = pathname.includes("nare-league");
+  const betItems = isKiron ? getKironSlip() : getBetslip();
+  const betslipOptions = useSelector((state) =>
+    isKiron
+      ? state.betting.kiron_betslip_options
+      : state.betting.betslip_options
   );
-  const dispatchRedux = useDispatch();
-  let settings = getFromLocalStorage("settings");
-
-  useEffect(() => {
-    if (userData) {
-      setUser(userData || getFromLocalStorage("user"));
-    }
-  }, [userData]);
-
-  let totalCount = 0;
-
-  const [progress, setProgress] = useState();
+  const remainingGames = useSelector((state) => state.betting.remaining_games);
 
   let sumOfOdds = 1;
-
-  Object.values(betItems || {})?.forEach((match) => {
-    const oddValue = parseFloat(match.odd_value);
-    if (!isNaN(oddValue)) {
-      sumOfOdds *= oddValue;
-    }
+  Object.values(betItems || {}).forEach((match) => {
+    const odd = parseFloat(match.odd_value);
+    if (!isNaN(odd)) sumOfOdds *= odd;
   });
-  let winnings =
-    sumOfOdds !== 0
-      ? pathname.includes("nare-league")
-        ? kiron_betslip_options?.hasBoost
-          ? kiron_betslip_options?.netWinBoosted == 0
-            ? kiron_betslip_options?.netWin
-            : kiron_betslip_options?.netWinBoosted
-          : kiron_betslip_options?.netWin
-        : betslip_options?.hasBoost
-        ? betslip_options?.netWinBoosted == 0
-          ? betslip_options?.netWin
-          : betslip_options?.netWinBoosted
-        : betslip_options?.netWin
-      : 0;
 
-  let progressNow = remaining_games;
-  const percentageProgress = () => {
-    let remainingGames = remaining_games;
+  const winnings =
+    betslipOptions?.hasBoost && betslipOptions?.netWinBoosted
+      ? betslipOptions.netWinBoosted
+      : betslipOptions?.netWin || 0;
+
+  useEffect(() => {
     const boostRequirement = 4;
+    const calculated =
+      ((boostRequirement - remainingGames) / boostRequirement) * 100;
+    setProgress(Math.max(0, Math.min(calculated, 100)));
+  }, [remainingGames]);
 
-    if (remainingGames < 1) {
-      progressNow = (boostRequirement / boostRequirement) * 100;
-      setProgress(progressNow);
-    } else if (remainingGames >= 1) {
-      progressNow =
-        ((boostRequirement - remainingGames) / boostRequirement) * 100;
-      setProgress(progressNow);
-    }
-  };
+  const iconStyle = { fontSize: "16px" }; // Adjust size as needed
 
-  useEffect(() => {
-    percentageProgress();
-  }, [progressNow]);
-
-  useEffect(() => {
-    if (sumOfOdds == 0) {
-      winnings = 0;
-
-      pathname.includes("nare-league")
-        ? dispatchRedux(
-            setMatchBetslipOptions("kiron_betslip_options", {
-              ...kiron_betslip_options,
-              ...{
-                hasBoost: false,
-                netWinBoosted: 0,
-                netWin: 0,
-                multiboostmessage: 0,
-              },
-            })
-          )
-        : dispatchRedux(
-            setMatchBetslipOptions("betslip_options", {
-              ...betslip_options,
-              ...{
-                hasBoost: false,
-                netWinBoosted: 0,
-                netWin: 0,
-                multiboostmessage: 0,
-              },
-            })
-          );
-    } else {
-      winnings =
-        sumOfOdds !== 0
-          ? pathname.includes("nare-league")
-            ? kiron_betslip_options?.hasBoost
-              ? kiron_betslip_options?.netWinBoosted == 0
-                ? kiron_betslip_options?.netWin
-                : kiron_betslip_options?.netWinBoosted
-              : kiron_betslip_options?.netWin
-            : betslip_options?.hasBoost
-            ? betslip_options?.netWinBoosted == 0
-              ? betslip_options?.netWin
-              : betslip_options?.netWinBoosted
-            : betslip_options?.netWin
-          : 0;
-    }
-  }, [winnings]);
-  const pathSlipSummary = [
-    "/betslip-slip",
-    "/betslip-nare",
-    "/betslip-nare",
-    "standing",
-    "/results",
-    "/jackpot",
-    "/casino",
-    "/smart-soft",
-    "/nare-games",
-    "/promotions",
-    "/terms-and-conditions",
-    "/profile",
+  const menuItems = [
+    {
+      key: "home",
+      icon: <HomeOutlined style={iconStyle} />,
+      label: "Home",
+      path: "/",
+    },
+    {
+      key: "promotions",
+      icon: <GiftOutlined style={iconStyle} />,
+      label: "Promos",
+      path: "/promotions",
+    },
+    {
+      key: "mybets",
+      icon: <UserOutlined style={iconStyle} />,
+      label: "My Bets",
+      path: "/my-bets",
+    },
+    {
+      key: "menu",
+      icon: <AppstoreOutlined style={iconStyle} />,
+      label: "Menu",
+    },
   ];
-  const [countInfo, setCountInfo] = useState(true);
 
-  const removeCountInformation = (e) => {
-    setCountInfo(!countInfo);
-    e.stopPropagation();
+  const handleNavigate = (item) => {
+    if (item.key === "menu") {
+      setVisible(true);
+    } else {
+      navigate(item.path);
+    }
   };
 
-  const slip_condition =
-    !pathSlipSummary.includes(pathname) &&
-    (pathname.includes("nare-league")
-      ? kiron_betslip_options?.multiboostmessage
-      : betslip_options?.multiboostmessage) &&
-    sumOfOdds > 1 &&
-    countInfo;
-  const [flag, setFlag] = useState(true);
-  // cleanup/unmounting components fix
-  useEffect(() => {
-    return () => {
-      setFlag(false);
-    };
-  }, []);
-  return flag ? (
-    <div>
-      <div
-        className={`fixed-bottom text-white d-block  shadow-lg betslip-container-mobile ${
-          betSlipMobile ? "d-flex" : "d-none"
-        }`}
-        style={{ margin: "auto", marginBottom: "6.5rem" }}
+  return (
+    <div className="mobile-menu-new">
+      <Menu
+        mode="horizontal"
+        className="mobile-bottom-menu"
+        theme="dark"
+        selectedKeys={[pathname]}
+        style={{
+          position: "fixed",
+          bottom: 0,
+          color: "var(--light)",
+          border: "none",
+          width: "100%",
+          height: "60px", // Increase height here
+          backgroundColor: "var(--jaza-bets-header-bg)",
+          display: "flex",
+          alignItems: "center", // Vertically center content
+        }}
       >
-        <div className={"w-100"} style={{ position: "relative" }}>
-          <div
-            className="bet-option-list w-100"
-            id=""
-            style={{ position: "absolute", bottom: "0" }}
+        {menuItems.map((item) => (
+          <Menu.Item
+            key={item.key}
+            icon={
+              <Badge
+                count={
+                  item.key === "deposit" && betItems?.length
+                    ? betItems.length
+                    : 0
+                }
+              >
+                {item.icon}
+              </Badge>
+            }
+            onClick={() => handleNavigate(item)}
+            // style={{ padding: "12px 8px" }} // Increase top/bottom padding
           >
-            <div className="bet alu  block-shadow d-flex flex-column">
-              <header>
-                <div className="betslip-header d-flex justify-content-between align-items-center">
-                  <span className="col-sm-8 slp">BETSLIP</span>
-                  <span
-                    className="col-sm-2 slip-counter d-flex justify-content-center"
-                    title={"Hide BetSlip"}
-                    onClick={() => setBetSlipMobile(false)}
-                  >
-                    <FontAwesomeIcon
-                      icon={faTimes}
-                      className={"align-self-center"}
-                    />
-                  </span>
-                </div>
-              </header>
+            {item.label}
+          </Menu.Item>
+        ))}
+      </Menu>
+
+      {sumOfOdds > 1 && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: "60px",
+            left: 0,
+            width: "100%",
+            background: "#fff",
+            padding: "10px 16px",
+            boxShadow: "0 -2px 6px rgba(0,0,0,0.1)",
+            zIndex: 1001,
+          }}
+          onClick={() => handleNavigate({ key: "deposit", path: "/deposit" })}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Text strong>Betslip</Text>
+            <div style={{ textAlign: "right" }}>
+              <Text>Odds: {sumOfOdds.toFixed(2)}</Text>
+              <br />
+              <Text>Winnings: {winnings?.toLocaleString()}</Text>
             </div>
           </div>
+          <Progress percent={progress} size="small" status="active" />
         </div>
-      </div>
+      )}
 
-      <table
-        className={`${
-          slip_condition ? "prematch-menu mobile-menu" : "mobile-menu"
-        }`}
-        style={{ height: "60px" }}
+      <Drawer
+        title={<LazyLoadImage src={Logo} alt="Jazabets" width={150}  />}
+        placement="top"
+        onClose={() => setVisible(false)}
+        open={visible}
+        // theme="dark" // optional, can be omitted if your dark theme is custom
+        height="100%"
+        style={{
+          background: "var(--jaza-bets-header-bg)",
+          color: "var(--light)",
+        }}
+        closeIcon={null}
+        className="bounce-drawer"
       >
-        <tbody>
-          {slip_condition ? (
-            <tr
-              className={"mobile-menu-container"}
-              onClick={() => navigate("/deposit")}
-            >
-              <table>
-                <tbody className={"slip-menu-prematch"}>
-                  <tr>
-                    <td className={"bet-align-right"}>
-                      <div className={"d-flex gap-4 justify-content-end mx-4"}>
-                        <div>
-                          <div
-                            className={"close-prompt close-alert-slip"}
-                            title={"close suggestions"}
-                          >
-                            <div>
-                              <LazyLoadImage
-                                src={CloseIcon}
-                                onClick={removeCountInformation}
-                                effect={"blur"}
-                                className={"align-self-center close-icon-alert"}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr
-                    className={`${
-                      slip_condition ? "info_bet_alert" : "info-slip-bets"
-                    } d-flex w-100 justify-content-between px-3`}
-                    onClick={() => navigate("/deposit")}
-                  >
-                    <td className={"bet-align-left-slip"}>
-                      <div
-                        className={
-                          "d-flex justify-content-start align-items-center gap-2"
-                        }
-                      >
-                        <Badge
-                          pill
-                          bg="warning nav__betslip boost-message-count gap-3  d-flex justify-content-center align-items-center text-dark"
-                        >
-                          <strong className={"badge-font-weight"}></strong>
-                        </Badge>{" "}
-                        <h4>
-                          {" "}
-                          <strong>Betslip</strong>{" "}
-                        </h4>
-                      </div>
-                    </td>
-                    <td className={"bet-align-right-slip"}>
-                      <div className={"d-flex flex-column"}>
-                        <span>
-                          Odds {parseFloat(sumOfOdds).toFixed(2) || 1}
-                        </span>
-                        <span>
-                          Winnings {winnings?.toLocaleString("en-US")}
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className={"mt-3"} onClick={() => navigate("/deposit")}>
-                    <td className={"bet-align-left w-100"}>
-                      <div className="progress mx-3 my-3 prematch-slip">
-                        <div
-                          className="progress-bar prematch"
-                          role="progressbar"
-                          style={{ width: `${progress}%` }}
-                          aria-valuenow={progress}
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        >
-                          <span
-                            className="progress-text"
-                            style={{
-                              position: "absolute",
-                              left: "50%",
-                              top: "50%",
-                              fontWeight: "600",
-                              transform: "translate(-50%, -50%)",
-                              color: "var(--dark)",
-                              fontSize: "10px",
-                            }}
-                          >
-                            {pathname.includes("nare-league")
-                              ? kiron_betslip_options?.multiboostmessage
-                              : betslip_options?.multiboostmessage}
-                          </span>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </tr>
-          ) : (
-            <tr className={"mobile-menu-container"}>
-              <table>
-                <tbody>
-                  {!pathSlipSummary.includes(pathname) && sumOfOdds > 1 && (
-                    <tr
-                      className={
-                        "info-slip-bets d-flex w-100 justify-content-between px-3"
-                      }
-                    >
-                      <td className={"bet-align-left-slip"}>
-                        Odds {parseFloat(sumOfOdds).toFixed(2) || 1}
-                      </td>
-                      <td className={"bet-align-right-slip"}>
-                        Winnings {winnings}
-                      </td>
-                    </tr>
-                  )}
-                  <tr
-                    className={"d-flex  justify-content-between align-items-center"}
-                    style={{
-                      backgroundColor: "var(--bottom-c)",
-                      width: "100vw",
-                    }}
-                  >
-                    <td
-                      className={`bloc-icon ${
-                        pathname === "/" ? "active" : ""
-                      }`}
-                    >
-                      <Link
-                        className="d-flex flex-row justify-content-center align-items-center gap-1"
-                        to={"/"}
-                        onClick={() => gaEventTracker("Visit Homepage")}
-                      >
-                        <LazyLoadImage
-                          src={HomeSvg}
-                          alt=""
-                          effect="blur"
-                          style={{ width: "22px", height: "35px" }}
-                        />
-                        <p>Home</p>
-                      </Link>
-                    </td>
-                    <td
-                      className={`bloc-icon ${
-                        pathname === "/" ? "active" : ""
-                      }`}
-                    >
-                      <Link
-                        className="d-flex flex-row justify-content-center align-items-center gap-1"
-                        to={"/"}
-                        onClick={() => gaEventTracker("Visit Homepage")}
-                      >
-                        <LazyLoadImage
-                          src={Promotions}
-                          alt=""
-                          effect="blur"
-                          style={{ width: "22px", height: "35px" }}
-                        />
-                        <p>Promos</p>
-                      </Link>
-                    </td>
-                    <td
-                      className={`bloc-icon ${
-                        pathname === "/" ? "active" : ""
-                      }`}
-                    >
-                      <Link
-                        className="d-flex flex-row justify-content-center align-items-center gap-1"
-                        to={"/"}
-                        onClick={() => gaEventTracker("Visit Homepage")}
-                      >
-                        <LazyLoadImage
-                          src={Affiliate}
-                          alt=""
-                          effect="blur"
-                          style={{ width: "30px", height: "35px" }}
-                        />
-                        <p>My Bets</p>
-                      </Link>
-                    </td>
-
-                   
-
-                    {user ? (
-                      <td
-                        className={`bloc-icon  text-center ${
-                          pathname === "/profile" ? "active" : ""
-                        }`}
-                      >
-                        <Link
-                          className="d-flex align-items-center gap-1"
-                          to={"/profile"}
-                        >
-                          <LazyLoadImage
-                            src={MenuSvg}
-                            effect="blur"
-                            alt=""
-                            style={{ width: "24px", height: "35px" }}
-                          />
-                          <p>Menu</p>
-                        </Link>
-                      </td>
-                    ) : (
-                      <td
-                        className={`bloc-icon text-center ${
-                          pathname === "/login" ? "active" : ""
-                        }`}
-                      >
-                        <Link
-                          className="d-flex align-items-center gap-1"
-                          to={"/login"}
-                        >
-                          <LazyLoadImage
-                            src={MenuSvg}
-                            alt=""
-                            effect="blur"
-                            style={{ width: "24px", height: "35px" }}
-                          />
-                          <p>Menu</p>
-                        </Link>
-                      </td>
-                    )}
-                  </tr>
-                </tbody>
-              </table>
-            </tr>
-          )}
-        </tbody>
-      </table>
+        <div
+          style={{
+            position: "absolute",
+            bottom: 16,
+            right: 16,
+            zIndex: 1002,
+            background: "#fff",
+            borderRadius: "50%",
+            width: 36,
+            height: 36,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
+            cursor: "pointer",
+          }}
+          onClick={() => setVisible(false)}
+        >
+          <CloseOutlined style={{ fontSize: 16, color: "#000" }} />
+        </div>
+        <Sidebar />
+      </Drawer>
     </div>
-  ) : null;
-});
-export default React.memo(MobileMenu);
+  );
+};
+
+export default MobileMenu;

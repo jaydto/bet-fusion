@@ -69,6 +69,9 @@ body {
 }
 
 @media (min-width: 992px) {
+  .mobile-menu-new{
+    display: none;
+  }
   .home.page-content-set {
     /* margin: 55px auto auto auto;  */
   }
@@ -1002,9 +1005,35 @@ select::after {
   padding-left: 35px !important;
   line-height: 1.7 !important;
 }
+.ant-drawer-body{
+padding: 0px!important;
+}
+.ant-drawer-header-title{
+  /* margin-top: 4rem; */
+
+}
+.ant-drawer-close{
+  color: var(--light) !important;
+}
+.ant-drawer{
+  z-index: 10000 !important;
+}
+
+.mobile-bottom-menu {
+  height: 60px !important;
+  display: flex;
+  align-items: center;
+  background-color: var(--jaza-bets-header-bg);
+}
+
+.mobile-bottom-menu .ant-menu-item {
+  /* padding: 12px 8px; */
+}
+
+
 .width-page-centric {
   /* box-shadow: 5px 7px 30px 8px var(--btn-color); */
-  width: 80%;
+  width: 60%;
   margin: auto;
   margin-top: 7rem;
 }
@@ -1184,7 +1213,7 @@ width-page-centric.register-page {
 
 .width-page-centric.pass-reset-page {
   width: 60%;
-  margin: auto;
+  /* margin: auto; */
   min-height: 600px;
 }
 
@@ -1774,7 +1803,7 @@ img.nare-league {
     box-shadow: none;
     width: 60%;
     margin: auto;
-    min-height: 600px;
+    /* min-height: 600px; */
   }
 
   .login-top {
@@ -2271,7 +2300,7 @@ img.nare-league {
 .width-page-centric.reset-pass {
   width: 100% !important;
   height: 100vh;
-  margin-top: 0rem !important;
+  margin-top: 7rem !important;
 }
 
 .filters-modal.deposit-modal .modal-content {
@@ -2300,6 +2329,7 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
+ 
   .logo-section {
     width: 297px;
     border-right: 2px solid var(--bet-history);

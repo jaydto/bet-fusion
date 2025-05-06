@@ -5,29 +5,23 @@ import { StoreContext } from "../../context/store";
 import { getFromLocalStorage } from "../utils/local-storage";
 import "react-toastify/dist/ReactToastify.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { Navbar, Offcanvas } from "react-bootstrap";
-import SidebarMobile from "../sidebar/awesome/SidebarMobile";
+import { Navbar, } from "react-bootstrap";
 import { faAndroid } from "@fortawesome/free-brands-svg-icons";
 
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import LoginSection from "./LoginSection";
-import { UserInfo } from "./UserInfo";
+
 import { useDispatch, useSelector } from "react-redux";
 import { configSettings, setState } from "../../redux/dataSlice";
 import { userBalance } from "../../redux/authSlice";
-import Logo from "../../assets/img/logo.png";
 import casino_table from "../../assets/img/casino_table.png";
 import {
   checkDesktopTopNavigation,
   checkNavigation,
-  shouldShowDownload,
   shouldShowMobileNav,
   shouldShowHeader,
 } from "../../redux/navigationAction";
 import "./header.css";
-import useWindowDimensions from "./Dimensions";
-import DepositModal from "../modals/DepositModal";
-import NavLinks from "./NavLinks";
+
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -54,7 +48,7 @@ const Header = React.memo((props) => {
     (state) => state.data.show_deposit_modal
   );
 
-  const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
+  // const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
   const notShowHeaderNav = dispatchRedux(shouldShowHeader(pathname));
   // const showDownload = dispatchRedux(shouldShowDownload(pathname));
   const changeNav = dispatchRedux(checkNavigation(pathname));
@@ -188,72 +182,8 @@ const Header = React.memo((props) => {
     }
   }, [pathname]);
 
-  var currentURL = new URL(window.location.href);
-  var pathAndQuery = currentURL.pathname + currentURL.search;
+ 
 
-  const LoginCheck = (game) => {
-    {
-      navigate("/casino");
-    }
-  };
-
-  const handleCloseCallToAction = (e) => {
-    e.stopPropagation();
-    dispatchRedux(setState("call_to_action", true));
-  };
-
-  // const PromoActive = () => {
-  //   // console.log('appConfigs', appConfigs)
-
-  //   return (
-  //     settings || appConfigs) !== null ? (
-  //     Object.keys(
-  //       settings?.active_promotion?.mobile_promo ||
-  //         appConfigs?.active_promotion?.mobile_promo ||
-  //         {}
-  //     )?.map((key, index) => {
-  //       const promoValue = settings
-  //         ? settings.active_promotion.mobile_promo[key]
-  //         : appConfigs?.active_promotion?.mobile_promo[key];
-
-  //       if (key === "promo_message") {
-  //         return promoValue.split(" ").map((promoWord, indexWord) => {
-  //           if (indexWord % 2 === 0) {
-  //             return (
-  //               <strong key={indexWord} style={styles}>
-  //                 {promoWord}&nbsp;
-  //               </strong>
-  //             );
-  //           } else if (indexWord === promoValue.length - 1) {
-  //             return <span key={indexWord}>{promoWord}</span>;
-  //           } else {
-  //             return <span key={indexWord}>{promoWord}&nbsp;</span>;
-  //           }
-  //         });
-  //       }
-  //     })
-  //   ) : (
-  //     <></>
-  //   );
-  // };
-
-  // console.log("notshowHeader", notShowHeaderNav)
-
-  const PromoActive = () => {
-    return (
-      <div className="row ">
-        <div className="d-flex flex-column justify-content-center">
-          <span
-            className="mb-1 h4"
-            style={{ color: "var(--donjo-text)", fontWeight: "800" }}
-          >
-           jazabets App
-          </span>
-          <span className="mb-0">Bet Like a Winner</span>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <>

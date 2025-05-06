@@ -17,16 +17,19 @@ import Footer from "./footer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Logo from "../../../assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
+import useWindowDimensions from "../../header/Dimensions";
+import { EmojiSmileFill } from "react-bootstrap-icons";
 const { Title, Paragraph, Text } = Typography;
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 const Sidebar = () => {
+  const { width } = useWindowDimensions();
   const navigate = useNavigate();
   return (
     <Sider
-      width={300}
+      width={width <= 768 ? "100%" : "300px"}
       style={{
         background: "var(--jaza-bets-body-bg)",
         color: "var(--light)",
@@ -36,7 +39,7 @@ const Sidebar = () => {
         overflowX: "hidden",
       }}
     >
-      <div className="logo-section">
+      <div className="logo-section" style={width <= 768 ?{display: "none"}:{}}>
         <LazyLoadImage
           src={Logo}
           onClick={() => navigate("/")}
@@ -114,6 +117,16 @@ const Sidebar = () => {
           >
             <Link to="/promotions" style={{ color: "var(--light)" }}>
               Promotions
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item
+            key="6"
+            icon={<EmojiSmileFill />}
+            style={{ color: "var(--light)" }}
+          >
+            <Link to="/profile" style={{ color: "var(--light)" }}>
+              Profile
             </Link>
           </Menu.Item>
         </Menu>

@@ -58,10 +58,6 @@ const Withdraw = React.lazy(() =>
   import("./components/pages/deposit-withraw/Withdraw")
 );
 
-const RedeemPoints = React.lazy(() =>
-  import("./components/pages/points/RedeemPoints2")
-);
-
 const Signup = React.lazy(() => import("./components/pages/auth/registerTwo"));
 
 const ResetPassword = React.lazy(() =>
@@ -165,9 +161,24 @@ const App = () => {
   }, []);
 
   const location = useLocation();
-  const sidebarRoutes = ["/", "/promotions", "/how-to-play", "/responsible-gambling","/cookie-policy","/privacy-policy","/dispute-resolution","/anti-money-laundering", "/terms-and-conditions","/promo"];
+  const sidebarRoutes = [
+    "/",
+    "/promotions",
+    "/how-to-play",
+    "/responsible-gambling",
+    "/cookie-policy",
+    "/privacy-policy",
+    "/dispute-resolution",
+    "/anti-money-laundering",
+    "/terms-and-conditions",
+    "/promo",
+    "/login",
+    "/signup",
+    "/forgot-password",
+    "/reset-password",
+  ];
   const showSidebar = sidebarRoutes.includes(location.pathname);
-  
+
   return flag ? (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       {/* Sidebar (only for '/') */}

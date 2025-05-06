@@ -22,41 +22,7 @@ import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Logo from "../../../assets/img/logo.png"
 
-const FormTitle = () => {
-  const navigate = useNavigate();
 
-  return (
-    <div
-      className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-1 text-center w-100 top-login-mobile"
-      style={{ margin: "0px" }}
-    >
-      <div>
-        <div
-          className={
-            " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator pt-3 pb-0"
-          }
-          onClick={() => navigate(-1)}
-        >
-          <span
-            className="d-flex justify-content-start w-25 "
-            style={{ cursor: "pointer" }}
-          >
-            <FontAwesomeIcon
-              icon={faAngleLeft}
-              className={"back-navigation-icon"}
-            />{" "}
-            <span className="px-3"> Back </span>
-          </span>
-
-          <span className={"w-50 d-flex justify-content-center"}>
-            <h4 className="inline-block">REGISTER AT</h4>
-          </span>
-          <span className="w-25"></span>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -510,4 +476,41 @@ const Register = () => {
   );
 };
 
+
 export default Register;
+
+const FormTitle = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div
+      className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-1 text-center w-100 top-login-mobile"
+      style={{ margin: "0px" }}
+    >
+      <div>
+        <div
+          className={
+            " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator pt-3 pb-0"
+          }
+          onClick={() => navigate(-1)}
+        >
+          <span
+            className="d-flex justify-content-start w-25 "
+            style={{ cursor: "pointer" }}
+          >
+            <FontAwesomeIcon
+              icon={faAngleLeft}
+              className={"back-navigation-icon"}
+            />{" "}
+            <span className="px-3"> Back </span>
+          </span>
+
+          <span className={"w-50 d-flex justify-content-center"}>
+            <h4 className="inline-block">REGISTER AT</h4>
+          </span>
+          <span className="w-25"></span>
+        </div>
+      </div>
+    </div>
+  );
+};

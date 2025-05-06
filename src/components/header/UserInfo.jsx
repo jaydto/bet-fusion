@@ -115,7 +115,7 @@ export const UserInfo = React.memo((props) => {
               </div>
             )}
 
-            {pathname !== "/signup" && (
+            {pathname !== "/login" && (
               <Link
                 to={"/login"}
                 className="cg  login-color login-size btn"

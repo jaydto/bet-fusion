@@ -1,129 +1,122 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./promo.css";
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import { getFromLocalStorage } from "../../utils/local-storage";
-import { setState } from "../../../redux/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Typography, Row, Col, Card, Button, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "react-bootstrap";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import {
   checkIfUser,
   setUtmSouceCampaignOnPromotions,
 } from "../../utils/utils";
+import { getFromLocalStorage } from "../../utils/local-storage";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import { setState } from "../../../redux/dataSlice";
+
+const { Title, Paragraph } = Typography;
 
 const PromoCards = () => {
   const gaEventTracker = useAnalyticsEventTracker("Promotions");
   const user = getFromLocalStorage("user");
-  const dispatchRedux = useDispatch();
+  const dispatch = useDispatch();
   const bottomSheetRef = useRef();
   const bottom_sheet = useSelector((state) => state.data.promo_bottom_sheet);
-  // const games = virtualGameChoiceOptions('morning_glory');
+
   const [games, setGames] = useState([]);
   const [promotions, setPromotions] = useState([]);
-
   const navigate = useNavigate();
 
-
   const collapseBottomSheet = () => {
-    dispatchRedux(setState("promo_bottom_sheet", false));
+    dispatch(setState("promo_bottom_sheet", false));
   };
 
   useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
-    function handleClickOutside(event) {
+    const handleClickOutside = (event) => {
       if (
         bottomSheetRef.current &&
         !bottomSheetRef.current.contains(event.target)
       ) {
-        dispatchRedux(setState("promo_bottom_sheet", false));
+        collapseBottomSheet();
       }
-    }
-
-    // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
-    // document.addEventListener("click", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [bottomSheetRef, bottom_sheet]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [bottomSheetRef]);
 
   useEffect(() => {
     const fetchData = async () => {
-      // setLoading(true);
       try {
         const response = require("./promo.json");
-
         const isExpired = (expiryDate) => {
-          if (expiryDate === "null" || expiryDate === null) return false;
+          if (!expiryDate || expiryDate === "null") return false;
           return new Date(expiryDate) < new Date();
         };
-        const filteredData = response.filter(promo => promo.show);  //Remove promos where show = false
-
-        const unExpiredPromos = filteredData.filter(promo => !isExpired(promo.expiryDate));
-        const expiredPromos = filteredData.filter(promo => isExpired(promo.expiryDate));
-
-        // Sort newest first
-        unExpiredPromos.sort((a, b) => b.id - a.id);
-        expiredPromos.sort((a, b) => b.id - a.id);
-
-        const sortedData = [...unExpiredPromos, ...expiredPromos];
-
-          // console.log(sortedData);
-        setPromotions(sortedData);
-      } catch (error) {
-        // setError(error);
-      }
-      // setLoading(false);
+        const filtered = response.filter((p) => p.show);
+        const unexpired = filtered.filter((p) => !isExpired(p.expiryDate));
+        const expired = filtered.filter((p) => isExpired(p.expiryDate));
+        unexpired.sort((a, b) => b.id - a.id);
+        expired.sort((a, b) => b.id - a.id);
+        setPromotions([...unexpired, ...expired]);
+      } catch {}
     };
     fetchData();
   }, []);
 
   return (
-    <div className="col px-4 d-flex align-items-start align-self-start justify-content-start">
-      <div
-        className={`row text-white pt-2 border-0 d-flex promo-container-profile d-flex align-self-start align-items-start"`}
-      >
+    <div className="px-4">
+      <Row gutter={[16, 16]}>
         {promotions.map((promotion, index) => {
+          const isExpired = new Date(promotion.expiryDate) < new Date();
           return (
-            <div
-            className={`col-md-2 promo-styling shadow-lg promotion ${
-              new Date(promotion.expiryDate) < new Date() ? "promo-inactive" : ""
-            }`}
-              key={index}
-            >
-              <div className="d-flex flex-column promo-inner">
-                <img
-                  src={promotion.src}
-                  className={"rounded promo-image "}
-                  alt={index}
-                />
-                <h5
-                  className="bold d-flex justify-content-center h4 pt-2"
-                  style={{ color: "#ea5d0b" }}
+            <Col key={index} xs={24} sm={12} md={8}>
+              <Card
+                hoverable
+                className={`promo-styling shadow-lg promotion ${
+                  isExpired ? "promo-inactive" : ""
+                }`}
+                cover={<img alt={promotion.name} src={promotion.src} />}
+                style={{
+                  border: "none",
+                  borderRadius: 8,
+                  background: "var(--jaza-bets-header-bg)",
+                  color: "#fff",
+                }}
+              >
+                <Title
+                  level={5}
+                  style={{
+                    color: "#ea5d0b",
+                    fontSize: 14,
+                    textAlign: "center",
+                    marginBottom: 8,
+                  }}
                 >
                   {promotion.name}
-                </h5>
-                <p className="container-profile mx-1 px-2 text-data-promotions">
+                </Title>
+                <Paragraph
+                  style={{
+                    color: "#ccc",
+                    fontSize: 12,
+                    minHeight: 50,
+                  }}
+                >
                   {promotion.summary}
-                </p>
-                <hr />
-                <div className="d-flex justify-content-between my-2 mx-2">
-                  <button
-                    className={
-                      "profile-button border-0 h-25 rounded promo-button"
-                    }
+                </Paragraph>
+                <Divider style={{ borderColor: "#444" }} />
+                <div className="d-flex justify-content-between">
+                  <Button
+                    type="primary"
+                    size="small"
+                    style={{
+                      backgroundColor: "#ea5d0b",
+                      border: "none",
+                      fontSize: 12,
+                    }}
                     onClick={() => {
                       if (promotion.actions[0].name === "Sign Up") {
                         checkIfUser(user, navigate);
                       } else {
                         navigate(promotion.actions[0].url);
                       }
-
                       gaEventTracker(`${promotion.eventTracking}`);
                       setUtmSouceCampaignOnPromotions(
                         `${promotion.eventTracking}`
@@ -131,26 +124,31 @@ const PromoCards = () => {
                     }}
                   >
                     {promotion.actions[0].name}
-                  </button>
-                  <div
-                    className={
-                      "d-flex  align-self-center   h-25 border-0 bg-transparent cursor-pointer"
-                    }
-                    style={{ color: "#ea5d0b" }}
+                  </Button>
+                  <Button
+                    type="link"
+                    size="small"
+                    style={{
+                      color: "#ea5d0b",
+                      fontSize: 12,
+                      padding: 0,
+                    }}
                     onClick={() => {
                       navigate(`${promotion.actions[1].url}`);
-                      window.scrollTo(0, 0); // Scroll to the top of the page
+                      window.scrollTo(0, 0);
                     }}
                   >
                     {promotion.actions[1].name}
-                  </div>
+                  </Button>
                 </div>
-              </div>
-            </div>
+              </Card>
+            </Col>
           );
         })}
-      </div>
-      <div className={`${bottom_sheet ? "bottom-sheet show " : "d-none"}`}>
+      </Row>
+
+      {/* Bottom sheet */}
+      <div className={`${bottom_sheet ? "bottom-sheet show" : "d-none"}`}>
         <div className="sheet-overlay"></div>
         <div ref={bottomSheetRef} className="content">
           <div className="header d-flex justify-content-between">
@@ -159,35 +157,34 @@ const PromoCards = () => {
             </div>
             <FontAwesomeIcon
               icon={faXmark}
-              onClick={() => {
-                collapseBottomSheet();
-              }}
-              className={"filter-close-icon"}
+              onClick={collapseBottomSheet}
+              className="filter-close-icon"
             />
           </div>
-          <h2 className="text-warning"> Participating Games</h2>
-          <div className="body d-flex flex-column gap-4">
-            {games.map((game_options, index) => (
+          <Title level={5} style={{ color: "#ffc107" }}>
+            Participating Games
+          </Title>
+          <div className="body d-flex flex-column gap-2">
+            {games.map((game, index) => (
               <Link
                 key={index}
-                to={game_options.url} // Assuming the URL is correctly set for each game option
-                className="w-100 markets-default bottom-align "
-                onClick={() => {
-                  // Add any onClick logic here
-                }}
+                to={game.url}
+                className="markets-default bottom-align"
               >
-                {game_options.name}
+                {game.name}
               </Link>
             ))}
           </div>
           <div style={{ position: "relative" }}>
             <Button
-              onClick={() => {
-                collapseBottomSheet();
+              onClick={collapseBottomSheet}
+              style={{
+                color: "white",
+                background: "transparent",
+                border: "none",
+                fontWeight: 600,
               }}
-              className={
-                "text-light bold color-inherit btn border-0 cancel-filter-markets"
-              }
+              block
             >
               Cancel
             </Button>

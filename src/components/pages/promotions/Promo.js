@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { useNavigate } from "react-router-dom";
-import { Table } from "react-bootstrap";
-import PromoCards from "./PromoCards";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { Image, Typography, Row, Col, Button, Table, Spin } from "antd";
+import { LeftOutlined } from "@ant-design/icons";
 import { ToastContainer } from "react-toastify";
-import {
-  getFromLocalStorage,
-} from "../../utils/local-storage";
-import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import { checkIfUser, setUtmSouceCampaignOnPromotions } from "../../utils/utils";
 
-const Header = React.lazy(() => import("../../header/header"));
+import { getFromLocalStorage } from "../../utils/local-storage";
+import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
+import {
+  checkIfUser,
+  setUtmSouceCampaignOnPromotions,
+} from "../../utils/utils";
+
+const Header = lazy(() => import("../../header/header"));
+const { Title, Paragraph, Text } = Typography;
 
 const Promo = () => {
   const url = new URL(window.location);
-  let id = url.searchParams.get("id");
+  const id = url.searchParams.get("id");
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -36,259 +37,202 @@ const Promo = () => {
       setLoading(false);
     };
     fetchData();
-  }, [parseInt(id)]);
+  }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>An error occurred: {error.message}</div>;
-  }
-
-  if (!data) {
-    return null;
-  }
+  if (loading) return <Spin tip="Loading..." fullscreen />;
+  if (error) return <div>An error occurred: {error.message}</div>;
+  if (!data) return null;
 
   const item = data;
 
-
+  const renderMultilineText = (text) =>
+    text?.split("\n").map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        <br />
+      </React.Fragment>
+    ));
 
   return (
     <>
-      <Header />
       <ToastContainer />
-      <div>
-        <div className="d-flex flex-row">
-          <div
-            className="gz home promotions-app-top"
-            style={{ width: "100%", background: "var(--jaza-bets-primary)" }}
-          >
-            <div className="homepage desktop-promotions-info">
-              <div className="col-md-12 d-flex flex-column">
-                <div className="col-md-12 d-flex align-items-center my-3">
-                  <span className={"px-5 col-2"} onClick={() => navigate(-1)}>
-                    <FontAwesomeIcon
-                      icon={faAngleLeft}
-                      style={{
-                        fontSize: "24px",
-                        color: "var(--light)",
-                        fontWeight: "700",
-                        opacity: "0.7",
-                      }}
-                    />
-                  </span>
-                  <div className="shadow-sm d-flex justify-content-center col-8 p-2 shadow-sm promotion-header text-white">
-                    PROMOTIONS
-                  </div>
-                </div>
-                <div className="col">
-                  <div
-                    className={
-                      "row text-white p-2 shadow-sm d-flex justify-content-center promo-container flex-column"
-                    }
+      <Row style={{ background: "var(--jaza-bets-primary)", marginTop: 80 }}>
+        <Col span={24}>
+          <Row justify="center" align="middle" style={{ padding: "1rem" }}>
+            <Col span={2}>
+              <Button
+                type="text"
+                icon={
+                  <LeftOutlined
+                    style={{ fontSize: 20, color: "#fff", opacity: 0.7 }}
+                  />
+                }
+                onClick={() => navigate(-1)}
+              />
+            </Col>
+            <Col span={20}>
+              <Title level={3} style={{ textAlign: "center", color: "#fff" , fontSize: 14}}>
+                PROMOTIONS
+              </Title>
+            </Col>
+          </Row>
+
+          <Row justify="center" style={{ padding: "1rem" }}>
+            <Col span={24}>
+              <div
+                style={{ background: "var(--jaza-bets-header-bg)", padding: 24, borderRadius: 8 }}
+              >
+                <Title
+                  level={4}
+                  style={{ color: "#ea5d0b", textAlign: "center" }}
+                >
+                  {item?.name}
+                </Title>
+
+                {item?.src && (
+                  <Image
+                    src={item?.src}
+                    width="100%"
+                    alt={item?.name}
+                    fallback="https://via.placeholder.com/800x400?text=No+Image"
+                    style={{ borderRadius: 8, marginBottom: 16 }}
+                  />
+                )}
+
+                {item?.instructions && (
+                  <Title
+                    level={5}
+                    style={{ color: "#ea5d0b", textAlign: "center" }}
                   >
-                    <div className="col-md-12  shadow-lg promotion">
-                      <div className="d-flex flex-column promo-inner-promo-item">
-                        <h5
-                          className="bold border-bottom d-flex justify-content-center"
-                          style={{ color: "#ea5d0b" }}
-                        >
-                          {item?.name}
-                        </h5>
-                        {/* {banners.map(
-                          (banner) =>
-                            banner.id === parseInt(id) && (
-                              <img src={banner.src} className={"rounded  "} />
-                            )
-                        )} */}
-                        <img src={item?.src} className={"rounded  "} />
-                        <ul>
-                          {item?.instructions && (
-                            <p
-                              className="bold border-bottom d-flex justify-content-center"
-                              style={{ color: "#ea5d0b" }}
-                            >
-                              {item?.instructions}
-                            </p>
-                          )}
-                          {item?.description && (
-                            <>
-                              {item?.description
-                                .split("\n")
-                                .map((line, index) => (
-                                  <React.Fragment key={index}>
-                                    {line}
-                                    <br />
-                                  </React.Fragment>
-                                ))}
-                            </>
-                          )}
-                        </ul>
-                        {item?.heading && (
-                          <span>
-                            <u
-                              className="bold border-bottom d-flex justify-content-center"
-                              style={{ color: "#ea5d0b" }}
-                            >
-                              {item?.heading}
-                            </u>
-                          </span>
-                        )}
-                        {item?.intro && (
-                          <p>
-                            {item?.intro.split("\n").map((line, index) => (
-                              <React.Fragment key={index}>
-                                {line}
-                                <br />
-                              </React.Fragment>
-                            ))}
-                          </p>
-                        )}
-                        {item?.headingBooster && (
-                          <span>
-                            <u
-                              className="bold border-bottom d-flex justify-content-center"
-                              style={{ color: "#ea5d0b" }}
-                            >
-                              {item?.headingBooster}
-                            </u>
-                          </span>
-                        )}
-                        <ul>
-                          {item?.boosterDescription && (
-                            <>
-                              {item?.boosterDescription
-                                ?.split("\n")
-                                .map((line, index) => (
-                                  <React.Fragment key={index}>
-                                    {line}
-                                    <br />
-                                  </React.Fragment>
-                                ))}
-                            </>
-                          )}
-                        </ul>
-                        <br />
-                        {item?.tableData && (
-                          <Table
-                            bordered
-                            responsive
-                            className={"text-white"}
-                            style={{ backgroundColor: "#1f2f38" }}
-                          >
-                            <thead>
-                              <tr>
-                                {item.tableData.headings.map((heading) => (
-                                  <th key={heading}>{heading}</th>
-                                ))}
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {item.tableData.rows.map((row, index) => (
-                                <tr key={index}>
-                                  {row.map((cell, index) => (
-                                    <td key={index}>{cell}</td>
-                                  ))}
-                                </tr>
-                              ))}
-                            </tbody>
-                          </Table>
-                        )}
-                        {item?.example && (
-                          <>
-                            <h5>
-                              <u
-                                className="bold border-bottom d-flex justify-content-center"
-                                style={{ color: "#ea5d0b" }}
-                              >
-                                {item.exampleHeading}
-                              </u>
-                            </h5>
-                            <p>
-                              {item?.example && (
-                                <>
-                                  {item?.example
-                                    ?.split("\n")
-                                    .map((line, index) => (
-                                      <React.Fragment key={index}>
-                                        {line}
-                                        <br />
-                                      </React.Fragment>
-                                    ))}
-                                </>
-                              )}
-                            </p>
-                          </>
-                        )}
+                    {item.instructions}
+                  </Title>
+                )}
 
-                        <div className="col-md-12">
-                          <div className="d-flex justify-content-center mb-4 mx-2">
-                            <button
-                              className={
-                                "profile-button border-0 h-25 rounded promo-button"
-                              }
-                              onClick={() => {
-                                if (item?.actions[0].name === "Sign Up") {
-                                  checkIfUser(user, navigate);
-                                } else {
-                                  navigate(item?.actions[0].url);
-                                }
-                                gaEventTracker(`${item?.eventTracking}`);
-                                setUtmSouceCampaignOnPromotions(
-                                  `${item?.eventTracking}`
-                                );
-                              }}
-                            >
-                              {item?.actions[0].name}
-                            </button>
-                          </div>
-                          <span>
-                            <u
-                              className="bold border-bottom d-flex justify-content-center"
-                              style={{ color: "#ea5d0b" }}
-                            >
-                              {item?.termsHeading}
-                            </u>
-                          </span>
-                          <div>
-                            {item?.termsContent
-                              ?.split("\n")
-                              .map((line, index) => (
-                                <React.Fragment key={index}>
-                                  {line}
-                                  <br />
-                                </React.Fragment>
-                              ))}
-                          </div>
-                          <div>
-                            {item?.nb && (
-                              <p className={"text-center lead"}>
-                                <span>
-                                  <u
-                                    className="bold  "
-                                    style={{ color: "#ea5d0b" }}
-                                  >
-                                    {" "}
-                                    NB:
-                                  </u>
-                                </span>
-                                {item?.nb}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                {item?.description && (
+                  <Paragraph style={{ color: "var(--light)" }} >{renderMultilineText(item.description)}</Paragraph>
+                )}
 
-                    {/* <PromoCards /> */}
-                  </div>
-                </div>
+                {item?.heading && (
+                  <Title
+                    level={5}
+                    underline
+                    style={{ color: "#ea5d0b", textAlign: "center" }}
+                  >
+                    {item.heading}
+                  </Title>
+                )}
+
+                {item?.intro && (
+                  <Paragraph style={{ color: "var(--light)" }}>{renderMultilineText(item.intro)}</Paragraph>
+                )}
+
+                {item?.headingBooster && (
+                  <Title
+                    level={5}
+                    underline
+                    style={{ color: "#ea5d0b", textAlign: "center" }}
+                  >
+                    {item.headingBooster}
+                  </Title>
+                )}
+
+                {item?.boosterDescription && (
+                  <Paragraph style={{ color: "var(--light)" }} >
+                    {renderMultilineText(item.boosterDescription)}
+                  </Paragraph>
+                )}
+
+                {item?.tableData && (
+                  <Table
+                    dataSource={item.tableData.rows.map((row, i) => ({
+                      key: i,
+                      ...row.reduce((acc, val, idx) => {
+                        acc[`col${idx}`] = val;
+                        return acc;
+                      }, {}),
+                    }))}
+                    columns={item.tableData.headings.map((heading, index) => ({
+                      title: heading,
+                      dataIndex: `col${index}`,
+                      key: `col${index}`,
+                    }))}
+                    bordered
+                    pagination={false}
+                    style={{ marginTop: 16, color: "#fff" }}
+                  />
+                )}
+
+                {item?.example && (
+                  <>
+                    <Title
+                      level={5}
+                      underline
+                      style={{ color: "#ea5d0b", textAlign: "center" }}
+                    >
+                      {item.exampleHeading}
+                    </Title>
+                    <Paragraph style={{ color: "var(--light)" }} >{renderMultilineText(item.example)}</Paragraph>
+                  </>
+                )}
+
+                <Row justify="center" style={{ marginTop: 24 }}>
+                  <Col>
+                    <Button
+                    style={{ background: "var(--jaza-bets-button-login)" }} 
+                      size="large"
+                      onClick={() => {
+                        if (item?.actions[0].name === "Sign Up") {
+                          checkIfUser(user, navigate);
+                        } else {
+                          navigate(item?.actions[0].url);
+                        }
+                        gaEventTracker(`${item?.eventTracking}`);
+                        setUtmSouceCampaignOnPromotions(
+                          `${item?.eventTracking}`
+                        );
+                      }}
+                    >
+                      {item?.actions[0].name}
+                    </Button>
+                  </Col>
+                </Row>
+
+                {item?.termsHeading && (
+                  <Title
+                    level={5}
+                    underline
+                    style={{
+                      color: "#ea5d0b",
+                      textAlign: "center",
+                      marginTop: 24,
+                    }}
+                  >
+                    {item.termsHeading}
+                  </Title>
+                )}
+
+                {item?.termsContent && (
+                  <Paragraph style={{ marginBottom: 16, color:"var(--light)" }}>
+                    {renderMultilineText(item.termsContent)}
+                  </Paragraph>
+                )}
+
+                {item?.nb && (
+                  <Paragraph
+                    style={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      color: "#ea5d0b",
+                    }}
+                  >
+                    NB: {item.nb}
+                  </Paragraph>
+                )}
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </>
   );
 };

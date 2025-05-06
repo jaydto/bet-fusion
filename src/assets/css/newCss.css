@@ -64,14 +64,16 @@ body {
   display: none;
 }
 
+.ant-menu-item-selected {
+  background: var(--jaza-bets-header-bg-btn) !important;
+}
 
 @media (min-width: 992px) {
-  .home.page-content-set{
+  .home.page-content-set {
     /* margin: 55px auto auto auto;  */
-
   }
-  .bg-section-header{
-    min-height: 4rem;;
+  .bg-section-header {
+    min-height: 4rem;
   }
   .logo-section {
     width: 298px;
@@ -1007,8 +1009,8 @@ select::after {
   margin-top: 7rem;
 }
 
-.position-logo-user-pages img{
-  width:635.594px;
+.position-logo-user-pages img {
+  width: 635.594px;
 }
 
 .font-btn:hover {
@@ -2300,17 +2302,18 @@ img.nare-league {
 @media (max-width: 991px) {
   .logo-section {
     width: 297px;
-    border-right: 2px solid var(--bet-history);}
+    border-right: 2px solid var(--bet-history);
+  }
 
-  .bg-section-header{
-    min-height: 3.5rem;;
+  .bg-section-header {
+    min-height: 3.5rem;
   }
   .mobile-menu {
     /* margin: auto;
     max-width: 767px; */
     display: block;
   }
-  .site-layout-background{
+  .site-layout-background {
     display: none;
   }
   .position-logo-user-pages {
@@ -3645,7 +3648,7 @@ img.nare-league {
   }
 
   .top-nav-login {
-    padding: 2px 0px 5px 0px!important;
+    padding: 2px 0px 5px 0px !important;
     /*height: 100px !important;*/
     /* padding-bottom: 0px !important; */
   }

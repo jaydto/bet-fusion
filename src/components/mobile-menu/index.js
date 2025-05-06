@@ -52,7 +52,7 @@ const MobileMenu = () => {
     setProgress(Math.max(0, Math.min(calculated, 100)));
   }, [remainingGames]);
 
-  const iconStyle = { fontSize: "16px" }; // Adjust size as needed
+  const iconStyle = { fontSize: "17px" }; // Adjust size as needed
 
   const menuItems = [
     {
@@ -89,7 +89,7 @@ const MobileMenu = () => {
   };
 
   return (
-    <div className="mobile-menu-new">
+    <div className="mobile-menu-new position-relative" style={{ zIndex: 12 }}>
       <Menu
         mode="horizontal"
         className="mobile-bottom-menu"
@@ -101,33 +101,28 @@ const MobileMenu = () => {
           color: "var(--light)",
           border: "none",
           width: "100%",
-          height: "60px", // Increase height here
+          height: "60px",
           backgroundColor: "var(--jaza-bets-header-bg)",
           display: "flex",
-          alignItems: "center", // Vertically center content
+          alignItems: "center",
+          // justifyContent: "space-between",
         }}
-      >
-        {menuItems.map((item) => (
-          <Menu.Item
-            key={item.key}
-            icon={
-              <Badge
-                count={
-                  item.key === "deposit" && betItems?.length
-                    ? betItems.length
-                    : 0
-                }
-              >
-                {item.icon}
-              </Badge>
-            }
-            onClick={() => handleNavigate(item)}
-            // style={{ padding: "12px 8px" }} // Increase top/bottom padding
-          >
-            {item.label}
-          </Menu.Item>
-        ))}
-      </Menu>
+        items={menuItems.map((item) => ({
+          key: item.key,
+          icon: (
+            <Badge
+              count={
+                item.key === "deposit" && betItems?.length ? betItems.length : 0
+              }
+            >
+              {item.icon}
+            </Badge>
+          ),
+          label: item.label,
+          onTitleClick: () => handleNavigate(item), // fallback for some versions
+          onClick: () => handleNavigate(item),
+        }))}
+      />
 
       {sumOfOdds > 1 && (
         <div
@@ -156,7 +151,7 @@ const MobileMenu = () => {
       )}
 
       <Drawer
-        title={<LazyLoadImage src={Logo} alt="Jazabets" width={150}  />}
+        title={<LazyLoadImage src={Logo} alt="Jazabets" width={150} />}
         placement="top"
         onClose={() => setVisible(false)}
         open={visible}

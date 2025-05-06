@@ -1028,6 +1028,14 @@ padding: 0px!important;
 
 .mobile-bottom-menu .ant-menu-item {
   /* padding: 12px 8px; */
+  padding: 0px;
+}
+.mobile-menu-new ul .ant-menu-item{
+  /* width: 25%; */
+  flex: 0 0 25%;
+  max-width: 25%;
+  text-align:center;
+
 }
 
 
@@ -2330,10 +2338,10 @@ img.nare-league {
 
 @media (max-width: 991px) {
  
-  .logo-section {
+  /* .logo-section {
     width: 297px;
     border-right: 2px solid var(--bet-history);
-  }
+  } */
 
   .bg-section-header {
     min-height: 3.5rem;

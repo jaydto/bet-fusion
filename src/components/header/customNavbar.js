@@ -17,7 +17,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
       title="Jazabets"
     >
       <div
-        className="col-7 logo-Jazabets resize-mobile d-flex align-items-center "
+        className="col-6 logo-Jazabets resize-mobile d-flex align-items-center "
         style={{ marginLeft: "2px" }}
       >
         {/* Custom Menu Icon */}

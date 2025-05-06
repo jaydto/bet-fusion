@@ -613,7 +613,7 @@ For more information on our safeguarding and security measures, please contact u
                         
                           {/* <li>Adress : 
                             </li> */}
-                        <li>Telephone number:0111513541 </li>
+                        <li>Telephone number:011234567 </li>
                         <li> Data Protection Officer</li>
                       </ol>
                     </AccordionItemPanel>

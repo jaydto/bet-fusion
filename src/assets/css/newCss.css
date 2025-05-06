@@ -546,7 +546,7 @@ input.text-white {
   border-radius: 6px;
   font-size: 16px;
   font-weight: 600;
-  background-color: var(--jaza-bets-header-bg);
+  background-color: var(--jaza-bets-button-login);
 }
 
 .accordion-button.bet-history-button {

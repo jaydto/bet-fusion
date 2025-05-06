@@ -247,8 +247,8 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
                              jazabets offers Customer Care support round the
-                              clock. We are reachable via 0111513541 on Mobile,
-                              WhatsApp Number – 0111513541. You can also reach
+                              clock. We are reachable via 011234567 on Mobile,
+                              WhatsApp Number – 011234567. You can also reach
                               us through E-Mail onsupport@Jazabets.com
                             </p>
                           </AccordionItemPanel>

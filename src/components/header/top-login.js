@@ -181,7 +181,7 @@ const HeaderLogin = React.memo((props) => {
                   className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login  ${
                     errors.msisdn && "text-danger"
                   }`}
-                  placeholder={"111513541"}
+                  placeholder={"11234567"}
                   onChange={(ev) => onFieldChanged(ev)}
                   value={values.msisdn}
                 />

@@ -1,25 +1,43 @@
-import { useState } from "react";
-import CasinoCarouselLoader from "./carousel";
+import { Suspense, useEffect, useState } from "react";
 import CrashGames from "./casinoBody";
 import HorizontalCategoryList from "./horizontalCategoryList";
 import "./index.css";
 import SearchModal from "../../modals/SearchModal";
-import { useSelector } from "react-redux";
-import Broadcast from "./broadcast";
-import Sidebar from "./sidebar";
-import Footer from "./footer";
-import MobileMenu from "../../mobile-menu";
+import { Col, Row } from "react-bootstrap";
+import { Outlet } from "react-router-dom";
+import { Grid } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { casinoGames } from "../../../redux/virtualsSlice";
+const { useBreakpoint } = Grid;
 
 const Index = () => {
-  const close_call_to_action = useSelector(
-    (state) => state.data.call_to_action
-  );
   const [activeCategory, setActiveCategory] = useState("All");
   const pathname = window.location.pathname;
+  const dispatch = useDispatch();
+
+  const screens = useBreakpoint();
+
+  const isMobile = !screens.md;
 
   const onCategoryClick = (categoryId) => {
     setActiveCategory(categoryId);
   };
+
+  const casino_games = useSelector((state) => state.virtuals.casino_games_data);
+
+  const fetchGames = async () => {
+    const data = {
+      endpoint: "/v1/casino-game-listing",
+      method: "GET",
+    };
+    dispatch(casinoGames(data));
+  };
+
+  useEffect(() => {
+    if (casino_games.length === 0) {
+      fetchGames();
+    }
+  }, [casino_games.length]);
 
   return (
     <div
@@ -34,20 +52,24 @@ const Index = () => {
         // padding: "0 1rem",
       }}
     >
-     
-
-      {/* Main Content */}
-      <div className="main-content" style={{ flex: 1 }}>
-        {pathname === "/" && <SearchModal />}
-        <HorizontalCategoryList
-          activeCategory={activeCategory}
-          onCategoryClick={onCategoryClick}
-        />
-
-        {/* <CasinoCarouselLoader /> */}
-        {/* <Broadcast /> */}
-        <CrashGames activeCategory={activeCategory} />
-        {/* <Footer /> */}
+      <SearchModal />
+      <div style={{ backgroundColor: "var(--bettena-primary)" }}>
+        <Row justify="center">
+          <Col
+            xs={24}
+            sm={24}
+            md={23}
+            lg={24}
+            xl={24}
+            style={{ padding: isMobile ? 6 : 10 }}
+          >
+            <Suspense
+              fallback={<div style={{ color: "#fff" }}>Loading Page...</div>}
+            >
+              <Outlet />
+            </Suspense>
+          </Col>
+        </Row>
       </div>
     </div>
   );

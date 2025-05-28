@@ -23,6 +23,7 @@ import {
 import Header from "./components/header/header";
 import GamePlay from "./components/pages/casino/GamePlay";
 import Sidebar from "./components/pages/casino/sidebar";
+import LandingPage from "./components/pages/casino/landingPage";
 
 const Deposit3 = React.lazy(() =>
   import("./components/pages/deposit-withraw/Deposit3")
@@ -200,7 +201,14 @@ const App = () => {
               <Route exact path="/404" element={<PageNotFound />} />
               <Route exact path="/smart-play" element={<SmartPlay />} />
               <Route exact path="/smart-soft" element={<SmartSoftPlay />} />
-              <Route exact path="/" element={<CasinoGames />} />
+              {/* <Route exact path="/" element={<CasinoGames />} /> */}
+              <Route path="/" element={<CasinoGames />}>
+                <Route index element={<LandingPage />} />{" "}
+                {/* Former HomeCasinoPage */}
+                {/* <Route path="casino" element={<GamesLibrary />} /> */}
+                
+              </Route>
+
               <Route exact path="/promotions" element={<Promotions />} />
               <Route exact path="/promo" element={<Promo />} />
               <Route exact path="/game-play" element={<GamePlay />} />

@@ -26,13 +26,13 @@ const CrashGames = ({ activeCategory }) => {
   const {width}=useWindowDimensions();
   const user = getFromLocalStorage("user");
 
-  // const casino_games = useSelector((state) => state.virtuals.casino_games_data);
+  const casino_games = useSelector((state) => state.virtuals.casino_games_data);
   const loading = useSelector((state) => state.virtuals.loading);
-  // const casino_types = useSelector(
-  //   (state) => state.virtuals.casino_games_types
-  // );
-  const casino_games = rawCasinoData.data;   // This replaces: useSelector(...)
-  const casino_types = rawCasinoData.types;  // This replaces: useSelector(...)
+  const casino_types = useSelector(
+    (state) => state.virtuals.casino_games_types
+  );
+  // const casino_games = rawCasinoData.data;   // This replaces: useSelector(...)
+  // const casino_types = rawCasinoData.types;  // This replaces: useSelector(...)
   
   const fetchGames = async () => {
     let endpoint = "/v1/casino-game-listing";

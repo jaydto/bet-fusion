@@ -52,6 +52,7 @@ body {
 .top-header-main {
   position: sticky;
   top: 0px;
+  padding: 4px 2px 4px 0px;
 }
 .ipad-show {
   display: flex !important;
@@ -69,7 +70,12 @@ body {
 }
 
 @media (min-width: 992px) {
-  .mobile-menu-new{
+  .top-nav-login {
+    height: 50px;
+    max-height: 50px;
+    min-height: 50px;
+  }
+  .mobile-menu-new {
     display: none;
   }
   .home.page-content-set {
@@ -162,10 +168,11 @@ body {
   color: var(--dark) !important;
 }
 .btn-button-bg-2.cg {
-  background: inherit !important;
-  color: var(--light) !important;
+  background: var(--signup) !important;
+  color: var(--dark) !important;
   border: none;
-  text-decoration: underline; /* Add this to underline the text */
+  font-weight: 900;
+  text-decoration: none; /* Add this to underline the text */
 }
 
 .me-2 {
@@ -891,7 +898,7 @@ label {
   margin-bottom: 20px;
 }
 .withdraw-input {
-  background: var(--withdraw-input) !important;
+  /* background: var(--withdraw-input) !important; */
   border: none !important;
 }
 .text-light-p {
@@ -908,12 +915,12 @@ label {
 }
 
 input {
-  background: var(--input-bg) !important;
+  background: var(c) !important;
   border-radius: 3px !important;
-  color: var(--light) !important;
+  color: var(--dark) !important;
   font-weight: bold !important;
   box-sizing: border-box;
-  border: 0.1px groove #2d3641 !important;
+  border: none !important;
 }
 
 .slip-border-radius-mybets {
@@ -955,7 +962,7 @@ ol.list-count-type {
   margin-bottom: -3px;
 }
 input:focus {
-  border: 0.1px inset #a5660f !important;
+  border: none !important;
   box-sizing: border-box;
 }
 
@@ -1005,17 +1012,16 @@ select::after {
   padding-left: 35px !important;
   line-height: 1.7 !important;
 }
-.ant-drawer-body{
-padding: 0px!important;
+.ant-drawer-body {
+  padding: 0px !important;
 }
-.ant-drawer-header-title{
+.ant-drawer-header-title {
   /* margin-top: 4rem; */
-
 }
-.ant-drawer-close{
+.ant-drawer-close {
   color: var(--light) !important;
 }
-.ant-drawer{
+.ant-drawer {
   z-index: 10000 !important;
 }
 
@@ -1030,14 +1036,12 @@ padding: 0px!important;
   /* padding: 12px 8px; */
   padding: 0px;
 }
-.mobile-menu-new ul .ant-menu-item{
+.mobile-menu-new ul .ant-menu-item {
   /* width: 25%; */
   flex: 0 0 25%;
   max-width: 25%;
-  text-align:center;
-
+  text-align: center;
 }
-
 
 .width-page-centric {
   /* box-shadow: 5px 7px 30px 8px var(--btn-color); */
@@ -1154,7 +1158,7 @@ input.bet-select bet-stake-input {
 }
 
 input::placeholder {
-  color: var(--light) !important;
+  color: var(--dark) !important;
 }
 
 .min_stake_alert {
@@ -1168,7 +1172,7 @@ input::placeholder {
 }
 
 input:placeholder-shown {
-  color: var(--light) !important;
+  color: var(--dark) !important;
 }
 
 .mobile-profile-columns:empty {
@@ -1247,15 +1251,16 @@ width-page-centric.register-page {
 }
 
 .login-color.cg {
-  background: inherit;
-  padding: 5px 10px;
-  border-radius: 12px;
+  background: var(--jaza-bets-button-login);
+  padding: 6px 15px;
+  border-radius: 6px;
   margin-left: 5px;
   /* height: 2.3rem; */
   border: 1px solid var(--lighy);
-  line-height: 1;
-  color: var(--light) !important;
+  line-height: 1.6;
+  color: var(--black) !important;
   cursor: pointer;
+  font-weight: 900;
 }
 
 .pro-sidebar.collapsed {
@@ -1413,14 +1418,14 @@ input[type="checkbox"] {
 .input-field-decode {
   line-height: 39px;
   border: none;
-  color: #fff !important;
+  color: var(--dark) !important;
   font-weight: bold;
 }
 
 .input-field-login {
   line-height: 26px;
   border: none;
-  color: #fff !important;
+  color: var(--dark) !important;
   font-weight: bold;
 }
 
@@ -1485,7 +1490,7 @@ input[type="checkbox"] {
   height: 100vh;
   overflow: auto;
   background-color: rgba(0, 0, 0, 1); /* Semi-transparent overlay */
-  z-index: 9999; /* Ensure the overlay is on top */
+  z-index: 99999; /* Ensure the overlay is on top */
 }
 
 .full-screen-component.height-max-custom {
@@ -1545,7 +1550,7 @@ img.nare-league {
 
 .input-color-icon {
   background: var(--input-bg) !important;
-  color: var(--light);
+  color: var(--dark);
   /* height: 100%; */
 }
 
@@ -2337,7 +2342,6 @@ img.nare-league {
 }
 
 @media (max-width: 991px) {
- 
   /* .logo-section {
     width: 297px;
     border-right: 2px solid var(--bet-history);
@@ -3687,7 +3691,7 @@ img.nare-league {
 
   .top-nav-login {
     padding: 2px 0px 5px 0px !important;
-    /*height: 100px !important;*/
+    height: 55px !important;
     /* padding-bottom: 0px !important; */
   }
 

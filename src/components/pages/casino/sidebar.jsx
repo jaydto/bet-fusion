@@ -19,7 +19,7 @@ import Logo from "../../../assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import useWindowDimensions from "../../header/Dimensions";
 import { EmojiSmileFill } from "react-bootstrap-icons";
-const { Title, Paragraph, Text } = Typography;
+const { Text } = Typography;
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -39,12 +39,16 @@ const Sidebar = () => {
         overflowX: "hidden",
       }}
     >
-      <div className="logo-section" style={width <= 768 ?{display: "none"}:{}}>
+      <div
+        className="logo-section"
+        style={{ height: 50, display: width <= 768 ? "none" : "flex", alignItems: "center" }}
+      >
         <LazyLoadImage
           src={Logo}
           onClick={() => navigate("/")}
           alt="Jazabets"
           title="Jazabets"
+          style={{ width: "min-content", height: 30 }}
           className={`image-size`}
         />
       </div>
@@ -64,49 +68,49 @@ const Sidebar = () => {
         >
           <SubMenu key="Games" title="Games" style={{ color: "var(--light)" }}>
             <Menu.Item
-              key="1"
-              icon={<FileTextOutlined />}
+              key="5"
+              icon={<VideoCameraOutlined />}
               style={{ color: "var(--light)" }}
             >
-              <a href="/my-bets" style={{ color: "var(--light)" }}>
-                My Bets
-              </a>
+              <Link to="/casino" style={{ color: "var(--light)" }}>
+                Casino
+              </Link>
             </Menu.Item>
             <Menu.Item
               key="2"
               icon={<FireOutlined />}
               style={{ color: "var(--light)" }}
             >
-              <a href="/boosted-odds" style={{ color: "var(--light)" }}>
+              <Link to="/boosted-odds" style={{ color: "var(--light)" }}>
                 Aviator
-              </a>
+              </Link>
             </Menu.Item>
             <Menu.Item
               key="3"
               icon={<UserOutlined />}
               style={{ color: "var(--light)" }}
             >
-              <a href="/player-to-score" style={{ color: "var(--light)" }}>
+              <Link to="/player-to-score" style={{ color: "var(--light)" }}>
                 Jetx
-              </a>
+              </Link>
             </Menu.Item>
             <Menu.Item
               key="4"
               icon={<PlayCircleOutlined />}
               style={{ color: "var(--light)" }}
             >
-              <a href="/sports" style={{ color: "var(--light)" }}>
+              <Link to="/sports" style={{ color: "var(--light)" }}>
                 Aviatrix
-              </a>
+              </Link>
             </Menu.Item>
             <Menu.Item
               key="5"
               icon={<VideoCameraOutlined />}
               style={{ color: "var(--light)" }}
             >
-              <a href="/sports/live" style={{ color: "var(--light)" }}>
+              <Link to="/sports/live" style={{ color: "var(--light)" }}>
                 Live Casino
-              </a>
+              </Link>
             </Menu.Item>
           </SubMenu>
           {/* Promotions link */}

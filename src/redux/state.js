@@ -3,6 +3,7 @@ const initialState = {
     show_menu: false,
     call_to_action: false,
     show_menu_casino: false,
+    is_custom_fullscreen: false,
     bet_history_details: false,
     navigation_link: null,
     print_title: "highlights",

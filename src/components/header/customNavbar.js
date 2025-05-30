@@ -13,7 +13,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
 
   return (
     <Navbar.Brand
-      className="e logo align-self-start menu-control d-flex justify-content-between w-100 py-4"
+      className="e logo align-self-start menu-control d-flex justify-content-between w-100 "
       title="Jazabets"
     >
       <div

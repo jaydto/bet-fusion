@@ -1,14 +1,10 @@
 import { useState } from "react";
-import CasinoCarouselLoader from "./carousel";
-import CrashGames from "./casinoBody";
 import HorizontalCategoryList from "./horizontalCategoryList";
 import "./index.css";
 import SearchModal from "../../modals/SearchModal";
 import { useSelector } from "react-redux";
-import Broadcast from "./broadcast";
-import Sidebar from "./sidebar";
-import Footer from "./footer";
-import MobileMenu from "../../mobile-menu";
+
+import CasinoGames from "./casinoBody";
 
 const CasinoPage = () => {
   const close_call_to_action = useSelector(
@@ -22,21 +18,18 @@ const CasinoPage = () => {
   };
 
   return (
+    <div className="main-content" style={{ flex: 1 }}>
+      {pathname === "/" && <SearchModal />}
+      <HorizontalCategoryList
+        activeCategory={activeCategory}
+        onCategoryClick={onCategoryClick}
+      />
 
-
-      <div className="main-content" style={{ flex: 1 }}>
-        {pathname === "/" && <SearchModal />}
-        <HorizontalCategoryList
-          activeCategory={activeCategory}
-          onCategoryClick={onCategoryClick}
-        />
-
-        {/* <CasinoCarouselLoader /> */}
-        {/* <Broadcast /> */}
-        <CrashGames activeCategory={activeCategory} />
-        {/* <Footer /> */}
-      </div>
-    
+      {/* <CasinoCarouselLoader /> */}
+      {/* <Broadcast /> */}
+      <CasinoGames activeCategory={activeCategory} />
+      {/* <Footer /> */}
+    </div>
   );
 };
 

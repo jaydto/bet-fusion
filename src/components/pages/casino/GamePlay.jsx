@@ -13,12 +13,22 @@ import FullscreenButton from "../../shared/FullScreenButton";
 import { useNavigate } from "react-router-dom";
 import GameDemoAlert from "../../Alerts/GameDemoAlert";
 
+import { Layout, Row, Col, Grid } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { setState } from "../../../redux/dataSlice";
+
+const { Content } = Layout;
+const { useBreakpoint } = Grid;
+
 const GamePlay = React.memo((props) => {
   const url = new URL(window.location);
   const game = url.searchParams.get("game");
   const gameName = url.searchParams.get("game_name");
   const type = url.searchParams.get("category");
   const demo_url = url.searchParams.get("demo_url");
+  const dispatch = useDispatch();
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
 
   const status = url.searchParams.get("status");
 
@@ -83,7 +93,10 @@ const GamePlay = React.memo((props) => {
     );
   };
   const { width } = useWindowDimensions();
-  const [isCustomFullscreen, setCustomFullscreen] = useState(false);
+  // const [isCustomFullscreen, setCustomFullscreen] = useState(false);
+  const isCustomFullscreen = useSelector(
+    (state) => state?.data?.is_custom_fullscreen
+  );
 
   const [iframeHeight, setIframeHeight] = useState(width < 991 ? 95 : 80); // Initial height
 
@@ -128,7 +141,7 @@ const GamePlay = React.memo((props) => {
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.key === "Escape") {
-        setCustomFullscreen(false);
+        dispatch(setState("is_custom_fullscreen", false));
       }
     };
 
@@ -158,12 +171,13 @@ const GamePlay = React.memo((props) => {
         //there was an error encountered
         console.error("error_message", err);
       }
+      dispatch(setState("is_custom_fullscreen", true));
 
-      setCustomFullscreen(true);
+      console.log("isCustomFullscreen", isCustomFullscreen);
     } else {
       try {
         if (!document.fullscreenEnabled) {
-          setCustomFullscreen(false);
+          dispatch(setState("is_custom_fullscreen", false));
         }
         if (document.fullscreenElement) {
           if (document.exitFullscreen) {
@@ -180,7 +194,7 @@ const GamePlay = React.memo((props) => {
         console.error("error_encountered", err);
       }
 
-      setCustomFullscreen(false);
+      dispatch(setState("is_custom_fullscreen", false));
     }
   };
 
@@ -196,7 +210,7 @@ const GamePlay = React.memo((props) => {
         if (status === "1") {
           setGameStatus("demo");
         }
-        console.log("calling endpoint")
+        console.log("calling endpoint");
         createToken(status); // Create token if user exists and status is live
       }
     } else {
@@ -218,56 +232,77 @@ const GamePlay = React.memo((props) => {
 
   return (
     <>
-      <Header />
       {console.log("height", Math.min(iframeHeight, maxIframeHeight))}
-      <div className="amt top-smartsoft gameplay">
+      <Layout
+        className=" game-play-layout"
+        style={{
+          background: "var(--jaza-bets-primary)",
+          padding: isMobile ? 4 : 24,
+          marginTop: isCustomFullscreen ? 0 : isMobile ? 0 : 75,
+        }}
+      >
         <FullscreenButton
           onClick={() => toggleFullscreen()}
           navigation={"/"}
           isCustomFullScreen={isCustomFullscreen}
         />
-        <div className="d-flex flex-row justify-content-between">
-          <div className="col-md-12 w-100">
-            <div className="homepage">
-              <div
-                className={`col-md-12 w-100 ${
-                  gameUrlLoaded ? "d-none" : "d-block"
-                }`}
-              >
-                <SkeletonTheme baseColor="#0e131b" highlightColor="#3f6878">
-                  <Skeleton height={"100px"} />
-                </SkeletonTheme>
-              </div>
-              {gameUrlLoaded && (
-                <div
-                  className={` ${
-                    isCustomFullscreen ? "active custom-fullscreen-wrapper" : ""
-                  }`}
-                >
-                  <GameDemoAlert
-                    game={gameName}
-                    user={user}
-                    gameStatus={gameStatus}
-                    handleRealGameClick={handleRealGameClick}
+        <Content>
+          <Row justify="space-between" style={{ width: "100%" }}>
+            <Col span={24}>
+              <div className="homepage">
+                {!gameUrlLoaded && (
+                  <Skeleton
+                    active
+                    paragraph={false}
+                    style={{ height: 100, backgroundColor: "#0e131b" }}
+                    className="mb-3"
                   />
-                  <iframe
-                    className={"mt-3 shadow-lg"}
-                    id={"GamePlayGames"}
-                    src={gamePlay}
-                    title="Gadme"
-                    allow="fullscreen"
-                    style={{
-                      ...iframeStyle,
-                      height: `${Math.min(iframeHeight, maxIframeHeight)}svh`,
-                    }}
-                  ></iframe>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <Footer /> */}
+                )}
+                {gameUrlLoaded && (
+                  <div
+                    className={
+                      isCustomFullscreen
+                        ? "active custom-fullscreen-wrapper"
+                        : ""
+                    }
+                    style={
+                      isCustomFullscreen
+                        ? {
+                            padding: isMobile ? 5 : 10,
+                            backgroundColor: "var(--jaza-bets-primary)",
+                            zIndex: 999999,
+                            position: "relative",
+                            marginTop:isMobile?"-2rem":"-4rem",
+                          }
+                        : {}
+                    }
+                  >
+                    <GameDemoAlert
+                      game={gameName}
+                      user={user}
+                      gameStatus={gameStatus}
+                      handleRealGameClick={handleRealGameClick}
+                    />
+                    <iframe
+                      className={`${
+                        isCustomFullscreen ? " shadow-lg" : "mt-3 shadow-lg"
+                      }`}
+                      id="GamePlayGames"
+                      src={gamePlay}
+                      title="Game"
+                      allowFullScreen
+                      style={{
+                        ...iframeStyle,
+                        height: `${Math.min(iframeHeight, maxIframeHeight)}svh`,
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+            </Col>
+          </Row>
+        </Content>
+      </Layout>
     </>
   );
 });

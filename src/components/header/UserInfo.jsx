@@ -48,13 +48,11 @@ export const UserInfo = React.memo((props) => {
     !urlPath.includes("gameplay") &&
     !urlPath.includes("smart-play");
 
-    const casino_search = useSelector((state) => state.virtuals.casino_search);
+  const casino_search = useSelector((state) => state.virtuals.casino_search);
 
-
-  const handleCasinoSearch=()=>{
+  const handleCasinoSearch = () => {
     dispatchRedux(setStateV("casino_search_modal", true));
-  }
-
+  };
 
   return (
     <>
@@ -99,9 +97,16 @@ export const UserInfo = React.memo((props) => {
       )}
       <>
         {!user && (
-          <div
-            className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2 mb-2 col-lg-3 justify-content-end"
-          >
+          <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2 mb-2 col-lg-3 justify-content-end">
+            {pathname !== "/login" && (
+              <Link
+                to={"/login"}
+                className="cg  login-color login-size btn"
+                type="submit"
+              >
+                <span>Login</span>
+              </Link>
+            )}
             {pathname !== "/signup" && (
               <div className="">
                 <Link
@@ -113,16 +118,6 @@ export const UserInfo = React.memo((props) => {
                   <span className=" text-weight-md">Register</span>
                 </Link>
               </div>
-            )}
-
-            {pathname !== "/login" && (
-              <Link
-                to={"/login"}
-                className="cg  login-color login-size btn"
-                type="submit"
-              >
-                <span>Login</span>
-              </Link>
             )}
           </div>
         )}

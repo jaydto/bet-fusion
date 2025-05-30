@@ -1,6 +1,40 @@
+/* -----game section css */
+.game-wrapper {
+  position: relative;
+  cursor: pointer;
+}
 
- /* horizontal scroller */
- .tab-pill {
+.overlay-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.game-wrapper.unavailable:hover .overlay-3 {
+  display: flex;
+}
+
+.overlay-3.mobile-visible {
+  display: flex !important;
+}
+
+
+/* -----game section css */
+
+
+/* horizontal scroller */
+.tab-pill {
   display: inline-block;
   padding: 6px 16px;
   background: #f5f5f5;
@@ -25,17 +59,188 @@
   border-bottom: none !important;
 }
 
+.custom-horizontal-tabs .ant-tabs-tab {
+  padding: 2px;
+}
+
+/* Make tab list wrap on mobile */
+.wrap-tabs .ant-tabs-nav-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+/* Optional: Fix parent overflow behavior */
+.wrap-tabs .ant-tabs-nav {
+  overflow: visible !important;
+}
+
+.site-custom-tab-bar .ant-tabs-nav {
+  margin-bottom: 1px !important;
+}
 /* ------------------ */
+
+/* games library css */
+.games-scroll-wrapper {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.games-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.games-title {
+  color: var(--light) !important;
+}
+
+.overlay-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px); /* Blur effect */
+  background-color: rgba(0, 0, 0, 0.35); /* Optional dark tint */
+  border-radius: 10px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  pointer-events: auto;
+}
+
+.overlay-top,
+.overlay-center,
+.overlay-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-now-btn {
+  background-color: var(--jaza-bets-button-login);
+  border: none;
+  font-weight: bold;
+  padding: 6px 16px;
+  border-radius: 8px;
+  color: var(--dark);
+}
+.play-now-btn:hover {
+  background-color: var(--jaza-bets-button-login) !important;
+  border: none;
+  color: var(--dark)!important;
+}
+
+/* games library css  */
+
+/* ----------- page header--------- */
+
+/* This targets the separator directly */
+.custom-breadcrumb .ant-breadcrumb-separator {
+  color: var(--light);
+}
+.custom-breadcrumb .ant-breadcrumb-link,
+.custom-breadcrumb .ant-breadcrumb-link span {
+  color: var(--light);
+}
+/* ----------- page header--------- */
+
+/* ----------gamesLibrary.css */
+.game-carousel {
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+
+.game-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.game-card {
+  width: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+.game-card {
+  width: 120px;
+  height: 160px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.site-custom-tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.game-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  transition: opacity 0.3s;
+}
+
+.game-card:hover .overlay {
+  opacity: 1;
+}
+
+/* ----------gamesLibrary.css */
 
 /* gamesSection.css */
 .games-section {
-  padding: 24px;
+  padding: 12px;
   background-color: var(--jaza-bets-primary);
+}
+
+.view-all-link {
+  background: var(--light) !important;
+  color: var(--dark) !important;
+  border-radius: 16px !important;
+  border: none !important;
+}
+
+.play-btn {
+  background-color: var(--jaza-bets-button-login);
+  border: none;
+}
+.play-btn:hover {
+  background-color: var(--jaza-bets-button-login);
+  border: none;
 }
 
 .game-image {
   width: 100%;
-  height: 140px;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
 }
@@ -53,7 +258,7 @@
 
 /* mustPlaySection.css */
 .must-play-section {
-  padding: 24px;
+  padding: 12px;
   background-color: --jaza-bets-primary;
 }
 
@@ -66,7 +271,7 @@
 
 .mustplay-image {
   width: 100%;
-  height: 180px;
+  /* height: auto; */
   object-fit: cover;
   border-radius: 8px 8px 0 0;
 }
@@ -549,13 +754,16 @@ input.search-cat:focus {
     height: 47vh !important;
   }
 }
-.ant-menu.ant-menu-sub.ant-menu-inline{
-  background: inherit!important;
+.ant-menu.ant-menu-sub.ant-menu-inline {
+  background: inherit !important;
 }
 
 @media (max-width: 991px) {
-  .body-section{
-    margin-bottom:4.5rem;
+  .mustplay-image {
+    height: 150px;
+  }
+  .body-section {
+    margin-bottom: 4.5rem;
   }
   .casino-game-wrapper img {
     min-height: 127px;
@@ -620,7 +828,6 @@ input.search-cat:focus {
     top: 50%;
   }
 }
-
 
 @media (max-width: 1260px) and (min-width: 1000px) {
   .layout-casino-category {

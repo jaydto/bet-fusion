@@ -24,6 +24,8 @@ import Header from "./components/header/header";
 import GamePlay from "./components/pages/casino/GamePlay";
 import Sidebar from "./components/pages/casino/sidebar";
 import LandingPage from "./components/pages/casino/landingPage";
+import CasinoGames from "./components/pages/casino/casinoBody";
+import { ConfigProvider, Grid, theme as antdTheme } from "antd";
 
 const Deposit3 = React.lazy(() =>
   import("./components/pages/deposit-withraw/Deposit3")
@@ -109,7 +111,7 @@ const NewProfile = React.lazy(() =>
   import("./components/pages/Accounts/NewProfile")
 );
 
-const CasinoGames = React.lazy(() => import("./components/pages/casino/index"));
+const Index = React.lazy(() => import("./components/pages/casino/index"));
 
 const Logout = () => {
   const { dispatch } = useContext(StoreContext);
@@ -151,9 +153,16 @@ const Redirect = () => {
   return null;
 };
 
+const { useBreakpoint } = Grid;
+
 const App = () => {
   // const scrollPosition = useSelector((state) => state.scroll.scroll)
   const [flag, setFlag] = useState(true);
+  const isCustomFullscreen = useSelector(
+    (state) => state?.data?.is_custom_fullscreen
+  );
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
   // cleanup/unmounting components fix
   useEffect(() => {
     return () => {
@@ -173,115 +182,139 @@ const App = () => {
     "/anti-money-laundering",
     "/terms-and-conditions",
     "/promo",
+    "/casino",
     "/login",
+    "/game-play",
     "/signup",
     "/forgot-password",
     "/reset-password",
+    "/profile",
   ];
-  const showSidebar = sidebarRoutes.includes(location.pathname);
+  // Determine visibility
+  const isGamePlayRoute = location.pathname === "/game-play";
+  const showSidebar =
+    sidebarRoutes.includes(location.pathname) && !isCustomFullscreen;
+  const showHeader = !(isGamePlayRoute && (isCustomFullscreen || isMobile));
 
   return flag ? (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      {/* Sidebar (only for '/') */}
-      {showSidebar && (
-        <aside className="sidebar site-layout-background">
-          {/* You can put category list, ads, etc. */}
-          <Sidebar />
-        </aside>
-      )}
+    <ConfigProvider
+      theme={{
+        // algorithm: antdTheme.darkAlgorithm,
+      }}
+    >
+      <div style={{ display: "flex", minHeight: "100vh" }}>
+        {/* Sidebar (only for '/') */}
+        {showSidebar && (
+          <aside className="sidebar site-layout-background">
+            {/* You can put category list, ads, etc. */}
+            <Sidebar />
+          </aside>
+        )}
 
-      {/* Main Content (Header + Routes) */}
-      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        <Header />
+        {/* Main Content (Header + Routes) */}
+        <div style={{ flex: 1, display: "block" }}>
+          {showHeader && <Header />}
 
-        <div style={{ flex: 1 }}>
-          <Suspense fallback={<></>}>
-            <Routes>
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/404" element={<PageNotFound />} />
-              <Route exact path="/smart-play" element={<SmartPlay />} />
-              <Route exact path="/smart-soft" element={<SmartSoftPlay />} />
-              {/* <Route exact path="/" element={<CasinoGames />} /> */}
-              <Route path="/" element={<CasinoGames />}>
-                <Route index element={<LandingPage />} />{" "}
-                {/* Former HomeCasinoPage */}
-                {/* <Route path="casino" element={<GamesLibrary />} /> */}
-                
-              </Route>
+          <div style={{ flex: 1 }}>
+            <Suspense fallback={<></>}>
+              <Routes>
+                {/* <Route exact path="/" element={<CasinoGames />} /> */}
+                <Route path="/" element={<Index />}>
+                  <Route index element={<LandingPage />} />{" "}
+                  {/* Former HomeCasinoPage */}
+                  <Route path="casino" element={<CasinoGames />} />
+                </Route>
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/404" element={<PageNotFound />} />
+                <Route exact path="/smart-play" element={<SmartPlay />} />
+                <Route exact path="/smart-soft" element={<SmartSoftPlay />} />
 
-              <Route exact path="/promotions" element={<Promotions />} />
-              <Route exact path="/promo" element={<Promo />} />
-              <Route exact path="/game-play" element={<GamePlay />} />
-              <Route
-                exact
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <NewProfile />
-                  </ProtectedRoute>
-                }
-              />
-              <Route exact path="/betslip" element={<BetslipPage />} />
-              <Route exact path="/betslip-slip" element={<BetslipPage />} />
-              <Route exact path="/betslip-nare" element={<BetslipPage />} />
-              <Route exact path="/betslip-jackpot" element={<BetslipPage />} />
-              <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route
-                exact
-                path="/anti-money-laundering"
-                element={<AntimoneyLaundering />}
-              />
-              <Route
-                exact
-                path="/responsible-gambling"
-                element={<ResponsibleGambling />}
-              />
-              <Route
-                exact
-                path="/dispute-resolution"
-                element={<DisputeResolution />}
-              />
-              <Route exact path="/cookie-policy" element={<CookiePolicy />} />
-              <Route
-                exact
-                path="/terms-and-conditions"
-                element={<TermsAndConditions />}
-              />
-              <Route exact path="/how-to-play" element={<HowToPlay />} />
-              <Route exact path="/signup" element={<Signup />} />
-              <Route exact path="/leader-board" element={<LeaderBoard />} />
-              <Route
-                exact
-                path="/leader-boardx"
-                element={<JetxLeaderBoard />}
-              />
-              <Route exact path="/reset-password" element={<ResetPassword />} />
-              <Route exact path="/verify" element={<VerifyAccount />} />
-              <Route exact path="/logout" element={<Logout />} />
-              <Route exact path="/redirect" element={<Redirect />} />
-              <Route
-                exact
-                path="/deposit"
-                element={
-                  <ProtectedRoute>
-                    <Deposit3 />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                exact
-                path="/withdraw"
-                element={
-                  <ProtectedRoute>
-                    <Withdraw />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </Suspense>
+                <Route exact path="/promotions" element={<Promotions />} />
+                <Route exact path="/promo" element={<Promo />} />
+                <Route exact path="/game-play" element={<GamePlay />} />
+                <Route
+                  exact
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <NewProfile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route exact path="/betslip" element={<BetslipPage />} />
+                <Route exact path="/betslip-slip" element={<BetslipPage />} />
+                <Route exact path="/betslip-nare" element={<BetslipPage />} />
+                <Route
+                  exact
+                  path="/betslip-jackpot"
+                  element={<BetslipPage />}
+                />
+                <Route
+                  exact
+                  path="/privacy-policy"
+                  element={<PrivacyPolicy />}
+                />
+                <Route
+                  exact
+                  path="/anti-money-laundering"
+                  element={<AntimoneyLaundering />}
+                />
+                <Route
+                  exact
+                  path="/responsible-gambling"
+                  element={<ResponsibleGambling />}
+                />
+                <Route
+                  exact
+                  path="/dispute-resolution"
+                  element={<DisputeResolution />}
+                />
+                <Route exact path="/cookie-policy" element={<CookiePolicy />} />
+                <Route
+                  exact
+                  path="/terms-and-conditions"
+                  element={<TermsAndConditions />}
+                />
+                <Route exact path="/how-to-play" element={<HowToPlay />} />
+                <Route exact path="/signup" element={<Signup />} />
+                <Route exact path="/leader-board" element={<LeaderBoard />} />
+                <Route
+                  exact
+                  path="/leader-boardx"
+                  element={<JetxLeaderBoard />}
+                />
+                <Route
+                  exact
+                  path="/reset-password"
+                  element={<ResetPassword />}
+                />
+                <Route exact path="/verify" element={<VerifyAccount />} />
+                <Route exact path="/logout" element={<Logout />} />
+                <Route exact path="/redirect" element={<Redirect />} />
+                <Route
+                  exact
+                  path="/deposit"
+                  element={
+                    <ProtectedRoute>
+                      <Deposit3 />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  exact
+                  path="/withdraw"
+                  element={
+                    <ProtectedRoute>
+                      <Withdraw />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </Suspense>
+          </div>
         </div>
       </div>
-    </div>
+    </ConfigProvider>
   ) : null;
 };
 

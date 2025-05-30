@@ -1,7 +1,9 @@
 import React from "react";
-import { Breadcrumb, Tag } from "antd";
-import { HomeOutlined, ExpandOutlined } from "@ant-design/icons";
+import { Breadcrumb, Typography } from "antd";
+import { HomeOutlined } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
+
+const { Title, Paragraph } = Typography;
 
 const formatPathSegment = (segment) => {
   return segment
@@ -9,7 +11,7 @@ const formatPathSegment = (segment) => {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
-const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
+const PageHeader = ({ title, description }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,32 +24,33 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
 
   return (
     <div
-      className={`height-max-custom d-flex align-items-center justify-content-between ${
-        isCustomFullScreen ? "full-screen-component" : ""
-      }`}
-      style={{ padding: "0 1rem" }}
+      className="page-header"
+      style={{ marginBottom: "1.5rem", padding: "1.5rem" }}
     >
       <Breadcrumb
         separator=">"
         className="custom-breadcrumb"
-        style={{ fontSize: 16, cursor: "pointer", color: "var(--light)" }}
+        style={{ fontSize: "16px", color: "var(--light)" }}
       >
-        <Breadcrumb.Item onClick={() => navigate("/")}>
-          <HomeOutlined />
+        <Breadcrumb.Item
+          onClick={() => navigate("/")}
+          style={{
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <HomeOutlined style={{ marginRight: 4 }} />
         </Breadcrumb.Item>
 
         {pathnames.map((segment, index) => {
           const isLast = index === pathnames.length - 1;
           return (
             <Breadcrumb.Item
-              key={segment + index}
+              key={segment}
               onClick={!isLast ? () => handleBreadcrumbClick(index) : undefined}
               style={{
                 cursor: !isLast ? "pointer" : "default",
-                opacity: isLast ? 0.7 : 1,
-                fontWeight: isLast ? "normal" : "bold",
-                fontSize: isLast ? 13 : 14,
-                color: isLast ? "var(-fade-color)" : "var(--light)",
               }}
             >
               <span
@@ -64,23 +67,17 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
         })}
       </Breadcrumb>
 
-      <Tag
-        color="blue"
-        onClick={onClick}
-        style={{
-          cursor: "pointer",
-          userSelect: "none",
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
-          fontWeight: 600,
-          fontSize: 14,
-        }}
-      >
-        {isCustomFullScreen ? "Exit" : "View"} Fullscreen <ExpandOutlined />
-      </Tag>
+      <Title level={4} style={{ marginTop: "0.75rem", color: "var(--light)" }}>
+        {title}
+      </Title>
+
+      {description && (
+        <Paragraph style={{ margin: 0, color: "var(--light)", opacity: 0.7 }}>
+          {description}
+        </Paragraph>
+      )}
     </div>
   );
 };
 
-export default FullscreenButton;
+export default PageHeader;

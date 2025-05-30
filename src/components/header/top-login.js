@@ -190,7 +190,10 @@ const HeaderLogin = React.memo((props) => {
               {errors.msisdn && (
                 <div className="text-danger"> {errors.msisdn} </div>
               )}
-              <label className="mb-5 px-2 pb-3"  style={{color:"#FFFFFFB2"}}>
+              <label
+                className="mb-5 px-2 pb-3"
+                style={{ color: "var(--text-color)" }}
+              >
                 Enter your phone number
               </label>
 
@@ -221,7 +224,7 @@ const HeaderLogin = React.memo((props) => {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login  ${
+                  className={`w-75 input-field button-radius  deposit-input form-control col input-field-login  ${
                     errors.password && "text-danger"
                   } `}
                   autoComplete="on"
@@ -241,12 +244,12 @@ const HeaderLogin = React.memo((props) => {
                       {showPassword ? (
                         <FontAwesomeIcon
                           icon={faEyeSlash}
-                          style={{ color: "var(--light)", fontSize: "20px" }}
+                          style={{ color: "var(--dark)", fontSize: "20px" }}
                         />
                       ) : (
                         <FontAwesomeIcon
                           icon={faEye}
-                          style={{ color: "var(--light)", fontSize: "20px" }}
+                          style={{ color: "var(--dark)", fontSize: "20px" }}
                         />
                       )}
                     </button>
@@ -256,7 +259,9 @@ const HeaderLogin = React.memo((props) => {
               {errors.password && (
                 <div className="text-danger"> {errors.password} </div>
               )}
-                              <label className="mb-5 px-2 pb-3" style={{color:"#FFFFFFB2"}}>Enter your password</label>
+              <label className="mb-5 px-2 pb-3" style={{ color: "#FFFFFFB2" }}>
+                Enter your password
+              </label>
 
               <br />
               <input type="hidden" name="ref" value="{props.refURL}" />

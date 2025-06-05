@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Col, Row } from "antd";
+import { Col, Row, Typography } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleLeft,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import { Form, Formik } from "formik";
-import Logo from "../../../assets/img/logo.png"
 
 import {
   resetPassword,
@@ -14,11 +17,9 @@ import {
   setState,
 } from "../../../redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import FormTitle from "../formTitle";
 
-const backgroundStyle = {
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-};
+const { Title } = Typography;
 
 const ResetPassword2 = React.memo((props) => {
   const resetSuccess = useSelector((state) => state.auth.reset_success);
@@ -45,41 +46,6 @@ const ResetPassword2 = React.memo((props) => {
     dispatchRedux(setState("resetMessage", null));
   }, []);
 
-   const FormTitle = () => {
-      return (
-        <div
-          className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile w-100"
-          style={{ margin: "0px" }}
-        >
-          <div>
-            <div
-              className={
-                " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator py-3"
-              }
-              onClick={() => navigate("/")}
-            >
-              <span
-                className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "
-                style={{ cursor: "pointer" }}
-              >
-                <FontAwesomeIcon
-                  icon={faAngleLeft}
-                  className={"back-navigation-icon"}
-                />{" "}
-                            <span className="px-3"> Back </span>
-  
-              </span>
-  
-              <span className={"w-50 d-flex justify-content-center"}>
-                {/* <h4 className="inline-block form-title-centric">RECOVER YOUR ACCOUNT</h4> */}
-              </span>
-              <span className="w-25"></span>
-            </div>
-          </div>
-        </div>
-      );
-    };
-
   const Alert = (props) => {
     let c = resetSuccessPassword ?? resetSuccess ? "success" : "danger";
     return (
@@ -92,7 +58,6 @@ const ResetPassword2 = React.memo((props) => {
   return (
     <div style={{ height: "100vh" }}>
       <Row justify="center" className="align-items-stretch h-100">
-      
         <div
           className={
             "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
@@ -107,8 +72,10 @@ const ResetPassword2 = React.memo((props) => {
               <FormTitle />
 
               <div className="d-flex justify-content-center position-logo-user-pages">
-                  <LazyLoadImage src={Logo} alt="Logo" />
-                </div>
+                <Title level={2} style={{ color: "var(--light)" }}>
+                  Welcome
+                </Title>{" "}
+              </div>
 
               <Row justify="center">
                 <div className={"d-flex w-100"}>
@@ -116,7 +83,10 @@ const ResetPassword2 = React.memo((props) => {
                   <div className={"w-100"}>
                     <div className={"d-flex flex-row justify-content-between"}>
                       <div className=" w-100">
-                        <div className="homepage d-flex flex-column align-items-center justify-content-center login-page" style={{margin:"auto", maxWidth:"767px"}}>
+                        <div
+                          className="homepage d-flex flex-column align-items-center justify-content-center login-page"
+                          style={{ margin: "auto", maxWidth: "767px" }}
+                        >
                           <div className="col-md-12 mt-2 text-white px-2 w-100">
                             {(resetPasswordMessage ?? resetMessage) && (
                               <Alert />
@@ -254,7 +224,6 @@ const MyPasswordResetForm = React.memo((props) => {
     if (code) {
       setFieldValue("code", code);
       dispatchRedux(setState("otp_sent", true));
-
     }
     if (msisdn) {
       setFieldValue("mobile", msisdn);
@@ -405,8 +374,8 @@ const MyPasswordResetForm = React.memo((props) => {
               type="button"
               onClick={clearActions}
             >
-              <FontAwesomeIcon icon={faAngleLeft} />&nbsp;
-              Previous
+              <FontAwesomeIcon icon={faAngleLeft} />
+              &nbsp; Previous
             </button>
           </div>
         </div>
@@ -416,7 +385,6 @@ const MyPasswordResetForm = React.memo((props) => {
 });
 
 const PasswordResetForm = React.memo((props) => {
-
   const mobile = useSelector((state) => state.auth.reset_mobile);
 
   const resetID = useSelector((state) => state.auth.reset_id);
@@ -435,7 +403,7 @@ const PasswordResetForm = React.memo((props) => {
   useEffect(() => {
     if (resetSuccessPassword) {
       setTimeout(() => {
-        navigate("/login");
+        navigate("/auth/login");
       }, 3000);
     }
   }, [resetSuccessPassword]);

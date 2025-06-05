@@ -43,7 +43,7 @@ instance.interceptors.response.use(
     if (status === 401) {
       setSkipUserUpdateFlag();
       // Redirect to the login page if not already on it
-      if (window.location.pathname !== "/login") {
+      if (window.location.pathname !== "/auth/login") {
         // Clear user data from local storage
         navigate().then(() => {
           notification.error({
@@ -54,7 +54,7 @@ instance.interceptors.response.use(
           });
            // Delay the redirection to the logout page (e.g., 3 seconds)
            setTimeout(() => {
-            window.location.href = "/redirect";
+            window.location.href = "/auth/redirect";
           }, 3000);
         });
       }
@@ -129,14 +129,15 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
     let status = err.response?.status;
     let result = err.response?.data;
     return [status, result];
-  } finally {
-    if (!shouldSkipUserUpdate()) {
-      setLocalStorage("user", user);
-    } else {
-      // Clear the skipUserUpdate flag for the next request
-      removeItem("skipUserUpdate");
-    }
-  }
+  } 
+  // finally {
+  //   if (!shouldSkipUserUpdate()) {
+  //     setLocalStorage("user", user);
+  //   } else {
+  //     // Clear the skipUserUpdate flag for the next request
+  //     removeItem("skipUserUpdate");
+  //   }
+  // }
 };
 
 export default makeRequest;

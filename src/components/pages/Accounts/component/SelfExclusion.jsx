@@ -173,7 +173,7 @@ const SelfExclusion = () => {
         })
 
     }else{
-        navigate('/login')
+        navigate('/auth/login')
     }
   };
   useEffect(() => {

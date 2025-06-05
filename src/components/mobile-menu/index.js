@@ -7,6 +7,7 @@ import {
   DollarOutlined,
   AppstoreOutlined,
   CloseOutlined,
+  ThunderboltFilled,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,6 +17,7 @@ import { setState as setMatchBetslipOptions } from "../../redux/bettingSlice";
 import Sidebar from "../pages/casino/sidebar";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Logo from "../../assets/img/logo.png";
+import { Lightning } from "react-bootstrap-icons";
 
 const { Text } = Typography;
 
@@ -68,10 +70,10 @@ const MobileMenu = () => {
       path: "/promotions",
     },
     {
-      key: "mybets",
-      icon: <UserOutlined style={iconStyle} />,
-      label: "My Bets",
-      path: "/my-bets",
+      key: "Crash",
+      icon: <ThunderboltFilled style={iconStyle} />,
+      label: "Crash",
+      path: "/casino?categoryId=crash",
     },
     {
       key: "menu",

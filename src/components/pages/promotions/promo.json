@@ -13,7 +13,7 @@
     "position": 3,
     "action": { "title": "Bet Now", "url": "/", "utm_source": "multibet" },
     "read_info": { "title": "Read More", "url": "/promo?id=4" },
-    "src": "https://cdn.Jazabets.bet/carousels/booster.jpeg",
+    "src": "",
     "summary": "Deposit a minimum of KES 100, and get up to KES 5,000 into your bonus account.",
     "eventTracking": "promo_welcome_stake_booster",
     "actions": [
@@ -23,7 +23,7 @@
       },
       {
         "name": "Read More",
-        "url": "/promo?id=1"
+        "url": "/promotions/promo?id=1"
       }
     ]
   },
@@ -41,7 +41,7 @@
     "position": 3,
     "action": { "title": "Bet Now", "url": "/", "utm_source": "multibet" },
     "read_info": { "title": "Read More", "url": "/promo?id=4" },
-    "src": "https://cdn.Jazabets.bet/carousels/booster.jpeg",
+    "src": "",
     "summary": "Deposit a minimum of KES 100, and get up to KES 5,000 into your bonus account.",
     "eventTracking": "promo_welcome_stake_booster",
     "actions": [
@@ -51,7 +51,7 @@
       },
       {
         "name": "Read More",
-        "url": "/promo?id=2"
+        "url": "/promotions/promo?id=2"
       }
     ]
   }

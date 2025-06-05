@@ -1,48 +1,118 @@
+import {
+  CrownOutlined,
+  DollarOutlined,
+  FireOutlined,
+  RocketOutlined,
+  ThunderboltOutlined,
+} from "@ant-design/icons";
+
 // data.js
 export const data = {
+  baseCategories: [
+    {
+      label: "Lobby",
+      icon: null,
+      bg: "rgb(245, 255, 235)",
+      color: "#3c9f18",
+    },
+    {
+      label: "Popular",
+      icon: <FireOutlined />,
+      bg: "rgb(253, 244, 255)",
+      color: "#d10ae2",
+    },
+    {
+      label: "Drops and Wins",
+      icon: <DollarOutlined />,
+      bg: "rgb(255, 250, 235)",
+      color: "#f7931e",
+    },
+    {
+      label: "Slots",
+      icon: <CrownOutlined />,
+      bg: "rgb(235, 241, 255)",
+      color: "#2d7ff9",
+    },
+    {
+      label: "Hot",
+      icon: <ThunderboltOutlined />,
+      bg: "rgb(245, 241, 255)",
+      color: "#7b38f6",
+    },
+    {
+      label: "Crash Games",
+      icon: <RocketOutlined />,
+      bg: "rgb(235, 255, 253)",
+      color: "#00a7a7",
+    },
+    {
+      label: "Live Roulette",
+      icon: null,
+      bg: "rgb(255, 245, 245)",
+      color: "#d13438",
+    },
+    {
+      label: "Live Blackjack",
+      icon: null,
+      bg: "rgb(245, 245, 255)",
+      color: "#605dec",
+    },
+    {
+      label: "Live Games",
+      icon: null,
+      bg: "rgb(255, 250, 240)",
+      color: "#fa6400",
+    },
+    {
+      label: "New Games",
+      icon: null,
+      bg: "rgb(240, 255, 250)",
+      color: "#00b386",
+    },
+  ],
   categories: [
     {
-      name: "Games",
-      url: "/games",
+      name: "Football",
+      url: "#",
       bg: "rgb(253, 244, 255)", // light purple/pink background
       color: "#d10ae2", // vibrant purple text/icon
     },
     {
-      name: "Free Bets",
-      url: "/free-bets",
+      name: "Aviator",
+      url: "/casino/game-play?game=43857&status=0&game_name=AVIATOR",
       bg: "rgb(235, 241, 255)", // soft blue background
       color: "#2d7ff9", // bright blue text/icon
     },
     {
-      name: "Vuna Affiliate",
-      url: "/affiliate",
+      name: "Crash",
+      url: "/casino?categoryId=crash",
       bg: "rgb(255, 250, 235)", // pale yellow background
       color: "#f7931e", // orange text/icon
     },
     {
-      name: "Golden Race",
-      url: "/golden-race",
+      name: "Casino",
+      url: "/casino",
       bg: "rgb(245, 255, 235)", // soft green background
       color: "#3c9f18", // fresh green text/icon
     },
     {
-      name: "TekeTeke",
-      url: "/teketeke",
+      name: "Virtual",
+      url: "/casino?categoryId=virtual",
       bg: "rgb(245, 241, 255)", // pale lavender background
       color: "#7b38f6", // vivid purple text/icon
     },
-    {
-      name: "Aviatrix",
-      url: "/game-play?game=aviator&game_id=43857&status=0",
-      bg: "rgb(235, 255, 253)", // minty teal background
-      color: "#00a7a7", // teal text/icon
-    },
+    // {
+    //   name: "Aviatrix",
+    //   url: "/game-play?game=aviator&game_id=43857&status=0",
+    //   bg: "rgb(235, 255, 253)", // minty teal background
+    //   color: "#00a7a7", // teal text/icon
+    // },
   ],
   games: [
     {
       name: "Aviator",
       game_id: "aviator",
-      url: "/game-play?game=43857&status=0&game_name=AVIATOR",
+      url: "/casino/game-play?game=43857&status=0&game_name=AVIATOR",
       image_url:
         "https://pepeta.com/static/media/aviator.68185d9bf50c82cff3b1.avif",
     },
@@ -56,7 +126,7 @@ export const data = {
     {
       name: "JetX",
       game_id: "jetx",
-      url: "/game-play?game=58059&status=0&game_name=JetX",
+      url: "/casino/game-play?game=58059&status=0&game_name=JetX",
       image_url:
         "https://pepeta.com/static/media/jetx.14cfcbda99f03f170198.avif",
     },
@@ -86,7 +156,7 @@ export const data = {
     {
       name: "Keno",
       game_id: "keno",
-      url: "/keno",
+      url: "#",
       image_url:
         "https://pepeta.com/static/media/gr-keno.cbb796643fb55d6ad391.avif",
     },
@@ -115,4 +185,17 @@ export const data = {
         "	https://pepeta.com/static/media/Triple-wheel-Large.718997218b36da5b3b37.avif",
     },
   ],
+};
+
+
+export const helpMessage = {
+  winners: [
+    "Douglas Ronia won Ksh1200!",
+    "Jane Wambui won Ksh500!",
+    "Kevin Omondi won Ksh2000!"
+  ],
+  promos: [
+    "Spin the wheel and win free coins!",
+    "New slots added today!"
+  ]
 };

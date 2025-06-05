@@ -105,7 +105,7 @@ export default function Footer() {
                 required to gamble responsibly and only bet what you can afford.
                 For gambling addiction help and support, please contact our
                 customer care at{" "}
-                <span style={{ color: "#91d5ff" }}>0712 000 000</span> or visit{" "}
+                <span style={{ color: "#91d5ff" }}>0769210210</span> or visit{" "}
                 <Link href="/responsible-gambling" style={{ color: "#91d5ff" }}>
                   /responsible-gambling
                 </Link>
@@ -201,23 +201,46 @@ export default function Footer() {
           </Title>
           <Row justify="center" gutter={24}>
             {[
-              { img: fb1, label: "Facebook" },
-              { img: tw, label: "Twitter" },
-              { img: wh, label: "WhatsApp" },
-              { img: int1, label: "Instagram" },
+              {
+                img: fb1,
+                label: "Facebook",
+                href: "https://www.facebook.com/jazabets/",
+              },
+              {
+                img: tw,
+                label: "Twitter",
+                href: "https://x.com/jazabets_com",
+              },
+              {
+                img: wh,
+                label: "WhatsApp",
+                href: "https://wa.me/254769210210", // converted phone to international format
+              },
+              {
+                img: int1,
+                label: "Instagram",
+                href: "https://www.instagram.com/jazabets", // use your actual Instagram handle
+              },
             ].map((item, idx) => (
               <Col key={idx}>
-                <Space direction="vertical" align="center">
-                  <LazyLoadImage
-                    src={item.img}
-                    alt={item.label}
-                    height={30}
-                    width={30}
-                  />
-                  <Text style={{ fontSize: 12, color: "white" }}>
-                    {item.label}
-                  </Text>
-                </Space>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Space direction="vertical" align="center">
+                    <LazyLoadImage
+                      src={item.img}
+                      alt={item.label}
+                      height={30}
+                      width={30}
+                    />
+                    <Text style={{ fontSize: 12, color: "white" }}>
+                      {item.label}
+                    </Text>
+                  </Space>
+                </a>
               </Col>
             ))}
           </Row>

@@ -1,13 +1,19 @@
 import React from "react";
 import { Tabs, Grid } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const { useBreakpoint } = Grid;
 
-const HorizontalScroller = ({ categories, activeKey, onChange }) => {
+const HorizontalScroller = ({
+  categories,
+  onCategoryClick,
+  activeCategory,
+}) => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
+  const navigate = useNavigate();
 
-  // Convert categories to items array
+  // Convert categories to tab items
   const tabItems = categories.map((category, index) => ({
     key: String(index),
     label: (
@@ -24,21 +30,29 @@ const HorizontalScroller = ({ categories, activeKey, onChange }) => {
         {category.name}
       </div>
     ),
-    children: null, // No content since it's used as navigation
+    children: null,
   }));
+
+  // Handle tab change by navigating to category URL
+  const handleTabChange = (key) => {
+    const selectedCategory = categories[parseInt(key, 10)];
+    if (selectedCategory?.url) {
+      navigate(selectedCategory.url);
+    }
+  };
 
   return (
     <div
       className="site-custom-tab-bar"
       style={{
-        width: isMobile ? "100vw" : "100%",
+        width: isMobile ? "100vw" : "-webkit-fill-available",
         padding: "0 8px",
         marginBottom: 0,
       }}
     >
       <Tabs
-        activeKey={activeKey}
-        onChange={onChange}
+        activeKey={activeCategory}
+        onChange={handleTabChange}
         items={tabItems}
         tabBarGutter={isMobile ? 0 : 8}
         moreIcon={null}

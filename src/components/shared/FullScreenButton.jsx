@@ -2,23 +2,13 @@ import React from "react";
 import { Breadcrumb, Tag } from "antd";
 import { HomeOutlined, ExpandOutlined } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
-
-const formatPathSegment = (segment) => {
-  return segment
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
-};
+import HeaderBreadCrumb from "./headerBreadCrumb";
 
 const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const pathnames = location.pathname.split("/").filter(Boolean);
-
-  const handleBreadcrumbClick = (index) => {
-    const path = "/" + pathnames.slice(0, index + 1).join("/");
-    navigate(path);
-  };
 
   return (
     <div
@@ -27,42 +17,7 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
       }`}
       style={{ padding: "0 1rem" }}
     >
-      <Breadcrumb
-        separator=">"
-        className="custom-breadcrumb"
-        style={{ fontSize: 16, cursor: "pointer", color: "var(--light)" }}
-      >
-        <Breadcrumb.Item onClick={() => navigate("/")}>
-          <HomeOutlined />
-        </Breadcrumb.Item>
-
-        {pathnames.map((segment, index) => {
-          const isLast = index === pathnames.length - 1;
-          return (
-            <Breadcrumb.Item
-              key={segment + index}
-              onClick={!isLast ? () => handleBreadcrumbClick(index) : undefined}
-              style={{
-                cursor: !isLast ? "pointer" : "default",
-                opacity: isLast ? 0.7 : 1,
-                fontWeight: isLast ? "normal" : "bold",
-                fontSize: isLast ? 13 : 14,
-                color: isLast ? "var(-fade-color)" : "var(--light)",
-              }}
-            >
-              <span
-                style={{
-                  opacity: isLast ? 0.7 : 1,
-                  fontWeight: isLast ? "normal" : "bold",
-                  fontSize: isLast ? "13px" : "14px",
-                }}
-              >
-                {formatPathSegment(segment)}
-              </span>
-            </Breadcrumb.Item>
-          );
-        })}
-      </Breadcrumb>
+      <HeaderBreadCrumb />
 
       <Tag
         color="blue"

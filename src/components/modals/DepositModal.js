@@ -218,7 +218,7 @@ const DepositModal = React.memo(() => {
                 className="form-control d-flex justify-content-between align-items-center"
                 style={{ height: "40px", backgroundColor: "var(--input-bg)" }}
               >
-                <span style={{color:"var(--light)"}}>Deposit</span>
+                <span style={{color:"var(--dark)"}}>Deposit</span>
                 <input
                   type="text"
                   id="amount"

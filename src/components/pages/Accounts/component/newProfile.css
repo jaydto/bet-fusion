@@ -77,6 +77,10 @@
   height: 100vh;
   justify-content: space-evenly;
 }
+.balance-card.top-pr {
+  background: var(--top-pr);
+  border:none!important;
+}
 .card.top-pr {
   background: var(--top-pr);
   align-self: stretch;

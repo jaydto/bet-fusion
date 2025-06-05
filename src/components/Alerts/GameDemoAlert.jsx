@@ -26,7 +26,7 @@ const GameDemoAlert = ({ game, user, gameStatus, handleRealGameClick }) => {
             </span>
           ) : (
             <span
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/auth/login")}
               style={{
                 cursor: "pointer",
                 color: "blue",

@@ -238,7 +238,7 @@ const GamePlay = React.memo((props) => {
         style={{
           background: "var(--jaza-bets-primary)",
           padding: isMobile ? 4 : 24,
-          marginTop: isCustomFullscreen ? 0 : isMobile ? 0 : 75,
+          marginTop: isCustomFullscreen ? 0 : isMobile ? 0 : 25,
         }}
       >
         <FullscreenButton

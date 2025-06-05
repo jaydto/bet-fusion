@@ -11,7 +11,7 @@ export const checkIfUser = (user, navigate) => {
   if (user) {
     Notify(message);
   } else {
-    navigate("/signup");
+    navigate("/auth/signup");
   }
 };
 

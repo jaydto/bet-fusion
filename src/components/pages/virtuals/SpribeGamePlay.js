@@ -192,7 +192,7 @@ const GamePlay = React.memo(
                 navigate("/nare-games/aviator?status=live")
                 window.location.reload()
             }else{
-                navigate('/login');
+                navigate('/auth/login');
             }
 
         }

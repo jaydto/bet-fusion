@@ -4,14 +4,14 @@
         <loc>https://www.Jazabets.com/</loc>
     </url>
     <url>
-        <loc>https://Jazabets.com/signup</loc>
+        <loc>https://Jazabets.com/auth/signup</loc>
     </url>
    
     <url>
-        <loc>https://Jazabets.com/login</loc>
+        <loc>https://Jazabets.com/auth/login</loc>
     </url>
     <url>
-        <loc>https://Jazabets.com/signup/verify</loc>
+        <loc>https://Jazabets.com/auth/verify</loc>
     </url>
     
     <url>

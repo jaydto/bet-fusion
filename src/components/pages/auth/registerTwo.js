@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, notification } from "antd";
+import { Row, Typography, notification } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
@@ -19,10 +19,10 @@ import {
 } from "../../utils/local-storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import Logo from "../../../assets/img/logo.png"
+import FormTitle from "../formTitle";
+// import Logo from "../../../assets/img/logo.png"
 
-
+const { Title } = Typography;
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -65,9 +65,9 @@ const Register = () => {
       });
       const timeoutId = setTimeout(() => {
         if (settings?.accountConfiguration?.verificationEnabled !== "0") {
-          navigate("/verify");
+          navigate("/auth/verify");
         } else {
-          navigate("/login");
+          navigate("/auth/login");
         }
       }, 100);
       return () => clearTimeout(timeoutId);
@@ -195,8 +195,13 @@ const Register = () => {
                           <div className="pb-0" data-backdrop="static">
                             <FormTitle />
                             <div className="d-flex justify-content-center position-logo-user-pages">
-                  <LazyLoadImage src={Logo} alt="Logo" />
-                </div>
+                              <Title
+                                level={2}
+                                style={{ color: "var(--light)" }}
+                              >
+                                Welcome
+                              </Title>{" "}
+                            </div>
                             <ToastContainer />
                             <Formik
                               initialValues={initialValues}
@@ -213,7 +218,10 @@ const Register = () => {
                                 handleChange,
                                 handleSubmit,
                               }) => (
-                                <Form onSubmit={handleSubmit} style={{maxWidth:"767px", margin:"auto"}}>
+                                <Form
+                                  onSubmit={handleSubmit}
+                                  style={{ maxWidth: "767px", margin: "auto" }}
+                                >
                                   <div className="form-group w-100 d-flex justify-content-center mt-2">
                                     <div className="col-md-12 w-100">
                                       <label
@@ -443,7 +451,7 @@ const Register = () => {
 
                                   <div className="col-12 d-flex justify-content-center">
                                     <Link
-                                      to={"/login"}
+                                      to={"/auth/login"}
                                       title="Login"
                                       onClick={() => gaEventTracker("Login")}
                                     >
@@ -476,41 +484,6 @@ const Register = () => {
   );
 };
 
-
 export default Register;
 
-const FormTitle = () => {
-  const navigate = useNavigate();
 
-  return (
-    <div
-      className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-1 text-center w-100 top-login-mobile"
-      style={{ margin: "0px" }}
-    >
-      <div>
-        <div
-          className={
-            " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator pt-3 pb-0"
-          }
-          onClick={() => navigate(-1)}
-        >
-          <span
-            className="d-flex justify-content-start w-25 "
-            style={{ cursor: "pointer" }}
-          >
-            <FontAwesomeIcon
-              icon={faAngleLeft}
-              className={"back-navigation-icon"}
-            />{" "}
-            <span className="px-3"> Back </span>
-          </span>
-
-          <span className={"w-50 d-flex justify-content-center"}>
-            <h4 className="inline-block">REGISTER AT</h4>
-          </span>
-          <span className="w-25"></span>
-        </div>
-      </div>
-    </div>
-  );
-};

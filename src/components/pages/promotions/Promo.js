@@ -1,6 +1,6 @@
 import React, { useEffect, useState, lazy } from "react";
 import { useNavigate } from "react-router-dom";
-import { Image, Typography, Row, Col, Button, Table, Spin } from "antd";
+import { Image, Typography, Row, Col, Button, Table, Spin, Grid } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import { ToastContainer } from "react-toastify";
 
@@ -10,9 +10,11 @@ import {
   checkIfUser,
   setUtmSouceCampaignOnPromotions,
 } from "../../utils/utils";
+import HeaderBreadCrumb from "../../shared/headerBreadCrumb";
 
 const Header = lazy(() => import("../../header/header"));
 const { Title, Paragraph, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 const Promo = () => {
   const url = new URL(window.location);
@@ -23,6 +25,8 @@ const Promo = () => {
   const [loading, setLoading] = useState(false);
   const user = getFromLocalStorage("user");
   const gaEventTracker = useAnalyticsEventTracker("Promotions");
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,35 +60,33 @@ const Promo = () => {
   return (
     <>
       <ToastContainer />
-      <Row style={{ background: "var(--jaza-bets-primary)", marginTop: 80 }}>
+      <div
+        style={{
+          background: "var(--jaza-bets-primary)",
+          margin: "auto",
+          maxWidth: "767px",
+        }}
+      >
         <Col span={24}>
-          <Row justify="center" align="middle" style={{ padding: "1rem" }}>
-            <Col span={2}>
-              <Button
-                type="text"
-                icon={
-                  <LeftOutlined
-                    style={{ fontSize: 20, color: "#fff", opacity: 0.7 }}
-                  />
-                }
-                onClick={() => navigate(-1)}
-              />
-            </Col>
-            <Col span={20}>
-              <Title level={3} style={{ textAlign: "center", color: "#fff" , fontSize: 14}}>
-                PROMOTIONS
-              </Title>
-            </Col>
-          </Row>
+          <div style={{ padding: isMobile ? "0px 10px" : "20px 2rem" }}>
+            <HeaderBreadCrumb />
+          </div>
 
-          <Row justify="center" style={{ padding: "1rem" }}>
+          <div
+            className="d-flex justify-content-center"
+            style={{ padding: "1rem" }}
+          >
             <Col span={24}>
               <div
-                style={{ background: "var(--jaza-bets-header-bg)", padding: 24, borderRadius: 8 }}
+                style={{
+                  background: "var(--jaza-bets-header-bg)",
+                  padding: 24,
+                  borderRadius: 8,
+                }}
               >
                 <Title
                   level={4}
-                  style={{ color: "#ea5d0b", textAlign: "center" }}
+                  style={{ color: "var(--light)", textAlign: "center" }}
                 >
                   {item?.name}
                 </Title>
@@ -102,42 +104,52 @@ const Promo = () => {
                 {item?.instructions && (
                   <Title
                     level={5}
-                    style={{ color: "#ea5d0b", textAlign: "center" }}
+                    style={{ color: "var(--light)", textAlign: "center" }}
                   >
                     {item.instructions}
                   </Title>
                 )}
 
                 {item?.description && (
-                  <Paragraph style={{ color: "var(--light)" }} >{renderMultilineText(item.description)}</Paragraph>
+                  <Paragraph style={{ color: "var(--light)" }}>
+                    {renderMultilineText(item.description)}
+                  </Paragraph>
                 )}
 
                 {item?.heading && (
                   <Title
                     level={5}
                     underline
-                    style={{ color: "#ea5d0b", textAlign: "center" }}
+                    style={{
+                      color: "var(--jaza-bets-header-bg)",
+                      textAlign: "center",
+                    }}
                   >
                     {item.heading}
                   </Title>
                 )}
 
                 {item?.intro && (
-                  <Paragraph style={{ color: "var(--light)" }}>{renderMultilineText(item.intro)}</Paragraph>
+                  <Paragraph style={{ color: "var(--light)" }}>
+                    {renderMultilineText(item.intro)}
+                  </Paragraph>
                 )}
 
                 {item?.headingBooster && (
                   <Title
                     level={5}
                     underline
-                    style={{ color: "#ea5d0b", textAlign: "center" }}
+                    style={{
+                      color: "var(--jaza-bets-header-bg)",
+                      textAlign: "center",
+                    }}
                   >
                     {item.headingBooster}
                   </Title>
                 )}
 
                 {item?.boosterDescription && (
-                  <Paragraph style={{ color: "var(--light)" }} >
+                  <Paragraph style={{ color: "var(--light)" }}>
                     {renderMultilineText(item.boosterDescription)}
                   </Paragraph>
                 )}
@@ -167,18 +179,23 @@ const Promo = () => {
                     <Title
                       level={5}
                       underline
-                      style={{ color: "#ea5d0b", textAlign: "center" }}
+                      style={{ color: "var(--light)", textAlign: "center" }}
                     >
                       {item.exampleHeading}
                     </Title>
-                    <Paragraph style={{ color: "var(--light)" }} >{renderMultilineText(item.example)}</Paragraph>
+                    <Paragraph style={{ color: "var(--light)" }}>
+                      {renderMultilineText(item.example)}
+                    </Paragraph>
                   </>
                 )}
 
                 <Row justify="center" style={{ marginTop: 24 }}>
                   <Col>
                     <Button
-                    style={{ background: "var(--jaza-bets-button-login)" }} 
+                      style={{
+                        background: "var(--jaza-bets-button-login)",
+                        border: "none",
+                      }}
                       size="large"
                       onClick={() => {
                         if (item?.actions[0].name === "Sign Up") {
@@ -202,7 +219,7 @@ const Promo = () => {
                     level={5}
                     underline
                     style={{
-                      color: "#ea5d0b",
+                      color: "var(--light)",
                       textAlign: "center",
                       marginTop: 24,
                     }}
@@ -212,7 +229,9 @@ const Promo = () => {
                 )}
 
                 {item?.termsContent && (
-                  <Paragraph style={{ marginBottom: 16, color:"var(--light)" }}>
+                  <Paragraph
+                    style={{ marginBottom: 16, color: "var(--light)" }}
+                  >
                     {renderMultilineText(item.termsContent)}
                   </Paragraph>
                 )}
@@ -222,7 +241,7 @@ const Promo = () => {
                     style={{
                       textAlign: "center",
                       fontWeight: "bold",
-                      color: "#ea5d0b",
+                      color: "var(--jaza-bets-header-bg)",
                     }}
                   >
                     NB: {item.nb}
@@ -230,9 +249,9 @@ const Promo = () => {
                 )}
               </div>
             </Col>
-          </Row>
+          </div>
         </Col>
-      </Row>
+      </div>
     </>
   );
 };

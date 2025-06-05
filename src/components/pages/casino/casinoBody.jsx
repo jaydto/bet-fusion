@@ -7,9 +7,18 @@ import useWindowDimensions from "../../header/Dimensions";
 import GameSearchFilters from "./gameSearchFilters";
 import PageHeader from "./pageHeader";
 import GamesLibrary from "./gamesLibrary";
+import NoGamesCard from "./NoGamesCard";
+import { useState } from "react";
+import { setState } from "../../../redux/virtualsSlice";
+import GameFilters from "./gameFilters";
 
-const CasinoGames = ({ activeCategory = "All" }) => {
+const CasinoGames = ({ activeSetCategory }) => {
+  const [activeCategory, setActiveCategory] = useState(activeSetCategory);
+
+  console.log("activeCategory", activeCategory);
+
   const user = getFromLocalStorage("user");
+  const dispatch = useDispatch();
 
   const casino_games = useSelector((state) => state.virtuals.casino_games_data);
   const loading = useSelector((state) => state.virtuals.loading);
@@ -75,7 +84,7 @@ const CasinoGames = ({ activeCategory = "All" }) => {
   }));
 
   const filteredSections =
-    activeCategory !== "All"
+    activeCategory !== "Lobby"
       ? sections.filter((section) => section.title === activeCategory)
       : sections;
 
@@ -85,47 +94,52 @@ const CasinoGames = ({ activeCategory = "All" }) => {
     event.stopPropagation();
     user?.profile_id
       ? navigate(
-          `/game-play?game=${gameId}&status=${
+          `/casino/game-play?game=${gameId}&status=${
             isDemo ? "1" : "0"
           }&game_name=${game_name}`
         )
-      : navigate("/login");
+      : navigate("/auth/login");
   };
 
   const onSearch = (searchTerm) => {
     console.log("Search:", searchTerm);
+    dispatch(setState("casino_search_modal", true));
   };
 
   const onFilterChange = (category) => {
+    setActiveCategory(category);
     console.log("Filter changed to:", category);
   };
 
-  console.log("filteredSections", filteredSections);
   console.log("activeCategory", activeCategory);
-  console.log("casino_games", casino_games);
 
   return (
     <div style={{ overflow: "hidden", position: "relative" }}>
-      <div className="container mt-1 body-section">
+      <div className=" mt-1 body-section">
         <PageHeader
-          title="Casino Games"
+          title={activeCategory === "Lobby" ? "Casino Lobby" : activeCategory}
           description="Explore and play your favorite casino games"
         />
-        <GameSearchFilters
-          onSearch={onSearch}
+        <GameSearchFilters onSearch={onSearch} />
+
+        <GameFilters
+          activeCategory={activeCategory}
           onFilterChange={onFilterChange}
         />
 
         <div className="container mt-1 body-section">
           {loading ? (
             <CasinoSkeletonLoader />
+          ) : filteredSections.length === 0 ? (
+            <NoGamesCard />
           ) : (
             filteredSections.map((section, index) => (
               <GamesLibrary
                 key={index}
                 title={section.title}
                 games={section.games}
-                onViewAll={() => {}}
+                categoryId={activeCategory}
+                onViewLobby={() => {}}
                 handleGameClick={handleGameClick}
               />
             ))

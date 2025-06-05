@@ -68,7 +68,7 @@ const Header = React.memo((props) => {
   }, [userData]);
 
   useEffect(() => {
-    if (pathname !== "/login") {
+    if (pathname !== "/auth/login") {
       dispatch({ type: "SET", key: "page_view", payload: pathname });
     }
   }, [pathname]);

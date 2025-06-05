@@ -23,7 +23,7 @@ const GamesSection = ({ games, category = null }) => {
     if (user?.profile_id) {
       navigate(game.url);
     } else {
-      navigate("/login");
+      navigate("/auth/login");
     }
   };
 
@@ -52,13 +52,13 @@ const GamesSection = ({ games, category = null }) => {
         </div>
       )}
 
-      <div className="games-section" style={{ marginBottom: "2rem" }}>
+      <div className="games-section" >
         <Row gutter={[16, 16]}>
           {games.map((game) => {
             const isUnavailable = game.url === "#";
             const isOverlayVisible = isUnavailable && activeGameId === game.game_id;
             return (
-              <Col key={game.game_id} xs={8} sm={8} md={6} lg={6} xl={6}>
+              <Col key={game.game_id} xs={12} sm={12} md={6} lg={6} xl={6}>
                 <Card
                   hoverable={!isUnavailable}
                   style={{

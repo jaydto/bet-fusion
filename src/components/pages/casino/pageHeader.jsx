@@ -1,9 +1,10 @@
 import React from "react";
-import { Breadcrumb, Typography } from "antd";
+import { Breadcrumb, Grid, Typography } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const { Title, Paragraph } = Typography;
+const { useBreakpoint } = Grid;
 
 const formatPathSegment = (segment) => {
   return segment
@@ -14,58 +15,50 @@ const formatPathSegment = (segment) => {
 const PageHeader = ({ title, description }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const screens = useBreakpoint();
+
+  const isMobile = !screens.md;
 
   const pathnames = location.pathname.split("/").filter(Boolean);
 
-  const handleBreadcrumbClick = (index) => {
-    const path = "/" + pathnames.slice(0, index + 1).join("/");
-    navigate(path);
-  };
+  const breadcrumbItems = [
+    {
+      title: <HomeOutlined />,
+      onClick: () => navigate("/"),
+    },
+    ...pathnames.map((segment, index) => {
+      const isLast = index === pathnames.length - 1;
+      return {
+        title: (
+          <span
+            style={{
+              opacity: isLast ? 0.7 : 1,
+              fontWeight: isLast ? "normal" : "bold",
+              fontSize: isLast ? "13px" : "14px",
+              cursor: !isLast ? "pointer" : "default",
+            }}
+          >
+            {formatPathSegment(segment)}
+          </span>
+        ),
+        onClick: !isLast
+          ? () => navigate("/" + pathnames.slice(0, index + 1).join("/"))
+          : undefined,
+      };
+    }),
+  ];
 
   return (
     <div
       className="page-header"
-      style={{ marginBottom: "1.5rem", padding: "1.5rem" }}
+      style={{ marginBottom: "1.5rem", padding: isMobile?30:24}}
     >
       <Breadcrumb
         separator=">"
         className="custom-breadcrumb"
         style={{ fontSize: "16px", color: "var(--light)" }}
-      >
-        <Breadcrumb.Item
-          onClick={() => navigate("/")}
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <HomeOutlined style={{ marginRight: 4 }} />
-        </Breadcrumb.Item>
-
-        {pathnames.map((segment, index) => {
-          const isLast = index === pathnames.length - 1;
-          return (
-            <Breadcrumb.Item
-              key={segment}
-              onClick={!isLast ? () => handleBreadcrumbClick(index) : undefined}
-              style={{
-                cursor: !isLast ? "pointer" : "default",
-              }}
-            >
-              <span
-                style={{
-                  opacity: isLast ? 0.7 : 1,
-                  fontWeight: isLast ? "normal" : "bold",
-                  fontSize: isLast ? "13px" : "14px",
-                }}
-              >
-                {formatPathSegment(segment)}
-              </span>
-            </Breadcrumb.Item>
-          );
-        })}
-      </Breadcrumb>
+        items={breadcrumbItems}
+      />
 
       <Title level={4} style={{ marginTop: "0.75rem", color: "var(--light)" }}>
         {title}

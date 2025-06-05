@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Row } from "antd";
+import { Row, Typography } from "antd";
 
 import { useNavigate } from "react-router-dom";
 import HeaderLogin from "../header/top-login";
-import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
+import { getFromLocalStorage} from "../utils/local-storage";
 
 import { StoreContext } from "../../context/store";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import Logo from "../../assets/img/logo.png"
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import FormTitle from "./formTitle";
+// import Logo from "../../assets/img/logo.png";
+
+const { Title } = Typography;
+
 
 const backgroundStyle = {
   // background: `url(${gameDay})`,
@@ -33,40 +36,7 @@ const LoginTwo = React.memo((props) => {
     }
   }, []);
 
-  const FormTitle = () => {
-    return (
-      <div
-        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3  text-center w-100 top-login-mobile"
-        style={{ margin: "0px" }}
-      >
-        <div>
-          <div
-            className={
-              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center top-separator py-3"
-            }
-            onClick={() => navigate("/")}
-          >
-            <span
-              className="d-flex justify-content-lg-center justify-content-md-start px-3 w-25 "
-              style={{ cursor: "pointer" }}
-            >
-              <FontAwesomeIcon
-                icon={faAngleLeft}
-                className={"back-navigation-icon"}
-              />{" "}
-                          <span className="px-3"> Back </span>
-
-            </span>
-
-            <span className={"w-50 d-flex justify-content-center"}>
-              {/* <h4 className="inline-block form-title-centric">Login</h4> */}
-            </span>
-            <span className="w-25"></span>
-          </div>
-        </div>
-      </div>
-    );
-  };
+ 
 
   const LoginInstructions = () => {
     return (
@@ -81,7 +51,10 @@ const LoginTwo = React.memo((props) => {
   const { state } = useContext(StoreContext);
 
   return (
-    <div style={{ height: "100vh", overflowX: "hidden" }} className="login-page-section">
+    <div
+      style={{ height: "100vh", overflowX: "hidden" }}
+      className="login-page-section"
+    >
       <Row
         justify="center"
         className="align-items-stretch h-100"
@@ -98,7 +71,9 @@ const LoginTwo = React.memo((props) => {
 
               <Row justify="center">
                 <div className="d-flex justify-content-center position-logo-user-pages">
-                  <LazyLoadImage src={Logo} alt="Logo" />
+                  <Title level={2} style={{ color: "var(--light)" }}>
+                    Welcome
+                  </Title>{" "}
                 </div>
                 <LoginInstructions />
 
@@ -113,14 +88,15 @@ const LoginTwo = React.memo((props) => {
                           ) {
                             return navigate(
                               state?.page_view
-                                ? state?.page_view === "/signup"
+                                ? state?.page_view === "/auth/signup"
                                   ? "/"
                                   : `${state?.page_view}`
                                 : "/"
                             );
                           } else {
                             navigate(
-                              getFromLocalStorage("ActiveLink") === "/signup"
+                              getFromLocalStorage("ActiveLink") ===
+                                "/auth/signup"
                                 ? "/"
                                 : getFromLocalStorage("ActiveLink")
                             );

@@ -15,7 +15,7 @@ const MustPlaySection = ({ must_play }) => {
           <Col key={game.game_id} xs={12} sm={12} md={12} lg={12}>
             <Card
               hoverable
-              bodyStyle={{ padding: 0 }}
+              styles={{body: {padding: 0} }}
               onClick={() => console.log(`Navigate to ${game.url}`)}
               style={{
                 borderRadius: "16px",

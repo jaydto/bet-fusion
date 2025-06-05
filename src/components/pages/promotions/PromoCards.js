@@ -84,7 +84,7 @@ const PromoCards = () => {
                 <Title
                   level={5}
                   style={{
-                    color: "#ea5d0b",
+                    color: "var(--light)",
                     fontSize: 14,
                     textAlign: "center",
                     marginBottom: 8,
@@ -107,8 +107,9 @@ const PromoCards = () => {
                     type="primary"
                     size="small"
                     style={{
-                      backgroundColor: "#ea5d0b",
+                      backgroundColor: "var(--jaza-bets-button-login)",
                       border: "none",
+                      color:"var(--black)",
                       fontSize: 12,
                     }}
                     onClick={() => {
@@ -129,7 +130,7 @@ const PromoCards = () => {
                     type="link"
                     size="small"
                     style={{
-                      color: "#ea5d0b",
+                      color: "var(--jaza-bets-button-login)",
                       fontSize: 12,
                       padding: 0,
                     }}

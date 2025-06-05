@@ -5,12 +5,16 @@ import { useNavigate } from "react-router-dom";
 import GamesSection from "./gamesSection";
 import MustPlaySection from "./mustPlaySection";
 import HorizontalScroller from "./horizontalScroller";
-import { data } from "./data";
+import { data, helpMessage } from "./data";
+import CongratulationBanner from "./conratulations";
+import CategoryTabs from "./categoryTabs";
+import GameNavBar from "../../mobile-navigation/MobileNav1";
+import CasinoCarouselLoader from "./carousel";
 
 const { useBreakpoint } = Grid;
 
 const LandingPage = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("lobby");
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   const navigate = useNavigate();
@@ -28,26 +32,33 @@ const LandingPage = () => {
       <div
         style={{
           marginTop: isMobile ? 2 : 20,
-          padding: "12px 0px 0px 12px",
+          padding: isMobile?"5px 1px":"12px 0px 0px 12px",
           overflow: "hidden",
         }}
       >
-        <HorizontalScroller
+        <GameNavBar />
+        <CasinoCarouselLoader/>
+        <CongratulationBanner messagesObject={helpMessage} />
+        {/* <div style={{ marginTop: 20 }}>
+          <CategoryTabs />
+        </div> */}
+
+        {/* <HorizontalScroller
           categories={data.categories}
           activeCategory={activeCategory}
           onCategoryClick={handleCategoryClick}
-        />
+        /> */}
       </div>
 
       <div style={{ marginTop: 0 }}>
         <GamesSection games={data.games} />
       </div>
 
-      <div style={{ marginTop: 5 }}>
+      {/* <div style={{ marginTop: 5 }}>
         <MustPlaySection must_play={data.must_play} />
-      </div>
+      </div> */}
 
-      <div style={{ marginTop: 5 }}>
+      <div style={{ marginTop: 5 , marginBottom: "2rem"}}>
         <GamesSection games={data.numbers} category="Numbers" />
       </div>
 

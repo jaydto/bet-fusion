@@ -1,33 +1,56 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { StoreContext } from "../../context/store";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./searchModal.css";
+import { Input, Button, Typography, Row, Col, Card, Grid } from "antd";
+import { PlayCircleOutlined, SearchOutlined } from "@ant-design/icons";
 import { casinoGamesSearch, setState } from "../../redux/virtualsSlice";
-import { FaSearch } from "react-icons/fa";
 import { getFromLocalStorage } from "../utils/local-storage";
-import LazyLoad from "react-lazyload";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import "./searchModal.css";
+
+const { Text } = Typography;
+const { useBreakpoint } = Grid;
 
 const SearchModal = () => {
   const reduxDispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const [isFocused, setIsFocused] = useState(false);
-
-  const casino_search=useSelector((state) => state.virtuals.casino_search_modal);
-
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeCardId, setActiveCardId] = useState(null);
+  const [hoveredCardId, setHoveredCardId] = useState(null);
+  const [crashSearch, setCrashSearch] = useState([]);
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
+  const cardRefs = useRef({}); // map of game_id to card refs
+
+  const casino_search = useSelector(
+    (state) => state.virtuals.casino_search_modal
+  );
+  const { casino_games_data_search, casino_games_data_crash } = useSelector(
+    (state) => state.virtuals
+  );
+
   const modalRef = useRef(null);
   const searchInputRef = useRef(null);
+  const user = getFromLocalStorage("user");
 
-  const { casino_games_data_search } = useSelector((state) => state.virtuals);
-  const casino_games_crash = useSelector(
-    (state) => state.virtuals.casino_games_data_crash
-  );
-  const [crashSearch, setCrashSearch] = useState([]);
+  useEffect(() => {
+    if (casino_search) {
+      searchInputRef.current?.focus();
+    }
+  }, [casino_search]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        handleClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (location.pathname === "/" || location.pathname.includes("crashgames")) {
@@ -35,23 +58,21 @@ const SearchModal = () => {
     }
   }, [location.pathname]);
 
-  const handleInputChange = (event) => {
-    const value = event.target.value;
+  const handleInputChange = (e) => {
+    const value = e.target.value;
     setSearchQuery(value);
-    location.pathname.includes("crashgames")
-      ? gameSearchCrash(value)
-      : gameSearch(value);
+    if (location.pathname.includes("crashgames")) {
+      gameSearchCrash(value);
+    } else {
+      gameSearch(value);
+    }
   };
 
   const gameSearchCrash = (query) => {
-    const filteredGames = casino_games_crash.filter((game) =>
+    const filteredGames = casino_games_data_crash.filter((game) =>
       game.game_name.toLowerCase().includes(query.toLowerCase())
     );
     setCrashSearch(filteredGames);
-  };
-
-  const handleClose = () => {
-    reduxDispatch(setState("casino_search_modal", false));
   };
 
   const gameSearch = async (query) => {
@@ -64,162 +85,155 @@ const SearchModal = () => {
     const endpoint = `/v1/casino-game-listing?search=${query}`;
     reduxDispatch(casinoGamesSearch({ endpoint, method: "GET" }));
   };
-  const [hoveredGame, setHoveredGame] = useState(null);
-  const [overlayVisible, setOverlayVisible] = useState({});
-  const user = getFromLocalStorage("user"); // Always get the user from local storage
-
-  const [activeGameOverlay, setActiveGameOverlay] = useState(null);
-
-  const toggleOverlay = (event, gameId) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setActiveGameOverlay((prev) => (prev === gameId ? null : gameId));
-  };
-
-  console.log("overlay visible", overlayVisible);
 
   const handleGameClick = (event, gameId, isDemo, game_name) => {
-    event.stopPropagation(); // Prevent event bubbling if needed
-    console.log("Game ID:", gameId, "Demo Mode:", isDemo);
-
+    event.stopPropagation();
+    handleClose();
     user?.profile_id
       ? navigate(
-          `/game-play?game=${gameId}&status=${
+          `/casino/game-play?game=${gameId}&status=${
             isDemo ? "1" : "0"
           }&game_name=${game_name}`
         )
       : navigate("/login");
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        handleClose();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (casino_search) {
-      searchInputRef.current?.focus();
-    }
-  }, [casino_search]);
+  const handleClose = () =>
+    reduxDispatch(setState("casino_search_modal", false));
 
   if (!casino_search) return null;
+
+  const handleCardClick = (game_id) => {
+    setActiveCardId((prev) => (prev === game_id ? null : game_id));
+
+    // Scroll to the clicked card
+    const cardNode = cardRefs.current[game_id];
+    if (cardNode && cardNode.scrollIntoView) {
+      cardNode.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  };
 
   return (
     <div className="modal-overlay search-modal-overlay">
       <div className="modal-content search-modal" ref={modalRef}>
-        <div className="mb-3 w-100 ">
-          <div
-            className={`input-group input-group-lg w-100 my-1 position-relative rounded-pill search-casino ${
-              isFocused ? "border-purple" : ""
-            }`}
-            style={{
-              borderColor: isFocused ? "#800080" : "transparent", // Purple border color
-              transition: "border-color 0.3s ease-in-out", // Smooth transition for the border
-            }}
-          >
-            <span className="input-group-text bg-transparent d-flex align-items-center justify-content-center  ">
-              <FaSearch size={20} className="text-white" />
-              <input
-                type="text"
-                ref={searchInputRef}
-                className="form-control bg-transparent text-white border-0 fs-6 px-2 py-1 search-cat"
-                placeholder="SEARCH GAME"
-                style={{
-                  backgroundColor: isFocused ? "transparent" : "#2a2a2a", // Transparent when focused
-                  transition: "background-color 0.3s ease-in-out", // Smooth background color transition
-                  borderRadius: "50px", // Rounded corners for the input
-                }}
-                onFocus={() => {
-                  setIsFocused(true);
-                }}
-                value={searchQuery}
-                onChange={handleInputChange}
-                // onBlur={() => setIsFocused(false)}
-              />
-            </span>
-          </div>
-        </div>
+        <Input
+          ref={searchInputRef}
+          size="large"
+          placeholder="SEARCH GAME"
+          prefix={<SearchOutlined style={{ color: "#ccc" }} />}
+          value={searchQuery}
+          onChange={handleInputChange}
+          className="search-cat bg-transparent"
+          style={{
+            borderRadius: 50,
+            backgroundColor: "#2a2a2a",
+            color: "var(--light)",
+          }}
+        />
 
         <div className="mt-3">
-          <div className="row row-cols-3 g-3 text-light">
+          <Row gutter={[16, 16]}>
             {(location.pathname.includes("crashgames")
               ? crashSearch
               : casino_games_data_search
-            )?.map((game) => (
-              <div key={game.game_id}>
-                <div
-                  className="casino-search-item"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    toggleOverlay(event, game.game_id);
-                  }}
-                  onMouseEnter={() => {
-                    if (activeGameOverlay !== game.game_id) {
-                      setHoveredGame(game.game_id);
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    if (activeGameOverlay !== game.game_id) {
-                      setHoveredGame(null);
-                    }
-                  }}
+            )?.map((game, index) => {
+              const isActive = activeCardId === index;
+              const isHovered = hoveredCardId === index;
+
+              return (
+                <Col
+                  key={index}
+                  xs={12}
+                  sm={12}
+                  md={8}
+                  lg={8}
+                  ref={(el) => (cardRefs.current[index] = el)}
                 >
-                  <LazyLoadImage
-                    src={game.image_url}
-                    alt={game.game_name}
-                    effect="black-and-white"
-                    className="casino-search-thumbnail"
-                  />
-                 
-                  {(hoveredGame === game.game_id ||
-                    activeGameOverlay === game.game_id) && (
-                    <div className="overlay-search gap-2">
-                      <button
-                        className="overlay-btn"
-                        onClick={(event) =>
-                          handleGameClick(
-                            event,
-                            game.game_id,
-                            false,
-                            game.game_name
-                          )
-                        }
+                  <Card
+                    hoverable
+                    styles={{ body: { padding: 0 } }}
+                    style={{
+                      borderRadius: "16px",
+                      border: "none",
+                      background: "transparent",
+                      position: "relative",
+                    }}
+                    cover={
+                      <LazyLoadImage
+                        alt={game.game_name}
+                        src={game.image_url}
+                        style={{
+                          borderRadius: "10px",
+                          maxHeight: isMobile ? 120 : 150,
+                          minHeight: isMobile ? 120 : 150,
+                          width: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    }
+                    onClick={() => handleCardClick(index)}
+                    onMouseEnter={() => setHoveredCardId(index)}
+                    onMouseLeave={() => setHoveredCardId(null)}
+                    className={`${isActive || isHovered ? "active" : ""}`}
+                  >
+                    {(isActive || isHovered) && (
+                      <div
+                        className="overlay-2"
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        Play
-                      </button>
-                      <button
-                        className="overlay-btn"
-                        onClick={(event) =>
-                          handleGameClick(
-                            event,
-                            game.game_id,
-                            true,
-                            game.game_name
-                          )
-                        }
-                      >
-                        Demo
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+                        <div className="overlay-top">
+                          <PlayCircleOutlined
+                            style={{ fontSize: 32, color: "#fff" }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleGameClick(
+                                e,
+                                game.game_id,
+                                true,
+                                game.game_name
+                              );
+                            }}
+                          />
+                        </div>
+                        <div className="overlay-center">
+                          <Button
+                            type="primary"
+                            size="middle"
+                            className="play-now-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleGameClick(
+                                e,
+                                game.game_id,
+                                false,
+                                game.game_name
+                              );
+                            }}
+                          >
+                            Play Now
+                          </Button>
+                        </div>
+                        <div className="overlay-bottom">
+                          <Text style={{ color: "#fff", fontWeight: 500 }}>
+                            {game.title}
+                          </Text>
+                        </div>
+                      </div>
+                    )}
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
         </div>
 
-        <button onClick={handleClose} className="btn btn-danger-search">
+        <Button onClick={handleClose} danger style={{ marginTop: 20 }}>
           Close
-        </button>
+        </Button>
       </div>
     </div>
   );

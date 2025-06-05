@@ -14,14 +14,16 @@ import useWindowDimensions from "../../header/Dimensions";
 import { userPromoPoints } from "../../../redux/authSlice";
 
 import WithdrawForm from "./component/withdrawCard";
-import bonus from "../../../assets/img/mobile/bonus.svg";
 import profilep from "../../../assets/img/mobile/profile-p.svg";
 import balance from "../../../assets/img/mobile/balance.svg";
 import DepositModal from "../../modals/DepositModal";
 import { setState } from "../../../redux/dataSlice";
 import JisortModal from "../../modals/JisortModal";
 import { Switch } from "@mui/material";
-import { Col, Row } from "antd";
+import { Card, Col, Row, Typography } from "antd";
+import { WalletOutlined, GiftOutlined } from "@ant-design/icons";
+
+const { Text, Title } = Typography;
 
 const NewProfile = React.memo(() => {
   const userData = useSelector((state) => state.auth.user);
@@ -104,7 +106,7 @@ const NewProfile = React.memo(() => {
       <div>
         <div className="profile-container-desktop d-flex">
           <Row gutter={[16, 16]} style={{ width: "100%" }}>
-            <Col xs={24} md={24} lg={12 }>
+            <Col xs={24} md={24} lg={12}>
               {" "}
               {/* Adjust col span as needed */}
               <div className="col mobile-full-width">
@@ -117,36 +119,7 @@ const NewProfile = React.memo(() => {
                       />
                       <span className="h4 text-light-p">{user?.msisdn}</span>
                     </div>
-                    <div className="card mb-3 top-pr">
-                      <div className="upper-row">
-                        <div className="card-item d-flex  align-items-center px-2">
-                          {/* Cash Balance with Wallet Icon in Column Layout */}
-                          <LazyLoadImage
-                            src={balance}
-                            className="mb-2 icon-large icon-white "
-                          />
-                          <div className="balance-container d-flex flex-column align-items-start px-3">
-                            <div className="t-label">Balance</div>
-                            <div className="dollar">
-                              Ksh {formatNumber(user?.balance) || 0}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="card-item d-flex  align-items-center px-2">
-                          {/* Bonus Balance with Gift Icon in Column Layout */}
-                          <LazyLoadImage
-                            src={bonus}
-                            className="mb-2 icon-large icon-white "
-                          />
-                          <div className="balance-container d-flex flex-column align-items-start px-3">
-                            <div className="t-label">Bonus </div>
-                            <div className="dollar">
-                              Ksh {formatNumber(user?.bonus) || 0}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <BalanceCard />
 
                     <button
                       className={`w-100 button-radius input-field btn-font login-button2 mb-4 btn bold`}
@@ -241,9 +214,9 @@ const NewProfile = React.memo(() => {
                         Change Password <FontAwesomeIcon icon={faAngleRight} />
                       </div>
                     </div>
-                    <p style={{ color: "var(--light)" }}>Settings</p>
+                    {/* <p style={{ color: "var(--light)" }}>Settings</p> */}
                     {/* Theme Toggle */}
-                    <div className="card mb-3 top-pr">
+                    {/* <div className="card mb-3 top-pr">
                       <div
                         className="upper-row text-light-p p-3 d-flex justify-content-between align-items-center"
                         onClick={() => setIsLightTheme((prev) => !prev)}
@@ -268,7 +241,7 @@ const NewProfile = React.memo(() => {
                           inputProps={{ "aria-label": "Data Saver Switch" }}
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <p style={{ color: "var(--light)" }}>Support</p>
                     <div className="card mb-3 top-pr">
                       <div
@@ -292,3 +265,52 @@ const NewProfile = React.memo(() => {
   );
 });
 export default React.memo(NewProfile);
+
+const BalanceCard = ({ user }) => {
+  const balance = user?.balance || 0;
+  const bonus = user?.bonus || 0;
+
+  return (
+    <Card className="mb-3 top-pr balance-card">
+      <div className="d-flex justify-content-between">
+        {/* Cash Balance */}
+        <div className="d-flex align-items-center px-2">
+          <WalletOutlined
+            style={{
+              fontSize: 32,
+              color: "var(--jaza-bets-button-login)",
+              marginRight: 12,
+            }}
+          />
+          <div className="d-flex flex-column">
+            <Text type="secondary" style={{ color: "var(--light)" }}>
+              Balance
+            </Text>
+            <Title level={5} style={{ margin: 0, color: "var(--light)" }}>
+              Ksh {formatNumber(balance)}
+            </Title>
+          </div>
+        </div>
+
+        {/* Bonus Balance */}
+        <div className="d-flex align-items-center px-2">
+          <GiftOutlined
+            style={{
+              fontSize: 32,
+              color: "var(--jaza-bets-button-login)",
+              marginRight: 12,
+            }}
+          />
+          <div className="d-flex flex-column">
+            <Text type="secondary" style={{ color: "var(--light)" }}>
+              Bonus
+            </Text>
+            <Title level={5} style={{ margin: 0, color: "var(--light)" }}>
+              Ksh {formatNumber(bonus)}
+            </Title>
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+};

@@ -16,8 +16,8 @@
 }
 
 .card-header-d {
-  background-color: #1e0c31;
-  color: white;
+  background-color: var(--deposit-c);
+  color: var(--dark);
   padding: 10px;
   position: relative;
   flex: 1;
@@ -44,7 +44,7 @@
 .card-body-d {
   background-color: white;
   color: black;
-  padding: 6px 0px;
+  padding: 6px 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;

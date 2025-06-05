@@ -12,43 +12,21 @@ import { setState as setStateV } from "../../redux/virtualsSlice";
 import { shouldShowSearch } from "../../redux/navigationAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { get } from "lodash";
 
 export const UserInfo = React.memo((props) => {
   const { profile } = props;
   const pathname = window.location.pathname;
   const { state, dispatch } = useContext(StoreContext);
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
-  const userData = useSelector((state) => state.auth.user);
 
   const [user, setUser] = useState(getFromLocalStorage("user"));
 
   useEffect(() => {
-    if (userData) {
-      setUser(userData || getFromLocalStorage("user"));
-    }
-  }, [userData]);
+    setUser(getFromLocalStorage("user"));
+  }, [getFromLocalStorage("user")]);
 
   const dispatchRedux = useDispatch();
-  const notShowSearch = dispatchRedux(shouldShowSearch(pathname));
-
-  const show = useSelector((state) => state.data.show_menu);
-
-  const handleShow = () => {
-    dispatchRedux(setState("show_menu", true));
-  };
-  const handleClose = () => {
-    dispatchRedux(setState("show_menu", false));
-  };
-  const toggle = () => {
-    show ? handleClose() : handleShow();
-  };
-  const urlPath = window.location.pathname;
-  const showBalance =
-    !urlPath.includes("nare-games") &&
-    !urlPath.includes("gameplay") &&
-    !urlPath.includes("smart-play");
-
-  const casino_search = useSelector((state) => state.virtuals.casino_search);
 
   const handleCasinoSearch = () => {
     dispatchRedux(setStateV("casino_search_modal", true));
@@ -98,20 +76,20 @@ export const UserInfo = React.memo((props) => {
       <>
         {!user && (
           <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2 mb-2 col-lg-3 justify-content-end">
-            {pathname !== "/login" && (
+            {pathname !== "/auth/login" && (
               <Link
-                to={"/login"}
+                to={"/auth/login"}
                 className="cg  login-color login-size btn"
                 type="submit"
               >
                 <span>Login</span>
               </Link>
             )}
-            {pathname !== "/signup" && (
+            {pathname !== "/auth/signup" && (
               <div className="">
                 <Link
                   className="cg   login-size btn btn-button-bg-2 text-light"
-                  to={"/signup"}
+                  to={"/auth/signup"}
                   title="Join now"
                   onClick={() => gaEventTracker("Register")}
                 >

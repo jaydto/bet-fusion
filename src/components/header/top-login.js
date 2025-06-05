@@ -268,7 +268,7 @@ const HeaderLogin = React.memo((props) => {
 
               <div className="d-flex justify-content-between align-items-center">
                 <Link
-                  to={"/reset-password"}
+                  to={"/auth/reset-password"}
                   title="Reset password"
                   onClick={() => gaEventTracker("Reset Password")}
                 >
@@ -302,7 +302,7 @@ const HeaderLogin = React.memo((props) => {
               </button>
               <Link
                 className="cg register-button btn btn-warning"
-                to={"/signup"}
+                to={"/auth/signup"}
                 title="Join now"
                 onClick={() => gaEventTracker("Register")}
                 style={login && { display: "none" }}
@@ -319,7 +319,7 @@ const HeaderLogin = React.memo((props) => {
                   className={`${
                     login ? "d-flex justify-content-center w-100" : ""
                   }`}
-                  to={"/signup"}
+                  to={"/auth/signup"}
                   title="Join now"
                   onClick={() => gaEventTracker("Register")}
                 >
@@ -332,7 +332,7 @@ const HeaderLogin = React.memo((props) => {
                 </Link>
                 <Link
                   className="m-lg-2 badge bg-success d-none"
-                  to={"/verify-account"}
+                  to={"/auth/verify"}
                   title="Verify Account"
                   onClick={() => gaEventTracker("Visit Verify Page")}
                 >
@@ -366,7 +366,7 @@ const HeaderLogin = React.memo((props) => {
         <div className="col-12">
           <Link
             className="m-lg-2 badge bg-success d-none"
-            to={"/verify-account"}
+            to={"/auth/varify"}
             title="Verify Account"
             onClick={() => gaEventTracker("Verify")}
           >

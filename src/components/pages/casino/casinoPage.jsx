@@ -1,33 +1,57 @@
-import { useState } from "react";
-import HorizontalCategoryList from "./horizontalCategoryList";
+import { useEffect, useState } from "react";
 import "./index.css";
 import SearchModal from "../../modals/SearchModal";
-import { useSelector } from "react-redux";
 
 import CasinoGames from "./casinoBody";
+import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { casinoGames } from "../../../redux/virtualsSlice";
+import { Grid } from "antd";
+const { useBreakpoint } = Grid;
 
 const CasinoPage = () => {
-  const close_call_to_action = useSelector(
-    (state) => state.data.call_to_action
-  );
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [searchParams] = useSearchParams();
   const pathname = window.location.pathname;
+  const categoryFromURL = searchParams.get("categoryId") ?? "Lobby";
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
+  const dispatch = useDispatch();
+  const casino_games = useSelector((state) => state.virtuals.casino_games_data);
 
-  const onCategoryClick = (categoryId) => {
-    setActiveCategory(categoryId);
-  };
+  //   const fetchGames = async () => {
+  //     const data = {
+  //       endpoint: "/v1/casino-game-listing",
+  //       method: "GET",
+  //     };
+  //     dispatch(casinoGames(data));
+  //   };
+
+  //   useEffect(() => {
+  //     if (casino_games.length === 0) {
+  //       fetchGames();
+  //     }
+  //   }, [casino_games.length]);
+
+  console.log("categoryFromURL", categoryFromURL);
+
+  const [activeCategory, setActiveCategory] = useState(categoryFromURL);
+
+  useEffect(() => {
+    setActiveCategory(categoryFromURL);
+  }, [categoryFromURL]);
+
+  console.log("home categoryFromURL", categoryFromURL);
 
   return (
-    <div className="main-content" style={{ flex: 1 }}>
+    <div
+      className="main-content"
+      style={{ flex: 1, marginTop: isMobile ? "0px" : "3rem" }}
+    >
       {pathname === "/" && <SearchModal />}
-      <HorizontalCategoryList
-        activeCategory={activeCategory}
-        onCategoryClick={onCategoryClick}
-      />
 
       {/* <CasinoCarouselLoader /> */}
       {/* <Broadcast /> */}
-      <CasinoGames activeCategory={activeCategory} />
+      <CasinoGames activeSetCategory={activeCategory} />
       {/* <Footer /> */}
     </div>
   );

@@ -6,6 +6,7 @@
   --footer-color: #fff;
   --jaza-bets-button-login: #06fcd3;
   --signup: #ffffff;
+  --deposit-c:#12ccc6;
 
   --btn-color-action: #06fcd3;
   --jaza-bets-button-register: #ffffff;
@@ -13,6 +14,7 @@
   --jaza-bets-header-bg: #03182e;
   --jaza-bets-header-bg-btn: #042344;
   --jaza-bets-lite: #041f3d;
+  --blue: #4096ff;
   --jaza-bets-body-bg: #041f3d;
   --hot: #f66203;
   --withdraw-input: #0e1a07;
@@ -31,7 +33,7 @@
   --fade-color: #adadad;
   --black: #000;
   --input-bg: #fff;
-  --text-color:#FFFFFFB2;
+  --text-color: #ffffffb2;
   --bottom-c: #021830;
   --profile-card-1: #161a2d;
   --purple: rgb(78, 4, 78);

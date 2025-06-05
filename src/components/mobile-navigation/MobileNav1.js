@@ -1,165 +1,116 @@
-import React, { useContext, useEffect, useRef, useState} from 'react';
-import { useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { Row, Col, Grid } from "antd";
+import { useNavigate, useLocation } from "react-router-dom";
 
-//Images
-// import aviator from "../../../src/assets/img/mobile/Aviator.svg"
-import league from "../../../src/assets/svg/game.svg"
+import Aviator from "../../assets/img/mobile/aviator.svg";
+import Crash from "../../assets/img/mobile/crash.svg";
+import Football from "../../assets/img/mobile/football.svg";
+import Casino from "../../assets/img/mobile/casino1.svg";
+import Virtual from "../../assets/img/mobile/virtual.svg";
+import { getFromLocalStorage } from "../utils/local-storage";
+import { is } from "date-fns/locale";
 
-//SVGs
-import casino1 from "../../assets/svg/casino.svg"
+const { useBreakpoint } = Grid;
 
+const navItems = [
+  { label: "Football", image: Football, route: "/sports" },
+  {
+    label: "Aviator",
+    image: Aviator,
+    route: "/casino/game-play?game=45538&status=0&game_name=AVIATOR",
+  },
+  { label: "Crash", image: Crash, route: "/casino?categoryId=crash" },
+  { label: "Casino", image: Casino, route: "/casino" },
+  { label: "Virtual", image: Virtual, route: "/casino?categoryId=virtual" },
+];
 
-import {getFromLocalStorage} from "../utils/local-storage";
-import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+const GameNavBar = () => {
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const theme = getFromLocalStorage("theme");
+  const [isLightTheme, setIsLightTheme] = useState(theme === "light");
 
-import {LazyLoadImage} from "react-lazy-load-image-component";
-import {useDispatch, useSelector} from "react-redux";
-import {setState} from "../../redux/dataSlice";
+  // Match by route path (basic match without query params)
+  const getActiveRoute = () => {
+    const currentPath = location.pathname + location.search;
+    const matched = navItems.find((item) => currentPath.startsWith(item.route));
+    return matched?.label;
+  };
 
-const MobileNav1 = React.memo(
-    () => {
+  const [active, setActive] = useState(getActiveRoute());
 
+  const handleClick = (item) => {
+    setActive(item.label);
+    navigate(item.route);
+  };
 
-        const scrollContainerRef = useRef(null);
+  return (
+    <div
+      style={{
+        background: "inherit",
+        padding: isMobile ? "5px 0" : "12px 0",
+        borderRadius: 1,
+        margin: isMobile ? "6px" : "1px 10px 10px 10px",
+        borderBottom: isMobile ? "1px solid var(--bettena-secondary)" : "none",
+      }}
+    >
+      <Row
+        justify={isMobile ? "space-between" : "start"}
+        align="middle"
+        wrap={false}
+        style={{
+          paddingLeft: 0,
+          gap: isMobile ? 0 : 30,
+        }}
+      >
+        {navItems.map((item, index) => {
+          const isActive = active === item.label;
 
-        const gaEventTracker = useAnalyticsEventTracker('Navigation');
+          return (
+            <Col key={index}>
+              <div
+                onClick={() => handleClick(item)}
+                style={{
+                  display: "flex",
+                  flexDirection: isMobile ? "column" : "row",
+                  alignItems: "center",
+                  color: isActive ? "var(--crimson)" : "var(--light)",
+                  minWidth: isMobile ? "auto" : 80,
+                  padding: isMobile
+                    ? "0 8px"
+                    : index === 0
+                    ? "0 20px 0 5px"
+                    : "0 20px",
+                  cursor: "pointer",
+                }}
+              >
+                <img
+                  src={item.image}
+                  alt={item.label}
+                  className={`icon-svg ${isActive ? "active-icon" : ""}`}
+                  style={{
+                    width: isMobile ? 38 : 34,
+                    height: isMobile ? 38 : 34,
+                    marginRight: isMobile ? 0 : 8,
+                    filter: isActive
+                      ? "brightness(0) saturate(100%) invert(15%) sepia(97%) saturate(4343%) hue-rotate(337deg) brightness(85%) contrast(110%)"
+                      : isLightTheme
+                      ? "invert(1)"
+                      : "invert(0)",
+                  }}
+                />
+                <div style={{ fontSize: "14px", marginTop: isMobile ? 4 : 0 }}>
+                  {item.label}
+                </div>
+              </div>
+            </Col>
+          );
+        })}
+      </Row>
+    </div>
+  );
+};
 
-        const dispatchRedux=useDispatch()
-
-        const pathname = window.location.pathname;
-
-
-        const active_link=useSelector((state)=>state.data.active_link)
-
-
-        const userData = useSelector((state) => state.auth.user)
-        const [user, setUser] = useState(getFromLocalStorage("user"))
-
-        useEffect(() => {
-            if (userData) {
-                setUser(userData || getFromLocalStorage("user"))
-            }
-        }, [userData])
-
-        const setActiveLink=(link)=>{
-            dispatchRedux(setState('active_link',link ))
-        }
-
-        
-
-      
-
-        const navigate = useNavigate()
-        let url = new URL(window.location.href)
-        let sport_id = url.searchParams.get('sport_id')
-
-        useEffect(()=>{
-            setActiveLink(sport_id||pathname||79)
-
-        },[])
-
-       
-      
-
-        return (<div className="menu-wrapper mobile-nav-remove ">
-
-            <table className="menu-table" style={{width: "100%", textAlign: "center", marginLeft: "-9px"}}>
-                <tbody>
-                <tr className={"tr-style mobile-nav-top"} ref={scrollContainerRef}>
-                    {/* <td className={`menu-t m-auto   sport-check  ${pathname === "/" || Number(active_link) === 79 ? "active_link" : "link-inactive"}`}>
-                        <div
-                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center  `}
-                            onClick={() => {
-                                gaEventTracker('Visit Home Page');
-                                setActiveLink(79);
-                                navigate('/')
-                            }}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center`}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon"
-                                        src={soccer}
-                                        alt=""
-                                        effect='blur'
-                                        style={{height: "23px", marginTop: "-1px"}}
-                                    />
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    Soccer
-                                </p>
-                            </div>
-                        </div>
-                    </td> */}
-                    <td className={`menu-t m-auto sport-check ${'/c' ===active_link ? " active_link" : "link-inactive"} `}>
-                        <div
-                            className={`inner-div more-sports  cg  ox anl url-link d-flex flex-column align-items-center `}
-                            onClick={() => {
-                                gaEventTracker('Visit Casino Page')
-                                navigate('/');
-                                setActiveLink('/')
-                            }}>
-                            <div className={`inner-div  cg  ox anl url-link d-flex flex-column align-items-center `}>
-
-                                <div className="menu-img ">
-                                    <LazyLoadImage
-                                        className="side-icon"
-                                        src={casino1}
-                                        alt=""
-                                        effect='blur'
-                                        style={{height: "25px", marginTop: "-2px", filter:"invert(1)"}}
-                                    />
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                  Home
-                                </p>
-                            </div>
-                        </div>
-
-                    </td>
-
-                    <td className={`menu-t m-auto sport-check nare-league ${pathname === "/"===active_link ? "active_link" : "link-inactive"}`}>
-                        <div
-                            className={`inner-div more-sports cg  ox anl url-link d-flex flex-column align-items-center `}
-                            onClick={() => {
-                                gaEventTracker('Visit Big League Page');
-                                setActiveLink('/');
-                                navigate('/')
-                            }} 
-                            >
-                            <div className={`inner-div  cg hot-alert ox anl url-link d-flex flex-column align-items-center  `}>
-
-                                <div className="menu-img  ">
-                                    <LazyLoadImage
-                                        className="side-icon"
-                                        src={league}
-                                        alt=""
-                                        effect='blur'
-                                        style={{height: "26px", marginTop: "0px", width:"45px", filter:"invert(1)"}}
-                                    />
-                                    <span className=" hot-alert-badge">HOT</span>
-
-                                </div>
-                                <p style={{textAlign: "center", marginBottom: "unset"}}>
-                                    League
-                                </p>
-                            </div>
-                        </div>
-                    </td>
-
-                  
-            
-
-                    
-                    
-
-                </tr>
-                </tbody>
-            </table>
-
-
-        </div>)
-    });
-
-export default React.memo(MobileNav1);
-
+export default GameNavBar;

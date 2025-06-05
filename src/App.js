@@ -6,133 +6,71 @@ import React, {
   useEffect,
   useState,
 } from "react";
+
 import { StoreContext } from "./context/store";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getFromLocalStorage,
-  setLocalStorage,
-} from "./components/utils/local-storage";
+import { removeItem, setLocalStorage } from "./components/utils/local-storage";
 import { resetState } from "./redux/authSlice";
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import Header from "./components/header/header";
-import GamePlay from "./components/pages/casino/GamePlay";
-import Sidebar from "./components/pages/casino/sidebar";
-import LandingPage from "./components/pages/casino/landingPage";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Grid } from "antd";
 import CasinoGames from "./components/pages/casino/casinoBody";
-import { ConfigProvider, Grid, theme as antdTheme } from "antd";
 
-const Deposit3 = React.lazy(() =>
-  import("./components/pages/deposit-withraw/Deposit3")
-);
-
-const HowToPlay = React.lazy(() => import("./components/pages/HowToPLay2"));
-
-const TermsAndConditions = React.lazy(() =>
-  import("./components/pages/terms-and-conditions/index")
-);
-
-const CookiePolicy = React.lazy(() =>
-  import("./components/pages/cookie-policy/index")
-);
-
-const DisputeResolution = React.lazy(() =>
-  import("./components/pages/dispute-resolution/index")
-);
-
-const ResponsibleGambling = React.lazy(() =>
-  import("./components/pages/responsible-gambling")
-);
-
-const AntimoneyLaundering = React.lazy(() =>
-  import("./components/pages/anti-money-laundering")
-);
-
-const PrivacyPolicy = React.lazy(() =>
-  import("./components/pages/privacy-policy")
-);
-
-const Withdraw = React.lazy(() =>
-  import("./components/pages/deposit-withraw/Withdraw")
-);
-
-const Signup = React.lazy(() => import("./components/pages/auth/registerTwo"));
-
-const ResetPassword = React.lazy(() =>
-  import("./components/pages/auth/reset-password2")
-);
-
-const VerifyAccount = React.lazy(() =>
-  import("./components/pages/auth/verify-account2")
-);
-
-// const MobileApp = React.lazy(() => import('./components/pages/app'))
-
-const ProtectedRoute = React.lazy(() =>
-  import("./components/utils/protected-route")
-);
-const Promotions = React.lazy(() =>
-  import("./components/pages/promotions/Promotions")
-);
-
-const Promo = React.lazy(() => import("./components/pages/promotions/Promo"));
-
-const LeaderBoard = React.lazy(() =>
-  import("./components/pages/LeaderBoards/LeaderBoards")
-);
-const JetxLeaderBoard = React.lazy(() =>
-  import("./components/pages/LeaderBoards/JetxLeaderBoards")
-);
-
-const SmartSoftPlay = React.lazy(() =>
-  import("./components/pages/smart-soft/smart-soft")
-);
-
-const SmartPlay = React.lazy(() =>
-  import("./components/pages/smart-soft/SmartPlay")
-);
-
-const PageNotFound = React.lazy(() =>
-  import("./components/pages/404/NotFound")
-);
-
-const BetslipPage = React.lazy(() =>
-  import("./components/pages/betslip/betslipPage")
-);
-
-const Login = React.lazy(() => import("./components/pages/loginTwo"));
-
-const NewProfile = React.lazy(() =>
-  import("./components/pages/Accounts/NewProfile")
-);
-
-const Index = React.lazy(() => import("./components/pages/casino/index"));
+import Header from "./components/header/header";
+import Sidebar from "./components/pages/casino/sidebar";
+import Deposit3 from "./components/pages/deposit-withraw/Deposit3";
+import HowToPlay from "./components/pages/HowToPLay2";
+import LandingPage from "./components/pages/casino/landingPage";
+import AppAuthLayout from "./components/pages/authPagesLayout";
+import CasinoPage from "./components/pages/casino/casinoPage";
+import AppPromo from "./components/pages/promotions/AppPromo";
+import GamePlay from "./components/pages/casino/GamePlay";
+import TermsAndConditions from "./components/pages/terms-and-conditions/index";
+import CookiePolicy from "./components/pages/cookie-policy/index";
+import DisputeResolution from "./components/pages/dispute-resolution/index";
+import ResponsibleGambling from "./components/pages/responsible-gambling";
+import AntimoneyLaundering from "./components/pages/anti-money-laundering";
+import PrivacyPolicy from "./components/pages/privacy-policy";
+import Withdraw from "./components/pages/deposit-withraw/Withdraw";
+import Signup from "./components/pages/auth/registerTwo";
+import ResetPassword from "./components/pages/auth/reset-password2";
+import VerifyAccount from "./components/pages/auth/verify-account2";
+// import MobileApp from './components/pages/app'
+import ProtectedRoute from "./components/utils/protected-route";
+import Promotions from "./components/pages/promotions/Promotions";
+import Promo from "./components/pages/promotions/Promo";
+import LeaderBoard from "./components/pages/LeaderBoards/LeaderBoards";
+import JetxLeaderBoard from "./components/pages/LeaderBoards/JetxLeaderBoards";
+import SmartSoftPlay from "./components/pages/smart-soft/smart-soft";
+import SmartPlay from "./components/pages/smart-soft/SmartPlay";
+import PageNotFound from "./components/pages/404/NotFound";
+import BetslipPage from "./components/pages/betslip/betslipPage";
+import Login from "./components/pages/loginTwo";
+import NewProfile from "./components/pages/Accounts/NewProfile";
+import Index from "./components/pages/casino/index";
 
 const Logout = () => {
   const { dispatch } = useContext(StoreContext);
   const dispatchRedux = useDispatch();
-  let navigate = useNavigate();
-  setLocalStorage("user", null);
-  dispatchRedux(resetState("user"));
-  const out = useCallback(() => {
-    localStorage.clear();
-    dispatch({ type: "CLEAR_ALL_ITEMS" }); // Dispatch the action to clear all items
-
-    navigate("/");
-  }, [navigate]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    out();
-  }, [out]);
+    // Clear Redux and local storage immediately
+    dispatchRedux(resetState("user"));
+    removeItem("user");
+    localStorage.clear();
+    dispatch({ type: "CLEAR_ALL_ITEMS" });
+
+    // Navigate after 2 seconds
+    const timeout = setTimeout(() => {
+      navigate("/");
+    }, 1000);
+
+    // Cleanup the timeout if component unmounts early
+    return () => clearTimeout(timeout);
+  }, [dispatch, dispatchRedux, navigate]);
 
   return null;
 };
-
 const Redirect = () => {
   const { dispatch } = useContext(StoreContext);
   const dispatchRedux = useDispatch();
@@ -143,7 +81,7 @@ const Redirect = () => {
     localStorage.clear();
     dispatch({ type: "CLEAR_ALL_ITEMS" }); // Dispatch the action to clear all items
 
-    navigate("/login");
+    navigate("/auth/login");
   }, [navigate]);
 
   useEffect(() => {
@@ -156,24 +94,17 @@ const Redirect = () => {
 const { useBreakpoint } = Grid;
 
 const App = () => {
-  // const scrollPosition = useSelector((state) => state.scroll.scroll)
-  const [flag, setFlag] = useState(true);
   const isCustomFullscreen = useSelector(
     (state) => state?.data?.is_custom_fullscreen
   );
   const screens = useBreakpoint();
   const isMobile = !screens.md;
-  // cleanup/unmounting components fix
-  useEffect(() => {
-    return () => {
-      setFlag(false);
-    };
-  }, []);
 
   const location = useLocation();
   const sidebarRoutes = [
     "/",
     "/promotions",
+    "/promotions/promo",
     "/how-to-play",
     "/responsible-gambling",
     "/cookie-policy",
@@ -181,141 +112,146 @@ const App = () => {
     "/dispute-resolution",
     "/anti-money-laundering",
     "/terms-and-conditions",
-    "/promo",
     "/casino",
-    "/login",
-    "/game-play",
-    "/signup",
+    "/auth/login",
+    "/casino/game-play",
+    "/auth/signup",
     "/forgot-password",
-    "/reset-password",
+    "/auth/reset-password",
+    "/auth/verify",
     "/profile",
   ];
+
+  const ignoreMobileHeader = [
+    "/auth/login",
+    "/auth/signup",
+    "/casino/game-play",
+    "/auth/reset-password",
+  ];
+
   // Determine visibility
-  const isGamePlayRoute = location.pathname === "/game-play";
+  const isGamePlayRoute = ignoreMobileHeader.includes(location.pathname);
   const showSidebar =
     sidebarRoutes.includes(location.pathname) && !isCustomFullscreen;
   const showHeader = !(isGamePlayRoute && (isCustomFullscreen || isMobile));
 
-  return flag ? (
-    <ConfigProvider
-      theme={{
-        // algorithm: antdTheme.darkAlgorithm,
-      }}
-    >
-      <div style={{ display: "flex", minHeight: "100vh" }}>
-        {/* Sidebar (only for '/') */}
-        {showSidebar && (
-          <aside className="sidebar site-layout-background">
-            {/* You can put category list, ads, etc. */}
-            <Sidebar />
-          </aside>
-        )}
+  return (
+    // <ConfigProvider
+    //   theme={
+    //     {
+    //       // algorithm: antdTheme.darkAlgorithm,
+    //     }
+    //   }
+    // >
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      {/* Sidebar (only for '/') */}
+      {showSidebar && (
+        <aside className="sidebar site-layout-background">
+          {/* You can put category list, ads, etc. */}
+          <Sidebar />
+        </aside>
+      )}
 
-        {/* Main Content (Header + Routes) */}
-        <div style={{ flex: 1, display: "block" }}>
-          {showHeader && <Header />}
+      {/* Main Content (Header + Routes) */}
+      <div style={{ flex: 1, display: "block" }}>
+        {showHeader && <Header />}
 
-          <div style={{ flex: 1 }}>
-            <Suspense fallback={<></>}>
-              <Routes>
-                {/* <Route exact path="/" element={<CasinoGames />} /> */}
-                <Route path="/" element={<Index />}>
-                  <Route index element={<LandingPage />} />{" "}
-                  {/* Former HomeCasinoPage */}
-                  <Route path="casino" element={<CasinoGames />} />
-                </Route>
-                <Route exact path="/login" element={<Login />} />
-                <Route exact path="/404" element={<PageNotFound />} />
-                <Route exact path="/smart-play" element={<SmartPlay />} />
-                <Route exact path="/smart-soft" element={<SmartSoftPlay />} />
+        <div style={{ flex: 1 }}>
+          <Suspense fallback={<></>}>
+            <Routes>
+              {/* <Route  path="/" element={<CasinoGames />} /> */}
+              <Route path="/" element={<Index />}>
+                <Route index element={<LandingPage />} />{" "}
+                {/* Former HomeCasinoPage */}
+              </Route>
 
-                <Route exact path="/promotions" element={<Promotions />} />
-                <Route exact path="/promo" element={<Promo />} />
-                <Route exact path="/game-play" element={<GamePlay />} />
+              <Route path="/auth/*" element={<AppAuthLayout />}>
+                <Route path="login" element={<Login />} />
+                <Route path="verify" element={<VerifyAccount />} />
+                <Route path="signup" element={<Signup />} />
+                <Route path="logout" element={<Logout />} />
+                <Route path="redirect" element={<Redirect />} />
+                <Route path="reset-password" element={<ResetPassword />} />
+              </Route>
+
+              <Route path="/casino" element={<Index />}>
+                <Route index element={<CasinoPage />} />
                 <Route
-                  exact
-                  path="/profile"
+                  path="game-play"
                   element={
                     <ProtectedRoute>
-                      <NewProfile />
+                      <GamePlay />
                     </ProtectedRoute>
                   }
                 />
-                <Route exact path="/betslip" element={<BetslipPage />} />
-                <Route exact path="/betslip-slip" element={<BetslipPage />} />
-                <Route exact path="/betslip-nare" element={<BetslipPage />} />
-                <Route
-                  exact
-                  path="/betslip-jackpot"
-                  element={<BetslipPage />}
-                />
-                <Route
-                  exact
-                  path="/privacy-policy"
-                  element={<PrivacyPolicy />}
-                />
-                <Route
-                  exact
-                  path="/anti-money-laundering"
-                  element={<AntimoneyLaundering />}
-                />
-                <Route
-                  exact
-                  path="/responsible-gambling"
-                  element={<ResponsibleGambling />}
-                />
-                <Route
-                  exact
-                  path="/dispute-resolution"
-                  element={<DisputeResolution />}
-                />
-                <Route exact path="/cookie-policy" element={<CookiePolicy />} />
-                <Route
-                  exact
-                  path="/terms-and-conditions"
-                  element={<TermsAndConditions />}
-                />
-                <Route exact path="/how-to-play" element={<HowToPlay />} />
-                <Route exact path="/signup" element={<Signup />} />
-                <Route exact path="/leader-board" element={<LeaderBoard />} />
-                <Route
-                  exact
-                  path="/leader-boardx"
-                  element={<JetxLeaderBoard />}
-                />
-                <Route
-                  exact
-                  path="/reset-password"
-                  element={<ResetPassword />}
-                />
-                <Route exact path="/verify" element={<VerifyAccount />} />
-                <Route exact path="/logout" element={<Logout />} />
-                <Route exact path="/redirect" element={<Redirect />} />
-                <Route
-                  exact
-                  path="/deposit"
-                  element={
-                    <ProtectedRoute>
-                      <Deposit3 />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  exact
-                  path="/withdraw"
-                  element={
-                    <ProtectedRoute>
-                      <Withdraw />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </Suspense>
-          </div>
+              </Route>
+
+              <Route path="/404" element={<PageNotFound />} />
+              <Route path="/smart-play" element={<SmartPlay />} />
+              <Route path="/smart-soft" element={<SmartSoftPlay />} />
+
+              <Route path="/promotions" element={<AppPromo />}>
+                <Route index element={<Promotions />} />
+                <Route path="promo" element={<Promo />} />
+              </Route>
+
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <NewProfile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/betslip" element={<BetslipPage />} />
+              <Route path="/betslip-slip" element={<BetslipPage />} />
+              <Route path="/betslip-nare" element={<BetslipPage />} />
+              <Route path="/betslip-jackpot" element={<BetslipPage />} />
+
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route
+                path="/anti-money-laundering"
+                element={<AntimoneyLaundering />}
+              />
+              <Route
+                path="/responsible-gambling"
+                element={<ResponsibleGambling />}
+              />
+              <Route
+                path="/dispute-resolution"
+                element={<DisputeResolution />}
+              />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
+              <Route
+                path="/terms-and-conditions"
+                element={<TermsAndConditions />}
+              />
+              <Route path="/how-to-play" element={<HowToPlay />} />
+              <Route path="/leader-board" element={<LeaderBoard />} />
+              <Route path="/leader-boardx" element={<JetxLeaderBoard />} />
+
+              <Route
+                path="/deposit"
+                element={
+                  <ProtectedRoute>
+                    <Deposit3 />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/withdraw"
+                element={
+                  <ProtectedRoute>
+                    <Withdraw />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </Suspense>
         </div>
       </div>
-    </ConfigProvider>
-  ) : null;
+    </div>
+  ); // </ConfigProvider>
 };
 
 export default App;

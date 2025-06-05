@@ -6,7 +6,7 @@ const QuickLogin = React.memo(
     (props) => {
     return (
         <div id="quick-login">
-            <form name="quick-login" method="post" action="/login" >
+            <form name="quick-login" method="post" action="/auth/login" >
             <p>
                 <label>Mobile Number *</label>
                 <input className="form-control" name="msisdn" placeholder="0XXXXXXXXX" />
@@ -20,7 +20,7 @@ const QuickLogin = React.memo(
                 <div className="col-sm-4 zero-padding">
                     <input type="submit" className="cg fm" value="Submit" />
                 </div>
-                <div className="col-sm-8 zero-padding"><Link to={"/signup"}>Join now</Link></div>
+                <div className="col-sm-8 zero-padding"><Link to={"/auth/signup"}>Join now</Link></div>
             </div>
             </form>
         </div>

@@ -2,12 +2,19 @@ import React, { useRef, useState } from "react";
 import { Row, Col, Button, Typography, Space, Card, Grid } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { PlayCircleOutlined } from "@ant-design/icons";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const { Text } = Typography;
 const { Title, Link } = Typography;
 const { useBreakpoint } = Grid;
 
-const GamesLibrary = ({ title, games = [], onViewAll, handleGameClick }) => {
+const GamesLibrary = ({
+  title,
+  games = [],
+  onViewAll,
+  handleGameClick,
+  categoryId,
+}) => {
   const scrollRef = useRef(null);
   const [activeCardId, setActiveCardId] = useState(null);
   const [hoveredCardId, setHoveredCardId] = useState(null);
@@ -22,6 +29,8 @@ const GamesLibrary = ({ title, games = [], onViewAll, handleGameClick }) => {
       behavior: "smooth",
     });
   };
+
+  const nowrap = categoryId && categoryId !== "All";
 
   const handleCardClick = (game_id) => {
     setActiveCardId((prev) => (prev === game_id ? null : game_id));
@@ -39,7 +48,12 @@ const GamesLibrary = ({ title, games = [], onViewAll, handleGameClick }) => {
 
   return (
     <>
-      <Row justify="space-between" align="middle" className="games-header">
+      <Row
+        justify="space-between"
+        align="middle"
+        className="games-header"
+        style={{ padding: isMobile ? " 2px 10px" : " 2px 24px" }}
+      >
         <Col>
           <Title level={4} className="games-title">
             {title}
@@ -74,14 +88,19 @@ const GamesLibrary = ({ title, games = [], onViewAll, handleGameClick }) => {
       </Row>
 
       <div className="games-scroll-wrapper" ref={scrollRef}>
-        <Row wrap={false} gutter={[16, 16]} className="games-scroll-container">
-          {games.slice(0, 24).map((game) => {
+        <Row
+          wrap={!nowrap} // wrap only if categoryId === "All"
+          gutter={[16, 16]}
+          style={{ padding: isMobile?10:"10px 24px" }}
+          className="games-scroll-container"
+        >
+          {games.slice(0, 24).map((game, index) => {
             const isActive = activeCardId === game.game_id;
             const isHovered = hoveredCardId === game.game_id;
 
             return (
               <Col
-                key={game.game_id}
+                key={index}
                 xs={8}
                 sm={8}
                 md={6}
@@ -94,19 +113,19 @@ const GamesLibrary = ({ title, games = [], onViewAll, handleGameClick }) => {
                   hoverable
                   styles={{ body: { padding: 0 } }}
                   style={{
-                    borderRadius: "16px",
+                    borderRadius: 5,
                     border: "none",
                     background: "transparent",
                     position: "relative",
                   }}
                   cover={
-                    <img
+                    <LazyLoadImage
                       alt={game.title}
                       src={game.image}
                       style={{
                         borderRadius: "10px",
-                        maxHeight: isMobile ? 120 : 150,
-                        minHeight: isMobile ? 120 : 150,
+                        maxHeight: isMobile ? 130 : 160,
+                        minHeight: isMobile ? 130 : 160,
                         width: "100%",
                         objectFit: "cover",
                       }}

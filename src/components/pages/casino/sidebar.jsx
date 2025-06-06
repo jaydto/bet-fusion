@@ -145,49 +145,48 @@ const Sidebar = () => {
         <Footer />
       </div>
 
-     <Col span={24} style={{ marginTop: 24 }}>
-  <Row justify="center" gutter={16}>
-    {[
-      {
-        img: ch2,
-        label: "Live chat",
-        href: "https://jazabets.com/livechat", // update with actual live chat URL
-      },
-      {
-        img: em2,
-        label: "Email",
-        href: "mailto:support@jazabets.com",
-      },
-      {
-        img: fb2,
-        label: "Facebook",
-        href: "https://www.facebook.com/jazabets/",
-      },
-    ].map((item, idx) => (
-      <Col key={idx}>
-        <a
-          href={item.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ textDecoration: "none" }}
-        >
-          <Space direction="vertical" align="center">
-            <LazyLoadImage
-              src={item.img}
-              alt={item.label}
-              height={30}
-              width={30}
-            />
-            <Text style={{ color: "white", fontSize: 12 }}>
-              {item.label}
-            </Text>
-          </Space>
-        </a>
+      <Col span={24} style={{ marginTop: 24 }}>
+        <Row justify="center" gutter={16}>
+          {[
+            {
+              img: ch2,
+              label: "Live chat",
+              href: "#", // update with actual live chat URL
+            },
+            {
+              img: em2,
+              label: "Email",
+              href: "mailto:support@jazabets.com",
+            },
+            {
+              img: fb2,
+              label: "Facebook",
+              href: "https://www.facebook.com/jazabets/",
+            },
+          ].map((item, idx) => (
+            <Col key={idx}>
+              <a
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : "_self"}
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Space direction="vertical" align="center">
+                  <LazyLoadImage
+                    src={item.img}
+                    alt={item.label}
+                    height={30}
+                    width={30}
+                  />
+                  <Text style={{ color: "white", fontSize: 12 }}>
+                    {item.label}
+                  </Text>
+                </Space>
+              </a>
+            </Col>
+          ))}
+        </Row>
       </Col>
-    ))}
-  </Row>
-</Col>
-
 
       <div
         style={{

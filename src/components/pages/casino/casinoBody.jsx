@@ -85,7 +85,7 @@ const CasinoGames = ({ activeSetCategory }) => {
 
   const filteredSections =
     activeCategory !== "Lobby"
-      ? sections.filter((section) => section.title === activeCategory)
+      ? sections.filter((section) => section.title?.toLowerCase() === activeCategory?.toLowerCase())
       : sections;
 
   const navigate = useNavigate();

@@ -37,7 +37,7 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
               backgroundColor: cat.bg,
               color: cat.color,
             }}
-            onClick={() => handleCategoryClick(cat.label)}
+            onClick={() => handleCategoryClick(cat.cat_id)}
           >
             {isActive ? (
               <>

@@ -6,70 +6,83 @@ import {
   ThunderboltOutlined,
 } from "@ant-design/icons";
 
+import aviatrix from "../../../assets/img/mobile/aviatrix.png";
+
 // data.js
 export const data = {
   baseCategories: [
     {
+      cat_id: "Lobby",
       label: "Lobby",
       icon: null,
       bg: "rgb(245, 255, 235)",
       color: "#3c9f18",
     },
     {
+      cat_id: "Popular",
       label: "Popular",
       icon: <FireOutlined />,
       bg: "rgb(253, 244, 255)",
       color: "#d10ae2",
     },
     {
+      cat_id: "Drops and Wins",
       label: "Drops and Wins",
       icon: <DollarOutlined />,
       bg: "rgb(255, 250, 235)",
       color: "#f7931e",
     },
     {
+      cat_id: "Slots",
       label: "Slots",
       icon: <CrownOutlined />,
       bg: "rgb(235, 241, 255)",
       color: "#2d7ff9",
     },
     {
+      cat_id: "Hot",
       label: "Hot",
       icon: <ThunderboltOutlined />,
       bg: "rgb(245, 241, 255)",
       color: "#7b38f6",
     },
     {
+      cat_id: "Crash",
       label: "Crash Games",
       icon: <RocketOutlined />,
       bg: "rgb(235, 255, 253)",
       color: "#00a7a7",
     },
     {
+      cat_id: "Live Roulette",
       label: "Live Roulette",
       icon: null,
       bg: "rgb(255, 245, 245)",
       color: "#d13438",
     },
     {
+      cat_id: "Live Blackjack",
       label: "Live Blackjack",
       icon: null,
       bg: "rgb(245, 245, 255)",
       color: "#605dec",
     },
     {
+      cat_id: "Live",
       label: "Live Games",
       icon: null,
       bg: "rgb(255, 250, 240)",
       color: "#fa6400",
     },
     {
+      cat_id: "New",
       label: "New Games",
       icon: null,
       bg: "rgb(240, 255, 250)",
       color: "#00b386",
     },
   ],
+
   categories: [
     {
       name: "Football",
@@ -111,21 +124,31 @@ export const data = {
   games: [
     {
       name: "Aviator",
-      game_id: "aviator",
-      url: "/casino/game-play?game=43857&status=0&game_name=AVIATOR",
+      game_id: "45538",
+      url: "/casino/game-play?game=45538&status=0&game_name=AVIATOR",
+      game_name: "AVIATOR",
       image_url:
         "https://pepeta.com/static/media/aviator.68185d9bf50c82cff3b1.avif",
     },
+    // {
+    //   name: "Football",
+    //   game_id: "football",
+    //   url: "#",
+    //   image_url:
+    //     "https://pepeta.com/static/media/sports-book.e6e49e341d3aa81c46c9.avif",
+    // },
     {
-      name: "Football",
-      game_id: "football",
-      url: "#",
-      image_url:
-        "https://pepeta.com/static/media/sports-book.e6e49e341d3aa81c46c9.avif",
+      name: "Aviatrix",
+      game_id: "58046",
+      game_name: "Aviatrix",
+      url: "/casino/game-play?game=58046&status=0&game_name=Aviatrix",
+      image_url: aviatrix,
+      // "https://atom-cdn.azureedge.net/storage/728ace29-10a0-4c08-a508-0b619fc94889_file",
     },
     {
       name: "JetX",
-      game_id: "jetx",
+      game_id: "5805",
+      game_name: "JetX",
       url: "/casino/game-play?game=58059&status=0&game_name=JetX",
       image_url:
         "https://pepeta.com/static/media/jetx.14cfcbda99f03f170198.avif",
@@ -187,15 +210,11 @@ export const data = {
   ],
 };
 
-
 export const helpMessage = {
   winners: [
     "Douglas Ronia won Ksh1200!",
     "Jane Wambui won Ksh500!",
-    "Kevin Omondi won Ksh2000!"
+    "Kevin Omondi won Ksh2000!",
   ],
-  promos: [
-    "Spin the wheel and win free coins!",
-    "New slots added today!"
-  ]
+  promos: ["Spin the wheel and win free coins!", "New slots added today!"],
 };

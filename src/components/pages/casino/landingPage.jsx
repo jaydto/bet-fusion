@@ -10,6 +10,7 @@ import CongratulationBanner from "./conratulations";
 import CategoryTabs from "./categoryTabs";
 import GameNavBar from "../../mobile-navigation/MobileNav1";
 import CasinoCarouselLoader from "./carousel";
+import { useSelector } from "react-redux";
 
 const { useBreakpoint } = Grid;
 
@@ -18,6 +19,7 @@ const LandingPage = () => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   const navigate = useNavigate();
+  const casino_games = useSelector((state) => state.virtuals.casino_games_data);
 
   const handleCategoryClick = (categoryId) => {
     setActiveCategory(categoryId);
@@ -27,17 +29,23 @@ const LandingPage = () => {
     navigate("/casino");
   };
 
+  const crashGames = casino_games.filter(
+    (game) =>
+      game.categories &&
+      game.categories.some((cat) => cat.game_type_id === "crash")
+  );
+
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
       <div
         style={{
           marginTop: isMobile ? 2 : 20,
-          padding: isMobile?"5px 1px":"12px 0px 0px 12px",
+          padding: isMobile ? "5px 1px" : "12px 0px 0px 12px",
           overflow: "hidden",
         }}
       >
         <GameNavBar />
-        <CasinoCarouselLoader/>
+        <CasinoCarouselLoader />
         <CongratulationBanner messagesObject={helpMessage} />
         {/* <div style={{ marginTop: 20 }}>
           <CategoryTabs />
@@ -58,9 +66,15 @@ const LandingPage = () => {
         <MustPlaySection must_play={data.must_play} />
       </div> */}
 
-      <div style={{ marginTop: 5 , marginBottom: "2rem"}}>
-        <GamesSection games={data.numbers} category="Numbers" />
+      <div style={{ marginTop: 5, marginBottom: "2rem" }}>
+        <GamesSection games={casino_games.slice(0, 8)} category="Casino" />
       </div>
+
+      {crashGames.length > 0 && (
+        <div style={{ marginTop: 5, marginBottom: "2rem" }}>
+          <GamesSection games={crashGames.slice(0, 8)} category="Crash" />
+        </div>
+      )}
 
       <div style={{ textAlign: "center", marginTop: 30 }}>
         <Button

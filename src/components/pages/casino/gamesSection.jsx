@@ -45,7 +45,7 @@ const GamesSection = ({ games, category = null }) => {
           >
             {category}
           </h2>
-          {["Crash", "Hot", "Popular"].includes(category) && (
+          {["Crash", "Hot", "Popular"].map((cat) => cat.toLowerCase()).includes(category) && (
             <Tag
               color="red"
               style={{ fontWeight: "bold", borderRadius: "6px" }}

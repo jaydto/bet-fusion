@@ -11,9 +11,11 @@ import NoGamesCard from "./NoGamesCard";
 import { useState } from "react";
 import { setState } from "../../../redux/virtualsSlice";
 import GameFilters from "./gameFilters";
+import { filter } from "lodash";
 
 const CasinoGames = ({ activeSetCategory }) => {
   const [activeCategory, setActiveCategory] = useState(activeSetCategory);
+  const [activeTitle, setActiveTitle] = useState(activeSetCategory);
 
   console.log("activeCategory", activeCategory);
 
@@ -40,7 +42,7 @@ const CasinoGames = ({ activeSetCategory }) => {
     casino_types.forEach((type) => {
       categorizedGames[type.game_type_description] = [];
     });
-    categorizedGames["Others"] = [];
+    categorizedGames["Casino"] = [];
 
     if (Array.isArray(casino_games)) {
       casino_games.forEach((game) => {
@@ -63,7 +65,7 @@ const CasinoGames = ({ activeSetCategory }) => {
             }
           });
         } else {
-          categorizedGames["Others"].push({
+          categorizedGames["Casino"].push({
             id: game.id,
             game_id: game.game_id,
             title: game.game_name,
@@ -85,7 +87,10 @@ const CasinoGames = ({ activeSetCategory }) => {
 
   const filteredSections =
     activeCategory !== "Lobby"
-      ? sections.filter((section) => section.title?.toLowerCase() === activeCategory?.toLowerCase())
+      ? sections.filter(
+          (section) =>
+            section.title?.toLowerCase() === activeCategory?.toLowerCase()
+        )
       : sections;
 
   const navigate = useNavigate();
@@ -106,18 +111,24 @@ const CasinoGames = ({ activeSetCategory }) => {
     dispatch(setState("casino_search_modal", true));
   };
 
-  const onFilterChange = (category) => {
-    setActiveCategory(category);
-    console.log("Filter changed to:", category);
+  const onFilterChange = (game_id, title) => {
+    setActiveCategory(game_id);
+    setActiveTitle(title);
+    console.log("Filter changed to:", title);
   };
 
   console.log("activeCategory", activeCategory);
+  console.log("filteredSections", filteredSections);
+  console.log(
+    "filteredSections data",
+    filteredSections.map((section) => section.games).flat().length
+  );
 
   return (
     <div style={{ overflow: "hidden", position: "relative" }}>
       <div className=" mt-1 body-section">
         <PageHeader
-          title={activeCategory === "Lobby" ? "Casino Lobby" : activeCategory}
+          title={activeCategory === "Lobby" ? "Casino Lobby" : activeTitle}
           description="Explore and play your favorite casino games"
         />
         <GameSearchFilters onSearch={onSearch} />
@@ -130,7 +141,9 @@ const CasinoGames = ({ activeSetCategory }) => {
         <div className="container mt-1 body-section">
           {loading ? (
             <CasinoSkeletonLoader />
-          ) : filteredSections.length === 0 ? (
+          ) : filteredSections.length === 0 ||
+            filteredSections.map((section) => section.games).flat().length ===
+              0 ? (
             <NoGamesCard />
           ) : (
             filteredSections.map((section, index) => (

@@ -1,5 +1,6 @@
 import { Grid, Space, Tag } from "antd";
 import { data } from "./data";
+import { useSelector } from "react-redux";
 
 const { useBreakpoint } = Grid;
 
@@ -7,8 +8,51 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
 
-  const handleCategoryClick = (label) => {
-    onFilterChange(label);
+  const casino_types = useSelector(
+    (state) => state.virtuals.casino_games_types
+  );
+
+  // Create a map from baseCategories keyed by lowercase cat_id
+  const baseCategoryMap = new Map(
+    data?.baseCategories.map((cat) => [cat.cat_id.toLowerCase(), { ...cat }])
+  );
+
+  // Fallback style for new categories
+  const defaultStyle = {
+    icon: null,
+    color: "#ccc",
+    bg: "#f5f5f5",
+  };
+
+  // Merge or update categories
+  casino_types.forEach((type) => {
+    const key = type.game_type_id.toLowerCase();
+
+    if (baseCategoryMap.has(key)) {
+      // Update label only; keep existing style
+      const existing = baseCategoryMap.get(key);
+      baseCategoryMap.set(key, {
+        ...existing,
+        label: type.game_type_description,
+      });
+    } else {
+      // New category — use default style
+      baseCategoryMap.set(key, {
+        cat_id: type.game_type_id,
+        label: type.game_type_description,
+        icon: defaultStyle.icon,
+        color: defaultStyle.color,
+        bg: defaultStyle.bg,
+      });
+    }
+  });
+
+  // Final mapped list
+  const mappedCategories = Array.from(baseCategoryMap.values());
+
+  console.log("mappedCategories", mappedCategories);
+  const handleCategoryClick = (game_id, label) => {
+    onFilterChange(game_id, label);
   };
   return (
     <Space
@@ -17,10 +61,10 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
       style={{
         width: isMobile ? "100vw" : "-webkit-fill-available",
         overflowX: "auto",
-        padding: isMobile?10:24,
+        padding: isMobile ? 10 : 24,
       }}
     >
-      {data?.baseCategories.map((cat) => {
+      {mappedCategories.map((cat) => {
         const isActive = activeCategory === cat.label;
 
         return (
@@ -37,7 +81,7 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
               backgroundColor: cat.bg,
               color: cat.color,
             }}
-            onClick={() => handleCategoryClick(cat.cat_id)}
+            onClick={() => handleCategoryClick(cat.label, cat.label)}
           >
             {isActive ? (
               <>

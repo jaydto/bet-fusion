@@ -17,7 +17,7 @@ const navItems = [
   {
     label: "Aviator",
     image: Aviator,
-    route: "/casino/game-play?game=45538&status=0&game_name=AVIATOR",
+    route: "/casino/game-play?game=45534&status=0&game_name=AVIATOR",
   },
   { label: "Crash", image: Crash, route: "/casino?categoryId=crash" },
   { label: "Casino", image: Casino, route: "/casino" },
@@ -91,8 +91,8 @@ const GameNavBar = () => {
                   alt={item.label}
                   className={`icon-svg ${isActive ? "active-icon" : ""}`}
                   style={{
-                    width: isMobile ? 38 : 34,
-                    height: isMobile ? 38 : 34,
+                    width: isMobile ? 34 : 38,
+                    height: isMobile ? 34 : 38,
                     marginRight: isMobile ? 0 : 8,
                     filter: isActive
                       ? "brightness(0) saturate(100%) invert(15%) sepia(97%) saturate(4343%) hue-rotate(337deg) brightness(85%) contrast(110%)"

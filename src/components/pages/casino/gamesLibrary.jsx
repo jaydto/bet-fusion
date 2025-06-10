@@ -57,7 +57,7 @@ const GamesLibrary = ({
           justify="space-between"
           align="middle"
           className="games-header"
-          style={{ padding: isMobile ? " 2px 10px" : " 2px 24px" }}
+          style={{ padding: isMobile ? " 2px 10px" : " 2px 12px" }}
         >
           <Col>
             <Title level={4} className="games-title">
@@ -96,7 +96,7 @@ const GamesLibrary = ({
           <Row
             wrap={nowrap} // wrap only if categoryId === "All"
             gutter={[12, 12]}
-            style={{ padding: isMobile ? 10 : "10px 24px" }}
+            style={{ padding: isMobile ? 10 : "10px 12px" }}
             className="games-scroll-container"
           >
             {(nowrap ? games : games.slice(0, 24)).map((game, index) => {

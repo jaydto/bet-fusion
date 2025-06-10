@@ -19,6 +19,20 @@ export const data = {
       color: "#3c9f18",
     },
     {
+      cat_id: "crash",
+      label: "Crash",
+      icon: <RocketOutlined />,
+      bg: "rgb(235, 255, 253)",
+      color: "#00a7a7",
+    },
+    {
+      cat_id: "casino",
+      label: "Casino",
+      icon: null,
+      color: "rgb(133 182 33", // Teal-like color
+      bg: "rgb(255, 247, 235)", // Light peach background
+    },
+    {
       cat_id: "popular",
       label: "Popular",
       icon: <FireOutlined />,
@@ -46,13 +60,7 @@ export const data = {
       bg: "rgb(245, 241, 255)",
       color: "#7b38f6",
     },
-    {
-      cat_id: "crash",
-      label: "Crash",
-      icon: <RocketOutlined />,
-      bg: "rgb(235, 255, 253)",
-      color: "#00a7a7",
-    },
+
     {
       cat_id: "live_roulette",
       label: "Live Roulette",

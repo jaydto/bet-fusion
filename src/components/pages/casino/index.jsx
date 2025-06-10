@@ -80,7 +80,7 @@ const CasinoLayout = () => {
             md={23}
             lg={24}
             xl={24}
-            style={{ padding: isMobile ? "6px" : "10px", width: "100%" }}
+            style={{ padding: isMobile ? "4px 2px" : "10px", width: "100%" }}
           >
             <Suspense fallback={<LoadingPage />}>
               <Outlet />

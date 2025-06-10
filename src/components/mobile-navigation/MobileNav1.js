@@ -13,7 +13,7 @@ import { is } from "date-fns/locale";
 const { useBreakpoint } = Grid;
 
 const navItems = [
-  { label: "Football", image: Football, route: "/sports" },
+  // { label: "Football", image: Football, route: "/sports" },
   {
     label: "Aviator",
     image: Aviator,

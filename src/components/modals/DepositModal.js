@@ -218,7 +218,7 @@ const DepositModal = React.memo(() => {
                 className="form-control d-flex justify-content-between align-items-center"
                 style={{ height: "40px", backgroundColor: "var(--input-bg)" }}
               >
-                <span style={{color:"var(--dark)"}}>Deposit</span>
+                <span style={{ color: "var(--dark)" }}>Deposit</span>
                 <input
                   type="text"
                   id="amount"
@@ -266,7 +266,7 @@ const DepositModal = React.memo(() => {
           style={{ overflowX: "hidden" }}
           onClick={hideModal}
         >
-          <input id={"deposit"} type="submit" value="X" onClick={hideModal}  />
+          <input id={"deposit"} type="submit" value="X" onClick={hideModal} />
         </Button>
       </Modal.Footer>
     </Modal>

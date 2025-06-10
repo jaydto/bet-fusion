@@ -20,8 +20,8 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
   // Fallback style for new categories
   const defaultStyle = {
     icon: null,
-    color: "#ccc",
-    bg: "#f5f5f5",
+    color: "#2d7ff9",
+    bg: "rgb(235, 241, 255)",
   };
 
   // Merge or update categories
@@ -61,7 +61,7 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
       style={{
         width: isMobile ? "100vw" : "-webkit-fill-available",
         overflowX: "auto",
-        padding: isMobile ? 10 : 24,
+        padding: isMobile ? 10 : 12,
       }}
     >
       {mappedCategories.map((cat) => {

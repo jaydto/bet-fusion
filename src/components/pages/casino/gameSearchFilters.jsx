@@ -8,7 +8,7 @@ const GameSearchFilters = ({ onSearch }) => {
   return (
     <div
       className="search-filter-section"
-      style={{ marginBottom: "0.5rem", padding: isMobile?"0px 10px":"0px 24px" }}
+      style={{ marginBottom: "0.5rem", padding: isMobile?"0px 10px":"0px 12px" }}
     >
       <Input
         size="large"

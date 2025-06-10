@@ -51,7 +51,7 @@ const PageHeader = ({ title, description }) => {
   return (
     <div
       className="page-header"
-      style={{ marginBottom: "1.5rem", padding: isMobile?30:24}}
+      style={{ marginBottom: "1.5rem", padding: isMobile?24:24}}
     >
       <Breadcrumb
         separator=">"

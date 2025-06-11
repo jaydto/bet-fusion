@@ -123,7 +123,7 @@ const SearchModal = () => {
         <Input
           ref={searchInputRef}
           size="large"
-          placeholder="SEARCH GAME"
+          placeholder="Search games"
           prefix={<SearchOutlined style={{ color: "#ccc" }} />}
           value={searchQuery}
           onChange={handleInputChange}
@@ -132,6 +132,7 @@ const SearchModal = () => {
             borderRadius: 50,
             backgroundColor: "#2a2a2a",
             color: "var(--light)",
+            border: " 1px solid var(--deposit-c)",
           }}
         />
 

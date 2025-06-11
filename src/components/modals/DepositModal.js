@@ -14,7 +14,7 @@ const DepositInstructions = ({ handleFavoriteSelect, handleCardSelect }) => {
   return (
     <>
       <p className={"text-white py-2 px-4 font-input text-center mb-4"}>
-        Send money into yourjazabets Account
+        Send money into your jazabets Account
       </p>
       <p className={"text-white py-2 px-2 font-input text-start mb-4"}>
         Payment method
@@ -152,7 +152,7 @@ const DepositModal = React.memo(() => {
       centered={true}
       size={"md"}
       backdrop={"static"}
-      style={{ zIndex: "9999" }}
+      style={{ zIndex: "10000" }}
     >
       <Modal.Header closeButton={false} className={"w-100"}>
         <Modal.Title className={"w-100"}>
@@ -255,7 +255,7 @@ const DepositModal = React.memo(() => {
           </div>
         </form>
       </Modal.Body>
-      <Modal.Footer
+      {/* <Modal.Footer
         className={
           "text-center modal-width deposit-modal-footer position-relative"
         }
@@ -268,7 +268,7 @@ const DepositModal = React.memo(() => {
         >
           <input id={"deposit"} type="submit" value="X" onClick={hideModal} />
         </Button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 });

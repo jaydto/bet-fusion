@@ -44,7 +44,7 @@ export const UserInfo = React.memo((props) => {
               to={{ pathname: "/deposit" }}
               className={"cg  login-color login-size btn "}
             >
-              <span className="">DEPOSIT</span>
+              <span className="">Deposit</span>
             </Link>
           </div>
           <FontAwesomeIcon
@@ -60,7 +60,7 @@ export const UserInfo = React.memo((props) => {
             }}
           />
 
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faBell}
             style={{
               fontSize: "24px",
@@ -70,7 +70,7 @@ export const UserInfo = React.memo((props) => {
 
               // opacity: "0.7",
             }}
-          />
+          /> */}
         </div>
       )}
       <>

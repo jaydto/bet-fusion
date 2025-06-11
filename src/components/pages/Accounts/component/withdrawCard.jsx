@@ -101,9 +101,7 @@ const WithdrawForm = () => {
         <p className={"text-white py-2 px-2 font-input text-start mb-4"}>
           Withdrawal method
         </p>
-        <div>
-          <LazyLoadImage src={mpesa} alt="Logo" />
-        </div>
+        
         <p className="account__section__desc deposit__desc">
           Withdraw from yourjazabets wallet
         </p>

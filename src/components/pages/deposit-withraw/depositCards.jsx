@@ -40,20 +40,20 @@ const DepositCards = ({ onFavoriteSelect, onCardSelect }) => {
           <div className="card-header-d">
             <div
               className="favorite-icon-d"
-              onClick={(e) => toggleFavorite(e, id, value)}
+              // onClick={(e) => toggleFavorite(e, id, value)}
             >
-              {favorites[id] ? (
+              {/* {favorites[id] ? (
                 <FaStar color="var(--login-btn-cl)" />
               ) : (
                 <FaStar  color="var(--light)" />
-              )}
+              )} */}
             </div>
             <div className="amount-d"> {amount}</div>
           </div>
-          <div className="card-body-d">
+          {/* <div className="card-body-d">
             <div className="label">Get</div>
             <div className="value">{value}</div>
-          </div>
+          </div> */}
         </div>
       ))}
     </div>

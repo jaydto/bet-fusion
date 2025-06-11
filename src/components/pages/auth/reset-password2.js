@@ -363,7 +363,7 @@ const MyPasswordResetForm = React.memo((props) => {
                 type="submit"
                 className="w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page"
               >
-                Reset PasswordT
+                Reset Password
               </button>
             </div>
           </div>

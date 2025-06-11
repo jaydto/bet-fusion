@@ -182,7 +182,7 @@ export default function Footer() {
         </Col>
         <Divider style={{ borderColor: "#434343" }} />
 
-        <Col span={24}>
+        {/* <Col span={24}>
           <Title level={5} style={{ textAlign: "center", color: "white" }}>
             Cooperations
           </Title>
@@ -193,8 +193,8 @@ export default function Footer() {
               </Col>
             ))}
           </Row>
-        </Col>
-        <Divider style={{ borderColor: "#434343" }} />
+        </Col> */}
+        {/* <Divider style={{ borderColor: "#434343" }} /> */}
         <Col span={24}>
           <Title level={4} style={{ textAlign: "center", color: "white" }}>
             Share With Friends

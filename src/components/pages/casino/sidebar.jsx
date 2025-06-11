@@ -148,7 +148,7 @@ const Sidebar = () => {
         <Footer />
       </div>
 
-      <Col span={24} style={{ marginTop: 24 }}>
+      {/* <Col span={24} style={{ marginTop: 24 }}>
         <Row justify="center" gutter={16}>
           {[
             {
@@ -189,7 +189,7 @@ const Sidebar = () => {
             </Col>
           ))}
         </Row>
-      </Col>
+      </Col> */}
 
       <div
         style={{

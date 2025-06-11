@@ -12,7 +12,7 @@ const GameSearchFilters = ({ onSearch }) => {
     >
       <Input
         size="large"
-        placeholder="SEARCH GAME"
+        placeholder="Search games"
         prefix={<SearchOutlined style={{ color: "#ccc" }} />}
         onClick={onSearch}
         className="search-cat bg-transparent"
@@ -20,7 +20,7 @@ const GameSearchFilters = ({ onSearch }) => {
           borderRadius: 50,
           backgroundColor: "#2a2a2a",
           color: "var(--light)",
-          border: " 1px solid var(--blue)",
+          border: " 1px solid var(--deposit-c)",
         }}
       />
     </div>

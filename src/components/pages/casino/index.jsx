@@ -10,6 +10,8 @@ import DepositModal from "../../modals/DepositModal";
 import MobileMenu from "../../mobile-menu";
 
 import LoadingPage from "./loadingPage";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { useBreakpoint } = Grid;
 
@@ -72,7 +74,9 @@ const CasinoLayout = () => {
       {showDepositModal && <DepositModal />}
       {casinoSearchModal && <SearchModal />}
 
-      <div style={{ backgroundColor: "var(--jaza-bets-primary)", width: "100%" }}>
+      <div
+        style={{ backgroundColor: "var(--jaza-bets-primary)", width: "100%" }}
+      >
         <div className="d-flex justify-content-center">
           <Col
             xs={24}
@@ -91,7 +95,11 @@ const CasinoLayout = () => {
 
       {showScrollTop && (
         <button className="scroll-to-top" onClick={scrollToTop}>
-          ▲
+          {/* 🔝 */}
+          <FontAwesomeIcon
+            icon={faArrowUp}
+            style={{ color: "var(--light)", fontSize: "20px" }}
+          />
         </button>
       )}
 

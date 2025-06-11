@@ -22,6 +22,7 @@ import JisortModal from "../../modals/JisortModal";
 import { Switch } from "@mui/material";
 import { Card, Col, Grid, Row, Typography } from "antd";
 import { WalletOutlined, GiftOutlined } from "@ant-design/icons";
+import SearchModal from "../../modals/SearchModal";
 
 const { Text, Title } = Typography;
 const { useBreakpoint } = Grid;
@@ -31,8 +32,11 @@ const NewProfile = React.memo(() => {
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const { width } = useWindowDimensions();
   const dispatchRedux = useDispatch();
-const screens = useBreakpoint();
+  const screens = useBreakpoint();
   const isMobile = !screens.md;
+  const casinoSearchModal = useSelector(
+    (state) => state.virtuals.casino_search_modal
+  );
   useEffect(() => {
     if (userData) {
       setUser(userData || getFromLocalStorage("user"));
@@ -98,6 +102,8 @@ const screens = useBreakpoint();
   return (
     <>
       {showDepositModal && <DepositModal />}
+      {casinoSearchModal && <SearchModal />}
+
       {showJisortModal && (
         <JisortModal
           visible={showJisortModal}
@@ -106,12 +112,12 @@ const screens = useBreakpoint();
       )}
 
       <div>
-        <div className="profile-container-desktop d-flex">
-          <Row
-            gutter={isMobile ? [8, 6] :[16, 16]}
-            style={{ width: "100%" }}
-          >
-            <Col xs={24} sm={24} md={24} lg={12}>
+        <div
+          className="profile-container-desktop d-flex"
+          style={{ maxWidth: "767px", margin: "auto" }}
+        >
+          <Row gutter={isMobile ? [8, 6] : [16, 16]} style={{ width: "100%" }}>
+            <Col xs={24} sm={24} md={24} lg={24}>
               {" "}
               {/* Adjust col span as needed */}
               <div className="col mobile-full-width">
@@ -277,7 +283,7 @@ const BalanceCard = ({ user }) => {
 
   return (
     <Card className="mb-3 top-pr balance-card">
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-center">
         {/* Cash Balance */}
         <div className="d-flex align-items-center px-2">
           <WalletOutlined
@@ -298,7 +304,7 @@ const BalanceCard = ({ user }) => {
         </div>
 
         {/* Bonus Balance */}
-        <div className="d-flex align-items-center px-2">
+        {/* <div className="d-flex align-items-center px-2">
           <GiftOutlined
             style={{
               fontSize: 32,
@@ -314,7 +320,7 @@ const BalanceCard = ({ user }) => {
               Ksh {formatNumber(bonus)}
             </Title>
           </div>
-        </div>
+        </div> */}
       </div>
     </Card>
   );

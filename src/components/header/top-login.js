@@ -297,7 +297,7 @@ const HeaderLogin = React.memo((props) => {
                 {loading ? (
                   <div className="loader  position-top-buttons"></div>
                 ) : (
-                  <span>LOGIN</span>
+                  <span>Login</span>
                 )}
               </button>
               <Link
@@ -307,7 +307,7 @@ const HeaderLogin = React.memo((props) => {
                 onClick={() => gaEventTracker("Register")}
                 style={login && { display: "none" }}
               >
-                <span className="register-label bold">REGISTER </span>
+                <span className="register-label bold">Register </span>
               </Link>
             </div>
             <Row
@@ -325,7 +325,7 @@ const HeaderLogin = React.memo((props) => {
                 >
                   <span
                     className={`faded-color font-input } register-label my-3`}
-                    style={{ textTransform: "uppercase", color: "#FFAA00" }}
+                    style={{  color: "#FFAA00" }}
                   >
                     Create a New Account
                   </span>

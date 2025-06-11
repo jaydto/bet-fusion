@@ -350,7 +350,7 @@ const Register = () => {
                                         >
                                           <FontAwesomeIcon
                                             style={{
-                                              color: "var(--light)",
+                                              color: "var(--dark)",
                                               fontSize: "20px",
                                               padding: "0px 5px 0px 5px",
                                             }}
@@ -458,7 +458,6 @@ const Register = () => {
                                       <span
                                         className={`faded-color font-input } register-label my-3`}
                                         style={{
-                                          textTransform: "uppercase",
                                           color: "#FFAA00",
                                         }}
                                       >

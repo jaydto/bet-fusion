@@ -86,7 +86,7 @@ const DisputeResolution = () => {
                                                 Customer Services team.
                                             </p>
                                             <p>
-                                                You can contact thejazabets Customer Services team by way of email
+                                                You can contact the jazabets Customer Services team by way of email
                                                support@Jazabets.com or call our customer care lines or inbox us through
                                                 our
                                                 social Media Pages Facebook,jazabets, Instagramjazabets etc. Queries

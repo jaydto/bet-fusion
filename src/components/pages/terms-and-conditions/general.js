@@ -24,7 +24,7 @@ const General = () => {
                         terms and conditions ofjazabets by opening an account and placing bets on games on the company’s
                         website.
                     </li>
-                    <li> All CLIENTS accessing thejazabets’ website agree to abide by the following terms and conditions
+                    <li> All CLIENTS accessing the jazabets’ website agree to abide by the following terms and conditions
                         governing the use of its services (the "Agreement").
                     </li>
                     <li> This agreement and any other agreement between the CLIENT andjazabets are subject to the laws

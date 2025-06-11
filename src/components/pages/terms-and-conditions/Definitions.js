@@ -87,7 +87,7 @@ const General = () => {
 
     
 
-                    <li> “Header” thejazabets header that provides quick access to your bet slip, "My bets", account
+                    <li> “Header” the jazabets header that provides quick access to your bet slip, "My bets", account
                         options and the Cashier
                     </li>
                     
@@ -108,7 +108,7 @@ const General = () => {
                         “My bets” the page that contains your betting history
                     </li>
                     <li>
-                        “Navigation bar” this is the main navigation bar located below thejazabets header. It enables
+                        “Navigation bar” this is the main navigation bar located below the jazabets header. It enables
                         quick access to sports and specific filters. It also offers a quick return to lobby page of the
                         mobile site
                     </li>

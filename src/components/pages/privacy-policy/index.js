@@ -119,10 +119,10 @@ const PrivacyPolicy = React.memo(() => {
                         2.2. 2.	"Jazabets Service(s)" has the meaning given to it in the Terms and Conditions and "Services" shall be construed accordingly;
                       </p>
                       <p>
-                        2.3. 3.	"Channel(s)" means thejazabets website, mobile app, social media platforms and any other platforms used to offer thejazabets Services;
+                        2.3. 3.	"Channel(s)" means the jazabets website, mobile app, social media platforms and any other platforms used to offer the jazabets Services;
                       </p>
                       <p>
-                        2.4. 4.	"Customer(s)" means registered users of thejazabets Service;
+                        2.4. 4.	"Customer(s)" means registered users of the jazabets Service;
                       </p>
                       <p>
                         2.5. 
@@ -162,7 +162,7 @@ const PrivacyPolicy = React.memo(() => {
                     We collect your Personal Data when you interact with us or use our Services in any of the following ways (this list is subject to amendment from time to time as per clause 19 below):
 
                       <p>
-                        4.1. 	Visit, access or use any of thejazabets Services, events, business premises and / or Channels;
+                        4.1. 	Visit, access or use any of the jazabets Services, events, business premises and / or Channels;
                       </p>
 
                       <p>
@@ -367,7 +367,7 @@ const PrivacyPolicy = React.memo(() => {
                     <AccordionItemPanel className="accordion-item-panel">
 
                       <p>
-                        Through your interaction with any of thejazabets Services, premises, or our Channels, we may collect Sensitive Personal Data about you to the extent that the same is necessary for the full and proper operation of thejazabets Services that we offer to you
+                        Through your interaction with any of the jazabets Services, premises, or our Channels, we may collect Sensitive Personal Data about you to the extent that the same is necessary for the full and proper operation of the jazabets Services that we offer to you
 Should we wish to process your Sensitive Personal Data, we shall seek your specific consent first and ensure that the processing is necessary for:
 
                       </p>

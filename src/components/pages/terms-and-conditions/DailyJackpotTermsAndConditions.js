@@ -48,10 +48,10 @@ const DailyJackpotTermsAndConditions = () =>
                         </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel className={'accordion-item-panel'}>
-                        <p>Thejazabets Jackpot is a pool betting platform that is promoted and operated byjazabets on
-                            pre-selected football matches. Thejazabets Daily Jackpot competition consists of predicting
+                        <p>The jazabets Jackpot is a pool betting platform that is promoted and operated byjazabets on
+                            pre-selected football matches. The jazabets Daily Jackpot competition consists of predicting
                             results of 11 matches which are selected byjazabets Daily. </p>
-                        <p>To take part and have a chance to win thejazabets jackpot you must get registered on
+                        <p>To take part and have a chance to win the jazabets jackpot you must get registered on
                             www.Jazabets.com and have at least KES20/= in yourjazabets account. If you correctly predict
                             all the 11 match results, you win the Daily Jackpot prize of Kshs 1,000,000/= </p>
                     </AccordionItemPanel>
@@ -98,7 +98,7 @@ const DailyJackpotTermsAndConditions = () =>
                             time. Extra time and penalty shoot-outs shall not be included.</p>
                         <p>The competitions are open to persons aged 18 years or over, resident in Kenya. Proof of age
                             and identity are a MUST requirement.</p>
-                        <p>Thejazabets Daily Jackpot prize money is KES 1,000,000/=</p>
+                        <p>The jazabets Daily Jackpot prize money is KES 1,000,000/=</p>
                         <p>Players will be deemed to have accepted these terms and conditions and agreed to be bound by
                             them when entering this competition.</p>
 
@@ -121,7 +121,7 @@ const DailyJackpotTermsAndConditions = () =>
 
                             </li>
                             <li>
-                                To make your selections- On thejazabets Daily Jackpot competition entry page
+                                To make your selections- On the jazabets Daily Jackpot competition entry page
                                 (www.Jazabets.com/jackpot) make your predictions on the 11 pre-selected football matches
                                 (HOME WIN, DRAW, AWAY WIN). The stake amount of each combination is KES 20/=.
                             </li>
@@ -166,7 +166,7 @@ const DailyJackpotTermsAndConditions = () =>
                                 discretion,
                                 cancel the Daily Jackpot and refund the stake placed within 48 hours of cancellation.
                             </li>
-                            <li>Winners shall be required to avail themselves in thejazabets offices with proof of
+                            <li>Winners shall be required to avail themselves in the jazabets offices with proof of
                                 identity
                                 before any payment is made.
                             </li>

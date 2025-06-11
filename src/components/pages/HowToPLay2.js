@@ -240,7 +240,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              What is thejazabets Customer care number?
+                              What is the jazabets Customer care number?
                             </AccordionItemButton>
                           </AccordionItemHeading>
 

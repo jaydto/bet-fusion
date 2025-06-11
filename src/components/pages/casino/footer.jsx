@@ -72,7 +72,7 @@ export default function Footer() {
                 psychological harm.
               </li>
               <li>
-                Jazabets Enterprise Limited, Kenya operates thejazabets brand
+                Jazabets Enterprise Limited, Kenya operates the jazabets brand
                 and is authorized and regulated by the BCLB.
               </li>
               <li>

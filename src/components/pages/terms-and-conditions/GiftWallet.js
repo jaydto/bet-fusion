@@ -18,7 +18,7 @@ const GiftWallet = () => {
             <AccordionItemPanel className='accordion-item-panel'>
 <ol>
     <li>
-        Register and Get thejazabets Bet Booster of UPTO 3,000/= FREE
+        Register and Get the jazabets Bet Booster of UPTO 3,000/= FREE
     </li>
     <li>The client is set to receive Up to 3,000/= to Unlock their Stake Booster once they REGISTER</li>
 </ol>

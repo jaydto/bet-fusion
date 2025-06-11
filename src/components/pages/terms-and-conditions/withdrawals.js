@@ -60,7 +60,7 @@ const Withdrawals = () => {
                         Withdrawals from a User’s Account can only be addressed strictly to
                         the person registered on the Account and as per the conditions
                         specified
-                        on thejazabets WEBSITE.
+                        on the jazabets WEBSITE.
                     </li>
 
                     <li>

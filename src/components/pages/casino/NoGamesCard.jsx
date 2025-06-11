@@ -13,7 +13,7 @@ const NoGamesCard = () => {
         textAlign: "center",
         padding: 32,
         borderRadius: 16,
-        backgroundColor: "var(--jaza-bets-header-bg-btn)",
+        backgroundColor: "var(--top-pr)",
       }}
       variant="borderless"
       hoverable={false}

@@ -107,7 +107,7 @@ const SidebarProfile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
                             <FontAwesomeIcon icon={faWhatsapp} style={{fontSize:'24px'}}/>
-                            <a href={"https://wa.me/+25411234567"} target={"_blank"} className={'text-profile'}>Whatsapp Us</a>
+                            <a href={"https://wa.me/+254769210210"} target={"_blank"} className={'text-profile'}>Whatsapp Us</a>
                         </div>
                     </MenuItem>
                 </Menu>

@@ -1,5 +1,4 @@
 import { Layout, Row, Col, Typography, Space, Divider, Badge } from "antd";
-import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import fb1 from "../../../assets/img/fb1.png";
@@ -19,6 +18,7 @@ import {
   FileTextOutlined,
   StopOutlined,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const { Footer: AntFooter } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li>
                 License Numbers:{" "}
-                <b style={{ color: "var(--game-title)" }}> BK 000</b>
+                <b style={{ color: "var(--game-title)" }}> BK 0000808</b>
               </li>
             </ul>
           </Col>
@@ -105,15 +105,22 @@ export default function Footer() {
                 required to gamble responsibly and only bet what you can afford.
                 For gambling addiction help and support, please contact our
                 customer care at{" "}
-                <span style={{ color: "#91d5ff" }}>0769210210</span> or visit{" "}
-                <Link href="/responsible-gambling" style={{ color: "#91d5ff" }}>
+                <Link
+                  to="tel:0769210210"
+                  target="_blank"
+                  style={{ color: "#91d5ff" }}
+                >
+                  0769210210
+                </Link>{" "}
+                or visit{" "}
+                <Link to="/responsible-gambling" style={{ color: "#91d5ff" }}>
                   /responsible-gambling
                 </Link>
                 .
               </Paragraph>
               <Paragraph style={{ color: "white", fontSize: "13px" }}>
                 You can also read about our Responsible Gambling Policy by{" "}
-                <Link href="/responsible-gambling" style={{ color: "#91d5ff" }}>
+                <Link to="/responsible-gambling" style={{ color: "#91d5ff" }}>
                   clicking here
                 </Link>
                 .
@@ -223,8 +230,8 @@ export default function Footer() {
               },
             ].map((item, idx) => (
               <Col key={idx}>
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ textDecoration: "none" }}
@@ -240,7 +247,7 @@ export default function Footer() {
                       {item.label}
                     </Text>
                   </Space>
-                </a>
+                </Link>
               </Col>
             ))}
           </Row>

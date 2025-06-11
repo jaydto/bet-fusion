@@ -19,6 +19,10 @@ const WithdrawForm = () => {
   const successMessage = useSelector((state) => state.data.withdrawal_message);
   const errorMessage = useSelector((state) => state.data.error);
 
+  const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+  const minAmount = settings?.withdrawalLimits?.minimumAmount || 50;
+  const maxAmount = settings?.withdrawalLimits?.maximumAmount || 300000;
+
   useState(() => {
     setUser(userData || getFromLocalStorage("user"));
   }, [userData]);
@@ -31,8 +35,8 @@ const WithdrawForm = () => {
     validationSchema: Yup.object().shape({
       amount: Yup.number()
         .required("Amount is required")
-        // .min(50, 'Minimum amount is 50')
-        .max(300000, "Maximum amount is 300,000")
+        .min(minAmount, `Minimum amount is ${minAmount}`)
+        .max(maxAmount, `Maximum amount is ${maxAmount}`)
         .positive("Amount must be positive")
         .integer("Amount must be a whole number"),
     }),
@@ -71,6 +75,17 @@ const WithdrawForm = () => {
           console.log("Notification Clicked!");
         },
       });
+    } else if (errorMessage !== null) {
+      // Use Ant Design notification to display the error message
+      notification.error({
+        message: "Error",
+        description: errorMessage,
+        className: "ant-notification",
+        placement: "top", // Set placement to top
+        onClick: () => {
+          console.log("Notification Clicked!");
+        },
+      });
     }
   }, [successMessage, errorMessage]);
 
@@ -101,7 +116,7 @@ const WithdrawForm = () => {
         <p className={"text-white py-2 px-2 font-input text-start mb-4"}>
           Withdrawal method
         </p>
-        
+
         <p className="account__section__desc deposit__desc">
           Withdraw from yourjazabets wallet
         </p>
@@ -112,8 +127,8 @@ const WithdrawForm = () => {
           >
             <input
               type="number"
-              // min="50"
-              max="300000"
+              min={minAmount}
+              max={maxAmount}
               step="50"
               id="amount"
               name="amount"

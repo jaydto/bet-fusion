@@ -10,26 +10,50 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import mpesa from "../../assets/img/mobile/mpesa.svg";
 import DepositCards from "../pages/deposit-withraw/depositCards";
 
-const DepositInstructions = ({ handleFavoriteSelect, handleCardSelect }) => {
+const DepositInstructions = ({ handleCardSelect }) => {
   return (
     <>
-      <p className={"text-white py-2 px-4 font-input text-center mb-4"}>
-        Send money into your jazabets Account
+      <p className="text-white py-2 px-4 font-input text-center mb-4">
+        Securely add money to your Jazabets account via M-PESA
       </p>
-      <p className={"text-white py-2 px-2 font-input text-start mb-4"}>
-        Payment method
-      </p>
-      <div>
-        <LazyLoadImage src={mpesa} alt="Logo" />
-        <p className={"text-white py-2 px-2 font-input text-start mb-1"}>
-          Amount
-        </p>
 
-        <DepositCards
-          onFavoriteSelect={handleFavoriteSelect}
-          onCardSelect={handleCardSelect}
-        />
+      <p className="text-white py-2 px-2 font-input text-start mb-3">
+        Payment Method: M-PESA Paybill
+      </p>
+
+      <div className=" p-3 rounded mb-4" style={{backgroundColor: "var(--top-pr)"}}>
+        <p className="text-white font-input mb-1">
+          <strong>Paybill Number:</strong>{" "}
+          <span className="text-info">4200293</span>
+        </p>
+        <p className="text-white font-input mb-1">
+          <strong>Account Number:</strong> Your Jazabets username
+        </p>
+        <p className="text-white font-input mb-1">
+          <strong>Steps:</strong>
+        </p>
+        <ol className="text-white font-input ps-3">
+          <li>Go to M-PESA on your phone</li>
+          <li>
+            Select <strong>Lipa na M-PESA</strong>
+          </li>
+          <li>
+            Choose <strong>Paybill</strong>
+          </li>
+          <li>
+            Enter Business Number: <strong>4200293</strong>
+          </li>
+          <li>Enter Account Number: Your Jazabets username</li>
+          <li>Enter the amount you want to deposit</li>
+          <li>Enter your M-PESA PIN and press OK</li>
+        </ol>
       </div>
+
+      <p className="text-white py-2 px-2 font-input text-start mb-1">
+        Quick Amounts
+      </p>
+
+      <DepositCards onCardSelect={handleCardSelect} />
     </>
   );
 };
@@ -54,6 +78,7 @@ const DepositModal = React.memo(() => {
 
   const hideModal = () => {
     dispatchRedux(setState("show_deposit_modal", false));
+    dispatchRedux(setState("deposits_message", null));
     dispatchRedux(setState("insufficient_balance", false));
   };
 
@@ -90,7 +115,6 @@ const DepositModal = React.memo(() => {
 
   const clearMessage = () => {
     dispatchRedux(setState({ key: "deposits_message", value: null }));
-    dispatchRedux(setState({ key: "bet_placement_message", value: null }));
   };
 
   useEffect(() => {

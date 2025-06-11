@@ -1,62 +1,42 @@
-import React, { useState } from "react";
-import "./deposit.css";
-import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
+import React from "react";
+import { Card, Row, Col } from "antd";
 
-const DepositCards = ({ onFavoriteSelect, onCardSelect }) => {
-  const [favorites, setFavorites] = useState({});
-
+const DepositCards = ({ onCardSelect }) => {
   const cards = [
-    { id: 1, amount: 100, value: "10 " },
-    { id: 2, amount: 200, value: "20 " },
-    { id: 3, amount: 300, value: "30 " },
-    { id: 4, amount: 400, value: "40 " },
-    { id: 5, amount: 500, value: "50 " },
-    { id: 6, amount: 600, value: "60 " },
+    { id: 1, amount: 100, value: "10" },
+    { id: 2, amount: 200, value: "20" },
+    { id: 3, amount: 300, value: "30" },
+    { id: 4, amount: 400, value: "40" },
+    { id: 5, amount: 500, value: "50" },
+    { id: 6, amount: 600, value: "60" },
   ];
 
-  const toggleFavorite = (e, id, value) => {
-    e.stopPropagation();
-    e.preventDefault();
-    setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
-    if (onFavoriteSelect) {
-      onFavoriteSelect(value);
-    }
-  };
-
   const handleCardClick = (amount) => {
-    if (onCardSelect) {
-      onCardSelect(amount);
-    }
+    if (onCardSelect) onCardSelect(amount);
   };
 
   return (
-    <div className="card-grid-d">
+    <Row gutter={[16, 16]} wrap justify="start">
       {cards.map(({ id, amount, value }) => (
-        <div
-          key={id}
-          className="card-d"
-          onClick={() => handleCardClick(amount)}
-        >
-          <div className="card-header-d">
-            <div
-              className="favorite-icon-d"
-              // onClick={(e) => toggleFavorite(e, id, value)}
-            >
-              {/* {favorites[id] ? (
-                <FaStar color="var(--login-btn-cl)" />
-              ) : (
-                <FaStar  color="var(--light)" />
-              )} */}
-            </div>
-            <div className="amount-d"> {amount}</div>
-          </div>
-          {/* <div className="card-body-d">
-            <div className="label">Get</div>
-            <div className="value">{value}</div>
-          </div> */}
-        </div>
+        <Col key={id} xs={8} sm={8} md={8} lg={8}>
+          <Card
+            hoverable
+            onClick={() => handleCardClick(amount)}
+            style={{
+              textAlign: "center",
+              borderRadius: "10px",
+              cursor: "pointer",
+              backgroundColor: "#f0f2f5",
+              height: "100%",
+            }}
+            bodyStyle={{ padding: "20px" }}
+          >
+            <h4 style={{ marginBottom: 8 }}>KES {amount}</h4>
+            {/* <div style={{ fontSize: 12, color: "#888" }}>Get {value} coins</div> */}
+          </Card>
+        </Col>
       ))}
-    </div>
+    </Row>
   );
 };
 

@@ -127,16 +127,19 @@ const CasinoGames = ({ activeSetCategory }) => {
   return (
     <div style={{ overflow: "hidden", position: "relative" }}>
       <div className=" mt-1 body-section">
-        <PageHeader
+        {/* <PageHeader
           title={activeCategory === "Lobby" ? "Casino Lobby" : activeTitle}
           description="Explore and play your favorite casino games"
-        />
-        <GameSearchFilters onSearch={onSearch} />
-
-        <GameFilters
-          activeCategory={activeCategory}
-          onFilterChange={onFilterChange}
-        />
+        /> */}
+        <div className="mt-4">
+          <GameSearchFilters onSearch={onSearch} />
+        </div>
+        <div className="mt-2">
+          <GameFilters
+            activeCategory={activeCategory}
+            onFilterChange={onFilterChange}
+          />
+        </div>
 
         <div className="container mt-1 body-section">
           {loading ? (

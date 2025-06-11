@@ -133,9 +133,11 @@ const Sidebar = () => {
           background: "var(--jaza-bets-body-bg)",
           color: "var(--light)",
         }}
+        
       >
         <Menu
           mode="inline"
+          className="sidebar-menu-cs"
           defaultOpenKeys={["Games"]}
           items={menuItems}
           theme="dark"

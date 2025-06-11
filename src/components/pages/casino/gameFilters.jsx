@@ -48,7 +48,16 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
   });
 
   // Final mapped list
-  const mappedCategories = Array.from(baseCategoryMap.values());
+  // const mappedCategories = Array.from(baseCategoryMap.values());
+  // Step 1: Build a Set of valid labels from casino_types
+  const validLabels = new Set(
+    casino_types.map((type) => type.game_type_description)
+  );
+
+  // Step 2: Filter baseCategoryMap values by matching label
+  const mappedCategories = Array.from(baseCategoryMap.values()).filter((cat) =>
+    validLabels.has(cat.label)
+  );
 
   console.log("mappedCategories", mappedCategories);
   const handleCategoryClick = (game_id, label) => {

@@ -1,25 +1,25 @@
 :root {
   /* --jaza-bets-primary: rgba(5, 49, 104, 0.75); */
-  --jaza-bets-primary: #041f3d;
-  --jaza-bets-secondary: #041f3d;
-  --jaza-bets-footer: #041f3d;
+  --jaza-bets-primary: #0b1620;
+  --jaza-bets-secondary: #0b1620;
+  --jaza-bets-footer: #0b1620;
   --footer-color: #fff;
   --jaza-bets-button-login: #06fcd3;
   --signup: #ffffff;
   --deposit-c: #12ccc6;
-  --side-logo: #001529;
+  --side-logo: #0b1620;
 
   --btn-color-action: #06fcd3;
   --jaza-bets-button-register: #ffffff;
   --banner-background: url(../../assets/img/auth/img-17.webp) !important;
-  --jaza-bets-header-bg: #03182e;
-  --jaza-bets-header-bg-btn: #042344;
-  --jaza-bets-lite: #041f3d;
+  --jaza-bets-header-bg: #0b1620;
+  --jaza-bets-header-bg-btn: #0b1620;
+  --jaza-bets-lite: #0b1620;
   --blue: #4096ff;
-  --jaza-bets-body-bg: #041f3d;
+  --jaza-bets-body-bg: #0b1620;
   --hot: #f66203;
   --withdraw-input: #0e1a07;
-  --top-pr: #041221;
+  --top-pr: #061d35;
   --login-btn-cl: #06fcd3;
   --link-btn: #fdcb06;
   --card-c: #34363a;
@@ -28,7 +28,7 @@
   --game-title: #fdcb06;
   --side-bg-2: #311c47;
   --text-c: #fdcb06;
-  --bg-card-dark: #021832;
+  --bg-card-dark: #0b1620;
   --bg-section-container: #041f3d;
   --profile-card: #040b2e;
   --fade-color: #adadad;

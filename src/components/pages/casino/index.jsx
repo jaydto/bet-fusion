@@ -72,7 +72,7 @@ const CasinoLayout = () => {
       {showDepositModal && <DepositModal />}
       {casinoSearchModal && <SearchModal />}
 
-      <div style={{ backgroundColor: "var(--bettena-primary)", width: "100%" }}>
+      <div style={{ backgroundColor: "var(--jaza-bets-primary)", width: "100%" }}>
         <div className="d-flex justify-content-center">
           <Col
             xs={24}

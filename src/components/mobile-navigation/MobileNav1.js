@@ -53,7 +53,7 @@ const GameNavBar = () => {
         padding: isMobile ? "5px 0" : "12px 0",
         borderRadius: 1,
         margin: isMobile ? "6px" : "1px 10px 10px 10px",
-        borderBottom: isMobile ? "1px solid var(--bettena-secondary)" : "none",
+        borderBottom: isMobile ? "1px solid var(--jaza-bets-secondary)" : "none",
       }}
     >
       <Row

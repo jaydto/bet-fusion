@@ -56,7 +56,7 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
 
   // Step 2: Filter baseCategoryMap values by matching label
   const mappedCategories = Array.from(baseCategoryMap.values()).filter((cat) =>
-    validLabels.has(cat.label)
+  (cat) => validLabels.has(cat.label) || cat.label === "Lobby"
   );
 
   console.log("mappedCategories", mappedCategories);

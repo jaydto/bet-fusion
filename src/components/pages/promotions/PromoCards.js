@@ -77,7 +77,7 @@ const PromoCards = () => {
                 style={{
                   border: "none",
                   borderRadius: 8,
-                  background: "var(--jaza-bets-header-bg)",
+                  background: "var(--jaza-bets-promo-card)",
                   color: "#fff",
                 }}
               >

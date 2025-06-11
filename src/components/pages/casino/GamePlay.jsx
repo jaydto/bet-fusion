@@ -21,16 +21,19 @@ const { Content } = Layout;
 const { useBreakpoint } = Grid;
 
 const GamePlay = React.memo((props) => {
-  const url = new URL(window.location);
-  const game = url.searchParams.get("game");
-  const gameName = url.searchParams.get("game_name");
-  const type = url.searchParams.get("category");
-  const demo_url = url.searchParams.get("demo_url");
+  const [searchParams, setSearchParams] = useState(
+    new URLSearchParams(window.location.search)
+  );
+
+  const game = searchParams.get("game");
+  const gameName = searchParams.get("game_name");
+  const type = searchParams.get("category");
+  const demo_url = searchParams.get("demo_url");
+  const status = searchParams.get("status");
+
   const dispatch = useDispatch();
   const screens = useBreakpoint();
   const isMobile = !screens.md;
-
-  const status = url.searchParams.get("status");
 
   const [gamePlay, setGamePlay] = useState("");
   const [, setUserToken] = useState("");
@@ -198,37 +201,64 @@ const GamePlay = React.memo((props) => {
     }
   };
 
+  const handleRealGameClick = () => {
+    const updatedParams = new URLSearchParams(searchParams); // clone current params
+    updatedParams.set("status", "0"); // update the status
+
+    setSearchParams(updatedParams); // update local state
+    setGameStatus("live");
+
+    // Push updated params to the browser URL bar
+    const newUrl = window.location.pathname + "?" + updatedParams.toString();
+    window.history.pushState({}, "", newUrl);
+  };
+
   useEffect(() => {
-    const switchToDemoMode = (demo_url) => {
-      createToken(status); // Create token if user exists and status is live
+    const updateSearchParams = () => {
+      setSearchParams(new URLSearchParams(window.location.search));
+    };
+
+    // Handle browser back/forward
+    window.addEventListener("popstate", updateSearchParams);
+
+    // Monkey-patch pushState & replaceState to catch manual navigation too
+    const originalPushState = window.history.pushState;
+    const originalReplaceState = window.history.replaceState;
+
+    window.history.pushState = function (...args) {
+      originalPushState.apply(this, args);
+      updateSearchParams();
+    };
+
+    window.history.replaceState = function (...args) {
+      originalReplaceState.apply(this, args);
+      updateSearchParams();
+    };
+
+    return () => {
+      window.removeEventListener("popstate", updateSearchParams);
+      window.history.pushState = originalPushState;
+      window.history.replaceState = originalReplaceState;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!game) return;
+
+    const switchToDemoMode = () => {
+      createToken(status); // create token and load game
       setGameUrlLoaded(true);
     };
-    console.log("user", user);
 
     if (status === "0") {
       if (user) {
-        if (status === "1") {
-          setGameStatus("demo");
-        }
-        console.log("calling endpoint");
-        createToken(status); // Create token if user exists and status is live
+        createToken(status); // Create token for real mode
       }
     } else {
       setGameStatus("demo");
-      switchToDemoMode(demo_url); // Switch to demo mode if the status is not live
+      switchToDemoMode(); // Load demo mode
     }
-  }, [status]);
-
-  console.log("gameStatus", gameStatus);
-  console.log("gameStatus", gamePlay);
-
-  const handleRealGameClick = () => {
-    // Update the URL search params to set status to "live"
-    url.searchParams.set("status", "0");
-    setGameStatus("live");
-
-    window.history.pushState({}, "", url); // Update the URL without reloading
-  };
+  }, [game, status]);
 
   return (
     <>
@@ -236,7 +266,7 @@ const GamePlay = React.memo((props) => {
       <Layout
         className=" game-play-layout"
         style={{
-          background: "var(--jaza-bets-primary)",
+          background: "var(--jaza-bets-game-play-bg)",
           padding: isMobile ? 4 : 24,
           marginTop: isCustomFullscreen ? 0 : isMobile ? 0 : 25,
         }}
@@ -272,7 +302,7 @@ const GamePlay = React.memo((props) => {
                             backgroundColor: "var(--jaza-bets-primary)",
                             zIndex: 999999,
                             position: "relative",
-                            marginTop:isMobile?"-2rem":"-4rem",
+                            marginTop: isMobile ? "-2rem" : "-4rem",
                           }
                         : {}
                     }

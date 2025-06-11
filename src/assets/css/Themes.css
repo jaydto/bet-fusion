@@ -19,7 +19,10 @@
   --jaza-bets-body-bg: #0b1620;
   --hot: #f66203;
   --withdraw-input: #0e1a07;
-  --top-pr: #061d35;
+  --top-pr: #010f1dc9
+  ;
+  --jaza-bets-game-play-bg:#010f1dc9;
+  --jaza-bets-promo-card: #010f1dc9;
   --login-btn-cl: #06fcd3;
   --link-btn: #fdcb06;
   --card-c: #34363a;
@@ -179,8 +182,11 @@
   --jaza-bets-primary: #f0f0f0;
   --signup: #000;
   --side-logo: #fff;
+  --jaza-bets-game-play-bg:#f0f0f0;
 
   --top-header-nav: #f0f0f0;
+  --jaza-bets-promo-card: #fff;
+
   --footer-color: #05070a;
   --footer-links: #05070a;
   --jaza-bets-secondary: #fff;

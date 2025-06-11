@@ -62,7 +62,7 @@ const CasinoLayout = () => {
       className="main-layout"
       style={{
         width: "100%",
-        marginTop: shouldRemoveMarginTop ? 0 : "3.5rem",
+        marginTop: shouldRemoveMarginTop ? 0 : "4.5rem",
         marginBottom: isMobile ? "3.5rem" : 0,
         display: "flex",
         flexDirection: "column",

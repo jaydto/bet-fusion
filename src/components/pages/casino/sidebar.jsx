@@ -109,11 +109,12 @@ const Sidebar = () => {
       }}
     >
       <div
-        className="logo-section"
+        className="logo-section sidebar-logo"
         style={{
           height: 50,
           display: width <= 768 ? "none" : "flex",
           alignItems: "center",
+          padding: 24,
         }}
       >
         <LazyLoadImage
@@ -126,7 +127,7 @@ const Sidebar = () => {
         />
       </div>
 
-      <div className="logo" />
+      {/* <div className="logo" /> */}
       <SimpleBar
         style={{
           background: "var(--jaza-bets-body-bg)",

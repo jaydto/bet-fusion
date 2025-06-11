@@ -1,3 +1,45 @@
+
+/* carousel */
+.casino-carousel-wrapper {
+  position: relative;
+  /* width: 100%; */
+  overflow: hidden;
+}
+
+.carousel-slide {
+  position: relative;
+  cursor: pointer;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-overlay {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  z-index: 2;
+}
+
+.carousel-title {
+  font-weight: 900;
+  color: #00ffff; /* neon blue */
+}
+
+.carousel-subtext {
+  font-size: 18px;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+/* ---carousel---- */
+
 /* --------CategoryTabs.css------------ */
 .tabs-wrapper {
   position: relative;
@@ -169,11 +211,12 @@
   background-color: #000;
   color: white;
   padding: 8px 14px;
-  border-radius: 30px;
+  border-radius: 12px;
   max-width: 100%;
   font-size: 13px;
   overflow: hidden;
   height: 36px; /* taller to make slide visible */
+  margin: 0px 5px;
 }
 
 .banner-icon {
@@ -551,6 +594,8 @@
   height: 200px;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
+  filter: drop-shadow(2px 4px 6px black);
+  
 }
 
 .ant-card {

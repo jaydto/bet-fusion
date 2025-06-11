@@ -143,7 +143,7 @@ const MyOtpForm = React.memo((props) => {
                 <div className="col-md-12 mb-3">
                   <input
                     value={values.mobile}
-                    className="text-light deposit-input form-control col-md-12 input-field input-bg-user"
+                    className=" deposit-input form-control col-md-12 input-field input-bg-user"
                     id="mobile"
                     name="mobile"
                     type="text"
@@ -250,7 +250,7 @@ const MyPasswordResetForm = React.memo((props) => {
                 <label className={"text-center"}>Enter OTP</label>
                 <input
                   value={values.code}
-                  className="text-light deposit-input form-control col-md-12 input-field"
+                  className=" deposit-input form-control col-md-12 input-field"
                   id="otp"
                   name="code"
                   type="text"
@@ -275,7 +275,7 @@ const MyPasswordResetForm = React.memo((props) => {
                 >
                   <input
                     value={values.password}
-                    className=" w-75 text-light deposit-input form-control col-md-12 input-field"
+                    className=" w-75  deposit-input form-control col-md-12 input-field"
                     id="password_reset"
                     name="password"
                     type={showPassword ? "text" : "password"}
@@ -320,7 +320,7 @@ const MyPasswordResetForm = React.memo((props) => {
                 >
                   <input
                     value={values.repeat_password}
-                    className="w-75 text-light deposit-input form-control col-md-12 input-field"
+                    className="w-75  deposit-input form-control col-md-12 input-field"
                     id="confirm_password"
                     name="repeat_password"
                     type={showPassword ? "text" : "password"}
@@ -338,12 +338,12 @@ const MyPasswordResetForm = React.memo((props) => {
                         {showPassword ? (
                           <FontAwesomeIcon
                             icon={faEyeSlash}
-                            style={{ color: "var(--light)", fontSize: "20px" }}
+                            style={{ color: "var(--dark)", fontSize: "20px" }}
                           />
                         ) : (
                           <FontAwesomeIcon
                             icon={faEye}
-                            style={{ color: "var(--light)", fontSize: "20px" }}
+                            style={{ color: "var(--dark)", fontSize: "20px" }}
                           />
                         )}
                       </button>

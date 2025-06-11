@@ -223,7 +223,7 @@ const DepositConfirmFormFields = (props) => {
                         onChange={ev => {
                             onFieldChanged(ev);
                         }}
-                        className="text-light deposit-input form-control col-md-12 input-field"
+                        className=" deposit-input form-control col-md-12 input-field"
                         id="confirmation_code"
                         name="confirmation_code"
                         type="text"

@@ -74,7 +74,7 @@ const Promo = () => {
 
           <div
             className="d-flex justify-content-center"
-            style={{ padding: "1rem" }}
+            style={{ padding: isMobile?"0.3rem":"1rem" }}
           >
             <Col span={24}>
               <div

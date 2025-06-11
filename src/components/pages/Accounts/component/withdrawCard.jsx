@@ -124,7 +124,7 @@ const WithdrawForm = () => {
               onBlur={formik.handleBlur}
               autoComplete="off"
               placeholder="Enter amount to withdraw"
-              className="text-light deposit-input form-control col-md-12 input-field withdraw-input"
+              className=" deposit-input form-control col-md-12 input-field withdraw-input"
             />
             {formik.touched.amount && formik.errors.amount ? (
               <div className="input__desc text-danger">

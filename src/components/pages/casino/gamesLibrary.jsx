@@ -95,7 +95,7 @@ const GamesLibrary = ({
         <div className="games-scroll-wrapper" ref={scrollRef}>
           <Row
             wrap={nowrap} // wrap only if categoryId === "All"
-            gutter={[12, 12]}
+            gutter={isMobile? [6, 16] : [12, 16]}
             style={{ padding: isMobile ? 10 : "10px 12px" }}
             className="games-scroll-container"
           >
@@ -129,8 +129,8 @@ const GamesLibrary = ({
                         src={game.image}
                         style={{
                           borderRadius: "10px",
-                          maxHeight: isMobile ? 130 : 170,
-                          minHeight: isMobile ? 130 : 170,
+                          maxHeight: isMobile ? 125 : nowrap?180:200,
+                          minHeight: isMobile ? 125 : nowrap?180:200,
                           width: "100%",
                           objectFit: "cover",
                         }}

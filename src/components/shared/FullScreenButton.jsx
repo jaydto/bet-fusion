@@ -22,6 +22,7 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
 
       <div className="d-flex align-items-center" style={{ gap: 12 }}>
         {isMobile && (
+          
           <Button
             // type="primary"
             style={{

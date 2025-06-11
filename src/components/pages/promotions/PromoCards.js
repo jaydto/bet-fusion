@@ -62,7 +62,7 @@ const PromoCards = () => {
   }, []);
 
   return (
-    <div className="px-4">
+    <div className="px-sm-2 px-md-4 px-lg-4">
       <Row gutter={[16, 16]}>
         {promotions.map((promotion, index) => {
           const isExpired = new Date(promotion.expiryDate) < new Date();

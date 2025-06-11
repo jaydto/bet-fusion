@@ -39,7 +39,7 @@ const LandingPage = () => {
     <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
       <div
         style={{
-          marginTop: isMobile ? 2 : 20,
+          marginTop: isMobile ? 2 : 10,
           padding: isMobile ? "5px 1px" : "12px 0px 0px 12px",
           overflow: "hidden",
         }}

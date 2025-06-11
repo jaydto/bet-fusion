@@ -115,9 +115,13 @@ body {
   }
   .logo-section {
     width: 298px;
-    border-right: 2px solid var(--bet-history);
+    /* border-right: 2px solid var(--bet-history); */
     background: var(--jaza-bets-header-bg);
     /* display: none; */
+  }
+  .logo-section.sidebar-logo {
+    background-color: var(--side-logo) !important;
+    /* background: var(--jaza-bets-header-bg); */
   }
   .mobile-menu {
     /* margin: auto;
@@ -948,9 +952,9 @@ label {
 }
 .search-cat input {
   color: var(--light) !important;
-  border-color:1px solid var(--blue) !important;
+  border-color: 1px solid var(--blue) !important;
 }
-.search-filter-section input{
+.search-filter-section input {
   /* border: 1px solid var(--blue) !important; */
 }
 .search-cat input::placeholder {
@@ -1020,7 +1024,7 @@ input:focus {
 }
 
 .input-bg-user {
-  background: var(--btn-color) !important;
+  /* background: var(--btn-color) !important; */
   border-radius: 3px !important;
   border: 0.1px groove #2d3641 !important;
 }
@@ -1305,7 +1309,7 @@ width-page-centric.register-page {
 
 .login-color.cg {
   background: var(--jaza-bets-button-login);
-  padding: 6px 15px;
+  padding: 5px 15px;
   border-radius: 6px;
   margin-left: 5px;
   /* height: 2.3rem; */
@@ -1490,6 +1494,9 @@ input[type="checkbox"] {
   height: 44px !important;
   line-height: 40px;
   border: none;
+}
+input.cashout-close{
+color:var(--light)!important
 }
 
 .input-field-search {
@@ -1769,7 +1776,8 @@ img.nare-league {
 
   .carousel-item img {
     min-height: 164px;
-    border-radius: 4px;
+    border-radius: 10px;
+    border: none;
   }
   .compt-teams .compt-teams-item {
     font-size: 14px;
@@ -2026,7 +2034,7 @@ img.nare-league {
   }
   .carousel-item img {
     min-height: 100px !important;
-    border-radius: 4px;
+    border-radius: 10px;
   }
   .share-button-styling {
     white-space: nowrap;

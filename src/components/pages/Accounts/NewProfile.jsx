@@ -20,17 +20,19 @@ import DepositModal from "../../modals/DepositModal";
 import { setState } from "../../../redux/dataSlice";
 import JisortModal from "../../modals/JisortModal";
 import { Switch } from "@mui/material";
-import { Card, Col, Row, Typography } from "antd";
+import { Card, Col, Grid, Row, Typography } from "antd";
 import { WalletOutlined, GiftOutlined } from "@ant-design/icons";
 
 const { Text, Title } = Typography;
+const { useBreakpoint } = Grid;
 
 const NewProfile = React.memo(() => {
   const userData = useSelector((state) => state.auth.user);
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const { width } = useWindowDimensions();
   const dispatchRedux = useDispatch();
-
+const screens = useBreakpoint();
+  const isMobile = !screens.md;
   useEffect(() => {
     if (userData) {
       setUser(userData || getFromLocalStorage("user"));
@@ -105,8 +107,11 @@ const NewProfile = React.memo(() => {
 
       <div>
         <div className="profile-container-desktop d-flex">
-          <Row gutter={[16, 16]} style={{ width: "100%" }}>
-            <Col xs={24} md={24} lg={12}>
+          <Row
+            gutter={isMobile ? [8, 6] :[16, 16]}
+            style={{ width: "100%" }}
+          >
+            <Col xs={24} sm={24} md={24} lg={12}>
               {" "}
               {/* Adjust col span as needed */}
               <div className="col mobile-full-width">
@@ -209,11 +214,11 @@ const NewProfile = React.memo(() => {
 
                     <WithdrawForm />
 
-                    <div className="card mb-3 top-pr">
+                    {/* <div className="card mb-3 top-pr">
                       <div className="upper-row text-light-p p-3">
                         Change Password <FontAwesomeIcon icon={faAngleRight} />
                       </div>
-                    </div>
+                    </div> */}
                     {/* <p style={{ color: "var(--light)" }}>Settings</p> */}
                     {/* Theme Toggle */}
                     {/* <div className="card mb-3 top-pr">

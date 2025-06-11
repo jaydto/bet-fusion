@@ -6,7 +6,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { PlayCircleOutlined } from "@ant-design/icons";
 
 const { Meta } = Card;
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 const GamesSection = ({ games, category = null }) => {
   const navigate = useNavigate();
@@ -36,16 +36,12 @@ const GamesSection = ({ games, category = null }) => {
             padding: "12px 0px 0px 12px",
           }}
         >
-          <h2
-            style={{
-              marginRight: "0.5rem",
-              fontWeight: 600,
-              color: "var(--light)",
-            }}
-          >
+          <Title level={4} className="games-title">
             {category}
-          </h2>
-          {["Crash", "Hot", "Popular"].map((cat) => cat.toLowerCase()).includes(category) && (
+          </Title>
+          {["Crash", "Hot", "Popular"]
+            .map((cat) => cat.toLowerCase())
+            .includes(category) && (
             <Tag
               color="red"
               style={{ fontWeight: "bold", borderRadius: "6px" }}

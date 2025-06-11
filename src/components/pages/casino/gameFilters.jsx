@@ -54,10 +54,10 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
     casino_types.map((type) => type.game_type_description)
   );
 
-  // Step 2: Filter baseCategoryMap values by matching label
-  const mappedCategories = Array.from(baseCategoryMap.values()).filter((cat) =>
-  (cat) => validLabels.has(cat.label) || cat.label === "Lobby"
-  );
+ const mappedCategories = Array.from(baseCategoryMap.values()).filter(
+  (cat) =>
+    validLabels.has(cat.label) || cat.label === "Lobby" || cat.label === "Casino"
+);
 
   console.log("mappedCategories", mappedCategories);
   const handleCategoryClick = (game_id, label) => {

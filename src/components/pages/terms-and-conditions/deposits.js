@@ -82,7 +82,7 @@ const Deposits = () => {
                     {/*    page.*/}
                     {/*</li>*/}
                     <li>
-                        The player acknowledges thatjazabets reserves the right to request
+                        The player acknowledges thAt jazabets reserves the right to request
                         proof of payments to player’s accounts to confirm a depositing
                         source or
                         complete verification process.

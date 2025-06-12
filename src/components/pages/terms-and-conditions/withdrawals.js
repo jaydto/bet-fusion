@@ -98,7 +98,7 @@ const Withdrawals = () => {
                         the recollection of the misplaced money.
                     </li>
                     <li>
-                        Kindly note thatjazabets will hold the funds deposited in the
+                        Kindly note thAt jazabets will hold the funds deposited in the
                         Account
                         as trustee for the CLIENT and not as his/her banker or debtor.
                         Accordingly, there will be no obligation on the part ofjazabets

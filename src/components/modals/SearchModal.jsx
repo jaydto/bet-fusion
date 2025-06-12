@@ -95,7 +95,7 @@ const SearchModal = () => {
             isDemo ? "1" : "0"
           }&game_name=${game_name}`
         )
-      : navigate("/login");
+      : navigate("/auth/login");
   };
 
   const handleClose = () =>

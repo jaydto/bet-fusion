@@ -75,7 +75,7 @@ const Redirect = () => {
   const { dispatch } = useContext(StoreContext);
   const dispatchRedux = useDispatch();
   let navigate = useNavigate();
-  setLocalStorage("user", null);
+  removeItem("user");
   dispatchRedux(resetState("user"));
   const out = useCallback(() => {
     localStorage.clear();

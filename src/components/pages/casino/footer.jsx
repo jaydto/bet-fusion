@@ -31,7 +31,7 @@ export default function Footer() {
       style={{
         background: "var(--bg-card-dark)",
         color: "var(--light)",
-        padding: "30px 20px",
+        padding: "20px 20px",
         marginBottom: 10,
       }}
     >
@@ -44,7 +44,7 @@ export default function Footer() {
           }}
         >
           <Col span={24}>
-            <Title level={3} style={{ textAlign: "center", color: "white" }}>
+            <Title level={5} style={{ textAlign: "center", color: "white" }}>
               License
             </Title>
             <ul
@@ -55,9 +55,10 @@ export default function Footer() {
                 paddingLeft: 0,
               }}
             >
-              <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                Players must be{" "}
-                <b style={{ color: "var(--game-title)" }}>18 or older.</b>
+              <li>
+                Only individuals aged{" "}
+                <b style={{ color: "var(--game-title)" }}>18 years or older</b>{" "}
+                are permitted to play.
                 <Badge
                   count="18+"
                   style={{
@@ -68,19 +69,21 @@ export default function Footer() {
                 />
               </li>
               <li>
-                Be Responsible. The addiction to gambling can cause
-                psychological harm.
+                Please play responsibly. Gambling may lead to addiction and
+                mental health challenges.
               </li>
               <li>
-                Jazabets Enterprise Limited, Kenya operates the jazabets brand
-                and is authorized and regulated by the BCLB.
+                Jazabets is operated by Jazabets Enterprise Limited, a licensed
+                gaming company in Kenya regulated by the Betting Control and
+                Licensing Board (BCLB).
               </li>
               <li>
-                License Numbers:{" "}
-                <b style={{ color: "var(--game-title)" }}> BK 0000808</b>
+                License Number:{" "}
+                <b style={{ color: "var(--game-title)" }}>BK 0000808</b>
               </li>
             </ul>
           </Col>
+
           <Divider style={{ borderColor: "#434343" }} />
           <Row gutter={[16, 16]}>
             <Col span={24}>
@@ -263,6 +266,18 @@ export default function Footer() {
           </Paragraph>
         </Col>
       </Row>
+      <Col span={24}>
+        <Paragraph
+          style={{
+            textAlign: "center",
+            fontSize: 12,
+            marginTop: 16,
+            color: "white",
+          }}
+        >
+          &copy; 2025 JazaBets. All rights reserved.
+        </Paragraph>
+      </Col>
     </AntFooter>
   );
 }

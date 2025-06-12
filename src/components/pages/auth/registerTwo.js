@@ -84,7 +84,7 @@ const Register = () => {
         className: "ant-notification",
         placement: "top",
       });
-      navigate("/login");
+      navigate("/auth/login");
     } else if (errorMessage) {
       const data = {
         event: "sign_up_failed",

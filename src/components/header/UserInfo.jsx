@@ -23,7 +23,11 @@ export const UserInfo = React.memo((props) => {
   const [user, setUser] = useState(getFromLocalStorage("user"));
 
   useEffect(() => {
-    setUser(getFromLocalStorage("user"));
+    if (getFromLocalStorage("user")) {
+      setUser(getFromLocalStorage("user"));
+    } else {
+      setUser(null);
+    }
   }, [getFromLocalStorage("user")]);
 
   const dispatchRedux = useDispatch();

@@ -6,13 +6,14 @@ import {
 } from "./local-storage";
 import { notification } from "antd";
 
-const ENC_KEY = '2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y';
+const ENC_KEY =
+  "2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y";
 // export const BASE_URL = 'http://localhost:5000';
-  // export const BASE_URL = 'https://testapi.Jazabets.co.ke';
+// export const BASE_URL = 'https://testapi.Jazabets.co.ke';
 // export const BASE_URL = 'https://51.83.99.148:5000';
 // export const BASE_URL = 'http://staging.Jazabets.com';
 // export const BASE_URL = 'https://api.Jazabets.bet';
-export const BASE_URL = 'https://api.jazabets.com'; 
+export const BASE_URL = "https://api.jazabets.com";
 
 const instance = axios.create({
   baseURL: BASE_URL,
@@ -22,7 +23,7 @@ const instance = axios.create({
 });
 
 const navigate = async () => {
-  await removeItem("user"); 
+  await removeItem("user");
 };
 
 // Function to set the flag indicating user update
@@ -48,12 +49,14 @@ instance.interceptors.response.use(
         navigate().then(() => {
           notification.error({
             message: "Session expired",
-            className: 'ant-notification',
+            className: "ant-notification",
             description: "Please login again",
-            placement:"top"
+            placement: "top",
           });
-           // Delay the redirection to the logout page (e.g., 3 seconds)
-           setTimeout(() => {
+          removeItem("user");
+
+          // Delay the redirection to the logout page (e.g., 3 seconds)
+          setTimeout(() => {
             window.location.href = "/auth/redirect";
           }, 3000);
         });
@@ -68,10 +71,10 @@ instance.interceptors.response.use(
     if (status === 401) {
       // Clear user data from local storage
       // Redirect to the login page if not already on it
-      if (window.location.pathname !== "/login") {
+      if (window.location.pathname !== "/auth/login") {
         // Clear user data from local storage
         navigate().then(() => {
-          window.location.href = "/login";
+          window.location.href = "/auth/login";
         });
       }
     }
@@ -129,7 +132,7 @@ const makeRequest = async ({ url, method, data = null, use_jwt = false }) => {
     let status = err.response?.status;
     let result = err.response?.data;
     return [status, result];
-  } 
+  }
   // finally {
   //   if (!shouldSkipUserUpdate()) {
   //     setLocalStorage("user", user);

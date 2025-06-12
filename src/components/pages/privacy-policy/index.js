@@ -87,7 +87,7 @@ const PrivacyPolicy = React.memo(() => {
                     </AccordionItemHeading>
                     <AccordionItemPanel className="accordion-item-panel">
                       <p>
-                        1.1.Atjazabets we are committed to protecting and
+                        1.1.At jazabets we are committed to protecting and
                         respecting your privacy and maintaining your confidence
                         and trust. This privacy policy ("Privacy Policy") is
                         used to inform you as to how we process your Personal

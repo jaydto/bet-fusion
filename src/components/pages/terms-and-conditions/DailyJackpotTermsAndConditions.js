@@ -227,7 +227,7 @@ const DailyJackpotTermsAndConditions = () =>
                                 IV.	<b>NINE OUT OF ELEVEN outcomes</b> - In an instance THAT a player gets 9/11 CORRECT predictions on the Running Jackpot, they automatically get a (1,000 KES) that is Withdrawable. This Offer is ONLY available to players who get NINE out of the ELEVEN available jackpot games to play from.
                             </li>
                             <li>
-                                V.	<b>TEN OUT OF ELEVEN outcomes</b> -jazabets Jackpot contains 11 games, the Jackpot bonuses are from 10 correct games. The Jackpot bonus amount shall vary between the Jackpot Bonuses. The prize allocated to the Bonus winners is completely atjazabets’s discretion. Any Jackpot Bonus shall be divided equally among the Jackpot bonus winners if there is more than ONE winner within the respective class.
+                                V.	<b>TEN OUT OF ELEVEN outcomes</b> -jazabets Jackpot contains 11 games, the Jackpot bonuses are from 10 correct games. The Jackpot bonus amount shall vary between the Jackpot Bonuses. The prize allocated to the Bonus winners is completely At jazabets’s discretion. Any Jackpot Bonus shall be divided equally among the Jackpot bonus winners if there is more than ONE winner within the respective class.
                             </li>
                         </ul>
                         <h4>

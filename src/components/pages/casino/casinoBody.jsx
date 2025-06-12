@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import CasinoSkeletonLoader from "./casino-skeleton";
 
@@ -8,12 +8,15 @@ import GameSearchFilters from "./gameSearchFilters";
 import PageHeader from "./pageHeader";
 import GamesLibrary from "./gamesLibrary";
 import NoGamesCard from "./NoGamesCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setState } from "../../../redux/virtualsSlice";
 import GameFilters from "./gameFilters";
 import { filter } from "lodash";
 
 const CasinoGames = ({ activeSetCategory }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryFromURL = searchParams.get("categoryId");
+
   const [activeCategory, setActiveCategory] = useState(activeSetCategory);
   const [activeTitle, setActiveTitle] = useState(activeSetCategory);
 
@@ -27,6 +30,12 @@ const CasinoGames = ({ activeSetCategory }) => {
   const casino_types = useSelector(
     (state) => state.virtuals.casino_games_types
   );
+
+  useEffect(() => {
+    if (categoryFromURL) {
+      setActiveCategory(categoryFromURL);
+    }
+  }, [categoryFromURL]);
 
   const defaultImages = [
     "https://cdn.betika.com/int_assets/crash-games/tradeblazer/tradeblazer_1000x1334.jpg",
@@ -112,8 +121,17 @@ const CasinoGames = ({ activeSetCategory }) => {
   };
 
   const onFilterChange = (game_id, title) => {
+    // Clear the search params
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete("categoryId");
+
+    // Optionally, preserve other params you want to keep
+    setSearchParams(newParams);
+
+    // Update local state
     setActiveCategory(game_id);
     setActiveTitle(title);
+
     console.log("Filter changed to:", title);
   };
 

@@ -52,7 +52,7 @@ const Sidebar = () => {
           key: "2",
           icon: <FireOutlined />,
           label: (
-            <Link to="/casino/game-play?game=58046&status=0&game_name=AVIATOR">
+            <Link to="/casino/game-play?game=45538&status=0&game_name=AVIATOR">
               Aviator
             </Link>
           ),

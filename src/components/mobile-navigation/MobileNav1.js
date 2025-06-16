@@ -17,7 +17,7 @@ const navItems = [
   {
     label: "Aviator",
     image: Aviator,
-    route: "/casino/game-play?game=45534&status=0&game_name=AVIATOR",
+    route: "/casino/game-play?game=45538&status=0&game_name=AVIATOR",
   },
   { label: "Crash", image: Crash, route: "/casino?categoryId=crash" },
   { label: "Casino", image: Casino, route: "/casino" },

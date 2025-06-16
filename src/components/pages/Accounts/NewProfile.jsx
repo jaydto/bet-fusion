@@ -78,7 +78,6 @@ const NewProfile = React.memo(() => {
   const navigate = useNavigate();
 
   const [isLightTheme, setIsLightTheme] = useState(false);
-  const [isDataSaverOn, setIsDataSaverOn] = useState(false);
 
   const hideJisortModal = () => {
     dispatchRedux(setState("show_jisort_modal", false));
@@ -112,6 +111,7 @@ const NewProfile = React.memo(() => {
         />
       )}
 
+
       <div>
         <div
           className="profile-container-desktop d-flex"
@@ -131,7 +131,7 @@ const NewProfile = React.memo(() => {
                       />
                       <span className="h4 text-light-p">{user?.msisdn}</span>
                     </div>
-                    <BalanceCard />
+                    <BalanceCard  user={user}/>
 
                     <button
                       className={`w-100 button-radius input-field btn-font login-button2 mb-4 btn bold`}
@@ -280,7 +280,6 @@ export default React.memo(NewProfile);
 
 const BalanceCard = ({ user }) => {
   const balance = user?.balance || 0;
-  const bonus = user?.bonus || 0;
 
   return (
     <Card className="mb-3 top-pr balance-card">

@@ -18,7 +18,7 @@ const CongratulationBanner = ({ messagesObject }) => {
 
   if (!allMessages.length) return null;
 
-  console.log("Messages:", allMessages);
+  // console.log("Messages:", allMessages);
 
   return (
     <div className="congrats-banner">

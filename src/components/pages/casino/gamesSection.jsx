@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Row, Col, Tag, Button, Typography } from "antd";
+import { Card, Row, Col, Tag, Button, Typography, Grid } from "antd";
 import { useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -7,14 +7,16 @@ import { PlayCircleOutlined } from "@ant-design/icons";
 
 const { Meta } = Card;
 const { Text, Title } = Typography;
+const { useBreakpoint } = Grid;
 
-const GamesSection = ({ games, category = null }) => {
+const GamesSection = ({ games, category = null, count = 0 }) => {
   const navigate = useNavigate();
   const showHeader = category !== null;
   const user = getFromLocalStorage("user");
   const [activeGameId, setActiveGameId] = useState(null);
   const [hoveredGameId, setHoveredGameId] = useState(null);
-
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
   const handleGameClick = (event, gameId, isDemo, game_name) => {
     event.stopPropagation();
     user?.profile_id
@@ -32,23 +34,62 @@ const GamesSection = ({ games, category = null }) => {
         <div
           style={{
             display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            padding: "12px 0px 0px 12px",
+            padding: "12px 12px 0px 12px",
           }}
         >
-          <Title level={4} className="games-title">
-            {category}
-          </Title>
-          {["Crash", "Hot", "Popular"]
-            .map((cat) => cat.toLowerCase())
-            .includes(category) && (
-            <Tag
-              color="red"
-              style={{ fontWeight: "bold", borderRadius: "6px" }}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              paddingRight: isMobile ? 0 : "12px",
+            }}
+          >
+            <Title level={4} className="games-title" style={{ margin: 0 }}>
+              {category}
+            </Title>
+            {["crash", "hot", "popular"].includes(category?.toLowerCase()) && (
+              <Tag
+                color="red"
+                style={{ fontWeight: "bold", borderRadius: "6px" }}
+              >
+                NEW
+              </Tag>
+            )}
+          </div>
+
+          <Button
+            type="link"
+            style={{
+              fontWeight: 500,
+              color: "var(--light)",
+              borderRadius: "6px",
+              border: "none",
+            }}
+            onClick={() =>
+              navigate(
+                ["crash", "hot", "popular"].includes(category?.toLowerCase())
+                  ? `/casino?categoryId=${category?.toLowerCase()}`
+                  : `/casino`
+              )
+            }
+          >
+            View All{" "}
+            <span
+              style={{
+                background: "var(--btn-color-action)",
+                color: "var(--black)",
+                borderRadius: "15px",
+                padding: "1px 5px",
+                fontSize: 10,
+                lineHeight: 1.5,
+              }}
             >
-              NEW
-            </Tag>
-          )}
+              {count}
+            </span>
+          </Button>
         </div>
       )}
 

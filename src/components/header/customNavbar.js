@@ -41,7 +41,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
         {/* <NavLinks /> */}
       </div>
 
-      <UserInfo profile={checkDesktop} user={user} />
+      <UserInfo profile={checkDesktop} />
     </Navbar.Brand>
   );
 };

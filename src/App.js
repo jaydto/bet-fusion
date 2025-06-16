@@ -82,6 +82,7 @@ const Redirect = () => {
     dispatch({ type: "CLEAR_ALL_ITEMS" }); // Dispatch the action to clear all items
 
     navigate("/auth/login");
+
   }, [navigate]);
 
   useEffect(() => {

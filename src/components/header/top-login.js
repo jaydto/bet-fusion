@@ -69,11 +69,12 @@ const HeaderLogin = React.memo((props) => {
   };
 
   const dispatchUser = useCallback(() => {
-    if (successMessage !== null) {
+    if (successMessage && successMessage?.message !== null) {
+      console.log("successMessage", successMessage);
       // Use Ant Design notification to display the success message
       notification.success({
         message: "Success",
-        description: successMessage.message, // assuming `successMessage` has a `message` field
+        description: successMessage?.message, // assuming `successMessage` has a `message` field
         className: "ant-notification",
         placement: "top", // Set placement to top-left
         onClick: () => {
@@ -81,7 +82,7 @@ const HeaderLogin = React.memo((props) => {
         },
       });
 
-      if (successMessage.status === 200) {
+      if (successMessage?.status === 200) {
         setLocalStorage("user", successMessage.user);
         setUser(successMessage.user);
       }

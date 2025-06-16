@@ -74,7 +74,7 @@ const TermsAndConditions = React.memo(
 
                                 </div>
                                 <div className="col-md-12 mt-2 text-white p-2 mx-3">
-                                    These General Terms and Conditions are effective from 01.12.2021
+                                    These General Terms and Conditions are effective from 01.06.202
                                 </div>
                                 <div className="col-md-12 mt-2 text-white accordion-container">
                                     <Accordion allowMultipleExpanded={false} allowZeroExpanded={true}>

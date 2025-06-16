@@ -66,15 +66,17 @@ const LandingPage = () => {
         <MustPlaySection must_play={data.must_play} />
       </div> */}
 
-      <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-        <GamesSection games={casino_games.slice(0, 8)} category="Casino" />
-      </div>
-
       {crashGames.length > 0 && (
         <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-          <GamesSection games={crashGames.slice(0, 8)} category="Crash" />
+          <GamesSection games={crashGames.slice(0, 8)} category="Crash" count={crashGames?.length} />
         </div>
       )}
+
+      <div style={{ marginTop: 5, marginBottom: "2rem" }}>
+        <GamesSection games={casino_games.slice(0, 8)} category="Casino"  count={casino_games?.length} />
+      </div>
+
+      
 
       <div style={{ textAlign: "center", marginTop: 30 }}>
         <Button

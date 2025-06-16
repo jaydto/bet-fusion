@@ -11,7 +11,7 @@ import {
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
 import useWindowDimensions from "../../header/Dimensions";
-import { userPromoPoints } from "../../../redux/authSlice";
+import { userBalance, userPromoPoints } from "../../../redux/authSlice";
 
 import WithdrawForm from "./component/withdrawCard";
 import profilep from "../../../assets/img/mobile/profile-p.svg";
@@ -56,6 +56,7 @@ const NewProfile = React.memo(() => {
     };
 
     dispatchRedux(userPromoPoints(userValues));
+    dispatchRedux(userBalance(userValues));
   };
   useEffect(() => {
     const abort = new AbortController();

@@ -72,9 +72,9 @@ const LandingPage = () => {
         </div>
       )}
 
-      <div style={{ marginTop: 5, marginBottom: "2rem" }}>
+      {/* <div style={{ marginTop: 5, marginBottom: "2rem" }}>
         <GamesSection games={casino_games.slice(0, 8)} category="Casino"  count={casino_games?.length} />
-      </div>
+      </div> */}
 
       
 

@@ -70,7 +70,7 @@ const PrivacyPolicy = React.memo(() => {
               </div>
 
               <div className="col-md-12 mt-2 text-white p-2 text-center"></div>
-              <p class="text-white mx-2">Last updated: Jun 16, 202</p>
+              <p class="text-white mx-2">Last updated: Jun 16, 2025</p>
 
               <div className="col-md-12 mt-1 p-1 text-white accordion-container">
 

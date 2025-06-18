@@ -208,12 +208,13 @@ const NewProfile = React.memo(() => {
                       <div
                         className="upper-row text-light-p p-3"
                         onClick={showJModal}
+                        style={{ cursor: "pointer" }}
                       >
                         Enquire missing deposit{" "}
                         <FontAwesomeIcon icon={faAngleRight} />
                       </div>
                     </div>
-                    <div className="card mb-3 top-pr">
+                    <div className="card mb-3 top-pr" onClick={() => navigate("/promotions")} style={{ cursor: "pointer" }}>
                       <div className="upper-row text-light-p p-3">
                         Promotions <FontAwesomeIcon icon={faAngleRight} />
                       </div>
@@ -258,6 +259,7 @@ const NewProfile = React.memo(() => {
                     <div className="card mb-3 top-pr">
                       <div
                         className="upper-row text-light-p p-3"
+                        style={{ cursor: "pointer" }}
                         onClick={() => navigate("/responsible-gambling")}
                       >
                         Delete Account

@@ -135,8 +135,7 @@ export const data = {
       game_id: "45538",
       url: "/casino/game-play?game=45538&status=0&game_name=AVIATOR",
       game_name: "AVIATOR",
-      image_url:
-        "https://pepeta.com/static/media/aviator.68185d9bf50c82cff3b1.avif",
+      image_url: "https://cdn.jazabets.com/JAZABET AVIATOR.webp",
     },
     // {
     //   name: "Football",
@@ -150,7 +149,7 @@ export const data = {
       game_id: "58046",
       game_name: "Aviatrix",
       url: "/casino/game-play?game=58046&status=0&game_name=Aviatrix",
-      image_url: aviatrix,
+      image_url: "https://cdn.jazabets.com/JAZABET AVIATRIX.webp",
       // "https://atom-cdn.azureedge.net/storage/728ace29-10a0-4c08-a508-0b619fc94889_file",
     },
     {
@@ -158,15 +157,13 @@ export const data = {
       game_id: "5805",
       game_name: "JetX",
       url: "/casino/game-play?game=58059&status=0&game_name=JetX",
-      image_url:
-        "https://pepeta.com/static/media/jetx.14cfcbda99f03f170198.avif",
+      image_url: "https://cdn.jazabets.com/JAZABET JET X.webp",
     },
     {
       name: "Casino",
       game_id: "casino",
       url: "/casino",
-      image_url:
-        "https://pepeta.com/static/media/casino.892b3a14c3ca074b706e.avif",
+      image_url: "https://cdn.jazabets.com/JAZABET CASINO.webp",
     },
   ],
   numbers: [

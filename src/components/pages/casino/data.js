@@ -132,8 +132,8 @@ export const data = {
   games: [
     {
       name: "Aviator",
-      game_id: "45538",
-      url: "/casino/game-play?game=45538&status=0&game_name=AVIATOR",
+      game_id: "58630",
+      url: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
       game_name: "AVIATOR",
       image_url: "https://cdn.jazabets.com/JAZABET AVIATOR.webp",
     },

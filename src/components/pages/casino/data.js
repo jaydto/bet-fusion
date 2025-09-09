@@ -154,7 +154,7 @@ export const data = {
     },
     {
       name: "JetX",
-      game_id: "5805",
+      game_id: "58059",
       game_name: "JetX",
       url: "/casino/game-play?game=58059&status=0&game_name=JetX",
       image_url: "https://cdn.jazabets.com/JAZABET JET X.webp",

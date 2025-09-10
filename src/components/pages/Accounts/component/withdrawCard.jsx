@@ -46,6 +46,10 @@ const WithdrawForm = () => {
         msisdn: user?.msisdn,
       };
 
+      if (!initialValues.msisdn){
+        initialValues.msisdn = user?.msisdn || getFromLocalStorage("user")?.msisdn;
+      }
+
       const data = { user: initialValues };
 
       try {
@@ -129,7 +133,6 @@ const WithdrawForm = () => {
               type="number"
               min={minAmount}
               max={maxAmount}
-              step="50"
               id="amount"
               name="amount"
               value={formik.values.amount}

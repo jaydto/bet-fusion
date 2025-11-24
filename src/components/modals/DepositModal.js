@@ -24,7 +24,7 @@ const DepositInstructions = ({ handleCardSelect }) => {
       <div className=" p-3 rounded mb-4" style={{backgroundColor: "var(--top-pr)"}}>
         <p className="text-white font-input mb-1">
           <strong>Paybill Number:</strong>{" "}
-          <span className="text-info">4200293</span>
+          <span className="text-info">7777771</span>
         </p>
         <p className="text-white font-input mb-1">
           <strong>Account Number:</strong> Your Jazabets username
@@ -41,7 +41,7 @@ const DepositInstructions = ({ handleCardSelect }) => {
             Choose <strong>Paybill</strong>
           </li>
           <li>
-            Enter Business Number: <strong>4200293</strong>
+            Enter Business Number: <strong>7777771</strong>
           </li>
           <li>Enter Account Number: Your Jazabets username</li>
           <li>Enter the amount you want to deposit</li>

@@ -31,7 +31,7 @@ const DepositCards = ({ onCardSelect }) => {
             }}
             bodyStyle={{ padding: "20px" }}
           >
-            <h4 style={{ marginBottom: 8 }}>KES {amount}</h4>
+            <h6>KES {amount}</h6>
             {/* <div style={{ fontSize: 12, color: "#888" }}>Get {value} coins</div> */}
           </Card>
         </Col>

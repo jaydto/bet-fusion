@@ -153,7 +153,7 @@ export const userDeposits = createAsyncThunk(
       return response;
     } else {
       console.log("response deposit", response)
-      throw new Error(response?.error || "Fetching Deposit failed");
+      throw new Error(response || "Fetching Deposit failed");
     }
   }
 );

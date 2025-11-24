@@ -69,17 +69,16 @@ export default function Footer() {
                 />
               </li>
               <li>
-                Please play responsibly. Gambling may lead to addiction and
-                mental health challenges.
+              Only individuals aged 18 years or older are permitted to play.
+              18+
+              Please play responsibly. Gambling may lead to addiction and mental health challenges.
               </li>
               <li>
-                Jazabets is operated by Jazabets Enterprise Limited, a licensed
-                gaming company in Kenya regulated by the Betting Control and
-                Licensing Board (BCLB).
+              JazaBets is a product of  Game Guys Limited, a licensed gaming company in Kenya regulated by the Betting Control and Licensing Board (BCLB). License Number: 
               </li>
               <li>
                 License Number:{" "}
-                <b style={{ color: "var(--game-title)" }}>BK 0000808</b>
+                <b style={{ color: "var(--game-title)" }}>PG0001119/ BK0001120</b>
               </li>
             </ul>
           </Col>

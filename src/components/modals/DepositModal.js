@@ -14,7 +14,7 @@ const DepositInstructions = ({ handleCardSelect }) => {
   return (
     <>
       <p className="text-white py-2 px-4 font-input text-center mb-4">
-        Securely add money to your Jazabets account via M-PESA
+        Securely add money to your Betfusion account via M-PESA
       </p>
 
       <p className="text-white py-2 px-2 font-input text-start mb-3">
@@ -27,7 +27,7 @@ const DepositInstructions = ({ handleCardSelect }) => {
           <span className="text-info">7777771</span>
         </p>
         <p className="text-white font-input mb-1">
-          <strong>Account Number:</strong> Your Jazabets username
+          <strong>Account Number:</strong> Your Betfusion username
         </p>
         <p className="text-white font-input mb-1">
           <strong>Steps:</strong>
@@ -43,7 +43,7 @@ const DepositInstructions = ({ handleCardSelect }) => {
           <li>
             Enter Business Number: <strong>7777771</strong>
           </li>
-          <li>Enter Account Number: Your Jazabets username</li>
+          <li>Enter Account Number: Your Betfusion username</li>
           <li>Enter the amount you want to deposit</li>
           <li>Enter your M-PESA PIN and press OK</li>
         </ol>
@@ -220,8 +220,8 @@ const DepositModal = React.memo(() => {
         <div
           className={"d-flex justify-content-between align-items-center gap-2"}
         >
-          {settings?.JazabetsDeposit &&
-            settings?.JazabetsDeposit?.map((deposit, index) => (
+          {settings?.BetfusionDeposit &&
+            settings?.BetfusionDeposit?.map((deposit, index) => (
               <div key={index} className={""}>
                 <button
                   type="button"

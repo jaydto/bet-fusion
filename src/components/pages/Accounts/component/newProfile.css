@@ -48,7 +48,7 @@
   z-index: -1;
 }
 .background-profile {
-  background: var(--jaza-bets-header-bg) !important;
+  background: var(--bet-fusion-header-bg) !important;
   color: var(--light);
 }
 .text-profile-light {
@@ -99,7 +99,7 @@
   position: sticky;
   top: 0px;
   width: 100%;
-  background: var(--jaza-bets-header-bg);
+  background: var(--bet-fusion-header-bg);
 }
 .upper-row {
   display: flex;
@@ -276,12 +276,12 @@ select {
   font-weight: 700;
 }
 .button__secondary {
-  /* background: var(--jaza-bets-odds-body); */
+  /* background: var(--bet-fusion-odds-body); */
   color: var(--always-white);
   border-radius: 8px;
 }
 .button.button__disabled {
-  background: var(--jaza-bets-odds-body);
+  background: var(--bet-fusion-odds-body);
   color: var(--always-white);
   /* border-radius: 8px; */
   border-radius: 4px;
@@ -344,7 +344,7 @@ select {
 .account__section__support button {
   font-weight: var(--font-weight-lighter);
   background: none;
-  color: var(--jaza-bets-button-login);
+  color: var(--bet-fusion-button-login);
   text-align: left;
   padding: 0;
 }
@@ -358,7 +358,7 @@ select {
   margin: 20px auto;
 }
 .account__section__support--line {
-  background: var(--jaza-bets-body-bg);
+  background: var(--bet-fusion-body-bg);
   width: 200px;
   height: 0.5px;
   margin: 12px auto;

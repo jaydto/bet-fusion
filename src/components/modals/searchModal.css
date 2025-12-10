@@ -90,7 +90,7 @@
   padding: 20px;
   max-width: 90%;
   overflow: auto;
-  background-color: var(--jaza-bets-body-bg);
+  background-color: var(--bet-fusion-body-bg);
 }
 
 @media (min-width: 768px) {

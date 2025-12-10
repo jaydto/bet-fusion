@@ -291,7 +291,7 @@ const BalanceCard = ({ user }) => {
           <WalletOutlined
             style={{
               fontSize: 32,
-              color: "var(--jaza-bets-button-login)",
+              color: "var(--bet-fusion-button-login)",
               marginRight: 12,
             }}
           />
@@ -310,7 +310,7 @@ const BalanceCard = ({ user }) => {
           <GiftOutlined
             style={{
               fontSize: 32,
-              color: "var(--jaza-bets-button-login)",
+              color: "var(--bet-fusion-button-login)",
               marginRight: 12,
             }}
           />

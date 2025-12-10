@@ -28,9 +28,9 @@ const Header2 = React.memo(
 						variant="dark" style={{paddingLeft: '0px', paddingBottom: '0px'}}>
 					<Container fluid
 							   className={'d-flex justify-content-between mobile-change top-login-background-img'}>
-						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Jazabets"
+						<Navbar.Brand className="e logo align-self-start menu-control d-flex w-100 " title="Betfusion"
 									  style={{paddingLeft: '0px', paddingBottom: '0px'}}>
-							<Link to={'/'} className={'Jazabets-text-light'}>
+							<Link to={'/'} className={'Betfusion-text-light'}>
 								<FontAwesomeIcon icon={faArrowLeftLong}/> Home
 							</Link>
 
@@ -39,7 +39,7 @@ const Header2 = React.memo(
 								style={{marginLeft: 'auto'}}>
 
 								<Link to={{pathname: "/"}} className=" resize-mobile">
-									<LazyLoadImage src={Logo} alt="Jazabets" title="Jazabets" effects="blur"
+									<LazyLoadImage src={Logo} alt="Betfusion" title="Betfusion" effects="blur"
 												   className={"image-size  "}/>
 								</Link>
 							</div>
@@ -58,7 +58,7 @@ const Header2 = React.memo(
 								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
 									<div className="col-3">
 										<div>
-											<LazyLoadImage src={Logo} alt="Jazabets" title="Jazabets" effects="blur" />
+											<LazyLoadImage src={Logo} alt="Betfusion" title="Betfusion" effects="blur" />
 										</div>
 									</div>
 								</Offcanvas.Title>

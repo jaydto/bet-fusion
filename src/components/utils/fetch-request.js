@@ -9,10 +9,10 @@ import { notification } from "antd";
 const ENC_KEY =
   "2bdVweTeI42s5mkLdYHyklTMxQS5gLA7MDS6FA9cs1uobDXeruACDic0YSU3si04JGZe4Y";
 // export const BASE_URL = 'http://localhost:5000';
-// export const BASE_URL = 'https://testapi.Jazabets.co.ke';
+// export const BASE_URL = 'https://testapi.Betfusion.co.ke';
 // export const BASE_URL = 'https://51.83.99.148:5000';
-// export const BASE_URL = 'http://staging.Jazabets.com';
-// export const BASE_URL = 'https://api.Jazabets.bet';
+// export const BASE_URL = 'http://staging.Betfusion.com';
+// export const BASE_URL = 'https://api.Betfusion.bet';
 export const BASE_URL = "https://api.jazabets.com";
 
 const instance = axios.create({

@@ -26,7 +26,7 @@ const AccountUsage = React.memo(
                     <ul style={{'marginLeft': '30px'}}>
                         <li>
                             You are 18 years of age or over. It is an offence for anyone
-                            under the age of 18 to open an account or to gamble onjazabets;
+                            under the age of 18 to open an account or to gamble onbetfusion;
                         </li>
                         <li>
                             You are of sound mind and capable of taking responsibility for
@@ -34,7 +34,7 @@ const AccountUsage = React.memo(
                             agreement with us.
                         </li>
                         <li>
-                            You acceptjazabets’ Terms and Conditions, Privacy Policy and
+                            You acceptbetfusion’ Terms and Conditions, Privacy Policy and
                             all other rules and regulations.
                         </li>
                         <li>
@@ -81,7 +81,7 @@ const AccountUsage = React.memo(
                         </li>
                         <li>
                             You are not currently subject to a self-exclusion from a
-                           jazabets’ account and neither we nor any other operator has
+                           betfusion’ account and neither we nor any other operator has
                             excluded
                             you from gambling; and
                         </li>
@@ -101,7 +101,7 @@ const AccountUsage = React.memo(
                         It is your responsibility to keep your contact details up to date
                         on your account. Failure to do so may result in you failing to
                         receive important account related notifications and information from
-                       jazabets, including changes we make to our terms and conditions.
+                       betfusion, including changes we make to our terms and conditions.
                     </li>
                     <li>
                         You are solely responsible for the security and confidentiality
@@ -151,7 +151,7 @@ const AccountUsage = React.memo(
                     <li>
                         If you would like information about tools to help you manage your
                         gambling activity, please visit our Responsible Gambling page by
-                        going to www.Jazabets.com/responsible_gambling. You can also find
+                        going to www.Betfusion.com/responsible_gambling. You can also find
                         contact details for organizations where you can seek further support
                         if needed on this website.
 
@@ -160,7 +160,7 @@ const AccountUsage = React.memo(
                         Should you not comply or be in breach of any of the conditions
                         applicable under this Account regulations, your account will be
                         suspended pending investigation without any prior communication to
-                        you. Thereafter,jazabets reserves the right to report any suspect or
+                        you. Thereafter,betfusion reserves the right to report any suspect or
                         illegal activity to the relevant authority and, with absolute
                         discretion to restrict and terminate your account. Following this,
                         the Company also reserves the right to seize all available funds.
@@ -191,18 +191,18 @@ const AccountUsage = React.memo(
                         will be forfeited.
                     </li>
                     <li>
-                       jazabets reserves the right to cancel the Services, and/or refuse
+                       betfusion reserves the right to cancel the Services, and/or refuse
                         to distribute profits to anyone for any legitimate reason including,
                         but not limited to:
                     </li>
                     <ul>
                         <li>
-                            any instance whenjazabets has cause to believe that a person's
+                            any instance whenbetfusion has cause to believe that a person's
                             activities on the WEBSITE may be illegal.
 
                         </li>
                         <li>
-                            any instance wherejazabets may suffer any fiscal, regulatory, or
+                            any instance wherebetfusion may suffer any fiscal, regulatory, or
                             pecuniary disadvantage in virtue of anyone’s activities.
                         </li>
                         <li>
@@ -244,21 +244,21 @@ const AccountUsage = React.memo(
                             <li>
                                 any instance where one or more transactions on the WEBSITE
                                 are
-                                judged byjazabets to have been performed in violation of
+                                judged bybetfusion to have been performed in violation of
                                 this
                                 Agreement.
                             </li>
                         </ul>
                         <li>
-                           jazabets prohibits match fixing and player collusion and takes
+                           betfusion prohibits match fixing and player collusion and takes
                             measures to prohibit use of devices, such as robots, that
                             distort
-                            normal game play. Further to this,jazabets will exercise its
+                            normal game play. Further to this,betfusion will exercise its
                             right
                             to terminate an event as soon as it is aware of the
                             illegalities.
 
-                           jazabets reserves the right to terminate events or games without
+                           betfusion reserves the right to terminate events or games without
                             prior notice, whenever it deems necessary and / or due to errors
                             in
                             the software or games, which cause games to work incorrectly or

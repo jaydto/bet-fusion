@@ -175,7 +175,7 @@ const Register = () => {
         <Row
           justify="center"
           className="align-items-stretch h-100"
-          // style={{ backgroundColor: "var(--jaza-bets-header-bg)" }}
+          // style={{ backgroundColor: "var(--bet-fusion-header-bg)" }}
         >
           <div
             className={

@@ -17,7 +17,7 @@ const BackNavigationBar = () => {
   return (
     <Header
       style={{
-        background: "var(--jaza-bets-header-bg)",
+        background: "var(--bet-fusion-header-bg)",
         padding: "16px 5px",
         border: "none",
         display: "flex",

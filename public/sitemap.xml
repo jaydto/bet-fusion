@@ -1,47 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>https://www.Jazabets.com/</loc>
+        <loc>https://www.Betfusion.com/</loc>
     </url>
     <url>
-        <loc>https://Jazabets.com/auth/signup</loc>
+        <loc>https://Betfusion.com/auth/signup</loc>
     </url>
    
     <url>
-        <loc>https://Jazabets.com/auth/login</loc>
+        <loc>https://Betfusion.com/auth/login</loc>
     </url>
     <url>
-        <loc>https://Jazabets.com/auth/verify</loc>
+        <loc>https://Betfusion.com/auth/verify</loc>
     </url>
     
     <url>
-        <loc>https://Jazabets.com/bet-history</loc>
+        <loc>https://Betfusion.com/bet-history</loc>
     </url>
    
     <url>
-        <loc>https://Jazabets.com/terms-and-conditions</loc>
+        <loc>https://Betfusion.com/terms-and-conditions</loc>
     </url>
    
   
     <url>
-        <loc>https://www.Jazabets.com/standings</loc>
+        <loc>https://www.Betfusion.com/standings</loc>
     </url> <url>
-        <loc>https://www.Jazabets.com/results</loc>
+        <loc>https://www.Betfusion.com/results</loc>
     </url>
 
     
     <url>
-        <loc>https://Jazabets.com/</loc>
+        <loc>https://Betfusion.com/</loc>
     </url>
     
     <url>
-        <loc>https://Jazabets.com/smart-play?game=JetX&amp;category=JetX</loc>
+        <loc>https://Betfusion.com/smart-play?game=JetX&amp;category=JetX</loc>
     </url>
     <url>
-        <loc>https://Jazabets.com/smart-play?game=FootballX&amp;category=Games</loc>
+        <loc>https://Betfusion.com/smart-play?game=FootballX&amp;category=Games</loc>
     </url>
     <url>
-        <loc>https://Jazabets.com//nare-games/aviator</loc>
+        <loc>https://Betfusion.com//nare-games/aviator</loc>
     </url>
 
 </urlset>

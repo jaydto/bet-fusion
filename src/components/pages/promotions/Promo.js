@@ -62,7 +62,7 @@ const Promo = () => {
       <ToastContainer />
       <div
         style={{
-          background: "var(--jaza-bets-primary)",
+          background: "var(--bet-fusion-primary)",
           margin: "auto",
           maxWidth: "767px",
         }}
@@ -79,7 +79,7 @@ const Promo = () => {
             <Col span={24}>
               <div
                 style={{
-                  background: "var(--jaza-bets-header-bg)",
+                  background: "var(--bet-fusion-header-bg)",
                   padding: 24,
                   borderRadius: 8,
                 }}
@@ -121,7 +121,7 @@ const Promo = () => {
                     level={5}
                     underline
                     style={{
-                      color: "var(--jaza-bets-header-bg)",
+                      color: "var(--bet-fusion-header-bg)",
                       textAlign: "center",
                     }}
                   >
@@ -140,7 +140,7 @@ const Promo = () => {
                     level={5}
                     underline
                     style={{
-                      color: "var(--jaza-bets-header-bg)",
+                      color: "var(--bet-fusion-header-bg)",
                       textAlign: "center",
                     }}
                   >
@@ -193,7 +193,7 @@ const Promo = () => {
                   <Col>
                     <Button
                       style={{
-                        background: "var(--jaza-bets-button-login)",
+                        background: "var(--bet-fusion-button-login)",
                         border: "none",
                       }}
                       size="large"
@@ -241,7 +241,7 @@ const Promo = () => {
                     style={{
                       textAlign: "center",
                       fontWeight: "bold",
-                      color: "var(--jaza-bets-header-bg)",
+                      color: "var(--bet-fusion-header-bg)",
                     }}
                   >
                     NB: {item.nb}

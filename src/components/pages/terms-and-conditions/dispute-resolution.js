@@ -23,12 +23,12 @@ const DisputeResolution = () => {
                         from time to time.
                     </li>
                     <li>
-                        Ifjazabets is unable to settle the dispute,jazabets will refer the
+                        Ifbetfusion is unable to settle the dispute,betfusion will refer the
                         dispute to an arbiter, whose decision will be final (save in respect of
                         any manifest error) subject to full representation given to all parties
                         involved. No dispute regarding any bet/wager will result in litigation,
                         court action or objection to a bookmaker’s licence or permit (including
-                        any remote operator’s licence or personal licence) unlessjazabets fails
+                        any remote operator’s licence or personal licence) unlessbetfusion fails
                         to implement the decision given by arbitration.
                     </li>
                 </ol>

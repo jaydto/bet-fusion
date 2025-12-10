@@ -77,7 +77,7 @@ const PromoCards = () => {
                 style={{
                   border: "none",
                   borderRadius: 8,
-                  background: "var(--jaza-bets-promo-card)",
+                  background: "var(--bet-fusion-promo-card)",
                   color: "#fff",
                 }}
               >
@@ -107,7 +107,7 @@ const PromoCards = () => {
                     type="primary"
                     size="small"
                     style={{
-                      backgroundColor: "var(--jaza-bets-button-login)",
+                      backgroundColor: "var(--bet-fusion-button-login)",
                       border: "none",
                       color:"var(--black)",
                       fontSize: 12,
@@ -130,7 +130,7 @@ const PromoCards = () => {
                     type="link"
                     size="small"
                     style={{
-                      color: "var(--jaza-bets-button-login)",
+                      color: "var(--bet-fusion-button-login)",
                       fontSize: 12,
                       padding: 0,
                     }}

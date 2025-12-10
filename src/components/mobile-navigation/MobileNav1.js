@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Row, Col, Grid } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import Aviator from "../../assets/img/mobile/aviator.svg";
-import Crash from "../../assets/img/mobile/crash.svg";
-import Football from "../../assets/img/mobile/football.svg";
-import Casino from "../../assets/img/mobile/casino1.svg";
-import Virtual from "../../assets/img/mobile/virtual.svg";
+import Aviator from "../../assets/img/Aviator.svg";
+import Crash from "../../assets/img/Crash.svg";
+import Football from "../../assets/img/Football.png";
+import Casino from "../../assets/img/Casino.svg";
+import Virtual from "../../assets/img/Virtuals.svg";
 import { getFromLocalStorage } from "../utils/local-storage";
 import { is } from "date-fns/locale";
 
@@ -24,7 +24,23 @@ const navItems = [
   { label: "Virtual", image: Virtual, route: "/casino?categoryId=virtual" },
 ];
 
-const GameNavBar = () => {
+const ICON_MAP = {
+  Football,
+  Aviator,
+  Crash,
+  Casino,
+  Virtual
+};
+
+const GRADIENTS = [
+  "linear-gradient(90deg, #32e580 0%, #0b33d3 100%)",
+  "linear-gradient(90deg, #d032e5 0%, #1fdfe3 100%)",
+  "linear-gradient(90deg, #d032e5 0%, #ff551c 100%)",
+  "linear-gradient(90deg, #d032e5 0%, #00ff40 100%)",
+];
+
+
+const GameNavBar = ({ categories = [] }) => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   const navigate = useNavigate();
@@ -35,15 +51,15 @@ const GameNavBar = () => {
   // Match by route path (basic match without query params)
   const getActiveRoute = () => {
     const currentPath = location.pathname + location.search;
-    const matched = navItems.find((item) => currentPath.startsWith(item.route));
-    return matched?.label;
+    const matched = categories.find((item) => currentPath.startsWith(item.url));
+    return matched?.name;
   };
 
   const [active, setActive] = useState(getActiveRoute());
 
   const handleClick = (item) => {
-    setActive(item.label);
-    navigate(item.route);
+    setActive(item.name);
+    navigate(item.url);
   };
 
   return (
@@ -53,7 +69,7 @@ const GameNavBar = () => {
         padding: isMobile ? "5px 0" : "12px 0",
         borderRadius: 1,
         margin: isMobile ? "6px" : "1px 10px 10px 10px",
-        borderBottom: isMobile ? "1px solid var(--jaza-bets-secondary)" : "none",
+        borderBottom: isMobile ? "1px solid var(--bet-fusion-secondary)" : "none",
       }}
     >
       <Row
@@ -65,44 +81,61 @@ const GameNavBar = () => {
           gap: isMobile ? 0 : 30,
         }}
       >
-        {navItems.map((item, index) => {
-          const isActive = active === item.label;
+        {categories.map((item, index) => {
+          const isActive = active === item.name;
+          const icon = ICON_MAP[item.name];
 
           return (
             <Col key={index}>
               <div
                 onClick={() => handleClick(item)}
                 style={{
-                  display: "flex",
-                  flexDirection: isMobile ? "column" : "row",
-                  alignItems: "center",
-                  color: isActive ? "var(--crimson)" : "var(--light)",
-                  minWidth: isMobile ? "auto" : 80,
-                  padding: isMobile
-                    ? "0 8px"
-                    : index === 0
-                    ? "0 20px 0 5px"
-                    : "0 20px",
-                  cursor: "pointer",
+                  border: "2px solid transparent",
+                  borderImageSource: GRADIENTS[index % GRADIENTS.length],
+                  borderImageSlice: "1",
+                  borderRadius: 10,
+                  padding: 2,
+                  overflow: "hidden",   
                 }}
               >
-                <img
-                  src={item.image}
-                  alt={item.label}
-                  className={`icon-svg ${isActive ? "active-icon" : ""}`}
-                  style={{
-                    width: isMobile ? 34 : 38,
-                    height: isMobile ? 34 : 38,
-                    marginRight: isMobile ? 0 : 8,
-                    filter: isActive
-                      ? "brightness(0) saturate(100%) invert(15%) sepia(97%) saturate(4343%) hue-rotate(337deg) brightness(85%) contrast(110%)"
-                      : isLightTheme
-                      ? "invert(1)"
-                      : "invert(0)",
-                  }}
-                />
-                <div style={{ fontSize: "14px", marginTop: isMobile ? 4 : 0 }}>
-                  {item.label}
+                <div
+                  style={{ 
+                    display: "flex",
+                    flexDirection: isMobile ? "column" : "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: isActive ? "var(--white)" : "var(--white)",
+                    minWidth: isMobile ? "auto" : 80,
+                    borderImage: "1",
+                    borderRadius: 8,
+                    backgroundClip: "padding-box",
+                    padding: isMobile
+                      ? "0px 8px"
+                      : index === 0
+                      ? "0px 20px 0px 5px"
+                      : "0px 20px",
+                    cursor: "pointer",
+                   }}
+                >
+                  <img
+                    src={icon}
+                    alt={item.name}
+                    className={`icon-svg ${isActive ? "active-icon" : ""}`}
+                    style={{
+                      width: isMobile ? 20 : 20,
+                      height: isMobile ? 20 : 20,
+                      marginRight: isMobile ? 0 : 8,
+                      marginLeft: isMobile ? 0 : 2,
+                      filter: isActive
+                        ? "brightness(0) saturate(100%) invert(15%) sepia(97%) saturate(4343%) hue-rotate(337deg) brightness(85%) contrast(110%)"
+                        : isLightTheme
+                        ? "invert(1)"
+                        : "invert(0)",
+                    }}
+                  />
+                  <div style={{ fontSize: "14px", marginTop: isMobile ? 4 : 0 }}>
+                    {item.name}
+                  </div>
                 </div>
               </div>
             </Col>

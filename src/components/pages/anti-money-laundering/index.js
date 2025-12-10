@@ -88,7 +88,7 @@ const AntiMoneyLaundering = () => {
                         illegal activity.
                       </p>
                       <p>
-                       jazabets is obliged to block such funds and to
+                       betfusion is obliged to block such funds and to
                         undertake measure as provided in the AML policy rules.
                       </p>
 

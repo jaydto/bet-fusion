@@ -26,7 +26,7 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
           <Button
             // type="primary"
             style={{
-              background: "var(--jaza-bets-button-login)",
+              background: "var(--bet-fusion-button-login)",
               border: "none",
             }}
             size="small"

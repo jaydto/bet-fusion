@@ -104,7 +104,7 @@ const MobileMenu = () => {
           border: "none",
           width: "100%",
           height: "60px",
-          backgroundColor: "var(--jaza-bets-header-bg)",
+          backgroundColor: "var(--bet-fusion-header-bg)",
           display: "flex",
           alignItems: "center",
           // justifyContent: "space-between",
@@ -153,14 +153,14 @@ const MobileMenu = () => {
       )}
 
       <Drawer
-        title={<LazyLoadImage src={Logo} alt="Jazabets" width={150} />}
+        title={<LazyLoadImage src={Logo} alt="Betfusion" width={150} />}
         placement="top"
         onClose={() => setVisible(false)}
         open={visible}
         // theme="dark" // optional, can be omitted if your dark theme is custom
         height="100%"
         style={{
-          background: "var(--jaza-bets-header-bg)",
+          background: "var(--bet-fusion-header-bg)",
           color: "var(--light)",
         }}
         closeIcon={null}

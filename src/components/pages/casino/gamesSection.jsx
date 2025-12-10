@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Tag, Button, Typography, Grid } from "antd";
+import { RightOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -48,16 +49,16 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             }}
           >
             <Title level={4} className="games-title" style={{ margin: 0 }}>
-              {category}
+              {category} GAMES
             </Title>
-            {["crash", "hot", "popular"].includes(category?.toLowerCase()) && (
+            {/* {["crash", "hot", "popular"].includes(category?.toLowerCase()) && (
               <Tag
                 color="red"
                 style={{ fontWeight: "bold", borderRadius: "6px" }}
               >
                 NEW
               </Tag>
-            )}
+            )} */}
           </div>
 
           <Button
@@ -65,6 +66,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             style={{
               fontWeight: 500,
               color: "var(--light)",
+              background: "var(--btn-color-action)",
               borderRadius: "6px",
               border: "none",
             }}
@@ -76,18 +78,19 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
               )
             }
           >
-            View All{" "}
+            SHOW ALL ({count}){" "}
             <span
               style={{
-                background: "var(--btn-color-action)",
-                color: "var(--black)",
+                // background: "var(--btn-color-action)",
+                color: "var(--white)",
                 borderRadius: "15px",
                 padding: "1px 5px",
                 fontSize: 10,
                 lineHeight: 1.5,
               }}
             >
-              {count}
+              {/* {count} */}
+              <RightOutlined />
             </span>
           </Button>
         </div>

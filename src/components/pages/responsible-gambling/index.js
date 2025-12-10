@@ -89,7 +89,7 @@ const ResponsibleGambling = React.memo(() => {
               </div>
               <div className="col-md-12 mt-2 text-white p-2 line-mobile-spacing">
                 Responsible Gambling is a key corporate strategy endorsed by
-               jazabets and championed by all staff.jazabets recognizes the
+               betfusion and championed by all staff.betfusion recognizes the
                 importance of putting in place practices and processes to
                 achieve a high standard of gaming. We design proprietary
                 communications and related collaterals to promote the importance
@@ -175,7 +175,7 @@ const ResponsibleGambling = React.memo(() => {
                             important aspects of responsible gambling and it
                             needs to be emphasized that individuals that have
                             not reached the legal age (18) must not be allowed
-                            to gamble for real-money.jazabets takes all the
+                            to gamble for real-money.betfusion takes all the
                             necessary steps to make sure that underage gambling
                             activities do not take place on our website and that
                             the laws protecting minors in their targeted
@@ -222,7 +222,7 @@ const ResponsibleGambling = React.memo(() => {
                             online criminal attacks. By introducing several
                             strong policies to control access to important
                             private data, starting with gamblers’ names, their
-                            addresses and phone numbers,jazabets ensures
+                            addresses and phone numbers,betfusion ensures
                             information privacy is respected and that we are in
                             line with regulators’ requirements.
                           </p>
@@ -259,7 +259,7 @@ const ResponsibleGambling = React.memo(() => {
                             advertisements are factually correct and do not
                             target underage or vulnerable gamblers, such as
                             players who have self-excluded themselves from
-                            gambling.jazabets seek permission from the
+                            gambling.betfusion seek permission from the
                             customer prior to engaging in direct marketing
                             through use of the customer’s personal details.
                           </p>

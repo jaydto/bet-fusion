@@ -26,30 +26,30 @@ const General = () => {
                 <ol>
                     <li> "Registration Form" means the form to be filled in by the Player to open a User Account.
                     </li>
-                    <li> "Game" refers any gaming activity presented byjazabets on its Internet Sites and Mobile
+                    <li> "Game" refers any gaming activity presented bybetfusion on its Internet Sites and Mobile
                         Applications for the benefit of the Users and as approved by the Regulatory Authority.
                     </li>
                     <li>“Mobile Applications” refers to any service or application running on a mobile device and shall
                         include but not be limited to SMS, USSD, mobile apps and mobile sites.
                     </li>
-                    <li> "Internet Site", "Website" or "Site" shall mean the Internet Websites www.Jazabets.com and all
+                    <li> "Internet Site", "Website" or "Site" shall mean the Internet Websites www.Betfusion.com and all
                         other sites connected to it and accessible through links or other access paths.
                     </li>
                     <li>"Login and Password" means the login and password details that are automatically generated
-                        and/or chosen by a player upon registering withjazabets.
+                        and/or chosen by a player upon registering withbetfusion.
                     </li>
                     <li> "Regulatory Authority" is the Betting Control and Licensing Board which is the main regulator
                         of betting, lotteries and gaming activities in Kenya.
                     </li>
                     <li> "Service" shall include all betting services and game offer activities related to it and listed
-                        on www.Jazabets.com including but not limited to online jackpot, live play, pre-match,
+                        on www.Betfusion.com including but not limited to online jackpot, live play, pre-match,
                         statistics, and sportsbook services.
                     </li>
                     <li>"Software" means the software licensed by us including all programs and databases and any other
                         derived content whether accessible or otherwise used by the CLIENT through the Internet Website
                         allowing the CLIENT to participate in the online sportsbook and casino.
                     </li>
-                    <li>"Us, We" or "Jazabets " means Beyond Intoch Software Limited.</li>
+                    <li>"Us, We" or "Betfusion " means Beyond Intoch Software Limited.</li>
                     <li>"User Account", "Player Account", "Gaming Account" or "Account" mean a personal account opened
                         by an individual and maintained by the company as to allow this person to participate in the
                         online sportsbook and casino.
@@ -65,11 +65,11 @@ const General = () => {
                         as "Money Player" wagering real money.
                     </li>
 
-                    <li>jazabets will not be held liable and will be held harmless by the
+                    <li>betfusion will not be held liable and will be held harmless by the
                         CLIENT for any damages, losses, costs, loss of profits or any other
                         disadvantage a CLIENT may incur in connection with any disconnection
                         from or the non-availability of any of the products offered by
-                       jazabets
+                       betfusion
                         for whatever reason.
                     </li>
 
@@ -87,7 +87,7 @@ const General = () => {
 
     
 
-                    <li> “Header” the jazabets header that provides quick access to your bet slip, "My bets", account
+                    <li> “Header” the betfusion header that provides quick access to your bet slip, "My bets", account
                         options and the Cashier
                     </li>
                     
@@ -108,7 +108,7 @@ const General = () => {
                         “My bets” the page that contains your betting history
                     </li>
                     <li>
-                        “Navigation bar” this is the main navigation bar located below the jazabets header. It enables
+                        “Navigation bar” this is the main navigation bar located below the betfusion header. It enables
                         quick access to sports and specific filters. It also offers a quick return to lobby page of the
                         mobile site
                     </li>

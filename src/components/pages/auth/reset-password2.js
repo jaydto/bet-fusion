@@ -72,7 +72,7 @@ const ResetPassword2 = React.memo((props) => {
               <FormTitle />
 
               <div className="d-flex justify-content-center position-logo-user-pages">
-                <Title level={2} style={{ color: "var(--light)" }}>
+                <Title level={2} style={{ color: "var(--white)" }}>
                   Welcome
                 </Title>{" "}
               </div>
@@ -256,14 +256,15 @@ const MyPasswordResetForm = React.memo((props) => {
                   type="text"
                   placeholder="OTP"
                   onChange={(ev) => onFieldChanged(ev)}
+                  style={{ color: "var(--white) !important" }}
                 />
                 {errors.code && (
                   <div className="text-danger">{errors.code}</div>
                 )}
               </div>
-              <hr />
+              <hr  style={{ backgroundColor: "var(--white)", height: "2px", border: "0" }}/>
               <div>
-                <h2 className={"text-center"}>Enter New Passwords</h2>
+                <h2 className={"text-center mt-4"}>Enter New Passwords</h2>
               </div>
             </div>
             <div className="form-group w-100 d-flex justify-content-center mt-5">
@@ -271,7 +272,7 @@ const MyPasswordResetForm = React.memo((props) => {
                 <label>Password</label>
                 <div
                   className="input-group input-color-icon w-100"
-                  style={{ display: "flex", background: "white" }}
+                  style={{ display: "flex"}}
                 >
                   <input
                     value={values.password}
@@ -283,8 +284,8 @@ const MyPasswordResetForm = React.memo((props) => {
                     placeholder="Password"
                     onChange={(ev) => onFieldChanged(ev)}
                   />
-                  <div className=" col-2 input-group-append">
-                    <div className="input-group-text  border-0 input-color-icon">
+                  <div className=" col-2 input-group-append d-flex justify-content-center">
+                    <div className="input-group-text  border-0 input-color-icon" style={{ backgroundColor: "transparent" }}>
                       <button
                         style={{ height: "parent" }}
                         type="button"
@@ -294,12 +295,12 @@ const MyPasswordResetForm = React.memo((props) => {
                         {showPassword ? (
                           <FontAwesomeIcon
                             icon={faEyeSlash}
-                            style={{ color: "var(--light)", fontSize: "20px" }}
+                            style={{ color: "var(--bet-fusion-grey)", fontSize: "20px" }}
                           />
                         ) : (
                           <FontAwesomeIcon
                             icon={faEye}
-                            style={{ color: "var(--light)", fontSize: "20px" }}
+                            style={{ color: "var(--bet-fusion-grey)", fontSize: "20px" }}
                           />
                         )}
                       </button>
@@ -327,10 +328,10 @@ const MyPasswordResetForm = React.memo((props) => {
                     placeholder="Password"
                     onChange={(ev) => onFieldChanged(ev)}
                   />
-                  <div className=" col-2 input-group-append">
-                    <div className="input-group-text  border-0 input-color-icon">
+                  <div className=" col-2 input-group-append d-flex justify-content-center">
+                    <div className="input-group-text  border-0 input-color-icon" style={{ backgroundColor: "transparent" }}>
                       <button
-                        style={{ height: "parent" }}
+                        style={{ height: "parent", backgroundColor: "transparent" }}
                         type="button"
                         className="btn btn-link text-decoration-none input-color-icon"
                         onClick={toggleShowPassword}
@@ -338,12 +339,12 @@ const MyPasswordResetForm = React.memo((props) => {
                         {showPassword ? (
                           <FontAwesomeIcon
                             icon={faEyeSlash}
-                            style={{ color: "var(--dark)", fontSize: "20px" }}
+                            style={{ color: "var(--bet-fusion-grey)", fontSize: "20px" }}
                           />
                         ) : (
                           <FontAwesomeIcon
                             icon={faEye}
-                            style={{ color: "var(--dark)", fontSize: "20px" }}
+                            style={{ color: "var(--bet-fusion-grey)", fontSize: "20px" }}
                           />
                         )}
                       </button>

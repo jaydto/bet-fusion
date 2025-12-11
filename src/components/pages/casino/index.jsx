@@ -75,7 +75,7 @@ const CasinoLayout = () => {
       {casinoSearchModal && <SearchModal />}
 
       <div
-        style={{ backgroundColor: "var(--bet-fusion-primary)", width: "100%" }}
+        style={{ backgroundColor: "var(--bet-fusion-secondary)", width: "100%" }}
       >
         <div className="d-flex justify-content-center">
           <Col

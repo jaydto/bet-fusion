@@ -194,12 +194,12 @@ const Register = () => {
                         <div className="col-md-12 mt-lg-2 text-white p-lg-2 px-2 pb-2 w-100">
                           <div className="pb-0" data-backdrop="static">
                             <FormTitle />
-                            <div className="d-flex justify-content-center position-logo-user-pages">
+                            <div className="d-flex justify-content-start position-logo-user-pages">
                               <Title
                                 level={2}
-                                style={{ color: "var(--light)" }}
+                                style={{ backgroundImage: "var(--bet-fusion-button-login)", color: "transparent", backgroundClip: "text" }}
                               >
-                                Welcome
+                                Register
                               </Title>{" "}
                             </div>
                             <ToastContainer />
@@ -225,10 +225,10 @@ const Register = () => {
                                   <div className="form-group w-100 d-flex justify-content-center mt-2">
                                     <div className="col-md-12 w-100">
                                       <label
-                                        style={{ color: "var(--light" }}
+                                        style={{ color: "var(--white" }}
                                         className="px-2"
                                       >
-                                        Mobile Number
+                                        Mobile Number or Email
                                       </label>
                                       <div
                                         className="input-group input-color-icon w-100"
@@ -250,7 +250,7 @@ const Register = () => {
                                           className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login ${
                                             errors.msisdn && "text-danger"
                                           }`}
-                                          placeholder={"e.g 11234567"}
+                                          placeholder={"Enter your phone number or email"}
                                           onChange={handleChange}
                                           value={values.msisdn}
                                         />
@@ -260,12 +260,6 @@ const Register = () => {
                                           {errors.msisdn}
                                         </div>
                                       )}
-                                      <label
-                                        className="mb-5 px-2 pb-3"
-                                        style={{ color: "#FFFFFFB2" }}
-                                      >
-                                        Enter your phone number
-                                      </label>
                                     </div>
                                   </div>
 
@@ -284,18 +278,18 @@ const Register = () => {
                                           className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login ${
                                             errors.password && "text-danger"
                                           }`}
-                                          placeholder={""}
+                                          placeholder={"Enter your password"}
                                           onChange={handleChange}
                                           value={values.password}
                                         />
                                         <span
                                           className="input-group-text border-0 input-color-icon"
                                           onClick={toggleShowPassword}
-                                          style={{ cursor: "pointer" }}
+                                          style={{ cursor: "pointer", backgroundColor: "transparent" }}
                                         >
                                           <FontAwesomeIcon
                                             style={{
-                                              color: "var(--dark)",
+                                              color: "var(--bet-fusion-grey)",
                                               fontSize: "20px",
                                               padding: "0px 5px 0px 5px",
                                             }}
@@ -310,19 +304,13 @@ const Register = () => {
                                           {errors.password}
                                         </div>
                                       )}
-                                      <label
-                                        className="mb-4 px-2 pb-2"
-                                        style={{ color: "#FFFFFFB2" }}
-                                      >
-                                        Enter your password
-                                      </label>
                                     </div>
                                   </div>
 
                                   <div className="form-group w-100 d-flex justify-content-center mb-4">
                                     <div className="col-md-12 w-100">
                                       <label className="px-2">
-                                        Confirm Password
+                                        Confirm password
                                       </label>
                                       <div
                                         className="input-group input-color-icon w-100"
@@ -339,20 +327,20 @@ const Register = () => {
                                             errors.repeat_password &&
                                             "text-danger"
                                           }`}
-                                          placeholder={""}
+                                          placeholder={"Re-enter your password"}
                                           onChange={handleChange}
                                           value={values.repeat_password}
                                         />
                                         <span
                                           className="input-group-text border-0 input-color-icon"
                                           onClick={toggleShowConfirmPassword}
-                                          style={{ cursor: "pointer" }}
+                                          style={{ cursor: "pointer", backgroundColor: "transparent" }}
                                         >
                                           <FontAwesomeIcon
                                             style={{
-                                              color: "var(--dark)",
+                                              color: "var(--bet-fusion-grey)",
                                               fontSize: "20px",
-                                              padding: "0px 5px 0px 5px",
+                                              padding: "0px 5px 0px 5px"
                                             }}
                                             icon={
                                               showConfirmPassword
@@ -367,16 +355,16 @@ const Register = () => {
                                           {errors.repeat_password}
                                         </div>
                                       )}
-                                      <label
+                                      {/* <label
                                         className="mb-4 px-2 pb-3"
                                         style={{ color: "#FFFFFFB2" }}
                                       >
                                         Confirm your password
-                                      </label>
+                                      </label> */}
                                     </div>
                                   </div>
 
-                                  <div className="form-group w-100 d-flex justify-content-center">
+                                  {/* <div className="form-group w-100 d-flex justify-content-center">
                                     <div className="col-md-12 w-100">
                                       <label className="px-2">
                                         Referral Code{" "}
@@ -396,11 +384,11 @@ const Register = () => {
                                         Optional
                                       </label>
                                     </div>
-                                  </div>
+                                  </div> */}
 
                                   <div className="form-group w-100 d-flex justify-content-center mb-3">
                                     <div className="col-md-12 w-100">
-                                      <div className="checkbox p-2 d-flex align-items-center justify-content-center">
+                                      <div className="checkbox d-flex align-items-center justify-content-start">
                                         <label className="checkbox-container">
                                           <input
                                             type="checkbox"
@@ -417,13 +405,13 @@ const Register = () => {
                                           <span className="pl-2">
                                             <a
                                               href="/terms-and-conditions"
-                                              style={{ color: "#FFFFFFB2" }}
+                                              style={{ color: "var(--white)" }}
                                             >
-                                              By clicking Register you confirm
-                                              to have read in detail, understood
-                                              and agreed to the Terms and
-                                              Conditions , the Privacy policy
-                                              and also that you are over 18
+                                              I agree to the
+                                              <span 
+                                                style={{ backgroundImage: "var(--bet-fusion-button-login)", color: "transparent", backgroundClip: "text" }}
+                                              > Terms of service </span>
+                                              and confirm that am over 18
                                               years of age.
                                             </a>
                                           </span>
@@ -444,7 +432,7 @@ const Register = () => {
                                         className="w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page"
                                         disabled={!values.agreementCheckbox}
                                       >
-                                        Register
+                                        Sign up
                                       </button>
                                     </div>
                                   </div>
@@ -458,10 +446,10 @@ const Register = () => {
                                       <span
                                         className={`faded-color font-input } register-label my-3`}
                                         style={{
-                                          color: "#FFAA00",
+                                          color: "var(--white)",
                                         }}
                                       >
-                                        Log In here
+                                        Log In
                                       </span>
                                     </Link>
                                   </div>

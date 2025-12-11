@@ -65,10 +65,10 @@ const [isLightTheme, setIsLightTheme] = useState(() => theme === "light");
             <Link to="#" style={{ color: "var(--light)" }}>
               My Bonuses
             </Link>
-          </Space>
-          <Link to="#" style={{ color: "var(--light)" }}>
+            <Link to="#" style={{ color: "var(--light)" }}>
               Levels
             </Link>
+          </Space>
         </Col>
 
         <Col xs={24} md={12} lg={6}>
@@ -87,6 +87,9 @@ const [isLightTheme, setIsLightTheme] = useState(() => theme === "light");
             </Link>
             <Link to="/cookie-policy" style={{ color: "var(--light)" }}>
               Cookie Policy
+            </Link>
+            <Link to="/how-to-play" style={{ color: "var(--light)" }}>
+              How to Play
             </Link>
           </Space>
         </Col>

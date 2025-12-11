@@ -37,7 +37,7 @@ const SearchCasino = () => {
             className="form-control bg-transparent text-white border-0 fs-6 px-2 py-1 search-cat"
             placeholder="SEARCH GAME"
             style={{
-              backgroundColor: isFocused ? "transparent" : "#2a2a2a", // Transparent when focused
+              backgroundColor: isFocused ? "transparent" : "var(--bet-fusion-secondary)", // Transparent when focused
               transition: "background-color 0.3s ease-in-out", // Smooth background color transition
               borderRadius: "50px", // Rounded corners for the input
             }}

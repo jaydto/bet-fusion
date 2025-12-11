@@ -13,14 +13,15 @@ const GameSearchFilters = ({ onSearch }) => {
       <Input
         size="large"
         placeholder="Search games"
-        prefix={<SearchOutlined style={{ color: "#ccc" }} />}
+        prefix={<SearchOutlined style={{ color: "var(--white)" }} />}
         onClick={onSearch}
         className="search-cat bg-transparent"
         style={{
+          background: "linear-gradient(var(--bet-fusion-secondary) 0 0) padding-box, var(--bet-fusion-button-login) border-box",
           borderRadius: 50,
-          backgroundColor: "#2a2a2a",
+          backgroundColor: "var(--bet-fusion-button-login)",
           color: "var(--light)",
-          border: " 1px solid var(--deposit-c)",
+          border: " 2px solid transparent",
         }}
       />
     </div>

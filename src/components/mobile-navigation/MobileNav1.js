@@ -78,7 +78,7 @@ const GameNavBar = ({ categories = [] }) => {
         wrap={false}
         style={{
           paddingLeft: 0,
-          gap: isMobile ? 0 : 30,
+          gap: isMobile ? 0 : 10,
         }}
       >
         {categories.map((item, index) => {
@@ -90,10 +90,11 @@ const GameNavBar = ({ categories = [] }) => {
               <div
                 onClick={() => handleClick(item)}
                 style={{
+                  background: `linear-gradient(var(--bet-fusion-secondary) 0 0) padding-box, ${GRADIENTS[index % GRADIENTS.length]} border-box`,
                   border: "2px solid transparent",
-                  borderImageSource: GRADIENTS[index % GRADIENTS.length],
-                  borderImageSlice: "1",
-                  borderRadius: 10,
+                  // borderImageSource: GRADIENTS[index % GRADIENTS.length],
+                  // borderImageSlice: "1",
+                  borderRadius: 20,
                   padding: 2,
                   overflow: "hidden",   
                 }}

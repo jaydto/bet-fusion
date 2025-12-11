@@ -38,6 +38,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             justifyContent: "space-between",
             alignItems: "center",
             padding: "12px 12px 0px 12px",
+            marginBottom: "10px"
           }}
         >
           <div
@@ -104,7 +105,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             const isActive = activeGameId === game.game_id;
 
             return (
-              <Col key={game.game_id} xs={12} sm={12} md={6} lg={6} xl={6}>
+              <Col key={game.game_id} xs={12} sm={12} md={4} lg={4} xl={4}>
                 <div
                   // onClick={(e) => handleGameClick(e, game?.game_id, 0,  game?.display_name ?? game?.game_name)}
                   onMouseEnter={() => setHoveredGameId(game.game_id)}
@@ -116,7 +117,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                   <Card
                     hoverable={!isUnavailable}
                     style={{
-                      borderRadius: "16px",
+                      borderRadius: "8px",
                       overflow: "hidden",
                       border: "none",
                       background: "transparent",
@@ -133,7 +134,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                           className="game-image"
                           style={{
                             width: "100%",
-                            borderRadius: "16px",
+                            borderRadius: "8px",
                             opacity: isUnavailable ? 0.5 : 1,
                           }}
                         />

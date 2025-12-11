@@ -130,7 +130,7 @@ const Promo = () => {
                 )}
 
                 {item?.intro && (
-                  <Paragraph style={{ color: "var(--light)" }}>
+                  <Paragraph style={{ color: "var(--white)" }}>
                     {renderMultilineText(item.intro)}
                   </Paragraph>
                 )}
@@ -149,7 +149,7 @@ const Promo = () => {
                 )}
 
                 {item?.boosterDescription && (
-                  <Paragraph style={{ color: "var(--light)" }}>
+                  <Paragraph style={{ color: "var(--white)" }}>
                     {renderMultilineText(item.boosterDescription)}
                   </Paragraph>
                 )}
@@ -170,7 +170,7 @@ const Promo = () => {
                     }))}
                     bordered
                     pagination={false}
-                    style={{ marginTop: 16, color: "#fff" }}
+                    style={{ marginTop: 16, color: "var(--white)" }}
                   />
                 )}
 
@@ -179,11 +179,11 @@ const Promo = () => {
                     <Title
                       level={5}
                       underline
-                      style={{ color: "var(--light)", textAlign: "center" }}
+                      style={{ color: "var(--white)", textAlign: "center" }}
                     >
                       {item.exampleHeading}
                     </Title>
-                    <Paragraph style={{ color: "var(--light)" }}>
+                    <Paragraph style={{ color: "var(--white)" }}>
                       {renderMultilineText(item.example)}
                     </Paragraph>
                   </>
@@ -195,6 +195,7 @@ const Promo = () => {
                       style={{
                         background: "var(--bet-fusion-button-login)",
                         border: "none",
+                        color: "var(--white)"
                       }}
                       size="large"
                       onClick={() => {
@@ -219,7 +220,7 @@ const Promo = () => {
                     level={5}
                     underline
                     style={{
-                      color: "var(--light)",
+                      color: "var(--white)",
                       textAlign: "center",
                       marginTop: 24,
                     }}
@@ -230,7 +231,7 @@ const Promo = () => {
 
                 {item?.termsContent && (
                   <Paragraph
-                    style={{ marginBottom: 16, color: "var(--light)" }}
+                    style={{ marginBottom: 16, color: "var(--white)" }}
                   >
                     {renderMultilineText(item.termsContent)}
                   </Paragraph>

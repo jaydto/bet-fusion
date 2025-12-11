@@ -78,20 +78,35 @@
   justify-content: space-evenly;
 }
 .balance-card.top-pr {
-  background: var(--top-pr);
+  background: var(--bet-fusion-secondary);
   border:none!important;
 }
 .card.top-pr {
-  background: var(--top-pr);
+  background: var(--bet-fusion-secondary);
   align-self: stretch;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.02), 0 10px 10px rgba(0, 0, 0, 0);
 }
+
+.card.top-br {
+  background: transparent;
+  align-self: stretch;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.02), 0 10px 10px rgba(0, 0, 0, 0); */
+  border: none;
+}
+
+.ant-card-body {
+  padding: 10px !important;
+}
+
 .bg-p-icon {
-  background: var(--top-pr);
-  border-radius: 30px;
+  background: var(--bet-fusion-secondary);
+  /* border-radius: 30px; */
   padding: 8px;
   margin-top: 1.5rem;
 }

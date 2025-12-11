@@ -69,13 +69,14 @@ const LoginTwo = React.memo((props) => {
             <div className={"width-page-centric "}>
               <FormTitle />
 
+              <div className="d-flex justify-content-start position-logo-user-pages">
+                <Title level={2} style={{ backgroundImage: "var(--bet-fusion-button-login)", color: "transparent", backgroundClip: "text" }}>
+                  Sign In
+                </Title>{" "}
+              </div>
+
               <Row justify="center">
-                <div className="d-flex justify-content-center position-logo-user-pages">
-                  <Title level={2} style={{ color: "var(--light)" }}>
-                    Welcome
-                  </Title>{" "}
-                </div>
-                <LoginInstructions />
+                {/* <LoginInstructions /> */}
 
                 <div className={"d-flex"}>
                   {/**/}

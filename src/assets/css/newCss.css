@@ -201,8 +201,8 @@ body {
   color: var(--dark) !important;
 }
 .btn-button-bg-2.cg {
-  background: var(--signup) !important;
-  color: var(--dark) !important;
+  background: var(--bet-fusion-button-login) !important;
+  color: var(--white) !important;
   border: none;
   font-weight: 900;
   text-decoration: none; /* Add this to underline the text */
@@ -398,7 +398,7 @@ input.text-white {
 }
 
 .cg.login-button2 {
-  color: var(--dark) !important;
+  color: var(--white) !important;
 }
 .login-button2:active {
   background: var(--login-btn-cl) !important ;
@@ -974,7 +974,7 @@ label {
 input {
   background: var(c) !important;
   border-radius: 3px !important;
-  color: var(--dark) !important;
+  color: var(--white) !important;
   font-weight: bold !important;
   box-sizing: border-box;
   border: none !important;
@@ -1025,12 +1025,17 @@ input:focus {
 
 .input-bg-user {
   /* background: var(--btn-color) !important; */
-  border-radius: 3px !important;
-  border: 0.1px groove #2d3641 !important;
+  /* border-radius: 3px !important;
+  border: 0.1px groove #2d3641 !important; */
+  background: 
+    linear-gradient(var(--bet-fusion-secondary) 0 0) padding-box, /*this is your grey background*/
+    var(--bet-fusion-button-login) border-box;
+  border: 2px solid transparent !important;
+  border-radius: 4px;
 }
 
 .input-bg-user:focus {
-  border: 0.1px inset #a5660f !important;
+  border: 2px solid transparent !important;
 }
 
 select::after {
@@ -1095,9 +1100,19 @@ select::after {
 }
 .mobile-menu-new ul .ant-menu-item {
   /* width: 25%; */
+  display: flex;
   flex: 0 0 25%;
   max-width: 25%;
   text-align: center;
+  justify-content: center;
+}
+
+.mobile-bottom-menu .ant-menu-item-selected {
+  color: var(--bet-fusion-red) !important;
+}
+
+.mobile-bottom-menu .ant-menu-item-selected svg {
+  fill: var(--bet-fusion-red) !important;
 }
 
 .width-page-centric {
@@ -1112,19 +1127,19 @@ select::after {
 }
 
 .font-btn:hover {
-  color: #ffda22 !important;
+  color: var(--bet-fusion-button-login) !important;
 }
 
 .profile-btn:hover {
-  color: #ffda22 !important;
+  color: var(--bet-fusion-button-login) !important;
 }
 
 .profile-desktop-style {
   margin-top: 66px;
-  color: #ffffffff !important;
+  color: var(--white) !important;
   position: sticky;
   /*top: 72px;*/
-  background: #16202c !important;
+  background: var(--bet-fusion-primary) !important;
   z-index: 1000;
 }
 
@@ -1148,10 +1163,10 @@ select::after {
 }
 
 .login-button {
-  color: #fff2f2;
+  color: var(--white);
   background: var(--button-color);
-  /*background-color: #FFC107;*/
-  border-color: #24367e;
+  /*background-color: var(--bet-fusion-button-login)*/
+  border-color: var(--bet-fusion-primary);
   height: 27px;
   padding: 0px 10px;
   margin-top: 1px;
@@ -1161,13 +1176,13 @@ select::after {
 
 .login-button.button-page {
   background: var(--login-btn-cl);
-  color: var(--dark) !important;
+  color: var(--white) !important;
   font-weight: 600;
 }
 
 .deposit-withdraw-button.button-page {
   background: var(--login-btn-cl);
-  color: var(--dark);
+  color: var(--white);
 }
 
 .markets-container-data-check:empty {
@@ -1181,7 +1196,7 @@ select::after {
   border-color: #24367e;
   height: 29px;
   padding: 0px 10px;
-  color: var(--dark);
+  color: var(--white);
   margin-top: 1px;
   border-radius: 0.3rem;
   font-size: 14px !important;
@@ -1215,7 +1230,7 @@ input.bet-select bet-stake-input {
 }
 
 input::placeholder {
-  color: var(--dark) !important;
+  color: var(--bet-fusion-grey) !important;
 }
 
 .min_stake_alert {
@@ -1229,7 +1244,7 @@ input::placeholder {
 }
 
 input:placeholder-shown {
-  color: var(--dark) !important;
+  color: var(--bet-fusion-grey) !important;
 }
 
 .mobile-profile-columns:empty {
@@ -1308,7 +1323,7 @@ width-page-centric.register-page {
 }
 
 .login-color.cg {
-  background: var(--bet-fusion-button-login);
+  background: var(--white);
   padding: 5px 15px;
   border-radius: 6px;
   margin-left: 5px;
@@ -1475,14 +1490,14 @@ input[type="checkbox"] {
 .input-field-decode {
   line-height: 39px;
   border: none;
-  color: var(--dark) !important;
+  color: var(--bet-fusion-grey) !important;
   font-weight: bold;
 }
 
 .input-field-login {
   line-height: 26px;
   border: none;
-  color: var(--dark) !important;
+  color: var(--white) !important;
   font-weight: bold;
 }
 
@@ -1608,9 +1623,16 @@ img.nare-league {
   width: 96%;
 }
 
+.input-group {
+  background: 
+    linear-gradient(var(--bet-fusion-secondary) 0 0) padding-box,
+    var(--bet-fusion-button-login) border-box !important;
+  border: 2px solid transparent !important;
+}
+
 .input-color-icon {
-  background: var(--input-bg) !important;
-  color: var(--dark);
+  /* background: transparent !important; */
+  color: var(--bet-fusion-grey);
   /* height: 100%; */
 }
 
@@ -2185,7 +2207,7 @@ img.nare-league {
 .button.btn-prev {
   background: var(--login-btn-cl);
   border: none;
-  color: var(--dark) !important;
+  color: var(--white) !important;
   border-radius: 4px;
   opacity: 0.7;
   padding: 1px 17px;
@@ -2204,30 +2226,33 @@ img.nare-league {
 }
 
 .checkbox-container .custom-checkbox {
-  width: 45px;
-  height: 20px;
-  border: 2px solid #ccc;
+  width: 25px;
+  height: 25px;
+  background: 
+    linear-gradient(var(--bet-fusion-secondary) 0 0) padding-box, /*this is your grey background*/
+    var(--bet-fusion-button-login) border-box;
+  border: 2px solid transparent;
   border-radius: 4px;
   position: relative;
   transition: background-color 0.3s;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   margin-right: 10px;
 }
 
 .checkbox-container input[type="checkbox"]:checked + .custom-checkbox {
-  background-color: var(--check-box);
-  border-color: var(--check-box);
+  background: var(--bet-fusion-button-login);
+  /* border: 2px solid transparent; */
 }
 
 .checkbox-container input[type="checkbox"]:checked + .custom-checkbox::after {
   content: "";
   position: absolute;
   top: 3px;
-  left: 6px;
+  left: 8px;
   width: 5px;
   height: 10px;
   border: solid;
-  color: var(--dark);
+  color:var(--white);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
@@ -2393,14 +2418,32 @@ img.nare-league {
 }
 
 .deposit-modal .modal-dialog {
-  background: var(--bet-fusion-body-bg) !important;
+  background: var(--bet-fusion-secondary) !important;
   overflow-y: auto;
+}
+
+.btn.login-button2,
+.btn.deposit-button {
+  background: var(--white) !important;
+  color: var(--black) !important;
 }
 
 .btn.login-button2:hover,
 .btn.deposit-button:hover {
-  background: var(--login-btn-cl) !important;
+  background: var(--white) !important;
   color: var(--black) !important;
+}
+
+.btn.withdraw-button2 {
+  background: var(--bet-fusion-button-login) !important;
+  color: var(--white) !important;
+  font-size: 14px;
+}
+
+.btn.deposit-modal {
+  background: var(--bet-fusion-button-login) !important;
+  color: var(--white) !important;
+  font-size: 14px;
 }
 
 @media (max-width: 991px) {
@@ -3122,7 +3165,7 @@ img.nare-league {
   }
 
   .btn.login-button2:hover {
-    background: var(--login-btn-cl) !important;
+    background: var(--white) !important;
   }
 
   .top-matches a.odds-container-size {
@@ -3888,7 +3931,7 @@ img.nare-league {
   }
 
   .ipad-show {
-    margin-right: 0px;
+    margin-right: 10px;
   }
 
   .width-centric-page {
@@ -4173,9 +4216,9 @@ img.nare-league {
     margin: 0px !important;
   }
   .app-navbar .e img {
-    max-width: 100px !important;
+    max-width: 150px !important;
     background: var(--bet-fusion-header-bg);
-    height: 30px;
+    height: auto;
   }
 
   .button-toggle {

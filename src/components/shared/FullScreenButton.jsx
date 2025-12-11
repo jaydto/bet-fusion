@@ -38,7 +38,6 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
         )}
 
         <Tag
-          color="blue"
           onClick={onClick}
           style={{
             cursor: "pointer",
@@ -49,6 +48,9 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
             fontWeight: 600,
             fontSize: 14,
             padding: "4px 8px",
+            background: "var(--bet-fusion-button-login)",
+            color: "var(--white)",
+            border: "none"
           }}
         >
           {!isMobile && (isCustomFullScreen ? "Exit" : "View Fullscreen")}

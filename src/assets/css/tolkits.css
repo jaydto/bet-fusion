@@ -525,7 +525,7 @@ background: var(--bet-fusion-body-bg)!important;
 }
 
 .top-login-input-field::placeholder {
-    color: gray;
+    color: var(--bet-fusion-grey);
 }
 
 
@@ -3914,8 +3914,8 @@ output {
     padding: 0px 12px;
     font-size: 14px;
     line-height: 1.6;
-    color: #504d4d;
-    background-color: #ffffff;
+    color: var(--bet-fusion-grey);
+    background-color: transparent;
     background-image: none;
     border: none;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
@@ -11755,9 +11755,9 @@ fieldset[disabled] .tw.active {
 }
 
 .form-control:focus {
-    background-color: #fff;
+    background-color: transparent;
     box-shadow: none;
-    border-color: #24367e;
+    /* border-color: #24367e; */
 }
 
 .uq {

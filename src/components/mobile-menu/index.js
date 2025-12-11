@@ -18,6 +18,8 @@ import Sidebar from "../pages/casino/sidebar";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Logo from "../../assets/img/logo.png";
 import { Lightning } from "react-bootstrap-icons";
+import { ReactComponent as Profile}from "../../assets/img/Profile.svg";
+import { ReactComponent as Promotions} from "../../assets/img/Promotions.svg";
 
 const { Text } = Typography;
 
@@ -65,20 +67,21 @@ const MobileMenu = () => {
     },
     {
       key: "promotions",
-      icon: <GiftOutlined style={iconStyle} />,
+      icon: <Promotions style={iconStyle} />,
       label: "Promos",
       path: "/promotions",
     },
     {
-      key: "Crash",
+      key: "crash",
       icon: <ThunderboltFilled style={iconStyle} />,
       label: "Crash",
       path: "/casino?categoryId=crash",
     },
     {
-      key: "menu",
-      icon: <AppstoreOutlined style={iconStyle} />,
-      label: "Menu",
+      key: "profile",
+      icon: <Profile style={iconStyle} />,
+      label: "Profile",
+      path: "/profile"
     },
   ];
 
@@ -90,13 +93,22 @@ const MobileMenu = () => {
     }
   };
 
+  const getSelectedKey = () => {
+    if (pathname === "/") return "home";
+    if (pathname.startsWith("/promotions")) return "promotions";
+    if (pathname.startsWith("/casino")) return "crash";
+    if (pathname.startsWith("/profile")) return "profile";
+    return "";
+  };
+
+
   return (
     <div className="mobile-menu-new position-relative" style={{ zIndex: 12 }}>
       <Menu
         mode="horizontal"
         className="mobile-bottom-menu"
         theme="dark"
-        selectedKeys={[pathname]}
+        selectedKeys={[getSelectedKey()]}
         style={{
           position: "fixed",
           bottom: 0,
@@ -116,6 +128,7 @@ const MobileMenu = () => {
               count={
                 item.key === "deposit" && betItems?.length ? betItems.length : 0
               }
+              style={{ alignSelf: "center" }}
             >
               {item.icon}
             </Badge>
@@ -184,7 +197,7 @@ const MobileMenu = () => {
           }}
           onClick={() => setVisible(false)}
         >
-          <CloseOutlined style={{ fontSize: 16, color: "#000" }} />
+          <CloseOutlined style={{ fontSize: 16, color: "var(--black)" }} />
         </div>
         <Sidebar />
       </Drawer>

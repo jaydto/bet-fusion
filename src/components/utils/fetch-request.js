@@ -13,7 +13,7 @@ const ENC_KEY =
 // export const BASE_URL = 'https://51.83.99.148:5000';
 // export const BASE_URL = 'http://staging.Betfusion.com';
 // export const BASE_URL = 'https://api.Betfusion.bet';
-export const BASE_URL = "https://Api.betfusion.ke";
+export const BASE_URL = "http://api.betfusion.ke/";
 
 const instance = axios.create({
   baseURL: BASE_URL,

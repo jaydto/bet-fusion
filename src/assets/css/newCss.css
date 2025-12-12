@@ -1,7 +1,7 @@
 body {
   font-size: var(--bet-fusion-font-size-nav);
   line-height: var(--body-line-weight);
-  background: var(--bet-fusion-body-bg);
+  background: var(--bet-fusion-secondary);
   max-width: 100% !important;
 }
 .donjo-button {
@@ -1318,7 +1318,7 @@ width-page-centric.register-page {
   font-weight: 600;
 }
 .top-login-background-img-bg-down {
-  background: var(--bg-section-container) !important;
+  background: var(--bet-fusion-secondary) !important;
   width: 100%;
 }
 

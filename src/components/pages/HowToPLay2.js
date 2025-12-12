@@ -103,14 +103,14 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem uuid={"13"}>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    Why should I register withjazabets?
+                                    Why should I register withbetfusion?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Registration allows you to open ajazabets
+                                    Registration allows you to open abetfusion
                                     account free of charge and under no
-                                    obligation. Yourjazabets account will help
+                                    obligation. Yourbetfusion account will help
                                     you manage your bets and other account
                                     details. You need to deposit actual money
                                     into your account before you can place bets.
@@ -120,12 +120,12 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    How do I Register withjazabets?
+                                    How do I Register withbetfusion?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Step 1 Please visit www.Jazabets.com and
+                                    Step 1 Please visit www.Betfusion.com and
                                     click on the Register Now link on the top
                                     RIGHT corner of the website. Please read the
                                     Terms and Conditions and fill in all the
@@ -140,7 +140,7 @@ const HowToPlay = React.memo((props) => {
                                   <p>
                                     A confirmation message appears to confirm
                                     that your registration was successful.
-                                   jazabets!
+                                   betfusion!
                                   </p>
                                 </AccordionItemPanel>
                               </AccordionItem>
@@ -152,7 +152,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I withdraw cash from myjazabets account?
+                              How do I withdraw cash from mybetfusion account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -179,11 +179,11 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I log into myjazabets account?
+                              How do I log into mybetfusion account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
-                            Once you have registered you can access yourjazabets
+                            Once you have registered you can access yourbetfusion
                             account by entering your phone number as USERNAME
                             and  PASSWORD as PASSWORD
                           </AccordionItemPanel>
@@ -191,7 +191,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my transaction from myjazabets
+                              How do I check my transaction from mybetfusion
                               account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
@@ -205,7 +205,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my bets from myjazabets account?
+                              How do I check my bets from mybetfusion account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -225,13 +225,13 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
                               Why wait 90 Minutes when you can play Virtuals and
-                              WIN Big in Minutes?jazabets offers a variety of
+                              WIN Big in Minutes?betfusion offers a variety of
                               Virtual games ranging from; Fantastic football
                               league, Horse racing , Force 1 racing , Greyhound
                               racing and Penalty shootout. Log into
-                              https://Jazabets.com/ to get the Virtual
+                              https://Betfusion.com/ to get the Virtual
                               experience. Stake low, Win High & Fast with
-                             jazabets Virtuals.
+                             betfusion Virtuals.
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>
@@ -240,16 +240,16 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              What is the jazabets Customer care number?
+                              What is the betfusion Customer care number?
                             </AccordionItemButton>
                           </AccordionItemHeading>
 
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
-                             jazabets offers Customer Care support round the
+                             betfusion offers Customer Care support round the
                               clock. We are reachable via 011234567 on Mobile,
                               WhatsApp Number – 011234567. You can also reach
-                              us through E-Mail onsupport@Jazabets.com
+                              us through E-Mail onsupport@Betfusion.com
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>

@@ -91,19 +91,19 @@
 }
 
 .flex-item.jackpot-container >div {
-    background: var(--jaza-bets-primary);
+    background: var(--bet-fusion-primary);
     border-radius: 5px;
     padding: 0px 0px!important;
     height: max-content;
 }
 .jackpot-page-structure{
-    background:var(--jaza-bets-body-bg)
+    background:var(--bet-fusion-body-bg)
 }
 .flex-container.jackpot{
     flex-grow:20!important;
 }
 .jp-header-banner{
-    background:var(--jaza-bets-body-bg)
+    background:var(--bet-fusion-body-bg)
 }
 
 .predict-prices {
@@ -282,7 +282,7 @@
 }
 .article-container {
     padding: 36px 30px 10px 30px;
-    background-color: var(--jaza-bets-body-bg);
+    background-color: var(--bet-fusion-body-bg);
     margin-top: 20px;
     border: 1px solid var(--aqua-text);
     border-radius: 4px;

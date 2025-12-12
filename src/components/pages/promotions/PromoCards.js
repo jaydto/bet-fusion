@@ -77,8 +77,8 @@ const PromoCards = () => {
                 style={{
                   border: "none",
                   borderRadius: 8,
-                  background: "var(--jaza-bets-promo-card)",
-                  color: "#fff",
+                  background: "var(--bet-fusion-secondary)",
+                  color: "var(--white)",
                 }}
               >
                 <Title
@@ -94,22 +94,22 @@ const PromoCards = () => {
                 </Title>
                 <Paragraph
                   style={{
-                    color: "#ccc",
+                    color: "var(--bet-fusion-grey)",
                     fontSize: 12,
                     minHeight: 50,
                   }}
                 >
                   {promotion.summary}
                 </Paragraph>
-                <Divider style={{ borderColor: "#444" }} />
+                <Divider style={{ borderColor: "var(--white)" }} />
                 <div className="d-flex justify-content-between">
                   <Button
                     type="primary"
                     size="small"
                     style={{
-                      backgroundColor: "var(--jaza-bets-button-login)",
+                      background: "var(--bet-fusion-button-login)",
                       border: "none",
-                      color:"var(--black)",
+                      color:"var(--white)",
                       fontSize: 12,
                     }}
                     onClick={() => {
@@ -130,9 +130,10 @@ const PromoCards = () => {
                     type="link"
                     size="small"
                     style={{
-                      color: "var(--jaza-bets-button-login)",
+                      backgroundColor: "var(--white)",
+                      color: "var(--black)",
                       fontSize: 12,
-                      padding: 0,
+                      padding: 2,
                     }}
                     onClick={() => {
                       navigate(`${promotion.actions[1].url}`);
@@ -162,7 +163,7 @@ const PromoCards = () => {
               className="filter-close-icon"
             />
           </div>
-          <Title level={5} style={{ color: "#ffc107" }}>
+          <Title level={5} style={{ color: "var(--bet-fusion-pink)" }}>
             Participating Games
           </Title>
           <div className="body d-flex flex-column gap-2">

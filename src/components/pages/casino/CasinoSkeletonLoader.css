@@ -5,7 +5,7 @@
   }
   
   .casino-skeleton-section {
-    background: var(--jaza-bets-lite);
+    background: var(--bet-fusion-lite);
     padding: 15px;
     border-radius: 10px;
   }
@@ -25,7 +25,7 @@
   }
   
   .skeleton-card {
-    background: var(--jaza-bets-body-bg);
+    background: var(--bet-fusion-body-bg);
     border-radius: 8px;
     padding: 10px;
   }

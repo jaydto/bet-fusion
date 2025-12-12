@@ -16,7 +16,7 @@ const NotFound = React.memo(
                             <span className="inner-detail">
                                 We can not find the page you're looking for.
                                 <a href="/" className="btn btn-info mtl btn-lg text-white mt-5">
-                                    &nbsp; Go Back Homejazabets.com
+                                    &nbsp; Go Back Homebetfusion.com
                                 </a>
                             </span>
                         </div>

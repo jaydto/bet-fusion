@@ -2,7 +2,7 @@
     padding: 10px;
     margin: 5px 10px;
     border: 1px solid var(--bet-history);
-    background-color: var(--jaza-bets-header-bg);
+    background-color: var(--bet-fusion-header-bg);
     border-radius: 8px;
     line-height: 2;
 }
@@ -13,7 +13,7 @@
     gap: 1px;
 }
 .cashout-divider{
-    border: 1px solid var(--jaza-bets-header-bg);
+    border: 1px solid var(--bet-fusion-header-bg);
 }
 .type{
     font-weight: var(--font-weight3);
@@ -79,7 +79,7 @@
     width: inherit;
 }
 .bet-history-options.progress{
-    background: var(--jaza-bets-primary);
+    background: var(--bet-fusion-primary);
     font-size:14px;
 
 }
@@ -136,7 +136,7 @@
     padding: 8px 12px;
     /*border: thin solid;*/
     border-radius: 10px;
-    background: var(--jaza-bets-header-bg);
+    background: var(--bet-fusion-header-bg);
 }
 .history-details-padding{
     padding-right:1rem;
@@ -204,7 +204,7 @@ font-weight: 900;
     padding: 18px;
     /* border: thin solid; */
     border-radius: 10px;
-    background: var(--jaza-bets-header-bg);
+    background: var(--bet-fusion-header-bg);
 }
 .filter-buttons-bethistory{
 
@@ -217,7 +217,7 @@ font-weight: 900;
     padding: 2px 18px;
     border-radius: 18px;
     border: thin solid;
-    background: var(--jaza-bets-header-bg);
+    background: var(--bet-fusion-header-bg);
     display: flex;
     gap: 5px;
     /* line-height: 1; */

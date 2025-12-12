@@ -24,6 +24,21 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
     bg: "rgb(235, 241, 255)",
   };
 
+  const GRADIENTS = [
+    "linear-gradient(90deg, #32e580 0%, #0b33d3 100%)",
+    "linear-gradient(90deg, #d032e5 0%, #1fdfe3 100%)",
+    "linear-gradient(90deg, #d032e5 0%, #ff551c 100%)",
+    "linear-gradient(90deg, #d032e5 0%, #00ff40 100%)",
+  ];
+
+  const getGradientIndex = (label) => {
+    let hash = 0;
+    for (let i = 0; i < label.length; i++) {
+      hash = label.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return Math.abs(hash) % GRADIENTS.length;
+  };
+
   // Merge or update categories
   casino_types.forEach((type) => {
     const key = type.game_type_id.toLowerCase();
@@ -75,6 +90,7 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
     >
       {mappedCategories.map((cat) => {
         const isActive = activeCategory === cat.label;
+        const gradient = GRADIENTS[getGradientIndex(cat.label)];
 
         return (
           <Tag
@@ -87,8 +103,9 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
               display: "flex",
               alignItems: "center",
               gap: "6px",
-              backgroundColor: cat.bg,
-              color: cat.color,
+              background: `linear-gradient(var(--bet-fusion-secondary) 0 0) padding-box, ${gradient} border-box`,
+              border: "2px solid transparent",
+              color: "var(--white)",
             }}
             onClick={() => handleCategoryClick(cat.label, cat.label)}
           >
@@ -100,7 +117,7 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
             ) : (
               <>
                 {cat.icon && (
-                  <span style={{ color: cat.color }}>{cat.icon}</span>
+                  <span style={{ color: "var(--white)" }}>{cat.icon}</span>
                 )}
                 <span>{cat.label}</span>
               </>

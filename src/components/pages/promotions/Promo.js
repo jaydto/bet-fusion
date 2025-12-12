@@ -62,7 +62,7 @@ const Promo = () => {
       <ToastContainer />
       <div
         style={{
-          background: "var(--jaza-bets-primary)",
+          background: "var(--bet-fusion-primary)",
           margin: "auto",
           maxWidth: "767px",
         }}
@@ -79,7 +79,7 @@ const Promo = () => {
             <Col span={24}>
               <div
                 style={{
-                  background: "var(--jaza-bets-header-bg)",
+                  background: "var(--bet-fusion-header-bg)",
                   padding: 24,
                   borderRadius: 8,
                 }}
@@ -121,7 +121,7 @@ const Promo = () => {
                     level={5}
                     underline
                     style={{
-                      color: "var(--jaza-bets-header-bg)",
+                      color: "var(--bet-fusion-header-bg)",
                       textAlign: "center",
                     }}
                   >
@@ -130,7 +130,7 @@ const Promo = () => {
                 )}
 
                 {item?.intro && (
-                  <Paragraph style={{ color: "var(--light)" }}>
+                  <Paragraph style={{ color: "var(--white)" }}>
                     {renderMultilineText(item.intro)}
                   </Paragraph>
                 )}
@@ -140,7 +140,7 @@ const Promo = () => {
                     level={5}
                     underline
                     style={{
-                      color: "var(--jaza-bets-header-bg)",
+                      color: "var(--bet-fusion-header-bg)",
                       textAlign: "center",
                     }}
                   >
@@ -149,7 +149,7 @@ const Promo = () => {
                 )}
 
                 {item?.boosterDescription && (
-                  <Paragraph style={{ color: "var(--light)" }}>
+                  <Paragraph style={{ color: "var(--white)" }}>
                     {renderMultilineText(item.boosterDescription)}
                   </Paragraph>
                 )}
@@ -170,7 +170,7 @@ const Promo = () => {
                     }))}
                     bordered
                     pagination={false}
-                    style={{ marginTop: 16, color: "#fff" }}
+                    style={{ marginTop: 16, color: "var(--white)" }}
                   />
                 )}
 
@@ -179,11 +179,11 @@ const Promo = () => {
                     <Title
                       level={5}
                       underline
-                      style={{ color: "var(--light)", textAlign: "center" }}
+                      style={{ color: "var(--white)", textAlign: "center" }}
                     >
                       {item.exampleHeading}
                     </Title>
-                    <Paragraph style={{ color: "var(--light)" }}>
+                    <Paragraph style={{ color: "var(--white)" }}>
                       {renderMultilineText(item.example)}
                     </Paragraph>
                   </>
@@ -193,8 +193,9 @@ const Promo = () => {
                   <Col>
                     <Button
                       style={{
-                        background: "var(--jaza-bets-button-login)",
+                        background: "var(--bet-fusion-button-login)",
                         border: "none",
+                        color: "var(--white)"
                       }}
                       size="large"
                       onClick={() => {
@@ -219,7 +220,7 @@ const Promo = () => {
                     level={5}
                     underline
                     style={{
-                      color: "var(--light)",
+                      color: "var(--white)",
                       textAlign: "center",
                       marginTop: 24,
                     }}
@@ -230,7 +231,7 @@ const Promo = () => {
 
                 {item?.termsContent && (
                   <Paragraph
-                    style={{ marginBottom: 16, color: "var(--light)" }}
+                    style={{ marginBottom: 16, color: "var(--white)" }}
                   >
                     {renderMultilineText(item.termsContent)}
                   </Paragraph>
@@ -241,7 +242,7 @@ const Promo = () => {
                     style={{
                       textAlign: "center",
                       fontWeight: "bold",
-                      color: "var(--jaza-bets-header-bg)",
+                      color: "var(--bet-fusion-header-bg)",
                     }}
                   >
                     NB: {item.nb}

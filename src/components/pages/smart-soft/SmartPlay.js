@@ -174,7 +174,7 @@ const SmartPlay = React.memo((props) => {
     setGameUrl(
       `https://www.smartsoftgaming.com/GameDemo/${
         game || "JetX"
-      }?currency=USD&lang=EN&return_url=https://Jazabets.com`
+      }?currency=USD&lang=EN&return_url=https://Betfusion.com`
     );
     setGameUrlLoaded(true);
     setDemo(true);

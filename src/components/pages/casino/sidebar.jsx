@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Layout, Menu, Row, Space, Typography } from "antd";
 import {
   FileTextOutlined,
+  HomeOutlined,
+  ThunderboltFilled,
   FireOutlined,
   UserOutlined,
   PlayCircleOutlined,
   VideoCameraOutlined,
   GiftOutlined,
+  ProfileOutlined,
 } from "@ant-design/icons";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
-import fb2 from "../../../assets/img/facebook.png";
-import em2 from "../../../assets/img/email.png";
-import ch2 from "../../../assets/img/contact.png";
+import { ReactComponent as AviatorIcon } from "../../../assets/img/Aviator.svg";
+import { ReactComponent as JetXIcon }from "../../../assets/img/JetX.svg";
+import { ReactComponent as VirtualsIcon } from "../../../assets/img/Virtuals.svg";
+import { ReactComponent as CasinoIcon } from "../../../assets/img/Casino.svg";
+import { ReactComponent as PromotionsIcon } from "../../../assets/img/Promotions.svg";
+import { ReactComponent as ProfileIcon } from "../../../assets/img/Profile.svg";
 import Footer from "./footer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Logo from "../../../assets/img/logo.png";
@@ -40,67 +46,69 @@ const Sidebar = () => {
 
   const menuItems = [
     {
-      key: "Games",
-      label: "Games",
-      children: [
-        {
-          key: "5",
-          icon: <VideoCameraOutlined />,
-          label: <Link to="/casino">Casino</Link>,
-        },
-        {
-          key: "2",
-          icon: <FireOutlined />,
-          label: (
-            <Link to="/casino/game-play?game=58630&status=0&game_name=AVIATOR">
-              Aviator
-            </Link>
-          ),
-        },
-        {
-          key: "3",
-          icon: <UserOutlined />,
-          label: (
-            <Link to="/casino/game-play?game=58059&status=0&game_name=JetX">
-              JetX
-            </Link>
-          ),
-        },
-      ],
+      key: "/",
+      icon: <HomeOutlined style={{ fontSize: 18 }}/>,
+      label: <Link to="/">Home</Link>,
     },
     {
-      key: "6",
-      icon: <GiftOutlined />,
+      key: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
+      icon: <AviatorIcon style={{ width: 25, height: 25 }}/>,
+      label: <Link to="/casino/game-play?game=58630&status=0&game_name=AVIATOR">Aviator</Link>,
+    },
+    {
+      key: "/casino/game-play?game=58059&status=0&game_name=JetX",
+      icon: <JetXIcon style={{ width: 22, height: 22 }}/>,
+      label: <Link to="/casino/game-play?game=58059&status=0&game_name=JetX">Jet X</Link>,
+    },
+    {
+      key: "/casino?categoryId=crash",
+      icon: <ThunderboltFilled style={{ fontSize: 18 }} />,
+      label: <Link to="/casino?categoryId=crash">Crash</Link>,
+    },
+    {
+      key: "/casino?categoryId=virtuals",
+      icon: <VirtualsIcon style={{ width: 24, height: 24 }}/>,
+      label: <Link to="/casino?categoryId=virtuals">Virtuals</Link>,
+    },
+    {
+      key: "/casino",
+      icon: <CasinoIcon style={{ width: 24, height: 24 }}/>,
+      label: <Link to="/casino">Casino</Link>,
+    },
+    { type: "divider" },
+    {
+      key: "/promotions",
+      icon: <PromotionsIcon style={{ width: 24, height: 24 }}/>,
       label: <Link to="/promotions">Promotions</Link>,
     },
     {
-      key: "7",
-      icon: <EmojiSmileFill />,
+      key: "8",
+      icon: <ProfileIcon style={{ width: 24, height: 24 }} />,
       label: <Link to="/profile">Profile</Link>,
     },
   ];
 
   // Conditionally add Login/Logout unless on /auth/login
-  if (path !== "/auth/login") {
-    menuItems.push({
-      key: "8",
-      label: (
-        <Button
-          type="link"
-          onClick={() => navigate(user ? "/auth/logout" : "/auth/login")}
-          className="auth-all-link"
-        >
-          {user ? "Logout" : "Login"}
-        </Button>
-      ),
-    });
-  }
+  // if (path !== "/auth/login") {
+  //   menuItems.push({
+  //     key: "9",
+  //     label: (
+  //       <Button
+  //         type="link"
+  //         onClick={() => navigate(user ? "/auth/logout" : "/auth/login")}
+  //         className="auth-all-link"
+  //       >
+  //         {user ? "Logout" : "Login"}
+  //       </Button>
+  //     ),
+  //   });
+  // }
 
   return (
     <Sider
       width={width <= 768 ? "100%" : "300px"}
       style={{
-        background: "var(--jaza-bets-body-bg)",
+        background: "var(--bet-fusion-body-bg)",
         color: "var(--light)",
         position: "fixed",
         overflowY: "auto",
@@ -120,9 +128,9 @@ const Sidebar = () => {
         <LazyLoadImage
           src={Logo}
           onClick={() => navigate("/")}
-          alt="Jazabets"
-          title="Jazabets"
-          style={{ width: "min-content", height: 30 }}
+          alt="Betfusion"
+          title="Betfusion"
+          style={{ width: "min-content", height: 24 }}
           className={`image-size`}
         />
       </div>
@@ -130,7 +138,7 @@ const Sidebar = () => {
       {/* <div className="logo" /> */}
       <SimpleBar
         style={{
-          background: "var(--jaza-bets-body-bg)",
+          background: "var(--bet-fusion-body-bg)",
           color: "var(--light)",
         }}
         
@@ -138,15 +146,17 @@ const Sidebar = () => {
         <Menu
           mode="inline"
           className="sidebar-menu-cs"
-          defaultOpenKeys={["Games"]}
+          // defaultOpenKeys={["Games"]}
           items={menuItems}
           theme="dark"
+          selectedKeys={[path]}
+          style={{ marginTop: 35, padding: 10 }} 
         />
       </SimpleBar>
       {/* Footer inside sidebar */}
-      <div style={{ maxHeight: "auto", overflow: "hidden" }}>
+      {/* <div style={{ maxHeight: "auto", overflow: "hidden" }}>
         <Footer />
-      </div>
+      </div> */}
 
       {/* <Col span={24} style={{ marginTop: 24 }}>
         <Row justify="center" gutter={16}>
@@ -159,12 +169,12 @@ const Sidebar = () => {
             {
               img: em2,
               label: "Email",
-              href: "mailto:support@jazabets.com",
+              href: "mailto:support@betfusion.com",
             },
             {
               img: fb2,
               label: "Facebook",
-              href: "https://www.facebook.com/jazabets/",
+              href: "https://www.facebook.com/betfusion/",
             },
           ].map((item, idx) => (
             <Col key={idx}>
@@ -191,15 +201,15 @@ const Sidebar = () => {
         </Row>
       </Col> */}
 
-      <div
+      {/* <div
         style={{
           textAlign: "center",
           color: "var(--light)",
           padding: "10px 0",
         }}
       >
-        ©2025 Jazabets. All Rights reserved.{" "}
-      </div>
+        ©2025 Betfusion. All Rights reserved.{" "}
+      </div> */}
     </Sider>
   );
 };

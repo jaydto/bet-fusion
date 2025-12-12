@@ -122,7 +122,7 @@ const WithdrawForm = () => {
         </p>
 
         <p className="account__section__desc deposit__desc">
-          Withdraw from yourjazabets wallet
+          Withdraw from yourbetfusion wallet
         </p>
         <form onSubmit={formik.handleSubmit}>
           <div

@@ -48,7 +48,7 @@
   z-index: -1;
 }
 .background-profile {
-  background: var(--jaza-bets-header-bg) !important;
+  background: var(--bet-fusion-header-bg) !important;
   color: var(--light);
 }
 .text-profile-light {
@@ -78,20 +78,35 @@
   justify-content: space-evenly;
 }
 .balance-card.top-pr {
-  background: var(--top-pr);
+  background: var(--bet-fusion-secondary);
   border:none!important;
 }
 .card.top-pr {
-  background: var(--top-pr);
+  background: var(--bet-fusion-secondary);
   align-self: stretch;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.02), 0 10px 10px rgba(0, 0, 0, 0);
 }
+
+.card.top-br {
+  background: transparent;
+  align-self: stretch;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.02), 0 10px 10px rgba(0, 0, 0, 0); */
+  border: none;
+}
+
+.ant-card-body {
+  padding: 10px !important;
+}
+
 .bg-p-icon {
-  background: var(--top-pr);
-  border-radius: 30px;
+  background: var(--bet-fusion-secondary);
+  /* border-radius: 30px; */
   padding: 8px;
   margin-top: 1.5rem;
 }
@@ -99,7 +114,7 @@
   position: sticky;
   top: 0px;
   width: 100%;
-  background: var(--jaza-bets-header-bg);
+  background: var(--bet-fusion-header-bg);
 }
 .upper-row {
   display: flex;
@@ -276,12 +291,12 @@ select {
   font-weight: 700;
 }
 .button__secondary {
-  /* background: var(--jaza-bets-odds-body); */
+  /* background: var(--bet-fusion-odds-body); */
   color: var(--always-white);
   border-radius: 8px;
 }
 .button.button__disabled {
-  background: var(--jaza-bets-odds-body);
+  background: var(--bet-fusion-odds-body);
   color: var(--always-white);
   /* border-radius: 8px; */
   border-radius: 4px;
@@ -344,7 +359,7 @@ select {
 .account__section__support button {
   font-weight: var(--font-weight-lighter);
   background: none;
-  color: var(--jaza-bets-button-login);
+  color: var(--bet-fusion-button-login);
   text-align: left;
   padding: 0;
 }
@@ -358,7 +373,7 @@ select {
   margin: 20px auto;
 }
 .account__section__support--line {
-  background: var(--jaza-bets-body-bg);
+  background: var(--bet-fusion-body-bg);
   width: 200px;
   height: 0.5px;
   margin: 12px auto;

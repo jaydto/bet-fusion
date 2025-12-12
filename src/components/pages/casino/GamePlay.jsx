@@ -266,7 +266,7 @@ const GamePlay = React.memo((props) => {
       <Layout
         className=" game-play-layout"
         style={{
-          background: "var(--jaza-bets-game-play-bg)",
+          background: "var(--bet-fusion-game-play-bg)",
           padding: isMobile ? 4 : 24,
           marginTop: isCustomFullscreen ? 0 : isMobile ? 0 : 25,
         }}
@@ -299,7 +299,7 @@ const GamePlay = React.memo((props) => {
                       isCustomFullscreen
                         ? {
                             padding: isMobile ? 5 : 10,
-                            backgroundColor: "var(--jaza-bets-primary)",
+                            backgroundColor: "var(--bet-fusion-primary)",
                             zIndex: 999999,
                             position: "relative",
                             marginTop: isMobile ? "-2rem" : "-4rem",

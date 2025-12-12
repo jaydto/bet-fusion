@@ -9,25 +9,26 @@ import { useFormik } from "formik";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import mpesa from "../../assets/img/mobile/mpesa.svg";
 import DepositCards from "../pages/deposit-withraw/depositCards";
+import { CloseCircleFilled, LeftOutlined } from "@ant-design/icons";
 
 const DepositInstructions = ({ handleCardSelect }) => {
   return (
     <>
-      <p className="text-white py-2 px-4 font-input text-center mb-4">
-        Securely add money to your Jazabets account via M-PESA
+      {/* <p className="text-white py-2 px-4 font-input text-center mb-4">
+        Securely add money to your Betfusion account via M-PESA
       </p>
 
       <p className="text-white py-2 px-2 font-input text-start mb-3">
         Payment Method: M-PESA Paybill
-      </p>
+      </p> */}
 
-      <div className=" p-3 rounded mb-4" style={{backgroundColor: "var(--top-pr)"}}>
+      {/* <div className=" p-3 rounded mb-4" style={{backgroundColor: "var(--top-pr)"}}>
         <p className="text-white font-input mb-1">
           <strong>Paybill Number:</strong>{" "}
           <span className="text-info">7777771</span>
         </p>
         <p className="text-white font-input mb-1">
-          <strong>Account Number:</strong> Your Jazabets username
+          <strong>Account Number:</strong> Your Betfusion username
         </p>
         <p className="text-white font-input mb-1">
           <strong>Steps:</strong>
@@ -43,15 +44,15 @@ const DepositInstructions = ({ handleCardSelect }) => {
           <li>
             Enter Business Number: <strong>7777771</strong>
           </li>
-          <li>Enter Account Number: Your Jazabets username</li>
+          <li>Enter Account Number: Your Betfusion username</li>
           <li>Enter the amount you want to deposit</li>
           <li>Enter your M-PESA PIN and press OK</li>
         </ol>
-      </div>
+      </div> */}
 
-      <p className="text-white py-2 px-2 font-input text-start mb-1">
+      {/* <p className="text-white py-2 px-2 font-input text-start mb-1">
         Quick Amounts
-      </p>
+      </p> */}
 
       <DepositCards onCardSelect={handleCardSelect} />
     </>
@@ -179,10 +180,14 @@ const DepositModal = React.memo(() => {
       style={{ zIndex: "10000" }}
     >
       <Modal.Header closeButton={false} className={"w-100"}>
-        <Modal.Title className={"w-100"}>
+        <Modal.Title className={"w-100"} style={{ backgroundColor: "var(--bet-fusion-primary !important)" }} >
           <div
             className={"d-flex justify-content-between align-items-end px-4"}
+            style={{ backgroundColor: "var(--bet-fusion-primary !important)" }}
           >
+            <div onClick={hideModal}>
+              <LeftOutlined  className="gradient-icon" />
+            </div>
             <strong
               style={{
                 fontSize: "19px",
@@ -192,7 +197,7 @@ const DepositModal = React.memo(() => {
               }}
               className={"deposit-modal-top-title"}
             >
-              Deposit
+              Deposit Funds
             </strong>
 
             <Button
@@ -205,7 +210,7 @@ const DepositModal = React.memo(() => {
               }}
               onClick={hideModal}
             >
-              back
+              <CloseCircleFilled style={{ fontSize: "22px" }}/>
             </Button>
           </div>
         </Modal.Title>
@@ -220,8 +225,8 @@ const DepositModal = React.memo(() => {
         <div
           className={"d-flex justify-content-between align-items-center gap-2"}
         >
-          {settings?.JazabetsDeposit &&
-            settings?.JazabetsDeposit?.map((deposit, index) => (
+          {settings?.BetfusionDeposit &&
+            settings?.BetfusionDeposit?.map((deposit, index) => (
               <div key={index} className={""}>
                 <button
                   type="button"
@@ -239,10 +244,10 @@ const DepositModal = React.memo(() => {
           <div className={"d-flex gap-3 flex-column pt-3"}>
             <div className={"d-flex flex-column "}>
               <div
-                className="form-control d-flex justify-content-between align-items-center"
-                style={{ height: "40px", backgroundColor: "var(--input-bg)" }}
+                className="form-control d-flex justify-content-start align-items-center"
+                style={{ height: "40px", backgroundColor: "transparent" }}
               >
-                <span style={{ color: "var(--dark)" }}>Deposit</span>
+                {/* <span style={{ color: "var(--bet-fusion-grey)" }}>Enter deposit amount (KES)</span> */}
                 <input
                   type="text"
                   id="amount"
@@ -253,11 +258,12 @@ const DepositModal = React.memo(() => {
                     formik.setFieldValue("amount", rawValue);
                   }}
                   onBlur={formik.handleBlur}
-                  className="border-0 text-end w-75 bg-transparent pr-input"
-                  style={{ outline: "none" }}
-                  placeholder="KES 0"
+                  className="text-start w-100 pr-input p-2"
+                  style={{ outline: "none", background: "var(--bet-fusion-secondary)" }}
+                  placeholder="Enter deposit amount (KES)"
                 />
               </div>
+              <label className="px-2">Max deposit amount is KES 100,000.00</label>
 
               {formik.touched.amount && formik.errors.amount && (
                 <div className="invalid-feedback">{formik.errors.amount}</div>
@@ -267,13 +273,14 @@ const DepositModal = React.memo(() => {
           <div className="col-12 text-center mt-4">
             <button
               type="submit"
-              className="btn btn-lg w-100 deposit-button button-radius input-field btn-font  login-button2 btn bold d-flex justify-content-center align-items-center button-text-choice1"
+              className="btn btn-lg w-100 deposit-button button-radius input-field btn-font deposit-modal btn bold d-flex justify-content-center align-items-center button-text-choice1"
               disabled={loadingDeposit}
             >
               {loadingDeposit ? (
                 <div className="loader"></div>
               ) : (
-                `DEPOSIT ${formik.values.amount}`
+                // `DEPOSIT ${formik.values.amount}`
+                `Deposit`
               )}
             </button>
           </div>

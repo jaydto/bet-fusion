@@ -8,6 +8,7 @@ import HorizontalScroller from "./horizontalScroller";
 import { data, helpMessage } from "./data";
 import CongratulationBanner from "./conratulations";
 import CategoryTabs from "./categoryTabs";
+import Footer from "../../footer/footer";
 import GameNavBar from "../../mobile-navigation/MobileNav1";
 import CasinoCarouselLoader from "./carousel";
 import { useSelector } from "react-redux";
@@ -35,6 +36,36 @@ const LandingPage = () => {
       game.categories.some((cat) => cat.game_type_id === "crash")
   );
 
+  const virtualGames = casino_games.filter(
+    (game) =>
+      game.categories &&
+      game.categories.some((cat) => cat.game_type_id === "virtual")
+  );
+
+  // Group games by their first category (or multiple if you want)
+  const groupGamesByCategory = (games) => {
+    const categoriesMap = {};
+
+    games.forEach((game) => {
+      if (game.categories && game.categories.length > 0) {
+        game.categories.forEach((cat) => {
+          const catName = cat.name || cat.game_type_id || "Other";
+          if (!categoriesMap[catName]) {
+            categoriesMap[catName] = [];
+          }
+          categoriesMap[catName].push(game);
+        });
+      } else {
+        if (!categoriesMap["Other"]) categoriesMap["Other"] = [];
+        categoriesMap["Other"].push(game);
+      }
+    });
+
+    return categoriesMap;
+  };
+
+  const gamesByCategory = groupGamesByCategory(casino_games);
+
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
       <div
@@ -44,9 +75,9 @@ const LandingPage = () => {
           overflow: "hidden",
         }}
       >
-        <GameNavBar />
         <CasinoCarouselLoader />
-        <CongratulationBanner messagesObject={helpMessage} />
+        <GameNavBar categories={data.categories} />
+        {/* <CongratulationBanner messagesObject={helpMessage} /> */}
         {/* <div style={{ marginTop: 20 }}>
           <CategoryTabs />
         </div> */}
@@ -58,9 +89,9 @@ const LandingPage = () => {
         /> */}
       </div>
 
-      <div style={{ marginTop: 0 }}>
+      {/* <div style={{ marginTop: 0 }}>
         <GamesSection games={data.games} />
-      </div>
+      </div> */}
 
       {/* <div style={{ marginTop: 5 }}>
         <MustPlaySection must_play={data.must_play} />
@@ -68,9 +99,27 @@ const LandingPage = () => {
 
       {crashGames.length > 0 && (
         <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-          <GamesSection games={crashGames.slice(0, 8)} category="Crash" count={crashGames?.length} />
+          <GamesSection games={crashGames.slice(0, 8)} category="CRASH" count={crashGames?.length} />
         </div>
       )}
+
+      {virtualGames.length > 0 && (
+        <div style={{ marginTop: 5, marginBottom: "2rem" }}>
+          <GamesSection games={virtualGames.slice(0, 8)} category="VIRTUAL" count={virtualGames?.length} />
+        </div>
+      )}
+
+      {/* <div>
+        {Object.entries(gamesByCategory).map(([categoryName, gamesArray]) => (
+          <div key={categoryName} style={{ marginTop: 5, marginBottom: "2rem" }}>
+            <GamesSection 
+              games={gamesArray.slice(0, 8)} 
+              category={categoryName} 
+              count={gamesArray.length} 
+            />
+          </div>
+        ))}
+      </div> */}
 
       {/* <div style={{ marginTop: 5, marginBottom: "2rem" }}>
         <GamesSection games={casino_games.slice(0, 8)} category="Casino"  count={casino_games?.length} />
@@ -78,7 +127,7 @@ const LandingPage = () => {
 
       
 
-      <div style={{ textAlign: "center", marginTop: 30 }}>
+      {/* <div style={{ textAlign: "center", marginTop: 30 }}>
         <Button
           size="large"
           icon={<ConsoleSqlOutlined />}
@@ -94,7 +143,9 @@ const LandingPage = () => {
         >
           More Games
         </Button>
-      </div>
+      </div> */}
+
+      <Footer />
     </div>
   );
 };

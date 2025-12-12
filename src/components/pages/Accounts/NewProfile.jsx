@@ -17,12 +17,16 @@ import WithdrawForm from "./component/withdrawCard";
 import profilep from "../../../assets/img/mobile/profile-p.svg";
 import balance from "../../../assets/img/mobile/balance.svg";
 import DepositModal from "../../modals/DepositModal";
+import WithdrawalModal from "../../modals/WithdrawModal";
 import { setState } from "../../../redux/dataSlice";
 import JisortModal from "../../modals/JisortModal";
 import { Switch } from "@mui/material";
 import { Card, Col, Grid, Row, Typography } from "antd";
 import { WalletOutlined, GiftOutlined } from "@ant-design/icons";
 import SearchModal from "../../modals/SearchModal";
+import Profile from "../../../assets/img/Profile1.svg";
+import Wallet from "../../../assets/img/Wallet1.svg";
+import Coins from "../../../assets/img/Coins.svg";
 
 const { Text, Title } = Typography;
 const { useBreakpoint } = Grid;
@@ -90,6 +94,10 @@ const NewProfile = React.memo(() => {
     dispatchRedux(setState("show_deposit_modal", true));
   };
 
+  const handleWithdrawClick = () => {
+    dispatchRedux(setState("show_withdraw_modal", true));
+  };
+
   useEffect(() => {
     const body = document.body;
     if (isLightTheme) {
@@ -103,6 +111,7 @@ const NewProfile = React.memo(() => {
     <>
       {showDepositModal && <DepositModal />}
       {casinoSearchModal && <SearchModal />}
+      {handleWithdrawClick && <WithdrawalModal />}
 
       {showJisortModal && (
         <JisortModal
@@ -124,24 +133,37 @@ const NewProfile = React.memo(() => {
               <div className="col mobile-full-width">
                 <div className="iphone">
                   <div className="content mb-4 px-4">
-                    <div className="d-flex flex-column justify-content-center align-items-center">
+                    <div className="d-flex flex-column justify-content-center align-items-center gap-4">
                       <LazyLoadImage
-                        src={profilep}
+                        src={Profile}
                         className="mb-2 icon-large icon-white  bg-p-icon "
+                        style={{ borderRadius: "16px" }}
                       />
-                      <span className="h4 text-light-p">{user?.msisdn}</span>
+                      <span className="h4 text-light-p mb-4">{user?.msisdn}</span>
                     </div>
                     <BalanceCard  user={user}/>
 
-                    <button
-                      className={`w-100 button-radius input-field btn-font login-button2 mb-4 btn bold`}
-                      style={{ position: "relative", borderRadius: "12px" }}
-                      disabled={user ? false : true}
-                      onClick={showModal}
-                      type="submit"
-                    >
-                      <span>Deposit</span>
-                    </button>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+                      <button
+                        className={`w-100 button-radius input-field btn-font withdraw-button2 mb-4 btn bold`}
+                        style={{ position: "relative", borderRadius: "12px" }}
+                        disabled={user ? false : true}
+                        onClick={handleWithdrawClick}
+                        type="submit"
+                      >
+                        <span>Withdraw</span>
+                      </button>
+
+                      <button
+                        className={`w-100 button-radius input-field btn-font login-button2 mb-4 btn bold`}
+                        style={{ position: "relative", borderRadius: "12px" }}
+                        disabled={user ? false : true}
+                        onClick={showModal}
+                        type="submit"
+                      >
+                        <span>Deposit</span>
+                      </button>
+                    </div>
 
                     {user?.promo_points?.end_date &&
                       new Date(user.promo_points.end_date) > new Date() && (
@@ -204,7 +226,7 @@ const NewProfile = React.memo(() => {
                           </div>
                         </Link>
                       )}
-                    <div className="card mb-3 top-pr">
+                    {/* <div className="card mb-3 top-pr">
                       <div
                         className="upper-row text-light-p p-3"
                         onClick={showJModal}
@@ -213,14 +235,19 @@ const NewProfile = React.memo(() => {
                         Enquire missing deposit{" "}
                         <FontAwesomeIcon icon={faAngleRight} />
                       </div>
-                    </div>
-                    <div className="card mb-3 top-pr" onClick={() => navigate("/promotions")} style={{ cursor: "pointer" }}>
+                    </div> */}
+                    <div className="card mb-3 top-br" onClick={() => navigate("#")} style={{ cursor: "pointer" }}>
                       <div className="upper-row text-light-p p-3">
-                        Promotions <FontAwesomeIcon icon={faAngleRight} />
+                        Self Exclusion <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />
+                      </div>
+                    </div>
+                    <div className="card mb-3 top-br" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+                      <div className="upper-row text-light-p p-3">
+                        Promotions <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }}/>
                       </div>
                     </div>
 
-                    <WithdrawForm />
+                    {/* <WithdrawForm /> */}
 
                     {/* <div className="card mb-3 top-pr">
                       <div className="upper-row text-light-p p-3">
@@ -255,19 +282,41 @@ const NewProfile = React.memo(() => {
                         />
                       </div>
                     </div> */}
-                    <p style={{ color: "var(--light)" }}>Support</p>
-                    <div className="card mb-3 top-pr">
-                      <div
-                        className="upper-row text-light-p p-3"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => navigate("/responsible-gambling")}
-                      >
-                        Delete Account
-                        <FontAwesomeIcon icon={faAngleRight} />
+                    <div style={{ padding: "10px", backgroundColor: "var(--bet-fusion-secondary)", borderRadius: "12px" }}>
+                      <h4 style={{ color: "var(--white)", marginLeft: "5px" }}>Support</h4>
+                      <div className="card mb-3 top-br">
+                        <div
+                          className="upper-row text-light-p p-3"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => navigate("#")}
+                        >
+                          Delete Account
+                          <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />
+                        </div>
                       </div>
-                    </div>
 
-                    {/* <SupportContainer /> */}
+                      <div className="card mb-3 top-br">
+                        <div
+                          className="upper-row text-light-p p-3"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => navigate("/responsible-gambling")}
+                        >
+                          Responsible gaming
+                          <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />
+                        </div>
+                      </div>
+
+                      <div className="card mb-3 top-br">
+                        <div
+                          className="upper-row p-3"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => navigate("/auth/logout")}
+                        >
+                          <span style={{ color: "var(--bet-fusion-red)"}}>Sign Out</span>
+                        </div>
+                      </div>
+                      {/* <SupportContainer /> */}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -284,33 +333,47 @@ const BalanceCard = ({ user }) => {
   const balance = user?.balance || 0;
 
   return (
-    <Card className="mb-3 top-pr balance-card">
-      <div className="d-flex justify-content-center">
+    <Card className="mb-3 top-pr balance-card p-0">
+      <div className="w-100" style={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
         {/* Cash Balance */}
         <div className="d-flex align-items-center px-2">
-          <WalletOutlined
-            style={{
-              fontSize: 32,
-              color: "var(--jaza-bets-button-login)",
-              marginRight: 12,
-            }}
+          <LazyLoadImage
+            src={Wallet}
+            className="mb-2 icon-large icon-white  bg-p-icon "
           />
           <div className="d-flex flex-column">
-            <Text type="secondary" style={{ color: "var(--light)" }}>
+            <Text type="secondary" style={{ color: "var(--white)" }}>
               Balance
             </Text>
-            <Title level={5} style={{ margin: 0, color: "var(--light)" }}>
+            <Title level={5} style={{ margin: 0, color: "var(--white)" }}>
               Ksh {formatNumber(balance)}
             </Title>
           </div>
         </div>
 
         {/* Bonus Balance */}
+        <div className="d-flex align-items-center px-2">
+          <LazyLoadImage
+            src={Coins}
+            className="mb-2 icon-large icon-white  bg-p-icon "
+          />
+          <div className="d-flex flex-column">
+            <Text type="secondary" style={{ color: "var(--white)" }}>
+              Balance
+            </Text>
+            <Title level={5} style={{ margin: 0, color: "var(--white)" }}>
+              Ksh {formatNumber(balance)}
+            </Title>
+          </div>
+        </div>
+
+
+        {/* Bonus Balance */}
         {/* <div className="d-flex align-items-center px-2">
           <GiftOutlined
             style={{
               fontSize: 32,
-              color: "var(--jaza-bets-button-login)",
+              color: "var(--bet-fusion-button-login)",
               marginRight: 12,
             }}
           />

@@ -1,28 +1,28 @@
 :root {
-  /* --jaza-bets-primary: rgba(5, 49, 104, 0.75); */
-  --jaza-bets-primary: #0b1620;
-  --jaza-bets-secondary: #0b1620;
-  --jaza-bets-footer: #0b1620;
+  /* --bet-fusion-primary: rgba(5, 49, 104, 0.75); */
+  --bet-fusion-primary: #12121E;
+  --bet-fusion-secondary: #1d1d30;
+  --bet-fusion-footer: #12121E;
   --footer-color: #fff;
-  --jaza-bets-button-login: #06fcd3;
+  --bet-fusion-button-login: linear-gradient(360deg, #fb8603 0%, #cc3366 100%);
   --signup: #ffffff;
-  --deposit-c: #12ccc6;
-  --side-logo: #0b1620;
+  --deposit-c: linear-gradient(360deg, #fb8603 0%, #cc3366 100%);
+  --side-logo: #12121E;
 
-  --btn-color-action: #06fcd3;
-  --jaza-bets-button-register: #ffffff;
+  --btn-color-action: linear-gradient(360deg, #fb8603 0%, #cc3366 100%);
+  --bet-fusion-button-register: #ffffff;
   --banner-background: url(../../assets/img/auth/img-17.webp) !important;
-  --jaza-bets-header-bg: #0b1620;
-  --jaza-bets-header-bg-btn: #0b1620;
-  --jaza-bets-lite: #0b1620;
+  --bet-fusion-header-bg: #12121E;
+  --bet-fusion-header-bg-btn: #12121E;
+  --bet-fusion-lite: #12121E;
   --blue: #4096ff;
-  --jaza-bets-body-bg: #0b1620;
+  --bet-fusion-body-bg: #12121E;
   --hot: #f66203;
   --withdraw-input: #0e1a07;
-  --top-pr: #10202f;
-  --jaza-bets-game-play-bg:#10202f;
-  --jaza-bets-promo-card: #10202f;
-  --login-btn-cl: #06fcd3;
+  --top-pr: #1d1d30;
+  --bet-fusion-game-play-bg:#1d1d30;
+  --bet-fusion-promo-card: #1d1d30;
+  --login-btn-cl: linear-gradient(360deg, #fb8603 0%, #cc3366 100%);
   --link-btn: #fdcb06;
   --card-c: #34363a;
   --bg-cat-1: #2b2930;
@@ -30,8 +30,8 @@
   --game-title: #fdcb06;
   --side-bg-2: #311c47;
   --text-c: #fdcb06;
-  --bg-card-dark: #0b1620;
-  --bg-section-container: #10202f;
+  --bg-card-dark: #12121E;
+  --bg-section-container: #1d1d30;
   --profile-card: #040b2e;
   --fade-color: #adadad;
   --black: #000;
@@ -41,6 +41,11 @@
   --profile-card-1: #161a2d;
   --purple: rgb(78, 4, 78);
   --crimson: crimson;
+  --bet-fusion-red: #fe1943;
+  --bet-fusion-pink: #ce3762;
+  --bet-fusion-orange: #e55f32;
+  --bet-fusion-grey: #4c566c;
+  --bet-fusion-neon-border1: linear-gradient(360deg, #32e580 0%, #0b33d3 100%);
   --bs-gutter-x: 20px;
   --bs-cyan: #3f9ad1;
   --kiron-button: #004f9e;
@@ -63,7 +68,7 @@
   --color-gradient-start: #ffa726;
   --color-gradient-end: #fd8701;
   --color-text: #08306b;
-  --header-icon: #06fcd3;
+  --header-icon: linear-gradient(360deg, #fb8603 0%, #cc3366 100%);;
   /* --slip-bg-color-1:#09295a; */
   --slip-bg-color-1: #071f43;
   --slip-bg-color-2: #08306b;
@@ -82,19 +87,19 @@
   --color-link-sports: #ffc428;
   --light2: #a7d1f6;
 
-  --jaza-bets-live: red;
+  --bet-fusion-live: red;
   --slip-separator-color: rgb(51, 76, 92);
   --color-site: #ce3d10;
-  --jaza-bets-side-bg: #121a23;
+  --bet-fusion-side-bg: #121a23;
   --betslip-header: #4c372a;
   --betslip-mybets: #cd28ec;
   --mybets-slip: #1e2d3b;
   --button-radius: 3px;
-  --jaza-bets-odds-body: #2d3641;
-  --jaza-bets-input: #030d41;
-  --jaza-bets-shadow-borders: #2c3c44;
-  --jaza-bets-font-size-nav: 14px;
-  --jaza-bets-font-size-small: 12px;
+  --bet-fusion-odds-body: #2d3641;
+  --bet-fusion-input: #030d41;
+  --bet-fusion-shadow-borders: #2c3c44;
+  --bet-fusion-font-size-nav: 14px;
+  --bet-fusion-font-size-small: 12px;
   --font-size-side: 1.5rem;
   --font-size-side-sm: 1.3rem;
   --body-line-weight: 2;
@@ -115,13 +120,13 @@
   --aqua: #adadad;
   --tab-color: #223542;
   --nav-top-color: #f0f0f0;
-  --aqua-text: aqua;
+  --aqua-text: linear-gradient(360deg, #fb8603 0%, #cc3366 100%);;
   --footer-links: whitesmoke;
   --jackpot-header: #16202c;
   --white: #fff;
   --testimonial: #253743;
   --white-darken: #16202c;
-  --more-markets-text: #06fcd3;
+  --more-markets-text: linear-gradient(360deg, #fb8603 0%, #cc3366 100%);;
   --slip-height: 83vh;
   --light-gray: #23313d;
   --font-small: 11px;
@@ -163,7 +168,7 @@
   --orange: orange;
   --secondary: #fdd835;
   --tabs-home: #000;
-  --jaza-bets-mobile-nav: #192533;
+  --bet-fusion-mobile-nav: #192533;
   --font-tiny: 8px;
   --font-weight-normal: normal;
   --always-white: #fff;
@@ -178,34 +183,34 @@
   /* light mode variables go here */
   --tabs-home: #fofofo;
   --testimonial: #fofofo;
-  --jaza-bets-primary: #f0f0f0;
+  --bet-fusion-primary: #f0f0f0;
   --signup: #000;
   --side-logo: #fff;
-  --jaza-bets-game-play-bg:#f0f0f0;
+  --bet-fusion-game-play-bg:#f0f0f0;
 
   --top-header-nav: #f0f0f0;
-  --jaza-bets-promo-card: #fff;
+  --bet-fusion-promo-card: #fff;
 
   --footer-color: #05070a;
   --footer-links: #05070a;
-  --jaza-bets-secondary: #fff;
-  --jaza-bets-button-login: #06fcd3;
-  --jaza-bets-footer: #adadad;
+  --bet-fusion-secondary: #fff;
+  --bet-fusion-button-login: linear-gradient(360deg, #fb8603 0%, #cc3366 100%);;
+  --bet-fusion-footer: #adadad;
   --mybets-slip: #f0f0f0;
   --jackpot-header: #f0f0f0;
-  --jaza-bets-button-register: #ffffff;
+  --bet-fusion-button-register: #ffffff;
   --banner-background: url(../../assets/img/auth/img-17.webp) !important;
   --betslip-header: #4c372a;
-  --jaza-bets-side-bg: #fff;
-  --jaza-bets-header-bg: #f0f0f0;
+  --bet-fusion-side-bg: #fff;
+  --bet-fusion-header-bg: #f0f0f0;
   --viax-betslip-bg: #fff;
   --betslip-mybets: #fff;
   --button-radius: 3px;
-  --jaza-bets-odds-body: #fff;
-  --jaza-bets-input: #2c3c44;
-  --jaza-bets-shadow-borders: #fff;
-  --jaza-bets-font-size-nav: 14px;
-  --jaza-bets-font-size-small: 12px;
+  --bet-fusion-odds-body: #fff;
+  --bet-fusion-input: #2c3c44;
+  --bet-fusion-shadow-borders: #fff;
+  --bet-fusion-font-size-nav: 14px;
+  --bet-fusion-font-size-small: 12px;
   --font-size-side: 1.8rem;
   --font-size-side-sm: 1.3rem;
   --body-line-weight: 2;
@@ -221,7 +226,7 @@
   --aqua: #adadad;
   --tab-color: #adadad;
   --cancel: #030928;
-  --jaza-bets-light-blue: #4f768e;
+  --bet-fusion-light-blue: #4f768e;
   --light-blue-variant: #334c5c;
   --secondary: #fdd835;
   --variant2: #1f2f38;
@@ -234,6 +239,6 @@
   --kiron-competition: #fafafa;
   --toggle-btn: #000;
   --picked: #fdd835;
-  --jaza-bets-body-bg: #fafafa;
+  --bet-fusion-body-bg: #fafafa;
   --top-pr: #e1d1f5;
 }

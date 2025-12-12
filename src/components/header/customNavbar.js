@@ -14,10 +14,10 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
   return (
     <Navbar.Brand
       className="e logo align-self-start menu-control d-flex justify-content-between w-100 "
-      title="Jazabets"
+      title="Betfusion"
     >
       <div
-        className="col-6 logo-Jazabets resize-mobile d-flex align-items-center "
+        className="col-6 logo-Betfusion resize-mobile d-flex align-items-center "
         style={{ marginLeft: "2px" }}
       >
         {/* Custom Menu Icon */}
@@ -26,8 +26,8 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
           <LazyLoadImage
             src={Logo}
             onClick={() => navigate("/")}
-            alt="Jazabets"
-            title="Jazabets"
+            alt="Betfusion"
+            title="Betfusion"
             className={`image-size ${!user && "logo-top"}`}
             style={
               user

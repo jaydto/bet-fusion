@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Tag, Button, Typography, Grid } from "antd";
+import { RightOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -37,6 +38,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             justifyContent: "space-between",
             alignItems: "center",
             padding: "12px 12px 0px 12px",
+            marginBottom: "10px"
           }}
         >
           <div
@@ -48,16 +50,16 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             }}
           >
             <Title level={4} className="games-title" style={{ margin: 0 }}>
-              {category}
+              {category} GAMES
             </Title>
-            {["crash", "hot", "popular"].includes(category?.toLowerCase()) && (
+            {/* {["crash", "hot", "popular"].includes(category?.toLowerCase()) && (
               <Tag
                 color="red"
                 style={{ fontWeight: "bold", borderRadius: "6px" }}
               >
                 NEW
               </Tag>
-            )}
+            )} */}
           </div>
 
           <Button
@@ -65,6 +67,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             style={{
               fontWeight: 500,
               color: "var(--light)",
+              background: "var(--btn-color-action)",
               borderRadius: "6px",
               border: "none",
             }}
@@ -76,18 +79,19 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
               )
             }
           >
-            View All{" "}
+            SHOW ALL ({count}){" "}
             <span
               style={{
-                background: "var(--btn-color-action)",
-                color: "var(--black)",
+                // background: "var(--btn-color-action)",
+                color: "var(--white)",
                 borderRadius: "15px",
                 padding: "1px 5px",
                 fontSize: 10,
                 lineHeight: 1.5,
               }}
             >
-              {count}
+              {/* {count} */}
+              <RightOutlined />
             </span>
           </Button>
         </div>
@@ -101,7 +105,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             const isActive = activeGameId === game.game_id;
 
             return (
-              <Col key={game.game_id} xs={12} sm={12} md={6} lg={6} xl={6}>
+              <Col key={game.game_id} xs={12} sm={12} md={4} lg={4} xl={4}>
                 <div
                   // onClick={(e) => handleGameClick(e, game?.game_id, 0,  game?.display_name ?? game?.game_name)}
                   onMouseEnter={() => setHoveredGameId(game.game_id)}
@@ -113,7 +117,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                   <Card
                     hoverable={!isUnavailable}
                     style={{
-                      borderRadius: "16px",
+                      borderRadius: "8px",
                       overflow: "hidden",
                       border: "none",
                       background: "transparent",
@@ -130,7 +134,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                           className="game-image"
                           style={{
                             width: "100%",
-                            borderRadius: "16px",
+                            borderRadius: "8px",
                             opacity: isUnavailable ? 0.5 : 1,
                           }}
                         />

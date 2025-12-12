@@ -74,7 +74,7 @@ export default function Footer() {
               Please play responsibly. Gambling may lead to addiction and mental health challenges.
               </li>
               <li>
-              JazaBets is a product of  Game Guys Limited, a licensed gaming company in Kenya regulated by the Betting Control and Licensing Board (BCLB). License Number: 
+              Betfusion is a product of  Game Guys Limited, a licensed gaming company in Kenya regulated by the Betting Control and Licensing Board (BCLB). License Number: 
               </li>
               <li>
                 License Number:{" "}
@@ -184,8 +184,8 @@ export default function Footer() {
               style={{ color: "#ff4d4f", fontSize: "18px", marginRight: 8 }}
             />
             <span>
-              <b>JazaBets</b> does not support underage gambling. You must be 18
-              years of age or older to register or play at JazaBets.
+              <b>Betfusion</b> does not support underage gambling. You must be 18
+              years of age or older to register or play at Betfusion.
             </span>
           </Paragraph>
         </Col>
@@ -213,12 +213,12 @@ export default function Footer() {
               {
                 img: fb1,
                 label: "Facebook",
-                href: "https://www.facebook.com/jazabets/",
+                href: "https://www.facebook.com/betfusion/",
               },
               {
                 img: tw,
                 label: "Twitter",
-                href: "https://x.com/jazabets_com",
+                href: "https://x.com/betfusion_com",
               },
               {
                 img: wh,
@@ -228,7 +228,7 @@ export default function Footer() {
               {
                 img: int1,
                 label: "Instagram",
-                href: "https://www.instagram.com/jazabets", // use your actual Instagram handle
+                href: "https://www.instagram.com/betfusion", // use your actual Instagram handle
               },
             ].map((item, idx) => (
               <Col key={idx}>
@@ -274,7 +274,7 @@ export default function Footer() {
             color: "white",
           }}
         >
-          &copy; 2025 JazaBets. All rights reserved.
+          &copy; 2025 Betfusion. All rights reserved.
         </Paragraph>
       </Col>
     </AntFooter>

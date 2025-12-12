@@ -42,7 +42,7 @@ const Promotions = () => {
                 <Card
                   className="promotion-header"
                   style={{
-                    backgroundColor: "var(--jaza-bets-accent)",
+                    backgroundColor: "var(--bet-fusion-accent)",
                     color: "white",
                     textAlign: "center",
                     fontWeight: "bold",

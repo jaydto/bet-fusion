@@ -3,12 +3,12 @@ import { Card, Row, Col } from "antd";
 
 const DepositCards = ({ onCardSelect }) => {
   const cards = [
-    { id: 1, amount: 100, value: "10" },
-    { id: 2, amount: 200, value: "20" },
-    { id: 3, amount: 300, value: "30" },
-    { id: 4, amount: 400, value: "40" },
-    { id: 5, amount: 500, value: "50" },
-    { id: 6, amount: 600, value: "60" },
+    { id: 1, amount: 50, value: "50" },
+    { id: 2, amount: 99, value: "99" },
+    { id: 3, amount: 250, value: "250" },
+    { id: 4, amount: 500, value: "500" },
+    { id: 5, amount: 1000, value: "1000" },
+    // { id: 6, amount: 600, value: "60" },
   ];
 
   const handleCardClick = (amount) => {
@@ -16,22 +16,30 @@ const DepositCards = ({ onCardSelect }) => {
   };
 
   return (
-    <Row gutter={[16, 16]} wrap justify="start">
+    <Row gutter={[16, 16]} wrap justify="space-around">
       {cards.map(({ id, amount, value }) => (
-        <Col key={id} xs={8} sm={8} md={8} lg={8}>
+        <Col key={id} xs={4} sm={4} md={4} lg={4}>
           <Card
             hoverable
             onClick={() => handleCardClick(amount)}
             style={{
-              textAlign: "center",
-              borderRadius: "10px",
+              borderRadius: "5px",
               cursor: "pointer",
-              backgroundColor: "#f0f2f5",
-              height: "100%",
+              backgroundColor: "transparent",
+              // height: "100%",
+              fontSize: "12px",
+              color: "var(--white)",
+              border: "1px solid var(--bet-fusion-grey)",
+              whiteSpace: "nowrap",
+
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "0 10px",
+              textAlign: "center",
             }}
-            bodyStyle={{ padding: "20px" }}
           >
-            <h6>KES {amount}</h6>
+            <p style={{ margin: 0 }}>+{amount} KES</p>
             {/* <div style={{ fontSize: 12, color: "#888" }}>Get {value} coins</div> */}
           </Card>
         </Col>

@@ -36,6 +36,21 @@ export const UserInfo = React.memo((props) => {
     dispatchRedux(setStateV("casino_search_modal", true));
   };
 
+  const urlPath = window.location.pathname;
+  const [showBalance, setShowBalance] = useState(
+    !urlPath.includes("nare-games") &&
+      !urlPath.includes("game-play") &&
+      !urlPath.includes("smart-play")
+  );
+
+  useEffect(() => {
+    setShowBalance(
+      !urlPath.includes("nare-games") &&
+        !urlPath.includes("game-play") &&
+        !urlPath.includes("smart-play")
+    );
+  }, [urlPath]);
+
   return (
     <>
       {user && (
@@ -43,15 +58,30 @@ export const UserInfo = React.memo((props) => {
           className="col-md-4  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
           style={{ marginLeft: "auto" }}
         >
+          {!profile && showBalance && (
+            <div>
+              <div
+                className={
+                  "deposit-button size-font-user-action d-flex align-items-center"
+                }
+                style={{ marginRight: "12px" }}
+              >
+                <span style={{ fontSize: "12px", color: "var(--white)" }} >
+                  &nbsp;
+                  Ksh {formatNumber(user?.balance) || 0.0}
+                </span>
+              </div>
+            </div>
+          )}
           <div>
             <Link
               to={{ pathname: "/deposit" }}
-              className={"cg  login-color login-size btn "}
+              className={"cg  login-size btn btn-button-bg-2 text-light "}
             >
               <span className="">Deposit</span>
             </Link>
           </div>
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faSearch}
             onClick={handleCasinoSearch}
             style={{
@@ -62,7 +92,7 @@ export const UserInfo = React.memo((props) => {
               paddingLeft: "10px",
               // opacity: "0.7",
             }}
-          />
+          /> */}
 
           {/* <FontAwesomeIcon
             icon={faBell}

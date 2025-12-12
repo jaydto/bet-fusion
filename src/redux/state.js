@@ -25,6 +25,7 @@ const initialState = {
     withdrawal_message: null,
     deposits_message: null,
     show_deposit_modal:false,
+    show_withdraw_modal: false,
     show_jisort_modal:false,
     deposits_confirm_message: null,
     self_exclsuion_message: null,

@@ -172,6 +172,12 @@ const HeaderLogin = React.memo((props) => {
         >
           <Row className={`d-flex flex-column`}>
             <div className={`w-100 `}>
+              <label
+                style={{ color: "var(--white" }}
+                className="px-2"
+              >
+                Mobile Number or Email
+              </label>
               <div
                 className="input-group input-color-icon w-100 "
                 style={{ display: "flex" }}
@@ -182,7 +188,7 @@ const HeaderLogin = React.memo((props) => {
                   className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login  ${
                     errors.msisdn && "text-danger"
                   }`}
-                  placeholder={"11234567"}
+                  placeholder={"Enter your phone number or email"}
                   onChange={(ev) => onFieldChanged(ev)}
                   value={values.msisdn}
                 />
@@ -191,12 +197,6 @@ const HeaderLogin = React.memo((props) => {
               {errors.msisdn && (
                 <div className="text-danger"> {errors.msisdn} </div>
               )}
-              <label
-                className="mb-5 px-2 pb-3"
-                style={{ color: "var(--text-color)" }}
-              >
-                Enter your phone number
-              </label>
 
               <br />
 
@@ -218,6 +218,12 @@ const HeaderLogin = React.memo((props) => {
             </div>
 
             <div className={`w-100 `}>
+              <label
+                style={{ color: "var(--white" }}
+                className="px-2"
+              >
+                Password
+              </label>
               <div
                 className="input-group input-color-icon w-100"
                 style={{ display: "flex" }}
@@ -229,40 +235,37 @@ const HeaderLogin = React.memo((props) => {
                     errors.password && "text-danger"
                   } `}
                   autoComplete="on"
-                  placeholder="Password"
+                  placeholder="Enter your password"
                   onChange={(ev) => onFieldChanged(ev)}
                   value={values.password}
                 />
 
-                <div className=" col-2 input-group-append">
-                  <div className="input-group-text  border-0 input-color-icon">
-                    <button
-                      style={{ height: "parent" }}
-                      type="button"
-                      className="btn btn-link text-decoration-none input-color-icon"
+                <div className=" col-2 input-group-append d-flex justify-content-center">
+                  <div className="input-group-text  border-0 input-color-icon" style={{ backgroundColor: "transparent" }}>
+                    <span
+                      className="input-group-text border-0 input-color-icon"
                       onClick={toggleShowPassword}
+                      style={{ cursor: "pointer", backgroundColor: "transparent" }}
                     >
-                      {showPassword ? (
-                        <FontAwesomeIcon
-                          icon={faEyeSlash}
-                          style={{ color: "var(--dark)", fontSize: "20px" }}
-                        />
-                      ) : (
-                        <FontAwesomeIcon
-                          icon={faEye}
-                          style={{ color: "var(--dark)", fontSize: "20px" }}
-                        />
-                      )}
-                    </button>
+                      <FontAwesomeIcon
+                        style={{
+                          color: "var(--bet-fusion-grey)",
+                          fontSize: "20px",
+                          padding: "0px 5px 0px 5px"
+                        }}
+                        icon={
+                          showPassword 
+                            ? faEyeSlash
+                            : faEye
+                        }
+                      />
+                    </span>
                   </div>
                 </div>
               </div>
               {errors.password && (
                 <div className="text-danger"> {errors.password} </div>
               )}
-              <label className="mb-5 px-2 pb-3" style={{ color: "#FFFFFFB2" }}>
-                Enter your password
-              </label>
 
               <br />
               <input type="hidden" name="ref" value="{props.refURL}" />
@@ -281,7 +284,7 @@ const HeaderLogin = React.memo((props) => {
                 </Link>
                 {/* <span className="d-flex align-items-center">
                   <span className="text-warning faded-color h4 m-0">
-                    You are usingjazabets
+                    You are using betfusion
                   </span>
                   <CountryButton onFieldChanged={onFieldChanged} />
                 </span> */}
@@ -290,7 +293,7 @@ const HeaderLogin = React.memo((props) => {
 
             <div className={`w-100`}>
               <button
-                className={`w-100 button-radius input-field btn-font login-button2 mt-4 btn bold`}
+                className={`w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page`}
                 style={{ position: "relative" }}
                 disabled={loading}
                 type="submit"
@@ -326,7 +329,7 @@ const HeaderLogin = React.memo((props) => {
                 >
                   <span
                     className={`faded-color font-input } register-label my-3`}
-                    style={{  color: "#FFAA00" }}
+                    style={{  color: "var(--white)" }}
                   >
                     Create a New Account
                   </span>

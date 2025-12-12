@@ -266,7 +266,7 @@
   width: 100%;
   color: #f0e68c;
   text-align: center;
-  background: var(--jaza-bets-header-bg-btn);
+  background: var(--bet-fusion-header-bg-btn);
   animation: fadeIn 0.6s ease-in-out;
   font-family: "Orbitron", sans-serif;
 }
@@ -394,7 +394,7 @@
 }
 
 .ant-tabs-tab-active .tab-pill {
-  /* background: var(--jaza-bets-button-login); */
+  /* background: var(--bet-fusion-button-login); */
   color: white;
 }
 
@@ -470,17 +470,17 @@
 }
 
 .play-now-btn {
-  background-color: var(--jaza-bets-button-login);
+  background: var(--bet-fusion-button-login);
   border: none;
   font-weight: bold;
   padding: 6px 16px;
   border-radius: 8px;
-  color: var(--dark);
+  color: var(--white);
 }
 .play-now-btn:hover {
-  background-color: var(--jaza-bets-button-login) !important;
+  background: var(--bet-fusion-button-login) !important;
   border: none;
-  color: var(--dark) !important;
+  color: var(--black) !important;
 }
 
 /* games library css  */
@@ -568,7 +568,7 @@
 /* gamesSection.css */
 .games-section {
   padding: 5px;
-  background-color: var(--jaza-bets-primary);
+  background-color: var(--bet-fusion-secondary);
 }
 
 .view-all-link {
@@ -579,11 +579,11 @@
 }
 
 .play-btn {
-  background-color: var(--jaza-bets-button-login);
+  background-color: var(--bet-fusion-button-login);
   border: none;
 }
 .play-btn:hover {
-  background-color: var(--jaza-bets-button-login);
+  background-color: var(--bet-fusion-button-login);
   border: none;
 }
 
@@ -607,12 +607,32 @@ ul.sidebar-menu-cs {
 .ant-card:hover {
   transform: scale(1.03);
 }
+
+.ant-menu-item {
+  margin: 10px 0 !important;
+}
+
+.ant-menu-item-divider {
+  margin: 10px 20px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.sidebar-menu-cs .ant-menu-item-selected {
+  background-color: var(--bet-fusion-secondary) !important;
+  border-radius: 10px;
+}
+
+.sidebar-menu-cs .ant-menu-item-selected .ant-menu-title-content,
+.sidebar-menu-cs .ant-menu-item-selected .ant-menu-item-icon {
+  color: var(--white) !important;
+}
+
 /* ----------------------- */
 
 /* mustPlaySection.css */
 .must-play-section {
   padding: 12px;
-  background-color: --jaza-bets-primary;
+  background-color: --bet-fusion-primary;
 }
 
 .section-title {
@@ -993,7 +1013,7 @@ input.search-cat:focus {
 
 .search-casino .input-group-text {
   background-color: transparent !important;
-  border: 2px solid var(--app-download-link-color) !important;
+  /* border: 2px solid var(--app-download-link-color) !important; */
   border-radius: 15px;
 }
 

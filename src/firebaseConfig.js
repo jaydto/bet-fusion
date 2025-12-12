@@ -5,9 +5,9 @@ import {getMessaging} from "firebase/messaging";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMscvFCSUG7AvfvmmYilyrJBoxk8VoezU",
-    authDomain: "Jazabets.firebaseapp.com",
-    projectId: "Jazabets",
-    storageBucket: "Jazabets.appspot.com",
+    authDomain: "Betfusion.firebaseapp.com",
+    projectId: "Betfusion",
+    storageBucket: "Betfusion.appspot.com",
     messagingSenderId: "43489980882",
     appId: "1:43489980882:web:de63763c66f9aeafe3580b",
     measurementId: "G-MMYJQ4544J"

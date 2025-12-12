@@ -1023,7 +1023,7 @@ const LeaderBoards = () => {
                          className={'background-primary'}>
                         <div className={'d-flex w-100 flex-column how_to_play'}>
                             <div className={'header-leader d-flex w-100 justify-content-center mt-2'}>
-                                <h2>jazabets @1 Anniversary Promo: Celebrate and Win KES 1,000,000!</h2>
+                                <h2>betfusion @1 Anniversary Promo: Celebrate and Win KES 1,000,000!</h2>
                             </div>
                             <br/>
                             <div className={'d-flex header-leader w-100 '}>
@@ -1037,7 +1037,7 @@ const LeaderBoards = () => {
                                     <ul>
                                         <li>
                                             🏆 It's time to celebrate our first year of thrilling sports betting with
-                                           jazabets @1 Anniversary Promo! As
+                                           betfusion @1 Anniversary Promo! As
                                             a token of our gratitude for your amazing support, we're giving away an
                                             astounding **KES 1,000,000**
                                             to one lucky winner! 🎁 This could be your chance to strike it big!
@@ -1082,7 +1082,7 @@ const LeaderBoards = () => {
                                         </h3>
                                         <ul>
                                             <li>
-                                                1. The **Jazabets @1 Anniversary Promo** runs from **July 26th, 2023** to
+                                                1. The **Betfusion @1 Anniversary Promo** runs from **July 26th, 2023** to
                                                 **August 3rd,
                                                 2023**.
                                             </li>
@@ -1098,23 +1098,23 @@ const LeaderBoards = () => {
                                             </li>
                                             <li>5. The winner will be announced on **August 3rd, 2023 at 7.00 pm**, and
                                                 will be contacted
-                                                directly byjazabets.
+                                                directly bybetfusion.
                                             </li>
                                             <li>6. Keep an eye on the **Leaderboard** to see if you're among the top
                                                 contenders!
                                             </li>
-                                            <li>7.jazabets reserves the right to disqualify any participant engaging in
+                                            <li>7.betfusion reserves the right to disqualify any participant engaging in
                                                 fraudulent activities or
                                                 violating the terms and conditions.
                                             </li>
-                                            <li>8. The **KES 1,000,000** prize will be credited to the winner'sjazabets
+                                            <li>8. The **KES 1,000,000** prize will be credited to the winner'sbetfusion
                                                 account and can be
                                                 withdrawn or used for future bets.
                                             </li>
-                                            <li>9. This promotion is open to all registeredjazabets customers in
+                                            <li>9. This promotion is open to all registeredbetfusion customers in
                                                 Kenya.
                                             </li>
-                                            <li>10. For more information, please refer tojazabets's general terms and
+                                            <li>10. For more information, please refer tobetfusion's general terms and
                                                 conditions.
                                             </li>
                                         </ul>

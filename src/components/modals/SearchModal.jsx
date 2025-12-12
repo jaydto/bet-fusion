@@ -130,9 +130,9 @@ const SearchModal = () => {
           className="search-cat bg-transparent"
           style={{
             borderRadius: 50,
-            backgroundColor: "#2a2a2a",
+            background: "linear-gradient(var(--bet-fusion-secondary) 0 0) padding-box, var(--bet-fusion-button-login) border-box",
             color: "var(--light)",
-            border: " 1px solid var(--deposit-c)",
+            border: " 1px solid transparent",
           }}
         />
 
@@ -219,7 +219,7 @@ const SearchModal = () => {
                           </Button>
                         </div>
                         <div className="overlay-bottom">
-                          <Text style={{ color: "#fff", fontWeight: 500 }}>
+                          <Text style={{ color: "var(--white)", fontWeight: 500 }}>
                             {game.title}
                           </Text>
                         </div>
@@ -232,7 +232,7 @@ const SearchModal = () => {
           </Row>
         </div>
 
-        <Button onClick={handleClose} danger style={{ marginTop: 20 }}>
+        <Button onClick={handleClose} danger style={{ marginTop: 20, background: "var(--bet-fusion-button-login)", color: "var(--white)" }}>
           Close
         </Button>
       </div>

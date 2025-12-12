@@ -4,14 +4,14 @@
   /* flex-flow: nowrap; */
   flex-direction: column;
   flex-wrap: nowrap;
-  background-color: var(--jaza-bets-body-bg);
+  background-color: var(--bet-fusion-body-bg);
   height: 100vh;
   padding: 15px 0px 0px 0px;
   gap: 0px;
 }
 
 .flex-item > div {
-  background: var(--jaza-bets-header-bg);
+  background: var(--bet-fusion-header-bg);
   /* border: 3px solid #ffcc80; */
   border-radius: 5px;
   padding: 0px 0px;
@@ -33,7 +33,7 @@
   justify-content: space-between;
   /* flex-flow: nowrap; */
   flex-wrap: nowrap;
-  background-color: var(--jaza-bets-primary);
+  background-color: var(--bet-fusion-primary);
   height: 100%;
   padding: 15px;
   /*margin-top:63px;*/
@@ -63,7 +63,7 @@
   flex-grow: 3;
 }
 .carousel.slide {
-  background: var(--jaza-bets-primary);
+  background: var(--bet-fusion-primary);
 }
 .item3 {
   /* flex:1 1 auto; */
@@ -149,7 +149,7 @@
     flex-direction: column;
   }
   .flex-item > div {
-    background: var(--jaza-bets-primary);
+    background: var(--bet-fusion-primary);
   }
   .item2 {
     /* flex:2 1 auto; */
@@ -192,7 +192,7 @@
     box-shadow: none;
   }
   .flex-item > div {
-    background: var(--jaza-bets-primary);
+    background: var(--bet-fusion-primary);
     /* border: 3px solid #ffcc80; */
     border-radius: 5px;
     padding: 5px 0px;
@@ -208,7 +208,7 @@
     box-shadow: none;
   }
   .flex-item > div {
-    background: var(--jaza-bets-primary);
+    background: var(--bet-fusion-primary);
     /* border: 3px solid #ffcc80; */
     border-radius: 5px;
     padding: 1px 0px;

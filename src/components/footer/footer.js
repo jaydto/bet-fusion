@@ -35,7 +35,7 @@ const [isLightTheme, setIsLightTheme] = useState(() => theme === "light");
       <Row gutter={[32, 32]}>
         <Col xs={24} md={12} lg={6}>
           <Space direction="vertical" size="middle">
-            <LazyLoadImage src={isLightTheme ? Logo : Logo} alt="Bet fusion Logo" style={{ height: 52 }} />
+            <LazyLoadImage src={isLightTheme ? Logo : Logo} alt="Bet fusion Logo" style={{ height: 32 }} />
               <Title level={5} style={{ color: "var(--light)" }}>Betfusion 2025</Title>
           </Space>
         </Col>

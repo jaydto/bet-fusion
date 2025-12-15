@@ -35,6 +35,7 @@ const initialState = {
     loaded: false,
     printed_data: null,
     print_jackpot_data: null,
+    sports_data: null,
   }, // Initial state for the data reducer
   virtuals: {
     favorites_data: [],

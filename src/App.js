@@ -47,6 +47,7 @@ import BetslipPage from "./components/pages/betslip/betslipPage";
 import Login from "./components/pages/loginTwo";
 import NewProfile from "./components/pages/Accounts/NewProfile";
 import Index from "./components/pages/casino/index";
+import SportsPage from "./components/pages/sports";
 
 const Logout = () => {
   const { dispatch } = useContext(StoreContext);
@@ -185,6 +186,13 @@ const App = () => {
                     </ProtectedRoute>
                   }
                 />
+              </Route>
+
+              <Route path="/sports" element={
+                <ProtectedRoute>
+                  <SportsPage />
+                </ProtectedRoute>
+              }>
               </Route>
 
               <Route path="/404" element={<PageNotFound />} />

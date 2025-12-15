@@ -105,7 +105,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             const isActive = activeGameId === game.game_id;
 
             return (
-              <Col key={game.game_id} xs={12} sm={12} md={4} lg={4} xl={4}>
+              <Col key={game.game_id} xs={8} sm={8} md={4} lg={4} xl={4}>
                 <div
                   // onClick={(e) => handleGameClick(e, game?.game_id, 0,  game?.display_name ?? game?.game_name)}
                   onMouseEnter={() => setHoveredGameId(game.game_id)}
@@ -161,7 +161,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                               <>
                                 <div className="overlay-top">
                                   <PlayCircleOutlined
-                                    style={{ fontSize: 32, color: "#fff" }}
+                                    style={{ fontSize: 32, color: "var(--white)" }}
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       handleGameClick(
@@ -202,7 +202,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                             {(!game.url || game.url === "#") && (
                               <div className="overlay-bottom">
                                 <Text
-                                  style={{ color: "#fff", fontWeight: 500 }}
+                                  style={{ color: "var(--white)", fontWeight: 500 }}
                                 >
                                   {game.display_name || game.game_name}
                                 </Text>

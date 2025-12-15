@@ -78,7 +78,7 @@ const GameNavBar = ({ categories = [] }) => {
         wrap={false}
         style={{
           paddingLeft: 0,
-          gap: isMobile ? 0 : 10,
+          gap: isMobile ? 5 : 10,
         }}
       >
         {categories.map((item, index) => {
@@ -102,7 +102,7 @@ const GameNavBar = ({ categories = [] }) => {
                 <div
                   style={{ 
                     display: "flex",
-                    flexDirection: isMobile ? "column" : "row",
+                    flexDirection: isMobile ? "row" : "row",
                     alignItems: "center",
                     justifyContent: "center",
                     color: isActive ? "var(--white)" : "var(--white)",
@@ -123,8 +123,8 @@ const GameNavBar = ({ categories = [] }) => {
                     alt={item.name}
                     className={`icon-svg ${isActive ? "active-icon" : ""}`}
                     style={{
-                      width: isMobile ? 20 : 20,
-                      height: isMobile ? 20 : 20,
+                      width: isMobile ? 15 : 20,
+                      height: isMobile ? 15 : 20,
                       marginRight: isMobile ? 0 : 8,
                       marginLeft: isMobile ? 0 : 2,
                       filter: isActive

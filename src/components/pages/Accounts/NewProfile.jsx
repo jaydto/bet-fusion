@@ -241,7 +241,7 @@ const NewProfile = React.memo(() => {
                         Self Exclusion <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />
                       </div>
                     </div>
-                    <div className="card mb-3 top-br" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+                    <div className="card mb-3 top-br" onClick={() => navigate("/promotions")} style={{ cursor: "pointer" }}>
                       <div className="upper-row text-light-p p-3">
                         Promotions <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }}/>
                       </div>
@@ -331,6 +331,7 @@ export default React.memo(NewProfile);
 
 const BalanceCard = ({ user }) => {
   const balance = user?.balance || 0;
+  const bonus = user?.bonus || 0;
 
   return (
     <Card className="mb-3 top-pr balance-card p-0">
@@ -359,10 +360,10 @@ const BalanceCard = ({ user }) => {
           />
           <div className="d-flex flex-column">
             <Text type="secondary" style={{ color: "var(--white)" }}>
-              Balance
+              Bonus
             </Text>
             <Title level={5} style={{ margin: 0, color: "var(--white)" }}>
-              Ksh {formatNumber(balance)}
+              Ksh {formatNumber(bonus)}
             </Title>
           </div>
         </div>

@@ -94,13 +94,13 @@ export const data = {
   categories: [
     {
       name: "Football",
-      url: "#",
+      url: "/sports",
       bg: "rgb(253, 244, 255)", // light purple/pink background
       color: "#d10ae2", // vibrant purple text/icon
     },
     {
       name: "Aviator",
-      url: "/casino/game-play?game=43857&status=0&game_name=AVIATOR",
+      url: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
       bg: "rgb(235, 241, 255)", // soft blue background
       color: "#2d7ff9", // bright blue text/icon
     },

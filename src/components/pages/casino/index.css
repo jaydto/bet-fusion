@@ -592,8 +592,15 @@
   height: 200px;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
-  filter: drop-shadow(2px 4px 6px black);
+  /* filter: drop-shadow(2px 4px 6px black); */
 }
+
+@media (max-width: 768px) {
+  .game-image {
+    height: 130px;
+  }
+}
+
 ul.sidebar-menu-cs {
   background-color: var(--side-logo) !important;
 }

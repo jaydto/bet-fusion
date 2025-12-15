@@ -154,7 +154,7 @@ const WithdrawalModal = React.memo(() => {
               style={{
                 fontSize: "19px",
                 fontWeight: "bolder",
-                letterSpacing: "2px",
+                // letterSpacing: "2px",
                 color: "var(--login-btn-cl)",
               }}
               className={"deposit-modal-top-title"}

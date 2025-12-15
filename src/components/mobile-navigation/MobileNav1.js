@@ -134,7 +134,11 @@ const GameNavBar = ({ categories = [] }) => {
                         : "invert(0)",
                     }}
                   />
-                  <div style={{ fontSize: "14px", marginTop: isMobile ? 4 : 0 }}>
+                  <div 
+                    style={{ 
+                      fontSize: "14px", 
+                      marginTop: isMobile ? 4 : 0, 
+                      filter: isActive ? "brightness(0) saturate(100%) invert(15%) sepia(97%) saturate(4343%) hue-rotate(337deg) brightness(85%) contrast(110%)" : "" }}>
                     {item.name}
                   </div>
                 </div>

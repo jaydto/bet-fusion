@@ -111,8 +111,8 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
           >
             {isActive ? (
               <>
-                <Tag color="success">{cat.label}</Tag>
-                <span>{cat.label}</span>
+                {/* <Tag color="success">{cat.label}</Tag> */}
+                <span style={{ color: "var(--bet-fusion-red)" }}>{cat.label}</span>
               </>
             ) : (
               <>

@@ -21,6 +21,23 @@ export const configSettings = createAsyncThunk(
     }
   }
 );
+
+export const sports = createAsyncThunk(
+  "data/sports",
+  async (data) => {
+    const [status, response] = await makeRequest({
+      url: "/v1/igpixel/launch",
+      method: "POST",
+      data: data,
+    });
+    if (status === 200) {
+      return response;
+    } else {
+      throw new Error(response?.error || "Fetching App Configs failed");
+    }
+  }
+);
+
 export const printMatchesData = createAsyncThunk(
   "data/printMatchesData",
   async ({ method, endpoint }) => {
@@ -237,6 +254,21 @@ const dataSlice = createSlice({
         state.loaded = matches?.length > 0;
       })
       .addCase(printMatchesData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(sports.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(sports.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        console.log("action", action.payload)
+        const matches = action.payload.url;
+        state.sports_data =matches
+      })
+      .addCase(sports.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })

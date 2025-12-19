@@ -5,6 +5,7 @@ import makeRequest from "../components/utils/fetch-request";
 import {
   clearTrackingData,
   setLocalStorage,
+  getFromLocalStorage
 } from "../components/utils/local-storage";
 // Async thunk for matches
 export const configSettings = createAsyncThunk(
@@ -112,11 +113,16 @@ export const carouselImages = createAsyncThunk(
 export const casinoCarouselImages = createAsyncThunk(
   "data/casinoCarouselImages",
   async () => {
+    const cachedImages = getFromLocalStorage("casino_carousel_banners");
+
+    if (cachedImages) return { images: cachedImages, status: 200 };
+
     const [status, response] = await makeRequest({
       url: "/v1/casino-carousel-images",
       method: "GET",
     });
     if (status === 200) {
+      setLocalStorage("casino_carousel_banners", response.images);
       return response;
     } else {
       throw new Error(response?.error || "Fetching CAsino Carousel images failed");

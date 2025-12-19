@@ -2,7 +2,7 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import initialState from "./state"; // Import the initial state from state.js
 import makeRequest from "../components/utils/fetch-request";
-import { setLocalStorage } from "../components/utils/local-storage";
+import { setLocalStorage, getFromLocalStorage } from "../components/utils/local-storage";
 // Async thunk for matches
 export const casinoList = createAsyncThunk(
   "virtuals/casinoGames",
@@ -82,11 +82,18 @@ export const favoriteCasinoData = createAsyncThunk(
 export const casinoGames = createAsyncThunk(
   "virtuals/casinoGamesData",
   async ({ endpoint, method }) => {
+    const cacheKey = `cache_${endpoint}`;
+    const cachedData = getFromLocalStorage(cacheKey);
+
+    if (cachedData) return cachedData;
+
     const [status, response] = await makeRequest({
       url: endpoint,
       method: method,
     });
+
     if (status === 200) {
+      setLocalStorage(cacheKey, response, 1800000);   //30mins
       return response;
     } else {
       throw new Error(response?.error || "casinoGames failed");

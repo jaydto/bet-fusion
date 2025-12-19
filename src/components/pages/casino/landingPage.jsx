@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Row, Col, Grid, Button } from "antd";
 import { ConsoleSqlOutlined } from "@ant-design/icons"; // game console icon
 import { useNavigate } from "react-router-dom";
@@ -30,16 +30,16 @@ const LandingPage = () => {
     navigate("/casino");
   };
 
-  const crashGames = casino_games.filter(
-    (game) =>
-      game.categories &&
-      game.categories.some((cat) => cat.game_type_id === "crash")
+  const crashGames = useMemo(() => 
+    casino_games.filter(game => 
+      game.categories?.some(cat => cat.game_type_id === "crash")
+    ), [casino_games]
   );
 
-  const virtualGames = casino_games.filter(
-    (game) =>
-      game.categories &&
-      game.categories.some((cat) => cat.game_type_id === "virtual")
+  const virtualGames = useMemo(() => 
+    casino_games.filter(game => 
+      game.categories?.some(cat => cat.game_type_id === "virtual")
+    ), [casino_games]
   );
 
   // Group games by their first category (or multiple if you want)

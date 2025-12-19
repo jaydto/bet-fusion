@@ -12,7 +12,11 @@ import { casinoCarouselImages } from "../../../redux/dataSlice";
 
 const CasinoCarouselLoader = React.memo(() => {
     const dispatchRedux = useDispatch();
+    const navigate = useNavigate();
+
     const banner_images = useSelector((state) => state.data.casino_carousel_banners);
+    const [imageLoaded, setImageLoaded] = useState(false);
+
 
     // Commented out API fetching logic
 
@@ -21,16 +25,14 @@ const CasinoCarouselLoader = React.memo(() => {
     };
 
     useEffect(() => {
-        const abort = new AbortController();
-        getCarouselImages();
-        return () => {
-            abort.abort();
-        };
-    }, []);
+        if (!banner_images || banner_images.length === 0) {
+            getCarouselImages();
+        } else {
+            // If data exists, we consider the "logic" loaded (though images still need to download)
+            setImageLoaded(true); 
+        }
+    }, [banner_images?.length]);
 
-
-    const navigate = useNavigate();
-    const [imageLoaded, setImageLoaded] = useState(false);
     const onImageLoaded = () => setImageLoaded(true);
 
     return (

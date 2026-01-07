@@ -50,30 +50,40 @@ const Sidebar = () => {
       icon: <HomeOutlined style={{ fontSize: 18 }}/>,
       label: <Link to="/">Home</Link>,
     },
+    // {
+    //   key: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
+    //   icon: <AviatorIcon style={{ width: 25, height: 25 }}/>,
+    //   label: <Link to="/casino/game-play?game=58630&status=0&game_name=AVIATOR">Aviator</Link>,
+    // },
+    // {
+    //   key: "/casino/game-play?game=58059&status=0&game_name=JetX",
+    //   icon: <JetXIcon style={{ width: 22, height: 22 }}/>,
+    //   label: <Link to="/casino/game-play?game=58059&status=0&game_name=JetX">Jet X</Link>,
+    // },
+    // {
+    //   key: "/casino?categoryId=crash",
+    //   icon: <ThunderboltFilled style={{ fontSize: 18 }} />,
+    //   label: <Link to="/casino?categoryId=crash">Crash</Link>,
+    // },
+    // {
+    //   key: "/casino?categoryId=virtuals",
+    //   icon: <VirtualsIcon style={{ width: 24, height: 24 }}/>,
+    //   label: <Link to="/casino?categoryId=virtuals">Virtuals</Link>,
+    // },
+    // {
+    //   key: "/casino",
+    //   icon: <CasinoIcon style={{ width: 24, height: 24 }}/>,
+    //   label: <Link to="/casino">Casino</Link>,
+    // },
     {
-      key: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
+      key: "/play/game-play?game=58630&status=0&game_name=AVIATOR",
       icon: <AviatorIcon style={{ width: 25, height: 25 }}/>,
-      label: <Link to="/casino/game-play?game=58630&status=0&game_name=AVIATOR">Aviator</Link>,
+      label: <Link to="/play/game-play?game=58630&status=0&game_name=AVIATOR">Aviator</Link>,
     },
     {
-      key: "/casino/game-play?game=58059&status=0&game_name=JetX",
+      key: "/play/game-play?game=58059&status=0&game_name=JetX",
       icon: <JetXIcon style={{ width: 22, height: 22 }}/>,
-      label: <Link to="/casino/game-play?game=58059&status=0&game_name=JetX">Jet X</Link>,
-    },
-    {
-      key: "/casino?categoryId=crash",
-      icon: <ThunderboltFilled style={{ fontSize: 18 }} />,
-      label: <Link to="/casino?categoryId=crash">Crash</Link>,
-    },
-    {
-      key: "/casino?categoryId=virtuals",
-      icon: <VirtualsIcon style={{ width: 24, height: 24 }}/>,
-      label: <Link to="/casino?categoryId=virtuals">Virtuals</Link>,
-    },
-    {
-      key: "/casino",
-      icon: <CasinoIcon style={{ width: 24, height: 24 }}/>,
-      label: <Link to="/casino">Casino</Link>,
+      label: <Link to="/play/game-play?game=58059&status=0&game_name=JetX">Jet X</Link>,
     },
     { type: "divider" },
     {
@@ -208,7 +218,7 @@ const Sidebar = () => {
           padding: "10px 0",
         }}
       >
-        ©2025 Betfusion. All Rights reserved.{" "}
+        ©2026 Betfusion. All Rights reserved.{" "}
       </div> */}
     </Sider>
   );

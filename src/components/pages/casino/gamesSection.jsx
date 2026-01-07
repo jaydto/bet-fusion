@@ -22,7 +22,8 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
     event.stopPropagation();
     user?.profile_id
       ? navigate(
-          `/casino/game-play?game=${gameId}&status=${
+          // `/casino/game-play?game=${gameId}&status=${
+          `/play/game-play?game=${gameId}&status=${
             isDemo ? "1" : "0"
           }&game_name=${game_name}`
         )
@@ -62,7 +63,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             )} */}
           </div>
 
-          <Button
+          {/* <Button
             type="link"
             style={{
               fontWeight: 500,
@@ -82,7 +83,6 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             SHOW ALL ({count}){" "}
             <span
               style={{
-                // background: "var(--btn-color-action)",
                 color: "var(--white)",
                 borderRadius: "15px",
                 padding: "1px 5px",
@@ -90,10 +90,9 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                 lineHeight: 1.5,
               }}
             >
-              {/* {count} */}
               <RightOutlined />
             </span>
-          </Button>
+          </Button> */}
         </div>
       )}
 
@@ -108,6 +107,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
               <Col key={game.game_id} xs={8} sm={8} md={4} lg={4} xl={4}>
                 <div
                   // onClick={(e) => handleGameClick(e, game?.game_id, 0,  game?.display_name ?? game?.game_name)}
+                  onClick={() => setActiveGameId(activeGameId === game.game_id ? null : game.game_id)}
                   onMouseEnter={() => setHoveredGameId(game.game_id)}
                   onMouseLeave={() => setHoveredGameId(null)}
                   className={`game-wrapper ${

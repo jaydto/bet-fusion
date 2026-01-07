@@ -11,7 +11,7 @@ import { StoreContext } from "./context/store";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem, setLocalStorage } from "./components/utils/local-storage";
 import { resetState } from "./redux/authSlice";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate, Navigate } from "react-router-dom";
 import { Grid } from "antd";
 import CasinoGames from "./components/pages/casino/casinoBody";
 
@@ -114,9 +114,9 @@ const App = () => {
     "/dispute-resolution",
     "/anti-money-laundering",
     "/terms-and-conditions",
-    "/casino",
+    // "/casino",
     "/auth/login",
-    "/casino/game-play",
+    // "/casino/game-play",
     "/auth/signup",
     "/forgot-password",
     "/auth/reset-password",
@@ -127,7 +127,7 @@ const App = () => {
   const ignoreMobileHeader = [
     "/auth/login",
     "/auth/signup",
-    "/casino/game-play",
+    // "/casino/game-play",
     "/auth/reset-password",
   ];
 
@@ -176,8 +176,21 @@ const App = () => {
                 <Route path="reset-password" element={<ResetPassword />} />
               </Route>
 
-              <Route path="/casino" element={<Index />}>
+              {/* <Route path="/casino" element={<Index />}>
                 <Route index element={<CasinoPage />} />
+                <Route
+                  path="game-play"
+                  element={
+                    <ProtectedRoute>
+                      <GamePlay />
+                    </ProtectedRoute>
+                  }
+                />
+              </Route> */}
+
+              <Route path="/play" element={<Index />}>
+                {/* <Route index element={<CasinoPage />} /> */}
+                <Route index element={<Navigate to="/" replace />} />
                 <Route
                   path="game-play"
                   element={

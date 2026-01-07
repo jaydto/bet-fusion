@@ -71,12 +71,12 @@ const MobileMenu = () => {
       label: "Promos",
       path: "/promotions",
     },
-    {
-      key: "crash",
-      icon: <ThunderboltFilled style={iconStyle} />,
-      label: "Crash",
-      path: "/casino?categoryId=crash",
-    },
+    // {
+    //   key: "crash",
+    //   icon: <ThunderboltFilled style={iconStyle} />,
+    //   label: "Crash",
+    //   path: "/casino?categoryId=crash",
+    // },
     {
       key: "profile",
       icon: <Profile style={iconStyle} />,
@@ -96,7 +96,7 @@ const MobileMenu = () => {
   const getSelectedKey = () => {
     if (pathname === "/") return "home";
     if (pathname.startsWith("/promotions")) return "promotions";
-    if (pathname.startsWith("/casino")) return "crash";
+    // if (pathname.startsWith("/casino")) return "crash";
     if (pathname.startsWith("/profile")) return "profile";
     return "";
   };

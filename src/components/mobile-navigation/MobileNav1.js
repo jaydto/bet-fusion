@@ -14,14 +14,14 @@ const { useBreakpoint } = Grid;
 
 const navItems = [
   // { label: "Football", image: Football, route: "/sports" },
-  {
-    label: "Aviator",
-    image: Aviator,
-    route: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
-  },
-  { label: "Crash", image: Crash, route: "/casino?categoryId=crash" },
-  { label: "Casino", image: Casino, route: "/casino" },
-  { label: "Virtual", image: Virtual, route: "/casino?categoryId=virtual" },
+  // {
+  //   label: "Aviator",
+  //   image: Aviator,
+  //   route: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
+  // },
+  // { label: "Crash", image: Crash, route: "/casino?categoryId=crash" },
+  // { label: "Casino", image: Casino, route: "/casino" },
+  // { label: "Virtual", image: Virtual, route: "/casino?categoryId=virtual" },
 ];
 
 const ICON_MAP = {

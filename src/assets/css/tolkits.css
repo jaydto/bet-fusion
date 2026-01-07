@@ -6861,6 +6861,10 @@ ul.sport {
     .odds .label {
     }
 
+    .btn-font{
+        font-size:1.3rem!important;
+    }
+
     .app-navbar .e img {
         max-width: 100px !important;
     }

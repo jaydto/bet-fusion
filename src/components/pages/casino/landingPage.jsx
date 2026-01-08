@@ -27,7 +27,7 @@ const LandingPage = () => {
   };
 
   const handleMoreGamesClick = () => {
-    navigate("/casino");
+    navigate("/play");
   };
 
   const crashGames = useMemo(() => 
@@ -76,7 +76,7 @@ const LandingPage = () => {
         }}
       >
         <CasinoCarouselLoader />
-        {/* <GameNavBar categories={data.categories} /> */}
+        <GameNavBar categories={data.categories} />
         {/* <CongratulationBanner messagesObject={helpMessage} /> */}
         {/* <div style={{ marginTop: 20 }}>
           <CategoryTabs />
@@ -99,7 +99,7 @@ const LandingPage = () => {
 
       {crashGames.length > 0 && (
         <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-          <GamesSection games={crashGames} category="CRASH" count={crashGames?.length} />
+          <GamesSection games={crashGames.slice(0, 8)} category="CRASH" count={crashGames?.length} />
         </div>
       )}
 

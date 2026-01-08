@@ -63,7 +63,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             )} */}
           </div>
 
-          {/* <Button
+          <Button
             type="link"
             style={{
               fontWeight: 500,
@@ -75,8 +75,8 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             onClick={() =>
               navigate(
                 ["crash", "hot", "popular"].includes(category?.toLowerCase())
-                  ? `/casino?categoryId=${category?.toLowerCase()}`
-                  : `/casino`
+                  ? `/play?categoryId=${category?.toLowerCase()}`
+                  : `/play`
               )
             }
           >
@@ -92,7 +92,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             >
               <RightOutlined />
             </span>
-          </Button> */}
+          </Button>
         </div>
       )}
 

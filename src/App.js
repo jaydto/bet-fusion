@@ -189,8 +189,7 @@ const App = () => {
               </Route> */}
 
               <Route path="/play" element={<Index />}>
-                {/* <Route index element={<CasinoPage />} /> */}
-                <Route index element={<Navigate to="/" replace />} />
+                <Route index element={<CasinoPage />} />
                 <Route
                   path="game-play"
                   element={

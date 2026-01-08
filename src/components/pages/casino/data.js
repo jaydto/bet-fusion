@@ -25,13 +25,13 @@ export const data = {
       bg: "rgb(235, 255, 253)",
       color: "#00a7a7",
     },
-    {
-      cat_id: "casino",
-      label: "Casino",
-      icon: null,
-      color: "rgb(133 182 33", // Teal-like color
-      bg: "rgb(255, 247, 235)", // Light peach background
-    },
+    // {
+    //   cat_id: "casino",
+    //   label: "Casino",
+    //   icon: null,
+    //   color: "rgb(133 182 33", // Teal-like color
+    //   bg: "rgb(255, 247, 235)", // Light peach background
+    // },
     {
       cat_id: "popular",
       label: "Popular",
@@ -98,12 +98,12 @@ export const data = {
       bg: "rgb(253, 244, 255)", 
       color: "#d10ae2", 
     },
-    {
-      name: "Aviator",
-      url: "/play/game-play?game=58630&status=0&game_name=AVIATOR",
-      bg: "rgb(235, 241, 255)", 
-      color: "#2d7ff9", 
-    },
+    // {
+    //   name: "Aviator",
+    //   url: "/play/game-play?game=58630&status=0&game_name=AVIATOR",
+    //   bg: "rgb(235, 241, 255)", 
+    //   color: "#2d7ff9", 
+    // },
     // {
     //   name: "Crash",
     //   url: "/play?categoryId=crash",
@@ -115,6 +115,12 @@ export const data = {
       url: "/play",
       bg: "rgb(245, 255, 235)", 
       color: "#3c9f18", 
+    },
+    {
+      name: "Promotions",
+      url: "/promotions",
+      bg: "rgb(245, 241, 255)", 
+      color: "#7b38f6", 
     },
     // {
     //   name: "Virtual",

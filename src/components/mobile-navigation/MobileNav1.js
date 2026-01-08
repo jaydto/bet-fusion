@@ -7,6 +7,7 @@ import Crash from "../../assets/img/Crash.svg";
 import Football from "../../assets/img/Football.png";
 import Casino from "../../assets/img/Casino.svg";
 import Virtual from "../../assets/img/Virtuals.svg";
+import Promotions from "../../assets/img/Promotions2.svg";
 import { getFromLocalStorage } from "../utils/local-storage";
 import { is } from "date-fns/locale";
 
@@ -17,7 +18,7 @@ const navItems = [
   // {
   //   label: "Aviator",
   //   image: Aviator,
-  //   route: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
+  //   route: "/play/game-play?game=58630&status=0&game_name=AVIATOR",
   // },
   // { label: "Crash", image: Crash, route: "/casino?categoryId=crash" },
   // { label: "Casino", image: Casino, route: "/casino" },
@@ -26,10 +27,11 @@ const navItems = [
 
 const ICON_MAP = {
   Football,
-  Aviator,
+  // Aviator,
   Crash,
-  Casino,
-  Virtual
+  // Casino,
+  // Virtual
+  Promotions
 };
 
 const GRADIENTS = [
@@ -73,7 +75,7 @@ const GameNavBar = ({ categories = [] }) => {
       }}
     >
       <Row
-        justify={isMobile ? "space-between" : "start"}
+        justify={isMobile ? "start" : "start"}
         align="middle"
         wrap={false}
         style={{
@@ -116,6 +118,7 @@ const GameNavBar = ({ categories = [] }) => {
                       ? "0px 20px 0px 5px"
                       : "0px 20px",
                     cursor: "pointer",
+                    gap: isMobile ? "5px" : "",
                    }}
                 >
                   <img
@@ -138,6 +141,7 @@ const GameNavBar = ({ categories = [] }) => {
                     style={{ 
                       fontSize: "14px", 
                       marginTop: isMobile ? 4 : 0, 
+                      marginBottom: isMobile ? 4 : 0, 
                       filter: isActive ? "brightness(0) saturate(100%) invert(15%) sepia(97%) saturate(4343%) hue-rotate(337deg) brightness(85%) contrast(110%)" : "" }}>
                     {item.name}
                   </div>

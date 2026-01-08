@@ -71,12 +71,12 @@ const MobileMenu = () => {
       label: "Promos",
       path: "/promotions",
     },
-    // {
-    //   key: "crash",
-    //   icon: <ThunderboltFilled style={iconStyle} />,
-    //   label: "Crash",
-    //   path: "/casino?categoryId=crash",
-    // },
+    {
+      key: "crash",
+      icon: <ThunderboltFilled style={iconStyle} />,
+      label: "Crash",
+      path: "/play?categoryId=crash",
+    },
     {
       key: "profile",
       icon: <Profile style={iconStyle} />,

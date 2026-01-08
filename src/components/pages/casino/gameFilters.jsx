@@ -69,10 +69,18 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
     casino_types.map((type) => type.game_type_description)
   );
 
- const mappedCategories = Array.from(baseCategoryMap.values()).filter(
-  (cat) =>
-    validLabels.has(cat.label) || cat.label === "Lobby" || cat.label === "Casino"
-);
+  const blockedCategories = ["Casino", "Live Casino"]
+
+//  const mappedCategories = Array.from(baseCategoryMap.values()).filter(
+//   (cat) =>
+//     validLabels.has(cat.label) || cat.label === "Lobby"
+// );
+
+  const mappedCategories = Array.from(baseCategoryMap.values()).filter(
+    (cat) =>
+      (validLabels.has(cat.label) || cat.label === "Lobby") &&
+      !blockedCategories.includes(cat.label)
+  );
 
   console.log("mappedCategories", mappedCategories);
   const handleCategoryClick = (game_id, label) => {

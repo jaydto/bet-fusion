@@ -93,7 +93,11 @@ export const casinoGames = createAsyncThunk(
     });
 
     if (status === 200) {
-      setLocalStorage(cacheKey, response, 1800000);   //30mins
+      try{
+        setLocalStorage(cacheKey, response, 1800000);   //30mins
+      } catch(e){
+        console.warn("Storage quota full, skipping cache save:", e);
+      }
       return response;
     } else {
       throw new Error(response?.error || "casinoGames failed");

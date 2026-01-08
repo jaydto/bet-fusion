@@ -25,13 +25,13 @@ export const data = {
       bg: "rgb(235, 255, 253)",
       color: "#00a7a7",
     },
-    {
-      cat_id: "casino",
-      label: "Casino",
-      icon: null,
-      color: "rgb(133 182 33", // Teal-like color
-      bg: "rgb(255, 247, 235)", // Light peach background
-    },
+    // {
+    //   cat_id: "casino",
+    //   label: "Casino",
+    //   icon: null,
+    //   color: "rgb(133 182 33", // Teal-like color
+    //   bg: "rgb(255, 247, 235)", // Light peach background
+    // },
     {
       cat_id: "popular",
       label: "Popular",
@@ -95,33 +95,39 @@ export const data = {
     {
       name: "Football",
       url: "/sports",
-      bg: "rgb(253, 244, 255)", // light purple/pink background
-      color: "#d10ae2", // vibrant purple text/icon
+      bg: "rgb(253, 244, 255)", 
+      color: "#d10ae2", 
     },
-    {
-      name: "Aviator",
-      url: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
-      bg: "rgb(235, 241, 255)", // soft blue background
-      color: "#2d7ff9", // bright blue text/icon
-    },
+    // {
+    //   name: "Aviator",
+    //   url: "/play/game-play?game=58630&status=0&game_name=AVIATOR",
+    //   bg: "rgb(235, 241, 255)", 
+    //   color: "#2d7ff9", 
+    // },
+    // {
+    //   name: "Crash",
+    //   url: "/play?categoryId=crash",
+    //   bg: "rgb(255, 250, 235)", 
+    //   color: "#f7931e", 
+    // },
     {
       name: "Crash",
-      url: "/casino?categoryId=crash",
-      bg: "rgb(255, 250, 235)", // pale yellow background
-      color: "#f7931e", // orange text/icon
+      url: "/play",
+      bg: "rgb(245, 255, 235)", 
+      color: "#3c9f18", 
     },
     {
-      name: "Casino",
-      url: "/casino",
-      bg: "rgb(245, 255, 235)", // soft green background
-      color: "#3c9f18", // fresh green text/icon
+      name: "Promotions",
+      url: "/promotions",
+      bg: "rgb(245, 241, 255)", 
+      color: "#7b38f6", 
     },
-    {
-      name: "Virtual",
-      url: "/casino?categoryId=virtual",
-      bg: "rgb(245, 241, 255)", // pale lavender background
-      color: "#7b38f6", // vivid purple text/icon
-    },
+    // {
+    //   name: "Virtual",
+    //   url: "/play?categoryId=virtual",
+    //   bg: "rgb(245, 241, 255)", 
+    //   color: "#7b38f6", 
+    // },
     // {
     //   name: "Aviatrix",
     //   url: "/game-play?game=aviator&game_id=43857&status=0",
@@ -133,7 +139,7 @@ export const data = {
     {
       name: "Aviator",
       game_id: "58630",
-      url: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
+      url: "/play/game-play?game=58630&status=0&game_name=AVIATOR",
       game_name: "AVIATOR",
       image_url: "https://cdn.betfusion.com/BETFUSION AVIATOR.webp",
     },
@@ -148,7 +154,7 @@ export const data = {
       name: "Aviatrix",
       game_id: "58046",
       game_name: "Aviatrix",
-      url: "/casino/game-play?game=58046&status=0&game_name=Aviatrix",
+      url: "/play/game-play?game=58046&status=0&game_name=Aviatrix",
       image_url: "https://cdn.betfusion.com/BETFUSION AVIATRIX.webp",
       // "https://atom-cdn.azureedge.net/storage/728ace29-10a0-4c08-a508-0b619fc94889_file",
     },
@@ -156,15 +162,15 @@ export const data = {
       name: "JetX",
       game_id: "58059",
       game_name: "JetX",
-      url: "/casino/game-play?game=58059&status=0&game_name=JetX",
+      url: "/play/game-play?game=58059&status=0&game_name=JetX",
       image_url: "https://cdn.betfusion.com/BETFUSION JET X.webp",
     },
-    {
-      name: "Casino",
-      game_id: "casino",
-      url: "/casino",
-      image_url: "https://cdn.betfusion.com/BETFUSION CASINO.webp",
-    },
+    // {
+    //   name: "Crash",
+    //   game_id: "crash",
+    //   url: "/play",
+    //   image_url: "https://cdn.betfusion.com/BETFUSION CASINO.webp",
+    // },
   ],
   numbers: [
     {

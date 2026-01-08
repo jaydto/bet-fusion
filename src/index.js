@@ -26,6 +26,16 @@ import { createRoot } from "react-dom/client";
 // ReactPixel.init(TRACKING_PIXEL_ID);
 const App = React.lazy(() => import("./App"));
 
+// --- BLOCK TO KILL OLD CACHES ---
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for(let registration of registrations) {
+      console.log("Unregistering old service worker:", registration);
+      registration.unregister();
+    }
+  });
+}
+
 const container = document.getElementById("app");
 createRoot(container).render(
   <StoreProvider>

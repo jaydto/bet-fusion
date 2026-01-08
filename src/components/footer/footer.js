@@ -36,7 +36,7 @@ const [isLightTheme, setIsLightTheme] = useState(() => theme === "light");
         <Col xs={24} md={12} lg={6}>
           <Space direction="vertical" size="middle">
             <LazyLoadImage src={isLightTheme ? Logo : Logo} alt="Bet fusion Logo" style={{ height: 32 }} />
-              <Title level={5} style={{ color: "var(--light)" }}>Betfusion 2025</Title>
+              <Title level={5} style={{ color: "var(--light)" }}>Betfusion 2026</Title>
           </Space>
         </Col>
 
@@ -45,15 +45,15 @@ const [isLightTheme, setIsLightTheme] = useState(() => theme === "light");
             <Title level={5} style={{ color: "var(--light)" }}>
               CATEGORIES
             </Title>
-            <Link to="/casino?categoryId=slots" style={{ color: "var(--light)" }}>
+            <Link to="/play?categoryId=slots" style={{ color: "var(--light)" }}>
               Slots
             </Link>
-            <Link to="/casino?categoryId=crash" style={{ color: "var(--light)" }}>
+            <Link to="/play?categoryId=crash" style={{ color: "var(--light)" }}>
               Crash
             </Link>
-            <Link to="/casino" style={{ color: "var(--light)" }}>
+            {/* <Link to="/casino" style={{ color: "var(--light)" }}>
               Casino
-            </Link>
+            </Link> */}
           </Space>
         </Col>
 

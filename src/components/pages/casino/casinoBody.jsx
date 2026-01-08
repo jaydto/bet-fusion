@@ -108,7 +108,7 @@ const CasinoGames = ({ activeSetCategory }) => {
     event.stopPropagation();
     user?.profile_id
       ? navigate(
-          `/casino/game-play?game=${gameId}&status=${
+          `/play/game-play?game=${gameId}&status=${
             isDemo ? "1" : "0"
           }&game_name=${game_name}`
         )

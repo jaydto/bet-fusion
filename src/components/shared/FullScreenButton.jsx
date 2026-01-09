@@ -11,52 +11,57 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
 
   const screens = useBreakpoint();
   const isMobile = !screens.md;
+
+  const isSportsPage = location.pathname === "/sports";
+
   return (
     <div
       className={`height-max-custom d-flex align-items-center justify-content-between ${
         isCustomFullScreen ? "full-screen-component" : ""
       }`}
-      style={{ padding: "0 1rem" }}
+      style={{ padding: "0 1rem", marginTop: isSportsPage ? "6rem" : 0, }}
     >
       <HeaderBreadCrumb />
 
-      <div className="d-flex align-items-center" style={{ gap: 12 }}>
-        {isMobile && (
-          
-          <Button
-            // type="primary"
-            style={{
-              background: "var(--bet-fusion-button-login)",
-              border: "none",
-            }}
-            size="small"
-            onClick={() => navigate("/deposit")}
-            icon={<DownloadOutlined />}
-          >
-            Deposit
-          </Button>
-        )}
+      {!isSportsPage && (
+        <div className="d-flex align-items-center" style={{ gap: 12 }}>
+          {isMobile && (
+            
+            <Button
+              // type="primary"
+              style={{
+                background: "var(--bet-fusion-button-login)",
+                border: "none",
+              }}
+              size="small"
+              onClick={() => navigate("/deposit")}
+              icon={<DownloadOutlined />}
+            >
+              Deposit
+            </Button>
+          )}
 
-        <Tag
-          onClick={onClick}
-          style={{
-            cursor: "pointer",
-            userSelect: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-            fontWeight: 600,
-            fontSize: 14,
-            padding: "4px 8px",
-            background: "var(--bet-fusion-button-login)",
-            color: "var(--white)",
-            border: "none"
-          }}
-        >
-          {!isMobile && (isCustomFullScreen ? "Exit" : "View Fullscreen")}
-          <ExpandOutlined />
-        </Tag>
-      </div>
+          <Tag
+            onClick={onClick}
+            style={{
+              cursor: "pointer",
+              userSelect: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+              fontWeight: 600,
+              fontSize: 14,
+              padding: "4px 8px",
+              background: "var(--bet-fusion-button-login)",
+              color: "var(--white)",
+              border: "none"
+            }}
+          >
+            {!isMobile && (isCustomFullScreen ? "Exit" : "View Fullscreen")}
+            <ExpandOutlined />
+          </Tag>
+        </div>
+      )}
     </div>
   );
 };

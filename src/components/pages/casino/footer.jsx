@@ -108,11 +108,11 @@ export default function Footer() {
                 For gambling addiction help and support, please contact our
                 customer care at{" "}
                 <Link
-                  to="tel:0769210210"
+                  to="tel:0718111117"
                   target="_blank"
                   style={{ color: "#91d5ff" }}
                 >
-                  0769210210
+                  0718111117 | 0718111119
                 </Link>{" "}
                 or visit{" "}
                 <Link to="/responsible-gambling" style={{ color: "#91d5ff" }}>

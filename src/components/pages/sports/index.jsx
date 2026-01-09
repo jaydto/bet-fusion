@@ -5,6 +5,8 @@ import { getFromLocalStorage } from "../../utils/local-storage";
 import Loader from "./loader";
 import useWindowDimensions from "../../header/Dimensions";
 import FullscreenButton from "../../shared/FullScreenButton";
+import { useNavigate } from "react-router-dom";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const SportsPage = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,8 @@ const SportsPage = () => {
   const [isCustomFullscreen, setCustomFullscreen] = useState(false);
 
   const [iframeHeight, setIframeHeight] = useState(width < 991 ? 95 : 85); // Initial height
+
+  const navigate=useNavigate()
 
   // Define the CSS style for the iframe
   const iframeStyle = {
@@ -147,7 +151,7 @@ const SportsPage = () => {
           allow="fullscreen"
           style={{
             ...iframeStyle,
-            marginTop: isCustomFullscreen?"3rem":"1rem",
+            marginTop: isCustomFullscreen?"3rem":"2.1rem",
             height: `${Math.min(iframeHeight, maxIframeHeight)}svh`,
             color: 'var(--bet-fusion-red)'
           }}

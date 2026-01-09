@@ -99,7 +99,7 @@ const LandingPage = () => {
 
       {crashGames.length > 0 && (
         <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-          <GamesSection games={crashGames.slice(0, 8)} category="CRASH" count={crashGames?.length} />
+          <GamesSection games={crashGames.slice(0, 12)} category="CRASH" count={crashGames?.length} />
         </div>
       )}
 

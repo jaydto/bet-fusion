@@ -245,11 +245,8 @@ const HowToPlay = React.memo((props) => {
                           </AccordionItemHeading>
 
                           <AccordionItemPanel className="accordion-item-panel">
-                            <p>
-                             betfusion offers Customer Care support round the
-                              clock. We are reachable via 011234567 on Mobile,
-                              WhatsApp Number – 011234567. You can also reach
-                              us through E-Mail onsupport@Betfusion.com
+                            <p> 
+                              Customer Care contacts: 0718111117 | 0718111119
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>

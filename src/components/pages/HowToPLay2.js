@@ -103,14 +103,14 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem uuid={"13"}>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    Why should I register withbetfusion?
+                                    Why should I register with Betfusion?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Registration allows you to open abetfusion
+                                    Registration allows you to open a Betfusion
                                     account free of charge and under no
-                                    obligation. Yourbetfusion account will help
+                                    obligation. Your Betfusion account will help
                                     you manage your bets and other account
                                     details. You need to deposit actual money
                                     into your account before you can place bets.
@@ -120,12 +120,12 @@ const HowToPlay = React.memo((props) => {
                               <AccordionItem>
                                 <AccordionItemHeading>
                                   <AccordionItemButton className="accordion-button">
-                                    How do I Register withbetfusion?
+                                    How do I Register with Betfusion?
                                   </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel className="accordion-item-panel">
                                   <p>
-                                    Step 1 Please visit www.Betfusion.com and
+                                    Step 1 Please visit www.betfusion.com and
                                     click on the Register Now link on the top
                                     RIGHT corner of the website. Please read the
                                     Terms and Conditions and fill in all the
@@ -140,7 +140,7 @@ const HowToPlay = React.memo((props) => {
                                   <p>
                                     A confirmation message appears to confirm
                                     that your registration was successful.
-                                   betfusion!
+                                   Betfusion!
                                   </p>
                                 </AccordionItemPanel>
                               </AccordionItem>
@@ -152,7 +152,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I withdraw cash from mybetfusion account?
+                              How do I withdraw cash from my Betfusion account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -179,11 +179,11 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I log into mybetfusion account?
+                              How do I log into my Betfusion account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
-                            Once you have registered you can access yourbetfusion
+                            Once you have registered you can access your Betfusion
                             account by entering your phone number as USERNAME
                             and  PASSWORD as PASSWORD
                           </AccordionItemPanel>
@@ -191,7 +191,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my transaction from mybetfusion
+                              How do I check my transaction from my Betfusion
                               account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
@@ -205,7 +205,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              How do I check my bets from mybetfusion account?
+                              How do I check my bets from my Betfusion account?
                             </AccordionItemButton>
                           </AccordionItemHeading>
                           <AccordionItemPanel className="accordion-item-panel">
@@ -225,13 +225,13 @@ const HowToPlay = React.memo((props) => {
                           <AccordionItemPanel className="accordion-item-panel">
                             <p>
                               Why wait 90 Minutes when you can play Virtuals and
-                              WIN Big in Minutes?betfusion offers a variety of
+                              WIN Big in Minutes? Betfusion offers a variety of
                               Virtual games ranging from; Fantastic football
                               league, Horse racing , Force 1 racing , Greyhound
                               racing and Penalty shootout. Log into
-                              https://Betfusion.com/ to get the Virtual
+                              https://betfusion.com/ to get the Virtual
                               experience. Stake low, Win High & Fast with
-                             betfusion Virtuals.
+                             Betfusion Virtuals.
                             </p>
                           </AccordionItemPanel>
                         </AccordionItem>
@@ -240,7 +240,7 @@ const HowToPlay = React.memo((props) => {
                         <AccordionItem>
                           <AccordionItemHeading>
                             <AccordionItemButton className="accordion-button">
-                              What is the betfusion Customer care number?
+                              What is the Betfusion Customer care number?
                             </AccordionItemButton>
                           </AccordionItemHeading>
 

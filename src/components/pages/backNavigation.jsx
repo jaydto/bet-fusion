@@ -29,7 +29,7 @@ const BackNavigationBar = () => {
       <img
         src={logo}
         alt="Logo"
-        style={{ height: 30 }}
+        style={{ height: 20 }}
         onClick={() => navigate("/")}
       />
 

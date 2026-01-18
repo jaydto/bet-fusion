@@ -105,7 +105,7 @@ const ResponsibleGambling = React.memo(() => {
                 <p style={{}} className="mt-1 ">
                   This is a real-money gambling app. Please gamble responsibly
                   and only bet what you can afford. For gambling addiction help
-                  and support, please contact CustomerCare at (+254769210210),
+                  and support, please contact CustomerCare at (0718111117 | 0718111119),
                   or visit (
                   <a
                     href="https://responsiblegambling.or.ke/"
@@ -275,7 +275,7 @@ const ResponsibleGambling = React.memo(() => {
                           <p>
                             If you need to talk to someone about a gambling
                             problem, contact our CustomerCare helpline at
-                            +254769210210.
+                            0718111117 | 0718111119
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>

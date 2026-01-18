@@ -17,15 +17,14 @@ const General = () => {
             </AccordionItemHeading>
             <AccordionItemPanel className='accordion-item-panel'>
                 <ol>
-                    <li> These Terms and Conditions refers to Beyond Intoch Software Limited, a company incorporated in
+                    <li> These Terms and Conditions refers to Betfusion Limited, a company incorporated in
                         Kenya.
                     </li>
-                    <li> The term "CLIENT" references any individual person that expressly or impliedly agrees to all
-                        terms and conditions ofbetfusion by opening an account and placing bets on games on the company’s
-                        website.
+                    <li> The term "CLIENT" references any individual person that expressly or impliedly agrees to all 
+                        terms and conditions of Betfusion by opening an account and placing bets on games on the company’s website.
                     </li>
-                    <li> All CLIENTS accessing the betfusion’ website agree to abide by the following terms and conditions
-                        governing the use of its services (the "Agreement").
+                    <li> All CLIENTS accessing the Betfusion’ website agree to abide by the following terms and conditions governing 
+                        the use of its services (the "Agreement").
                     </li>
                     <li> This agreement and any other agreement between the CLIENT andbetfusion are subject to the laws
                         of Kenya.
@@ -69,20 +68,20 @@ const General = () => {
                         republic, and the parties hereby irrevocably consent to the personal jurisdiction and venue
                         therein.
                     </li>
-                    <li>betfusion will not be liable in any way to any persons in the event of force majeure, including
+                    <li>Betfusion will not be liable in any way to any persons in the event of force majeure, including
                         but not limited to strike, terrorist activities, political crisis, war, natural catastrophe, or
                         for the act of any government or legal authority. In the event that any provision in this
                         Agreement is held to be invalid or unenforceable, the remaining provisions will remain in full
                         force and effect.
                     </li>
 
-                    <li>betfusion will not be responsible for any saturation of the telecommunication networks,
+                    <li>Betfusion will not be responsible for any saturation of the telecommunication networks,
                         cyber-attacks, hacking etc., which could lead to a total or partial access reduction to its
                         services, loss of data by itself or by other contracted independent service providers on whom
                         the Company will wholly or partially be reliant on to deliver the services.
                     </li>
 
-                    <li>betfusion will not be held liable and will be held harmless by the
+                    <li>Betfusion will not be held liable and will be held harmless by the
                         CLIENT for any damages, losses, costs, loss of profits or any other
                         disadvantage a CLIENT may incur in connection with any disconnection
                         from or the non-availability of any of the products offered by
@@ -93,14 +92,14 @@ const General = () => {
                         Agreement will not be deemed a waiver of such right or provision.
                     </li>
 
-                    <li>betfusion may assign this Agreement or any rights and/or obligations
+                    <li>Betfusion may assign this Agreement or any rights and/or obligations
                         hereunder without the CLIENT’s consent.
                     </li>
 
-                    <li>betfusion may amend the terms of this Agreement from time to time by
+                    <li>Betfusion may amend the terms of this Agreement from time to time by
                         posting the amended terms on the WEBSITE. The CLIENT continuing
                         usage of
-                       betfusion’ services after the date of amendment is acceptance of the
+                       Betfusion’ services after the date of amendment is acceptance of the
                         amended terms and conditions, whether or not the changes have been
                         acknowledged.
                     </li>
@@ -113,7 +112,7 @@ const General = () => {
                         thereafter.
                     </li>
                     <li>
-                       betfusion undertakes to respect the CLIENT’s privacy in line with the Company’s Privacy Policy.
+                       Betfusion undertakes to respect the CLIENT’s privacy in line with the Company’s Privacy Policy.
                     </li>
                 </ol>
             </AccordionItemPanel>

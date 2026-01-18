@@ -45,7 +45,7 @@ const CasinoPage = () => {
   return (
     <div
       className="main-content"
-      style={{ flex: 1, marginTop: isMobile ? "0px" : "3rem"}}
+      style={{ flex: 1, marginTop: isMobile ? "0px" : "3rem", maxWidth: "100vw" }}
     >
       {pathname === "/" && <SearchModal />}
 

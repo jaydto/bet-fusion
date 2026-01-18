@@ -70,7 +70,7 @@ const PrivacyPolicy = React.memo(() => {
               </div>
 
               <div className="col-md-12 mt-2 text-white p-2 text-center"></div>
-              <p class="text-white mx-2">Last updated: Jun 16, 2025</p>
+              {/* <p class="text-white mx-2">Last updated: Jun 16, 2026</p> */}
 
               <div className="col-md-12 mt-1 p-1 text-white accordion-container">
 
@@ -96,8 +96,8 @@ const PrivacyPolicy = React.memo(() => {
                         regardless of where you visit it from, and tells you
                         about your privacy rights and how the law protects you.
                         This Privacy Policy should be read and applied together
-                        with the 
-                        {<Link to="/terms-and-conditions">betfusion General Terms and Conditions </Link>} ("Terms and Conditions").
+                        with the {" "}
+                        {<Link to="/terms-and-conditions">Betfusion General Terms and Conditions </Link>} ("Terms and Conditions").
                       </p>
                     </AccordionItemPanel>
                   </AccordionItem>
@@ -580,7 +580,7 @@ For more information on our safeguarding and security measures, please contact u
                         <li>
                           {" "}
                          betfusion reserves the right to terminate any agreement with you for failure to comply with the provisions of this Privacy Policy and its {<a href="/terms-and-conditions">Terms and Conditions</a> }
-                          and reject any application for information contrary to this Privacy Policy.
+                        {" "}and reject any application for information contrary to this Privacy Policy.
                         </li>
                         
                       </ul>
@@ -606,14 +606,14 @@ For more information on our safeguarding and security measures, please contact u
                       <p>Should you have any further queries or questions about the processing of your Personal Data, our full contact details are as follows:</p>
                       <ol className="list-count-type">
                         <li>
-                        Name: Bet Tena
+                        Name: Betfusion
                         </li>
                         
                           {/* <li>Email address:{ <a href="mailto:operations@Betfusion.com ">operations@Betfusion.com</a> }</li> */}
                         
                           {/* <li>Adress : 
                             </li> */}
-                        <li>Telephone number:011234567 </li>
+                        <li>Telephone number: 0718111117 | 0718111119</li>
                         <li> Data Protection Officer</li>
                       </ol>
                     </AccordionItemPanel>

@@ -112,7 +112,15 @@ export default function Footer() {
                   target="_blank"
                   style={{ color: "#91d5ff" }}
                 >
-                  0718111117 | 0718111119
+                  0718111117
+                </Link>
+                {" | "}
+                <Link
+                  to="tel:0718111119"
+                  target="_blank"
+                  style={{ color: "#91d5ff" }}
+                >
+                  0718111119
                 </Link>{" "}
                 or visit{" "}
                 <Link to="/responsible-gambling" style={{ color: "#91d5ff" }}>
@@ -223,7 +231,7 @@ export default function Footer() {
               {
                 img: wh,
                 label: "WhatsApp",
-                href: "https://wa.me/254769210210", // converted phone to international format
+                href: "https://wa.me/+254718111117", // converted phone to international format
               },
               {
                 img: int1,

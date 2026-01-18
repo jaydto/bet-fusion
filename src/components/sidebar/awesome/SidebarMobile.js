@@ -85,7 +85,7 @@ const SidebarMobile = React.memo(
                     <MenuItem className={"d-flex justify-content-between"}>
                         <div className={"d-flex gap-4 align-items-center"}>
                             <FontAwesomeIcon icon={faMobilePhone} className={'svg-mobile'} />
-                            <a href={"tel:011234567"} onClick={handleClose}>Call Customer Care</a>
+                            <a href={"tel:0718111117"} onClick={handleClose}>Call Customer Care</a>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -108,7 +108,7 @@ const SidebarMobile = React.memo(
                 </Menu>
                 <Menu>
                     <MenuItem className={"d-flex justify-content-between"}>
-                        <a className={"d-flex gap-4 align-items-center"} href={"https://wa.me/+254769210210"} target={"_blank"} rel="noreferrer" onClick={handleClose}>
+                        <a className={"d-flex gap-4 align-items-center"} href={"https://wa.me/+254718111117"} target={"_blank"} rel="noreferrer" onClick={handleClose}>
                             <LazyLoadImage src={whatsapp} effect={"blur"} style={{width:'15px'}} className={'svg-mobile'} />
                             Whatsapp Us
                         </a>

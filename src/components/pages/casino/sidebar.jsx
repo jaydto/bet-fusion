@@ -142,7 +142,7 @@ const Sidebar = () => {
           onClick={() => navigate("/")}
           alt="Betfusion"
           title="Betfusion"
-          style={{ width: "min-content", height: 24 }}
+          style={{ width: "150px" }}
           className={`image-size`}
         />
       </div>

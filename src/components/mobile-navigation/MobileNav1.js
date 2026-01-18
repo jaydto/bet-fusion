@@ -10,6 +10,10 @@ import Virtual from "../../assets/img/Virtuals.svg";
 import Promotions from "../../assets/img/Promotions2.svg";
 import { getFromLocalStorage } from "../utils/local-storage";
 import { is } from "date-fns/locale";
+import { setState } from "../../redux/virtualsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { color } from "framer-motion";
+import { SearchOutlined } from "@ant-design/icons";
 
 const { useBreakpoint } = Grid;
 
@@ -47,6 +51,7 @@ const GameNavBar = ({ categories = [] }) => {
   const isMobile = !screens.md;
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const theme = getFromLocalStorage("theme");
   const [isLightTheme, setIsLightTheme] = useState(theme === "light");
 
@@ -62,6 +67,11 @@ const GameNavBar = ({ categories = [] }) => {
   const handleClick = (item) => {
     setActive(item.name);
     navigate(item.url);
+  };
+
+  const onSearch = (searchTerm) => {
+    console.log("Search:", searchTerm);
+    dispatch(setState("casino_search_modal", true));
   };
 
   return (
@@ -150,6 +160,13 @@ const GameNavBar = ({ categories = [] }) => {
             </Col>
           );
         })}
+        <div style={{ flex: 1 }} />
+        <Col style={{ paddingLeft: 10, display: "flex", alignItems: "center" }}>
+          <SearchOutlined 
+            style={{ color: "var(--white)", fontSize: "18px", cursor: "pointer" }} 
+            onClick={onSearch}
+          />
+        </Col>
       </Row>
     </div>
   );

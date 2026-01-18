@@ -124,9 +124,15 @@ export const casinoGamesSearch = createAsyncThunk(
   }
 );
 
+const preloadedState = {
+  ...initialState,
+  // Load cached games immediately so Redux is never "empty" on boot
+  casino_games_data: getFromLocalStorage("casino_games_data") || [],
+};
+
 const virtualsSlice = createSlice({
   name: "virtuals",
-  initialState,
+  initialState: preloadedState,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -141,6 +147,24 @@ const virtualsSlice = createSlice({
         state.casino_games_data = action.payload?.data;
         state.casino_games_types = action.payload?.types;
         state.casino_games_providers = action.payload?.providers;
+
+        try{
+          if (action.payload?.data?.length > 0) {
+            const minimalData = action.payload.data.map(game => ({
+                game_id: game.game_id,
+                game_name: game.game_name,
+                display_name: game.display_name,
+                image_url: game.image_url,
+                url: game.url,
+                categories: game.categories
+            }));
+
+            setLocalStorage("casino_games_data", minimalData);
+          }
+
+        } catch(e) {
+          console.warn("Could not cache casino games to LocalStorage (Quota Full). App will continue working.", e);
+        }
       })
       .addCase(casinoGames.rejected, (state, action) => {
         state.loading = false;

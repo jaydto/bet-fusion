@@ -107,7 +107,8 @@ const SidebarProfile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
                             <FontAwesomeIcon icon={faWhatsapp} style={{fontSize:'24px'}}/>
-                            <a href={"https://wa.me/+254769210210"} target={"_blank"} className={'text-profile'}>Whatsapp Us</a>
+                            <a href={"https://wa.me/+254718111117"} target={"_blank"} className={'text-profile'}>Whatsapp Us</a>
+                            <a href={"https://wa.me/+254718111119"} target={"_blank"} className={'text-profile'}>Whatsapp Us(2nd number)</a>
                         </div>
                     </MenuItem>
                 </Menu>
@@ -115,7 +116,8 @@ const SidebarProfile = React.memo(
                     <MenuItem>
                         <div className={"d-flex gap-4 align-items-center px-3"}>
                             <FontAwesomeIcon icon={faPhoneFlip} style={{fontSize:'24px'}}/>
-                            <a href={'javascript:void(0)'} className={'text-profile'}>011234567</a>
+                            <a href={'javascript:void(0)'} className={'text-profile'}>0718111117</a>
+                            <a href={'javascript:void(0)'} className={'text-profile'}>0718111119</a>
                         </div>
                     </MenuItem>
                 </Menu>

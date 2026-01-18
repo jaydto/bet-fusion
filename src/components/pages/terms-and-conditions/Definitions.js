@@ -49,7 +49,7 @@ const General = () => {
                         derived content whether accessible or otherwise used by the CLIENT through the Internet Website
                         allowing the CLIENT to participate in the online sportsbook and casino.
                     </li>
-                    <li>"Us, We" or "Betfusion " means Beyond Intoch Software Limited.</li>
+                    <li>"Us, We" or "Betfusion " means Betfusion Limited.</li>
                     <li>"User Account", "Player Account", "Gaming Account" or "Account" mean a personal account opened
                         by an individual and maintained by the company as to allow this person to participate in the
                         online sportsbook and casino.

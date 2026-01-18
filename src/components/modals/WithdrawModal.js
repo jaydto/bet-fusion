@@ -40,7 +40,7 @@ const WithdrawalModal = React.memo(() => {
   
   // Limits from settings
   const minAmount = settings?.withdrawalLimits?.minimumAmount || 50;
-  const maxAmount = settings?.withdrawalLimits?.maximumAmount || 300000;
+  const maxAmount = settings?.withdrawalLimits?.maximumAmount || 10000;
 
   useEffect(() => {
     setUser(userData || getFromLocalStorage("user"));

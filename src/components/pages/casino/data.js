@@ -112,7 +112,7 @@ export const data = {
     // },
     {
       name: "Crash",
-      url: "/play",
+      url: "/play?categoryId=crash",
       bg: "rgb(245, 255, 235)", 
       color: "#3c9f18", 
     },

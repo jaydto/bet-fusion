@@ -53,8 +53,7 @@ const Withdrawals = () => {
                         of the payment method in question.
                     </li>
                     <li>
-                        The maximum self-service withdrawal amount per day, per account will be Kenya Shillings ONE
-                        HUNDRED THOUSAND Only (Kshs. 100,000).
+                        The maximum self-service withdrawal amount per day, per account will be Kenya Shillings TEN THOUSAND Only (Kshs. 10,000)
                     </li>
                     <li>
                         Withdrawals from a User’s Account can only be addressed strictly to

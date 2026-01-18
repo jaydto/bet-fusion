@@ -33,6 +33,7 @@ const CommunicationsAndNotices = React.lazy(() => import('./communications-and-n
 const ApplicableLaw = React.lazy(() => import('./applicable-law'));
 const TermAndTermination = React.lazy(() => import('./term-and-termination'));
 const Definitions = React.lazy(() => import('./Definitions'))
+const CrashGames = React.lazy(() => import('./crash-games'));
 
 const TermsAndConditions = React.memo(
     (props) => {
@@ -83,6 +84,7 @@ const TermsAndConditions = React.memo(
                                         <AccountUsage/>
                                         <Deposits/>
                                         <Withdrawals/>
+                                        <CrashGames />
                                         {/* <BonusesAndPromotions/> */}
                                         {/* <GiftWallet/> */}
                                         <Complaints/>

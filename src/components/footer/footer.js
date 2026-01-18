@@ -48,9 +48,9 @@ const [isLightTheme, setIsLightTheme] = useState(() => theme === "light");
             <Title level={5} style={{ color: "var(--light)" }}>
               CATEGORIES
             </Title>
-            <Link to="/play?categoryId=slots" style={{ color: "var(--light)" }}>
+            {/* <Link to="/play?categoryId=slots" style={{ color: "var(--light)" }}>
               Slots
-            </Link>
+            </Link> */}
             <Link to="/play?categoryId=crash" style={{ color: "var(--light)" }}>
               Crash
             </Link>
@@ -124,7 +124,7 @@ const [isLightTheme, setIsLightTheme] = useState(() => theme === "light");
 
       {/* <div style={{ marginTop: "2rem", textAlign: "center" }}>
         <Text style={{ color: "var(--light)" }}>
-          Copyright © 2025 All Rights Reserved.
+          Copyright © 2026 All Rights Reserved.
         </Text>
       </div> */}
     </div>

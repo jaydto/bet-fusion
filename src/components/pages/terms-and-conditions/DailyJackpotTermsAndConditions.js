@@ -16,7 +16,7 @@ const DailyJackpotTermsAndConditions = () =>
                 <AccordionItem uuid={'1'}>
                     <AccordionItemHeading>
                         <AccordionItemButton className='accordion-button jackpot'>
-                           betfusion MILLI DAILY JACKPOT
+                           Betfusion MILLI DAILY JACKPOT
                         </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel className='accordion-item-panel'>
@@ -44,15 +44,15 @@ const DailyJackpotTermsAndConditions = () =>
                 <AccordionItem>
                     <AccordionItemHeading>
                         <AccordionItemButton className={"accordion-button"}>
-                            <span className="text-uppercase">HOW TO PLAYbetfusion Milli Daily Jackpot</span>
+                            <span className="text-uppercase">HOW TO PLAY Betfusion Milli Daily Jackpot</span>
                         </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel className={'accordion-item-panel'}>
-                        <p>The betfusion Jackpot is a pool betting platform that is promoted and operated bybetfusion on
-                            pre-selected football matches. The betfusion Daily Jackpot competition consists of predicting
-                            results of 11 matches which are selected bybetfusion Daily. </p>
-                        <p>To take part and have a chance to win the betfusion jackpot you must get registered on
-                            www.Betfusion.com and have at least KES20/= in yourbetfusion account. If you correctly predict
+                        <p>The Betfusion Jackpot is a pool betting platform that is promoted and operated by Betfusion on
+                            pre-selected football matches. The Betfusion Daily Jackpot competition consists of predicting
+                            results of 11 matches which are selected byBetfusion Daily. </p>
+                        <p>To take part and have a chance to win the Betfusion jackpot you must get registered on
+                            www.betfusion.com and have at least KES20/= in your Betfusion account. If you correctly predict
                             all the 11 match results, you win the Daily Jackpot prize of Kshs 1,000,000/= </p>
                     </AccordionItemPanel>
                 </AccordionItem>
@@ -90,7 +90,7 @@ const DailyJackpotTermsAndConditions = () =>
                 <AccordionItem>
                     <AccordionItemHeading>
                         <AccordionItemButton className={"accordion-button"}>
-                            GENERALbetfusion DAILY JACKPOT TERMS AND CONDITIONS
+                            GENERAL Betfusion DAILY JACKPOT TERMS AND CONDITIONS
                         </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel className={'accordion-item-panel'}>
@@ -98,7 +98,7 @@ const DailyJackpotTermsAndConditions = () =>
                             time. Extra time and penalty shoot-outs shall not be included.</p>
                         <p>The competitions are open to persons aged 18 years or over, resident in Kenya. Proof of age
                             and identity are a MUST requirement.</p>
-                        <p>The betfusion Daily Jackpot prize money is KES 1,000,000/=</p>
+                        <p>The Betfusion Daily Jackpot prize money is KES 1,000,000/=</p>
                         <p>Players will be deemed to have accepted these terms and conditions and agreed to be bound by
                             them when entering this competition.</p>
 
@@ -110,7 +110,7 @@ const DailyJackpotTermsAndConditions = () =>
 
                             </li>
                             <li>
-                               betfusion  Milli Daily Jackpot is based on ELEVEN (11) pre-selected Soccer games
+                               Betfusion  Milli Daily Jackpot is based on ELEVEN (11) pre-selected Soccer games
                                 with HUGE Guaranteed bonuses starting from TEN (10) Correct predictions and ZERO (0)
                                 Correct predictions.
 
@@ -121,8 +121,8 @@ const DailyJackpotTermsAndConditions = () =>
 
                             </li>
                             <li>
-                                To make your selections- On the betfusion Daily Jackpot competition entry page
-                                (www.Betfusion.com/jackpot) make your predictions on the 11 pre-selected football matches
+                                To make your selections- On the Betfusion Daily Jackpot competition entry page
+                                (www.betfusion.com/jackpot) make your predictions on the 11 pre-selected football matches
                                 (HOME WIN, DRAW, AWAY WIN). The stake amount of each combination is KES 20/=.
                             </li>
                             <li>
@@ -134,7 +134,7 @@ const DailyJackpotTermsAndConditions = () =>
                             </li>
                             <li>
                                 The Daily Jackpot bet can be placed by submitting predictions of the results of 11
-                                pre-selected football matches at (www.Betfusion.com/jackpot) or through
+                                pre-selected football matches at (www.betfusion.com/jackpot) or through
                             </li>
                             <ul>
                                 <li>
@@ -162,20 +162,20 @@ const DailyJackpotTermsAndConditions = () =>
                                 strict compliance to BCLB requirements after (72) hours from the time of cancellation,
                                 to
                                 determine the result of the missing game result. Where three (3) or MORE games are
-                                cancelled, interrupted, abandoned, suspended or postponed,betfusion may at its
+                                cancelled, interrupted, abandoned, suspended or postponed,Betfusion may at its
                                 discretion,
                                 cancel the Daily Jackpot and refund the stake placed within 48 hours of cancellation.
                             </li>
-                            <li>Winners shall be required to avail themselves in the betfusion offices with proof of
+                            <li>Winners shall be required to avail themselves in the Betfusion offices with proof of
                                 identity
                                 before any payment is made.
                             </li>
                             <li>Betfusion reserves the right to verify, with the relevant authorities, any identification
                                 document presented, before making any payment.
                             </li>
-                            <li>The period for claiming the prize is seven (7) days failure to whichbetfusion may deem
+                            <li>The period for claiming the prize is seven (7) days failure to which Betfusion may deem
                                 the
-                                prize forfeited, unless the period is extended at the sole discretion ofbetfusion.
+                                prize forfeited, unless the period is extended at the sole discretion of Betfusion.
                             </li>
                             <li>Betfusion reserves the right to withhold up to 90% of any prize share until the
                                 presentation
@@ -190,17 +190,17 @@ const DailyJackpotTermsAndConditions = () =>
                                 the competition including (without limitation) allocation of the prizes and no
                                 correspondence will be entered into.
                             </li>
-                            <li>With the guidance of the BCLB,betfusion reserves the right to amend the terms and
+                            <li>With the guidance of the BCLB, Betfusion reserves the right to amend the terms and
                                 conditions
                                 of the Daily Jackpot at any time, for any reason and without notice.
                             </li>
-                            <li>Employees ofbetfusion, their relatives, agents or the agent’s relatives are not eligible
+                            <li>Employees of Betfusion, their relatives, agents or the agent’s relatives are not eligible
                                 to
                                 win prizes.
                             </li>
 
                         </ol>
-                        <p><strong>Generalbetfusion Terms and Conditions, Privacy and Responsible Gaming policies
+                        <p><strong>General Betfusion Terms and Conditions, Privacy and Responsible Gaming policies
                             apply.</strong></p>
 
 
@@ -209,7 +209,7 @@ const DailyJackpotTermsAndConditions = () =>
                 <AccordionItem>
                     <AccordionItemHeading>
                         <AccordionItemButton className={"accordion-button"}>
-                           betfusion  Milli Daily Jackpot Bonuses
+                           Betfusion  Milli Daily Jackpot Bonuses
                         </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel className={'accordion-item-panel'}>
@@ -218,20 +218,20 @@ const DailyJackpotTermsAndConditions = () =>
                                 I.	Daily Jackpot players are eligible as WINNERS when they make 11/11 correct Predictions. They also WIN various Bonus Prizes when they make NINE (9/11) Correct predictions and ELEVEN (11) Correct Predictions.
                             </li>
                             <li>
-                                II.	Where ONE (1) or MORE games are CANCELLED, INTERRUPTED, ABANDONED, SUSPENDED or POSTPONED,betfusion may at its discretion, AWARD the Jackpot BET ID with the highest correct predictions within 48 hours of CANCELLATION or REFUND ALL STAKES collected on the SPECIFIC JACKPOT.
+                                II.	Where ONE (1) or MORE games are CANCELLED, INTERRUPTED, ABANDONED, SUSPENDED or POSTPONED,Betfusion may at its discretion, AWARD the Jackpot BET ID with the highest correct predictions within 48 hours of CANCELLATION or REFUND ALL STAKES collected on the SPECIFIC JACKPOT.
                             </li>
                             <li>
-                                III.	<b>ZERO out of ELEVEN outcomes</b> - In an instance THAT a player gets 0/11 CORRECT predictions on the Running Jackpot, they automatically get a (FREE TICKET) onto the next availablebetfusion Daily Jackpot. This Offer is ONLY available to players who get ZERO out of the ELEVEN available jackpot games to play from.
+                                III.	<b>ZERO out of ELEVEN outcomes</b> - In an instance THAT a player gets 0/11 CORRECT predictions on the Running Jackpot, they automatically get a (FREE TICKET) onto the next available Betfusion Daily Jackpot. This Offer is ONLY available to players who get ZERO out of the ELEVEN available jackpot games to play from.
                             </li>
                             <li>
                                 IV.	<b>NINE OUT OF ELEVEN outcomes</b> - In an instance THAT a player gets 9/11 CORRECT predictions on the Running Jackpot, they automatically get a (1,000 KES) that is Withdrawable. This Offer is ONLY available to players who get NINE out of the ELEVEN available jackpot games to play from.
                             </li>
                             <li>
-                                V.	<b>TEN OUT OF ELEVEN outcomes</b> -betfusion Jackpot contains 11 games, the Jackpot bonuses are from 10 correct games. The Jackpot bonus amount shall vary between the Jackpot Bonuses. The prize allocated to the Bonus winners is completely At betfusion’s discretion. Any Jackpot Bonus shall be divided equally among the Jackpot bonus winners if there is more than ONE winner within the respective class.
+                                V.	<b>TEN OUT OF ELEVEN outcomes</b> -Betfusion Jackpot contains 11 games, the Jackpot bonuses are from 10 correct games. The Jackpot bonus amount shall vary between the Jackpot Bonuses. The prize allocated to the Bonus winners is completely At Betfusion’s discretion. Any Jackpot Bonus shall be divided equally among the Jackpot bonus winners if there is more than ONE winner within the respective class.
                             </li>
                         </ul>
                         <h4>
-                           betfusion  MILLI DAILY JACKPOT
+                           Betfusion  MILLI DAILY JACKPOT
                         </h4>
                         <ul>
                             <li>
@@ -250,7 +250,7 @@ const DailyJackpotTermsAndConditions = () =>
                                 The Jackpot has bonuses – 0/11 Correct predictions and 10/11 Correct predictions.
                             </li>
                             <li>
-                               betfusion will also award the Player with the highest Correct predictions randomly.
+                               Betfusion will also award the Player with the highest Correct predictions randomly.
                             </li>
                         </ul>
                     </AccordionItemPanel>

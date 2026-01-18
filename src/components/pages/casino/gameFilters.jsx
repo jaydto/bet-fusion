@@ -69,7 +69,7 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
     casino_types.map((type) => type.game_type_description)
   );
 
-  const blockedCategories = ["Casino", "Live Casino"]
+  const allowedCategory = "crash";
 
 //  const mappedCategories = Array.from(baseCategoryMap.values()).filter(
 //   (cat) =>
@@ -78,8 +78,8 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
 
   const mappedCategories = Array.from(baseCategoryMap.values()).filter(
     (cat) =>
-      (validLabels.has(cat.label) || cat.label === "Lobby") &&
-      !blockedCategories.includes(cat.label)
+      cat.label === "Lobby" || 
+      cat.label?.toLowerCase().includes(allowedCategory)
   );
 
   console.log("mappedCategories", mappedCategories);

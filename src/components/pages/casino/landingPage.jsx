@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Row, Col, Grid, Button } from "antd";
 import { ConsoleSqlOutlined } from "@ant-design/icons"; // game console icon
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ import Footer from "../../footer/footer";
 import GameNavBar from "../../mobile-navigation/MobileNav1";
 import CasinoCarouselLoader from "./carousel";
 import { useSelector } from "react-redux";
+import { getFromLocalStorage } from "../../utils/local-storage";
 
 const { useBreakpoint } = Grid;
 
@@ -20,7 +21,12 @@ const LandingPage = () => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   const navigate = useNavigate();
-  const casino_games = useSelector((state) => state.virtuals.casino_games_data);
+
+  const [localGameData] = useState(() => getFromLocalStorage("casino_games_data") || []);
+  
+  const reduxGames = useSelector((state) => state.virtuals.casino_games_data);
+
+  const activeDataSource = reduxGames && reduxGames.length > 0 ? reduxGames : localGameData;
 
   const handleCategoryClick = (categoryId) => {
     setActiveCategory(categoryId);
@@ -30,17 +36,17 @@ const LandingPage = () => {
     navigate("/play");
   };
 
-  const crashGames = useMemo(() => 
-    casino_games.filter(game => 
+  const crashGames = useMemo(() => {
+    return (activeDataSource || []).filter(game => 
       game.categories?.some(cat => cat.game_type_id === "crash")
-    ), [casino_games]
-  );
+    );
+  }, [activeDataSource]);
 
-  const virtualGames = useMemo(() => 
-    casino_games.filter(game => 
-      game.categories?.some(cat => cat.game_type_id === "virtual")
-    ), [casino_games]
-  );
+  // const virtualGames = useMemo(() => 
+  //   casino_games.filter(game => 
+  //     game.categories?.some(cat => cat.game_type_id === "virtual")
+  //   ), [casino_games]
+  // );
 
   // Group games by their first category (or multiple if you want)
   const groupGamesByCategory = (games) => {
@@ -64,7 +70,7 @@ const LandingPage = () => {
     return categoriesMap;
   };
 
-  const gamesByCategory = groupGamesByCategory(casino_games);
+  // const gamesByCategory = groupGamesByCategory(casino_games);
 
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
@@ -99,7 +105,7 @@ const LandingPage = () => {
 
       {crashGames.length > 0 && (
         <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-          <GamesSection games={crashGames.slice(0, 12)} category="CRASH" count={crashGames?.length} />
+          <GamesSection key={`crash-${crashGames.length}`} games={crashGames.slice(0, 12)} category="CRASH" count={crashGames?.length} />
         </div>
       )}
 

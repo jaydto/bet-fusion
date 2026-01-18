@@ -47,20 +47,76 @@ const CasinoGames = ({ activeSetCategory }) => {
 
   const categorizedGames = {};
 
+  const allowedCategory = 'crash'
+
+  // if (Array.isArray(casino_types)) {
+  //   casino_types.forEach((type) => {
+  //     categorizedGames[type.game_type_description] = [];
+  //   });
+  //   categorizedGames["Casino"] = [];
+
+  //   if (Array.isArray(casino_games)) {
+  //     casino_games.forEach((game) => {
+  //       if (game.categories && game.categories.length > 0) {
+  //         game.categories.forEach((category) => {
+  //           const typeDescription = casino_types.find(
+  //             (t) => t.game_type_id === category.game_type_id
+  //           )?.game_type_description;
+  //           if (typeDescription) {
+  //             categorizedGames[typeDescription].push({
+  //               id: game.id,
+  //               game_id: game.game_id,
+  //               title: game.game_name,
+  //               image:
+  //                 game.image_url ||
+  //                 game.display_image_url ||
+  //                 defaultImages[game.id % defaultImages.length],
+  //               link: game.demo_launch_url || "#",
+  //             });
+  //           }
+  //         });
+  //       } else {
+  //         categorizedGames["Casino"].push({
+  //           id: game.id,
+  //           game_id: game.game_id,
+  //           title: game.game_name,
+  //           image:
+  //             game.image_url ||
+  //             game.display_image_url ||
+  //             defaultImages[game.id % defaultImages.length],
+  //           link: game.demo_launch_url || "#",
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
+
   if (Array.isArray(casino_types)) {
+
     casino_types.forEach((type) => {
-      categorizedGames[type.game_type_description] = [];
+      const typeDesc = type.game_type_description?.toLowerCase() || "";
+      if (typeDesc.includes(allowedCategory)) {
+        categorizedGames[type.game_type_description] = [];
+      }
     });
-    categorizedGames["Casino"] = [];
 
     if (Array.isArray(casino_games)) {
       casino_games.forEach((game) => {
         if (game.categories && game.categories.length > 0) {
           game.categories.forEach((category) => {
-            const typeDescription = casino_types.find(
+            const typeMatch = casino_types.find(
               (t) => t.game_type_id === category.game_type_id
-            )?.game_type_description;
-            if (typeDescription) {
+            );
+            
+            const typeDescription = typeMatch?.game_type_description;
+            const lowerDescription = typeDescription?.toLowerCase() || "";
+
+            // 2. Only add games if the category name contains "crash"
+            if (typeDescription && lowerDescription.includes(allowedCategory)) {
+              if (!categorizedGames[typeDescription]) {
+                categorizedGames[typeDescription] = [];
+              }
+              
               categorizedGames[typeDescription].push({
                 id: game.id,
                 game_id: game.game_id,
@@ -73,21 +129,11 @@ const CasinoGames = ({ activeSetCategory }) => {
               });
             }
           });
-        } else {
-          categorizedGames["Casino"].push({
-            id: game.id,
-            game_id: game.game_id,
-            title: game.game_name,
-            image:
-              game.image_url ||
-              game.display_image_url ||
-              defaultImages[game.id % defaultImages.length],
-            link: game.demo_launch_url || "#",
-          });
         }
       });
     }
   }
+
 
   const sections = Object.keys(categorizedGames).map((key) => ({
     title: key,
@@ -159,7 +205,7 @@ const CasinoGames = ({ activeSetCategory }) => {
           />
         </div>
 
-        <div className="container mt-1 body-section">
+        <div className="mt-1 body-section">
           {loading ? (
             <CasinoSkeletonLoader />
           ) : filteredSections.length === 0 ||

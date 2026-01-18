@@ -53,7 +53,7 @@ const CasinoLayout = () => {
         })
       );
     }
-  }, [casinoGamesData.length, dispatch]);
+  }, [dispatch]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

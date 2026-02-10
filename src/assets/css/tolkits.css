@@ -10099,7 +10099,7 @@ button.close {
     border: 1px solid #9da9b0;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 6px;
-    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     background-clip: padding-box;
     outline: 0;
 }
@@ -15445,7 +15445,7 @@ li a.live-game.active:hover, .navbar-nav li a.live-game.active:hover, li a.live-
 /*}*/
 
 .filters-modal .modal-content {
-    background-color: var(--bet-fusion-body-bg);
+    background-color: var(--bet-fusion-secondary);
     color: #fff;
 }
 .market-item:hover {

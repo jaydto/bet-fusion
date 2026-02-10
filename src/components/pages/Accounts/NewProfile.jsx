@@ -226,16 +226,16 @@ const NewProfile = React.memo(() => {
                           </div>
                         </Link>
                       )}
-                    {/* <div className="card mb-3 top-pr">
+                    <div className="mb-3 top-pr">
                       <div
                         className="upper-row text-light-p p-3"
                         onClick={showJModal}
                         style={{ cursor: "pointer" }}
                       >
                         Enquire missing deposit{" "}
-                        <FontAwesomeIcon icon={faAngleRight} />
+                        <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />
                       </div>
-                    </div> */}
+                    </div>
                     <div className="card mb-3 top-br" onClick={() => navigate("#")} style={{ cursor: "pointer" }}>
                       <div className="upper-row text-light-p p-3">
                         Self Exclusion <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />

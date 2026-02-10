@@ -2403,7 +2403,7 @@ img.nare-league {
 }
 
 .filters-modal.deposit-modal .modal-content {
-  background-color: var(--bet-fusion-body-bg);
+  background-color: var(--bet-fusion-secondary);
   color: var(--light);
   position: fixed;
   /* max-width: 767px; */
@@ -2875,14 +2875,14 @@ img.nare-league {
   }
 
   .filters-modal .modal-content {
-    background-color: var(--bet-fusion-body-bg);
+    background-color: var(--bet-fusion-secondary);
     color: var(--light);
     position: fixed;
     bottom: 0;
   }
 
   .filters-modal.exclude .modal-content {
-    background-color: var(--bet-fusion-body-bg);
+    background-color: var(--bet-fusion-secondary);
     color: #fff;
     position: fixed;
   }

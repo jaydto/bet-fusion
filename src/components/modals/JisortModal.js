@@ -221,7 +221,7 @@ const DepositConfirmFormFields = (props) => {
                     <label className={'text-light deposit'}>Mpesa Transaction Code</label>
                     <input
                         onChange={ev => {
-                            onFieldChanged(ev);
+                          onFieldChanged(ev);
                         }}
                         className=" deposit-input form-control col-md-12 input-field"
                         id="confirmation_code"
@@ -229,6 +229,7 @@ const DepositConfirmFormFields = (props) => {
                         type="text"
                         value={values?.confirmation_code || ''}
                         placeholder='Enter Transactional Code'
+                        style={{ border: "1px solid var(--betfusion-grey) !important", borderRadius: "12px !important" }}
                     />
                     {errors?.confirmation_code && <div className='text-danger'> {errors?.confirmation_code} </div>}
                 </div>
@@ -237,7 +238,7 @@ const DepositConfirmFormFields = (props) => {
                 <div className=" d-flex align-items-start deposit-withdraw-button-desktop w-100 px-2">
                     <button type={"submit"}
                             className='btn btn-lg w-100 deposit-button button-radius input-field btn-font login-button2 btn bold d-flex justify-content-center align-items-center'
-                            style={{marginTop: "30px"}} disabled={values?.amount == ''||loadingConfirmDeposit}>
+                            style={{ marginTop: "30px", borderRadius: '12px' }} disabled={values?.amount == ''||loadingConfirmDeposit}>
                         {loadingConfirmDeposit ? <div className="loader"></div>:'CONFIRM DEPOSIT ' }
                     </button>
                 </div>

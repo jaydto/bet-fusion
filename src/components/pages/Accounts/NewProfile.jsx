@@ -236,7 +236,11 @@ const NewProfile = React.memo(() => {
                         <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />
                       </div>
                     </div>
-                    <div className="card mb-3 top-br" onClick={() => navigate("#")} style={{ cursor: "pointer" }}>
+                    <div 
+                      className="card mb-3 top-br" 
+                      onClick={() => navigate("/responsible-gambling", { state: { activeTab: "self_exclusion" } })} 
+                      style={{ cursor: "pointer" }}
+                    >
                       <div className="upper-row text-light-p p-3">
                         Self Exclusion <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />
                       </div>
@@ -284,16 +288,16 @@ const NewProfile = React.memo(() => {
                     </div> */}
                     <div style={{ padding: "10px", backgroundColor: "var(--bet-fusion-secondary)", borderRadius: "12px" }}>
                       <h4 style={{ color: "var(--white)", marginLeft: "5px" }}>Support</h4>
-                      <div className="card mb-3 top-br">
+                      {/* <div className="card mb-3 top-br">
                         <div
                           className="upper-row text-light-p p-3"
                           style={{ cursor: "pointer" }}
-                          onClick={() => navigate("#")}
+                          onClick={() => navigate("/responsible-gambling", { state: { activeTab: "self_exclusion" } })}
                         >
                           Delete Account
                           <FontAwesomeIcon icon={faAngleRight} style={{ alignSelf: "center" }} />
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className="card mb-3 top-br">
                         <div

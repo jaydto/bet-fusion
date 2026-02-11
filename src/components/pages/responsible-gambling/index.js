@@ -16,7 +16,7 @@ import Tabs from "react-bootstrap/Tabs";
 import SelfExclusion from "../Accounts/component/SelfExclusion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import { setState } from "../../../redux/dataSlice";
@@ -26,7 +26,10 @@ const Footer = React.lazy(() => import("../../footer/footer"));
 const ResponsibleGambling = React.memo(() => {
   
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("responsible_gambling");
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(
+    location.state?.activeTab || "responsible_gambling"
+  );
   const handleTabSelect = (eventKey) => {
     setActiveTab(eventKey);
   };

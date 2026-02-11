@@ -345,18 +345,18 @@ const SelfExclusion = () => {
       <h2 className={"text-light w-100 py-1 px-2 self-exclusion_form"}>
         Select Duration of Self Exclusion{" "}
       </h2>
-      <div>
-      <DateRangePicker 
-        ranges={[dateRange]}
-        onChange={handleDateRangeChange}
-        months={2}
-        direction="horizontal"
-        className="date-range-picker-exclusion w-100 d-flex justify-content-center"
-        minDate={today}
-        maxDate={maxDate} // Set the maximum date to 6 years from today
-        presets={customPresets} // Use custom presets
-        showSelectionPreview={true}
-      />
+      <div className="exclusion-picker-wrapper">
+        <DateRangePicker 
+          ranges={[dateRange]}
+          onChange={handleDateRangeChange}
+          months={2}
+          direction="horizontal"
+          className="date-range-picker-exclusion w-100 d-flex justify-content-center"
+          minDate={today}
+          maxDate={maxDate} // Set the maximum date to 6 years from today
+          presets={customPresets} // Use custom presets
+          showSelectionPreview={true}
+        />
       </div>
       
       <form onSubmit={formik.handleSubmit}>
@@ -387,7 +387,10 @@ const SelfExclusion = () => {
         </div>
       </form>
 
-      <div className={`${bottom_sheet ? "bottom-sheet show " : "d-none"}`}>
+      <div 
+        className={`${bottom_sheet ? "bottom-sheet show " : "d-none"}`}
+        style={{ justifyContent: bottom_sheet ? "flex-start" : undefined }}
+      >
         <div className="sheet-overlay"></div>
         <div ref={bottomSheetRef} className="content gap-2">
           <div className="header d-flex justify-content-between">
@@ -429,7 +432,7 @@ const SelfExclusion = () => {
               })}
             </strong>
           </div>
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative", marginBottom: "20px" }}>
             <div
               className="d-flex justify-content-between align-items-center gap-5 mt-4"
             >

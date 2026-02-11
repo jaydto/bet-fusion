@@ -585,11 +585,13 @@ input.text-white {
   /* height: 41px; */
   padding: 4px 124px;
   margin: 5px;
-  color: var(--dark);
+  color: var(--white);
   border-radius: 6px;
   font-size: 16px;
   font-weight: 600;
-  background-color: var(--bet-fusion-button-login);
+  background: var(--bet-fusion-button-login);
+  border: none;
+  text-decoration: none;
 }
 
 .accordion-button.bet-history-button {
@@ -978,6 +980,10 @@ input {
   font-weight: bold !important;
   box-sizing: border-box;
   border: none !important;
+}
+
+.rdrDateRangePickerWrapper.date-range-picker-exclusion input{
+  color: #79888d !important;
 }
 
 .slip-border-radius-mybets {

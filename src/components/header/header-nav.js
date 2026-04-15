@@ -131,7 +131,7 @@ const HeaderNav = React.memo((props) => {
           
          
 
-          <li className={`${pathname === "/play" ? "active" : ""}`}>
+          <li className={`${pathname === "/casino" ? "active" : ""}`}>
             <div
               className="url-link fm anl cg ox "
               title="Casino"

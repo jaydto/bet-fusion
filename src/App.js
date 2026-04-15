@@ -114,21 +114,20 @@ const App = () => {
     "/dispute-resolution",
     "/anti-money-laundering",
     "/terms-and-conditions",
-    // "/casino",
+    "/casino",
     "/auth/login",
-    // "/casino/game-play",
+    "/casino/game-play",
     "/auth/signup",
     "/forgot-password",
     "/auth/reset-password",
     "/auth/verify",
     "/profile",
-    "/play"
   ];
 
   const ignoreMobileHeader = [
     "/auth/login",
     "/auth/signup",
-    // "/casino/game-play",
+    "/casino/game-play",
     "/auth/reset-password",
   ];
 
@@ -177,19 +176,7 @@ const App = () => {
                 <Route path="reset-password" element={<ResetPassword />} />
               </Route>
 
-              {/* <Route path="/casino" element={<Index />}>
-                <Route index element={<CasinoPage />} />
-                <Route
-                  path="game-play"
-                  element={
-                    <ProtectedRoute>
-                      <GamePlay />
-                    </ProtectedRoute>
-                  }
-                />
-              </Route> */}
-
-              <Route path="/play" element={<Index />}>
+              <Route path="/casino" element={<Index />}>
                 <Route index element={<CasinoPage />} />
                 <Route
                   path="game-play"
@@ -200,7 +187,7 @@ const App = () => {
                   }
                 />
               </Route>
-
+              
               <Route path="/sports" element={
                 <ProtectedRoute>
                   <SportsPage />

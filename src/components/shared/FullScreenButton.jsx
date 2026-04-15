@@ -32,6 +32,7 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
               style={{
                 background: "var(--bet-fusion-button-login)",
                 border: "none",
+                color: "white",
               }}
               size="small"
               onClick={() => navigate("/deposit")}

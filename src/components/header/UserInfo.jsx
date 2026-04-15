@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { formatNumber } from "../utils/betslip";
 import { Navbar } from "react-bootstrap";
@@ -20,6 +20,7 @@ export const UserInfo = React.memo((props) => {
   const { state, dispatch } = useContext(StoreContext);
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
 
+  const location = useLocation();
   const [user, setUser] = useState(getFromLocalStorage("user"));
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export const UserInfo = React.memo((props) => {
     } else {
       setUser(null);
     }
-  }, [getFromLocalStorage("user")]);
+  }, [location.pathname]);
 
   const dispatchRedux = useDispatch();
 

@@ -43,7 +43,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     setUser(getFromLocalStorage("user"));
-  }, [getFromLocalStorage("user")]);
+  }, [location.pathname]);
 
   const menuItems = [
     {
@@ -63,30 +63,30 @@ const Sidebar = () => {
       label: <Link to="/sports">Sports</Link>,
     },
     {
-      key: "/play/game-play?game=58630&status=0&game_name=AVIATOR",
+      key: "/casino/game-play?game=58630&status=0&game_name=AVIATOR",
       icon: <AviatorIcon style={{ width: 25, height: 25 }}/>,
-      label: <Link to="/play/game-play?game=58630&status=0&game_name=AVIATOR">Aviator</Link>,
+      label: <Link to="/casino/game-play?game=58630&status=0&game_name=AVIATOR">Aviator</Link>,
     },
     {
-      key: "/play/game-play?game=58059&status=0&game_name=JetX",
+      key: "/casino/game-play?game=58059&status=0&game_name=JetX",
       icon: <JetXIcon style={{ width: 22, height: 22 }}/>,
-      label: <Link to="/play/game-play?game=58059&status=0&game_name=JetX">Jet X</Link>,
+      label: <Link to="/casino/game-play?game=58059&status=0&game_name=JetX">Jet X</Link>,
     },
     {
-      key: "/play?categoryId=crash",
+      key: "/casino?categoryId=crash",
       icon: <ThunderboltFilled style={{ fontSize: 18 }} />,
-      label: <Link to="/play?categoryId=crash">Crash</Link>,
+      label: <Link to="/casino?categoryId=crash">Crash</Link>,
     },
     {
-      key: "/play?categoryId=virtuals",
+      key: "/casino?categoryId=virtuals",
       icon: <VirtualsIcon style={{ width: 24, height: 24 }}/>,
-      label: <Link to="/play?categoryId=virtuals">Virtuals</Link>,
+      label: <Link to="/casino?categoryId=virtuals">Virtuals</Link>,
     },
-    // {
-    //   key: "/casino",
-    //   icon: <CasinoIcon style={{ width: 24, height: 24 }}/>,
-    //   label: <Link to="/casino">Casino</Link>,
-    // },
+    {
+      key: "/casino",
+      icon: <CasinoIcon style={{ width: 24, height: 24 }}/>,
+      label: <Link to="/casino">Casino</Link>,
+    },
     { type: "divider" },
     {
       key: "/promotions",

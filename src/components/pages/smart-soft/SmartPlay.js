@@ -194,7 +194,7 @@ const SmartPlay = React.memo((props) => {
       <div className="amt top-smartsoft gameplay">
         <FullscreenButton
           onClick={() => toggleFullscreen()}
-          navigation={"/play"}
+          navigation={"/casino"}
           isCustomFullScreen={isCustomFullscreen}
         />
         <div className="d-flex flex-row justify-content-between">

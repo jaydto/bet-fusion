@@ -22,8 +22,7 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
     event.stopPropagation();
     user?.profile_id
       ? navigate(
-          // `/casino/game-play?game=${gameId}&status=${
-          `/play/game-play?game=${gameId}&status=${
+          `/casino/game-play?game=${gameId}&status=${
             isDemo ? "1" : "0"
           }&game_name=${game_name}`
         )
@@ -75,8 +74,8 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
             onClick={() =>
               navigate(
                 ["crash", "hot", "popular"].includes(category?.toLowerCase())
-                  ? `/play?categoryId=${category?.toLowerCase()}`
-                  : `/play`
+                  ? `/casino?categoryId=${category?.toLowerCase()}`
+                  : `/casino`
               )
             }
           >

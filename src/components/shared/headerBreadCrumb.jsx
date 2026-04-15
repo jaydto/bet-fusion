@@ -11,8 +11,8 @@ const formatPathSegment = (segment) => {
 const HeaderBreadCrumb = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // const pathnames = location.pathname.split("/").filter(Boolean);
-  const pathnames = location.pathname.split("/").filter(Boolean).filter(seg => seg !== "play" && seg !== "casino");
+  const pathnames = location.pathname.split("/").filter(Boolean);
+  // const pathnames = location.pathname.split("/").filter(Boolean).filter(seg => seg !== "play" && seg !== "casino");
 
   const breadcrumbItems = [
     {

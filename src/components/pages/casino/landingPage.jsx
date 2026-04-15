@@ -33,7 +33,7 @@ const LandingPage = () => {
   };
 
   const handleMoreGamesClick = () => {
-    navigate("/play");
+    navigate("/casino");
   };
 
   const crashGames = useMemo(() => {

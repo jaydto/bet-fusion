@@ -105,7 +105,7 @@ const CasinoLayout = () => {
 
       {!shouldRemoveMarginTop && <MobileMenu />}
 
-      <style jsx>{`
+      <style>{`
         .scroll-to-top {
           position: fixed;
           bottom: 20px;

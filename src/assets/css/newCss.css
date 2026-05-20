@@ -2430,25 +2430,33 @@ img.nare-league {
 
 .btn.login-button2,
 .btn.deposit-button {
-  background: var(--white) !important;
-  color: var(--black) !important;
+  background: #3BAAED !important;
+  color: #000 !important;
+  font-weight: 700;
 }
 
 .btn.login-button2:hover,
 .btn.deposit-button:hover {
-  background: var(--white) !important;
-  color: var(--black) !important;
+  background: #2d9ad6 !important;
+  color: #000 !important;
 }
 
 .btn.withdraw-button2 {
-  background: var(--bet-fusion-button-login) !important;
-  color: var(--white) !important;
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #334155 !important;
   font-size: 14px;
 }
 
+.btn.withdraw-button2:hover {
+  background: #334155 !important;
+  color: #f8fafc !important;
+}
+
 .btn.deposit-modal {
-  background: var(--bet-fusion-button-login) !important;
-  color: var(--white) !important;
+  background: #3BAAED !important;
+  color: #000 !important;
+  font-weight: 700;
   font-size: 14px;
 }
 

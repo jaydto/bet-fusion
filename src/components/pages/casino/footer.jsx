@@ -29,215 +29,113 @@ export default function Footer() {
   return (
     <AntFooter
       style={{
-        background: "var(--bg-card-dark)",
-        color: "var(--light)",
-        padding: "20px 20px",
-        marginBottom: 10,
+        background: "#0f172a",
+        borderTop: "1px solid #1e293b",
+        color: "#94a3b8",
+        padding: "32px 24px 80px",
       }}
     >
       <Row justify="center">
-        <Col
-          span={24}
-          style={{
-            padding: "16px",
-            color: "white",
-          }}
-        >
-          <Col span={24}>
-            <Title level={5} style={{ textAlign: "center", color: "white" }}>
-              License
-            </Title>
-            <ul
-              style={{
-                fontSize: 12,
-                color: "white",
-                listStyle: "none",
-                paddingLeft: 0,
-              }}
-            >
-              <li>
-                Only individuals aged{" "}
-                <b style={{ color: "var(--game-title)" }}>18 years or older</b>{" "}
-                are permitted to play.
-                <Badge
-                  count="18+"
-                  style={{
-                    backgroundColor: "transparent",
-                    border: "1px solid #ffc107",
-                    color: "white",
-                  }}
-                />
-              </li>
-              <li>
-              Only individuals aged 18 years or older are permitted to play.
-              18+
-              Please play responsibly. Gambling may lead to addiction and mental health challenges.
-              </li>
-              <li>
-              Betfusion is a product of  Game Guys Limited, a licensed gaming company in Kenya regulated by the Betting Control and Licensing Board (BCLB). License Number: 
-              </li>
-              <li>
-                License Number:{" "}
-                <b style={{ color: "var(--game-title)" }}>PG0001119/ BK0001120</b>
-              </li>
-            </ul>
-          </Col>
+        <Col span={24} style={{ maxWidth: 960, margin: "0 auto" }}>
 
-          <Divider style={{ borderColor: "#434343" }} />
-          <Row gutter={[16, 16]}>
-            <Col span={24}>
-              <Title
-                level={5}
-                style={{
-                  color: "white",
-                  display: "flex",
-                  alignItems: "center",
-                }}
+          {/* License */}
+          <Title level={5} style={{ color: "#f8fafc", marginBottom: 8 }}>
+            License
+          </Title>
+          <Paragraph style={{ fontSize: 12, color: "#64748b", lineHeight: 1.6 }}>
+            Only individuals aged <b style={{ color: "#f8fafc" }}>18 years or older</b> are permitted to play.
+            Please play responsibly. Gambling may lead to addiction and mental health challenges.
+            Betfusion is a product of Game Guys Limited, a licensed gaming company in Kenya regulated
+            by the Betting Control and Licensing Board (BCLB).{" "}
+            License Number: <b style={{ color: "#f8fafc" }}>PG0001119 / BK0001120</b>
+          </Paragraph>
+
+          <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
+
+          {/* Responsible Gambling */}
+          <Title
+            level={5}
+            style={{ color: "#f8fafc", display: "flex", alignItems: "center", gap: 8 }}
+          >
+            <ExclamationCircleOutlined style={{ color: "#faad14" }} />
+            Responsible Gambling
+          </Title>
+          <Paragraph style={{ color: "#64748b", fontSize: 12, lineHeight: 1.6 }}>
+            Please note that this is a real-money gambling app. Gamble responsibly and only bet
+            what you can afford. For gambling addiction help, contact us at{" "}
+            <Link to="tel:0718111117" target="_blank" style={{ color: "#3BAAED" }}>
+              0718111117
+            </Link>
+            {" | "}
+            <Link to="tel:0718111119" target="_blank" style={{ color: "#3BAAED" }}>
+              0718111119
+            </Link>{" "}
+            or{" "}
+            <Link to="/responsible-gambling" style={{ color: "#3BAAED" }}>
+              read our Responsible Gambling Policy
+            </Link>
+            .
+          </Paragraph>
+
+          <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
+
+          {/* Links */}
+          <Title
+            level={5}
+            style={{ color: "#f8fafc", display: "flex", alignItems: "center", gap: 8 }}
+          >
+            <FileTextOutlined style={{ color: "#3BAAED" }} />
+            Legal
+          </Title>
+          <Space wrap size={[24, 8]} style={{ marginBottom: 8 }}>
+            {[
+              { label: "Terms & Conditions", to: "/terms-and-conditions" },
+              { label: "Responsible Gambling", to: "/responsible-gambling" },
+              { label: "Privacy Policy", to: "/privacy-policy" },
+              { label: "Cookie Policy", to: "/cookie-policy" },
+              { label: "How To Play", to: "/how-to-play" },
+            ].map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                style={{ color: "#94a3b8", fontSize: 13, textDecoration: "none" }}
+                onMouseEnter={(e) => (e.target.style.color = "#3BAAED")}
+                onMouseLeave={(e) => (e.target.style.color = "#94a3b8")}
               >
-                <ExclamationCircleOutlined
-                  style={{ color: "#faad14", marginRight: 8 }}
-                />
-                Responsible Gambling
-              </Title>
-            </Col>
+                {l.label}
+              </Link>
+            ))}
+          </Space>
 
-            <Col span={24}>
-              <Paragraph style={{ color: "white", fontSize: "13px" }}>
-                Please note that this is a real-money gambling app. You are
-                required to gamble responsibly and only bet what you can afford.
-                For gambling addiction help and support, please contact our
-                customer care at{" "}
-                <Link
-                  to="tel:0718111117"
-                  target="_blank"
-                  style={{ color: "#91d5ff" }}
-                >
-                  0718111117
-                </Link>
-                {" | "}
-                <Link
-                  to="tel:0718111119"
-                  target="_blank"
-                  style={{ color: "#91d5ff" }}
-                >
-                  0718111119
-                </Link>{" "}
-                or visit{" "}
-                <Link to="/responsible-gambling" style={{ color: "#91d5ff" }}>
-                  /responsible-gambling
-                </Link>
-                .
-              </Paragraph>
-              <Paragraph style={{ color: "white", fontSize: "13px" }}>
-                You can also read about our Responsible Gambling Policy by{" "}
-                <Link to="/responsible-gambling" style={{ color: "#91d5ff" }}>
-                  clicking here
-                </Link>
-                .
-              </Paragraph>
-            </Col>
-          </Row>
-          <Divider style={{ borderColor: "#434343" }} />
-          <Row gutter={[16, 16]}>
-            <Col span={24}>
-              <Title
-                level={5}
-                style={{
-                  color: "white",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <FileTextOutlined
-                  style={{ color: "#91d5ff", marginRight: 8 }}
-                />
-                Terms and Conditions
-              </Title>
-            </Col>
-            {/* Links */}
-            <Col span={24}>
-              <Space direction="vertical">
-                <Link to="/terms-and-conditions" style={{ color: "white" }}>
-                  Terms and Conditions
-                </Link>
-                <Link to="/responsible-gambling" style={{ color: "white" }}>
-                  Responsible Gambling
-                </Link>
-                <Link to="/privacy-policy" style={{ color: "white" }}>
-                  Privacy Policy
-                </Link>
-                <Link to="/cookie-policy" style={{ color: "white" }}>
-                  Cookie Policy
-                </Link>
-                <Link to="/how-to-play" style={{ color: "white" }}>
-                  How To Play
-                </Link>
-              </Space>
-            </Col>
-          </Row>
-        </Col>
+          <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
 
-        <Divider style={{ borderColor: "rgba(255,255,255,0.2)" }} />
-
-        <Col span={24}>
+          {/* 18+ disclaimer */}
           <Paragraph
             style={{
-              color: "white",
-              fontSize: "13px",
+              color: "#64748b",
+              fontSize: 12,
               display: "flex",
               alignItems: "center",
+              gap: 8,
             }}
           >
-            <StopOutlined
-              style={{ color: "#ff4d4f", fontSize: "18px", marginRight: 8 }}
-            />
-            <span>
-              <b>Betfusion</b> does not support underage gambling. You must be 18
-              years of age or older to register or play at Betfusion.
-            </span>
+            <StopOutlined style={{ color: "#ff4d4f", fontSize: 16 }} />
+            <b style={{ color: "#94a3b8" }}>Betfusion</b> does not support underage gambling.
+            You must be 18 years of age or older to register or play.
           </Paragraph>
-        </Col>
-        <Divider style={{ borderColor: "#434343" }} />
 
-        {/* <Col span={24}>
-          <Title level={5} style={{ textAlign: "center", color: "white" }}>
-            Cooperations
+          <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
+
+          {/* Social */}
+          <Title level={5} style={{ textAlign: "center", color: "#f8fafc" }}>
+            Follow Us
           </Title>
-          <Row justify="center" gutter={[16, 16]} wrap>
-            {cooperationImages.map((img, idx) => (
-              <Col key={idx}>
-                <img src={img} alt={`coop-${idx}`} width={50} height={30} />
-              </Col>
-            ))}
-          </Row>
-        </Col> */}
-        {/* <Divider style={{ borderColor: "#434343" }} /> */}
-        <Col span={24}>
-          <Title level={4} style={{ textAlign: "center", color: "white" }}>
-            Share With Friends
-          </Title>
-          <Row justify="center" gutter={24}>
+          <Row justify="center" gutter={24} style={{ marginBottom: 16 }}>
             {[
-              {
-                img: fb1,
-                label: "Facebook",
-                href: "https://www.facebook.com/betfusion/",
-              },
-              {
-                img: tw,
-                label: "Twitter",
-                href: "https://x.com/betfusion_com",
-              },
-              {
-                img: wh,
-                label: "WhatsApp",
-                href: "https://wa.me/+254718111117", // converted phone to international format
-              },
-              {
-                img: int1,
-                label: "Instagram",
-                href: "https://www.instagram.com/betfusion", // use your actual Instagram handle
-              },
+              { img: fb1, label: "Facebook", href: "https://www.facebook.com/betfusion/" },
+              { img: tw, label: "Twitter", href: "https://x.com/betfusion_com" },
+              { img: wh, label: "WhatsApp", href: "https://wa.me/+254718111117" },
+              { img: int1, label: "Instagram", href: "https://www.instagram.com/betfusion" },
             ].map((item, idx) => (
               <Col key={idx}>
                 <Link
@@ -247,44 +145,19 @@ export default function Footer() {
                   style={{ textDecoration: "none" }}
                 >
                   <Space direction="vertical" align="center">
-                    <LazyLoadImage
-                      src={item.img}
-                      alt={item.label}
-                      height={30}
-                      width={30}
-                    />
-                    <Text style={{ fontSize: 12, color: "white" }}>
-                      {item.label}
-                    </Text>
+                    <LazyLoadImage src={item.img} alt={item.label} height={28} width={28} />
+                    <Text style={{ fontSize: 11, color: "#64748b" }}>{item.label}</Text>
                   </Space>
                 </Link>
               </Col>
             ))}
           </Row>
-          <Paragraph
-            style={{
-              textAlign: "center",
-              fontSize: 12,
-              marginTop: 16,
-              color: "white",
-            }}
-          >
-            Invite friends, bet and earn KSH 1,000,000
+
+          <Paragraph style={{ textAlign: "center", fontSize: 12, color: "#334155", marginTop: 8 }}>
+            &copy; 2025 Betfusion. All rights reserved.
           </Paragraph>
         </Col>
       </Row>
-      <Col span={24}>
-        <Paragraph
-          style={{
-            textAlign: "center",
-            fontSize: 12,
-            marginTop: 16,
-            color: "white",
-          }}
-        >
-          &copy; 2025 Betfusion. All rights reserved.
-        </Paragraph>
-      </Col>
     </AntFooter>
   );
 }

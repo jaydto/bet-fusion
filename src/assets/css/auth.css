@@ -10,19 +10,19 @@
 .auth-page-center {
   flex-grow: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: 60px 12px 100px;
+  padding: 40px 16px 80px;
 }
 
 /* ── Card ── */
 .auth-card {
-  background: #2a3040;
+  background: #1e293b;
   color: #e5e5e5;
   border-radius: 16px;
-  border: 1px solid #3d4354;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);
-  width: calc(100% - 1rem);
+  border: 1px solid #334155;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  width: 100%;
   max-width: 800px;
   overflow: hidden;
 }
@@ -115,10 +115,10 @@
 
 .auth-input {
   width: 100%;
-  height: 42px;
+  height: 44px;
   padding: 4px 12px;
-  background: #3d4354 !important;
-  border: 1px solid #3d4354 !important;
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
   border-radius: 10px !important;
   color: #e5e5e5 !important;
   font-size: 14px;
@@ -260,10 +260,10 @@
   color: #3BAAED !important;
 }
 
-/* width-page-centric card container */
+/* width-page-centric card container (legacy — kept for any remaining uses) */
 .width-page-centric {
-  background: #2a3040;
-  border: 1px solid #3d4354;
+  background: #1e293b;
+  border: 1px solid #334155;
   border-radius: 16px;
   padding: 28px 24px !important;
   max-width: 420px;

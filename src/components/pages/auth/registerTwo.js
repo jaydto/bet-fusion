@@ -1,104 +1,59 @@
 import React, { useEffect, useState } from "react";
-import { Row, Typography, notification } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-
-import {
-  faAngleLeft,
-  faEye,
-  faEyeSlash,
-} from "@fortawesome/free-solid-svg-icons";
 import { Form, Formik } from "formik";
 import { ToastContainer } from "react-toastify";
+import { notification } from "antd";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../../redux/authSlice";
 import { configSettings } from "../../../redux/dataSlice";
-import {
-  clearTrackingData,
-  getFromLocalStorage,
-  setTrackingData,
-} from "../../utils/local-storage";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { clearTrackingData, getFromLocalStorage, setTrackingData } from "../../utils/local-storage";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import FormTitle from "../formTitle";
-// import Logo from "../../../assets/img/logo.png"
-
-const { Title } = Typography;
+import Logo from "../../../assets/img/logo.png";
+import "../../../assets/css/auth.css";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const successMessage = useSelector((state) => state.auth.user_sign_up);
-  const appConfig = useSelector((state) => state.data.app_config);
-  const errorMessage = useSelector((state) => state.auth.error);
+  const successMessage = useSelector((s) => s.auth.user_sign_up);
+  const appConfig = useSelector((s) => s.data.app_config);
+  const errorMessage = useSelector((s) => s.auth.error);
   const gaEventTracker = useAnalyticsEventTracker("SignUp");
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
-
-  const toggleShowPassword = () => setShowPassword(!showPassword);
-  const toggleShowConfirmPassword = () =>
-    setShowConfirmPassword(!showConfirmPassword);
 
   useEffect(() => {
     dispatch(configSettings());
   }, [dispatch]);
 
   useEffect(() => {
-    if (appConfig) {
-      setSettings(appConfig);
-    }
+    if (appConfig) setSettings(appConfig);
   }, [appConfig]);
 
   useEffect(() => {
-    console.log("errorMessage", errorMessage);
     if (successMessage?.success?.status === 201) {
-      console.log("successMessage", successMessage);
-
       notification.success({
         message: "Registration Successful",
-        description:
-          successMessage?.success.message ??
-          "You have successfully registered!",
+        description: successMessage?.success.message ?? "You have successfully registered!",
         className: "ant-notification",
         placement: "top",
       });
-      const timeoutId = setTimeout(() => {
+      setTimeout(() => {
         if (settings?.accountConfiguration?.verificationEnabled !== "0") {
           navigate("/auth/verify");
         } else {
           navigate("/auth/login");
         }
       }, 100);
-      return () => clearTimeout(timeoutId);
-    } else if (successMessage?.success?.status === 400) {
-      const data = {
-        event: "sign_up_failed",
-        message: "sign up failed",
-      };
-      gaEventTracker("Sign Up Failed", data);
+    } else if (successMessage?.success?.status === 400 || errorMessage) {
       notification.error({
         message: "Registration Failed",
-        description:
-          successMessage?.success?.message ?? "Something went wrong!",
-        className: "ant-notification",
-        placement: "top",
-      });
-      navigate("/auth/login");
-    } else if (errorMessage) {
-      const data = {
-        event: "sign_up_failed",
-        message: "sign up failed",
-      };
-      gaEventTracker("Sign Up Failed", data);
-      notification.error({
-        message: "Registration Failed",
-        description: errorMessage ?? "Something went wrong!",
+        description: successMessage?.success?.message ?? errorMessage ?? "Something went wrong!",
         className: "ant-notification",
         placement: "top",
       });
     }
-  }, [successMessage, errorMessage, navigate, settings, gaEventTracker]);
+  }, [successMessage, errorMessage]);
 
   const initialValues = {
     countryCode: "254",
@@ -109,31 +64,34 @@ const Register = () => {
     promo_code: "",
   };
 
-  const handleSubmit = (values) => {
-    const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
-    const msisdn = values.countryCode + formattedMsisdn;
-    const payload = {
-      promo_code: values.promo_code,
-      msisdn: msisdn,
-      password: values.password,
-    };
+  const validate = (values) => {
+    const errors = {};
+    const formatted = values.msisdn.replace(/^(?:\+254|254|0)/, "");
+    const phone = values.countryCode + formatted;
+    if (!phone || phone.length > 12 || !phone.match(/(254|0|)?[71]\d{8}/g)) {
+      errors.msisdn = "Please enter a valid Kenyan phone number";
+    }
+    if (values.password.length < 4) {
+      errors.password = "Password must be at least 4 characters";
+    }
+    if (values.password !== values.repeat_password) {
+      errors.repeat_password = "Passwords do not match";
+    }
+    if (!values.agreementCheckbox) {
+      errors.agreementCheckbox = "You must agree to the terms and conditions";
+    }
+    return errors;
+  };
 
+  const handleSubmit = (values) => {
+    const formatted = values.msisdn.replace(/^(?:\+254|254|0)/, "");
+    const msisdn = values.countryCode + formatted;
+    const payload = { promo_code: values.promo_code, msisdn, password: values.password };
     setTrackingData(payload);
     dispatch(signupUser(payload))
       .then(() => {
-        if (values.utm_source !== undefined) {
-          if (values.utm_source === "eskimi") {
-            window.esk("track", "Conversion");
-          }
-          if (values.utm_source === "google") {
-            window.gtag_report_conversion(window.location);
-          }
-        }
         clearTrackingData();
-        gaEventTracker("Sign Up", {
-          msisdn,
-          promo_code: values.promo_code || "no promo code",
-        });
+        gaEventTracker("Sign Up", { msisdn, promo_code: values.promo_code || "no promo code" });
       })
       .catch((error) => {
         notification.error({
@@ -145,332 +103,163 @@ const Register = () => {
       });
   };
 
-  const validate = (values) => {
-    const errors = {};
-    const formattedMsisdn = values.msisdn.replace(/^(?:\+254|254|0)/, "");
-    const phoneNumber = values.countryCode + formattedMsisdn;
+  const RegisterForm = ({ errors, values, handleChange }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
 
-    if (
-      !phoneNumber ||
-      phoneNumber.length > 12 ||
-      !phoneNumber.match(/(254|0|)?[71]\d{8}/g)
-    ) {
-      errors.msisdn = "Please enter a valid Kenyan phone number";
-    }
-    if (values.password.length < 4) {
-      errors.password = "Your password should be greater than 4 characters.";
-    }
-    if (values.password !== values.repeat_password) {
-      errors.repeat_password = "The passwords do not match.";
-    }
-    if (!values.agreementCheckbox) {
-      errors.agreementCheckbox = "You must agree to the terms and conditions.";
-    }
-    return errors;
+    return (
+      <Form>
+        <div className="auth-field">
+          <label className="auth-field-label">Mobile Number</label>
+          <div className="auth-input-wrap">
+            <input
+              type="text"
+              name="msisdn"
+              className="auth-input"
+              placeholder="07XXXXXXXX"
+              onChange={handleChange}
+              value={values.msisdn}
+            />
+          </div>
+          {errors.msisdn && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.msisdn}</span>}
+        </div>
+
+        <div className="auth-field">
+          <label className="auth-field-label">Password</label>
+          <div className="auth-input-wrap">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="auth-input"
+              placeholder="Enter your password"
+              onChange={handleChange}
+              value={values.password}
+              style={{ paddingRight: 40 }}
+            />
+            <button type="button" className="auth-input-icon" onClick={() => setShowPassword(!showPassword)}>
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </button>
+          </div>
+          {errors.password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.password}</span>}
+        </div>
+
+        <div className="auth-field">
+          <label className="auth-field-label">Confirm Password</label>
+          <div className="auth-input-wrap">
+            <input
+              type={showConfirm ? "text" : "password"}
+              name="repeat_password"
+              className="auth-input"
+              placeholder="Confirm your password"
+              onChange={handleChange}
+              value={values.repeat_password}
+              style={{ paddingRight: 40 }}
+            />
+            <button type="button" className="auth-input-icon" onClick={() => setShowConfirm(!showConfirm)}>
+              <FontAwesomeIcon icon={showConfirm ? faEyeSlash : faEye} />
+            </button>
+          </div>
+          {errors.repeat_password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.repeat_password}</span>}
+        </div>
+
+        <div className="auth-field">
+          <label className="auth-field-label">Referral Code <span style={{ color: "#64748b", fontWeight: 400 }}>(Optional)</span></label>
+          <div className="auth-input-wrap">
+            <input
+              type="text"
+              name="promo_code"
+              className="auth-input"
+              placeholder="Enter referral code"
+              onChange={handleChange}
+              value={values.promo_code}
+            />
+          </div>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 16 }}>
+          <input
+            type="checkbox"
+            id="agreementCheckbox"
+            name="agreementCheckbox"
+            onChange={handleChange}
+            style={{ marginTop: 2, accentColor: "#3BAAED", width: 16, height: 16, flexShrink: 0 }}
+          />
+          <label htmlFor="agreementCheckbox" style={{ fontSize: 12, color: "#94a3b8", cursor: "pointer", lineHeight: 1.5 }}>
+            Accept{" "}
+            <Link to="/terms-and-conditions" className="auth-link">Terms &amp; Conditions</Link>
+          </label>
+        </div>
+        {errors.agreementCheckbox && <span style={{ color: "#ef4444", fontSize: 12, display: "block", marginBottom: 8 }}>{errors.agreementCheckbox}</span>}
+
+        <button type="submit" className="auth-submit-btn" disabled={!values.agreementCheckbox}>
+          Register
+        </button>
+
+        <p className="auth-footer-text" style={{ marginTop: 16 }}>
+          Already have an account?{" "}
+          <Link to="/auth/login" className="auth-link" onClick={() => gaEventTracker("Login")}>
+            Log In
+          </Link>
+        </p>
+      </Form>
+    );
   };
 
   return (
-    <>
-      <div style={{ height: "100vh" }}>
-        <Row
-          justify="center"
-          className="align-items-stretch h-100"
-          // style={{ backgroundColor: "var(--bet-fusion-header-bg)" }}
-        >
-          <div
-            className={
-              "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
-            }
-          >
-            <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-              <div className={"width-page-centric register-page"}>
-                <Row
-                  justify="center"
-                  className={"full-width-registration-page"}
-                >
-                  <div className={"d-flex w-100"}>
-                    <div className={"w-100"}>
-                      <div className="homepage d-flex flex-column align-items-center justify-content-center login-page user-page">
-                        <div className="col-md-12 mt-lg-2 text-white p-lg-2 px-2 pb-2 w-100">
-                          <div className="pb-0" data-backdrop="static">
-                            <FormTitle />
-                            <div className="d-flex justify-content-start position-logo-user-pages">
-                              <Title
-                                level={2}
-                                style={{ backgroundImage: "var(--bet-fusion-button-login)", color: "transparent", backgroundClip: "text" }}
-                              >
-                                Register
-                              </Title>{" "}
-                            </div>
-                            <ToastContainer />
-                            <Formik
-                              initialValues={initialValues}
-                              onSubmit={(values) => {
-                                handleSubmit(values);
-                              }}
-                              validate={validate}
-                              validateOnChange={false}
-                              validateOnBlur={false}
-                            >
-                              {({
-                                values,
-                                errors,
-                                handleChange,
-                                handleSubmit,
-                              }) => (
-                                <Form
-                                  onSubmit={handleSubmit}
-                                  style={{ maxWidth: "767px", margin: "auto" }}
-                                >
-                                  <div className="form-group w-100 d-flex justify-content-center mt-2">
-                                    <div className="col-md-12 w-100">
-                                      <label
-                                        style={{ color: "var(--white" }}
-                                        className="px-2"
-                                      >
-                                        Mobile Number or Email
-                                      </label>
-                                      <div
-                                        className="input-group input-color-icon w-100"
-                                        style={{ display: "flex" }}
-                                      >
-                                        {/* <div
-                                          className="col-5 input-group-append align-items-center justify-content-start"
-                                          style={{ display: "contents" }}
-                                        >
-                                          <div className="input-group-text border-0 input-color-icon codecCountry">
-                                            <CountryButton
-                                              onFieldChanged={handleChange}
-                                            />
-                                          </div>
-                                        </div> */}
-                                        <input
-                                          type="text"
-                                          name="msisdn"
-                                          className={`w-50 input-field button-radius text-light deposit-input form-control col input-field-login ${
-                                            errors.msisdn && "text-danger"
-                                          }`}
-                                          placeholder={"Enter your phone number or email"}
-                                          onChange={handleChange}
-                                          value={values.msisdn}
-                                        />
-                                      </div>
-                                      {errors.msisdn && (
-                                        <div className="text-danger">
-                                          {errors.msisdn}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  <div className="form-group w-100 d-flex justify-content-center mb-4">
-                                    <div className="col-md-12 w-100">
-                                      <label className="px-2">Password</label>
-                                      <div
-                                        className="input-group input-color-icon w-100"
-                                        style={{ display: "flex" }}
-                                      >
-                                        <input
-                                          type={
-                                            showPassword ? "text" : "password"
-                                          }
-                                          name="password"
-                                          className={`w-75 input-field button-radius text-light deposit-input form-control col input-field-login ${
-                                            errors.password && "text-danger"
-                                          }`}
-                                          placeholder={"Enter your password"}
-                                          onChange={handleChange}
-                                          value={values.password}
-                                        />
-                                        <span
-                                          className="input-group-text border-0 input-color-icon"
-                                          onClick={toggleShowPassword}
-                                          style={{ cursor: "pointer", backgroundColor: "transparent" }}
-                                        >
-                                          <FontAwesomeIcon
-                                            style={{
-                                              color: "var(--bet-fusion-grey)",
-                                              fontSize: "20px",
-                                              padding: "0px 5px 0px 5px",
-                                            }}
-                                            icon={
-                                              showPassword ? faEyeSlash : faEye
-                                            }
-                                          />
-                                        </span>
-                                      </div>
-                                      {errors.password && (
-                                        <div className="text-danger">
-                                          {errors.password}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  <div className="form-group w-100 d-flex justify-content-center mb-4">
-                                    <div className="col-md-12 w-100">
-                                      <label className="px-2">
-                                        Confirm password
-                                      </label>
-                                      <div
-                                        className="input-group input-color-icon w-100"
-                                        style={{ display: "flex" }}
-                                      >
-                                        <input
-                                          type={
-                                            showConfirmPassword
-                                              ? "text"
-                                              : "password"
-                                          }
-                                          name="repeat_password"
-                                          className={` w-75 input-field button-radius text-light deposit-input form-control col input-field-login ${
-                                            errors.repeat_password &&
-                                            "text-danger"
-                                          }`}
-                                          placeholder={"Re-enter your password"}
-                                          onChange={handleChange}
-                                          value={values.repeat_password}
-                                        />
-                                        <span
-                                          className="input-group-text border-0 input-color-icon"
-                                          onClick={toggleShowConfirmPassword}
-                                          style={{ cursor: "pointer", backgroundColor: "transparent" }}
-                                        >
-                                          <FontAwesomeIcon
-                                            style={{
-                                              color: "var(--bet-fusion-grey)",
-                                              fontSize: "20px",
-                                              padding: "0px 5px 0px 5px"
-                                            }}
-                                            icon={
-                                              showConfirmPassword
-                                                ? faEyeSlash
-                                                : faEye
-                                            }
-                                          />
-                                        </span>
-                                      </div>
-                                      {errors.repeat_password && (
-                                        <div className="text-danger">
-                                          {errors.repeat_password}
-                                        </div>
-                                      )}
-                                      {/* <label
-                                        className="mb-4 px-2 pb-3"
-                                        style={{ color: "#FFFFFFB2" }}
-                                      >
-                                        Confirm your password
-                                      </label> */}
-                                    </div>
-                                  </div>
-
-                                  {/* <div className="form-group w-100 d-flex justify-content-center">
-                                    <div className="col-md-12 w-100">
-                                      <label className="px-2">
-                                        Referral Code{" "}
-                                      </label>
-                                      <input
-                                        type="text"
-                                        name="promo_code"
-                                        className="input-field button-radius text-light deposit-input form-control col input-field-login"
-                                        placeholder={""}
-                                        onChange={handleChange}
-                                        value={values.promo_code}
-                                      />
-                                      <label
-                                        className="mb-4 px-2 pb-3"
-                                        style={{ color: "#FFFFFFB2" }}
-                                      >
-                                        Optional
-                                      </label>
-                                    </div>
-                                  </div> */}
-
-                                  <div className="form-group w-100 d-flex justify-content-center mb-3">
-                                    <div className="col-md-12 w-100">
-                                      <div className="checkbox d-flex align-items-center justify-content-start">
-                                        <label className="checkbox-container">
-                                          <input
-                                            type="checkbox"
-                                            id="agreementCheckbox"
-                                            name="agreementCheckbox"
-                                            onChange={handleChange}
-                                            className={`form-check-input ${
-                                              errors.agreementCheckbox &&
-                                              "text-danger"
-                                            }`}
-                                          />{" "}
-                                          &nbsp;
-                                          <span className="custom-checkbox"></span>
-                                          <span className="pl-2">
-                                            <a
-                                              href="/terms-and-conditions"
-                                              style={{ color: "var(--white)" }}
-                                            >
-                                              I agree to the
-                                              <span 
-                                                style={{ backgroundImage: "var(--bet-fusion-button-login)", color: "transparent", backgroundClip: "text" }}
-                                              > Terms of service </span>
-                                              and confirm that am over 18
-                                              years of age.
-                                            </a>
-                                          </span>
-                                        </label>
-                                      </div>
-                                      {errors.agreementCheckbox && (
-                                        <div className="text-danger">
-                                          {errors.agreementCheckbox}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  <div className="form-group w-100 d-flex justify-content-center mb-3">
-                                    <div className="col-md-12 w-100">
-                                      <button
-                                        type="submit"
-                                        className="w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page"
-                                        disabled={!values.agreementCheckbox}
-                                      >
-                                        Sign up
-                                      </button>
-                                    </div>
-                                  </div>
-
-                                  <div className="col-12 d-flex justify-content-center">
-                                    <Link
-                                      to={"/auth/login"}
-                                      title="Login"
-                                      onClick={() => gaEventTracker("Login")}
-                                    >
-                                      <span
-                                        className={`faded-color font-input } register-label my-3`}
-                                        style={{
-                                          color: "var(--white)",
-                                        }}
-                                      >
-                                        Log In
-                                      </span>
-                                    </Link>
-                                  </div>
-                                </Form>
-                              )}
-                            </Formik>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Row>
+    <div className="auth-page-outer">
+      <ToastContainer />
+      <div className="auth-page-center">
+        <div className="auth-card">
+          <div className="auth-card-grid">
+            {/* Left branding panel */}
+            <div className="auth-card-image">
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #020617 0%, #0f172a 60%, #1e293b 100%)",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: 32,
+                  gap: 16,
+                }}
+              >
+                <img src={Logo} alt="BetFusion" style={{ width: 140, height: "auto" }} />
+                <div style={{ textAlign: "center" }}>
+                  <p style={{ color: "#f8fafc", fontSize: 24, fontWeight: 800, margin: "0 0 4px", lineHeight: 1.2 }}>
+                    JOIN TODAY
+                  </p>
+                  <p style={{ color: "#94a3b8", fontSize: 13, margin: 0 }}>
+                    Create your account and start winning
+                  </p>
+                </div>
               </div>
             </div>
+
+            {/* Right form panel */}
+            <div className="auth-card-body">
+              <div className="auth-card-header">
+                <h2 className="auth-card-title">Create an account</h2>
+                <p className="auth-card-desc">Register to start playing on the best online casino</p>
+              </div>
+              <div className="auth-separator" />
+              <Formik
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+                validate={validate}
+                validateOnChange={false}
+                validateOnBlur={false}
+              >
+                {(props) => <RegisterForm {...props} />}
+              </Formik>
+            </div>
           </div>
-        </Row>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
 export default Register;
-
-

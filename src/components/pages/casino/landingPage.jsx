@@ -36,40 +36,22 @@ const LandingPage = () => {
   };
 
   const crashGames = useMemo(() => {
-    return (activeDataSource || []).filter(game => 
+    return (activeDataSource || []).filter(game =>
       game.categories?.some(cat => cat.game_type_id === "crash")
     );
   }, [activeDataSource]);
 
-  // const virtualGames = useMemo(() => 
-  //   casino_games.filter(game => 
-  //     game.categories?.some(cat => cat.game_type_id === "virtual")
-  //   ), [casino_games]
-  // );
+  const popularGames = useMemo(() => {
+    return (activeDataSource || []).filter(game =>
+      game.categories?.some(cat => cat.game_type_id === "popular")
+    );
+  }, [activeDataSource]);
 
-  // Group games by their first category (or multiple if you want)
-  const groupGamesByCategory = (games) => {
-    const categoriesMap = {};
-
-    games.forEach((game) => {
-      if (game.categories && game.categories.length > 0) {
-        game.categories.forEach((cat) => {
-          const catName = cat.name || cat.game_type_id || "Other";
-          if (!categoriesMap[catName]) {
-            categoriesMap[catName] = [];
-          }
-          categoriesMap[catName].push(game);
-        });
-      } else {
-        if (!categoriesMap["Other"]) categoriesMap["Other"] = [];
-        categoriesMap["Other"].push(game);
-      }
-    });
-
-    return categoriesMap;
-  };
-
-  // const gamesByCategory = groupGamesByCategory(casino_games);
+  const hotGames = useMemo(() => {
+    return (activeDataSource || []).filter(game =>
+      game.categories?.some(cat => cat.game_type_id === "hot")
+    );
+  }, [activeDataSource]);
 
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
@@ -100,6 +82,18 @@ const LandingPage = () => {
       {/* <div style={{ marginTop: 5 }}>
         <MustPlaySection must_play={data.must_play} />
       </div> */}
+
+      {popularGames.length > 0 && (
+        <div style={{ marginTop: 5, marginBottom: "1rem" }}>
+          <GamesSection key={`popular-${popularGames.length}`} games={popularGames.slice(0, 12)} category="Popular" count={popularGames.length} />
+        </div>
+      )}
+
+      {hotGames.length > 0 && (
+        <div style={{ marginTop: 5, marginBottom: "1rem" }}>
+          <GamesSection key={`hot-${hotGames.length}`} games={hotGames.slice(0, 12)} category="Hot" count={hotGames.length} />
+        </div>
+      )}
 
       {crashGames.length > 0 && (
         <div style={{ marginTop: 5, marginBottom: "2rem" }}>

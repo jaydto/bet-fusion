@@ -11,6 +11,7 @@ import "./assets/css/sidebar-menu.css";
 import "./index.css";
 import "./assets/css/newCss.css";
 import "./assets/css/Themes.css";
+import "./assets/css/auth.css";
 import "./components/pages/casino/index.css";
 import { StoreProvider } from "./context/store";
 import Loading from "./components/loading/LoadingSuspense";

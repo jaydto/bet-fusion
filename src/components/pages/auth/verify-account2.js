@@ -1,348 +1,188 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { Col, Row } from "antd";
-import authImg from "../../../assets/img/logo.png";
-import fire from "../../../assets/svg/fire.svg";
-
-import { Link, useNavigate } from "react-router-dom";
-import { setLocalStorage } from "../../utils/local-storage";
-import only18 from "../../../assets/img/auth/18only.png";
-import backgroundURL from "../../../assets/img/auth/img-17.webp";
-
-import { LazyLoadImage } from "react-lazy-load-image-component";
-
-import makeRequest from "../../utils/fetch-request";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { Form, Formik } from "formik";
+import makeRequest from "../../utils/fetch-request";
+import { setLocalStorage } from "../../utils/local-storage";
 import { StoreContext } from "../../../context/store";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import FormTitle from "../formTitle";
+import Logo from "../../../assets/img/logo.png";
+import "../../../assets/css/auth.css";
 
-const backgroundStyle = {
-  backgroundImage: `url(${backgroundURL})`,
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-};
+const MyVerifyAccountForm = React.memo(({ errors, values, submitForm, setFieldValue }) => {
+  const { state, dispatch } = useContext(StoreContext);
+  const gaEventTracker = useAnalyticsEventTracker("Resend Verification Code");
+  let number = String(state?.signup_msisdn).split("0")[1];
+  let msisdn = number ? "254" + number : "";
 
-const VerifyAccount2 = React.memo((props) => {
-  const { state } = useContext(StoreContext);
-  // const {setUser} = props;
-  const expand = "md";
-  const navigate = useNavigate();
-  const gaEventTracker = useAnalyticsEventTracker("Navigation");
-
-  const Alert = (props) => {
-    let c = state?.verifySuccess ? "success" : "danger";
-    return (
-      <div role="alert" className={`fade alert alert-${c} show`}>
-        {state?.verifyMessage}
-      </div>
-    );
+  const set = (e) => {
+    const { name, value } = e.target;
+    setFieldValue(name, value);
+    dispatch({ type: "SET", key: "isMobileNumberValid", payload: value.trim() !== "" });
   };
 
-  return (
-    <div style={{ height: "100vh", background: "#16202C" }}>
-      <Row justify="center" className="align-items-stretch h-100">
-        <div
-          className={
-            "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
-          }
-        >
-          <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-            <div className={"width-page-centric register-page"}>
-              <FormTitle />
-
-              <Row justify="center">
-                <div className={"d-flex"}>
-                  <div>
-                    <div className={"d-flex flex-row justify-content-between"}>
-                      <div className=" w-100">
-                        <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
-                          <div className="col-md-12 mt-0 text-white px-2">
-                            {state?.verifyMessage && <Alert />}
-                            {state?.verifySuccess
-                              ? setTimeout((window.location.href = "/"), 2000)
-                              : ""}
-                            <div
-                              className="modal-body pb-0"
-                              data-backdrop="static"
-                            >
-                              <VerifyAccountForm />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-                  <div className="mt-4">{/*<LoginForm {...props}/>*/}</div>
-                </div>
-              </Row>
-            </div>
-          </div>
-        </div>
-      </Row>
-    </div>
-  );
-});
-const MyVerifyAccountForm = React.memo((props) => {
-  const { errors, values, submitForm, setFieldValue } = props;
-  const { state, dispatch } = useContext(StoreContext);
-
-  const gaEventTracker = useAnalyticsEventTracker("Resend Verifiction Code");
   const resendOTP = () => {
-    let endpoint = "/v1/code";
-
-    let payload = {
-      mobile: values?.mobile,
-    };
-
-    makeRequest({ url: endpoint, method: "POST", data: payload }).then(
+    makeRequest({ url: "/v1/code", method: "POST", data: { mobile: values?.mobile } }).then(
       ([status, response]) => {
-        // setMessage(response.success ? response.success.message : response.error.message);
-        dispatch({
-          type: "SET",
-          key: "verifyMessage",
-          payload: response.success
-            ? response.success.message
-            : response.error.message,
-        });
-        // response.success?dispatch({type: "SET", key: "verifySuccess", payload: true}):dispatch({type: "SET", key: "verifySuccess", payload: false})
-
-        let timer = setInterval(() => {
-          // setIsMobileNumberValid(false)
-          dispatch({ type: "SET", key: "isMobileNumberValid", payload: false });
-          clearInterval(timer);
-        }, 3000);
-        response?.success && timer();
-        // response.error ? setSuccess(false) : setSuccess(false)
+        dispatch({ type: "SET", key: "verifyMessage", payload: response.success ? response.success.message : response.error.message });
         response.success
           ? dispatch({ type: "SET", key: "verifySuccess", payload: true })
-          : dispatch({
-              type: "SET",
-              key: "verifySuccess",
-              payload: false,
-            });
-        if (status === 200 || status === 201) {
-          const data = {
-            event: "resend_verification",
-            msisdn: values?.msisdn,
-            message: response?.success?.message,
-          };
-          gaEventTracker("Verify Success", data);
-        } else {
-          const data = {
-            event: "resend_verification_failed",
-            msisdn: values?.msisdn,
-            message: response?.error?.message,
-          };
-          gaEventTracker("Verify Failed", data);
-        }
+          : dispatch({ type: "SET", key: "verifySuccess", payload: false });
+        const data = { event: status === 200 || status === 201 ? "resend_verification" : "resend_verification_failed", msisdn: values?.msisdn };
+        gaEventTracker(status === 200 || status === 201 ? "Verify Success" : "Verify Failed", data);
       }
     );
   };
 
-  const onFieldChanged = (ev) => {
-    let field = ev.target.name;
-    let value = ev.target.value;
-    setFieldValue(field, value);
-    // setIsMobileNumberValid(value.trim() !== '');
-    dispatch({
-      type: "SET",
-      key: "isMobileNumberValid",
-      payload: value.trim() !== "",
-    });
-  };
-  let number = String(state?.signup_msisdn).split("0")[1];
-  let msisdn = number ? "254" + number : "";
   return (
     <Form>
-      <div className="pt-0">
-        <div className="w-100">
-          <div className="form-group row d-flex justify-content-center mt-3">
-            <div className="col-md-12">
-              <label>Mobile Number</label>
-              <div className="row">
-                <div className="col-md-12 mb-3">
-                  <input
-                    value={values.mobile || msisdn}
-                    className="h-100 text-light deposit-input form-control col-md-12 input-field"
-                    id="mobile"
-                    name="mobile"
-                    type="text"
-                    placeholder="Phone number"
-                    onChange={(ev) => onFieldChanged(ev)}
-                  />
-                  {state?.isMobileNumberValid && errors.mobile && (
-                    <div className="text-danger">{errors.mobile}</div>
-                  )}
-                </div>
-                <div className="col-md-4 d-flex justify-content-between">
-                  <span
-                    className=""
-                    style={{
-                      marginLeft: "auto",
-                      whiteSpace: "nowrap",
-                      gap: "10px",
-                      width: "auto",
-                    }}
-                  >
-                    Didn't receive code? Resend Code
-                  </span>
-                  &nbsp;
-                  <button
-                    onClick={() => resendOTP()}
-                    type={"button"}
-                    className="btn py-1 px-2 text-light btn-sm bg-success rounded-3 border-0 "
-                    style={{ fontSize: "12px", whiteSpace: "nowrap" }}
-                    disabled={!state?.isMobileNumberValid && !msisdn}
-                  >
-                    Resend OTP
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group row d-flex  mt-4">
-            <div className="col-md-12">
-              <label>Code (OTP)</label>
-              <input
-                value={values?.code || ""}
-                className="text-light deposit-input form-control col-md-12 input-field"
-                id="code"
-                name="code"
-                type="code"
-                placeholder="Code"
-                onChange={(ev) => onFieldChanged(ev)}
-              />
-              {errors.code && (
-                <div className="text-danger"> {errors.code} </div>
-              )}
-            </div>
-          </div>
-          <div className="form-group row d-flex justify-content-left mb-4">
-            <div className="col">
-              <button
-                type="submit"
-                disabled={state?.inputDisabled}
-                onClick={submitForm}
-                className=" btn btn-lg w-100 button-radius input-field btn-font cg login-button btn button-page"
-                style={{ marginTop: "47px" }}
-              >
-                VERIFY ACCOUNT
-              </button>
-            </div>
-          </div>
+      <div className="auth-field">
+        <label className="auth-field-label">Mobile Number</label>
+        <div className="auth-input-wrap">
+          <input
+            type="text"
+            name="mobile"
+            className="auth-input"
+            placeholder="07XXXXXXXX"
+            value={values.mobile || msisdn}
+            onChange={set}
+          />
         </div>
+        {state?.isMobileNumberValid && errors.mobile && (
+          <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.mobile}</span>
+        )}
       </div>
+
+      <div className="auth-field">
+        <label className="auth-field-label">OTP Code</label>
+        <div className="auth-input-wrap">
+          <input
+            type="text"
+            name="code"
+            className="auth-input"
+            placeholder="Enter OTP"
+            value={values?.code || ""}
+            onChange={set}
+          />
+        </div>
+        {errors.code && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.code}</span>}
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
+        <button
+          type="button"
+          onClick={resendOTP}
+          disabled={!state?.isMobileNumberValid && !msisdn}
+          style={{ background: "none", border: "none", color: "#3BAAED", fontSize: 12, cursor: "pointer", padding: 0 }}
+        >
+          Resend OTP
+        </button>
+      </div>
+
+      <button
+        type="submit"
+        className="auth-submit-btn"
+        disabled={state?.inputDisabled}
+        onClick={submitForm}
+      >
+        Verify Account
+      </button>
+
+      <p className="auth-footer-text" style={{ marginTop: 12 }}>
+        <Link to="/auth/login" className="auth-link">Back to Login</Link>
+      </p>
     </Form>
   );
 });
 
-const VerifyAccountForm = React.memo((props) => {
+const VerifyAccountForm = React.memo(() => {
   const { state, dispatch } = useContext(StoreContext);
+  const gaEventTracker = useAnalyticsEventTracker("Verify Account");
   let number = String(state?.signup_msisdn).split("0")[1];
   let msisdn = number ? "254" + number : "";
-
-  const initialValues = {
-    mobile: msisdn,
-    code: "",
-  };
-  const verifyAccount = () => {
-    let code = new URL(window.location).searchParams.get("code");
-    let msisdn = new URL(window.location).searchParams.get("msisdn");
-    if (code !== null && msisdn !== null) {
-      dispatch({ type: "SET", key: "inputDisabled", payload: true });
-
-      handleSubmit({
-        mobile: msisdn,
-        code: code,
-      });
-    }
-  };
-
-  useEffect(() => {
-    verifyAccount();
-  }, []);
-
-  const gaEventTracker = useAnalyticsEventTracker("Verify Account");
-  const handleSubmit = (values) => {
-    let endpoint = "/v1/verify";
-    makeRequest({ url: endpoint, method: "POST", data: values })
-      .then(([status, response]) => {
-        // setMessage(response.success ? response.success.message : response.error.message);
-        // response.success ? setSuccess(true) : setSuccess(false)
-        dispatch({
-          type: "SET",
-          key: "verifyMessage",
-          payload: response.success
-            ? response.success.message
-            : response.error.message,
-        });
-        response.success
-          ? dispatch({ type: "SET", key: "verifySuccess", payload: true })
-          : dispatch({
-              type: "SET",
-              key: "verifySuccess",
-              payload: false,
-            });
-        const data = {
-          event: "verify_account",
-          msisdn: response?.success?.user?.msisdn,
-          user_id: response?.success?.user?.profile_id,
-        };
-
-        if (response?.success) {
-          setLocalStorage("user", response?.success?.user);
-          const data = {
-            event: "verify_account",
-            msisdn: response?.success?.user?.msisdn,
-            user_id: response?.success?.user?.profile_id,
-          };
-          gaEventTracker("verify_success", data);
-          let timer = setInterval(() => {
-            clearInterval(timer);
-            window.location.href = "/";
-          }, 1000);
-        } else {
-          const data = {
-            event: "verify_failure",
-            msisdn: values?.msisdn,
-            message: response?.error?.message,
-          };
-          gaEventTracker("verify_success", data);
-        }
-      })
-      .catch((err) => {});
-  };
+  const verifyRef = useRef();
 
   const validate = (values) => {
-    let errors = {};
-
-    if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
-      errors.mobile = "Please enter a valid phone number";
-    }
-
-    if (!values.code || values.code.length < 4) {
-      errors.code = "Please enter four or more characters for code";
-    }
-
+    const errors = {};
+    if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) errors.mobile = "Please enter a valid phone number";
+    if (!values.code || values.code.length < 4) errors.code = "Please enter a valid OTP";
     return errors;
   };
 
-  const verifyRef = useRef();
+  const handleSubmit = (values) => {
+    makeRequest({ url: "/v1/verify", method: "POST", data: values }).then(([status, response]) => {
+      dispatch({ type: "SET", key: "verifyMessage", payload: response.success ? response.success.message : response.error.message });
+      if (response.success) {
+        dispatch({ type: "SET", key: "verifySuccess", payload: true });
+        setLocalStorage("user", response?.success?.user);
+        gaEventTracker("verify_success", { event: "verify_account", msisdn: response?.success?.user?.msisdn });
+        setTimeout(() => { window.location.href = "/"; }, 1000);
+      } else {
+        dispatch({ type: "SET", key: "verifySuccess", payload: false });
+        gaEventTracker("verify_failed", { event: "verify_failure", msisdn: values?.msisdn });
+      }
+    }).catch(() => {});
+  };
+
+  useEffect(() => {
+    const code = new URL(window.location).searchParams.get("code");
+    const phoneFromURL = new URL(window.location).searchParams.get("msisdn");
+    if (code && phoneFromURL) {
+      dispatch({ type: "SET", key: "inputDisabled", payload: true });
+      handleSubmit({ mobile: phoneFromURL, code });
+    }
+  }, []);
 
   return (
     <Formik
       innerRef={verifyRef}
-      initialValues={initialValues}
+      initialValues={{ mobile: msisdn, code: "" }}
       onSubmit={handleSubmit}
+      validate={validate}
       validateOnChange={false}
       validateOnBlur={false}
-      validate={validate}
-      render={(props) => <MyVerifyAccountForm {...props} />}
-    />
+    >
+      {(props) => <MyVerifyAccountForm {...props} />}
+    </Formik>
   );
 });
+
+const VerifyAccount2 = React.memo(() => {
+  const { state } = useContext(StoreContext);
+
+  return (
+    <div className="auth-page-outer">
+      <div className="auth-page-center">
+        <div className="auth-card" style={{ maxWidth: 440 }}>
+          <div className="auth-card-body">
+            <div className="auth-card-header" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <img src={Logo} alt="BetFusion" style={{ width: 100, height: "auto" }} />
+              <h2 className="auth-card-title">Verify Your Account</h2>
+              <p className="auth-card-desc">Enter the OTP sent to your mobile number</p>
+            </div>
+            <div className="auth-separator" />
+
+            {state?.verifyMessage && (
+              <div
+                style={{
+                  padding: "10px 12px",
+                  borderRadius: 8,
+                  background: state?.verifySuccess ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)",
+                  border: `1px solid ${state?.verifySuccess ? "#22c55e" : "#ef4444"}`,
+                  color: state?.verifySuccess ? "#22c55e" : "#ef4444",
+                  fontSize: 13,
+                  marginBottom: 8,
+                }}
+              >
+                {state?.verifyMessage}
+              </div>
+            )}
+
+            <VerifyAccountForm />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
 export default React.memo(VerifyAccount2);

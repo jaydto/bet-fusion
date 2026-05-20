@@ -1,212 +1,84 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Col, Row, Typography } from "antd";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faEye,
-  faEyeSlash,
-} from "@fortawesome/free-solid-svg-icons";
 import { Form, Formik } from "formik";
-
-import {
-  resetPassword,
-  resetSubmitForm,
-  setState,
-} from "../../../redux/authSlice";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
-import FormTitle from "../formTitle";
+import { resetPassword, resetSubmitForm, setState } from "../../../redux/authSlice";
+import Logo from "../../../assets/img/logo.png";
+import "../../../assets/css/auth.css";
 
-const { Title } = Typography;
-
-const ResetPassword2 = React.memo((props) => {
-  const resetSuccess = useSelector((state) => state.auth.reset_success);
-  const resetSuccessPassword = useSelector(
-    (state) => state.auth.reset_success_password
-  );
-  const resetMessage = useSelector((state) => state.auth.reset_message);
-  const resetPasswordMessage = useSelector(
-    (state) => state.auth.reset_password_message
-  );
+// ── Step 1: Request OTP ──────────────────────────────────────────────────────
+const OtpRequestForm = React.memo(({ errors, values, setFieldValue }) => {
+  const dispatchRedux = useDispatch();
+  const otpSentFromState = useSelector((s) => s.auth.otp_sent);
   const code = new URL(window.location).searchParams.get("code");
-  const otpSentFromState = useSelector((state) => state.auth.otp_sent);
   const otpSent = code ? true : otpSentFromState;
 
-  const expand = "md";
-  const navigate = useNavigate();
+  const set = (e) => setFieldValue(e.target.name, e.target.value);
 
-  const dispatchRedux = useDispatch();
-
-  useEffect(() => {
-    // Set the initial state to false on first render
-    dispatchRedux(setState("otp_sent", false));
-    dispatchRedux(setState("resetPasswordMessage", null));
-    dispatchRedux(setState("resetMessage", null));
-  }, []);
-
-  const Alert = (props) => {
-    let c = resetSuccessPassword ?? resetSuccess ? "success" : "danger";
-    return (
-      <div role="alert" className={`fade alert alert-${c} show`}>
-        {resetPasswordMessage ?? resetMessage}
-      </div>
-    );
-  };
+  if (otpSent) return null;
 
   return (
-    <div style={{ height: "100vh" }}>
-      <Row justify="center" className="align-items-stretch h-100">
-        <div
-          className={
-            "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
-          }
-        >
-          <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-            <div
-              className={`width-page-centric reset-pass ${
-                otpSent && "pass-reset-page"
-              }`}
-            >
-              <FormTitle />
-
-              <div className="d-flex justify-content-center position-logo-user-pages">
-                <Title level={2} style={{ color: "var(--white)" }}>
-                  Welcome
-                </Title>{" "}
-              </div>
-
-              <Row justify="center">
-                <div className={"d-flex w-100"}>
-                  {/**/}
-                  <div className={"w-100"}>
-                    <div className={"d-flex flex-row justify-content-between"}>
-                      <div className=" w-100">
-                        <div
-                          className="homepage d-flex flex-column align-items-center justify-content-center login-page"
-                          style={{ margin: "auto", maxWidth: "767px" }}
-                        >
-                          <div className="col-md-12 mt-2 text-white px-2 w-100">
-                            {(resetPasswordMessage ?? resetMessage) && (
-                              <Alert />
-                            )}
-                            <div
-                              className="modal-body pb-0 "
-                              data-backdrop="static"
-                            >
-                              <OptForm />
-                              <PasswordResetForm />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-                  <div className="mt-4">{/*<LoginForm {...props}/>*/}</div>
-                </div>
-              </Row>
-            </div>
-          </div>
+    <Form>
+      <div className="auth-field">
+        <label className="auth-field-label">Mobile Number</label>
+        <div className="auth-input-wrap">
+          <input
+            type="text"
+            name="mobile"
+            className="auth-input"
+            placeholder="07XXXXXXXX"
+            value={values.mobile}
+            onChange={set}
+          />
         </div>
-      </Row>
-    </div>
-  );
-});
-const MyOtpForm = React.memo((props) => {
-  const { errors, values, submitForm, setFieldValue } = props;
-  const code = new URL(window.location).searchParams.get("code");
-  const otpSentFromState = useSelector((state) => state.auth.otp_sent);
-  const otpSent = code ? true : otpSentFromState;
-
-  const dispatchRedux = useDispatch();
-
-  const onFieldChanged = (ev) => {
-    let field = ev.target.name;
-    let value = ev.target.value;
-    setFieldValue(field, value);
-  };
-
-  const handleAlreadyHaveOtp = () => {
-    dispatchRedux(setState("otp_sent", true));
-  };
-
-  return (
-    <Form className={`${otpSent ? "d-none" : ""}`}>
-      <div className="pt-0">
-        <div className="w-100">
-          <div className="form-group row d-flex justify-content-center mt-3">
-            <div className="col-md-12">
-              <label>Mobile Number</label>
-              <div className="row">
-                <div className="col-md-12 mb-3">
-                  <input
-                    value={values.mobile}
-                    className=" deposit-input form-control col-md-12 input-field input-bg-user"
-                    id="mobile"
-                    name="mobile"
-                    type="text"
-                    placeholder="Phone number"
-                    onChange={(ev) => onFieldChanged(ev)}
-                  />
-                  {errors.mobile && (
-                    <div className="text-danger"> {errors.mobile} </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group row d-flex justify-content-left mb-4">
-            <div className="col">
-              <button
-                disabled={otpSent || !values.mobile}
-                type="submit"
-                className=" btn btn-lg w-100 button-radius input-field btn-font  login-button btn button-page reset-text"
-                style={{
-                  whiteSpace: "nowrap",
-                  fontSize: "12px",
-                  marginTop: "20px",
-                }}
-              >
-                Send OTP
-              </button>
-            </div>
-          </div>
-          <div className="form-group row d-flex justify-content-left mb-4">
-            <div className="col">
-              <button
-                type="button"
-                className="btn btn-lg w-100 button-radius input-field"
-                style={{
-                  color: "white",
-                  fontSize: "12px",
-                  whiteSpace: "nowrap",
-                }}
-                onClick={handleAlreadyHaveOtp}
-              >
-                Already have an OTP ?
-              </button>
-            </div>
-          </div>
-        </div>
+        {errors.mobile && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.mobile}</span>}
       </div>
+
+      <button type="submit" className="auth-submit-btn" disabled={!values.mobile}>
+        Send OTP
+      </button>
+
+      <button
+        type="button"
+        onClick={() => dispatchRedux(setState("otp_sent", true))}
+        style={{ background: "none", border: "none", color: "#3BAAED", fontSize: 13, cursor: "pointer", width: "100%", marginTop: 12 }}
+      >
+        Already have an OTP?
+      </button>
+
+      <p className="auth-footer-text" style={{ marginTop: 12 }}>
+        <Link to="/auth/login" className="auth-link">Back to Login</Link>
+      </p>
     </Form>
   );
 });
 
-const MyPasswordResetForm = React.memo((props) => {
-  const code = new URL(window.location).searchParams.get("code");
-  const otpSentFromState = useSelector((state) => state.auth.otp_sent);
-  const otpSent = code ? true : otpSentFromState;
-
+const OtpRequestFormikWrapper = React.memo(() => {
   const dispatchRedux = useDispatch();
-  const { errors, values, submitForm, setFieldValue } = props;
-  const [showPassword, setShowPassword] = useState(false);
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
+  const validate = (values) => {
+    const errors = {};
+    if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
+      errors.mobile = "Please enter a valid phone number";
+    }
+    return errors;
   };
+  const handleSubmit = (values) => {
+    try { dispatchRedux(resetSubmitForm(values)); } catch (e) { console.error(e); }
+  };
+  return (
+    <Formik initialValues={{ mobile: "" }} onSubmit={handleSubmit} validate={validate} validateOnChange={false} validateOnBlur={false}>
+      {(props) => <OtpRequestForm {...props} />}
+    </Formik>
+  );
+});
+
+// ── Step 2: Set new password ─────────────────────────────────────────────────
+const PasswordResetInnerForm = React.memo(({ errors, values, setFieldValue }) => {
+  const dispatchRedux = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+  const set = (e) => setFieldValue(e.target.name, e.target.value);
 
   const clearActions = () => {
     dispatchRedux(setState("otp_sent", false));
@@ -217,289 +89,160 @@ const MyPasswordResetForm = React.memo((props) => {
     dispatchRedux(setState("reset_id", null));
   };
 
-  const verifyAccount = () => {
-    let code = new URL(window.location).searchParams.get("code");
-    let msisdn = new URL(window.location).searchParams.get("msisdn");
-
-    if (code) {
-      setFieldValue("code", code);
-      dispatchRedux(setState("otp_sent", true));
-    }
-    if (msisdn) {
-      setFieldValue("mobile", msisdn);
-      dispatchRedux(setState("reset_mobile", msisdn));
-    }
-  };
-
-  useEffect(() => {
-    verifyAccount();
-  }, []);
-
-  const onFieldChanged = (ev) => {
-    let field = ev.target.name;
-    let value = ev.target.value;
-    setFieldValue(field, value);
-  };
   return (
-    <Form className={`${otpSent ? "d-block" : "d-none"}`}>
-      <div className="pt-0">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="col-md-12">
-              <div className="form-group row d-flex justify-content-center mt-1">
-                <label className={"text-center"}>Enter OTP</label>
-                <input
-                  value={values.code}
-                  className=" deposit-input form-control col-md-12 input-field"
-                  id="otp"
-                  name="code"
-                  type="text"
-                  placeholder="OTP"
-                  onChange={(ev) => onFieldChanged(ev)}
-                  style={{ color: "var(--white) !important" }}
-                />
-                {errors.code && (
-                  <div className="text-danger">{errors.code}</div>
-                )}
-              </div>
-              <hr  style={{ backgroundColor: "var(--white)", height: "2px", border: "0" }}/>
-              <div>
-                <h2 className={"text-center mt-4"}>Enter New Passwords</h2>
-              </div>
-            </div>
-            <div className="form-group w-100 d-flex justify-content-center mt-5">
-              <div className="col-md-12 w-100">
-                <label>Password</label>
-                <div
-                  className="input-group input-color-icon w-100"
-                  style={{ display: "flex"}}
-                >
-                  <input
-                    value={values.password}
-                    className=" w-75  deposit-input form-control col-md-12 input-field"
-                    id="password_reset"
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    autoComplete={"on"}
-                    placeholder="Password"
-                    onChange={(ev) => onFieldChanged(ev)}
-                  />
-                  <div className=" col-2 input-group-append d-flex justify-content-center">
-                    <div className="input-group-text  border-0 input-color-icon" style={{ backgroundColor: "transparent" }}>
-                      <button
-                        style={{ height: "parent" }}
-                        type="button"
-                        className="btn btn-link text-decoration-none input-color-icon"
-                        onClick={toggleShowPassword}
-                      >
-                        {showPassword ? (
-                          <FontAwesomeIcon
-                            icon={faEyeSlash}
-                            style={{ color: "var(--bet-fusion-grey)", fontSize: "20px" }}
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faEye}
-                            style={{ color: "var(--bet-fusion-grey)", fontSize: "20px" }}
-                          />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {errors.password && (
-                  <div className="text-danger">{errors.password}</div>
-                )}
-              </div>
-            </div>
-            <div className="form-group w-100 d-flex justify-content-center mt-5">
-              <div className="col-md-12 w-100">
-                <label>Confirm Password</label>
-                <div
-                  className="input-group input-color-icon w-100"
-                  style={{ display: "flex" }}
-                >
-                  <input
-                    value={values.repeat_password}
-                    className="w-75  deposit-input form-control col-md-12 input-field"
-                    id="confirm_password"
-                    name="repeat_password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                    onChange={(ev) => onFieldChanged(ev)}
-                  />
-                  <div className=" col-2 input-group-append d-flex justify-content-center">
-                    <div className="input-group-text  border-0 input-color-icon" style={{ backgroundColor: "transparent" }}>
-                      <button
-                        style={{ height: "parent", backgroundColor: "transparent" }}
-                        type="button"
-                        className="btn btn-link text-decoration-none input-color-icon"
-                        onClick={toggleShowPassword}
-                      >
-                        {showPassword ? (
-                          <FontAwesomeIcon
-                            icon={faEyeSlash}
-                            style={{ color: "var(--bet-fusion-grey)", fontSize: "20px" }}
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faEye}
-                            style={{ color: "var(--bet-fusion-grey)", fontSize: "20px" }}
-                          />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {errors.repeat_password && (
-                  <div className="text-danger">{errors.repeat_password}</div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group w-100 d-flex justify-content-left mb-4">
-            <div className="col">
-              <button
-                type="submit"
-                className="w-100 btn btn-lg btn-primary mt-5 col-md-12 deposit-withdraw-button button-page"
-              >
-                Reset Password
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-3 d-flex justify-content-between">
-            <button
-              className="button btn-prev"
-              type="button"
-              onClick={clearActions}
-            >
-              <FontAwesomeIcon icon={faAngleLeft} />
-              &nbsp; Previous
-            </button>
-          </div>
+    <Form>
+      <div className="auth-field">
+        <label className="auth-field-label">OTP Code</label>
+        <div className="auth-input-wrap">
+          <input type="text" name="code" className="auth-input" placeholder="Enter OTP" value={values.code} onChange={set} />
         </div>
+        {errors.code && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.code}</span>}
       </div>
+
+      <div style={{ height: 1, background: "#3d4354", margin: "8px 0" }} />
+
+      <div className="auth-field">
+        <label className="auth-field-label">New Password</label>
+        <div className="auth-input-wrap">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            className="auth-input"
+            placeholder="New password"
+            value={values.password}
+            onChange={set}
+            style={{ paddingRight: 40 }}
+          />
+          <button type="button" className="auth-input-icon" onClick={() => setShowPassword(!showPassword)}>
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+          </button>
+        </div>
+        {errors.password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.password}</span>}
+      </div>
+
+      <div className="auth-field">
+        <label className="auth-field-label">Confirm Password</label>
+        <div className="auth-input-wrap">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="repeat_password"
+            className="auth-input"
+            placeholder="Confirm new password"
+            value={values.repeat_password}
+            onChange={set}
+          />
+        </div>
+        {errors.repeat_password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.repeat_password}</span>}
+      </div>
+
+      <button type="submit" className="auth-submit-btn">Reset Password</button>
+
+      <button
+        type="button"
+        onClick={clearActions}
+        style={{ background: "none", border: "none", color: "#94a3b8", fontSize: 13, cursor: "pointer", width: "100%", marginTop: 12 }}
+      >
+        ← Back
+      </button>
     </Form>
   );
 });
 
-const PasswordResetForm = React.memo((props) => {
-  const mobile = useSelector((state) => state.auth.reset_mobile);
-
-  const resetID = useSelector((state) => state.auth.reset_id);
+const PasswordResetFormikWrapper = React.memo(() => {
   const dispatchRedux = useDispatch();
   const navigate = useNavigate();
-  const resetSuccessPassword = useSelector(
-    (state) => state.auth.reset_success_password
-  );
-  const initialResetFormValues = {
-    id: "",
-    code: "",
-    password: "",
-    repeat_password: "",
-  };
+  const mobile = useSelector((s) => s.auth.reset_mobile);
+  const resetID = useSelector((s) => s.auth.reset_id);
+  const resetSuccessPassword = useSelector((s) => s.auth.reset_success_password);
 
   useEffect(() => {
     if (resetSuccessPassword) {
-      setTimeout(() => {
-        navigate("/auth/login");
-      }, 3000);
+      setTimeout(() => navigate("/auth/login"), 3000);
     }
   }, [resetSuccessPassword]);
 
-  const handleSubmitPasswordReset = (values) => {
-    console.log("Before modification:", values);
-    console.log("Current mobile:", mobile);
-    console.log("Current resetID:", resetID);
-
-    values.mobile = mobile;
-    values.id = resetID;
-
-    console.log("After modification:", values);
-
-    try {
-      dispatchRedux(resetPassword(values));
-    } catch (error) {
-      console.error("Password reset failed:", error.message);
-    }
-  };
-
-  const validatePasswordReset = (password_reset_values) => {
-    let password_reset_errors = {};
-
-    if (!password_reset_values.code) {
-      password_reset_errors.code = "Please enter your One Time Pin (OTP)";
-    }
-
-    if (password_reset_values.code.length < 4) {
-      password_reset_errors.code = "Your OTP should be greater than 4 numbers.";
-    }
-
-    if (!password_reset_values.password) {
-      password_reset_errors.password = "Please enter your new password";
-    }
-
-    if (!password_reset_values.repeat_password) {
-      password_reset_errors.repeat_password =
-        "Please enter your password confirmation";
-    }
-
-    if (
-      password_reset_values.password !== password_reset_values.repeat_password
-    ) {
-      password_reset_errors.repeat_password =
-        "The passwords do not match. Please enter the password you entered above.";
-    }
-
-    return password_reset_errors;
-  };
-  return (
-    <Formik
-      initialValues={initialResetFormValues}
-      onSubmit={handleSubmitPasswordReset}
-      validateOnChange={false}
-      validateOnBlur={false}
-      validate={validatePasswordReset}
-    >
-      {(props) => <MyPasswordResetForm {...props} />}
-    </Formik>
-  );
-});
-
-const OptForm = React.memo((props) => {
-  const dispatchRedux = useDispatch();
-  const initialValues = {
-    mobile: "",
-  };
   const validate = (values) => {
-    let errors = {};
-
-    if (!values.mobile || !values.mobile.match(/(254|0|)?[71]\d{8}/g)) {
-      errors.mobile = "Please enter a valid phone number";
-    }
-
+    const errors = {};
+    if (!values.code) errors.code = "Please enter your OTP";
+    if (values.code.length < 4) errors.code = "OTP must be at least 4 characters";
+    if (!values.password) errors.password = "Please enter a new password";
+    if (!values.repeat_password) errors.repeat_password = "Please confirm your password";
+    if (values.password !== values.repeat_password) errors.repeat_password = "Passwords do not match";
     return errors;
   };
 
   const handleSubmit = (values) => {
     try {
-      dispatchRedux(resetSubmitForm(values));
-    } catch (error) {
-      console.error("Form submission failed:", error.message);
-    }
+      dispatchRedux(resetPassword({ ...values, mobile, id: resetID }));
+    } catch (e) { console.error(e); }
   };
+
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{ id: "", code: "", password: "", repeat_password: "" }}
       onSubmit={handleSubmit}
+      validate={validate}
       validateOnChange={false}
       validateOnBlur={false}
-      validate={validate}
     >
-      {(props) => <MyOtpForm {...props} />}
+      {(props) => <PasswordResetInnerForm {...props} />}
     </Formik>
   );
 });
+
+// ── Main component ────────────────────────────────────────────────────────────
+const ResetPassword2 = React.memo(() => {
+  const dispatchRedux = useDispatch();
+  const code = new URL(window.location).searchParams.get("code");
+  const otpSentFromState = useSelector((s) => s.auth.otp_sent);
+  const otpSent = code ? true : otpSentFromState;
+  const resetMessage = useSelector((s) => s.auth.reset_message);
+  const resetPasswordMessage = useSelector((s) => s.auth.reset_password_message);
+  const resetSuccess = useSelector((s) => s.auth.reset_success);
+  const resetSuccessPassword = useSelector((s) => s.auth.reset_success_password);
+
+  useEffect(() => {
+    dispatchRedux(setState("otp_sent", false));
+    dispatchRedux(setState("resetPasswordMessage", null));
+    dispatchRedux(setState("resetMessage", null));
+  }, []);
+
+  return (
+    <div className="auth-page-outer">
+      <div className="auth-page-center">
+        <div className="auth-card" style={{ maxWidth: 440 }}>
+          <div className="auth-card-body">
+            <div className="auth-card-header" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <img src={Logo} alt="BetFusion" style={{ width: 100, height: "auto" }} />
+              <h2 className="auth-card-title">{otpSent ? "Set New Password" : "Forgot Password?"}</h2>
+              <p className="auth-card-desc">
+                {otpSent ? "Enter the OTP sent to your phone and choose a new password" : "Enter your mobile number to receive an OTP"}
+              </p>
+            </div>
+            <div className="auth-separator" />
+
+            {(resetPasswordMessage ?? resetMessage) && (
+              <div
+                style={{
+                  padding: "10px 12px",
+                  borderRadius: 8,
+                  background: resetSuccessPassword ?? resetSuccess ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)",
+                  border: `1px solid ${resetSuccessPassword ?? resetSuccess ? "#22c55e" : "#ef4444"}`,
+                  color: resetSuccessPassword ?? resetSuccess ? "#22c55e" : "#ef4444",
+                  fontSize: 13,
+                  marginBottom: 8,
+                }}
+              >
+                {resetPasswordMessage ?? resetMessage}
+              </div>
+            )}
+
+            {!otpSent ? <OtpRequestFormikWrapper /> : <PasswordResetFormikWrapper />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
 export default ResetPassword2;

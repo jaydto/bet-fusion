@@ -32,45 +32,13 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
   return (
     <>
       {showHeader && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "12px 12px 0px 12px",
-            marginBottom: "10px"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              paddingRight: isMobile ? 0 : "12px",
-            }}
-          >
-            <Title level={4} className="games-title" style={{ margin: 0 }}>
-              {category} GAMES
-            </Title>
-            {/* {["crash", "hot", "popular"].includes(category?.toLowerCase()) && (
-              <Tag
-                color="red"
-                style={{ fontWeight: "bold", borderRadius: "6px" }}
-              >
-                NEW
-              </Tag>
-            )} */}
-          </div>
-
-          <Button
-            type="link"
-            style={{
-              fontWeight: 500,
-              color: "var(--light)",
-              background: "var(--btn-color-action)",
-              borderRadius: "6px",
-              border: "none",
-            }}
+        <div className="section-header" style={{ padding: "0 12px", marginBottom: 14 }}>
+          <h3 className="section-header-title">
+            {category} Games
+          </h3>
+          <button
+            className="section-header-all"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
             onClick={() =>
               navigate(
                 ["crash", "hot", "popular"].includes(category?.toLowerCase())
@@ -79,19 +47,8 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
               )
             }
           >
-            SHOW ALL ({count}){" "}
-            <span
-              style={{
-                color: "var(--white)",
-                borderRadius: "15px",
-                padding: "1px 5px",
-                fontSize: 10,
-                lineHeight: 1.5,
-              }}
-            >
-              <RightOutlined />
-            </span>
-          </Button>
+            All &rsaquo;
+          </button>
         </div>
       )}
 
@@ -116,10 +73,11 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                   <Card
                     hoverable={!isUnavailable}
                     style={{
-                      borderRadius: "8px",
+                      borderRadius: "12px",
                       overflow: "hidden",
                       border: "none",
-                      background: "transparent",
+                      background: "var(--card, #0f172a)",
+                      transition: "transform 0.2s ease",
                     }}
                     cover={
                       <div

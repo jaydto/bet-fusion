@@ -1,127 +1,208 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Row, Typography } from "antd";
-
-import { useNavigate } from "react-router-dom";
-import HeaderLogin from "../header/top-login";
-import { getFromLocalStorage} from "../utils/local-storage";
-
-import { StoreContext } from "../../context/store";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Formik } from "formik";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import FormTitle from "./formTitle";
-// import Logo from "../../assets/img/logo.png";
+import { notification } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, resetState } from "../../redux/authSlice";
+import { StoreContext } from "../../context/store";
+import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
+import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
+import Logo from "../../assets/img/logo.png";
+import "../../assets/css/auth.css";
 
-const { Title } = Typography;
-
-
-const backgroundStyle = {
-  // background: `url(${gameDay})`,
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  // backgroundColor: "var(--bet-fusion-header-bg)",
-  //   backgroundPosition:"bottom",
-  backgroundAttachment: "fixed",
-};
-
-const LoginTwo = React.memo((props) => {
-  // const {setUser} = props;
+const LoginTwo = React.memo(() => {
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.user);
+  const dispatchRedux = useDispatch();
+  const { state, dispatch } = useContext(StoreContext);
+  const successMessage = useSelector((s) => s.auth.user);
+  const errorMessage = useSelector((s) => s.auth.error);
+  const loading = useSelector((s) => s.auth.loading);
   const [user, setUser] = useState(getFromLocalStorage("user"));
+  const gaEventTracker = useAnalyticsEventTracker("Login");
 
   useEffect(() => {
-    if (userData) {
-      setUser(userData || getFromLocalStorage("user"));
-    }
+    dispatchRedux(resetState("user_sign_up"));
+    dispatch({ type: "SET", key: "steps", payload: 0 });
   }, []);
 
- 
+  useEffect(() => {
+    if (successMessage?.status === 200) {
+      notification.success({
+        message: "Success",
+        description: successMessage?.message,
+        className: "ant-notification",
+        placement: "top",
+      });
+      setLocalStorage("user", successMessage.user);
+      setUser(successMessage.user);
+    }
+  }, [successMessage]);
 
-  const LoginInstructions = () => {
+  useEffect(() => {
+    if (errorMessage) {
+      notification.error({
+        message: "Login Error",
+        description: errorMessage,
+        className: "ant-notification",
+        placement: "top",
+      });
+    }
+  }, [errorMessage]);
+
+  useEffect(() => {
+    if (user) {
+      const activeLink = getFromLocalStorage("ActiveLink");
+      const dest =
+        activeLink && activeLink !== "/auth/signup"
+          ? activeLink
+          : state?.page_view && state.page_view !== "/auth/signup"
+          ? state.page_view
+          : "/";
+      localStorage.removeItem("ActiveLink");
+      setTimeout(() => navigate(dest), 300);
+    }
+  }, [user]);
+
+  const initialValues = { msisdn: "", password: "", countryCode: "254" };
+
+  const validate = (values) => {
+    const errors = {};
+    const formatted = values.msisdn.replace(/^(?:\+254|254|0)/, "");
+    const phone = values.countryCode + formatted;
+    if (!phone || phone.length > 12 || !phone.match(/(254|0|)?[71]\d{8}/g)) {
+      errors.msisdn = "Please enter a valid Kenyan phone number";
+    }
+    if (!values.password || values.password.length < 4) {
+      errors.password = "Invalid password";
+    }
+    return errors;
+  };
+
+  const handleSubmit = (values) => {
+    const formatted = values.msisdn.replace(/^(?:\+254|254|0)/, "");
+    dispatchRedux(loginUser({ msisdn: values.countryCode + formatted, password: values.password }));
+    gaEventTracker("Login");
+  };
+
+  const LoginForm = ({ errors, values, setFieldValue }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const set = (e) => setFieldValue(e.target.name, e.target.value);
+
     return (
-      <p className={"text-white py-2 px-4 font-input text-center mb-4"}>
-        Enter your phone number and password below to Login to your existing
-        account. Otherwise click on Register with the same details to create a
-        new account.
-      </p>
+      <Form>
+        <div className="auth-field">
+          <label className="auth-field-label">Mobile Number</label>
+          <div className="auth-input-wrap">
+            <input
+              type="text"
+              name="msisdn"
+              className="auth-input"
+              placeholder="07XXXXXXXX"
+              onChange={set}
+              value={values.msisdn}
+            />
+          </div>
+          {errors.msisdn && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.msisdn}</span>}
+        </div>
+
+        <div className="auth-field">
+          <label className="auth-field-label">Password</label>
+          <div className="auth-input-wrap">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="auth-input"
+              placeholder="Enter your password"
+              autoComplete="current-password"
+              onChange={set}
+              value={values.password}
+              style={{ paddingRight: 40 }}
+            />
+            <button
+              type="button"
+              className="auth-input-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </button>
+          </div>
+          {errors.password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.password}</span>}
+        </div>
+
+        <div style={{ textAlign: "right", marginBottom: 16 }}>
+          <Link to="/auth/reset-password" className="auth-link" onClick={() => gaEventTracker("Reset Password")}>
+            Forgot Password?
+          </Link>
+        </div>
+
+        <button type="submit" className="auth-submit-btn" disabled={loading}>
+          {loading ? "Logging in…" : "Log In"}
+        </button>
+
+        <p className="auth-footer-text" style={{ marginTop: 16 }}>
+          New?{" "}
+          <Link to="/auth/signup" className="auth-link" onClick={() => gaEventTracker("Register")}>
+            Register
+          </Link>
+        </p>
+      </Form>
     );
   };
 
-  const { state } = useContext(StoreContext);
-
   return (
-    <div
-      style={{ height: "100vh", overflowX: "hidden" }}
-      className="login-page-section"
-    >
-      <Row
-        justify="center"
-        className="align-items-stretch h-100"
-        style={backgroundStyle}
-      >
-        <div
-          className={
-            "col-lg-10 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
-          }
-        >
-          <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-            <div className={"width-page-centric "}>
-              <FormTitle />
-
-              <div className="d-flex justify-content-start position-logo-user-pages">
-                <Title level={2} style={{ backgroundImage: "var(--bet-fusion-button-login)", color: "transparent", backgroundClip: "text" }}>
-                  Sign In
-                </Title>{" "}
+    <div className="auth-page-outer">
+      <ToastContainer />
+      <div className="auth-page-center">
+        <div className="auth-card">
+          <div className="auth-card-grid">
+            {/* Left branding panel */}
+            <div className="auth-card-image">
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #020617 0%, #0f172a 60%, #1e293b 100%)",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: 32,
+                  gap: 12,
+                }}
+              >
+                <img src={Logo} alt="BetFusion" style={{ width: 140, height: "auto" }} />
+                <p style={{ color: "#94a3b8", fontSize: 13, textAlign: "center", margin: 0 }}>
+                  Play. Win. Repeat.
+                </p>
               </div>
+            </div>
 
-              <Row justify="center">
-                {/* <LoginInstructions /> */}
-
-                <div className={"d-flex"}>
-                  {/**/}
-                  <div>
-                    {user
-                      ? setTimeout(() => {
-                          if (
-                            getFromLocalStorage("ActiveLink") == undefined ||
-                            getFromLocalStorage("ActiveLink") == null
-                          ) {
-                            return navigate(
-                              state?.page_view
-                                ? state?.page_view === "/auth/signup"
-                                  ? "/"
-                                  : `${state?.page_view}`
-                                : "/"
-                            );
-                          } else {
-                            navigate(
-                              getFromLocalStorage("ActiveLink") ===
-                                "/auth/signup"
-                                ? "/"
-                                : getFromLocalStorage("ActiveLink")
-                            );
-                            localStorage.removeItem("ActiveLink");
-                          }
-                        }, 500)
-                      : ""}
-                    <div className={"d-flex flex-row justify-content-between"}>
-                      <div className=" w-100">
-                        <div className="homepage d-flex flex-column align-items-center justify-content-center login-page">
-                          <HeaderLogin setUser={setUser} login={true} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4"></div>
-                </div>
-              </Row>
+            {/* Right form panel */}
+            <div className="auth-card-body">
+              <div className="auth-card-header">
+                <h2 className="auth-card-title">Log in to your account</h2>
+                <p className="auth-card-desc">Login to continue playing on the best online casino</p>
+              </div>
+              <div className="auth-separator" />
+              <Formik
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+                validate={validate}
+                validateOnChange={false}
+                validateOnBlur={false}
+              >
+                {(props) => <LoginForm {...props} />}
+              </Formik>
             </div>
           </div>
         </div>
-      </Row>
+      </div>
     </div>
   );
 });
 
-export default React.memo(LoginTwo);
+export default LoginTwo;

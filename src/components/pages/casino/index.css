@@ -273,22 +273,31 @@
   display: none !important;
 }
 
-/* Style tabs */
+/* Style tabs — undabet style */
 .ant-tabs-tab {
-  border-radius: 16px !important;
-  background-color: #2f2f2f !important;
-  color: #aaa !important;
-  padding: 6px 12px !important;
-  margin: 0 !important;
+  border-radius: 20px !important;
+  background-color: #1e293b !important;
+  color: #94a3b8 !important;
+  padding: 6px 14px !important;
+  margin: 0 4px 0 0 !important;
   white-space: nowrap !important;
-  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  transition: background-color 0.15s, color 0.15s !important;
   user-select: none;
+  border: none !important;
+}
+
+.ant-tabs-tab:hover {
+  background-color: rgba(59, 170, 237, 0.1) !important;
+  color: #3BAAED !important;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active {
-  background-color: #1c1c1c !important;
-  color: #fff !important;
-  font-weight: 600;
+  background-color: #3BAAED !important;
+  color: #000 !important;
+  font-weight: 600 !important;
 }
 
 .toggle-wrap-btn {
@@ -606,17 +615,18 @@
 }
 
 .play-now-btn {
-  background: var(--bet-fusion-button-login);
+  background: #3BAAED;
   border: none;
-  font-weight: bold;
+  font-weight: 700;
   padding: 6px 16px;
   border-radius: 8px;
-  color: var(--white);
+  color: #000;
+  font-family: 'Outfit', sans-serif;
 }
 .play-now-btn:hover {
-  background: var(--bet-fusion-button-login) !important;
+  background: #2d9ad6 !important;
   border: none;
-  color: var(--black) !important;
+  color: #000 !important;
 }
 
 /* games library css  */

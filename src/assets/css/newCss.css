@@ -1329,16 +1329,16 @@ width-page-centric.register-page {
 }
 
 .login-color.cg {
-  background: var(--white);
+  background: transparent !important;
   padding: 5px 15px;
   border-radius: 6px;
   margin-left: 5px;
-  /* height: 2.3rem; */
-  border: 1px solid var(--lighy);
+  border: none !important;
   line-height: 1.6;
-  color: var(--black) !important;
+  color: #f8fafc !important;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .pro-sidebar.collapsed {

@@ -171,6 +171,10 @@ const GamesSection = ({ games, category = null, count = 0 }) => {
                     }
                     styles={{ body: { padding: "0px" } }}
                   />
+                  {/* Game name label below card — always visible, matches undabet */}
+                  <div className="game-card-name">
+                    {game.display_name || game.game_name}
+                  </div>
                 </div>
               </Col>
             );

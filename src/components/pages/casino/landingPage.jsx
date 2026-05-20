@@ -9,7 +9,6 @@ import { data, helpMessage } from "./data";
 import CongratulationBanner from "./conratulations";
 import CategoryTabs from "./categoryTabs";
 // Footer rendered at App level — do not import here
-import GameNavBar from "../../mobile-navigation/MobileNav1";
 import CasinoCarouselLoader from "./carousel";
 import { useSelector } from "react-redux";
 import { getFromLocalStorage } from "../../utils/local-storage";
@@ -82,7 +81,6 @@ const LandingPage = () => {
         }}
       >
         <CasinoCarouselLoader />
-        <GameNavBar categories={data.categories} />
         {/* <CongratulationBanner messagesObject={helpMessage} /> */}
         {/* <div style={{ marginTop: 20 }}>
           <CategoryTabs />

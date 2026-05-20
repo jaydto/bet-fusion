@@ -48,6 +48,8 @@ import Login from "./components/pages/loginTwo";
 import NewProfile from "./components/pages/Accounts/NewProfile";
 import Index from "./components/pages/casino/index";
 import SportsPage from "./components/pages/sports";
+import BottomNav from "./components/mobile-navigation/BottomNav";
+import Footer from "./components/pages/casino/footer";
 
 const Logout = () => {
   const { dispatch } = useContext(StoreContext);
@@ -145,17 +147,17 @@ const App = () => {
     //     }
     //   }
     // >
-    <div style={{ display: "flex", minHeight: "100vh" }}>
+    <div className="main-layout">
+      <div className="top-gradient-glow" />
       {/* Sidebar (only for '/') */}
       {showSidebar && (
         <aside className="sidebar site-layout-background">
-          {/* You can put category list, ads, etc. */}
           <Sidebar />
         </aside>
       )}
 
       {/* Main Content (Header + Routes) */}
-      <div style={{ flex: 1, display: "block" }}>
+      <div style={{ flex: 1, display: "block", position: "relative", zIndex: 1 }}>
         {showHeader && <Header />}
 
         <div style={{ flex: 1 }}>
@@ -258,7 +260,9 @@ const App = () => {
             </Routes>
           </Suspense>
         </div>
+        {showSidebar && <Footer />}
       </div>
+      {!isGamePlayRoute && <BottomNav />}
     </div>
   ); // </ConfigProvider>
 };

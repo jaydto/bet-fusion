@@ -1,0 +1,116 @@
+.sidebar-root {
+  width: var(--sidebar-width, 256px);
+  min-width: var(--sidebar-width, 256px);
+  background: var(--sidebar, #0f172a);
+  border-right: 1px solid var(--sidebar-border, #1e293b);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.sidebar-root::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-logo-wrap {
+  padding: 20px 16px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-logo-img {
+  width: 140px;
+  height: auto;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--sidebar-border, #1e293b);
+  margin: 6px 0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 2px;
+  flex: 1;
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #94a3b8;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+  position: relative;
+}
+
+.sidebar-nav-item:hover {
+  background: rgba(59, 170, 237, 0.1);
+  color: #3BAAED;
+  text-decoration: none;
+}
+
+.sidebar-nav-item--active {
+  background: #3BAAED;
+  color: #000 !important;
+}
+
+.sidebar-nav-item--active:hover {
+  background: #2d9ad6;
+  color: #000;
+}
+
+.sidebar-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.sidebar-nav-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-nav-badge {
+  background: #f59e0b;
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.sidebar-support {
+  font-size: 13px;
+}
+
+@media (max-width: 767px) {
+  .sidebar-root {
+    display: none;
+  }
+}

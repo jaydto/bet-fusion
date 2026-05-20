@@ -1,11 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --primary: #3BAAED;
+  --primary-foreground: #000;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --popover: #020617;
+  --popover-foreground: #f8fafc;
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #3BAAED;
+  --radius: 0.5rem;
+  --sidebar: #0f172a;
+  --sidebar-border: #1e293b;
+  --sidebar-width: 256px;
+  --font-sans: 'Outfit', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-xs-lh: 1.333;
+  --text-sm: 0.875rem;
+  --text-sm-lh: 1.429;
+  --text-base: 1rem;
+  --text-base-lh: 1.5;
+  --text-lg: 1.125rem;
+  --text-lg-lh: 1.556;
+  --text-xl: 1.25rem;
+  --text-xl-lh: 1.4;
+  --text-2xl: 1.5rem;
+  --text-2xl-lh: 1.333;
+  --tracking-tight: -0.025em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--text-base-lh);
+  letter-spacing: var(--tracking-tight);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
 
+.top-gradient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(100% 100% at 50% 0%, rgba(59, 170, 237, 0.2) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  color: white;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.2;
+}
+
+p, span, a, label, div {
+  letter-spacing: var(--tracking-tight);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
 }
 
 code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
 
+/* Thin scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--card);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 4px;
 }

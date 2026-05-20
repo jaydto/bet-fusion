@@ -308,36 +308,42 @@
 
 ## TRACKING
 
-| Task | Status | Notes |
-|------|--------|-------|
-| T-01 Global CSS tokens | ⬜ Todo | |
-| T-02 Remove orange-pink brand | ⬜ Todo | |
-| T-03 Font migration | ⬜ Todo | |
-| T-04 Header colors/buttons | ⬜ Todo | |
-| T-05 Logo | ⬜ Todo | |
-| T-06 Sidebar nav items | ⬜ Todo | |
-| T-07 Sidebar logo area | ⬜ Todo | |
-| T-08 Mobile bottom nav | ⬜ Todo | |
-| T-09 Top radial glow | ⬜ Todo | |
-| T-10 Banner carousel | ⬜ Todo | |
-| T-11 Section headers | ⬜ Todo | |
-| T-12 Game card grid | ⬜ Todo | |
-| T-13 Landing sections order | ⬜ Todo | |
-| T-14 Auth card layout | ⬜ Todo | |
-| T-15 Back navigation | ⬜ Todo | |
-| T-16 Casino category tabs | ⬜ Todo | |
-| T-17 Casino page header | ⬜ Todo | |
-| T-18 Casino game cards | ⬜ Todo | |
-| T-19 Profile page styling | ⬜ Todo | |
-| T-20 Bet history table | ⬜ Todo | |
-| T-21 Footer wiring | ⬜ Todo | |
-| T-22 Mobile layout | ⬜ Todo | |
-| T-23 Mobile game grid | ⬜ Todo | |
-| T-24 Mobile carousel | ⬜ Todo | |
-| T-25 Mobile typography | ⬜ Todo | |
-| T-26 Mobile auth pages | ⬜ Todo | |
-| T-27 Scrollbar styling | ⬜ Todo | |
-| T-28 Button audit | ⬜ Todo | |
-| T-29 Skeleton screens | ⬜ Todo | |
-| T-30 Toasts/alerts | ⬜ Todo | |
-| T-31 Deposit/Withdraw pages | ⬜ Todo | |
+| Task | Status | Branch / PR | Notes |
+|------|--------|-------------|-------|
+| T-01 Global CSS tokens | ✅ Done | PR #1 | `src/index.css` — Outfit, all tokens, radial glow |
+| T-02 Remove orange-pink brand | ✅ Done | PR #1 | `Themes.css` — all vars updated to #3BAAED |
+| T-03 Font migration | ✅ Done | PR #1 | Outfit everywhere; `.inter-font` → Outfit |
+| T-04 Header colors/buttons | ✅ Done | PR #1 | hover/active → #3BAAED, #000 text |
+| T-05 Logo | ✅ Done | — | Existing BetFusion logo kept, transparent bg |
+| T-06 Sidebar nav items | ✅ Done | PR #1 | Full rewrite: undabet structure, active #3BAAED |
+| T-07 Sidebar logo area | ✅ Done | PR #1 | sidebar.css — 256px, dark bg, border-right |
+| T-08 Mobile bottom nav | ✅ Done | PR #1 | BottomNav.jsx + bottomNav.css — 5 items, #2a3040 |
+| T-09 Top radial glow | ✅ Done | PR #1 | `.top-gradient-glow` in App.js |
+| T-10 Banner carousel | ✅ Done | — | Existing carousel kept, slick dots styled (PR #4) |
+| T-11 Section headers | ✅ Done | PR #2 | `section-header`, `-title`, `-all` classes |
+| T-12 Game card grid | ✅ Done | PR #2 | game-wrapper, game-image-container, overlay-2 |
+| T-13 Landing sections order | ✅ Done | — | Sections unchanged (already correct order) |
+| T-14 Auth card layout | ✅ Done | PR #2 | `auth.css` — dark card, dark inputs, blue focus/submit |
+| T-15 Back navigation | ⬜ Todo | — | Not blocking — minor polish |
+| T-16 Casino category tabs | ✅ Done | PR #2 | ant-tabs pills — #1e293b / #3BAAED active |
+| T-17 Casino page header | ✅ Done | PR #2 | section-header pattern applied |
+| T-18 Casino game cards | ✅ Done | PR #2 | `gamesSection.jsx` — dark card, overlay, play button |
+| T-19 Profile page styling | ✅ Done | PR #3 | balance-card / top-pr → #1e293b + #334155 border |
+| T-20 Bet history table | ✅ Done | PR #3 | row bg #0f172a, filter pills #3BAAED active |
+| T-21 Footer wiring | ✅ Done | PR #3 | footer.jsx — #0f172a, border-top, links #94a3b8→#3BAAED |
+| T-22 Mobile layout | ✅ Done | PR #1 | Sidebar hidden @767px, bottom nav visible |
+| T-23 Mobile game grid | ✅ Done | PR #1 | xs={8} = 3 col; game-image 130px on mobile |
+| T-24 Mobile carousel | ✅ Done | PR #4 | slick-dots styled, existing autoplay kept |
+| T-25 Mobile typography | ✅ Done | PR #4 | h1-h5 scale, body 14px, 72px bottom padding |
+| T-26 Mobile auth pages | ✅ Done | PR #2 | auth.css — image hidden, full-width form, 46px inputs |
+| T-27 Scrollbar styling | ✅ Done | PR #1 | 4px scrollbar, hide on horizontal sections |
+| T-28 Button audit | ✅ Done | PR #3 | login-button2, withdraw-button2, deposit-modal updated |
+| T-29 Skeleton screens | ✅ Done | PR #2 | `.game-card-skeleton` — #1e293b shimmer animation |
+| T-30 Toasts/alerts | ✅ Done | PR #4 | Toastify + Ant notification dark styled |
+| T-31 Deposit/Withdraw pages | ✅ Done | PR #3 | card-d #1e293b, deposit-buttons #3BAAED selected |
+
+**Milestones merged:**
+- PR #1 — Milestone 1: design tokens, sidebar, mobile nav (2026-05-20)
+- PR #2 — Milestone 2: auth cards, section headers, tabs (2026-05-20)
+- PR #3 — Milestone 3: footer, profile, bet history, deposit/withdraw (2026-05-20)
+- PR #4 — Milestone 4: mobile polish, toasts, modals, Ant Design dark overrides (2026-05-20)

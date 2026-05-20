@@ -19,11 +19,25 @@
   display: none;
 }
 
+/* ── Top logo/casino area ── */
 .sidebar-logo-wrap {
-  padding: 20px 16px 16px;
+  padding: 16px 16px 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-casino-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.sidebar-collapse-arrow {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .sidebar-logo-img {
@@ -40,7 +54,7 @@
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 8px 8px;
   gap: 2px;
   flex: 1;
 }
@@ -51,7 +65,7 @@
   gap: 10px;
   padding: 9px 12px;
   border-radius: 8px;
-  text-decoration: none;
+  text-decoration: none !important;
   color: #94a3b8;
   font-family: 'Outfit', sans-serif;
   font-size: 14px;
@@ -59,31 +73,35 @@
   transition: background 0.15s, color 0.15s;
   cursor: pointer;
   position: relative;
+  border-right: 3px solid transparent;
 }
 
 .sidebar-nav-item:hover {
-  background: rgba(59, 170, 237, 0.1);
-  color: #3BAAED;
-  text-decoration: none;
+  background: rgba(59, 170, 237, 0.08);
+  color: #e2e8f0;
+  text-decoration: none !important;
 }
 
+/* Active: dark highlight + right blue border — matches undabet */
 .sidebar-nav-item--active {
-  background: #3BAAED;
-  color: #000 !important;
+  background: rgba(59, 170, 237, 0.12) !important;
+  color: #f8fafc !important;
+  border-right: 3px solid #3BAAED !important;
 }
 
 .sidebar-nav-item--active:hover {
-  background: #2d9ad6;
-  color: #000;
+  background: rgba(59, 170, 237, 0.16) !important;
 }
 
 .sidebar-nav-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1;
 }
 
 .sidebar-nav-label {
@@ -94,7 +112,7 @@
 }
 
 .sidebar-nav-badge {
-  background: #f59e0b;
+  background: #3BAAED;
   color: #000;
   font-size: 10px;
   font-weight: 700;

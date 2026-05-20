@@ -8,7 +8,7 @@ import HorizontalScroller from "./horizontalScroller";
 import { data, helpMessage } from "./data";
 import CongratulationBanner from "./conratulations";
 import CategoryTabs from "./categoryTabs";
-import Footer from "../../footer/footer";
+// Footer rendered at App level — do not import here
 import GameNavBar from "../../mobile-navigation/MobileNav1";
 import CasinoCarouselLoader from "./carousel";
 import { useSelector } from "react-redux";
@@ -151,7 +151,6 @@ const LandingPage = () => {
         </Button>
       </div> */}
 
-      <Footer />
     </div>
   );
 };

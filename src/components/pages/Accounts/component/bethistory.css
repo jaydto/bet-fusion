@@ -1,8 +1,8 @@
 .my-bets-bet-history {
     padding: 10px;
     margin: 5px 10px;
-    border: 1px solid var(--bet-history);
-    background-color: var(--bet-fusion-header-bg);
+    border: 1px solid #1e293b;
+    background-color: #0f172a;
     border-radius: 8px;
     line-height: 2;
 }
@@ -216,15 +216,21 @@ font-weight: 900;
 .filter-buttons-bethistory .filters.button-filter {
     padding: 2px 18px;
     border-radius: 18px;
-    border: thin solid;
-    background: var(--bet-fusion-header-bg);
+    border: 1px solid #334155;
+    background: #1e293b;
     display: flex;
     gap: 5px;
-    /* line-height: 1; */
     text-align: center;
-    display: flex;
     align-items: center;
     min-height: 35px;
+    color: #94a3b8;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.filter-buttons-bethistory .filters.button-filter.active,
+.filter-buttons-bethistory .filters.button-filter:hover {
+    border-color: #3BAAED;
+    background: rgba(59,170,237,0.1);
+    color: #3BAAED;
 }
 .history-details .status{
 

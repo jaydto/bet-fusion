@@ -48,14 +48,17 @@
   z-index: -1;
 }
 .background-profile {
-  background: var(--bet-fusion-header-bg) !important;
-  color: var(--light);
+  background: #0f172a !important;
+  color: #e2e8f0;
 }
 .text-profile-light {
-  color: var(--light);
+  color: #e2e8f0;
+}
+.text-light-p {
+  color: #e2e8f0 !important;
 }
 .text-profile-link {
-  color: var(--side-stats);
+  color: #94a3b8;
 }
 
 .user-profile {
@@ -78,26 +81,26 @@
   justify-content: space-evenly;
 }
 .balance-card.top-pr {
-  background: var(--bet-fusion-secondary);
-  border:none!important;
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  border-radius: 16px !important;
 }
 .card.top-pr {
-  background: var(--bet-fusion-secondary);
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
   align-self: stretch;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.02), 0 10px 10px rgba(0, 0, 0, 0);
 }
 
 .card.top-br {
-  background: transparent;
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
   align-self: stretch;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.02), 0 10px 10px rgba(0, 0, 0, 0); */
-  border: none;
 }
 
 .ant-card-body {

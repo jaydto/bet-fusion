@@ -228,8 +228,9 @@ const Register = () => {
               >
                 <img src={Logo} alt="BetFusion" style={{ width: 140, height: "auto" }} />
                 <div style={{ textAlign: "center" }}>
-                  <p style={{ color: "#f8fafc", fontSize: 24, fontWeight: 800, margin: "0 0 4px", lineHeight: 1.2 }}>
-                    JOIN TODAY
+                  <p style={{ fontSize: 24, fontWeight: 800, margin: "0 0 4px", lineHeight: 1.2 }}>
+                    <span style={{ color: "#f8fafc" }}>JOIN </span>
+                    <span style={{ color: "#3BAAED" }}>TODAY</span>
                   </p>
                   <p style={{ color: "#94a3b8", fontSize: 13, margin: 0 }}>
                     Create your account and start winning

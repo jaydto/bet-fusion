@@ -57,7 +57,7 @@ const RightPanel = () => {
       {/* Support */}
       <div className="rp-section">
         <div className="rp-section-title">
-          <span className="rp-dot" /> Support
+          <span className="rp-dot rp-dot--green" /> Support
         </div>
         <a href="https://betfusion.ke" target="_blank" rel="noopener noreferrer" className="rp-support-link">
           betfusion.ke

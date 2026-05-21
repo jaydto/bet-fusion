@@ -24,7 +24,26 @@ const CasinoCarouselLoader = React.memo(() => {
 
     const visible = (banner_images ?? []).slice(0, isMobile ? 1 : 3);
 
-    if (!visible.length) return null;
+    if (!visible.length) return (
+        <div style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+            gap: isMobile ? 0 : 10,
+            borderRadius: 12,
+            overflow: "hidden",
+            marginBottom: 4,
+        }}>
+            {Array.from({ length: isMobile ? 1 : 3 }).map((_, i) => (
+                <div key={i} style={{
+                    borderRadius: 10,
+                    background: "linear-gradient(90deg, #1e293b 25%, #2a3a4a 50%, #1e293b 75%)",
+                    backgroundSize: "200% 100%",
+                    animation: "game-card-shimmer 1.4s ease-in-out infinite",
+                    height: isMobile ? 160 : 200,
+                }} />
+            ))}
+        </div>
+    );
 
     return (
         <div

@@ -191,7 +191,7 @@ const WithdrawFormFields = (props) => {
     <>
       <div className="d-flex justify-content-between align-items-center mb-4 px-1 w-100">
         <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "14px" }}>Available Balance:</span>
-        <span style={{ color: "#3BAAED", fontWeight: 800, fontSize: "16px" }}>
+        <span style={{ color: "#E55F32", fontWeight: 800, fontSize: "16px" }}>
           KES {formatNumber(user?.balance || 0)}
         </span>
       </div>
@@ -241,7 +241,7 @@ const WithdrawFormFields = (props) => {
                 <span>Withholding Tax (5%):</span>
                 <span>- KES {(values.amount * 0.05).toFixed(2)}</span>
               </div>
-              <div className="d-flex justify-content-between mt-1" style={{ fontSize: "14px", fontWeight: 700, color: "#3BAAED" }}>
+              <div className="d-flex justify-content-between mt-1" style={{ fontSize: "14px", fontWeight: 700, color: "#E55F32" }}>
                 <span>Net Amount to Receive:</span>
                 <span>KES {(values.amount * 0.95).toFixed(2)}</span>
               </div>

@@ -11,7 +11,7 @@ import { setState } from "../../redux/dataSlice";
 import { setState as setStateV } from "../../redux/virtualsSlice";
 import { shouldShowSearch } from "../../redux/navigationAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faSearch, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { get } from "lodash";
 
 export const UserInfo = React.memo((props) => {
@@ -56,81 +56,89 @@ export const UserInfo = React.memo((props) => {
     <>
       {user && (
         <div
-          className="col-md-4  d-flex  right justify-content-end align-items-center w-change2 gap-2 ipad-show"
+          className="d-flex align-items-center gap-2 ipad-show"
           style={{ marginLeft: "auto" }}
         >
           {!profile && showBalance && (
-            <div>
+            <Link to={{ pathname: "/deposit" }} style={{ textDecoration: "none" }}>
               <div
-                className={
-                  "deposit-button size-font-user-action d-flex align-items-center"
-                }
-                style={{ marginRight: "12px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  background: "rgba(59, 170, 237, 0.10)",
+                  border: "1px solid rgba(59, 170, 237, 0.25)",
+                  borderRadius: "999px",
+                  padding: "6px 16px",
+                  cursor: "pointer",
+                }}
               >
-                <span style={{ fontSize: "12px", color: "var(--white)" }} >
-                  &nbsp;
-                  Ksh {formatNumber(user?.balance) || 0.0}
+                <FontAwesomeIcon icon={faWallet} style={{ color: "#3BAAED", fontSize: "14px" }} />
+                <span style={{ color: "#3BAAED", fontWeight: 700, fontSize: "14px", whiteSpace: "nowrap" }}>
+                  KES {formatNumber(user?.balance || 0)}
                 </span>
               </div>
-            </div>
-          )}
-          <div>
-            <Link
-              to={{ pathname: "/deposit" }}
-              className={"cg  login-size btn btn-button-bg-2 text-light "}
-            >
-              <span className="">Deposit</span>
             </Link>
-          </div>
-          {/* <FontAwesomeIcon
-            icon={faSearch}
-            onClick={handleCasinoSearch}
+          )}
+          <Link
+            to={{ pathname: "/deposit" }}
             style={{
-              fontSize: "24px",
-              color: "var(--header-icon)",
-              fontWeight: "700",
-              paddingRight: "10px",
-              paddingLeft: "10px",
-              // opacity: "0.7",
+              background: "rgba(59, 170, 237, 0.15)",
+              color: "#3BAAED",
+              fontWeight: 700,
+              fontSize: "13px",
+              padding: "7px 22px",
+              borderRadius: "999px",
+              border: "1px solid rgba(59, 170, 237, 0.3)",
+              textTransform: "uppercase",
+              letterSpacing: "0.02em",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
             }}
-          /> */}
-
-          {/* <FontAwesomeIcon
-            icon={faBell}
-            style={{
-              fontSize: "24px",
-              color: "var(--header-icon)",
-              fontWeight: "700",
-              paddingRight: "10px",
-
-              // opacity: "0.7",
-            }}
-          /> */}
+          >
+            Deposit
+          </Link>
         </div>
       )}
       <>
         {!user && (
-          <div className="col-sm-2 mobile-profile1 align-items-center gap-3 ipad-show px-2 mb-2 col-lg-3 justify-content-end">
+          <div className="d-flex align-items-center gap-2 justify-content-end ipad-show px-2">
             {pathname !== "/auth/login" && (
               <Link
                 to={"/auth/login"}
-                className="cg  login-color login-size btn"
-                type="submit"
+                style={{
+                  color: "white",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  padding: "8px 20px",
+                  transition: "opacity 0.2s",
+                }}
               >
-                <span>Login</span>
+                Login
               </Link>
             )}
             {pathname !== "/auth/signup" && (
-              <div className="">
-                <Link
-                  className="cg   login-size btn btn-button-bg-2 text-light"
-                  to={"/auth/signup"}
-                  title="Join now"
-                  onClick={() => gaEventTracker("Register")}
-                >
-                  <span className=" text-weight-md">Register</span>
-                </Link>
-              </div>
+              <Link
+                to={"/auth/signup"}
+                onClick={() => gaEventTracker("Register")}
+                style={{
+                  background: "#3BAAED",
+                  color: "#000",
+                  fontWeight: 800,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  padding: "10px 28px",
+                  borderRadius: "999px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+                  boxShadow: "0 4px 20px rgba(59, 170, 237, 0.3)",
+                }}
+              >
+                Register
+              </Link>
             )}
           </div>
         )}

@@ -84,8 +84,8 @@
 
 .rp-btn-secondary {
   background: transparent;
-  color: #E55F32;
-  border: 1px solid #E55F32;
+  color: #f8fafc;
+  border: 1px solid #334155;
 }
 
 /* Sections */
@@ -112,6 +112,10 @@
   background: #E55F32;
   display: inline-block;
   flex-shrink: 0;
+}
+
+.rp-dot--green {
+  background: #22c55e;
 }
 
 /* Promo cards */

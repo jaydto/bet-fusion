@@ -21,23 +21,21 @@
 
 /* ── Top logo/casino area ── */
 .sidebar-logo-wrap {
-  padding: 16px 16px 14px;
+  padding: 0 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.sidebar-casino-icon {
-  font-size: 28px;
-  line-height: 1;
+  height: var(--navbar-height, 56px);
+  flex-shrink: 0;
 }
 
 .sidebar-collapse-arrow {
-  font-size: 13px;
+  display: flex;
+  align-items: center;
   color: #64748b;
-  font-weight: 600;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .sidebar-logo-img {
@@ -132,8 +130,26 @@
   flex-shrink: 0;
 }
 
-.sidebar-support {
+.sidebar-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #E55F32;
+  flex-shrink: 0;
+  animation: sidebar-pulse 2s ease-in-out infinite;
+}
+
+@keyframes sidebar-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.sidebar-support-item {
   font-size: 13px;
+  background: rgba(229, 95, 50, 0.06);
+  border: 1px solid rgba(229, 95, 50, 0.15);
+  border-radius: 8px !important;
+  margin: 2px 0;
 }
 
 @media (max-width: 767px) {

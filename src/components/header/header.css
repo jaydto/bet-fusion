@@ -3,6 +3,16 @@
   scrollbar-width: none;
 }
 
+/* ── Navbar height + bottom border ── */
+.app-navbar.navbar {
+  height: var(--navbar-height, 56px) !important;
+  min-height: var(--navbar-height, 56px) !important;
+  border-bottom: 1px solid #1e293b !important;
+  background: #0f172a !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 .\!size-4 {
   height: 1.5rem !important;
   width: 2rem !important;

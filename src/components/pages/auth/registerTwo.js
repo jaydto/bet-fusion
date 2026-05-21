@@ -182,7 +182,7 @@ const Register = () => {
             id="agreementCheckbox"
             name="agreementCheckbox"
             onChange={handleChange}
-            style={{ marginTop: 2, accentColor: "#3BAAED", width: 16, height: 16, flexShrink: 0 }}
+            style={{ marginTop: 2, accentColor: "#E55F32", width: 16, height: 16, flexShrink: 0 }}
           />
           <label htmlFor="agreementCheckbox" style={{ fontSize: 12, color: "#94a3b8", cursor: "pointer", lineHeight: 1.5 }}>
             Accept{" "}
@@ -230,7 +230,7 @@ const Register = () => {
                 <div style={{ textAlign: "center" }}>
                   <p style={{ fontSize: 24, fontWeight: 800, margin: "0 0 4px", lineHeight: 1.2 }}>
                     <span style={{ color: "#f8fafc" }}>JOIN </span>
-                    <span style={{ color: "#3BAAED" }}>TODAY</span>
+                    <span style={{ color: "#E55F32" }}>TODAY</span>
                   </p>
                   <p style={{ color: "#94a3b8", fontSize: 13, margin: 0 }}>
                     Create your account and start winning

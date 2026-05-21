@@ -73,8 +73,8 @@ export const UserInfo = React.memo((props) => {
                   cursor: "pointer",
                 }}
               >
-                <FontAwesomeIcon icon={faWallet} style={{ color: "#3BAAED", fontSize: "14px" }} />
-                <span style={{ color: "#3BAAED", fontWeight: 700, fontSize: "14px", whiteSpace: "nowrap" }}>
+                <FontAwesomeIcon icon={faWallet} style={{ color: "#E55F32", fontSize: "14px" }} />
+                <span style={{ color: "#E55F32", fontWeight: 700, fontSize: "14px", whiteSpace: "nowrap" }}>
                   KES {formatNumber(user?.balance || 0)}
                 </span>
               </div>
@@ -84,7 +84,7 @@ export const UserInfo = React.memo((props) => {
             to={{ pathname: "/deposit" }}
             style={{
               background: "rgba(59, 170, 237, 0.15)",
-              color: "#3BAAED",
+              color: "#E55F32",
               fontWeight: 700,
               fontSize: "13px",
               padding: "7px 22px",
@@ -124,7 +124,7 @@ export const UserInfo = React.memo((props) => {
                 to={"/auth/signup"}
                 onClick={() => gaEventTracker("Register")}
                 style={{
-                  background: "#3BAAED",
+                  background: "#E55F32",
                   color: "#000",
                   fontWeight: 800,
                   fontSize: "14px",

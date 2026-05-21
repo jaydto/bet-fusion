@@ -32,14 +32,14 @@
   font-family: 'Outfit', sans-serif;
   font-size: 13px;
   font-weight: 500;
-  color: #3BAAED;
+  color: #E55F32;
   text-decoration: none;
   transition: opacity 0.15s;
 }
 
 .section-header-all:hover {
   opacity: 0.75;
-  color: #3BAAED;
+  color: #E55F32;
   text-decoration: none;
 }
 
@@ -130,7 +130,7 @@
 
 .bt-cat:hover,
 .bt-cat.active {
-  background: #3BAAED !important;
+  background: #E55F32 !important;
   color: #000 !important;
 }
 
@@ -291,11 +291,11 @@
 
 .ant-tabs-tab:hover {
   background-color: rgba(59, 170, 237, 0.1) !important;
-  color: #3BAAED !important;
+  color: #E55F32 !important;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active {
-  background-color: #3BAAED !important;
+  background-color: #E55F32 !important;
   color: #000 !important;
   font-weight: 600 !important;
 }
@@ -615,7 +615,7 @@
 }
 
 .play-now-btn {
-  background: #3BAAED;
+  background: #E55F32;
   border: none;
   font-weight: 700;
   padding: 6px 16px;
@@ -1410,7 +1410,7 @@ input.search-cat:focus {
 }
 
 .landing-section-action {
-  color: #3BAAED;
+  color: #E55F32;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;

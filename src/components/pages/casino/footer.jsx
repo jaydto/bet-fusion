@@ -70,15 +70,15 @@ export default function Footer() {
           <Paragraph style={{ color: "#64748b", fontSize: 12, lineHeight: 1.6 }}>
             Please note that this is a real-money gambling app. Gamble responsibly and only bet
             what you can afford. For gambling addiction help, contact us at{" "}
-            <Link to="tel:0718111117" target="_blank" style={{ color: "#3BAAED" }}>
+            <Link to="tel:0718111117" target="_blank" style={{ color: "#E55F32" }}>
               0718111117
             </Link>
             {" | "}
-            <Link to="tel:0718111119" target="_blank" style={{ color: "#3BAAED" }}>
+            <Link to="tel:0718111119" target="_blank" style={{ color: "#E55F32" }}>
               0718111119
             </Link>{" "}
             or{" "}
-            <Link to="/responsible-gambling" style={{ color: "#3BAAED" }}>
+            <Link to="/responsible-gambling" style={{ color: "#E55F32" }}>
               read our Responsible Gambling Policy
             </Link>
             .
@@ -91,7 +91,7 @@ export default function Footer() {
             level={5}
             style={{ color: "#f8fafc", display: "flex", alignItems: "center", gap: 8 }}
           >
-            <FileTextOutlined style={{ color: "#3BAAED" }} />
+            <FileTextOutlined style={{ color: "#E55F32" }} />
             Legal
           </Title>
           <Space wrap size={[24, 8]} style={{ marginBottom: 8 }}>
@@ -106,7 +106,7 @@ export default function Footer() {
                 key={l.to}
                 to={l.to}
                 style={{ color: "#94a3b8", fontSize: 13, textDecoration: "none" }}
-                onMouseEnter={(e) => (e.target.style.color = "#3BAAED")}
+                onMouseEnter={(e) => (e.target.style.color = "#E55F32")}
                 onMouseLeave={(e) => (e.target.style.color = "#94a3b8")}
               >
                 {l.label}

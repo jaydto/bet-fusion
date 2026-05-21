@@ -36,3 +36,6 @@ yarn-error.log*
 *.sw?
 .idea
 node_modules
+
+# Local task tracking
+TODO.md

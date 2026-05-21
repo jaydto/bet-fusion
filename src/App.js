@@ -50,6 +50,8 @@ import Index from "./components/pages/casino/index";
 import SportsPage from "./components/pages/sports";
 import BottomNav from "./components/mobile-navigation/BottomNav";
 import Footer from "./components/pages/casino/footer";
+import RightPanel from "./components/right-panel/RightPanel";
+import "./components/right-panel/rightPanel.css";
 
 const Logout = () => {
   const { dispatch } = useContext(StoreContext);
@@ -262,6 +264,10 @@ const App = () => {
         </div>
         {showSidebar && <Footer />}
       </div>
+
+      {/* Right Panel — desktop only, shown alongside sidebar routes */}
+      {showSidebar && !isGamePlayRoute && <RightPanel />}
+
       {!isGamePlayRoute && <BottomNav />}
     </div>
   ); // </ConfigProvider>

@@ -3,9 +3,9 @@
   min-width: var(--sidebar-width, 256px);
   background: var(--sidebar, #0f172a);
   border-right: 1px solid var(--sidebar-border, #1e293b);
-  height: 100vh;
+  height: calc(100vh - var(--navbar-height, 50px));
   position: sticky;
-  top: 0;
+  top: var(--navbar-height, 50px);
   display: flex;
   flex-direction: column;
   overflow-y: auto;

@@ -33,8 +33,6 @@ const CasinoLayout = () => {
     (state) => state.virtuals.casino_games_data
   );
 
-  const shouldRemoveMarginTop = isMobile && pathname === "/casino/game-play";
-
   useEffect(() => {
     const onScroll = () => {
       setShowScrollTop(window.scrollY > 200);
@@ -64,7 +62,7 @@ const CasinoLayout = () => {
       className="main-layout"
       style={{
         width: "100%",
-        marginTop: shouldRemoveMarginTop ? 0 : "4.5rem",
+        marginTop: 0,
         marginBottom: isMobile ? "3.5rem" : 0,
         display: "flex",
         flexDirection: "column",
@@ -103,7 +101,7 @@ const CasinoLayout = () => {
         </button>
       )}
 
-      {!shouldRemoveMarginTop && <MobileMenu />}
+      {<MobileMenu />}
 
       <style>{`
         .scroll-to-top {

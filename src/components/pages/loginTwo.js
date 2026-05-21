@@ -133,22 +133,21 @@ const LoginTwo = React.memo(() => {
           {errors.password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.password}</span>}
         </div>
 
-        <div style={{ textAlign: "right", marginBottom: 16 }}>
-          <Link to="/auth/reset-password" className="auth-link" onClick={() => gaEventTracker("Reset Password")}>
-            Forgot Password?
-          </Link>
-        </div>
-
         <button type="submit" className="auth-submit-btn" disabled={loading}>
           {loading ? "Logging in…" : "Log In"}
         </button>
 
-        <p className="auth-footer-text" style={{ marginTop: 16 }}>
-          New?{" "}
-          <Link to="/auth/signup" className="auth-link" onClick={() => gaEventTracker("Register")}>
-            Register
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16 }}>
+          <p className="auth-footer-text" style={{ margin: 0 }}>
+            New?{" "}
+            <Link to="/auth/signup" className="auth-link" onClick={() => gaEventTracker("Register")}>
+              Register
+            </Link>
+          </p>
+          <Link to="/auth/reset-password" className="auth-link" onClick={() => gaEventTracker("Reset Password")}>
+            Forgot Password?
           </Link>
-        </p>
+        </div>
       </Form>
     );
   };

@@ -109,8 +109,8 @@ const GamesLibrary = ({
                   xs={8}
                   sm={8}
                   md={6}
-                  lg={6}
-                  xl={nowrap ? 4 : 5}
+                  lg={4}
+                  xl={4}
                   className="game-col"
                   ref={(el) => (cardRefs.current[game.game_id] = el)}
                 >

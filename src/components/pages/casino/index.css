@@ -1384,3 +1384,106 @@ input.search-cat:focus {
     height: 42vh !important;
   }
 }
+
+/* ── Landing v2 (undabet-style sections) ── */
+.landing-v2 {
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.landing-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.landing-section-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #f8fafc;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.landing-section-action {
+  color: #3BAAED;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s;
+}
+
+.landing-section-action:hover {
+  opacity: 0.75;
+}
+
+/* Overlay title strip at bottom of game card */
+.game-title-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 6px 6px;
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.95), transparent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  opacity: 0.9;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Override game-card for horizontal row context */
+.landing-row .game-card {
+  aspect-ratio: 4 / 5;
+  flex-shrink: 0;
+  width: 140px;
+  height: unset;
+  border-radius: 10px;
+  background: rgba(229, 229, 229, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.landing-row .game-card.lg {
+  width: 180px;
+}
+
+.landing-row .game-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Skeleton shimmer for landing rows */
+.game-card-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.04) 75%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: game-card-shimmer 1.4s ease-in-out infinite !important;
+  cursor: default !important;
+  aspect-ratio: 4 / 5;
+  width: 140px;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+.game-card-skeleton:hover {
+  transform: none !important;
+}
+
+@keyframes game-card-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

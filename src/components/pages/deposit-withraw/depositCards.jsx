@@ -3,33 +3,30 @@ import { Card, Row, Col } from "antd";
 
 const DepositCards = ({ onCardSelect }) => {
   const cards = [
-    { id: 1, amount: 50 },
-    { id: 2, amount: 99 },
-    { id: 3, amount: 250 },
-    { id: 4, amount: 500 },
-    { id: 5, amount: 1000 },
+    { id: 1, amount: 100 },
+    { id: 2, amount: 200 },
+    { id: 3, amount: 500 },
+    { id: 4, amount: 1000 },
   ];
 
   return (
-    <Row gutter={[4, 0]} wrap={false} justify="space-between">
+    <Row gutter={[6, 0]} wrap={false} justify="space-between" style={{ marginBottom: 12 }}>
       {cards.map(({ id, amount }) => (
-        // "Ignore grid numbers, just divide the available space equally."
         <Col key={id} flex="1" style={{ minWidth: 0 }}>
           <Card
             hoverable
             onClick={() => onCardSelect && onCardSelect(amount)}
-            // Override AntD default padding
             bodyStyle={{
-              padding: "6px 0px",
+              padding: "7px 0px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               width: "100%",
             }}
             style={{
-              borderRadius: "4px",
+              borderRadius: "6px",
               backgroundColor: "transparent",
-              border: "1px solid var(--bet-fusion-grey)",
+              border: "1px solid #E55F32",
               cursor: "pointer",
               textAlign: "center",
               width: "100%",
@@ -38,13 +35,13 @@ const DepositCards = ({ onCardSelect }) => {
           >
             <div
               style={{
-                color: "var(--white)",
-                fontSize: "11px", 
+                color: "#E55F32",
+                fontSize: "12px",
                 fontWeight: "700",
                 whiteSpace: "nowrap",
               }}
             >
-              +{amount} <span style={{ fontSize: "11px" }}>KES</span>
+              {amount}
             </div>
           </Card>
         </Col>

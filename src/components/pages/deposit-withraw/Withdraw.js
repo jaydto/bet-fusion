@@ -220,6 +220,29 @@ const WithdrawFormFields = (props) => {
       <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
         <div className="col-md-12">
           <label className={"text-light deposit"}>Amount to Withdraw</label>
+          {/* Quick amount buttons */}
+          <div className="d-flex gap-2 mb-2" style={{ flexWrap: "nowrap" }}>
+            {[100, 200, 500, 1000].map((amt) => (
+              <button
+                key={amt}
+                type="button"
+                onClick={() => onFieldChanged({ target: { name: "amount", value: String(amt) } })}
+                style={{
+                  flex: 1,
+                  padding: "6px 0",
+                  borderRadius: "6px",
+                  border: "1px solid #E55F32",
+                  background: "transparent",
+                  color: "#E55F32",
+                  fontWeight: 700,
+                  fontSize: "12px",
+                  cursor: "pointer",
+                }}
+              >
+                {amt}
+              </button>
+            ))}
+          </div>
           <input
             onChange={(ev) => {
               onFieldChanged(ev);

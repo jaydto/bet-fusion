@@ -1,148 +1,150 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { Row, Col, Grid, Button } from "antd";
-import { ConsoleSqlOutlined } from "@ant-design/icons"; // game console icon
+import React, { useMemo } from "react";
+import { Grid } from "antd";
 import { useNavigate } from "react-router-dom";
-import GamesSection from "./gamesSection";
-import MustPlaySection from "./mustPlaySection";
-import HorizontalScroller from "./horizontalScroller";
-import { data, helpMessage } from "./data";
-import CongratulationBanner from "./conratulations";
-import CategoryTabs from "./categoryTabs";
-// Footer rendered at App level — do not import here
-import CasinoCarouselLoader from "./carousel";
 import { useSelector } from "react-redux";
-import { getFromLocalStorage } from "../../utils/local-storage";
+import CasinoCarouselLoader from "./carousel";
+import SectionHeader from "./sectionHeader";
+import HorizontalGameRow from "./horizontalGameRow";
 
 const { useBreakpoint } = Grid;
 
+const GameRowSkeleton = ({ count = 6 }) => (
+  <div className="landing-row">
+    {Array.from({ length: count }).map((_, i) => (
+      <div
+        key={i}
+        className="game-card game-card-skeleton"
+        style={{ flex: "0 0 140px", width: "140px", marginRight: "12px" }}
+      />
+    ))}
+  </div>
+);
+
 const LandingPage = () => {
-  const [activeCategory, setActiveCategory] = useState("lobby");
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   const navigate = useNavigate();
 
-  const [localGameData] = useState(() => getFromLocalStorage("casino_games_data") || []);
-  
-  const reduxGames = useSelector((state) => state.virtuals.casino_games_data);
+  const casino_games = useSelector((state) => state.virtuals.casino_games_data);
+  const loading = useSelector((state) => state.virtuals.loading);
 
-  const activeDataSource = reduxGames && reduxGames.length > 0 ? reduxGames : localGameData;
+  const safeGames = Array.isArray(casino_games) ? casino_games : [];
 
-  const handleCategoryClick = (categoryId) => {
-    setActiveCategory(categoryId);
-  };
-
-  const handleMoreGamesClick = () => {
-    navigate("/casino");
-  };
-
-  const crashGames = useMemo(() => {
-    return (activeDataSource || []).filter(game =>
-      game.categories?.some(cat => cat.game_type_id === "crash")
+  const getGameImage = (g) => g?.display_image_url || g?.image_url || g?.image || "";
+  const withImage = (arr) => (Array.isArray(arr) ? arr.filter((g) => !!getGameImage(g)) : []);
+  const hasType = (game, type) =>
+    !!game?.categories?.some(
+      (cat) => String(cat?.game_type_id || "").toLowerCase() === String(type).toLowerCase()
     );
-  }, [activeDataSource]);
 
-  const popularGames = useMemo(() => {
-    return (activeDataSource || []).filter(game =>
-      game.categories?.some(cat => cat.game_type_id === "popular")
-    );
-  }, [activeDataSource]);
+  const popularGames = useMemo(() => withImage(safeGames).slice(0, 12), [safeGames]);
 
-  const hotGames = useMemo(() => {
-    return (activeDataSource || []).filter(game =>
-      game.categories?.some(cat => cat.game_type_id === "hot")
-    );
-  }, [activeDataSource]);
+  const crashGames = useMemo(
+    () =>
+      withImage(
+        safeGames.filter(
+          (g) =>
+            hasType(g, "crash") ||
+            String(g?.game_name || "").toLowerCase().includes("avi") ||
+            String(g?.game_name || "").toLowerCase().includes("jetx")
+        )
+      ),
+    [safeGames]
+  );
+
+  const liveGames = useMemo(
+    () =>
+      withImage(
+        safeGames.filter(
+          (g) =>
+            g?.categories?.some((c) =>
+              String(c?.game_type_id || "").toLowerCase().includes("live")
+            ) ||
+            String(g?.game_name || "").toLowerCase().includes("live")
+        )
+      ),
+    [safeGames]
+  );
+
+  const slotsGames = useMemo(
+    () =>
+      withImage(
+        safeGames.filter(
+          (g) =>
+            hasType(g, "slots") ||
+            hasType(g, "slot") ||
+            String(g?.game_name || "").toLowerCase().includes("slot")
+        )
+      ),
+    [safeGames]
+  );
+
+  const onCardClick = (gameId, gameName) =>
+    navigate(`/casino/game-play?game=${gameId}&status=0&game_name=${encodeURIComponent(gameName)}`);
 
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
-      <div
-        style={{
-          marginTop: isMobile ? 2 : 10,
-          padding: isMobile ? "5px 1px" : "12px 0px 0px 12px",
-          overflow: "hidden",
-        }}
-      >
+      <div style={{ marginTop: isMobile ? 2 : 10, padding: isMobile ? "5px 1px" : "12px 0px 0px 12px", overflow: "hidden" }}>
         <CasinoCarouselLoader />
-        {/* <CongratulationBanner messagesObject={helpMessage} /> */}
-        {/* <div style={{ marginTop: 20 }}>
-          <CategoryTabs />
-        </div> */}
-
-        {/* <HorizontalScroller
-          categories={data.categories}
-          activeCategory={activeCategory}
-          onCategoryClick={handleCategoryClick}
-        /> */}
       </div>
 
-      {/* <div style={{ marginTop: 0 }}>
-        <GamesSection games={data.games} />
-      </div> */}
-
-      {/* <div style={{ marginTop: 5 }}>
-        <MustPlaySection must_play={data.must_play} />
-      </div> */}
-
-      {popularGames.length > 0 && (
-        <div style={{ marginTop: 5, marginBottom: "1rem" }}>
-          <GamesSection key={`popular-${popularGames.length}`} games={popularGames.slice(0, 12)} category="Popular" count={popularGames.length} />
+      <div className="landing-v2" style={{ padding: isMobile ? "0 8px" : "0 12px" }}>
+        {/* Popular Games */}
+        <div className="landing-section">
+          <SectionHeader
+            title="Popular Games"
+            actionLabel="All"
+            onAction={() => navigate("/casino")}
+          />
+          {loading
+            ? <GameRowSkeleton count={6} />
+            : popularGames.length > 0
+              ? <HorizontalGameRow size="md" games={popularGames} onCardClick={onCardClick} />
+              : null}
         </div>
-      )}
 
-      {hotGames.length > 0 && (
-        <div style={{ marginTop: 5, marginBottom: "1rem" }}>
-          <GamesSection key={`hot-${hotGames.length}`} games={hotGames.slice(0, 12)} category="Hot" count={hotGames.length} />
-        </div>
-      )}
-
-      {crashGames.length > 0 && (
-        <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-          <GamesSection key={`crash-${crashGames.length}`} games={crashGames.slice(0, 12)} category="CRASH" count={crashGames?.length} />
-        </div>
-      )}
-
-      {/* {virtualGames.length > 0 && (
-        <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-          <GamesSection games={virtualGames.slice(0, 8)} category="VIRTUAL" count={virtualGames?.length} />
-        </div>
-      )} */}
-
-      {/* <div>
-        {Object.entries(gamesByCategory).map(([categoryName, gamesArray]) => (
-          <div key={categoryName} style={{ marginTop: 5, marginBottom: "2rem" }}>
-            <GamesSection 
-              games={gamesArray.slice(0, 8)} 
-              category={categoryName} 
-              count={gamesArray.length} 
+        {/* Crash / Originals */}
+        {(loading || crashGames.length > 0) && (
+          <div className="landing-section">
+            <SectionHeader
+              title="Crash Games"
+              actionLabel="All"
+              onAction={() => navigate("/casino?categoryId=crash")}
             />
+            {loading
+              ? <GameRowSkeleton count={6} />
+              : <HorizontalGameRow size="md" games={crashGames.slice(0, 12)} onCardClick={onCardClick} />}
           </div>
-        ))}
-      </div> */}
+        )}
 
-      {/* <div style={{ marginTop: 5, marginBottom: "2rem" }}>
-        <GamesSection games={casino_games.slice(0, 8)} category="Casino"  count={casino_games?.length} />
-      </div> */}
+        {/* Live Casino */}
+        {(loading || liveGames.length > 0) && (
+          <div className="landing-section">
+            <SectionHeader
+              title="Live Casino"
+              actionLabel="All"
+              onAction={() => navigate("/casino?categoryId=live")}
+            />
+            {loading
+              ? <GameRowSkeleton count={6} />
+              : <HorizontalGameRow size="lg" games={liveGames.slice(0, 12)} onCardClick={onCardClick} />}
+          </div>
+        )}
 
-      
-
-      {/* <div style={{ textAlign: "center", marginTop: 30 }}>
-        <Button
-          size="large"
-          icon={<ConsoleSqlOutlined />}
-          onClick={handleMoreGamesClick}
-          style={{
-            backgroundColor: "var(--btn-color-action)",
-            color: "var(--black)",
-            border: "none",
-            borderRadius: 6, // less rounded
-            padding: "0 20px", // optional: adjust padding for a clean look
-            height: 40, // optional: fixed height
-          }}
-        >
-          More Games
-        </Button>
-      </div> */}
-
+        {/* Slots */}
+        {(loading || slotsGames.length > 0) && (
+          <div className="landing-section">
+            <SectionHeader
+              title="Slots"
+              actionLabel="All"
+              onAction={() => navigate("/casino?categoryId=slots")}
+            />
+            {loading
+              ? <GameRowSkeleton count={6} />
+              : <HorizontalGameRow size="md" games={slotsGames.slice(0, 12)} onCardClick={onCardClick} />}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

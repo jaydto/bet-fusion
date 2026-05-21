@@ -47,88 +47,36 @@ const CasinoGames = ({ activeSetCategory }) => {
 
   const categorizedGames = {};
 
-  const allowedCategory = 'crash'
-
-  // if (Array.isArray(casino_types)) {
-  //   casino_types.forEach((type) => {
-  //     categorizedGames[type.game_type_description] = [];
-  //   });
-  //   categorizedGames["Casino"] = [];
-
-  //   if (Array.isArray(casino_games)) {
-  //     casino_games.forEach((game) => {
-  //       if (game.categories && game.categories.length > 0) {
-  //         game.categories.forEach((category) => {
-  //           const typeDescription = casino_types.find(
-  //             (t) => t.game_type_id === category.game_type_id
-  //           )?.game_type_description;
-  //           if (typeDescription) {
-  //             categorizedGames[typeDescription].push({
-  //               id: game.id,
-  //               game_id: game.game_id,
-  //               title: game.game_name,
-  //               image:
-  //                 game.image_url ||
-  //                 game.display_image_url ||
-  //                 defaultImages[game.id % defaultImages.length],
-  //               link: game.demo_launch_url || "#",
-  //             });
-  //           }
-  //         });
-  //       } else {
-  //         categorizedGames["Casino"].push({
-  //           id: game.id,
-  //           game_id: game.game_id,
-  //           title: game.game_name,
-  //           image:
-  //             game.image_url ||
-  //             game.display_image_url ||
-  //             defaultImages[game.id % defaultImages.length],
-  //           link: game.demo_launch_url || "#",
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
-
   if (Array.isArray(casino_types)) {
-
     casino_types.forEach((type) => {
-      const typeDesc = type.game_type_description?.toLowerCase() || "";
-      if (typeDesc.includes(allowedCategory)) {
-        categorizedGames[type.game_type_description] = [];
-      }
+      categorizedGames[type.game_type_description] = [];
     });
+    categorizedGames["Casino"] = [];
 
     if (Array.isArray(casino_games)) {
       casino_games.forEach((game) => {
+        const image = game.display_image_url || game.image_url || null;
+        if (!image) return;
+
+        const entry = {
+          id: game.id,
+          game_id: game.game_id,
+          title: game.game_name,
+          image,
+          link: game.demo_launch_url || "#",
+        };
+
         if (game.categories && game.categories.length > 0) {
           game.categories.forEach((category) => {
-            const typeMatch = casino_types.find(
+            const typeDescription = casino_types.find(
               (t) => t.game_type_id === category.game_type_id
-            );
-            
-            const typeDescription = typeMatch?.game_type_description;
-            const lowerDescription = typeDescription?.toLowerCase() || "";
-
-            // 2. Only add games if the category name contains "crash"
-            if (typeDescription && lowerDescription.includes(allowedCategory)) {
-              if (!categorizedGames[typeDescription]) {
-                categorizedGames[typeDescription] = [];
-              }
-              
-              categorizedGames[typeDescription].push({
-                id: game.id,
-                game_id: game.game_id,
-                title: game.game_name,
-                image:
-                  game.image_url ||
-                  game.display_image_url ||
-                  defaultImages[game.id % defaultImages.length],
-                link: game.demo_launch_url || "#",
-              });
+            )?.game_type_description;
+            if (typeDescription) {
+              categorizedGames[typeDescription].push(entry);
             }
           });
+        } else {
+          categorizedGames["Casino"].push(entry);
         }
       });
     }

@@ -39,16 +39,23 @@ export default function Footer() {
         <Col span={24} style={{ maxWidth: 960, margin: "0 auto" }}>
 
           {/* License */}
-          <Title level={5} style={{ color: "#f8fafc", marginBottom: 8 }}>
-            License
+          <Title level={5} style={{ color: "#f8fafc", marginBottom: 8, fontWeight: 700 }}>
+            License Information
           </Title>
-          <Paragraph style={{ fontSize: 12, color: "#64748b", lineHeight: 1.6 }}>
-            Only individuals aged <b style={{ color: "#f8fafc" }}>18 years or older</b> are permitted to play.
-            Please play responsibly. Gambling may lead to addiction and mental health challenges.
-            Betfusion is a product of Game Guys Limited, a licensed gaming company in Kenya regulated
-            by the Betting Control and Licensing Board (BCLB).{" "}
-            License Number: <b style={{ color: "#f8fafc" }}>PG0001119 / BK0001120</b>
-          </Paragraph>
+          <ul style={{ fontSize: 13, color: "#64748b", listStyle: "none", paddingLeft: 0, lineHeight: 1.8, margin: 0 }}>
+            <li>
+              Only individuals aged{" "}
+              <b style={{ color: "#f8fafc" }}>18 years or older</b>{" "}
+              are permitted to play.{" "}
+              <Badge count="18+" style={{ backgroundColor: "transparent", border: "1px solid #ffc107", color: "white" }} />
+            </li>
+            <li>Please play responsibly. Gambling may lead to addiction and mental health challenges.</li>
+            <li>
+              Betfusion is a product of Game Guys Limited, a licensed gaming company in Kenya regulated
+              by the Betting Control and Licensing Board (BCLB).
+            </li>
+            <li>License Number: <b style={{ color: "#f8fafc" }}>PG0001119 / BK0001120</b></li>
+          </ul>
 
           <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
 

@@ -26,11 +26,11 @@
   --card-c: #34363a;
   --bg-cat-1: #2b2930;
   --check-box: #ffaa00;
-  --game-title: #fdcb06;
-  --side-bg-2: #311c47;
-  --text-c: #fdcb06;
-  --bg-card-dark: #12121E;
-  --bg-section-container: #1d1d30;
+  --game-title: rgba(2, 6, 23, 0.85);
+  --side-bg-2: #1e293b;
+  --text-c: #f8fafc;
+  --bg-card-dark: #0f172a;
+  --bg-section-container: #020617;
   --profile-card: #040b2e;
   --fade-color: #adadad;
   --black: #000;

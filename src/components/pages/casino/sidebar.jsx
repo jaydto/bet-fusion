@@ -43,6 +43,41 @@ const Sidebar = () => {
       <div className="sidebar-divider" />
 
       <nav className="sidebar-nav">
+        <div className="sidebar-section-title">TOP EVENTS</div>
+        <NavItem
+          to="/sports?sport=football"
+          active={path.includes("sport=football")}
+          label="Football"
+          icon="⚽"
+        />
+        <NavItem
+          to="/sports?sport=basketball"
+          active={path.includes("sport=basketball")}
+          label="Basketball"
+          icon="🏀"
+        />
+        <NavItem
+          to="/sports?sport=tennis"
+          active={path.includes("sport=tennis")}
+          label="Tennis"
+          icon="🎾"
+        />
+        <NavItem
+          to="/sports?sport=rugby"
+          active={path.includes("sport=rugby")}
+          label="Rugby"
+          icon="🏉"
+        />
+        <NavItem
+          to="/sports"
+          active={path === "/sports"}
+          label="All Sports"
+          icon="🏆"
+        />
+
+        <div className="sidebar-divider" />
+        <div className="sidebar-section-title">CASINO</div>
+
         <NavItem
           to="/"
           active={isActive("/")}

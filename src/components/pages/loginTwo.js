@@ -11,7 +11,6 @@ import { loginUser, resetState } from "../../redux/authSlice";
 import { StoreContext } from "../../context/store";
 import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
-import Logo from "../../assets/img/logo.png";
 import "../../assets/css/auth.css";
 
 const LoginTwo = React.memo(() => {
@@ -173,7 +172,9 @@ const LoginTwo = React.memo(() => {
                   gap: 12,
                 }}
               >
-                <img src={Logo} alt="BetFusion" style={{ width: 140, height: "auto" }} />
+                <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "32px", letterSpacing: "-0.5px" }}>
+                  <span style={{ color: "#E55F32" }}>bet</span><span style={{ color: "#fff" }}>fusion</span>
+                </span>
                 <p style={{ color: "#94a3b8", fontSize: 13, textAlign: "center", margin: 0 }}>
                   Play. Win. Repeat.
                 </p>

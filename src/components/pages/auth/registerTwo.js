@@ -10,7 +10,6 @@ import { signupUser } from "../../../redux/authSlice";
 import { configSettings } from "../../../redux/dataSlice";
 import { clearTrackingData, getFromLocalStorage, setTrackingData } from "../../utils/local-storage";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
-import Logo from "../../../assets/img/logo.png";
 import "../../../assets/css/auth.css";
 
 const Register = () => {
@@ -226,7 +225,9 @@ const Register = () => {
                   gap: 16,
                 }}
               >
-                <img src={Logo} alt="BetFusion" style={{ width: 140, height: "auto" }} />
+                <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "32px", letterSpacing: "-0.5px" }}>
+                  <span style={{ color: "#E55F32" }}>bet</span><span style={{ color: "#fff" }}>fusion</span>
+                </span>
                 <div style={{ textAlign: "center" }}>
                   <p style={{ fontSize: 24, fontWeight: 800, margin: "0 0 4px", lineHeight: 1.2 }}>
                     <span style={{ color: "#f8fafc" }}>JOIN </span>

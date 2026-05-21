@@ -51,6 +51,15 @@
   margin: 6px 0;
 }
 
+.sidebar-section-title {
+  font-size: 10px;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 8px 4px;
+}
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;

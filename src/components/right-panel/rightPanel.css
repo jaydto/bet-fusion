@@ -187,7 +187,7 @@
 
 .rp-badge {
   flex: 1;
-  padding: 6px 0;
+  padding: 6px 8px;
   background: #1e293b;
   border-radius: 6px;
   font-size: 10px;
@@ -196,5 +196,9 @@
   text-align: center;
   text-decoration: none;
   border: 1px solid #334155;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 .rp-badge:hover { color: #f8fafc; border-color: #64748b; text-decoration: none; }

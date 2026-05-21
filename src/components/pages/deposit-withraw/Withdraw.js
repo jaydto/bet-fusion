@@ -17,6 +17,7 @@ import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { resetState, userWithdrawal } from "../../../redux/dataSlice";
 import { userBalance } from "../../../redux/authSlice";
+import { formatNumber } from "../../utils/betslip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -184,9 +185,16 @@ const PaymentInstructions = (props) => {
 const WithdrawFormFields = (props) => {
   const { values, errors, onFieldChanged } = props;
   const loading = useSelector((state) => state.data.withdraw_loading);
+  const user = useSelector((state) => state.auth.user) || getFromLocalStorage("user");
 
   return (
     <>
+      <div className="d-flex justify-content-between align-items-center mb-4 px-1 w-100">
+        <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "14px" }}>Available Balance:</span>
+        <span style={{ color: "#3BAAED", fontWeight: 800, fontSize: "16px" }}>
+          KES {formatNumber(user?.balance || 0)}
+        </span>
+      </div>
       <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
         <div className={`col-md-12 w-100`}>
           <div className={"d-flex "}>
@@ -225,6 +233,19 @@ const WithdrawFormFields = (props) => {
           />
           {errors.amount && (
             <div className="text-danger"> {errors.amount} </div>
+          )}
+
+          {values.amount > 0 && (
+            <div className="px-1 mt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "8px" }}>
+              <div className="d-flex justify-content-between" style={{ fontSize: "12px", color: "#a3a3a3" }}>
+                <span>Withholding Tax (5%):</span>
+                <span>- KES {(values.amount * 0.05).toFixed(2)}</span>
+              </div>
+              <div className="d-flex justify-content-between mt-1" style={{ fontSize: "14px", fontWeight: 700, color: "#3BAAED" }}>
+                <span>Net Amount to Receive:</span>
+                <span>KES {(values.amount * 0.95).toFixed(2)}</span>
+              </div>
+            </div>
           )}
         </div>
       </div>

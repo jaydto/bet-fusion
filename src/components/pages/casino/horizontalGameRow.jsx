@@ -52,8 +52,8 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick }) => {
         return (
           <div
             key={key}
-            className={`game-card ${size}`}
-            style={{ flex: "0 0 auto", width: size === "lg" ? "180px" : "140px", marginRight: "12px", cursor: "pointer" }}
+            className={`game-card ${size} game-card--hoverable`}
+            style={{ flex: "0 0 auto", width: size === "lg" ? "180px" : "148px", marginRight: "12px", cursor: "pointer" }}
             onClick={() => {
               if (drag.current.moved) return;
               if (onCardClick) {
@@ -73,6 +73,9 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick }) => {
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
             <div className="game-title-strip">{name}</div>
+            <div className="game-card-hover-overlay">
+              <span className="game-card-play-btn">Play Now</span>
+            </div>
           </div>
         );
       })}

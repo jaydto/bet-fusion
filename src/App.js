@@ -268,7 +268,7 @@ const App = () => {
       {/* Right Panel — desktop only, shown alongside sidebar routes */}
       {showSidebar && !isGamePlayRoute && <RightPanel />}
 
-      {!isGamePlayRoute && <BottomNav />}
+      {!isGamePlayRoute && isMobile && <BottomNav />}
     </div>
   ); // </ConfigProvider>
 };

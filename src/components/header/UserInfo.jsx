@@ -108,12 +108,16 @@ export const UserInfo = React.memo((props) => {
               <Link
                 to={"/auth/login"}
                 style={{
-                  color: "white",
+                  color: "#f8fafc",
                   fontWeight: 600,
                   fontSize: "14px",
                   textDecoration: "none",
-                  padding: "8px 20px",
-                  transition: "opacity 0.2s",
+                  padding: "7px 20px",
+                  border: "1px solid #334155",
+                  borderRadius: "999px",
+                  transition: "border-color 0.2s, color 0.2s",
+                  display: "inline-flex",
+                  alignItems: "center",
                 }}
               >
                 Login

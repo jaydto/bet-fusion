@@ -3,7 +3,7 @@
 :root {
   --background: #020617;
   --foreground: #f8fafc;
-  --primary: #3BAAED;
+  --primary: #E55F32;
   --primary-foreground: #000;
   --card: #0f172a;
   --card-foreground: #f8fafc;
@@ -19,7 +19,7 @@
   --destructive-foreground: #f8fafc;
   --border: #1e293b;
   --input: #1e293b;
-  --ring: #3BAAED;
+  --ring: #E55F32;
   --radius: 0.5rem;
   --sidebar: #0f172a;
   --sidebar-border: #1e293b;
@@ -159,10 +159,10 @@ code {
   border-left: 3px solid #f59e0b !important;
 }
 .Toastify__toast--info {
-  border-left: 3px solid #3BAAED !important;
+  border-left: 3px solid #E55F32 !important;
 }
 .Toastify__progress-bar {
-  background: #3BAAED !important;
+  background: #E55F32 !important;
 }
 .Toastify__close-button {
   color: #64748b !important;
@@ -175,7 +175,7 @@ code {
   opacity: 1 !important;
 }
 .slick-dots li.slick-active button::before {
-  color: #3BAAED !important;
+  color: #E55F32 !important;
   opacity: 1 !important;
 }
 .slick-dots {
@@ -244,7 +244,7 @@ code {
 .ant-select-item-option-active,
 .ant-select-item-option-selected {
   background: rgba(59,170,237,0.15) !important;
-  color: #3BAAED !important;
+  color: #E55F32 !important;
 }
 .ant-input {
   background: #1e293b !important;
@@ -253,12 +253,12 @@ code {
   border-radius: 8px !important;
 }
 .ant-input:focus {
-  border-color: #3BAAED !important;
+  border-color: #E55F32 !important;
   box-shadow: 0 0 0 2px rgba(59,170,237,0.2) !important;
 }
 .ant-btn-primary {
-  background: #3BAAED !important;
-  border-color: #3BAAED !important;
+  background: #E55F32 !important;
+  border-color: #E55F32 !important;
   color: #000 !important;
   font-weight: 700 !important;
 }
@@ -298,8 +298,8 @@ code {
   color: #94a3b8 !important;
 }
 .ant-pagination-item-active {
-  background: #3BAAED !important;
-  border-color: #3BAAED !important;
+  background: #E55F32 !important;
+  border-color: #E55F32 !important;
 }
 .ant-pagination-item-active a {
   color: #000 !important;

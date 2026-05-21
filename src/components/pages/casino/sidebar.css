@@ -86,7 +86,7 @@
 .sidebar-nav-item--active {
   background: rgba(59, 170, 237, 0.12) !important;
   color: #f8fafc !important;
-  border-right: 3px solid #3BAAED !important;
+  border-right: 3px solid #E55F32 !important;
 }
 
 .sidebar-nav-item--active:hover {
@@ -112,7 +112,7 @@
 }
 
 .sidebar-nav-badge {
-  background: #3BAAED;
+  background: #E55F32;
   color: #000;
   font-size: 10px;
   font-weight: 700;

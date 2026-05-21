@@ -29,7 +29,7 @@
   color: hsl(var(--accent-foreground));
 }
 .hover\:bg-accent:hover {
-    background-color: #3BAAED !important;
+    background-color: #E55F32 !important;
     color: #000 !important;
 }
 .hover\:bg-accent:hover .nuxt-icon {
@@ -62,7 +62,7 @@
 }
 
 .active-btn-display {
-  background-color: #3BAAED !important;
+  background-color: #E55F32 !important;
   color: #000 !important;
 }
 .active-btn-display .nuxt-icon {

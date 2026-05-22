@@ -13,8 +13,8 @@ const RightPanel = () => {
 
   return (
     <aside className="right-panel">
-      {/* Auth / Balance */}
-      {user ? (
+      {/* Balance / actions — only shown when logged in */}
+      {user && (
         <div className="rp-profile">
           <div className="rp-avatar">
             <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
@@ -29,11 +29,6 @@ const RightPanel = () => {
             <Link to="/withdraw" className="rp-btn rp-btn-secondary">Withdraw</Link>
             <Link to="/deposit" className="rp-btn rp-btn-primary" onClick={(e) => { e.preventDefault(); document.dispatchEvent(new CustomEvent("openDepositModal")); }}>Deposit</Link>
           </div>
-        </div>
-      ) : (
-        <div className="rp-auth">
-          <Link to="/auth/login" className="rp-btn rp-btn-secondary">Login</Link>
-          <Link to="/auth/signup" className="rp-btn rp-btn-primary">Register</Link>
         </div>
       )}
 

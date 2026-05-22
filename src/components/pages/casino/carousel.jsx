@@ -65,6 +65,8 @@ const CasinoCarouselLoader = React.memo(() => {
     const visible = allBanners.slice(page * perPage, page * perPage + perPage);
     const showArrows = allBanners.length > perPage;
 
+    const bannerHeight = isMobile ? 160 : 200;
+
     const shimmerGrid = (
         <div style={{
             display: "grid",
@@ -80,7 +82,7 @@ const CasinoCarouselLoader = React.memo(() => {
                     background: "linear-gradient(90deg, #1e293b 25%, #2a3a4a 50%, #1e293b 75%)",
                     backgroundSize: "200% 100%",
                     animation: "game-card-shimmer 1.4s ease-in-out infinite",
-                    height: isMobile ? 160 : 200,
+                    height: bannerHeight,
                 }} />
             ))}
         </div>
@@ -90,47 +92,64 @@ const CasinoCarouselLoader = React.memo(() => {
 
     return (
         <div style={{ position: "relative" }}>
-            {showArrows && (
-                <ArrowBtn
-                    direction="prev"
-                    onClick={() => setPage((p) => Math.max(0, p - 1))}
-                    disabled={page === 0}
-                />
-            )}
+            {/* Grid wrapper — arrows centre on this element */}
+            <div style={{ position: "relative" }}>
+                {showArrows && (
+                    <ArrowBtn
+                        direction="prev"
+                        onClick={() => setPage((p) => Math.max(0, p - 1))}
+                        disabled={page === 0}
+                    />
+                )}
 
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-                    gap: isMobile ? 0 : 10,
-                    borderRadius: 12,
-                    overflow: "hidden",
-                    marginBottom: 4,
-                }}
-            >
-                {visible.map((banner, idx) => (
-                    <div
-                        key={`${page}-${idx}`}
-                        onClick={() => banner.desktop_link_url && navigate(banner.desktop_link_url)}
-                        style={{ cursor: "pointer", borderRadius: 10, overflow: "hidden", lineHeight: 0 }}
-                    >
-                        <LazyLoadImage
-                            src={banner.image_url}
-                            alt={banner.title || "Banner"}
-                            effect="blur"
-                            style={{ width: "100%", height: "auto", display: "block", borderRadius: 10 }}
-                        />
-                    </div>
-                ))}
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+                        gap: isMobile ? 0 : 10,
+                        borderRadius: 12,
+                        overflow: "hidden",
+                        marginBottom: 4,
+                    }}
+                >
+                    {visible.map((banner, idx) => (
+                        <div
+                            key={`${page}-${idx}`}
+                            onClick={() => banner.desktop_link_url && navigate(banner.desktop_link_url)}
+                            style={{
+                                cursor: "pointer",
+                                borderRadius: 10,
+                                overflow: "hidden",
+                                lineHeight: 0,
+                                height: bannerHeight,
+                                background: "#1e293b",
+                            }}
+                        >
+                            <LazyLoadImage
+                                src={banner.image_url}
+                                alt={banner.title || "Banner"}
+                                effect="blur"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    display: "block",
+                                    borderRadius: 10,
+                                }}
+                                wrapperProps={{ style: { width: "100%", height: "100%", display: "block" } }}
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {showArrows && (
+                    <ArrowBtn
+                        direction="next"
+                        onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+                        disabled={page >= totalPages - 1}
+                    />
+                )}
             </div>
-
-            {showArrows && (
-                <ArrowBtn
-                    direction="next"
-                    onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-                    disabled={page >= totalPages - 1}
-                />
-            )}
 
             {/* Page dots */}
             {showArrows && totalPages > 1 && (
@@ -155,6 +174,7 @@ const CasinoCarouselLoader = React.memo(() => {
             )}
         </div>
     );
+
 });
 
 export default CasinoCarouselLoader;

@@ -119,9 +119,9 @@ const LandingPage = () => {
         fontSize: isMobile ? "12px" : "13px",
         fontWeight: 600,
         padding: isMobile ? "0 8px" : "0 16px",
-        borderBottom: "1px solid #1e293b",
+        borderBottom: "1px solid #1e2235",
         marginBottom: "8px",
-        background: "#0f172a",
+        background: "#0F111A",
       }}>
         {NAV_TABS.map(({ label, icon }) => {
           const isActive = activeTab === label;
@@ -139,12 +139,12 @@ const LandingPage = () => {
                 alignItems: "center",
                 gap: "5px",
                 color: isActive ? "#fb8603" : "#94a3b8",
-                background: "transparent",
+                background: isActive ? "#261517" : "transparent",
                 borderBottom: isActive ? "2px solid #fb8603" : "2px solid transparent",
-                transition: "color 0.2s",
+                transition: "color 0.2s, background 0.2s",
               }}
-              onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.color = "#fb8603"; }}}
-              onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#94a3b8"; }}}
+              onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.color = "#fb8603"; e.currentTarget.style.background = "rgba(38,21,23,0.5)"; }}}
+              onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.background = "transparent"; }}}
             >
               <span style={{ display: "flex", alignItems: "center", lineHeight: 1 }}>{icon}</span>
               {label}

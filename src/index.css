@@ -1,30 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --background: #020617;
+  --background: #0F111A;
   --foreground: #f8fafc;
   --brand-gradient: linear-gradient(135deg, #cc3366 0%, #fb8603 100%);
   --brand-orange: #fb8603;
+  --brand-red: #FF3B30;
   --primary: #fb8603;
   --primary-foreground: #000;
-  --card: #0f172a;
+  --card: #171A26;
   --card-foreground: #f8fafc;
-  --popover: #020617;
+  --popover: #171A26;
   --popover-foreground: #f8fafc;
-  --secondary: #1e293b;
+  --secondary: #171A26;
   --secondary-foreground: #f8fafc;
-  --muted: #1e293b;
+  --muted: #171A26;
   --muted-foreground: #94a3b8;
-  --accent: #1e293b;
+  --accent: #261517;
   --accent-foreground: #f8fafc;
-  --destructive: #ef4444;
+  --destructive: #FF3B30;
   --destructive-foreground: #f8fafc;
-  --border: #1e293b;
-  --input: #1e293b;
+  --border: #1e2235;
+  --input: #171A26;
   --ring: #fb8603;
   --radius: 0.5rem;
-  --sidebar: #0f172a;
-  --sidebar-border: #1e293b;
+  --sidebar: #0F111A;
+  --sidebar-border: #1e2235;
   --sidebar-width: 256px;
   --navbar-height: 56px;
   --font-sans: 'Outfit', sans-serif;
@@ -123,8 +124,8 @@ code {
 
 /* ── Ant Design Notifications (dark undabet style) ── */
 .ant-notification-notice {
-  background: #1e293b !important;
-  border: 1px solid #334155 !important;
+  background: #171A26 !important;
+  border: 1px solid #1e2235 !important;
   border-radius: 12px !important;
   box-shadow: 0 8px 24px rgba(0,0,0,0.4) !important;
 }
@@ -146,9 +147,9 @@ code {
 
 /* ── Toast (react-toastify) dark style ── */
 .Toastify__toast {
-  background: #1e293b !important;
+  background: #171A26 !important;
   color: #f8fafc !important;
-  border: 1px solid #334155 !important;
+  border: 1px solid #1e2235 !important;
   border-radius: 12px !important;
   font-family: 'Outfit', sans-serif !important;
   font-size: 14px !important;
@@ -174,7 +175,7 @@ code {
 
 /* ── Carousel dots undabet style ── */
 .slick-dots li button::before {
-  color: #334155 !important;
+  color: #1e2235 !important;
   font-size: 8px !important;
   opacity: 1 !important;
 }
@@ -188,13 +189,13 @@ code {
 
 /* ── Ant Design Modal dark ── */
 .ant-modal-content {
-  background: #1e293b !important;
-  border: 1px solid #334155 !important;
+  background: #171A26 !important;
+  border: 1px solid #1e2235 !important;
   border-radius: 16px !important;
 }
 .ant-modal-header {
-  background: #1e293b !important;
-  border-bottom: 1px solid #334155 !important;
+  background: #171A26 !important;
+  border-bottom: 1px solid #1e2235 !important;
   border-radius: 16px 16px 0 0 !important;
 }
 .ant-modal-title {
@@ -210,27 +211,27 @@ code {
   background: rgba(255,255,255,0.05) !important;
 }
 .ant-modal-footer {
-  border-top: 1px solid #334155 !important;
-  background: #1e293b !important;
+  border-top: 1px solid #1e2235 !important;
+  background: #171A26 !important;
 }
 
 /* ── Ant Design global dark overrides ── */
 .ant-card {
-  background: #0f172a !important;
-  border: 1px solid #1e293b !important;
+  background: #171A26 !important;
+  border: 1px solid #1e2235 !important;
   border-radius: 12px !important;
 }
 .ant-card .ant-card-head {
-  background: #0f172a !important;
-  border-bottom: 1px solid #1e293b !important;
+  background: #171A26 !important;
+  border-bottom: 1px solid #1e2235 !important;
   color: #f8fafc !important;
 }
 .ant-card .ant-card-body {
   color: #e2e8f0 !important;
 }
 .ant-select-selector {
-  background: #1e293b !important;
-  border-color: #334155 !important;
+  background: #171A26 !important;
+  border-color: #1e2235 !important;
   color: #e2e8f0 !important;
   border-radius: 8px !important;
 }
@@ -238,8 +239,8 @@ code {
   color: #64748b !important;
 }
 .ant-select-dropdown {
-  background: #1e293b !important;
-  border: 1px solid #334155 !important;
+  background: #171A26 !important;
+  border: 1px solid #1e2235 !important;
   border-radius: 8px !important;
 }
 .ant-select-item {
@@ -251,8 +252,8 @@ code {
   color: #fb8603 !important;
 }
 .ant-input {
-  background: #1e293b !important;
-  border-color: #334155 !important;
+  background: #171A26 !important;
+  border-color: #1e2235 !important;
   color: #e2e8f0 !important;
   border-radius: 8px !important;
 }
@@ -271,16 +272,16 @@ code {
   border-color: #2d9ad6 !important;
 }
 .ant-divider {
-  border-color: #1e293b !important;
+  border-color: #171A26 !important;
 }
 .ant-table {
-  background: #0f172a !important;
+  background: #0F111A !important;
   color: #e2e8f0 !important;
 }
 .ant-table-thead > tr > th {
-  background: #1e293b !important;
+  background: #171A26 !important;
   color: #94a3b8 !important;
-  border-bottom: 1px solid #334155 !important;
+  border-bottom: 1px solid #1e2235 !important;
   font-family: 'Outfit', sans-serif !important;
   font-weight: 600 !important;
   font-size: 12px !important;
@@ -288,15 +289,15 @@ code {
   text-transform: uppercase !important;
 }
 .ant-table-tbody > tr > td {
-  border-bottom: 1px solid #1e293b !important;
+  border-bottom: 1px solid #171A26 !important;
   color: #e2e8f0 !important;
 }
 .ant-table-tbody > tr:hover > td {
   background: rgba(59,170,237,0.05) !important;
 }
 .ant-pagination-item {
-  background: #1e293b !important;
-  border-color: #334155 !important;
+  background: #171A26 !important;
+  border-color: #1e2235 !important;
 }
 .ant-pagination-item a {
   color: #94a3b8 !important;
@@ -310,8 +311,8 @@ code {
 }
 .ant-pagination-prev .ant-pagination-item-link,
 .ant-pagination-next .ant-pagination-item-link {
-  background: #1e293b !important;
-  border-color: #334155 !important;
+  background: #171A26 !important;
+  border-color: #1e2235 !important;
   color: #94a3b8 !important;
 }
 

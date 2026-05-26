@@ -64,7 +64,24 @@
 }
 
 .landing-section {
-  margin-bottom: 28px;
+  margin-bottom: 22px;
+}
+
+@media (max-width: 767px) {
+  .landing-section {
+    margin-bottom: 16px;
+  }
+  .landing-section-header {
+    margin-bottom: 8px;
+    padding: 8px 2px 0;
+  }
+  .landing-section-title {
+    font-size: 13px;
+  }
+  .landing-row {
+    gap: 7px;
+    padding-bottom: 2px;
+  }
 }
 
 /* ── Category tabs (undabet style) ── */
@@ -1444,9 +1461,9 @@ input.search-cat:focus {
 
 /* Override game-card for horizontal row context */
 .landing-row .game-card {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   flex-shrink: 0;
-  width: 148px;
+  width: 130px;
   height: unset;
   border-radius: 10px;
   background: rgba(229, 229, 229, 0.05);
@@ -1457,7 +1474,20 @@ input.search-cat:focus {
 }
 
 .landing-row .game-card.lg {
-  width: 180px;
+  width: 160px;
+  aspect-ratio: 3 / 4;
+}
+
+@media (max-width: 767px) {
+  .landing-row .game-card {
+    width: 112px;
+  }
+  .landing-row .game-card.lg {
+    width: 136px;
+  }
+  .game-card-skeleton {
+    width: 112px;
+  }
 }
 
 .landing-row .game-card img {

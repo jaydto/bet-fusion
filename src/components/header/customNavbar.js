@@ -54,37 +54,25 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
       title="Betfusion"
       style={{ gap: 0, height: "100%", padding: 0 }}
     >
-      {/* ── MOBILE layout: hamburger | logo (center) | search + bell ── */}
+      {/* ── MOBILE layout: logo left | search + auth right ── */}
       {!isDesktop && (
         <>
-          {/* Left: hamburger */}
-          <button
-            style={{ ...iconBtnStyle, paddingLeft: "12px" }}
-            onClick={toggleMenu}
-            aria-label="Open menu"
-          >
-            <HamburgerIcon />
-          </button>
-
-          {/* Center: logo */}
+          {/* Left: logo */}
           <div
-            style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", cursor: "pointer" }}
+            style={{ display: "flex", alignItems: "center", paddingLeft: "14px", cursor: "pointer" }}
             onClick={() => navigate("/")}
           >
-            <img src={logo} alt="BetFusion" style={{ height: "26px", width: "auto" }} />
+            <img src={logo} alt="BetFusion" style={{ height: "24px", width: "auto" }} />
           </div>
 
-          {/* Right: search + bell + auth */}
-          <div style={{ display: "flex", alignItems: "center", paddingRight: "8px", gap: "2px" }}>
+          {/* Right: search + auth */}
+          <div style={{ display: "flex", alignItems: "center", paddingRight: "8px", gap: "4px", marginLeft: "auto" }}>
             <button
               style={iconBtnStyle}
               onClick={() => dispatch(shouldShowSearch())}
               aria-label="Search"
             >
               <SearchIcon />
-            </button>
-            <button style={iconBtnStyle} aria-label="Notifications">
-              <BellIcon />
             </button>
             <UserInfo profile={checkDesktop} />
           </div>
@@ -108,8 +96,8 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
                 placeholder="Search events, teams, games..."
                 style={{
                   width: "100%",
-                  background: "#1e293b",
-                  border: "1px solid #334155",
+                  background: "#171A26",
+                  border: "1px solid #1e2235",
                   borderRadius: "8px",
                   color: "#e5e5e5",
                   fontSize: "14px",

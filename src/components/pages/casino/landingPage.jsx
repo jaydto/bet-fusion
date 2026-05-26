@@ -108,7 +108,7 @@ const LandingPage = () => {
   ];
 
   return (
-    <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
+    <div style={{ width: "100%", marginBottom: isMobile ? "5rem" : "2rem" }}>
       {/* Horizontal category tabs — desktop and mobile */}
       <div style={{
         display: "flex",
@@ -116,11 +116,11 @@ const LandingPage = () => {
         overflowX: "auto",
         scrollbarWidth: "none",
         msOverflowStyle: "none",
-        fontSize: isMobile ? "12px" : "13px",
+        fontSize: isMobile ? "11px" : "13px",
         fontWeight: 600,
-        padding: isMobile ? "0 8px" : "0 16px",
+        padding: "0",
         borderBottom: "1px solid #1e2235",
-        marginBottom: "8px",
+        marginBottom: "0",
         background: "#0F111A",
       }}>
         {NAV_TABS.map(({ label, icon }) => {
@@ -131,20 +131,20 @@ const LandingPage = () => {
               onClick={() => setActiveTab(label)}
               style={{
                 cursor: "pointer",
-                padding: isMobile ? "10px 10px" : "12px 14px",
+                padding: isMobile ? "9px 9px" : "12px 14px",
                 whiteSpace: "nowrap",
                 borderRadius: "0",
                 flexShrink: 0,
                 display: "flex",
                 alignItems: "center",
-                gap: "5px",
-                color: isActive ? "#fb8603" : "#94a3b8",
+                gap: "4px",
+                color: isActive ? "#fb8603" : "#64748b",
                 background: isActive ? "#261517" : "transparent",
                 borderBottom: isActive ? "2px solid #fb8603" : "2px solid transparent",
                 transition: "color 0.2s, background 0.2s",
               }}
               onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.color = "#fb8603"; e.currentTarget.style.background = "rgba(38,21,23,0.5)"; }}}
-              onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.background = "transparent"; }}}
+              onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#64748b"; e.currentTarget.style.background = "transparent"; }}}
             >
               <span style={{ display: "flex", alignItems: "center", lineHeight: 1 }}>{icon}</span>
               {label}
@@ -153,13 +153,13 @@ const LandingPage = () => {
         })}
       </div>
 
-      <div style={{ marginTop: isMobile ? 2 : 0, padding: isMobile ? "5px 1px" : "12px 12px 0px 12px", overflow: "hidden" }}>
+      <div style={{ marginTop: 0, padding: isMobile ? "6px 4px" : "12px 12px 0px 12px", overflow: "hidden" }}>
         <CasinoCarouselLoader />
       </div>
 
       {/* Category filter pills removed to match design */}
 
-      <div className="landing-v2" style={{ padding: isMobile ? "0 8px" : "0 12px" }}>
+      <div className="landing-v2" style={{ padding: isMobile ? "4px 6px 0" : "0 12px" }}>
         {/* Popular Games */}
         {showSection("popular") && (
           <div className="landing-section">

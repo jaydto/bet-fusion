@@ -52,7 +52,10 @@
 .sidebar-section-title {
   font-size: 10px;
   font-weight: 800;
-  color: #64748b;
+  background: linear-gradient(135deg, #cc3366 0%, #fb8603 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 8px 8px 4px;

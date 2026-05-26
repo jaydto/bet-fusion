@@ -347,3 +347,289 @@
 - PR #2 — Milestone 2: auth cards, section headers, tabs (2026-05-20)
 - PR #3 — Milestone 3: footer, profile, bet history, deposit/withdraw (2026-05-20)
 - PR #4 — Milestone 4: mobile polish, toasts, modals, Ant Design dark overrides (2026-05-20)
+
+---
+
+## PHASE 12 — Figma Desktop Deviations (2026-05-21 audit)
+
+### Header
+- [x] **D-1.1** Increase `--navbar-height` from `50px` → `56px` (update all sticky top offsets accordingly) ✅ PR #21
+- [x] **D-1.2** Add `border-bottom: 1px solid #1e293b` to the navbar element ✅ PR #21
+- [x] **D-1.3** Style Login button as ghost/outlined (white text + `border: 1px solid #334155`) ✅ PR #21
+- [x] **D-1.5** Add magnifier SVG icon inside the header search input (left-aligned) ✅ PR #22
+- [x] **D-1.6** Add notification bell icon in header (between search bar and Login/Register) ✅ PR #23
+
+### Left Sidebar
+- [x] **D-2.1** Replace `🎰` emoji + `^` ASCII in sidebar top area — betfusion text logo + chevron SVG ✅ PR #21
+- [x] **D-2.2** Replace all Unicode emoji nav icons with proper SVG icons throughout sidebar ✅ PR #21
+- [x] **D-2.4** Style "Live Support" as a call-out item distinct from regular nav items ✅ PR #21
+- [x] **D-2.5** Add orange pulsing dot/badge to the Live Casino sidebar nav item ✅ PR #21
+
+### Center Content
+- [x] **D-3.1** Add horizontal category filter pills on the homepage `/` ✅ PR #22
+- [x] **D-3.2** Add left/right arrow navigation + page dots to the carousel ✅ PR #24
+- [x] **D-3.3** Show skeleton carousel placeholder while banners are loading ✅ PR #22
+- [x] **D-3.4** Add "Play Now" overlay button on game card hover ✅ PR #22
+- [x] **D-3.5** Increase game card width from `140px` → `148px` ✅ PR #22
+- [x] **D-3.6** Increase section title font-size from `17px` → `18px` ✅ PR #22
+- [x] **D-3.9** Fix duplicate `.game-card` CSS in `index.css` ✅ PR #21
+
+### Right Panel
+- [x] **D-4.1** Fix right panel Login button border — orange → `#334155` grey ✅ PR #21
+- [x] **D-4.3** Support section: green dot to differentiate from promotions orange dot ✅ PR #21
+- [x] **D-4.4** Replace text-only app store badges with SVG logos ✅ PR #23
+
+### Global / Colors
+- [x] **D-5.1** Fix `.play-now-btn:hover` color — blue `#2d9ad6` → dark orange `#cf4e24` ✅ PR #21
+- [x] **D-5.2** Fix stale brand colors in CSS variables (`--game-title`, `--bg-card-dark`, `--bg-section-container`) ✅ PR #23
+- [x] **D-5.4** Wrap `<BottomNav />` render in a mobile-only check ✅ PR #22
+
+**All Phase 12 items complete ✅** (PRs #21–24, 2026-05-22)
+
+---
+
+## PHASE 13 — Figma Exact Match Audit (2026-05-26)
+
+> **Source of truth:** Figma file `k28P4oZLf85muzSkGvEvYV` — https://www.figma.com/design/k28P4oZLf85muzSkGvEvYV/BETFUSION-UI?node-id=0-1
+> **Workflow:** One branch per milestone → PR → merge to `main` remotely via GitHub (no local merges).
+> **Branch naming:** `feat/m5-brand-identity`, `feat/m6-mobile-navigation`, etc.
+
+### Issues identified (2026-05-26 audit)
+
+| # | Area | Issue | Files |
+|---|------|--------|-------|
+| F-1 | Logo | Text logo `<span>bet</span><span>fusion</span>` used everywhere — should be `logo.png` image | `customNavbar.js`, `sidebar.jsx` |
+| F-2 | Brand gradient | Flat `#E55F32` orange used throughout; Figma brand gradient is `linear-gradient(135deg, #cc3366 0%, #fb8603 100%)` | All CSS files |
+| F-3 | Color tokens | `--primary`, `--ring` still set to `#E55F32` flat, not gradient-aware | `index.css` |
+| F-4 | Header active states | `.hover\:bg-accent:hover` and `.active-btn-display` use `#E55F32` | `header.css` |
+| F-5 | Header buttons | Register bg is `#E55F32`; wallet/balance text is `#E55F32`; Deposit link uses flat orange | `UserInfo.jsx` |
+| F-6 | Sidebar | Active item border-right, badge bg, live dot all `#E55F32` | `sidebar.css` |
+| F-7 | Right panel | Primary button bg, promo CTA, support hover all `#E55F32` | `rightPanel.css` |
+| F-8 | Bottom nav | Active/hover color `#E55F32` — should use brand gradient/orange | `bottomNav.css` |
+| F-9 | Themes.css | `--btn-color-action`, `--signup`, `--deposit-c`, `--login-btn-cl`, `--blue`, `--header-icon`, `--aqua-text`, `--more-markets-text` all `#E55F32` | `Themes.css` |
+| F-10 | Font | Figma uses a specific font — must be confirmed from Figma; current `Outfit` may be wrong | All CSS, `index.css` |
+| F-11 | Mobile top nav | Mobile header only shows text logo + auth buttons — missing: hamburger, centered logo.png, search icon, notification bell | `customNavbar.js` |
+| F-12 | Carousel desktop | `perPage` forced to `1` always; Figma shows 3 banners on desktop | `carousel.jsx` |
+| F-13 | Carousel height | Desktop height set to `360px`; Figma spec is `200px` | `carousel.jsx` |
+| F-14 | Gradient sections | Buttons and active UI elements need full gradient, not solid flat orange | Multiple components |
+
+---
+
+### MILESTONE 5 — Brand Identity: Logo + Gradient Tokens
+**Branch:** `feat/m5-brand-identity`
+**PR target:** `main`
+
+#### F-1 · Swap text logo → logo.png image
+**File:** `src/components/header/customNavbar.js`
+- [ ] Add `import logo from "../../assets/img/logo.png"` at top
+- [ ] Replace `<span><span style={{color:"#E55F32"}}>bet</span><span style={{color:"#fff"}}>fusion</span></span>` with `<img src={logo} alt="BetFusion" style={{ height: "28px", width: "auto" }} />`
+- [ ] Apply same `<img>` replacement on both mobile and desktop branches of the component
+
+**File:** `src/components/pages/casino/sidebar.jsx`
+- [ ] Add `import logo from "../../../assets/img/logo.png"` at top
+- [ ] In `.sidebar-logo-wrap`, replace any text-based logo render with `<img src={logo} alt="BetFusion" className="sidebar-logo-img" />`
+
+#### F-2 · Define brand gradient token + fix index.css
+**File:** `src/index.css`
+- [ ] Add CSS variable: `--brand-gradient: linear-gradient(135deg, #cc3366 0%, #fb8603 100%)`
+- [ ] Add CSS variable: `--brand-orange: #fb8603` (solid fallback for borders/icons)
+- [ ] Update `--primary: #E55F32` → `--primary: #fb8603`
+- [ ] Update `--ring: #E55F32` → `--ring: #fb8603`
+
+#### F-4 · Header active/hover states
+**File:** `src/components/header/header.css`
+- [ ] `.hover\:bg-accent:hover` — change `background-color: #E55F32` → `background: var(--brand-gradient)`
+- [ ] `.active-btn-display` — change `background-color: #E55F32` → `background: var(--brand-gradient)`
+
+#### F-5 · UserInfo button and icon colors
+**File:** `src/components/header/UserInfo.jsx`
+- [ ] Wallet icon `color: "#E55F32"` → `color: "#fb8603"`
+- [ ] Balance `<span>` `color: "#E55F32"` → `color: "#fb8603"`
+- [ ] Deposit `<Link>` `color: "#E55F32"` → `color: "#fb8603"`
+- [ ] Register `<Link>` `background: "#E55F32"` → `background: "var(--brand-gradient)"` (inline style update)
+- [ ] Register `<Link>` `boxShadow` — update rgba to `rgba(251, 134, 3, 0.3)`
+
+#### F-6 · Sidebar brand colors
+**File:** `src/components/pages/casino/sidebar.css`
+- [ ] `.sidebar-nav-item--active` `border-right: 3px solid #E55F32` → `border-right: 3px solid #fb8603`
+- [ ] `.sidebar-nav-badge` `background: #E55F32` → `background: var(--brand-gradient)`
+- [ ] `.sidebar-live-dot` `background: #E55F32` → `background: #fb8603`
+- [ ] `.sidebar-support-item` border color `rgba(229, 95, 50, …)` → `rgba(251, 134, 3, …)` and bg `rgba(229, 95, 50, 0.06)` → `rgba(251, 134, 3, 0.06)`
+
+#### F-7 · Right panel brand colors
+**File:** `src/components/right-panel/rightPanel.css`
+- [ ] `.rp-btn-primary` `background: #E55F32` → `background: var(--brand-gradient)`
+- [ ] `.rp-dot` `background: #E55F32` → `background: #fb8603`
+- [ ] `.rp-promo-cta` `color: #E55F32` → `color: #fb8603`
+- [ ] `.rp-support-link:hover` `color: #E55F32` → `color: #fb8603`
+
+#### F-9 · Themes.css global brand tokens
+**File:** `src/assets/css/Themes.css`
+- [ ] `--btn-color-action: #E55F32` → `--btn-color-action: #fb8603`
+- [ ] `--bet-fusion-button-login: #E55F32` → `--bet-fusion-button-login: #fb8603`
+- [ ] `--signup: #E55F32` → `--signup: #fb8603`
+- [ ] `--deposit-c: #E55F32` → `--deposit-c: #fb8603`
+- [ ] `--bet-fusion-button-register: #E55F32` → `--bet-fusion-button-register: #fb8603`
+- [ ] `--blue: #E55F32` → `--blue: #fb8603`
+- [ ] `--login-btn-cl: #E55F32` → `--login-btn-cl: #fb8603`
+- [ ] `--header-icon: #E55F32` → `--header-icon: #fb8603`
+- [ ] `--aqua-text: #E55F32` → `--aqua-text: #fb8603`
+- [ ] `--more-markets-text: #E55F32` → `--more-markets-text: #fb8603`
+
+---
+
+### MILESTONE 6 — Mobile Navigation Fix
+**Branch:** `feat/m6-mobile-navigation`
+**PR target:** `main` (after M5 merged)
+
+#### F-11a · Mobile header layout
+**File:** `src/components/header/customNavbar.js`
+- [ ] Mobile header layout (max-width 767px):
+  - **Left:** Hamburger/menu icon button (opens sidebar drawer or triggers `toggleMenu`)
+  - **Center:** `<img src={logo}>` `logo.png` — absolute center or flex-center
+  - **Right:** Search icon button + Notification bell icon
+- [ ] Remove the current flex-left text logo on mobile
+- [ ] Add a `<button>` for hamburger that calls the existing `toggleMenu` prop
+- [ ] Search icon taps should open a search overlay or dispatch `shouldShowSearch`
+- [ ] Ensure mobile header height stays `56px` (matches `--navbar-height`)
+- [ ] Wire hamburger onClick → `toggleMenu`
+
+**File:** `src/components/header/header.css`
+- [ ] Add `.mobile-header-logo` style: `height: 28px; width: auto`
+- [ ] Add `.mobile-icon-btn`: `background: transparent; border: none; padding: 8px; color: #94a3b8; cursor: pointer`
+- [ ] On mobile, ensure header is full-width (`left: 0; width: 100%` via existing media query)
+
+#### F-11b · Mobile header top navigation tabs
+**File:** `src/components/pages/casino/landingPage.jsx`
+- [ ] On mobile (isMobile), show horizontal scrolling category tabs at the top below the header (currently these only show on desktop):
+  ```
+  Aviator | Crash | Sports | Casino | Slots | Virtuals | Live | Tournaments
+  ```
+- [ ] Style: `background: #0f172a`, `border-bottom: 1px solid #1e293b`, font 13px, active item uses `var(--brand-gradient)` text
+
+#### F-8 · Bottom nav brand colors
+**File:** `src/components/mobile-navigation/bottomNav.css`
+- [ ] `.bottom-nav-item.active` `color: #E55F32` → apply gradient text:
+  ```css
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  ```
+- [ ] `.bottom-nav-item:hover` same gradient text treatment
+- [ ] Add active indicator: small gradient pill/dot above active icon
+  ```css
+  .bottom-nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: var(--brand-gradient);
+  }
+  ```
+- [ ] `.bottom-nav-item` add `position: relative`
+
+---
+
+### MILESTONE 7 — Font & Typography Alignment
+**Branch:** `feat/m7-font-typography`
+**PR target:** `main` (after M6 merged)
+
+#### F-10 · Identify and apply correct Figma font
+**Action required:** Open Figma file `k28P4oZLf85muzSkGvEvYV` and inspect text layers for font family.
+
+**File:** `src/index.css`
+- [ ] Replace `@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap')` with the confirmed Figma font import
+- [ ] Update `--font-sans` CSS variable to the confirmed font name
+- [ ] If Figma uses two fonts (display + body), add both imports and a second token `--font-display`
+
+**Files:** All component CSS and inline styles
+- [ ] Global find-and-replace `'Outfit'` → confirmed font name in all `.css` files
+- [ ] Global find-and-replace `"Outfit"` → confirmed font name in all `.jsx`/`.js` inline styles
+- [ ] Verify heading weights match Figma (likely `font-weight: 700` or `800` for H1–H3)
+- [ ] Verify body text size: check Figma body text is `14px` or `16px`
+- [ ] Verify nav labels: Figma may specify `12px` or `13px` weight `500` for bottom nav
+
+**Key files to update after font confirmed:**
+- `src/index.css` — `--font-sans`, `body` rule
+- `src/components/header/header.css`
+- `src/components/pages/casino/sidebar.css`
+- `src/components/mobile-navigation/bottomNav.css`
+- `src/assets/css/Themes.css` — any `font-family` overrides
+
+---
+
+### MILESTONE 8 — Carousel & Content Layout
+**Branch:** `feat/m8-carousel-content`
+**PR target:** `main` (after M7 merged)
+
+#### F-12 · Fix carousel perPage — restore desktop 3-banner layout
+**File:** `src/components/pages/casino/carousel.jsx`
+- [ ] Restore `const perPage = isMobile ? 1 : 3` (line ~52, currently hardcoded to `1`)
+- [ ] Restore `gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)"` for both the shimmer grid and the banner grid
+- [ ] Restore `gap: isMobile ? 0 : 10` for banner grid
+
+#### F-13 · Fix carousel height
+**File:** `src/components/pages/casino/carousel.jsx`
+- [ ] Change `const bannerHeight = isMobile ? 160 : 360` → `const bannerHeight = isMobile ? 160 : 200`
+- [ ] Confirm this matches the `200px` desktop height established in PR #26
+
+#### F-14 · Gradient sections — per Figma spec
+**Files:** `src/index.css`, `src/App.js`
+- [ ] Verify `.top-gradient-glow` radial overlay is active: `radial-gradient(100% 100% at 50% 0%, rgba(251,134,3,0.15) 0%, transparent 60%)` — update rgba to use brand orange (`fb8603`) instead of the old blue (`3BAAED`)
+- [ ] Section divider gradients: check Figma for any horizontal gradient rule separators between sections; implement if present
+- [ ] Category pill active state: active pill background → `var(--brand-gradient)`, text `#fff`
+
+**File:** `src/components/pages/casino/landingPage.jsx`
+- [ ] Category tab hover/active: update hardcoded `color: "#fff"` on hover to use brand orange `#fb8603`
+- [ ] Category tabs border-bottom active: add `borderBottom: "2px solid #fb8603"` on active
+
+---
+
+### MILESTONE 9 — Global Color Audit & QA
+**Branch:** `feat/m9-color-audit-qa`
+**PR target:** `main` (after M8 merged)
+
+#### Full `#E55F32` sweep
+- [ ] Run `grep -rn "E55F32" src/` — fix every remaining instance to either `#fb8603` (solid) or `var(--brand-gradient)` (gradient) based on context
+- [ ] Run `grep -rn "3BAAED" src/` — confirm only legitimate "blue accent" uses remain; remove any that should be brand orange
+
+#### Per-file final checks
+- [ ] `src/assets/css/Themes.css` — second dark-theme block also has `--bet-fusion-button-login: #E55F32` at line ~196, fix that too
+- [ ] `src/assets/css/newCss.css` — audit for any orange/blue color refs
+- [ ] `src/assets/css/application.css` — audit for stale brand colors
+- [ ] `src/assets/css/sidebar-menu.css` — audit for stale refs
+
+#### Mobile QA checklist (375px viewport)
+- [ ] Header: hamburger visible left, logo centered, icons right
+- [ ] Logo is `logo.png` image (not text)
+- [ ] Category tabs scroll horizontally below header
+- [ ] Carousel shows 1 banner, height 160px
+- [ ] Game cards: 2–3 columns
+- [ ] Bottom nav visible, active item shows gradient color + top indicator pill
+- [ ] No `#E55F32` flat orange anywhere — all brand orange uses `#fb8603` or gradient
+
+#### Desktop QA checklist (1440px viewport)
+- [ ] Sidebar: `logo.png` in top area, 256px wide
+- [ ] Header: search bar centered, register button uses gradient
+- [ ] Carousel: 3 banners, height 200px
+- [ ] Active sidebar nav item: right border `#fb8603`
+- [ ] Right panel: primary button uses gradient
+
+---
+
+### PHASE 13 TRACKING
+
+| Task | Status | Branch / PR | Notes |
+|------|--------|-------------|-------|
+| M5 — Brand identity (logo + gradient) | ⬜ Todo | `feat/m5-brand-identity` | logo.png everywhere, gradient tokens |
+| M6 — Mobile navigation | ⬜ Todo | `feat/m6-mobile-navigation` | mobile header + bottom nav |
+| M7 — Font & typography | ⬜ Todo | `feat/m7-font-typography` | confirm font from Figma first |
+| M8 — Carousel & content layout | ⬜ Todo | `feat/m8-carousel-content` | perPage fix, gradient sections |
+| M9 — Global color audit & QA | ⬜ Todo | `feat/m9-color-audit-qa` | final sweep + QA checklist |
+
+> **Merge protocol:** Each milestone PR is merged via GitHub UI (or `gh pr merge --merge`) to `main` remotely — never `git merge` locally.

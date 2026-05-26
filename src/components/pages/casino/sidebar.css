@@ -3,9 +3,9 @@
   min-width: var(--sidebar-width, 256px);
   background: var(--sidebar, #0f172a);
   border-right: 1px solid var(--sidebar-border, #1e293b);
-  height: calc(100vh - var(--navbar-height, 50px));
+  height: 100vh;
   position: sticky;
-  top: var(--navbar-height, 50px);
+  top: 0;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -89,15 +89,14 @@
   text-decoration: none !important;
 }
 
-/* Active: dark highlight + right blue border — matches undabet */
 .sidebar-nav-item--active {
-  background: rgba(59, 170, 237, 0.12) !important;
+  background: rgba(251, 134, 3, 0.1) !important;
   color: #f8fafc !important;
-  border-right: 3px solid #E55F32 !important;
+  border-right: 3px solid #fb8603 !important;
 }
 
 .sidebar-nav-item--active:hover {
-  background: rgba(59, 170, 237, 0.16) !important;
+  background: rgba(251, 134, 3, 0.15) !important;
 }
 
 .sidebar-nav-icon {
@@ -119,8 +118,8 @@
 }
 
 .sidebar-nav-badge {
-  background: #E55F32;
-  color: #000;
+  background: var(--brand-gradient, linear-gradient(135deg, #cc3366 0%, #fb8603 100%));
+  color: #fff;
   font-size: 10px;
   font-weight: 700;
   padding: 2px 6px;
@@ -134,7 +133,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #E55F32;
+  background: #fb8603;
   flex-shrink: 0;
   animation: sidebar-pulse 2s ease-in-out infinite;
 }
@@ -146,8 +145,8 @@
 
 .sidebar-support-item {
   font-size: 13px;
-  background: rgba(229, 95, 50, 0.06);
-  border: 1px solid rgba(229, 95, 50, 0.15);
+  background: rgba(251, 134, 3, 0.06);
+  border: 1px solid rgba(251, 134, 3, 0.15);
   border-radius: 8px !important;
   margin: 2px 0;
 }

@@ -41,12 +41,14 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick }) => {
     >
       {safeGames.map((g, idx) => {
         const key = `${g?.game_id || g?.id || "game"}-${idx}`;
-        const image = g?.display_image_url || g?.image_url || g?.image || "";
+        const primaryImage = g?.display_image_url || "";
+        const secondaryImage = g?.image_url || g?.image || "";
+        const image = primaryImage || secondaryImage;
         const name = g?.display_name || g?.game_name || g?.name || "Game";
         const fallback =
           "data:image/svg+xml;utf8," +
           encodeURIComponent(
-            `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="250"><rect width="200" height="250" fill="#1e293b"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="Arial" font-size="14" font-weight="700">${String(name).replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text></svg>`
+            `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="250"><rect width="200" height="250" fill="#171A26"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="Arial" font-size="14" font-weight="700">${String(name).replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text></svg>`
           );
 
         return (
@@ -69,7 +71,15 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick }) => {
               src={image || fallback}
               alt={name}
               draggable={false}
-              onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = fallback; }}
+              onError={(e) => {
+                const el = e.currentTarget;
+                if (secondaryImage && el.src !== secondaryImage && el.src !== fallback) {
+                  el.src = secondaryImage;
+                } else {
+                  el.onerror = null;
+                  el.src = fallback;
+                }
+              }}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
             <div className="game-title-strip">{name}</div>

@@ -24,7 +24,7 @@ const GameRowSkeleton = ({ count = 6 }) => (
       <div
         key={i}
         className="game-card game-card-skeleton"
-        style={{ flex: "0 0 148px", width: "148px", marginRight: "12px" }}
+        style={{ flex: "0 0 auto", marginRight: "10px" }}
       />
     ))}
   </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../../utils/local-storage";
+import logo from "../../../assets/img/logo.png";
 import "./sidebar.css";
 
 /* ── SVG icon set ── */
@@ -128,9 +129,7 @@ const Sidebar = () => {
     <aside className="sidebar-root">
       {/* Logo area — mirrors header logo zone */}
       <div className="sidebar-logo-wrap" onClick={() => navigate("/")}>
-        <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "20px", letterSpacing: "-0.5px", lineHeight: 1 }}>
-          <span style={{ color: "#E55F32" }}>bet</span><span style={{ color: "#fff" }}>fusion</span>
-        </span>
+        <img src={logo} alt="BetFusion" className="sidebar-logo-img" />
         <span className="sidebar-collapse-arrow">{icons.chevronLeft}</span>
       </div>
 

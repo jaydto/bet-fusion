@@ -3,7 +3,9 @@
 :root {
   --background: #020617;
   --foreground: #f8fafc;
-  --primary: #E55F32;
+  --brand-gradient: linear-gradient(135deg, #cc3366 0%, #fb8603 100%);
+  --brand-orange: #fb8603;
+  --primary: #fb8603;
   --primary-foreground: #000;
   --card: #0f172a;
   --card-foreground: #f8fafc;
@@ -19,7 +21,7 @@
   --destructive-foreground: #f8fafc;
   --border: #1e293b;
   --input: #1e293b;
-  --ring: #E55F32;
+  --ring: #fb8603;
   --radius: 0.5rem;
   --sidebar: #0f172a;
   --sidebar-border: #1e293b;

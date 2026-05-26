@@ -54,7 +54,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
       title="Betfusion"
       style={{ gap: 0, height: "100%", padding: 0 }}
     >
-      {/* ── MOBILE layout: hamburger | search input | theme toggle ── */}
+      {/* ── MOBILE layout: hamburger | logo | search input | theme toggle ── */}
       {!isDesktop && (
         <>
           {/* Left: hamburger */}
@@ -65,6 +65,14 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
           >
             <HamburgerIcon />
           </button>
+
+          {/* Logo */}
+          <div
+            style={{ display: "flex", alignItems: "center", cursor: "pointer", paddingRight: "4px" }}
+            onClick={() => navigate("/")}
+          >
+            <img src={logo} alt="BetFusion" style={{ height: "22px", width: "auto" }} />
+          </div>
 
           {/* Center: inline search input */}
           <div style={{ flex: 1, padding: "0 6px" }}>

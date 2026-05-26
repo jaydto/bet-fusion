@@ -97,7 +97,7 @@ const LandingPage = () => {
   const showSection = (id) => activeCategory === "all" || activeCategory === id;
 
   const NAV_TABS = [
-    { label: "Aviator",     icon: <GiFlame size={14} /> },
+    { label: "Aviator",     icon: <GiAirplane size={14} /> },
     { label: "Crash",       icon: <GiExplodingPlanet size={14} /> },
     { label: "Sports",      icon: <MdSportsSoccer size={14} /> },
     { label: "Casino",      icon: <GiPokerHand size={14} /> },
@@ -112,13 +112,13 @@ const LandingPage = () => {
       {/* Horizontal category tabs — desktop and mobile */}
       <div style={{
         display: "flex",
-        gap: isMobile ? "0" : "2px",
+        gap: "0",
         overflowX: "auto",
         scrollbarWidth: "none",
         msOverflowStyle: "none",
         fontSize: isMobile ? "12px" : "13px",
         fontWeight: 600,
-        padding: isMobile ? "6px 8px" : "8px 16px",
+        padding: isMobile ? "0 8px" : "0 16px",
         borderBottom: "1px solid #1e293b",
         marginBottom: "8px",
         background: "#0f172a",
@@ -131,20 +131,20 @@ const LandingPage = () => {
               onClick={() => setActiveTab(label)}
               style={{
                 cursor: "pointer",
-                padding: isMobile ? "5px 10px" : "5px 12px",
+                padding: isMobile ? "10px 10px" : "12px 14px",
                 whiteSpace: "nowrap",
-                borderRadius: "6px",
+                borderRadius: "0",
                 flexShrink: 0,
                 display: "flex",
                 alignItems: "center",
                 gap: "5px",
                 color: isActive ? "#fb8603" : "#94a3b8",
-                background: isActive ? "rgba(251,134,3,0.1)" : "transparent",
+                background: "transparent",
                 borderBottom: isActive ? "2px solid #fb8603" : "2px solid transparent",
-                transition: "color 0.2s, background 0.2s",
+                transition: "color 0.2s",
               }}
-              onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.color = "#fb8603"; e.currentTarget.style.background = "rgba(251,134,3,0.06)"; }}}
-              onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.background = "transparent"; }}}
+              onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.color = "#fb8603"; }}}
+              onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#94a3b8"; }}}
             >
               <span style={{ display: "flex", alignItems: "center", lineHeight: 1 }}>{icon}</span>
               {label}

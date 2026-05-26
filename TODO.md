@@ -628,8 +628,10 @@
 |------|--------|-------------|-------|
 | M5 — Brand identity (logo + gradient) | ✅ Done | PR #27 | logo.png everywhere, --brand-gradient, all tokens updated |
 | M6 — Mobile navigation | ✅ Done | PR #28 | hamburger/logo/icons mobile header, category tabs, carousel fix |
-| M7 — Font & typography | ⬜ Blocked | `feat/m7-font-typography` | needs Figma access to confirm font name |
-| M8 — Carousel & content layout | ✅ Done | PR #28 | perPage isMobile?1:3, height 200px desktop, radial glow brand color |
+| M7 — Font & typography | ✅ Done | confirmed via DevTools | Outfit already in use; body font confirmed Outfit, sans-serif |
+| M8 — Carousel & content layout | ✅ Done | PR #28 | perPage=1, height 360px desktop / 160px mobile |
 | M9 — Global color audit & QA | ✅ Done | PR #29 | 0 #E55F32 remaining, logo.png in auth pages too |
+| M10 — Section headers & tab active states | ✅ Done | PR #32 | 🔥 icon prefix, SHOW ALL link, active tab orange state |
+| M11 — Sidebar section title gradient | ✅ Done | PR #33 | TOP EVENTS / CASINO headers use brand gradient text |
 
 > **Merge protocol:** Each milestone PR is merged via GitHub UI (or `gh pr merge --merge`) to `main` remotely — never `git merge` locally.

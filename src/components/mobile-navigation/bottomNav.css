@@ -87,3 +87,37 @@
   line-height: 1;
   letter-spacing: -0.01em;
 }
+
+/* Centre FAB — elevated deposit/action button */
+.bottom-nav-fab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+  position: relative;
+  top: -10px;
+  background: transparent;
+  color: #fff;
+}
+
+.bottom-nav-fab-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cc3366 0%, #fb8603 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(251, 134, 3, 0.45);
+  color: #fff;
+}
+
+.bottom-nav-fab:active .bottom-nav-fab-icon {
+  transform: scale(0.94);
+  transition: transform 0.1s;
+}

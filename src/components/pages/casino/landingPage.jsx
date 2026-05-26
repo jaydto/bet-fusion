@@ -93,31 +93,56 @@ const LandingPage = () => {
 
   const showSection = (id) => activeCategory === "all" || activeCategory === id;
 
+  const NAV_TABS = ["Aviator", "Crash", "Sports", "Casino", "Slots", "Virtuals", "Live", "Tournaments"];
+
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
-      <div style={{ marginTop: isMobile ? 2 : 10, padding: isMobile ? "5px 1px" : "12px 0px 0px 12px", overflow: "hidden" }}>
+      {/* Horizontal category tabs — desktop and mobile */}
+      <div style={{
+        display: "flex",
+        gap: isMobile ? "0" : "4px",
+        overflowX: "auto",
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+        fontSize: isMobile ? "13px" : "14px",
+        color: "#94a3b8",
+        fontWeight: 600,
+        padding: isMobile ? "8px 12px" : "12px 12px 8px 24px",
+        borderBottom: "1px solid #1e293b",
+        marginBottom: "8px",
+        background: "#0f172a",
+      }}>
+        {NAV_TABS.map(item => (
+          <div
+            key={item}
+            style={{
+              cursor: "pointer",
+              transition: "color 0.2s",
+              padding: isMobile ? "6px 14px" : "4px 12px",
+              whiteSpace: "nowrap",
+              borderRadius: "6px",
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = "#fb8603"; e.currentTarget.style.background = "rgba(251,134,3,0.08)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.background = "transparent"; }}
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: isMobile ? 2 : 0, padding: isMobile ? "5px 1px" : "12px 12px 0px 12px", overflow: "hidden" }}>
         <CasinoCarouselLoader />
       </div>
 
-      {/* Category filter pills */}
-      <div className="landing-pills-row" style={{ padding: isMobile ? "10px 8px 4px" : "10px 12px 4px" }}>
-        {CATEGORY_PILLS.map((pill) => (
-          <button
-            key={pill.id}
-            className={`landing-pill${activeCategory === pill.id ? " landing-pill--active" : ""}`}
-            onClick={() => setActiveCategory(pill.id)}
-          >
-            {pill.label}
-          </button>
-        ))}
-      </div>
+      {/* Category filter pills removed to match design */}
 
       <div className="landing-v2" style={{ padding: isMobile ? "0 8px" : "0 12px" }}>
         {/* Popular Games */}
         {showSection("popular") && (
           <div className="landing-section">
             <SectionHeader
-              title="Popular Games"
+              title="Most played"
               actionLabel="All"
               onAction={() => navigate("/casino")}
             />

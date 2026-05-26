@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/img/logo.png";
 import { Form, Formik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -172,9 +173,7 @@ const LoginTwo = React.memo(() => {
                   gap: 12,
                 }}
               >
-                <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "32px", letterSpacing: "-0.5px" }}>
-                  <span style={{ color: "#E55F32" }}>bet</span><span style={{ color: "#fff" }}>fusion</span>
-                </span>
+                <img src={logo} alt="BetFusion" style={{ height: "40px", width: "auto" }} />
                 <p style={{ color: "#94a3b8", fontSize: 13, textAlign: "center", margin: 0 }}>
                   Play. Win. Repeat.
                 </p>

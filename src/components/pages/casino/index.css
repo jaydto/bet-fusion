@@ -32,14 +32,14 @@
   font-family: 'Outfit', sans-serif;
   font-size: 13px;
   font-weight: 500;
-  color: #E55F32;
+  color: #fb8603;
   text-decoration: none;
   transition: opacity 0.15s;
 }
 
 .section-header-all:hover {
   opacity: 0.75;
-  color: #E55F32;
+  color: #fb8603;
   text-decoration: none;
 }
 
@@ -82,7 +82,7 @@
 
 .bt-cat:hover,
 .bt-cat.active {
-  background: #E55F32 !important;
+  background: #fb8603 !important;
   color: #000 !important;
 }
 
@@ -243,11 +243,11 @@
 
 .ant-tabs-tab:hover {
   background-color: rgba(59, 170, 237, 0.1) !important;
-  color: #E55F32 !important;
+  color: #fb8603 !important;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active {
-  background-color: #E55F32 !important;
+  background-color: #fb8603 !important;
   color: #000 !important;
   font-weight: 600 !important;
 }
@@ -567,7 +567,7 @@
 }
 
 .play-now-btn {
-  background: #E55F32;
+  background: #fb8603;
   border: none;
   font-weight: 700;
   padding: 6px 16px;
@@ -1368,11 +1368,11 @@ input.search-cat:focus {
 
 .landing-pill:hover {
   background: rgba(229, 95, 50, 0.15);
-  color: #E55F32;
+  color: #fb8603;
 }
 
 .landing-pill--active {
-  background: #E55F32 !important;
+  background: #fb8603 !important;
   color: #000 !important;
   font-weight: 600;
 }
@@ -1402,7 +1402,7 @@ input.search-cat:focus {
 }
 
 .landing-section-action {
-  color: #E55F32;
+  color: #fb8603;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -1474,7 +1474,7 @@ input.search-cat:focus {
 }
 
 .game-card-play-btn {
-  background: #E55F32;
+  background: #fb8603;
   color: #000;
   font-family: 'Outfit', sans-serif;
   font-size: 12px;

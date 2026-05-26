@@ -1393,27 +1393,37 @@ input.search-cat:focus {
 }
 
 .landing-section-title {
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 700;
   color: #f8fafc;
   font-family: 'Outfit', sans-serif;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.landing-section-icon {
+  font-size: 14px;
+  line-height: 1;
 }
 
 .landing-section-action {
-  color: #fb8603;
-  font-size: 13px;
+  color: #64748b;
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 4px;
-  transition: opacity 0.2s;
+  gap: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
 }
 
 .landing-section-action:hover {
-  opacity: 0.75;
+  color: #fb8603;
 }
 
 /* Overlay title strip at bottom of game card */

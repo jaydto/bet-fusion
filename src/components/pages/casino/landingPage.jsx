@@ -33,6 +33,7 @@ const LandingPage = () => {
   const isMobile = !screens.md;
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("all");
+  const [activeTab, setActiveTab] = useState("Aviator");
 
   const casino_games = useSelector((state) => state.virtuals.casino_games_data);
   const loading = useSelector((state) => state.virtuals.loading);
@@ -93,42 +94,61 @@ const LandingPage = () => {
 
   const showSection = (id) => activeCategory === "all" || activeCategory === id;
 
-  const NAV_TABS = ["Aviator", "Crash", "Sports", "Casino", "Slots", "Virtuals", "Live", "Tournaments"];
+  const NAV_TABS = [
+    { label: "Aviator", icon: "🔥" },
+    { label: "Crash",   icon: "💥" },
+    { label: "Sports",  icon: "⚽" },
+    { label: "Casino",  icon: "🎰" },
+    { label: "Slots",   icon: "🎮" },
+    { label: "Virtuals",icon: "🕹️" },
+    { label: "Live",    icon: "📡" },
+    { label: "Tournaments", icon: "🏆" },
+  ];
 
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "6rem" : "2rem" }}>
       {/* Horizontal category tabs — desktop and mobile */}
       <div style={{
         display: "flex",
-        gap: isMobile ? "0" : "4px",
+        gap: isMobile ? "0" : "2px",
         overflowX: "auto",
         scrollbarWidth: "none",
         msOverflowStyle: "none",
-        fontSize: isMobile ? "13px" : "14px",
-        color: "#94a3b8",
+        fontSize: isMobile ? "12px" : "13px",
         fontWeight: 600,
-        padding: isMobile ? "8px 12px" : "12px 12px 8px 24px",
+        padding: isMobile ? "6px 8px" : "8px 16px",
         borderBottom: "1px solid #1e293b",
         marginBottom: "8px",
         background: "#0f172a",
       }}>
-        {NAV_TABS.map(item => (
-          <div
-            key={item}
-            style={{
-              cursor: "pointer",
-              transition: "color 0.2s",
-              padding: isMobile ? "6px 14px" : "4px 12px",
-              whiteSpace: "nowrap",
-              borderRadius: "6px",
-              flexShrink: 0,
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = "#fb8603"; e.currentTarget.style.background = "rgba(251,134,3,0.08)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.background = "transparent"; }}
-          >
-            {item}
-          </div>
-        ))}
+        {NAV_TABS.map(({ label, icon }) => {
+          const isActive = activeTab === label;
+          return (
+            <div
+              key={label}
+              onClick={() => setActiveTab(label)}
+              style={{
+                cursor: "pointer",
+                padding: isMobile ? "5px 10px" : "5px 12px",
+                whiteSpace: "nowrap",
+                borderRadius: "6px",
+                flexShrink: 0,
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+                color: isActive ? "#fb8603" : "#94a3b8",
+                background: isActive ? "rgba(251,134,3,0.1)" : "transparent",
+                borderBottom: isActive ? "2px solid #fb8603" : "2px solid transparent",
+                transition: "color 0.2s, background 0.2s",
+              }}
+              onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.color = "#fb8603"; e.currentTarget.style.background = "rgba(251,134,3,0.06)"; }}}
+              onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.background = "transparent"; }}}
+            >
+              <span style={{ fontSize: isMobile ? "12px" : "13px" }}>{icon}</span>
+              {label}
+            </div>
+          );
+        })}
       </div>
 
       <div style={{ marginTop: isMobile ? 2 : 0, padding: isMobile ? "5px 1px" : "12px 12px 0px 12px", overflow: "hidden" }}>
@@ -143,7 +163,7 @@ const LandingPage = () => {
           <div className="landing-section">
             <SectionHeader
               title="Most played"
-              actionLabel="All"
+              actionLabel="SHOW ALL"
               onAction={() => navigate("/casino")}
             />
             {loading
@@ -159,7 +179,7 @@ const LandingPage = () => {
           <div className="landing-section">
             <SectionHeader
               title="Crash Games"
-              actionLabel="All"
+              actionLabel="SHOW ALL"
               onAction={() => navigate("/casino?categoryId=crash")}
             />
             {loading
@@ -173,7 +193,7 @@ const LandingPage = () => {
           <div className="landing-section">
             <SectionHeader
               title="Live Casino"
-              actionLabel="All"
+              actionLabel="SHOW ALL"
               onAction={() => navigate("/casino?categoryId=live")}
             />
             {loading
@@ -187,7 +207,7 @@ const LandingPage = () => {
           <div className="landing-section">
             <SectionHeader
               title="Slots"
-              actionLabel="All"
+              actionLabel="SHOW ALL"
               onAction={() => navigate("/casino?categoryId=slots")}
             />
             {loading

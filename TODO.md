@@ -626,10 +626,10 @@
 
 | Task | Status | Branch / PR | Notes |
 |------|--------|-------------|-------|
-| M5 — Brand identity (logo + gradient) | ⬜ Todo | `feat/m5-brand-identity` | logo.png everywhere, gradient tokens |
-| M6 — Mobile navigation | ⬜ Todo | `feat/m6-mobile-navigation` | mobile header + bottom nav |
-| M7 — Font & typography | ⬜ Todo | `feat/m7-font-typography` | confirm font from Figma first |
-| M8 — Carousel & content layout | ⬜ Todo | `feat/m8-carousel-content` | perPage fix, gradient sections |
-| M9 — Global color audit & QA | ⬜ Todo | `feat/m9-color-audit-qa` | final sweep + QA checklist |
+| M5 — Brand identity (logo + gradient) | ✅ Done | PR #27 | logo.png everywhere, --brand-gradient, all tokens updated |
+| M6 — Mobile navigation | ✅ Done | PR #28 | hamburger/logo/icons mobile header, category tabs, carousel fix |
+| M7 — Font & typography | ⬜ Blocked | `feat/m7-font-typography` | needs Figma access to confirm font name |
+| M8 — Carousel & content layout | ✅ Done | PR #28 | perPage isMobile?1:3, height 200px desktop, radial glow brand color |
+| M9 — Global color audit & QA | ✅ Done | PR #29 | 0 #E55F32 remaining, logo.png in auth pages too |
 
 > **Merge protocol:** Each milestone PR is merged via GitHub UI (or `gh pr merge --merge`) to `main` remotely — never `git merge` locally.

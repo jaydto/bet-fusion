@@ -1,13 +1,16 @@
 import React from "react";
 import { RightOutlined } from "@ant-design/icons";
 
-const SectionHeader = ({ title, actionLabel = "All", onAction }) => {
+const SectionHeader = ({ title, actionLabel = "SHOW ALL", onAction }) => {
   const showAction =
     actionLabel !== "" && actionLabel !== null && actionLabel !== undefined;
 
   return (
     <div className="landing-section-header">
-      <div className="landing-section-title">{title}</div>
+      <div className="landing-section-title">
+        <span className="landing-section-icon">🔥</span>
+        {title}
+      </div>
       {showAction && (
         <div
           className="landing-section-action"
@@ -19,7 +22,7 @@ const SectionHeader = ({ title, actionLabel = "All", onAction }) => {
           }}
         >
           <span>{actionLabel}</span>
-          <RightOutlined style={{ fontSize: 12 }} />
+          <RightOutlined style={{ fontSize: 10 }} />
         </div>
       )}
     </div>

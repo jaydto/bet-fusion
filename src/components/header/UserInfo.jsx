@@ -73,8 +73,8 @@ export const UserInfo = React.memo((props) => {
                   cursor: "pointer",
                 }}
               >
-                <FontAwesomeIcon icon={faWallet} style={{ color: "#E55F32", fontSize: "14px" }} />
-                <span style={{ color: "#E55F32", fontWeight: 700, fontSize: "14px", whiteSpace: "nowrap" }}>
+                <FontAwesomeIcon icon={faWallet} style={{ color: "#fb8603", fontSize: "14px" }} />
+                <span style={{ color: "#fb8603", fontWeight: 700, fontSize: "14px", whiteSpace: "nowrap" }}>
                   KES {formatNumber(user?.balance || 0)}
                 </span>
               </div>
@@ -100,13 +100,13 @@ export const UserInfo = React.memo((props) => {
           <Link
             to={{ pathname: "/deposit" }}
             style={{
-              background: "rgba(59, 170, 237, 0.15)",
-              color: "#E55F32",
+              background: "linear-gradient(135deg, #cc3366 0%, #fb8603 100%)",
+              color: "#fff",
               fontWeight: 700,
               fontSize: "13px",
               padding: "7px 22px",
-              borderRadius: "999px",
-              border: "1px solid rgba(59, 170, 237, 0.3)",
+              borderRadius: "8px",
+              border: "none",
               textTransform: "uppercase",
               letterSpacing: "0.02em",
               textDecoration: "none",
@@ -131,7 +131,7 @@ export const UserInfo = React.memo((props) => {
                   textDecoration: "none",
                   padding: "7px 20px",
                   border: "1px solid #334155",
-                  borderRadius: "999px",
+                  borderRadius: "8px",
                   transition: "border-color 0.2s, color 0.2s",
                   display: "inline-flex",
                   alignItems: "center",
@@ -140,22 +140,23 @@ export const UserInfo = React.memo((props) => {
                 Login
               </Link>
             )}
+
             {pathname !== "/auth/signup" && (
               <Link
                 to={"/auth/signup"}
                 onClick={() => gaEventTracker("Register")}
                 style={{
-                  background: "#E55F32",
-                  color: "#000",
+                  background: "linear-gradient(135deg, #cc3366 0%, #fb8603 100%)",
+                  color: "#fff",
                   fontWeight: 800,
                   fontSize: "14px",
                   textDecoration: "none",
                   padding: "10px 28px",
-                  borderRadius: "999px",
+                  borderRadius: "8px",
                   display: "inline-flex",
                   alignItems: "center",
                   transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
-                  boxShadow: "0 4px 20px rgba(59, 170, 237, 0.3)",
+                  boxShadow: "0 4px 20px rgba(251, 134, 3, 0.3)",
                 }}
               >
                 Register

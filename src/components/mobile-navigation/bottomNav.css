@@ -40,12 +40,31 @@
   transition: color 0.15s;
 }
 
+.bottom-nav-item {
+  position: relative;
+}
+
 .bottom-nav-item.active {
-  color: #E55F32;
+  background: linear-gradient(135deg, #cc3366 0%, #fb8603 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bottom-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(135deg, #cc3366 0%, #fb8603 100%);
 }
 
 .bottom-nav-item:hover {
-  color: #E55F32;
+  color: #fb8603;
 }
 
 .bottom-nav-icon {

@@ -65,7 +65,7 @@ const CasinoCarouselLoader = React.memo(() => {
     const visible = allBanners.slice(page * perPage, page * perPage + perPage);
     const showArrows = allBanners.length > perPage;
 
-    const bannerHeight = isMobile ? 160 : 200;
+    const bannerHeight = isMobile ? 160 : 360;
 
     const shimmerGrid = (
         <div style={{

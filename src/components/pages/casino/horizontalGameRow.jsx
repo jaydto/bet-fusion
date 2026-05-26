@@ -53,7 +53,7 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick }) => {
           <div
             key={key}
             className={`game-card ${size} game-card--hoverable`}
-            style={{ flex: "0 0 auto", width: size === "lg" ? "180px" : "148px", marginRight: "12px", cursor: "pointer" }}
+            style={{ flex: "0 0 auto", width: size === "lg" ? "180px" : "148px", borderRadius: "12px", overflow: "hidden", marginRight: "12px", cursor: "pointer" }}
             onClick={() => {
               if (drag.current.moved) return;
               if (onCardClick) {

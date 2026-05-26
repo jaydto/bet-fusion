@@ -127,14 +127,15 @@ export const UserInfo = React.memo((props) => {
                 style={{
                   color: "#f8fafc",
                   fontWeight: 600,
-                  fontSize: "14px",
+                  fontSize: "13px",
                   textDecoration: "none",
-                  padding: "7px 20px",
-                  border: "1px solid #334155",
+                  padding: "6px 14px",
+                  border: "1px solid #1e2235",
                   borderRadius: "8px",
                   transition: "border-color 0.2s, color 0.2s",
                   display: "inline-flex",
                   alignItems: "center",
+                  whiteSpace: "nowrap",
                 }}
               >
                 Login
@@ -148,15 +149,16 @@ export const UserInfo = React.memo((props) => {
                 style={{
                   background: "linear-gradient(135deg, #cc3366 0%, #fb8603 100%)",
                   color: "#fff",
-                  fontWeight: 800,
-                  fontSize: "14px",
+                  fontWeight: 700,
+                  fontSize: "13px",
                   textDecoration: "none",
-                  padding: "10px 28px",
+                  padding: "7px 14px",
                   borderRadius: "8px",
                   display: "inline-flex",
                   alignItems: "center",
-                  transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
-                  boxShadow: "0 4px 20px rgba(251, 134, 3, 0.3)",
+                  whiteSpace: "nowrap",
+                  transition: "opacity 0.2s",
+                  boxShadow: "0 2px 12px rgba(251, 134, 3, 0.3)",
                 }}
               >
                 Register

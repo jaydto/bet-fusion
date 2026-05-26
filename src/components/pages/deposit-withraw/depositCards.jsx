@@ -26,7 +26,7 @@ const DepositCards = ({ onCardSelect }) => {
             style={{
               borderRadius: "6px",
               backgroundColor: "transparent",
-              border: "1px solid #E55F32",
+              border: "1px solid #fb8603",
               cursor: "pointer",
               textAlign: "center",
               width: "100%",
@@ -35,7 +35,7 @@ const DepositCards = ({ onCardSelect }) => {
           >
             <div
               style={{
-                color: "#E55F32",
+                color: "#fb8603",
                 fontSize: "12px",
                 fontWeight: "700",
                 whiteSpace: "nowrap",

@@ -1,5 +1,7 @@
 import React from "react";
 import { RightOutlined } from "@ant-design/icons";
+import { GiFlame } from "react-icons/gi";
+
 
 const SectionHeader = ({ title, actionLabel = "SHOW ALL", onAction }) => {
   const showAction =
@@ -8,7 +10,9 @@ const SectionHeader = ({ title, actionLabel = "SHOW ALL", onAction }) => {
   return (
     <div className="landing-section-header">
       <div className="landing-section-title">
-        <span className="landing-section-icon">🔥</span>
+        <span className="landing-section-icon" style={{ color: "#fb8603", display: "flex", alignItems: "center" }}>
+          <GiFlame size={16} />
+        </span>
         {title}
       </div>
       {showAction && (

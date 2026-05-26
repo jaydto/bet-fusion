@@ -2,6 +2,8 @@ import React, { useMemo, useState } from "react";
 import { Grid } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { GiAirplane, GiExplodingPlanet, GiPokerHand, GiDiceSixFacesFive, GiGamepad, GiTrophyCup, GiFlame } from "react-icons/gi";
+import { MdSportsSoccer, MdLiveTv } from "react-icons/md";
 import CasinoCarouselLoader from "./carousel";
 import SectionHeader from "./sectionHeader";
 import HorizontalGameRow from "./horizontalGameRow";
@@ -95,14 +97,14 @@ const LandingPage = () => {
   const showSection = (id) => activeCategory === "all" || activeCategory === id;
 
   const NAV_TABS = [
-    { label: "Aviator", icon: "🔥" },
-    { label: "Crash",   icon: "💥" },
-    { label: "Sports",  icon: "⚽" },
-    { label: "Casino",  icon: "🎰" },
-    { label: "Slots",   icon: "🎮" },
-    { label: "Virtuals",icon: "🕹️" },
-    { label: "Live",    icon: "📡" },
-    { label: "Tournaments", icon: "🏆" },
+    { label: "Aviator",     icon: <GiFlame size={14} /> },
+    { label: "Crash",       icon: <GiExplodingPlanet size={14} /> },
+    { label: "Sports",      icon: <MdSportsSoccer size={14} /> },
+    { label: "Casino",      icon: <GiPokerHand size={14} /> },
+    { label: "Slots",       icon: <GiDiceSixFacesFive size={14} /> },
+    { label: "Virtuals",    icon: <GiGamepad size={14} /> },
+    { label: "Live",        icon: <MdLiveTv size={14} /> },
+    { label: "Tournaments", icon: <GiTrophyCup size={14} /> },
   ];
 
   return (
@@ -144,7 +146,7 @@ const LandingPage = () => {
               onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.color = "#fb8603"; e.currentTarget.style.background = "rgba(251,134,3,0.06)"; }}}
               onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.background = "transparent"; }}}
             >
-              <span style={{ fontSize: isMobile ? "12px" : "13px" }}>{icon}</span>
+              <span style={{ display: "flex", alignItems: "center", lineHeight: 1 }}>{icon}</span>
               {label}
             </div>
           );

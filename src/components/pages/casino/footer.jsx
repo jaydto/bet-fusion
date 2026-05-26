@@ -29,8 +29,8 @@ export default function Footer() {
   return (
     <AntFooter
       style={{
-        background: "#0f172a",
-        borderTop: "1px solid #1e293b",
+        background: "#0F111A",
+        borderTop: "1px solid #1e2235",
         color: "#94a3b8",
         padding: "32px 24px 80px",
       }}
@@ -57,7 +57,7 @@ export default function Footer() {
             <li>License Number: <b style={{ color: "#f8fafc" }}>PG0001119 / BK0001120</b></li>
           </ul>
 
-          <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
+          <Divider style={{ borderColor: "#1e2235", margin: "20px 0" }} />
 
           {/* Responsible Gambling */}
           <Title
@@ -84,7 +84,7 @@ export default function Footer() {
             .
           </Paragraph>
 
-          <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
+          <Divider style={{ borderColor: "#1e2235", margin: "20px 0" }} />
 
           {/* Links */}
           <Title
@@ -114,7 +114,7 @@ export default function Footer() {
             ))}
           </Space>
 
-          <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
+          <Divider style={{ borderColor: "#1e2235", margin: "20px 0" }} />
 
           {/* 18+ disclaimer */}
           <Paragraph
@@ -131,7 +131,7 @@ export default function Footer() {
             You must be 18 years of age or older to register or play.
           </Paragraph>
 
-          <Divider style={{ borderColor: "#1e293b", margin: "20px 0" }} />
+          <Divider style={{ borderColor: "#1e2235", margin: "20px 0" }} />
 
           {/* Social */}
           <Title level={5} style={{ textAlign: "center", color: "#f8fafc" }}>
@@ -160,7 +160,7 @@ export default function Footer() {
             ))}
           </Row>
 
-          <Paragraph style={{ textAlign: "center", fontSize: 12, color: "#334155", marginTop: 8 }}>
+          <Paragraph style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginTop: 8 }}>
             &copy; 2025 Betfusion. All rights reserved.
           </Paragraph>
         </Col>

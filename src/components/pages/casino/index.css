@@ -69,7 +69,7 @@
 
 /* ── Category tabs (undabet style) ── */
 .bt-cat {
-  background: #1e293b !important;
+  background: #171A26 !important;
   color: #94a3b8 !important;
   border: none !important;
   border-radius: 20px !important;
@@ -228,7 +228,7 @@
 /* Style tabs — undabet style */
 .ant-tabs-tab {
   border-radius: 20px !important;
-  background-color: #1e293b !important;
+  background-color: #171A26 !important;
   color: #94a3b8 !important;
   padding: 6px 14px !important;
   margin: 0 4px 0 0 !important;
@@ -1353,7 +1353,7 @@ input.search-cat:focus {
 
 .landing-pill {
   flex-shrink: 0;
-  background: #1e293b;
+  background: #171A26;
   color: #94a3b8;
   border: none;
   border-radius: 999px;

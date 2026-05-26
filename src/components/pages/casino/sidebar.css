@@ -1,8 +1,8 @@
 .sidebar-root {
   width: var(--sidebar-width, 256px);
   min-width: var(--sidebar-width, 256px);
-  background: var(--sidebar, #0f172a);
-  border-right: 1px solid var(--sidebar-border, #1e293b);
+  background: var(--sidebar, #0F111A);
+  border-right: 1px solid var(--sidebar-border, #1e2235);
   height: 100vh;
   position: sticky;
   top: 0;
@@ -45,7 +45,7 @@
 
 .sidebar-divider {
   height: 1px;
-  background: var(--sidebar-border, #1e293b);
+  background: var(--sidebar-border, #1e2235);
   margin: 6px 0;
 }
 

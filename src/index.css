@@ -67,7 +67,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(100% 100% at 50% 0%, rgba(59, 170, 237, 0.12) 0%, transparent 55%);
+  background: radial-gradient(100% 100% at 50% 0%, rgba(251, 134, 3, 0.12) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
 }

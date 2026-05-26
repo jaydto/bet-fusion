@@ -8,14 +8,8 @@ import { shouldShowSearch } from "../../redux/navigationAction";
 
 const SearchIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-    strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}>
+    strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
     <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-  </svg>
-);
-
-const BellIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 20, height: 20 }}>
-    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
   </svg>
 );
 
@@ -25,6 +19,12 @@ const HamburgerIcon = () => (
     <line x1="3" y1="6" x2="21" y2="6" />
     <line x1="3" y1="12" x2="21" y2="12" />
     <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 20, height: 20 }}>
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
   </svg>
 );
 
@@ -54,28 +54,52 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
       title="Betfusion"
       style={{ gap: 0, height: "100%", padding: 0 }}
     >
-      {/* ── MOBILE layout: logo left | search + auth right ── */}
+      {/* ── MOBILE layout: hamburger | search input | theme toggle ── */}
       {!isDesktop && (
         <>
-          {/* Left: logo */}
-          <div
-            style={{ display: "flex", alignItems: "center", paddingLeft: "14px", cursor: "pointer" }}
-            onClick={() => navigate("/")}
+          {/* Left: hamburger */}
+          <button
+            style={{ ...iconBtnStyle, paddingLeft: "12px" }}
+            onClick={toggleMenu}
+            aria-label="Open menu"
           >
-            <img src={logo} alt="BetFusion" style={{ height: "24px", width: "auto" }} />
+            <HamburgerIcon />
+          </button>
+
+          {/* Center: inline search input */}
+          <div style={{ flex: 1, padding: "0 6px" }}>
+            <div style={{ position: "relative" }}>
+              <span style={{
+                position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)",
+                pointerEvents: "none", color: "#64748b", display: "flex",
+              }}>
+                <SearchIcon />
+              </span>
+              <input
+                type="text"
+                placeholder="Search games..."
+                onClick={() => dispatch(shouldShowSearch())}
+                readOnly
+                style={{
+                  width: "100%",
+                  background: "#171A26",
+                  border: "1px solid #1e2235",
+                  borderRadius: "8px",
+                  color: "#e5e5e5",
+                  fontSize: "13px",
+                  padding: "7px 10px 7px 32px",
+                  outline: "none",
+                  cursor: "pointer",
+                  fontFamily: "'Outfit', sans-serif",
+                }}
+              />
+            </div>
           </div>
 
-          {/* Right: search + auth */}
-          <div style={{ display: "flex", alignItems: "center", paddingRight: "8px", gap: "4px", marginLeft: "auto" }}>
-            <button
-              style={iconBtnStyle}
-              onClick={() => dispatch(shouldShowSearch())}
-              aria-label="Search"
-            >
-              <SearchIcon />
-            </button>
-            <UserInfo profile={checkDesktop} />
-          </div>
+          {/* Right: dark/light mode toggle */}
+          <button style={{ ...iconBtnStyle, paddingRight: "12px" }} aria-label="Toggle theme">
+            <MoonIcon />
+          </button>
         </>
       )}
 

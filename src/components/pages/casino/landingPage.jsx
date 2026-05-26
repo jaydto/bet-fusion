@@ -97,14 +97,14 @@ const LandingPage = () => {
   const showSection = (id) => activeCategory === "all" || activeCategory === id;
 
   const NAV_TABS = [
-    { label: "Aviator",     icon: <GiAirplane size={14} /> },
-    { label: "Crash",       icon: <GiExplodingPlanet size={14} /> },
-    { label: "Sports",      icon: <MdSportsSoccer size={14} /> },
-    { label: "Casino",      icon: <GiPokerHand size={14} /> },
-    { label: "Slots",       icon: <GiDiceSixFacesFive size={14} /> },
-    { label: "Virtuals",    icon: <GiGamepad size={14} /> },
-    { label: "Live",        icon: <MdLiveTv size={14} /> },
-    { label: "Tournaments", icon: <GiTrophyCup size={14} /> },
+    { label: "Aviator",     icon: <GiAirplane size={isMobile ? 20 : 14} /> },
+    { label: "Crash",       icon: <GiExplodingPlanet size={isMobile ? 20 : 14} /> },
+    { label: "Sports",      icon: <MdSportsSoccer size={isMobile ? 20 : 14} /> },
+    { label: "Casino",      icon: <GiPokerHand size={isMobile ? 20 : 14} /> },
+    { label: "Slots",       icon: <GiDiceSixFacesFive size={isMobile ? 20 : 14} /> },
+    { label: "Virtuals",    icon: <GiGamepad size={isMobile ? 20 : 14} /> },
+    { label: "Live",        icon: <MdLiveTv size={isMobile ? 20 : 14} /> },
+    { label: "Tournaments", icon: <GiTrophyCup size={isMobile ? 20 : 14} /> },
   ];
 
   return (
@@ -116,7 +116,7 @@ const LandingPage = () => {
         overflowX: "auto",
         scrollbarWidth: "none",
         msOverflowStyle: "none",
-        fontSize: isMobile ? "11px" : "13px",
+        fontSize: isMobile ? "10px" : "13px",
         fontWeight: 600,
         padding: "0",
         borderBottom: "1px solid #1e2235",
@@ -131,13 +131,14 @@ const LandingPage = () => {
               onClick={() => setActiveTab(label)}
               style={{
                 cursor: "pointer",
-                padding: isMobile ? "9px 9px" : "12px 14px",
+                padding: isMobile ? "6px 10px" : "12px 14px",
                 whiteSpace: "nowrap",
                 borderRadius: "0",
                 flexShrink: 0,
                 display: "flex",
+                flexDirection: isMobile ? "column" : "row",
                 alignItems: "center",
-                gap: "4px",
+                gap: isMobile ? "2px" : "4px",
                 color: isActive ? "#fb8603" : "#64748b",
                 background: isActive ? "#261517" : "transparent",
                 borderBottom: isActive ? "2px solid #fb8603" : "2px solid transparent",

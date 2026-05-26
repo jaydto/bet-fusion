@@ -54,61 +54,57 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
       title="Betfusion"
       style={{ gap: 0, height: "100%", padding: 0 }}
     >
-      {/* ── MOBILE layout: hamburger | logo | search input | theme toggle ── */}
+      {/* ── MOBILE layout: two rows ── */}
       {!isDesktop && (
-        <>
-          {/* Left: hamburger */}
-          <button
-            style={{ ...iconBtnStyle, paddingLeft: "12px" }}
-            onClick={toggleMenu}
-            aria-label="Open menu"
-          >
-            <HamburgerIcon />
-          </button>
-
-          {/* Logo */}
-          <div
-            style={{ display: "flex", alignItems: "center", cursor: "pointer", paddingRight: "4px" }}
-            onClick={() => navigate("/")}
-          >
-            <img src={logo} alt="BetFusion" style={{ height: "22px", width: "auto" }} />
-          </div>
-
-          {/* Center: inline search input */}
-          <div style={{ flex: 1, padding: "0 6px" }}>
-            <div style={{ position: "relative" }}>
-              <span style={{
-                position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)",
-                pointerEvents: "none", color: "#64748b", display: "flex",
-              }}>
-                <SearchIcon />
-              </span>
-              <input
-                type="text"
-                placeholder="Search games..."
-                onClick={() => dispatch(shouldShowSearch())}
-                readOnly
-                style={{
-                  width: "100%",
-                  background: "#171A26",
-                  border: "1px solid #1e2235",
-                  borderRadius: "8px",
-                  color: "#e5e5e5",
-                  fontSize: "13px",
-                  padding: "7px 10px 7px 32px",
-                  outline: "none",
-                  cursor: "pointer",
-                  fontFamily: "'Outfit', sans-serif",
-                }}
-              />
+        <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          {/* Row 1: logo + login/register */}
+          <div style={{ display: "flex", alignItems: "center", padding: "6px 12px" }}>
+            <div style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+              <img src={logo} alt="BetFusion" style={{ height: "22px", width: "auto" }} />
+            </div>
+            <div style={{ marginLeft: "auto" }}>
+              <UserInfo profile={checkDesktop} />
             </div>
           </div>
 
-          {/* Right: dark/light mode toggle */}
-          <button style={{ ...iconBtnStyle, paddingRight: "12px" }} aria-label="Toggle theme">
-            <MoonIcon />
-          </button>
-        </>
+          {/* Row 2: hamburger | search input | moon toggle */}
+          <div style={{ display: "flex", alignItems: "center", padding: "0 4px 6px" }}>
+            <button style={iconBtnStyle} onClick={toggleMenu} aria-label="Open menu">
+              <HamburgerIcon />
+            </button>
+            <div style={{ flex: 1, padding: "0 4px" }}>
+              <div style={{ position: "relative" }}>
+                <span style={{
+                  position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)",
+                  pointerEvents: "none", color: "#64748b", display: "flex",
+                }}>
+                  <SearchIcon />
+                </span>
+                <input
+                  type="text"
+                  placeholder="Search games..."
+                  onClick={() => dispatch(shouldShowSearch())}
+                  readOnly
+                  style={{
+                    width: "100%",
+                    background: "#171A26",
+                    border: "1px solid #1e2235",
+                    borderRadius: "8px",
+                    color: "#e5e5e5",
+                    fontSize: "13px",
+                    padding: "7px 10px 7px 32px",
+                    outline: "none",
+                    cursor: "pointer",
+                    fontFamily: "'Outfit', sans-serif",
+                  }}
+                />
+              </div>
+            </div>
+            <button style={iconBtnStyle} aria-label="Toggle theme">
+              <MoonIcon />
+            </button>
+          </div>
+        </div>
       )}
 
       {/* ── DESKTOP layout: search bar centered, auth on right ── */}

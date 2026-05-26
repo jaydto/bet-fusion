@@ -162,7 +162,7 @@ const App = () => {
       <div style={{ flex: 1, minWidth: 0, display: "block", position: "relative", zIndex: 1 }}>
         {showHeader && <Header />}
 
-        <div style={{ flex: 1, paddingTop: showHeader ? "var(--navbar-height, 50px)" : 0 }}>
+        <div style={{ flex: 1, paddingTop: showHeader ? (isMobile ? "96px" : "var(--navbar-height, 50px)") : 0 }}>
           <Suspense fallback={<></>}>
             <Routes>
               {/* <Route  path="/" element={<CasinoGames />} /> */}

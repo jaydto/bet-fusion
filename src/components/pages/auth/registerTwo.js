@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../../../assets/img/logo.png";
 import { Form, Formik } from "formik";
 import { ToastContainer } from "react-toastify";
 import { notification } from "antd";
@@ -181,7 +182,7 @@ const Register = () => {
             id="agreementCheckbox"
             name="agreementCheckbox"
             onChange={handleChange}
-            style={{ marginTop: 2, accentColor: "#E55F32", width: 16, height: 16, flexShrink: 0 }}
+            style={{ marginTop: 2, accentColor: "#fb8603", width: 16, height: 16, flexShrink: 0 }}
           />
           <label htmlFor="agreementCheckbox" style={{ fontSize: 12, color: "#94a3b8", cursor: "pointer", lineHeight: 1.5 }}>
             Accept{" "}
@@ -225,13 +226,11 @@ const Register = () => {
                   gap: 16,
                 }}
               >
-                <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "32px", letterSpacing: "-0.5px" }}>
-                  <span style={{ color: "#E55F32" }}>bet</span><span style={{ color: "#fff" }}>fusion</span>
-                </span>
+                <img src={logo} alt="BetFusion" style={{ height: "40px", width: "auto" }} />
                 <div style={{ textAlign: "center" }}>
                   <p style={{ fontSize: 24, fontWeight: 800, margin: "0 0 4px", lineHeight: 1.2 }}>
                     <span style={{ color: "#f8fafc" }}>JOIN </span>
-                    <span style={{ color: "#E55F32" }}>TODAY</span>
+                    <span style={{ color: "#fb8603" }}>TODAY</span>
                   </p>
                   <p style={{ color: "#94a3b8", fontSize: 13, margin: 0 }}>
                     Create your account and start winning

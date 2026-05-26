@@ -47,7 +47,7 @@ const CasinoCarouselLoader = React.memo(() => {
     const navigate = useNavigate();
     const screens = useBreakpoint();
     const isMobile = !screens.md;
-    const perPage = isMobile ? 1 : 3;
+    const perPage = 1;
 
     const banner_images = useSelector((state) => state.data.casino_carousel_banners);
     const [page, setPage] = useState(0);
@@ -70,8 +70,8 @@ const CasinoCarouselLoader = React.memo(() => {
     const shimmerGrid = (
         <div style={{
             display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-            gap: isMobile ? 0 : 10,
+            gridTemplateColumns: "1fr",
+            gap: 0,
             borderRadius: 12,
             overflow: "hidden",
             marginBottom: 4,
@@ -105,8 +105,8 @@ const CasinoCarouselLoader = React.memo(() => {
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-                        gap: isMobile ? 0 : 10,
+                        gridTemplateColumns: "1fr",
+                        gap: 0,
                         borderRadius: 12,
                         overflow: "hidden",
                         marginBottom: 4,

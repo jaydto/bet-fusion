@@ -13,6 +13,13 @@
   padding-bottom: 0 !important;
 }
 
+@media (max-width: 767px) {
+  .app-navbar.navbar {
+    height: auto !important;
+    min-height: auto !important;
+  }
+}
+
 @media (min-width: 1200px) {
   .app-navbar.navbar {
     left: var(--sidebar-width, 256px) !important;

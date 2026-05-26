@@ -72,7 +72,7 @@ const MyVerifyAccountForm = React.memo(({ errors, values, submitForm, setFieldVa
           type="button"
           onClick={resendOTP}
           disabled={!state?.isMobileNumberValid && !msisdn}
-          style={{ background: "none", border: "none", color: "#E55F32", fontSize: 12, cursor: "pointer", padding: 0 }}
+          style={{ background: "none", border: "none", color: "#fb8603", fontSize: 12, cursor: "pointer", padding: 0 }}
         >
           Resend OTP
         </button>

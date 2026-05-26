@@ -228,9 +228,9 @@ font-weight: 900;
 }
 .filter-buttons-bethistory .filters.button-filter.active,
 .filter-buttons-bethistory .filters.button-filter:hover {
-    border-color: #E55F32;
+    border-color: #fb8603;
     background: rgba(59,170,237,0.1);
-    color: #E55F32;
+    color: #fb8603;
 }
 .history-details .status{
 

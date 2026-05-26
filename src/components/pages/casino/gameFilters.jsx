@@ -57,9 +57,9 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
               borderRadius: 20,
               whiteSpace: "nowrap",
               flexShrink: 0,
-              border: `1.5px solid ${isActive ? "#E55F32" : "#334155"}`,
+              border: `1.5px solid ${isActive ? "#fb8603" : "#334155"}`,
               background: isActive ? "rgba(59,170,237,0.12)" : "#1e293b",
-              color: isActive ? "#E55F32" : "#94a3b8",
+              color: isActive ? "#fb8603" : "#94a3b8",
               transition: "all 0.15s",
             }}
           >

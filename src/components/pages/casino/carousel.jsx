@@ -162,7 +162,7 @@ const CasinoCarouselLoader = React.memo(() => {
                                 width: i === page ? 20 : 7,
                                 height: 7,
                                 borderRadius: 999,
-                                background: i === page ? "#E55F32" : "#334155",
+                                background: i === page ? "#fb8603" : "#334155",
                                 border: "none",
                                 cursor: "pointer",
                                 padding: 0,

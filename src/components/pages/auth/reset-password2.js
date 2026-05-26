@@ -43,7 +43,7 @@ const OtpRequestForm = React.memo(({ errors, values, setFieldValue }) => {
       <button
         type="button"
         onClick={() => dispatchRedux(setState("otp_sent", true))}
-        style={{ background: "none", border: "none", color: "#E55F32", fontSize: 13, cursor: "pointer", width: "100%", marginTop: 12 }}
+        style={{ background: "none", border: "none", color: "#fb8603", fontSize: 13, cursor: "pointer", width: "100%", marginTop: 12 }}
       >
         Already have an OTP?
       </button>

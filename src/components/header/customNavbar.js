@@ -14,11 +14,11 @@ const SearchIcon = () => (
 );
 
 const HamburgerIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-    strokeLinecap="round" strokeLinejoin="round" style={{ width: 22, height: 22 }}>
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="18" x2="21" y2="18" />
+  <svg viewBox="0 0 22 16" fill="none" stroke="currentColor" strokeWidth="2"
+    strokeLinecap="round" style={{ width: 22, height: 16 }}>
+    <line x1="0" y1="1"  x2="13" y2="1"  />
+    <line x1="0" y1="8"  x2="17" y2="8"  />
+    <line x1="0" y1="15" x2="22" y2="15" />
   </svg>
 );
 

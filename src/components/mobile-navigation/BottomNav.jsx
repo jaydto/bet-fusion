@@ -1,13 +1,14 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { MdHomeFilled, MdSportsSoccer, MdLocalOffer, MdAccountCircle, MdAddCircle } from "react-icons/md";
+import { MdHomeFilled, MdSportsSoccer, MdAccountCircle, MdAddCircle } from "react-icons/md";
+import { BsGift } from "react-icons/bs";
 import "./bottomNav.css";
 
 const regularItems = [
   { label: "Home",    path: "/",           icon: <MdHomeFilled size={22} /> },
   { label: "Sports",  path: "/sports",     icon: <MdSportsSoccer size={22} /> },
   null, // centre FAB
-  { label: "Promos",  path: "/promotions", icon: <MdLocalOffer size={22} /> },
+  { label: "Promos",  path: "/promotions", icon: <BsGift size={20} /> },
   { label: "Profile", path: "/profile",    icon: <MdAccountCircle size={22} /> },
 ];
 

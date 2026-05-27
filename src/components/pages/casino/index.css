@@ -1463,7 +1463,7 @@ input.search-cat:focus {
 .landing-row .game-card {
   aspect-ratio: 3 / 2;
   flex-shrink: 0;
-  width: 130px;
+  width: 148px;
   height: unset;
   border-radius: 8px;
   background: rgba(229, 229, 229, 0.05);
@@ -1474,7 +1474,7 @@ input.search-cat:focus {
 }
 
 .landing-row .game-card.lg {
-  width: 160px;
+  width: 185px;
   aspect-ratio: 3 / 2;
 }
 
@@ -1561,7 +1561,7 @@ input.search-cat:focus {
   background-size: 200% 100% !important;
   animation: game-card-shimmer 1.4s ease-in-out infinite !important;
   cursor: default !important;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   width: 148px;
   flex-shrink: 0;
   border-radius: 10px;

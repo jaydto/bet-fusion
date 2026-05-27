@@ -4,24 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GiRocketFlight, GiLever, GiHorseHead, GiTrophyCup } from "react-icons/gi";
 import { MdSportsSoccer, MdLiveTv } from "react-icons/md";
-import { IoSettingsSharp } from "react-icons/io5";
+import { IoSettingsSharp, IoAirplane } from "react-icons/io5";
 import CasinoCarouselLoader from "./carousel";
 import SectionHeader from "./sectionHeader";
 import HorizontalGameRow from "./horizontalGameRow";
 
 const { useBreakpoint } = Grid;
 
-const AviatorIcon = ({ size = 20 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <defs>
-      <linearGradient id="aviGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#cc3366" />
-        <stop offset="100%" stopColor="#fb8603" />
-      </linearGradient>
-    </defs>
-    <path fill="url(#aviGrad)" d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z" />
-  </svg>
-);
 
 const CATEGORY_PILLS = [
   { id: "all",    label: "All" },
@@ -48,7 +37,7 @@ const LandingPage = () => {
   const isMobile = !screens.md;
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("all");
-  const [activeTab, setActiveTab] = useState("Aviator");
+  const [activeTab, setActiveTab] = useState(null);
 
   const casino_games = useSelector((state) => state.virtuals.casino_games_data);
   const loading = useSelector((state) => state.virtuals.loading);
@@ -111,9 +100,9 @@ const LandingPage = () => {
 
   const iconSize = isMobile ? 20 : 14;
   const NAV_TABS = [
-    { label: "Aviator",     icon: <AviatorIcon size={iconSize} /> },
+    { label: "Aviator",     icon: <IoAirplane size={iconSize} style={{ color: activeTab === "Aviator" ? "#fb8603" : "inherit", transform: "rotate(-45deg)" }} /> },
     { label: "Crash",       icon: <GiRocketFlight size={iconSize} /> },
-    { label: "Sports",      icon: <MdSportsSoccer size={iconSize} /> },
+    // { label: "Sports",   icon: <MdSportsSoccer size={iconSize} /> },
     { label: "Casino",      icon: <IoSettingsSharp size={iconSize} /> },
     { label: "Slots",       icon: <GiLever size={iconSize} /> },
     { label: "Virtuals",    icon: <GiHorseHead size={iconSize} /> },

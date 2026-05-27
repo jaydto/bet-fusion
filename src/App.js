@@ -105,6 +105,7 @@ const App = () => {
   );
   const screens = useBreakpoint();
   const isMobile = !screens.md;
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const location = useLocation();
   const sidebarRoutes = [
@@ -151,16 +152,17 @@ const App = () => {
     // >
     <div className="main-layout">
       <div className="top-gradient-glow" />
-      {/* Sidebar (only for '/') */}
+      {/* Sidebar */}
       {showSidebar && (
-        <aside className="sidebar site-layout-background">
-          <Sidebar />
-        </aside>
+        <Sidebar
+          mobileOpen={mobileSidebarOpen}
+          onMobileClose={() => setMobileSidebarOpen(false)}
+        />
       )}
 
       {/* Main Content (Header + Routes) */}
       <div style={{ flex: 1, minWidth: 0, display: "block", position: "relative", zIndex: 1 }}>
-        {showHeader && <Header />}
+        {showHeader && <Header onToggleSidebar={() => setMobileSidebarOpen(v => !v)} />}
 
         <div style={{ flex: 1, paddingTop: showHeader ? (isMobile ? "96px" : "var(--navbar-height, 50px)") : 0 }}>
           <Suspense fallback={<></>}>

@@ -1,9 +1,10 @@
 import React, { useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-const HorizontalGameRow = ({ games = [], size = "md", onCardClick }) => {
+const HorizontalGameRow = ({ games = [], size = "md", onCardClick, layout = "row" }) => {
   const rowRef = useRef(null);
   const navigate = useNavigate();
+  const isGrid = layout === "grid";
 
   const drag = useRef({ down: false, startX: 0, startLeft: 0, moved: false });
 
@@ -31,13 +32,13 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick }) => {
 
   return (
     <div
-      ref={rowRef}
-      className="landing-row"
-      style={{ overflowX: "auto", overflowY: "hidden", WebkitOverflowScrolling: "touch", touchAction: "pan-x" }}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={endDrag}
-      onPointerCancel={endDrag}
+      ref={isGrid ? null : rowRef}
+      className={isGrid ? "game-grid-layout" : "landing-row"}
+      style={isGrid ? {} : { overflowX: "auto", overflowY: "hidden", WebkitOverflowScrolling: "touch", touchAction: "pan-x" }}
+      onPointerDown={isGrid ? undefined : onPointerDown}
+      onPointerMove={isGrid ? undefined : onPointerMove}
+      onPointerUp={isGrid ? undefined : endDrag}
+      onPointerCancel={isGrid ? undefined : endDrag}
     >
       {safeGames.map((g, idx) => {
         const key = `${g?.game_id || g?.id || "game"}-${idx}`;

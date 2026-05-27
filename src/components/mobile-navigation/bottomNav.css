@@ -103,7 +103,7 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #cc3366 0%, #fb8603 100%);
+  background: #fb8603;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -2,13 +2,26 @@ import React, { useMemo, useState } from "react";
 import { Grid } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { GiAirplane, GiExplodingPlanet, GiPokerHand, GiDiceSixFacesFive, GiGamepad, GiTrophyCup, GiFlame } from "react-icons/gi";
+import { GiRocketFlight, GiLever, GiHorseHead, GiTrophyCup } from "react-icons/gi";
 import { MdSportsSoccer, MdLiveTv } from "react-icons/md";
+import { IoSettingsSharp } from "react-icons/io5";
 import CasinoCarouselLoader from "./carousel";
 import SectionHeader from "./sectionHeader";
 import HorizontalGameRow from "./horizontalGameRow";
 
 const { useBreakpoint } = Grid;
+
+const AviatorIcon = ({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <defs>
+      <linearGradient id="aviGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#cc3366" />
+        <stop offset="100%" stopColor="#fb8603" />
+      </linearGradient>
+    </defs>
+    <path fill="url(#aviGrad)" d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z" />
+  </svg>
+);
 
 const CATEGORY_PILLS = [
   { id: "all",    label: "All" },
@@ -96,15 +109,16 @@ const LandingPage = () => {
 
   const showSection = (id) => activeCategory === "all" || activeCategory === id;
 
+  const iconSize = isMobile ? 20 : 14;
   const NAV_TABS = [
-    { label: "Aviator",     icon: <GiAirplane size={isMobile ? 20 : 14} /> },
-    { label: "Crash",       icon: <GiExplodingPlanet size={isMobile ? 20 : 14} /> },
-    { label: "Sports",      icon: <MdSportsSoccer size={isMobile ? 20 : 14} /> },
-    { label: "Casino",      icon: <GiPokerHand size={isMobile ? 20 : 14} /> },
-    { label: "Slots",       icon: <GiDiceSixFacesFive size={isMobile ? 20 : 14} /> },
-    { label: "Virtuals",    icon: <GiGamepad size={isMobile ? 20 : 14} /> },
-    { label: "Live",        icon: <MdLiveTv size={isMobile ? 20 : 14} /> },
-    { label: "Tournaments", icon: <GiTrophyCup size={isMobile ? 20 : 14} /> },
+    { label: "Aviator",     icon: <AviatorIcon size={iconSize} /> },
+    { label: "Crash",       icon: <GiRocketFlight size={iconSize} /> },
+    { label: "Sports",      icon: <MdSportsSoccer size={iconSize} /> },
+    { label: "Casino",      icon: <IoSettingsSharp size={iconSize} /> },
+    { label: "Slots",       icon: <GiLever size={iconSize} /> },
+    { label: "Virtuals",    icon: <GiHorseHead size={iconSize} /> },
+    { label: "Live",        icon: <MdLiveTv size={iconSize} /> },
+    { label: "Tournaments", icon: <GiTrophyCup size={iconSize} /> },
   ];
 
   return (
@@ -187,7 +201,7 @@ const LandingPage = () => {
             />
             {loading
               ? <GameRowSkeleton count={6} />
-              : <HorizontalGameRow size="md" games={crashGames.slice(0, 12)} onCardClick={onCardClick} />}
+              : <HorizontalGameRow layout={isMobile ? "grid" : "row"} size="md" games={crashGames.slice(0, 12)} onCardClick={onCardClick} />}
           </div>
         )}
 

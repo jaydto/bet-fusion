@@ -29,7 +29,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import CustomNavbarBrand from "./customNavbar";
 
 const Header = React.memo((props) => {
-  const { slip, scrollPosition, jackpot } = props;
+  const { slip, scrollPosition, jackpot, onToggleSidebar } = props;
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
   const { state, dispatch } = useContext(StoreContext);
 
@@ -168,6 +168,7 @@ const Header = React.memo((props) => {
     dispatchRedux(setState("show_menu", false));
   };
   const toggleMenu = () => {
+    onToggleSidebar?.();
     show ? handleClose() : handleShow();
   };
 

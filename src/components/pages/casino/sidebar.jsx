@@ -4,6 +4,7 @@ import { getFromLocalStorage } from "../../utils/local-storage";
 import logo from "../../../assets/img/logo.png";
 import "./sidebar.css";
 
+
 /* ── SVG icon set ── */
 const icons = {
   football: (
@@ -96,6 +97,11 @@ const icons = {
       <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
     </svg>
   ),
+  chevronRight: (
+    <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+    </svg>
+  ),
 };
 
 const NavItem = ({ to, icon, label, badge, active, onClick }) => (
@@ -110,14 +116,20 @@ const NavItem = ({ to, icon, label, badge, active, onClick }) => (
   </Link>
 );
 
-const Sidebar = () => {
+const Sidebar = ({ mobileOpen = false, onMobileClose }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname + location.search;
   const [user, setUser] = useState(getFromLocalStorage("user"));
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     setUser(getFromLocalStorage("user"));
+  }, [location.pathname]);
+
+  // Close mobile drawer on route change
+  useEffect(() => {
+    if (onMobileClose) onMobileClose();
   }, [location.pathname]);
 
   const isActive = (route) =>
@@ -125,54 +137,71 @@ const Sidebar = () => {
       ? location.pathname === "/"
       : path.startsWith(route);
 
+  const rootClass = [
+    "sidebar-root",
+    collapsed ? "sidebar-root--collapsed" : "",
+    mobileOpen ? "sidebar-root--mobile-open" : "",
+  ].filter(Boolean).join(" ");
+
   return (
-    <aside className="sidebar-root">
-      {/* Logo area — mirrors header logo zone */}
-      <div className="sidebar-logo-wrap" onClick={() => navigate("/")}>
-        <img src={logo} alt="BetFusion" className="sidebar-logo-img" />
-        <span className="sidebar-collapse-arrow">{icons.chevronLeft}</span>
-      </div>
-
-      <div className="sidebar-divider" />
-
-      <nav className="sidebar-nav">
-        <div className="sidebar-section-title">CASINO</div>
-
-        <NavItem to="/" active={isActive("/")} label="Originals" icon={icons.originals} />
-        <NavItem to="/?section=popular" active={path === "/?section=popular"} label="Popular" icon={icons.popular} />
-        <NavItem to="/casino?categoryId=crash" active={path.includes("categoryId=crash")} label="Crash Games" icon={icons.crash} />
-        <NavItem
-          to="/casino?categoryId=live"
-          active={path.includes("categoryId=live")}
-          label="Live Casino"
-          icon={icons.live}
-          badge={<span className="sidebar-live-dot" />}
-        />
-        <NavItem to="/casino?categoryId=game-shows" active={path.includes("categoryId=game-shows")} label="Game Shows" icon={icons.gameShows} />
+    <>
+      {mobileOpen && (
+        <div className="sidebar-backdrop" onClick={onMobileClose} />
+      )}
+      <aside className={rootClass}>
+        {/* Logo area — mirrors header logo zone */}
+        <div className="sidebar-logo-wrap" onClick={() => navigate("/")}>
+          <img src={logo} alt="BetFusion" className="sidebar-logo-img" />
+          <span
+            className="sidebar-collapse-arrow"
+            onClick={(e) => { e.stopPropagation(); setCollapsed(v => !v); }}
+            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            {collapsed ? icons.chevronRight : icons.chevronLeft}
+          </span>
+        </div>
 
         <div className="sidebar-divider" />
 
-        <a href="tel:0711156430" className="sidebar-nav-item sidebar-support-item">
-          <span className="sidebar-nav-icon">{icons.support}</span>
-          <span className="sidebar-nav-label">Live Support · 0711 156 430</span>
-        </a>
+        <nav className="sidebar-nav">
+          <div className="sidebar-section-title">CASINO</div>
 
-        <NavItem to="/promotions" active={isActive("/promotions")} label="Refer & Earn" icon={icons.gift} />
-        <NavItem to="/profile" active={isActive("/profile")} label="VIP Club" badge="NEW" icon={icons.crown} />
+          <NavItem to="/" active={isActive("/")} label="Originals" icon={icons.originals} />
+          <NavItem to="/?section=popular" active={path === "/?section=popular"} label="Popular" icon={icons.popular} />
+          <NavItem to="/casino?categoryId=crash" active={path.includes("categoryId=crash")} label="Crash Games" icon={icons.crash} />
+          <NavItem
+            to="/casino?categoryId=live"
+            active={path.includes("categoryId=live")}
+            label="Live Casino"
+            icon={icons.live}
+            badge={<span className="sidebar-live-dot" />}
+          />
+          <NavItem to="/casino?categoryId=game-shows" active={path.includes("categoryId=game-shows")} label="Game Shows" icon={icons.gameShows} />
 
-        <div className="sidebar-divider" />
+          <div className="sidebar-divider" />
 
-        <NavItem to="/terms-and-conditions" active={isActive("/terms-and-conditions")} label="Terms & Conditions" icon={icons.document} />
-        <NavItem to="/privacy-policy" active={isActive("/privacy-policy")} label="Privacy Policy" icon={icons.lock} />
-        <NavItem to="/responsible-gambling" active={isActive("/responsible-gambling")} label="Responsible Gaming" icon={icons.shield} />
+          <a href="tel:0711156430" className="sidebar-nav-item sidebar-support-item">
+            <span className="sidebar-nav-icon">{icons.support}</span>
+            <span className="sidebar-nav-label">Live Support · 0711 156 430</span>
+          </a>
 
-        <div className="sidebar-divider" />
+          <NavItem to="/promotions" active={isActive("/promotions")} label="Refer & Earn" icon={icons.gift} />
+          <NavItem to="/profile" active={isActive("/profile")} label="VIP Club" badge="NEW" icon={icons.crown} />
 
-        {!user && (
-          <NavItem to="/auth/login" active={isActive("/auth/login")} label="Login" icon={icons.login} />
-        )}
-      </nav>
-    </aside>
+          <div className="sidebar-divider" />
+
+          <NavItem to="/terms-and-conditions" active={isActive("/terms-and-conditions")} label="Terms & Conditions" icon={icons.document} />
+          <NavItem to="/privacy-policy" active={isActive("/privacy-policy")} label="Privacy Policy" icon={icons.lock} />
+          <NavItem to="/responsible-gambling" active={isActive("/responsible-gambling")} label="Responsible Gaming" icon={icons.shield} />
+
+          <div className="sidebar-divider" />
+
+          {!user && (
+            <NavItem to="/auth/login" active={isActive("/auth/login")} label="Login" icon={icons.login} />
+          )}
+        </nav>
+      </aside>
+    </>
   );
 };
 

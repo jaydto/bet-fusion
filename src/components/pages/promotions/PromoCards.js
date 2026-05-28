@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Typography, Row, Col, Card, Button, Divider, Grid } from "antd";
-
-const { useBreakpoint } = Grid;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -14,6 +12,7 @@ import { getFromLocalStorage } from "../../utils/local-storage";
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import { setState } from "../../../redux/dataSlice";
 
+const { useBreakpoint } = Grid;
 const { Title, Paragraph } = Typography;
 
 const PromoCards = () => {

@@ -1,10 +1,12 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getFromLocalStorage } from "../../utils/local-storage";
 
 const HorizontalGameRow = ({ games = [], size = "md", onCardClick, layout = "row" }) => {
   const rowRef = useRef(null);
   const navigate = useNavigate();
   const isGrid = layout === "grid";
+  const [activeId, setActiveId] = useState(null);
 
   const drag = useRef({ down: false, startX: 0, startLeft: 0, moved: false });
 
@@ -30,6 +32,20 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick, layout = "row
     setTimeout(() => (drag.current.moved = false), 0);
   };
 
+  const handlePlayNow = (e, gameId, gameName) => {
+    e.stopPropagation();
+    const user = getFromLocalStorage("user");
+    if (user) {
+      if (onCardClick) {
+        onCardClick(gameId, gameName);
+      } else {
+        navigate(`/casino/game-play?game=${gameId}&status=0&game_name=${encodeURIComponent(gameName)}`);
+      }
+    } else {
+      navigate("/auth/login");
+    }
+  };
+
   return (
     <div
       ref={isGrid ? null : rowRef}
@@ -42,6 +58,7 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick, layout = "row
     >
       {safeGames.map((g, idx) => {
         const key = `${g?.game_id || g?.id || "game"}-${idx}`;
+        const gameId = g?.game_id || g?.id;
         const primaryImage = g?.display_image_url || "";
         const secondaryImage = g?.image_url || g?.image || "";
         const image = primaryImage || secondaryImage;
@@ -52,18 +69,16 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick, layout = "row
             `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="250"><rect width="200" height="250" fill="#171A26"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="Arial" font-size="14" font-weight="700">${String(name).replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text></svg>`
           );
 
+        const isActive = activeId === key;
+
         return (
           <div
             key={key}
-            className={`game-card ${size} game-card--hoverable`}
+            className={`game-card ${size} game-card--hoverable${isActive ? " game-card--active" : ""}`}
             style={{ flex: "0 0 auto", borderRadius: "12px", overflow: "hidden", marginRight: "10px", cursor: "pointer" }}
             onClick={() => {
               if (drag.current.moved) return;
-              if (onCardClick) {
-                onCardClick(g?.game_id || g?.id, name);
-              } else {
-                navigate(`/casino/game-play?game=${g?.game_id || g?.id}&status=0&game_name=${encodeURIComponent(name)}`);
-              }
+              setActiveId(isActive ? null : key);
             }}
             role="button"
             tabIndex={0}
@@ -85,7 +100,12 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick, layout = "row
             />
             <div className="game-title-strip">{name}</div>
             <div className="game-card-hover-overlay">
-              <span className="game-card-play-btn">Play Now</span>
+              <button
+                className="game-card-play-btn"
+                onClick={(e) => handlePlayNow(e, gameId, name)}
+              >
+                Play Now
+              </button>
             </div>
           </div>
         );

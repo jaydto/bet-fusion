@@ -1,46 +1,50 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Grid } from "antd";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { GiLever, GiTrophyCup } from "react-icons/gi";
 import { MdLiveTv } from "react-icons/md";
 import { ReactComponent as AviatorIcon } from "../../../assets/icons/aviator.svg";
 import { ReactComponent as CrashIcon } from "../../../assets/icons/crash.svg";
 import { ReactComponent as CasinoIcon } from "../../../assets/icons/casiono.svg";
 import { ReactComponent as VirtualsIcon } from "../../../assets/icons/virtuals.svg";
+import { setState } from "../../../redux/virtualsSlice";
 import CasinoCarouselLoader from "./carousel";
 import SectionHeader from "./sectionHeader";
 import HorizontalGameRow from "./horizontalGameRow";
 
 const { useBreakpoint } = Grid;
 
-
-const CATEGORY_PILLS = [
-  { id: "all",    label: "All" },
-  { id: "popular", label: "Popular" },
-  { id: "crash",  label: "Crash" },
-  { id: "live",   label: "Live Casino" },
-  { id: "slots",  label: "Slots" },
-];
-
 const GameRowSkeleton = ({ count = 6 }) => (
   <div className="landing-row">
     {Array.from({ length: count }).map((_, i) => (
-      <div
-        key={i}
-        className="game-card game-card-skeleton"
-        style={{ flex: "0 0 auto", marginRight: "10px" }}
-      />
+      <div key={i} className="game-card game-card-skeleton" style={{ flex: "0 0 auto", marginRight: "10px" }} />
     ))}
   </div>
 );
+
+// Tab → route/section mapping
+const TAB_MAP = {
+  "Aviator":     { route: "/casino?categoryId=aviator" },
+  "Crash":       { section: "crash" },
+  "Casino":      { section: "" },
+  "Slots":       { section: "slots" },
+  "Virtuals":    { route: "/casino?categoryId=virtuals" },
+  "Live":        { section: "live" },
+  "Tournaments": { route: "/casino?categoryId=tournaments" },
+};
+
+const SECTION_TO_TAB = { crash: "Crash", slots: "Slots", live: "Live" };
 
 const LandingPage = () => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [activeTab, setActiveTab] = useState(null);
+  const [searchParams] = useSearchParams();
+  const dispatchRedux = useDispatch();
+
+  const activeSection = searchParams.get("section") || "";
+  const activeTab = SECTION_TO_TAB[activeSection] || null;
 
   const casino_games = useSelector((state) => state.virtuals.casino_games_data);
   const loading = useSelector((state) => state.virtuals.loading);
@@ -99,24 +103,35 @@ const LandingPage = () => {
   const onCardClick = (gameId, gameName) =>
     navigate(`/casino/game-play?game=${gameId}&status=0&game_name=${encodeURIComponent(gameName)}`);
 
-  const showSection = (id) => activeCategory === "all" || activeCategory === id;
+  // Only show a section when its id matches the URL param (or no filter is active)
+  const showSection = (id) => !activeSection || activeSection === id;
+
+  const handleTabClick = (label) => {
+    const tab = TAB_MAP[label];
+    if (tab.route) {
+      navigate(tab.route);
+    } else {
+      navigate(tab.section ? `/?section=${tab.section}` : "/");
+    }
+  };
 
   const iconSize = isMobile ? 20 : 14;
-  const activeFilter = "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%)";
+  const activeFilter =
+    "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%)";
+
   const NAV_TABS = [
-    { label: "Aviator",     icon: <AviatorIcon width={iconSize} height={iconSize} /> },
-    { label: "Crash",       icon: <CrashIcon width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash" ? activeFilter : "none" }} /> },
-    // { label: "Sports",   icon: <SportsIcon width={iconSize} height={iconSize} /> },
-    { label: "Casino",      icon: <CasinoIcon width={iconSize} height={iconSize} style={{ filter: activeTab === "Casino" ? activeFilter : "none" }} /> },
-    { label: "Slots",       icon: <GiLever size={iconSize} /> },
+    { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} /> },
+    { label: "Crash",       icon: <CrashIcon    width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash"    ? activeFilter : "none" }} /> },
+    { label: "Casino",      icon: <CasinoIcon   width={iconSize} height={iconSize} style={{ filter: !activeTab             ? activeFilter : "none" }} /> },
+    { label: "Slots",       icon: <GiLever      size={iconSize} /> },
     { label: "Virtuals",    icon: <VirtualsIcon width={iconSize} height={iconSize} style={{ filter: activeTab === "Virtuals" ? activeFilter : "none" }} /> },
-    { label: "Live",        icon: <MdLiveTv size={iconSize} /> },
-    { label: "Tournaments", icon: <GiTrophyCup size={iconSize} /> },
+    { label: "Live",        icon: <MdLiveTv     size={iconSize} /> },
+    { label: "Tournaments", icon: <GiTrophyCup  size={iconSize} /> },
   ];
 
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "5rem" : "2rem" }}>
-      {/* Horizontal category tabs — desktop and mobile */}
+      {/* Category navigation tabs */}
       <div style={{
         display: "flex",
         flexDirection: "row",
@@ -134,11 +149,11 @@ const LandingPage = () => {
         background: "#0F111A",
       }}>
         {NAV_TABS.map(({ label, icon }) => {
-          const isActive = activeTab === label;
+          const isActive = activeTab === label || (label === "Casino" && !activeTab);
           return (
             <div
               key={label}
-              onClick={() => setActiveTab(label)}
+              onClick={() => handleTabClick(label)}
               style={{
                 cursor: "pointer",
                 padding: isMobile ? "6px 10px" : "4px 5px",
@@ -167,21 +182,42 @@ const LandingPage = () => {
         })}
       </div>
 
-      <div style={{ marginTop: 0, padding: isMobile ? "6px 4px" : "12px 12px 0px 12px", overflow: "hidden" }}>
+      {/* Search trigger */}
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => dispatchRedux(setState("casino_search_modal", true))}
+        onKeyDown={(e) => e.key === "Enter" && dispatchRedux(setState("casino_search_modal", true))}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          margin: isMobile ? "8px 4px" : "10px 12px",
+          padding: "8px 14px",
+          background: "#1e2235",
+          borderRadius: 20,
+          cursor: "pointer",
+          color: "#64748b",
+          fontSize: 13,
+          border: "1px solid #2a3050",
+        }}
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <span>Search games...</span>
+      </div>
+
+      {/* Carousel */}
+      <div style={{ marginTop: 0, padding: isMobile ? "0 4px 6px" : "0 12px 12px", overflow: "hidden" }}>
         <CasinoCarouselLoader />
       </div>
 
-      {/* Category filter pills removed to match design */}
-
+      {/* Game sections — filtered by activeSection */}
       <div className="landing-v2" style={{ padding: isMobile ? "4px 6px 0" : "0 12px" }}>
-        {/* Popular Games */}
         {showSection("popular") && (
           <div className="landing-section">
-            <SectionHeader
-              title="Most played"
-              actionLabel="SHOW ALL"
-              onAction={() => navigate("/casino")}
-            />
+            <SectionHeader title="Most played" actionLabel="SHOW ALL" onAction={() => navigate("/casino")} />
             {loading
               ? <GameRowSkeleton count={6} />
               : popularGames.length > 0
@@ -190,42 +226,27 @@ const LandingPage = () => {
           </div>
         )}
 
-        {/* Crash / Originals */}
         {showSection("crash") && (loading || crashGames.length > 0) && (
           <div className="landing-section">
-            <SectionHeader
-              title="Crash Games"
-              actionLabel="SHOW ALL"
-              onAction={() => navigate("/casino?categoryId=crash")}
-            />
+            <SectionHeader title="Crash Games" actionLabel="SHOW ALL" onAction={() => navigate("/casino?categoryId=crash")} />
             {loading
               ? <GameRowSkeleton count={6} />
               : <HorizontalGameRow layout={isMobile ? "grid" : "row"} size="md" games={crashGames.slice(0, 12)} onCardClick={onCardClick} />}
           </div>
         )}
 
-        {/* Live Casino */}
         {showSection("live") && (loading || liveGames.length > 0) && (
           <div className="landing-section">
-            <SectionHeader
-              title="Live Casino"
-              actionLabel="SHOW ALL"
-              onAction={() => navigate("/casino?categoryId=live")}
-            />
+            <SectionHeader title="Live Casino" actionLabel="SHOW ALL" onAction={() => navigate("/casino?categoryId=live")} />
             {loading
               ? <GameRowSkeleton count={6} />
               : <HorizontalGameRow size="lg" games={liveGames.slice(0, 12)} onCardClick={onCardClick} />}
           </div>
         )}
 
-        {/* Slots */}
         {showSection("slots") && (loading || slotsGames.length > 0) && (
           <div className="landing-section">
-            <SectionHeader
-              title="Slots"
-              actionLabel="SHOW ALL"
-              onAction={() => navigate("/casino?categoryId=slots")}
-            />
+            <SectionHeader title="Slots" actionLabel="SHOW ALL" onAction={() => navigate("/casino?categoryId=slots")} />
             {loading
               ? <GameRowSkeleton count={6} />
               : <HorizontalGameRow size="md" games={slotsGames.slice(0, 12)} onCardClick={onCardClick} />}

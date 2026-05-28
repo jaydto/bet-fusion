@@ -2,9 +2,12 @@ import React, { useMemo, useState } from "react";
 import { Grid } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { GiRocketFlight, GiLever, GiHorseHead, GiTrophyCup } from "react-icons/gi";
-import { MdSportsSoccer, MdLiveTv } from "react-icons/md";
-import { IoSettingsSharp, IoAirplane } from "react-icons/io5";
+import { GiLever, GiTrophyCup } from "react-icons/gi";
+import { MdLiveTv } from "react-icons/md";
+import { ReactComponent as AviatorIcon } from "../../../assets/icons/aviator.svg";
+import { ReactComponent as CrashIcon } from "../../../assets/icons/crash.svg";
+import { ReactComponent as CasinoIcon } from "../../../assets/icons/casiono.svg";
+import { ReactComponent as VirtualsIcon } from "../../../assets/icons/virtuals.svg";
 import CasinoCarouselLoader from "./carousel";
 import SectionHeader from "./sectionHeader";
 import HorizontalGameRow from "./horizontalGameRow";
@@ -99,13 +102,14 @@ const LandingPage = () => {
   const showSection = (id) => activeCategory === "all" || activeCategory === id;
 
   const iconSize = isMobile ? 20 : 14;
+  const activeFilter = "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%)";
   const NAV_TABS = [
-    { label: "Aviator",     icon: <IoAirplane size={iconSize} style={{ color: activeTab === "Aviator" ? "#fb8603" : "inherit", transform: "rotate(-45deg)" }} /> },
-    { label: "Crash",       icon: <GiRocketFlight size={iconSize} /> },
-    // { label: "Sports",   icon: <MdSportsSoccer size={iconSize} /> },
-    { label: "Casino",      icon: <IoSettingsSharp size={iconSize} /> },
+    { label: "Aviator",     icon: <AviatorIcon width={iconSize} height={iconSize} /> },
+    { label: "Crash",       icon: <CrashIcon width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash" ? activeFilter : "none" }} /> },
+    // { label: "Sports",   icon: <SportsIcon width={iconSize} height={iconSize} /> },
+    { label: "Casino",      icon: <CasinoIcon width={iconSize} height={iconSize} style={{ filter: activeTab === "Casino" ? activeFilter : "none" }} /> },
     { label: "Slots",       icon: <GiLever size={iconSize} /> },
-    { label: "Virtuals",    icon: <GiHorseHead size={iconSize} /> },
+    { label: "Virtuals",    icon: <VirtualsIcon width={iconSize} height={iconSize} style={{ filter: activeTab === "Virtuals" ? activeFilter : "none" }} /> },
     { label: "Live",        icon: <MdLiveTv size={iconSize} /> },
     { label: "Tournaments", icon: <GiTrophyCup size={iconSize} /> },
   ];
@@ -115,15 +119,18 @@ const LandingPage = () => {
       {/* Horizontal category tabs — desktop and mobile */}
       <div style={{
         display: "flex",
-        gap: "0",
-        overflowX: "auto",
+        flexDirection: "row",
+        justifyContent: isMobile ? "flex-start" : "space-between",
+        alignItems: "flex-start",
+        padding: "0",
+        height: isMobile ? "auto" : "26px",
+        flexGrow: 1,
+        overflowX: isMobile ? "auto" : "visible",
         scrollbarWidth: "none",
         msOverflowStyle: "none",
         fontSize: isMobile ? "10px" : "13px",
         fontWeight: 600,
-        padding: "0",
         borderBottom: "1px solid #1e2235",
-        marginBottom: "0",
         background: "#0F111A",
       }}>
         {NAV_TABS.map(({ label, icon }) => {
@@ -134,14 +141,17 @@ const LandingPage = () => {
               onClick={() => setActiveTab(label)}
               style={{
                 cursor: "pointer",
-                padding: isMobile ? "6px 10px" : "12px 14px",
+                padding: isMobile ? "6px 10px" : "4px 5px",
                 whiteSpace: "nowrap",
                 borderRadius: "0",
-                flexShrink: 0,
+                flexShrink: isMobile ? 0 : 1,
+                flexGrow: isMobile ? 0 : 1,
                 display: "flex",
                 flexDirection: isMobile ? "column" : "row",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: isMobile ? "2px" : "4px",
+                height: isMobile ? "auto" : "26px",
                 color: isActive ? "#fb8603" : "#64748b",
                 background: isActive ? "#261517" : "transparent",
                 borderBottom: isActive ? "2px solid #fb8603" : "2px solid transparent",

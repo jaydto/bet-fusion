@@ -39,6 +39,15 @@ const LoginTwo = React.memo(() => {
       });
       setLocalStorage("user", successMessage.user);
       setUser(successMessage.user);
+      const activeLink = getFromLocalStorage("ActiveLink");
+      const dest =
+        activeLink && activeLink !== "/auth/signup"
+          ? activeLink
+          : state?.page_view && state.page_view !== "/auth/signup"
+          ? state.page_view
+          : "/";
+      localStorage.removeItem("ActiveLink");
+      setTimeout(() => navigate(dest), 300);
     }
   }, [successMessage]);
 
@@ -53,19 +62,12 @@ const LoginTwo = React.memo(() => {
     }
   }, [errorMessage]);
 
+  // Redirect already-logged-in users on mount
   useEffect(() => {
     if (user) {
-      const activeLink = getFromLocalStorage("ActiveLink");
-      const dest =
-        activeLink && activeLink !== "/auth/signup"
-          ? activeLink
-          : state?.page_view && state.page_view !== "/auth/signup"
-          ? state.page_view
-          : "/";
-      localStorage.removeItem("ActiveLink");
-      setTimeout(() => navigate(dest), 300);
+      navigate("/");
     }
-  }, [user]);
+  }, []);
 
   const initialValues = { msisdn: "", password: "", countryCode: "254" };
 
@@ -187,6 +189,19 @@ const LoginTwo = React.memo(() => {
                 <p className="auth-card-desc">Login to continue playing on the best online casino</p>
               </div>
               <div className="auth-separator" />
+              {errorMessage && (
+                <div style={{
+                  padding: "10px 12px",
+                  borderRadius: 8,
+                  background: "rgba(239,68,68,0.12)",
+                  border: "1px solid #ef4444",
+                  color: "#ef4444",
+                  fontSize: 13,
+                  marginBottom: 12,
+                }}>
+                  {errorMessage}
+                </div>
+              )}
               <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}

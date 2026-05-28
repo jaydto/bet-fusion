@@ -1,8 +1,6 @@
 
 
 import React, { useEffect } from "react";
-import DepositModal from "../../modals/DepositModal";
-import { use } from "react";
 import { setState } from "../../../redux/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +16,7 @@ const Deposit3 = () => {
   );
 
   useEffect(() => {
-    console.log("pathname", pathname);
-    dispatch(setState("show_deposit_modal", true)); // trigger modal
+    dispatch(setState("show_deposit_modal", true));
   }, [pathname]);
 
   useEffect(() => {
@@ -28,7 +25,7 @@ const Deposit3 = () => {
     }
   }, [showDepositModal]);
 
-  return <div>{showDepositModal && <DepositModal />}</div>;
+  return null;
 };
 
 export default React.memo(Deposit3);

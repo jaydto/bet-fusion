@@ -1,81 +1,33 @@
 import React, { useEffect, useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
-import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setState, userDeposits } from "../../redux/dataSlice";
 import { getFromLocalStorage, setTrackingData } from "../utils/local-storage";
 import { StoreContext } from "../../context/store";
 import { useFormik } from "formik";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import mpesa from "../../assets/img/mobile/mpesa.svg";
-import DepositCards from "../pages/deposit-withraw/depositCards";
-import { CloseCircleFilled, LeftOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
+import { formatNumber } from "../utils/betslip";
 
-const DepositInstructions = ({ handleCardSelect }) => {
-  return (
-    <>
-      {/* <p className="text-white py-2 px-4 font-input text-center mb-4">
-        Securely add money to your Betfusion account via M-PESA
-      </p>
-
-      <p className="text-white py-2 px-2 font-input text-start mb-3">
-        Payment Method: M-PESA Paybill
-      </p> */}
-
-      {/* <div className=" p-3 rounded mb-4" style={{backgroundColor: "var(--top-pr)"}}>
-        <p className="text-white font-input mb-1">
-          <strong>Paybill Number:</strong>{" "}
-          <span className="text-info">7777771</span>
-        </p>
-        <p className="text-white font-input mb-1">
-          <strong>Account Number:</strong> Your Betfusion username
-        </p>
-        <p className="text-white font-input mb-1">
-          <strong>Steps:</strong>
-        </p>
-        <ol className="text-white font-input ps-3">
-          <li>Go to M-PESA on your phone</li>
-          <li>
-            Select <strong>Lipa na M-PESA</strong>
-          </li>
-          <li>
-            Choose <strong>Paybill</strong>
-          </li>
-          <li>
-            Enter Business Number: <strong>7777771</strong>
-          </li>
-          <li>Enter Account Number: Your Betfusion username</li>
-          <li>Enter the amount you want to deposit</li>
-          <li>Enter your M-PESA PIN and press OK</li>
-        </ol>
-      </div> */}
-
-      {/* <p className="text-white py-2 px-2 font-input text-start mb-1">
-        Quick Amounts
-      </p> */}
-
-      <DepositCards onCardSelect={handleCardSelect} />
-    </>
-  );
-};
+const QUICK_AMOUNTS = [100, 250, 500, 1000];
 
 const DepositModal = React.memo(() => {
   const appConfigs = useSelector((state) => state.data.app_config);
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
   const loadingDeposit = useSelector((state) => state.data.deposit_loading);
   const successMessage = useSelector((state) => state.data.deposits_message);
-  const showDepositModal = useSelector(
-    (state) => state.data.show_deposit_modal
-  );
-
+  const showDepositModal = useSelector((state) => state.data.show_deposit_modal);
   const dispatchRedux = useDispatch();
   const { dispatch } = useContext(StoreContext);
   const userData = useSelector((state) => state.auth.user);
-
   const [user, setUser] = useState(getFromLocalStorage("user"));
+
   useEffect(() => {
     setUser(userData || getFromLocalStorage("user"));
   }, [userData]);
+
+  useEffect(() => {
+    setSettings(appConfigs || getFromLocalStorage("settings"));
+  }, [appConfigs]);
 
   const hideModal = () => {
     dispatchRedux(setState("show_deposit_modal", false));
@@ -84,21 +36,18 @@ const DepositModal = React.memo(() => {
   };
 
   const initialValues = {
-    msisdn: user?.msisdn,
+    msisdn: user?.msisdn || "",
     amount: 100,
   };
 
   const validate = (values) => {
     let errors = {};
-
     if (!values.msisdn || !values.msisdn.match(/(254|0|)?[71]\d{8}/g)) {
       errors.msisdn = "Please enter a valid phone number";
     }
-
     if (!values.amount || values.amount < 1 || values.amount > 150000) {
       errors.amount = "Please enter amount between KES 1.00 and KES 150,000.00";
     }
-
     return errors;
   };
 
@@ -108,198 +57,257 @@ const DepositModal = React.memo(() => {
     setSubmitting(false);
   };
 
-  const formik = useFormik({
-    initialValues,
-    validate,
-    onSubmit: handleSubmit,
-  });
+  const formik = useFormik({ initialValues, validate, onSubmit: handleSubmit });
 
   const clearMessage = () => {
     dispatchRedux(setState({ key: "deposits_message", value: null }));
   };
 
-  useEffect(() => {
-    setSettings(appConfigs || getFromLocalStorage("settings"));
-  }, [appConfigs]);
-
-  const incrementDepositValue = (value) => {
-    formik.setFieldValue("amount", value);
-    dispatch({ type: "SET", key: "depositValue", payload: value });
+  const handleQuickAmount = (amount) => {
+    formik.setFieldValue("amount", amount);
+    dispatch({ type: "SET", key: "depositValue", payload: amount });
   };
 
-  const Alert = () => {
-    let c = successMessage ? "success" : "danger";
-    let x_style = {
-      float: "right",
-      display: "block",
-      fontSize: "22px",
-      color: "orangered",
-      cursor: "pointer",
-      padding: "3px",
-      position: "absolute",
-      top: "0",
-      right: "0",
-    };
-
-    return (
-      <>
-        {successMessage && (
-          <div
-            role="alert"
-            className={`fade alert alert-${c} deposit-modal-alert-action show alert-dismissible d-flex justify-content-between align-items-center alert-message-line-height alert-position-betslip-top`}
-          >
-            {successMessage}
-            <span aria-hidden="true" style={x_style} onClick={clearMessage}>
-              &times;
-            </span>
-          </div>
-        )}
-      </>
-    );
-  };
-
-  const handleFavoriteSelect = (value) => {
-    console.log("Favorited:", value);
-  };
-
-  const handleCardSelect = (amount) => {
-    console.log("Card clicked for amount: KES", amount);
-    formik.setFieldValue("amount", amount); // Set Formik form value
-  };
-
-  console.log("showSuccessMessage", successMessage);
+  const balance = user?.balance || 0;
 
   return (
     <Modal
       show={showDepositModal}
-      className={"shadow-lg filters-modal deposit-modal deposit-modal-body"}
-      dialogClassName={"modal-30w"}
-      centered={true}
-      size={"md"}
-      backdrop={"static"}
-      style={{ zIndex: "10000" }}
+      className="shadow-lg deposit-modal deposit-modal-body"
+      dialogClassName="modal-30w"
+      size="md"
+      backdrop="static"
+      style={{ zIndex: 10000 }}
     >
-      <Modal.Header closeButton={false} className={"w-100"}>
-        <Modal.Title className={"w-100"} style={{ backgroundColor: "var(--bet-fusion-primary !important)" }} >
-          <div
-            className={"d-flex justify-content-between align-items-end px-4"}
-            style={{ backgroundColor: "var(--bet-fusion-primary !important)" }}
+      {/* Header */}
+      <Modal.Header
+        closeButton={false}
+        style={{
+          backgroundColor: "var(--bet-fusion-primary)",
+          borderBottom: "1px solid #334155",
+          padding: "16px 20px",
+        }}
+      >
+        <div className="d-flex justify-content-between align-items-center w-100">
+          <span style={{ fontSize: "18px", fontWeight: "700", color: "#fff" }}>
+            Deposit Funds
+          </span>
+          <button
+            onClick={hideModal}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              color: "#fff",
+              fontSize: "18px",
+              padding: "4px",
+              lineHeight: 1,
+            }}
           >
-            <div onClick={hideModal}>
-              <LeftOutlined  className="gradient-icon" />
-            </div>
-            <strong
-              style={{
-                fontSize: "19px",
-                fontWeight: "bolder",
-                // letterSpacing: "2px",
-                color: "var(--login-btn-cl)",
-              }}
-              className={"deposit-modal-top-title"}
-            >
-              Deposit Funds
-            </strong>
-
-            <Button
-              className={" bg-deposit-modal-btn"}
-              style={{
-                overflowX: "hidden",
-                backgroundColor: "transparent",
-                border: "none",
-                color: "var(--login-btn-cl)",
-              }}
-              onClick={hideModal}
-            >
-              <CloseCircleFilled style={{ fontSize: "22px" }}/>
-            </Button>
-          </div>
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body className={"deposit-modal-body"}>
-        <DepositInstructions
-          handleCardSelect={handleCardSelect}
-          handleFavoriteSelect={handleFavoriteSelect}
-        />
-        <Alert />
-
-        <div
-          className={"d-flex justify-content-between align-items-center gap-2"}
-        >
-          {settings?.BetfusionDeposit &&
-            settings?.BetfusionDeposit?.map((deposit, index) => (
-              <div key={index} className={""}>
-                <button
-                  type="button"
-                  onClick={() => incrementDepositValue(deposit?.deposit_amount)}
-                  className="deposit-buttons-value deposit-modal"
-                >
-                  <div className={"deposit-values"}>
-                    +&nbsp;{deposit?.deposit_amount}
-                  </div>
-                </button>
-              </div>
-            ))}
+            <CloseOutlined />
+          </button>
         </div>
-        <form onSubmit={formik.handleSubmit}>
-          <div className={"d-flex gap-3 flex-column pt-3"}>
-            <div className={"d-flex flex-column "}>
-              <div
-                className="form-control d-flex justify-content-start align-items-center"
-                style={{ height: "40px", backgroundColor: "transparent" }}
-              >
-                {/* <span style={{ color: "var(--bet-fusion-grey)" }}>Enter deposit amount (KES)</span> */}
-                <input
-                  type="text"
-                  id="amount"
-                  name="amount"
-                  value={`KES ${formik.values.amount || ""}`}
-                  onChange={(e) => {
-                    const rawValue = e.target.value.replace(/[^\d]/g, ""); // strip non-digits
-                    formik.setFieldValue("amount", rawValue);
-                  }}
-                  onBlur={formik.handleBlur}
-                  className="text-start w-100 pr-input p-2"
-                  style={{ outline: "none", background: "var(--bet-fusion-secondary)" }}
-                  placeholder="Enter deposit amount (KES)"
-                />
-              </div>
-              <label className="px-2">Max deposit amount is KES 100,000.00</label>
+      </Modal.Header>
 
-              {formik.touched.amount && formik.errors.amount && (
-                <div className="invalid-feedback">{formik.errors.amount}</div>
-              )}
-            </div>
-          </div>
-          <div className="col-12 text-center mt-4">
-            <button
-              type="submit"
-              className="btn btn-lg w-100 deposit-button button-radius input-field btn-font deposit-modal btn bold d-flex justify-content-center align-items-center button-text-choice1"
-              disabled={loadingDeposit}
+      <Modal.Body
+        style={{ backgroundColor: "var(--bet-fusion-primary)", padding: "20px" }}
+      >
+        {/* Alert */}
+        {successMessage && (
+          <div
+            className="alert alert-success d-flex justify-content-between align-items-center mb-3"
+            role="alert"
+          >
+            <span>{successMessage}</span>
+            <span
+              style={{ cursor: "pointer", fontSize: "18px" }}
+              onClick={clearMessage}
             >
-              {loadingDeposit ? (
-                <div className="loader"></div>
-              ) : (
-                // `DEPOSIT ${formik.values.amount}`
-                `Deposit`
-              )}
-            </button>
+              &times;
+            </span>
           </div>
+        )}
+
+        {/* Available Balance */}
+        <div
+          style={{
+            backgroundColor: "var(--bet-fusion-secondary)",
+            borderRadius: "12px",
+            padding: "16px 20px",
+            marginBottom: "20px",
+          }}
+        >
+          <div style={{ color: "#94a3b8", fontSize: "13px", marginBottom: "4px" }}>
+            Available Balance
+          </div>
+          <div style={{ color: "#fff", fontSize: "24px", fontWeight: "700" }}>
+            KES {formatNumber(balance)}
+          </div>
+        </div>
+
+        <form onSubmit={formik.handleSubmit}>
+          {/* Phone number */}
+          <div style={{ marginBottom: "16px" }}>
+            <label
+              style={{
+                color: "#94a3b8",
+                fontSize: "13px",
+                marginBottom: "8px",
+                display: "block",
+              }}
+            >
+              This is your primary number
+            </label>
+            <input
+              type="text"
+              name="msisdn"
+              value={formik.values.msisdn}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="+254 7XX XXX XXX"
+              style={{
+                width: "100%",
+                background: "var(--bet-fusion-secondary)",
+                border: "1px solid #334155",
+                borderRadius: "10px",
+                padding: "12px 16px",
+                color: "#fff",
+                fontSize: "15px",
+                outline: "none",
+                boxSizing: "border-box",
+              }}
+            />
+            {formik.touched.msisdn && formik.errors.msisdn && (
+              <div style={{ color: "#f87171", fontSize: "12px", marginTop: "4px" }}>
+                {formik.errors.msisdn}
+              </div>
+            )}
+          </div>
+
+          {/* Amount */}
+          <div style={{ marginBottom: "16px" }}>
+            <label
+              style={{
+                color: "#94a3b8",
+                fontSize: "13px",
+                marginBottom: "8px",
+                display: "block",
+              }}
+            >
+              Amount (KES)
+            </label>
+            <input
+              type="text"
+              id="amount"
+              name="amount"
+              value={formik.values.amount || ""}
+              onChange={(e) => {
+                const raw = e.target.value.replace(/[^\d]/g, "");
+                formik.setFieldValue("amount", raw ? parseInt(raw) : "");
+              }}
+              onBlur={formik.handleBlur}
+              placeholder="Enter amount"
+              style={{
+                width: "100%",
+                background: "var(--bet-fusion-secondary)",
+                border: "1px solid #334155",
+                borderRadius: "10px",
+                padding: "12px 16px",
+                color: "#fff",
+                fontSize: "15px",
+                outline: "none",
+                boxSizing: "border-box",
+              }}
+            />
+            {formik.touched.amount && formik.errors.amount && (
+              <div style={{ color: "#f87171", fontSize: "12px", marginTop: "4px" }}>
+                {formik.errors.amount}
+              </div>
+            )}
+          </div>
+
+          {/* Quick amount buttons */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "8px",
+              marginBottom: "8px",
+            }}
+          >
+            {QUICK_AMOUNTS.map((amt) => (
+              <button
+                key={amt}
+                type="button"
+                onClick={() => handleQuickAmount(amt)}
+                style={{
+                  background:
+                    formik.values.amount === amt
+                      ? "rgba(251,134,3,0.15)"
+                      : "var(--bet-fusion-secondary)",
+                  border: `1px solid ${
+                    formik.values.amount === amt ? "#fb8603" : "#334155"
+                  }`,
+                  borderRadius: "8px",
+                  color:
+                    formik.values.amount === amt ? "#fb8603" : "#e2e8f0",
+                  padding: "10px 0",
+                  fontWeight: "700",
+                  fontSize: "13px",
+                  cursor: "pointer",
+                  transition: "all 0.15s",
+                }}
+              >
+                {amt}
+              </button>
+            ))}
+          </div>
+
+          {/* Max deposit caption */}
+          <div style={{ color: "#64748b", fontSize: "11px", marginBottom: "20px" }}>
+            Maximum deposit amount KES 150,000.00
+          </div>
+
+          {/* Deposit button */}
+          <button
+            type="submit"
+            disabled={loadingDeposit}
+            style={{
+              width: "100%",
+              background: loadingDeposit ? "rgba(255,255,255,0.5)" : "#ffffff",
+              border: "none",
+              borderRadius: "12px",
+              color: "#0f172a",
+              fontWeight: "700",
+              fontSize: "16px",
+              padding: "14px",
+              cursor: loadingDeposit ? "not-allowed" : "pointer",
+              marginBottom: "16px",
+            }}
+          >
+            {loadingDeposit ? (
+              <div className="loader" style={{ display: "inline-block" }} />
+            ) : (
+              "Deposit"
+            )}
+          </button>
+
+          {/* Terms */}
+          <p
+            style={{
+              color: "#64748b",
+              fontSize: "11px",
+              textAlign: "center",
+              margin: 0,
+            }}
+          >
+            By continuing, you agree to our{" "}
+            <a href="/terms-and-conditions" style={{ color: "#fb8603" }}>
+              Terms &amp; Conditions
+            </a>
+          </p>
         </form>
       </Modal.Body>
-      {/* <Modal.Footer
-        className={
-          "text-center modal-width deposit-modal-footer position-relative"
-        }
-        style={{ overflowX: "hidden" }}
-      >
-        <Button
-          className={"cancel-filter-markets bg-deposit-modal-btn"}
-          style={{ overflowX: "hidden" }}
-          onClick={hideModal}
-        >
-          <input id={"deposit"} type="submit" value="X" onClick={hideModal} />
-        </Button>
-      </Modal.Footer> */}
     </Modal>
   );
 });

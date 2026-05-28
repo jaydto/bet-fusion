@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { casinoGames } from "../../../redux/virtualsSlice";
 import SearchModal from "../../modals/SearchModal";
-import DepositModal from "../../modals/DepositModal";
 import MobileMenu from "../../mobile-menu";
 
 import LoadingPage from "./loadingPage";
@@ -23,9 +22,6 @@ const CasinoLayout = () => {
 
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const showDepositModal = useSelector(
-    (state) => state.data.show_deposit_modal
-  );
   const casinoSearchModal = useSelector(
     (state) => state.virtuals.casino_search_modal
   );
@@ -69,7 +65,6 @@ const CasinoLayout = () => {
         overflowX: "hidden",
       }}
     >
-      {showDepositModal && <DepositModal />}
       {casinoSearchModal && <SearchModal />}
 
       <div

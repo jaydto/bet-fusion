@@ -69,8 +69,8 @@ const SearchModal = () => {
   };
 
   const gameSearchCrash = (query) => {
-    const filteredGames = casino_games_data_crash.filter((game) =>
-      game.game_name.toLowerCase().includes(query.toLowerCase())
+    const filteredGames = (casino_games_data_crash || []).filter((game) =>
+      game?.game_name?.toLowerCase().includes(query.toLowerCase())
     );
     setCrashSearch(filteredGames);
   };

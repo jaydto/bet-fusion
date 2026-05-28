@@ -27,6 +27,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import CustomNavbarBrand from "./customNavbar";
+import DepositModal from "../modals/DepositModal";
 
 const Header = React.memo((props) => {
   const { slip, scrollPosition, jackpot, onToggleSidebar } = props;
@@ -188,7 +189,7 @@ const Header = React.memo((props) => {
 
   return (
     <>
-      {/* {showDepositModal && <DepositModal />} */}
+      {showDepositModal && <DepositModal />}
 
       {notShowHeaderNav && (
         <div className={"d-flex flex-column"}>

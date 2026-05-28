@@ -1,16 +1,16 @@
 import useWindowDimensions from "../components/header/Dimensions";
 
 export const shouldShowMobileNav = (pathname) => (dispatch, getState)=>{
+    if (!pathname) return true;
     const state=getState()
     const navigationConfig=state.navigations.notShowMobileNav
-
-    return !navigationConfig?.some(path => pathname.includes(path));
+    return !navigationConfig?.some(path => path && pathname.includes(path));
 };
 export const shouldShowSearch = (pathname) => (dispatch, getState)=>{
+    if (!pathname) return true;
     const state=getState()
     const navigationConfig=state.navigations.notShowSearch
-    // console.log("navigation for showing", !navigationConfig?.some(path => pathname.includes(path)))
-    return !navigationConfig?.some(path => pathname.includes(path));
+    return !navigationConfig?.some(path => path && pathname.includes(path));
 };
 export const shouldShowHeader = (pathname) => (dispatch, getState)=>{
     const state=getState()

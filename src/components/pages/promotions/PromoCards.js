@@ -73,19 +73,7 @@ const PromoCards = () => {
             <Col
               key={index}
               xs={24} sm={12} md={8}
-              style={isMobile ? {
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                padding: "0px",
-                gap: "8px",
-                width: "326px",
-                height: "214px",
-                flex: "none",
-                order: index,
-                alignSelf: "stretch",
-                flexGrow: 0,
-              } : {}}
+              style={isMobile ? { padding: "0px 0px 8px 0px" } : {}}
             >
               <Card
                 hoverable

@@ -4,7 +4,7 @@ import { UserInfo } from "./UserInfo";
 import useWindowDimensions from "./Dimensions";
 import logo from "../../assets/img/logo.png";
 import { useDispatch } from "react-redux";
-import { shouldShowSearch } from "../../redux/navigationAction";
+import { setState as setStateV } from "../../redux/virtualsSlice";
 
 const SearchIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
@@ -83,7 +83,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
                 <input
                   type="text"
                   placeholder="Search games..."
-                  onClick={() => dispatch(shouldShowSearch())}
+                  onClick={() => dispatch(setStateV("casino_search_modal", true))}
                   readOnly
                   style={{
                     width: "100%",
@@ -122,6 +122,8 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
               <input
                 type="text"
                 placeholder="Search events, teams, games..."
+                onClick={() => dispatch(setStateV("casino_search_modal", true))}
+                readOnly
                 style={{
                   width: "100%",
                   background: "#171A26",

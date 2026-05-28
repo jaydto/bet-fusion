@@ -1,14 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Row, Col, Typography, Space, Card, Grid } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
+import { Col, Grid } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import PromoCards from "./PromoCards";
 import "./promo.css";
 import HeaderBreadCrumb from "../../shared/headerBreadCrumb";
 
-// const Header = React.lazy(() => import('../../header/header'));
-const { Title } = Typography;
 const { useBreakpoint } = Grid;
 
 const Promotions = () => {
@@ -18,43 +17,40 @@ const Promotions = () => {
 
   return (
     <>
-      {/* <Header /> */}
       <ToastContainer />
-        <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center">
         <Col xs={24} md={24} lg={24}>
-          <div style={{ padding: isMobile ? "0px 10px" : "20px 2rem" }}>
-            <HeaderBreadCrumb />
-          </div>
-          {/* <Row align="middle" style={{ marginBottom: 24, padding: "0 10px" }}>
-              <Col span={2}>
-                <LeftOutlined
-                  onClick={() => navigate(-1)}
-                  style={{
-                    fontSize: 24,
-                    color: "var(--light)",
-                    fontWeight: 700,
-                    opacity: 0.7,
-                    cursor: "pointer",
-                  }}
-                />
-              </Col>
-              <Col span={20}>
-                <Card
-                  className="promotion-header"
-                  style={{
-                    backgroundColor: "var(--bet-fusion-accent)",
-                    color: "white",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    fontSize: 14,
-                    border: "none",
-                  }}
-                  styles={{ body: { padding: "12px 0" } }}
-                >
-                  PROMOTIONS
-                </Card>
-              </Col>
-            </Row> */}
+          {isMobile ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                padding: "12px 16px",
+                borderBottom: "1px solid #1e293b",
+              }}
+            >
+              <button
+                onClick={() => navigate(-1)}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  color: "#e2e8f0",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  padding: "4px 8px 4px 0",
+                }}
+              >
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </button>
+              <span style={{ color: "#e2e8f0", fontSize: "17px", fontWeight: "600", marginLeft: "8px" }}>
+                Promotions
+              </span>
+            </div>
+          ) : (
+            <div style={{ padding: "20px 2rem" }}>
+              <HeaderBreadCrumb />
+            </div>
+          )}
 
           <PromoCards />
         </Col>

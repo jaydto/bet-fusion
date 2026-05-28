@@ -635,3 +635,19 @@
 | M11 — Sidebar section title gradient | ✅ Done | PR #33 | TOP EVENTS / CASINO headers use brand gradient text |
 
 > **Merge protocol:** Each milestone PR is merged via GitHub UI (or `gh pr merge --merge`) to `main` remotely — never `git merge` locally.
+
+---
+
+## PHASE 14 — Figma Precision Pass (2026-05-27)
+
+### Issues / Tasks
+
+| # | Area | Task | Status |
+|---|------|------|--------|
+| P14-1 | Nav tabs | Aviator icon: use proper airplane (`IoAirplane` io5, rotated -45°), not paper-plane SVG | ✅ Done |
+| P14-2 | Nav tabs | Comment out "Sports" tab from categories above carousel | ✅ Done |
+| P14-3 | Nav tabs | Default no active state — highlight only on hover/click | ✅ Done |
+| P14-4 | Sidebar | Remove TOP EVENTS section (Football, Basketball, Tennis, Rugby, All Sports) | ✅ Done |
+| P14-5 | Cards | Desktop card size vs mobile card size — verify exact Figma px per viewport | ⬜ Todo |
+| P14-6 | Aviator icon | Confirm `IoAirplane` rotation (-45°) exactly matches Figma airplane angle | ⬜ Todo |
+| P14-7 | Logo | BetFusion logo with orange tip on the 'i' — verify asset | ⬜ Todo |

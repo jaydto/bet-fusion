@@ -1,14 +1,13 @@
 import React, { useMemo } from "react";
 import { Grid } from "antd";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { GiLever, GiTrophyCup } from "react-icons/gi";
 import { MdLiveTv } from "react-icons/md";
 import { ReactComponent as AviatorIcon } from "../../../assets/icons/aviator.svg";
 import { ReactComponent as CrashIcon } from "../../../assets/icons/crash.svg";
 import { ReactComponent as CasinoIcon } from "../../../assets/icons/casiono.svg";
 import { ReactComponent as VirtualsIcon } from "../../../assets/icons/virtuals.svg";
-import { setState } from "../../../redux/virtualsSlice";
 import CasinoCarouselLoader from "./carousel";
 import SectionHeader from "./sectionHeader";
 import HorizontalGameRow from "./horizontalGameRow";
@@ -41,7 +40,6 @@ const LandingPage = () => {
   const isMobile = !screens.md;
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const dispatchRedux = useDispatch();
 
   const activeSection = searchParams.get("section") || "";
   const activeTab = SECTION_TO_TAB[activeSection] || null;
@@ -180,32 +178,6 @@ const LandingPage = () => {
             </div>
           );
         })}
-      </div>
-
-      {/* Search trigger */}
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={() => dispatchRedux(setState("casino_search_modal", true))}
-        onKeyDown={(e) => e.key === "Enter" && dispatchRedux(setState("casino_search_modal", true))}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          margin: isMobile ? "8px 4px" : "10px 12px",
-          padding: "8px 14px",
-          background: "#1e2235",
-          borderRadius: 20,
-          cursor: "pointer",
-          color: "#64748b",
-          fontSize: 13,
-          border: "1px solid #2a3050",
-        }}
-      >
-        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-        </svg>
-        <span>Search games...</span>
       </div>
 
       {/* Carousel */}

@@ -102,14 +102,10 @@
 .bottom-nav-fab-icon {
   width: 46px;
   height: 46px;
-  border-radius: 50%;
-  background: #fb8603;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(251, 134, 3, 0.45);
   color: #fff;
-  border: 3px solid #0F111A;
 }
 
 .bottom-nav-fab:active .bottom-nav-fab-icon {

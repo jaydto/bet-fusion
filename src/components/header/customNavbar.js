@@ -5,6 +5,7 @@ import useWindowDimensions from "./Dimensions";
 import logo from "../../assets/img/logo.png";
 import { useDispatch } from "react-redux";
 import { setState as setStateV } from "../../redux/virtualsSlice";
+import { ReactComponent as LightIcon } from "../../assets/icons/light.svg";
 
 const SearchIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
@@ -19,12 +20,6 @@ const HamburgerIcon = () => (
     <line x1="0" y1="1"  x2="13" y2="1"  />
     <line x1="0" y1="8"  x2="17" y2="8"  />
     <line x1="0" y1="15" x2="22" y2="15" />
-  </svg>
-);
-
-const MoonIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 20, height: 20 }}>
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
   </svg>
 );
 
@@ -101,7 +96,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
               </div>
             </div>
             <button style={iconBtnStyle} aria-label="Toggle theme">
-              <MoonIcon />
+              <LightIcon />
             </button>
           </div>
         </div>

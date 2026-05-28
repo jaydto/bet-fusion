@@ -63,7 +63,7 @@ const BottomNav = () => {
               aria-label="Deposit"
             >
               <span className="bottom-nav-fab-icon">
-                <DepositIcon width={28} height={28} style={{ filter: "brightness(0) invert(1)" }} />
+                <DepositIcon width={28} height={28} />
               </span>
               <span className="bottom-nav-label" style={{ color: "#fff", WebkitTextFillColor: "#fff" }}>
                 Deposit

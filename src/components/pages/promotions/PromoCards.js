@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Typography, Row, Col, Card, Button, Divider } from "antd";
+import { Typography, Row, Col, Card, Button, Divider, Grid } from "antd";
+
+const { useBreakpoint } = Grid;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -18,6 +20,8 @@ const PromoCards = () => {
   const gaEventTracker = useAnalyticsEventTracker("Promotions");
   const user = getFromLocalStorage("user");
   const dispatch = useDispatch();
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
   const bottomSheetRef = useRef();
   const bottom_sheet = useSelector((state) => state.data.promo_bottom_sheet);
 
@@ -63,11 +67,27 @@ const PromoCards = () => {
 
   return (
     <div className="px-sm-2 px-md-4 px-lg-4">
-      <Row gutter={[16, 16]}>
+      <Row gutter={[16, isMobile ? 8 : 16]}>
         {promotions.map((promotion, index) => {
           const isExpired = new Date(promotion.expiryDate) < new Date();
           return (
-            <Col key={index} xs={24} sm={12} md={8}>
+            <Col
+              key={index}
+              xs={24} sm={12} md={8}
+              style={isMobile ? {
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                padding: "0px",
+                gap: "8px",
+                width: "326px",
+                height: "214px",
+                flex: "none",
+                order: index,
+                alignSelf: "stretch",
+                flexGrow: 0,
+              } : {}}
+            >
               <Card
                 hoverable
                 className={`promo-styling shadow-lg promotion ${

@@ -2,7 +2,6 @@ import React from 'react';
 import DepositModal from "../modals/DepositModal";
 
 const DepositTriggerButton = ({ isOpen, setIsOpen }) => {
-  // Function to toggle modal visibility
   const toggleDepositModal = () => {
     setIsOpen(!isOpen);
   };
@@ -10,10 +9,10 @@ const DepositTriggerButton = ({ isOpen, setIsOpen }) => {
   return (
     <div className="w-auto d-flex text-white align-items-start">
       <div className={"profile-wrap"}>
-        {/* Button to trigger DepositModal */}
         <button
-          className={"deposit-button size-font-user-action deposit-button-header bg-warning"}
-          onClick={toggleDepositModal} // Toggle modal visibility on click
+          className={"deposit-button size-font-user-action deposit-button-header"}
+          style={{ background: "#fb8603", color: "#fff", border: "none", borderRadius: 4, padding: "7px 13px" }}
+          onClick={toggleDepositModal}
           title={'DEPOSIT FUNDS'}
         >
           <span>
@@ -21,9 +20,6 @@ const DepositTriggerButton = ({ isOpen, setIsOpen }) => {
           </span>
         </button>
       </div>
-      
-      {/* Render DepositModal based on isOpen prop */}
-      
     </div>
   );
 };

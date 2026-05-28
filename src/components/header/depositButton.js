@@ -11,7 +11,7 @@ const DepositTriggerButton = ({ isOpen, setIsOpen }) => {
       <div className={"profile-wrap"}>
         <button
           className={"deposit-button size-font-user-action deposit-button-header"}
-          style={{ background: "#fb8603", color: "#fff", border: "none", borderRadius: 4, padding: "7px 13px" }}
+          style={{ background: "linear-gradient(105deg, #FE6700 0%, #E4010D 100%)", color: "#fff", border: "none", borderRadius: 4, padding: "7px 13px" }}
           onClick={toggleDepositModal}
           title={'DEPOSIT FUNDS'}
         >

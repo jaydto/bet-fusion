@@ -1533,20 +1533,29 @@ input.search-cat:focus {
   border-radius: inherit;
 }
 
-.game-card--hoverable:hover .game-card-hover-overlay {
+.game-card--hoverable:hover .game-card-hover-overlay,
+.game-card--hoverable.game-card--active .game-card-hover-overlay {
   opacity: 1;
 }
 
 .game-card-play-btn {
-  background: #fb8603;
-  color: #000;
+  background: linear-gradient(105deg, #FE6700 0%, #E4010D 100%);
+  color: #fff;
   font-family: 'Outfit', sans-serif;
   font-size: 12px;
   font-weight: 700;
   padding: 7px 18px;
   border-radius: 999px;
   white-space: nowrap;
-  pointer-events: none;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.game-card-play-btn:hover {
+  opacity: 0.88;
+  transform: scale(1.04);
 }
 
 /* Skeleton shimmer for landing rows */

@@ -1461,10 +1461,9 @@ input.search-cat:focus {
 
 /* Override game-card for horizontal row context */
 .landing-row .game-card {
-  aspect-ratio: 3 / 2;
   flex-shrink: 0;
-  width: 148px;
-  height: unset;
+  width: 211px;
+  height: 161px;
   border-radius: 8px;
   background: rgba(229, 229, 229, 0.05);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
@@ -1474,8 +1473,8 @@ input.search-cat:focus {
 }
 
 .landing-row .game-card.lg {
-  width: 185px;
-  aspect-ratio: 3 / 2;
+  width: 211px;
+  height: 161px;
 }
 
 @media (max-width: 767px) {

@@ -82,7 +82,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
                   readOnly
                   style={{
                     width: "100%",
-                    background: "#171A26",
+                    background: "transparent",
                     border: "1px solid #1e2235",
                     borderRadius: "8px",
                     color: "#e5e5e5",
@@ -121,7 +121,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
                 readOnly
                 style={{
                   width: "100%",
-                  background: "#171A26",
+                  background: "transparent",
                   border: "1px solid #1e2235",
                   borderRadius: "8px",
                   color: "#e5e5e5",
@@ -130,10 +130,14 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
                   outline: "none",
                   fontFamily: "'Outfit', sans-serif",
                   transition: "border-color 0.15s",
+                  cursor: "pointer",
                 }}
               />
             </div>
           </div>
+          <button style={{ ...iconBtnStyle, marginRight: "4px" }} aria-label="Toggle theme">
+            <LightIcon style={{ width: 18, height: 18 }} />
+          </button>
           <UserInfo profile={checkDesktop} />
         </>
       )}

@@ -5,6 +5,7 @@
   --footer-nav: #0F111A;
   --footer-color: #f8fafc;
   --bet-fusion-button-login: #fb8603;
+  --bet-fusion-btn-gradient: linear-gradient(270.35deg, #fb8603 10.81%, #E4010D 64.67%);
   --signup: #fb8603;
   --deposit-c: #fb8603;
   --side-logo: #0F111A;
@@ -195,6 +196,7 @@
   --footer-links: #05070a;
   --bet-fusion-secondary: #fff;
   --bet-fusion-button-login: #fb8603;
+  --bet-fusion-btn-gradient: linear-gradient(270.35deg, #fb8603 10.81%, #E4010D 64.67%);
   --bet-fusion-footer: #adadad;
   --mybets-slip: #f0f0f0;
   --jackpot-header: #f0f0f0;

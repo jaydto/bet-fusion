@@ -32,15 +32,11 @@ const CasinoPage = () => {
   //     }
   //   }, [casino_games.length]);
 
-  console.log("categoryFromURL", categoryFromURL);
-
   const [activeCategory, setActiveCategory] = useState(categoryFromURL);
 
   useEffect(() => {
     setActiveCategory(categoryFromURL);
   }, [categoryFromURL]);
-
-  console.log("home categoryFromURL", categoryFromURL);
 
   return (
     <div

@@ -180,6 +180,26 @@
   overflow-x: auto;
 }
 
+.category-nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.category-tab-item {
+  position: relative;
+}
+
+.category-tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 39px;
+  height: 2px;
+  background: linear-gradient(270.35deg, #FE8403 10.81%, #F50164 64.67%);
+  border-radius: 0;
+}
+
 .tabs-container.wrap {
   overflow-x: visible;
 }
@@ -1539,7 +1559,7 @@ input.search-cat:focus {
 }
 
 .game-card-play-btn {
-  background: linear-gradient(105deg, #FE6700 0%, #E4010D 100%);
+  background: var(--bet-fusion-btn-gradient);
   color: #fff;
   font-family: 'Outfit', sans-serif;
   font-size: 12px;

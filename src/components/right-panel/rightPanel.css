@@ -31,6 +31,12 @@
   height: 56px;
   border-bottom: 1px solid #1e2235;
   flex-shrink: 0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.rp-profile-row:hover {
+  background: rgba(255,255,255,0.04);
 }
 
 .rp-avatar-wrap {

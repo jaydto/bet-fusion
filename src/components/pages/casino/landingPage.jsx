@@ -24,7 +24,7 @@ const GameRowSkeleton = ({ count = 6 }) => (
 
 // Tab → route/section mapping
 const TAB_MAP = {
-  "Aviator":     { route: "/casino?categoryId=aviator" },
+  "Aviator":     { route: "/casino/game-play?game=58630&status=0&game_name=AVIATOR" },
   "Crash":       { section: "crash" },
   "Casino":      { section: "" },
   "Slots":       { section: "slots" },
@@ -130,51 +130,60 @@ const LandingPage = () => {
   return (
     <div style={{ width: "100%", marginBottom: isMobile ? "5rem" : "2rem" }}>
       {/* Category navigation tabs */}
-      <div style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: isMobile ? "flex-start" : "space-between",
-        alignItems: "flex-start",
-        padding: "0",
-        height: isMobile ? "auto" : "26px",
-        flexGrow: 1,
-        overflowX: isMobile ? "auto" : "visible",
-        scrollbarWidth: "none",
-        msOverflowStyle: "none",
-        fontSize: isMobile ? "10px" : "13px",
-        fontWeight: 600,
-        borderBottom: "1px solid #1e2235",
-        background: "#0F111A",
-      }}>
+      <div
+        className="category-nav-tabs"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          padding: isMobile ? "0" : "0 8px",
+          height: "auto",
+          overflowX: "auto",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          fontSize: isMobile ? "10px" : "13px",
+          fontWeight: 600,
+          borderBottom: "1px solid #1e2235",
+          background: "#0F111A",
+          gap: isMobile ? "0" : "2px",
+        }}
+      >
         {NAV_TABS.map(({ label, icon }) => {
           const isActive = activeTab === label || (label === "Casino" && !activeTab);
           return (
             <div
               key={label}
               onClick={() => handleTabClick(label)}
+              className={`category-tab-item${isActive ? " active" : ""}`}
               style={{
                 cursor: "pointer",
-                padding: isMobile ? "6px 10px" : "4px 5px",
+                padding: isMobile ? "6px 4px 8px" : "8px 12px",
                 whiteSpace: "nowrap",
                 borderRadius: "0",
-                flexShrink: isMobile ? 0 : 1,
-                flexGrow: isMobile ? 0 : 1,
+                flexShrink: 0,
+                flexGrow: 0,
+                minWidth: isMobile ? "calc(100% / 6)" : "unset",
                 display: "flex",
                 flexDirection: isMobile ? "column" : "row",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: isMobile ? "2px" : "4px",
-                height: isMobile ? "auto" : "26px",
-                color: isActive ? "#fb8603" : "#64748b",
-                background: isActive ? "#261517" : "transparent",
-                borderBottom: isActive ? "2px solid #fb8603" : "2px solid transparent",
-                transition: "color 0.2s, background 0.2s",
+                gap: isMobile ? "2px" : "5px",
+                height: "auto",
+                background: "transparent",
               }}
-              onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.color = "#fb8603"; e.currentTarget.style.background = "rgba(38,21,23,0.5)"; }}}
-              onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.color = "#64748b"; e.currentTarget.style.background = "transparent"; }}}
+              onMouseEnter={(e) => {
+                e.currentTarget.querySelector(".tab-icon").style.color = "#fb8603";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.querySelector(".tab-icon").style.color = isActive ? "#fb8603" : "#64748b";
+              }}
             >
-              <span style={{ display: "flex", alignItems: "center", lineHeight: 1 }}>{icon}</span>
-              {label}
+              <span
+                className="tab-icon"
+                style={{ display: "flex", alignItems: "center", lineHeight: 1, color: isActive ? "#fb8603" : "#64748b", transition: "color 0.2s" }}
+              >{icon}</span>
+              <span style={{ color: "#64748b" }}>{label}</span>
             </div>
           );
         })}

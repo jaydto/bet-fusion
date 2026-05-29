@@ -96,7 +96,6 @@ const CasinoLayout = () => {
         </button>
       )}
 
-      {<MobileMenu />}
 
       <style>{`
         .scroll-to-top {

@@ -20,6 +20,7 @@ const instance = axios.create({
   headers: {
     accept: "*/*",
   },
+  timeout: 15000, // 15s timeout — prevents tab freeze on slow/unreachable API
 });
 
 const navigate = async () => {

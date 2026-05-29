@@ -4,14 +4,12 @@ import { getFromLocalStorage } from "../../utils/local-storage";
 import CasinoSkeletonLoader from "./casino-skeleton";
 
 import useWindowDimensions from "../../header/Dimensions";
-import GameSearchFilters from "./gameSearchFilters";
 import PageHeader from "./pageHeader";
 import GamesLibrary from "./gamesLibrary";
 import NoGamesCard from "./NoGamesCard";
 import { useEffect, useState } from "react";
 import { setState } from "../../../redux/virtualsSlice";
 import GameFilters from "./gameFilters";
-import { filter } from "lodash";
 
 const CasinoGames = ({ activeSetCategory }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,8 +17,6 @@ const CasinoGames = ({ activeSetCategory }) => {
 
   const [activeCategory, setActiveCategory] = useState(activeSetCategory);
   const [activeTitle, setActiveTitle] = useState(activeSetCategory);
-
-  console.log("activeCategory", activeCategory);
 
   const user = getFromLocalStorage("user");
   const dispatch = useDispatch();
@@ -109,43 +105,17 @@ const CasinoGames = ({ activeSetCategory }) => {
       : navigate("/auth/login");
   };
 
-  const onSearch = (searchTerm) => {
-    console.log("Search:", searchTerm);
-    dispatch(setState("casino_search_modal", true));
-  };
-
   const onFilterChange = (game_id, title) => {
-    // Clear the search params
     const newParams = new URLSearchParams(searchParams);
     newParams.delete("categoryId");
-
-    // Optionally, preserve other params you want to keep
     setSearchParams(newParams);
-
-    // Update local state
     setActiveCategory(game_id);
     setActiveTitle(title);
-
-    console.log("Filter changed to:", title);
   };
-
-  console.log("activeCategory", activeCategory);
-  console.log("filteredSections", filteredSections);
-  console.log(
-    "filteredSections data",
-    filteredSections.map((section) => section.games).flat().length
-  );
 
   return (
     <div style={{ overflow: "hidden", position: "relative" }}>
-      <div className=" mt-1 body-section">
-        {/* <PageHeader
-          title={activeCategory === "Lobby" ? "Casino Lobby" : activeTitle}
-          description="Explore and play your favorite casino games"
-        /> */}
-        <div className="mt-4">
-          <GameSearchFilters onSearch={onSearch} />
-        </div>
+      <div className="mt-1 body-section">
         <div className="mt-2">
           <GameFilters
             activeCategory={activeCategory}

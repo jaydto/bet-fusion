@@ -20,19 +20,25 @@ const RightPanel = () => {
 
   return (
     <aside className="right-panel">
-      {/* Profile row — always visible */}
-      <div className="rp-profile-row">
+      {/* Profile row — links to /profile */}
+      <Link to="/profile" className="rp-profile-row" style={{ textDecoration: "none" }}>
         <div className="rp-avatar-wrap">
           <svg viewBox="0 0 36 36" width="36" height="36" fill="none">
-            <circle cx="18" cy="18" r="18" fill="#e2e8f0" />
-            <circle cx="18" cy="14" r="6" fill="#94a3b8" />
-            <ellipse cx="18" cy="30" rx="11" ry="7" fill="#94a3b8" />
+            <circle cx="18" cy="18" r="18" fill="#1e2235" />
+            <circle cx="18" cy="14" r="6" fill="#fb8603" />
+            <ellipse cx="18" cy="30" rx="11" ry="7" fill="#fb8603" />
           </svg>
         </div>
-        <span className="rp-profile-label">
-          {user ? (user.msisdn || user.email || "Profile") : "Profile"}
-        </span>
-      </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 12, color: "#64748b", fontFamily: "'Outfit', sans-serif" }}>My Account</div>
+          <div className="rp-profile-label" style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {user ? (user.msisdn || user.email || "Profile") : "Sign In"}
+          </div>
+        </div>
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style={{ color: "#334155", flexShrink: 0 }}>
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+      </Link>
 
       {/* Logged-in actions */}
       {user && (

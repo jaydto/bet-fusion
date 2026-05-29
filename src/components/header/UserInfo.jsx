@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { formatNumber } from "../utils/betslip";
 import { Navbar } from "react-bootstrap";
@@ -11,8 +11,7 @@ import { setState } from "../../redux/dataSlice";
 import { setState as setStateV } from "../../redux/virtualsSlice";
 import { shouldShowSearch } from "../../redux/navigationAction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faSearch, faWallet } from "@fortawesome/free-solid-svg-icons";
-import { get } from "lodash";
+import { faWallet } from "@fortawesome/free-solid-svg-icons";
 
 export const UserInfo = React.memo((props) => {
   const { profile } = props;
@@ -21,6 +20,7 @@ export const UserInfo = React.memo((props) => {
   const gaEventTracker = useAnalyticsEventTracker("Navigation");
 
   const location = useLocation();
+  const navigate = useNavigate();
   const [user, setUser] = useState(getFromLocalStorage("user"));
 
   useEffect(() => {
@@ -66,10 +66,10 @@ export const UserInfo = React.memo((props) => {
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
-                  background: "rgba(59, 170, 237, 0.10)",
-                  border: "1px solid rgba(59, 170, 237, 0.25)",
+                  background: "transparent",
+                  border: "none",
                   borderRadius: "999px",
-                  padding: "6px 16px",
+                  padding: "6px 8px",
                   cursor: "pointer",
                 }}
               >
@@ -80,23 +80,6 @@ export const UserInfo = React.memo((props) => {
               </div>
             </Link>
           )}
-          {/* Notification bell */}
-          <button
-            aria-label="Notifications"
-            style={{
-              background: "transparent",
-              border: "none",
-              padding: "6px",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              color: "#94a3b8",
-            }}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-              <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
-            </svg>
-          </button>
           <Link
             to={{ pathname: "/deposit" }}
             style={{
@@ -116,6 +99,7 @@ export const UserInfo = React.memo((props) => {
           >
             Deposit
           </Link>
+
         </div>
       )}
       <>

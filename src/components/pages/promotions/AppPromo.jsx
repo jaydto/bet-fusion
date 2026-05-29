@@ -9,7 +9,7 @@ const AppPromo = () => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   return (
-    <div className="promotions-app-top" style={{ padding: 5, marginTop: 60 }}>
+    <div style={{ padding: "0 5px" }}>
       <Suspense fallback={<LoadingPage />}>
         <Outlet />
       </Suspense>

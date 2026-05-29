@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getFromLocalStorage } from "../../utils/local-storage";
 import logo from "../../../assets/img/logo.png";
+import { ReactComponent as PromotionsIcon } from "../../../assets/img/Promotions.svg";
 import "./sidebar.css";
 
 
@@ -84,6 +85,16 @@ const icons = {
       <path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/>
     </svg>
   ),
+  logout: (
+    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+      <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+    </svg>
+  ),
+  profile: (
+    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </svg>
+  ),
   chevronLeft: (
     <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
       <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
@@ -161,8 +172,8 @@ const Sidebar = ({ mobileOpen = false, onMobileClose }) => {
           <NavItem to="/" active={isActive("/")} label="Originals" icon={icons.originals} />
           <NavItem to="/?section=popular" active={path === "/?section=popular"} label="Popular" icon={icons.popular} />
           <NavItem to="/casino?categoryId=crash" active={path.includes("categoryId=crash")} label="Crash Games" icon={icons.crash} />
-          <NavItem to="/casino?categoryId=aviator" active={path.includes("categoryId=aviator")} label="Aviator" icon={icons.aviator} />
-          <NavItem to="/casino?categoryId=jetx" active={path.includes("categoryId=jetx")} label="JetX" icon={icons.jetx} />
+          <NavItem to="/casino/game-play?game=58630&status=0&game_name=AVIATOR" active={path.includes("game_name=AVIATOR")} label="Aviator" icon={icons.aviator} />
+          <NavItem to="/casino/game-play?game=58059&status=0&game_name=JetX" active={path.includes("game_name=JetX")} label="JetX" icon={icons.jetx} />
           <NavItem
             to="/casino?categoryId=live"
             active={path.includes("categoryId=live")}
@@ -180,8 +191,8 @@ const Sidebar = ({ mobileOpen = false, onMobileClose }) => {
             <span className="sidebar-nav-label">Live Support · 0711 156 430</span>
           </a>
 
-          <NavItem to="/promotions" active={isActive("/promotions")} label="Refer & Earn" icon={icons.gift} />
-          <NavItem to="/profile" active={isActive("/profile")} label="VIP Club" badge="NEW" icon={icons.crown} />
+          <NavItem to="/promotions" active={isActive("/promotions")} label="Promotions" icon={<PromotionsIcon width={18} height={18} />} />
+          <NavItem to="/profile" active={isActive("/profile")} label="My Profile" icon={icons.profile} />
 
           <div className="sidebar-divider" />
 
@@ -191,8 +202,10 @@ const Sidebar = ({ mobileOpen = false, onMobileClose }) => {
 
           <div className="sidebar-divider" />
 
-          {!user && (
+          {!user ? (
             <NavItem to="/auth/login" active={isActive("/auth/login")} label="Login" icon={icons.login} />
+          ) : (
+            <NavItem to="/auth/logout" active={false} label="Logout" icon={icons.logout} />
           )}
         </nav>
       </aside>

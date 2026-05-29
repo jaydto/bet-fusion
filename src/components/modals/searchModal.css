@@ -84,51 +84,35 @@
 }
 
 .modal-content.search-modal {
-  background-color: var(--betnare-side-bg);
+  background-color: var(--bet-fusion-body-bg, #0f172a);
   color: var(--light);
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 90%;
-  overflow: auto;
-  background-color: var(--bet-fusion-body-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 @media (min-width: 768px) {
   .modal-content.search-modal {
-    width: 40%;
-    max-height: 53vh;
-
-  }
-  .casino-search-content {
-    flex: 0 0 32%;
-    min-width: 32%;
-  }
-  .casino-search-content .game-card .game-image-wrapper img {
+    width: 520px;
+    max-width: 90vw;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
   }
 }
 
-/* Adjust for mobile as a bottom sheet */
+/* Mobile as a bottom sheet */
 @media (max-width: 767px) {
-  .casino-search-item:hover .overlay-search{
-    display: inline-grid;
-  }
-  .casino-search-content {
-    flex: 1 0 44%;
-    min-width: 20%;
-    margin-left: 10px;
-  }
-  .casino-search-content .game-card .game-image-wrapper img {
-  }
   .modal-content.search-modal {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     max-width: 100%;
-    border-radius: 10px 10px 0 0;
-    padding: 20px;
-    max-height: 43vh;
-
+    border-radius: 16px 16px 0 0;
+    max-height: 55vh;
+    display: flex;
+    flex-direction: column;
   }
 }
 

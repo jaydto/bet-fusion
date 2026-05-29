@@ -16,7 +16,6 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick, layout = "row
     const el = rowRef.current;
     if (!el) return;
     drag.current = { down: true, moved: false, startX: e.clientX, startLeft: el.scrollLeft };
-    try { el.setPointerCapture?.(e.pointerId); } catch (_) {}
   };
 
   const onPointerMove = (e) => {
@@ -78,8 +77,19 @@ const HorizontalGameRow = ({ games = [], size = "md", onCardClick, layout = "row
             style={{ flex: "0 0 auto", borderRadius: "12px", overflow: "hidden", marginRight: "10px", cursor: "pointer" }}
             onClick={() => {
               if (drag.current.moved) return;
-              setActiveId(isActive ? null : key);
+              const user = getFromLocalStorage("user");
+              if (user) {
+                if (onCardClick) {
+                  onCardClick(gameId, name);
+                } else {
+                  navigate(`/casino/game-play?game=${gameId}&status=0&game_name=${encodeURIComponent(name)}`);
+                }
+              } else {
+                navigate("/auth/login");
+              }
             }}
+            onPointerEnter={() => setActiveId(key)}
+            onPointerLeave={() => setActiveId(null)}
             role="button"
             tabIndex={0}
           >

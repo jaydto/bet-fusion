@@ -65,96 +65,136 @@ const PromoCards = () => {
   }, []);
 
   return (
-    <div className="px-sm-2 px-md-4 px-lg-4">
-      <Row gutter={[16, isMobile ? 8 : 16]}>
+    <div style={{ padding: isMobile ? "12px 12px 80px" : "12px 16px 40px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         {promotions.map((promotion, index) => {
-          const isExpired = new Date(promotion.expiryDate) < new Date();
+          const isExpired = promotion.expiryDate && promotion.expiryDate !== "null"
+            ? new Date(promotion.expiryDate) < new Date()
+            : false;
+
           return (
-            <Col
+            <div
               key={index}
-              xs={24} sm={12} md={8}
-              style={isMobile ? { padding: "0px 0px 8px 0px" } : {}}
+              style={{
+                borderRadius: 12,
+                overflow: "hidden",
+                position: "relative",
+                opacity: isExpired ? 0.65 : 1,
+                boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+                cursor: isExpired ? "default" : "pointer",
+              }}
+              onClick={() => {
+                if (!isExpired && promotion.actions?.[1]?.url) {
+                  navigate(promotion.actions[1].url);
+                  window.scrollTo(0, 0);
+                  gaEventTracker(`${promotion.eventTracking}`);
+                  setUtmSouceCampaignOnPromotions(`${promotion.eventTracking}`);
+                }
+              }}
             >
-              <Card
-                hoverable
-                className={`promo-styling shadow-lg promotion ${
-                  isExpired ? "promo-inactive" : ""
-                }`}
-                cover={<img alt={promotion.name} src={promotion.src} />}
-                style={{
-                  border: "none",
-                  borderRadius: 8,
-                  background: "var(--bet-fusion-secondary)",
-                  color: "var(--white)",
-                }}
-              >
-                <Title
-                  level={5}
+              {/* Banner image */}
+              {promotion.src && (
+                <img
+                  src={promotion.src}
+                  alt={promotion.name}
                   style={{
-                    color: "var(--light)",
-                    fontSize: 14,
-                    textAlign: "center",
-                    marginBottom: 8,
+                    width: "100%",
+                    display: "block",
+                    borderRadius: 12,
+                    minHeight: isMobile ? 140 : 180,
+                    objectFit: "cover",
                   }}
-                >
-                  {promotion.name}
-                </Title>
-                <Paragraph
-                  style={{
-                    color: "var(--bet-fusion-grey)",
-                    fontSize: 12,
-                    minHeight: 50,
-                  }}
-                >
-                  {promotion.summary}
-                </Paragraph>
-                <Divider style={{ borderColor: "var(--white)" }} />
-                <div className="d-flex justify-content-between">
-                  <Button
-                    type="primary"
-                    size="small"
-                    style={{
-                      background: "var(--bet-fusion-button-login)",
-                      border: "none",
-                      color:"var(--white)",
-                      fontSize: 12,
-                    }}
-                    onClick={() => {
-                      if (promotion.actions[0].name === "Sign Up") {
+                />
+              )}
+
+              {/* Gradient overlay for text readability */}
+              <div style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: 12,
+                background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.05) 100%)",
+              }} />
+
+              {/* Text + button overlay */}
+              <div style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                padding: "12px 14px 14px",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                gap: 10,
+              }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  {isExpired && (
+                    <span style={{
+                      fontSize: 10, fontWeight: 700, color: "#fca5a5",
+                      background: "rgba(239,68,68,0.2)", borderRadius: 4,
+                      padding: "2px 6px", marginBottom: 4, display: "inline-block",
+                    }}>EXPIRED</span>
+                  )}
+                  <div style={{
+                    color: "#fff",
+                    fontSize: isMobile ? 14 : 16,
+                    fontWeight: 700,
+                    lineHeight: 1.3,
+                    marginBottom: 2,
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}>
+                    {promotion.name}
+                  </div>
+                  <div style={{
+                    color: "rgba(255,255,255,0.7)",
+                    fontSize: 11,
+                    lineHeight: 1.4,
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}>
+                    {promotion.summary}
+                  </div>
+                </div>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isExpired) {
+                      if (promotion.actions?.[0]?.name === "Sign Up") {
                         checkIfUser(user, navigate);
-                      } else {
+                      } else if (promotion.actions?.[0]?.url) {
                         navigate(promotion.actions[0].url);
                       }
                       gaEventTracker(`${promotion.eventTracking}`);
-                      setUtmSouceCampaignOnPromotions(
-                        `${promotion.eventTracking}`
-                      );
-                    }}
-                  >
-                    {promotion.actions[0].name}
-                  </Button>
-                  <Button
-                    type="link"
-                    size="small"
-                    style={{
-                      backgroundColor: "var(--white)",
-                      color: "var(--black)",
-                      fontSize: 12,
-                      padding: 2,
-                    }}
-                    onClick={() => {
-                      navigate(`${promotion.actions[1].url}`);
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    {promotion.actions[1].name}
-                  </Button>
-                </div>
-              </Card>
-            </Col>
+                      setUtmSouceCampaignOnPromotions(`${promotion.eventTracking}`);
+                    }
+                  }}
+                  disabled={isExpired}
+                  style={{
+                    flexShrink: 0,
+                    background: isExpired ? "#475569" : "#e5373a",
+                    border: "none",
+                    borderRadius: 8,
+                    color: "#fff",
+                    fontWeight: 700,
+                    fontSize: 12,
+                    padding: "8px 16px",
+                    cursor: isExpired ? "not-allowed" : "pointer",
+                    fontFamily: "'Outfit', sans-serif",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {promotion.actions?.[0]?.name || "Learn More"}
+                </button>
+              </div>
+            </div>
           );
         })}
-      </Row>
+      </div>
 
       {/* Bottom sheet */}
       <div className={`${bottom_sheet ? "bottom-sheet show" : "d-none"}`}>

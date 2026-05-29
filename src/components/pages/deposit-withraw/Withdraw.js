@@ -54,37 +54,32 @@ const Withdraw = React.memo((props) => {
 
   const FormTitle = () => {
     const navigate = useNavigate();
-
     return (
-      <div
-        className="col-md-12 col-md-12  pt-lg-4 text-center text-light pb-3 text-center w-100 top-login-mobile"
-        style={{ margin: "0px" }}
-      >
-        <div>
-          <div
-            className={
-              " top-spacing d-flex justify-content-around m-auto px-1 align-items-center"
-            }
-            onClick={() => navigate(-1)}
-          >
-            <span
-              className="d-flex justify-content-start w-25 "
-              style={{ cursor: "pointer" }}
-            >
-              <FontAwesomeIcon
-                icon={faAngleLeft}
-                className={"back-navigation-icon"}
-              />{" "}
-            </span>
-
-            <span className={"w-50 d-flex justify-content-center"}>
-              <h4 className="inline-blockbetfusion-text-light">
-                WITHDRAW FUNDS (MOBILE MONEY)
-              </h4>{" "}
-            </span>
-            <span className="w-25"></span>
-          </div>
-        </div>
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        padding: "14px 20px",
+        borderBottom: "1px solid #1e293b",
+      }}>
+        <button
+          onClick={() => navigate(-1)}
+          style={{
+            background: "transparent",
+            border: "none",
+            color: "#e2e8f0",
+            cursor: "pointer",
+            padding: "4px 8px 4px 0",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            fontSize: 16,
+          }}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} style={{ color: "#fb8603" }} />
+        </button>
+        <span style={{ color: "#e2e8f0", fontSize: "17px", fontWeight: "600" }}>
+          Withdraw Funds
+        </span>
       </div>
     );
   };
@@ -115,70 +110,44 @@ const Withdraw = React.memo((props) => {
   }, [dispatchWithdrawtMessage]);
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ minHeight: "100vh" }}>
       <ToastContainer />
-      <Row justify="center" className="align-items-stretch h-100">
-        <div
-          className={
-            "col-lg-8 col-sm-12 top-login-background-img-bg-down top-login-background-img-bg-page"
-          }
-        >
-          <div className="w-100 d-flex flex-column justify-content-center h-100 top-login-background-img-bg-page">
-            <div className={"width-page-centric deposit-page"}>
-              <FormTitle />
-              <div className={"w-100"}>
-                <div className={"d-flex"}>
-                  {/**/}
-                  <div className={"size-deposit"}>
-                    {!user ? setTimeout(navigate("/"), 500) : ""}
-                    <div className={"d-flex flex-row justify-content-between"}>
-                      <div className=" w-100">
-                        <div className="homepage d-flex  flex-column align-items-center  login-page user-page">
-                          {/* <Alert /> */}
-                          <div className=" pb-0" data-backdrop="static">
-                            <WithdrawForm />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <p>Don't have an account yet? <a href="/auth/register-2">Sign Up</a></p> */}
-                  <div className="mt-4">{/*<LoginForm {...props}/>*/}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Row>
+      <div style={{ maxWidth: "480px", margin: "0 auto" }}>
+        <FormTitle />
+        {!user ? setTimeout(navigate("/"), 500) : null}
+        <WithdrawForm />
+      </div>
     </div>
   );
 });
 
-const PaymentInstructions = (props) => {
+const PaymentInstructions = () => {
+  const steps = [
+    "Enter the amount you wish to withdraw.",
+    "Click the withdraw button to initiate.",
+    "Check your phone for an M-PESA confirmation.",
+  ];
   return (
-    <>
-      <label className="header text-info">Withdrawal Instructions</label>
-      <div className="container d-flex flex-column">
-        <div className="row">
-          <div className="colbetfusion-text-light">
-            {" "}
-            1. Enter the amount you wish to withdraw.
-          </div>
-        </div>
-        <div className="row">
-          <div className="colbetfusion-text-light">
-            {" "}
-            2. Click on the withdraw funds button.
-          </div>
-        </div>
-        <div className="row">
-          <div className="colbetfusion-text-light">
-            {" "}
-            3. Check your phone for an M-Pesa Confirmation.
-          </div>
-        </div>
+    <div style={{
+      background: "rgba(255,255,255,0.03)",
+      borderRadius: 10,
+      padding: "12px 16px",
+    }}>
+      <div style={{ color: "#64748b", fontSize: 12, fontWeight: 600, marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.6 }}>
+        How to Withdraw
       </div>
-    </>
+      {steps.map((step, i) => (
+        <div key={i} style={{ display: "flex", gap: 10, marginBottom: 6, alignItems: "flex-start" }}>
+          <span style={{
+            width: 20, height: 20, borderRadius: "50%",
+            background: "rgba(251,134,3,0.15)", border: "1px solid rgba(251,134,3,0.3)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 11, fontWeight: 700, color: "#fb8603", flexShrink: 0,
+          }}>{i + 1}</span>
+          <span style={{ color: "#94a3b8", fontSize: 13 }}>{step}</span>
+        </div>
+      ))}
+    </div>
   );
 };
 
@@ -187,107 +156,158 @@ const WithdrawFormFields = (props) => {
   const loading = useSelector((state) => state.data.withdraw_loading);
   const user = useSelector((state) => state.auth.user) || getFromLocalStorage("user");
 
+  const inputStyle = {
+    width: "100%",
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid #334155",
+    borderRadius: 10,
+    padding: "12px 16px",
+    color: "#e2e8f0",
+    fontSize: 15,
+    outline: "none",
+    fontFamily: "'Outfit', sans-serif",
+  };
+
+  const labelStyle = {
+    color: "#94a3b8",
+    fontSize: 13,
+    fontWeight: 600,
+    marginBottom: 8,
+    display: "block",
+    textTransform: "uppercase",
+    letterSpacing: 0.6,
+  };
+
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center mb-4 px-1 w-100">
-        <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "14px" }}>Available Balance:</span>
-        <span style={{ color: "#fb8603", fontWeight: 800, fontSize: "16px" }}>
+      {/* Balance */}
+      <div style={{
+        background: "rgba(251,134,3,0.08)",
+        border: "1px solid rgba(251,134,3,0.2)",
+        borderRadius: 10,
+        padding: "12px 16px",
+        marginBottom: 20,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}>
+        <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 13 }}>Available Balance</span>
+        <span style={{ color: "#fb8603", fontWeight: 800, fontSize: 16 }}>
           KES {formatNumber(user?.balance || 0)}
         </span>
       </div>
-      <div className="form-group row d-flex justify-content-center deposit-widthdraw-input-desktop">
-        <div className={`col-md-12 w-100`}>
-          <div className={"d-flex "}>
-            <label className={"text-light deposit col-5 deposit-label"}>
-              Phone Number
-            </label>
-          </div>
-          <input
-            className="text-light deposit-input form-control input-field"
-            id="msisdn"
-            name="msisdn"
-            type="text"
-            readOnly={true}
-            value={values.msisdn}
-            placeholder="Enter Phone Number"
-          />
-          {errors.msisdn && (
-            <div className="text-danger"> {errors.msisdn} </div>
-          )}
-        </div>
+
+      {/* Phone number */}
+      <div style={{ marginBottom: 16 }}>
+        <label style={labelStyle}>Phone Number</label>
+        <input
+          style={{ ...inputStyle, color: "#64748b", cursor: "not-allowed" }}
+          id="msisdn"
+          name="msisdn"
+          type="text"
+          readOnly
+          value={values.msisdn}
+          placeholder="Phone Number"
+        />
+        {errors.msisdn && (
+          <div style={{ color: "#f87171", fontSize: 12, marginTop: 4 }}>{errors.msisdn}</div>
+        )}
       </div>
 
-      <div className="form-group row d-flex justify-content-center mt-3 deposit-widthdraw-input-desktop">
-        <div className="col-md-12">
-          <label className={"text-light deposit"}>Amount to Withdraw</label>
-          {/* Quick amount buttons */}
-          <div className="d-flex gap-2 mb-2" style={{ flexWrap: "nowrap" }}>
-            {[100, 200, 500, 1000].map((amt) => (
-              <button
-                key={amt}
-                type="button"
-                onClick={() => onFieldChanged({ target: { name: "amount", value: String(amt) } })}
-                style={{
-                  flex: 1,
-                  padding: "6px 0",
-                  borderRadius: "6px",
-                  border: "1px solid #fb8603",
-                  background: "transparent",
-                  color: "#fb8603",
-                  fontWeight: 700,
-                  fontSize: "12px",
-                  cursor: "pointer",
-                }}
-              >
-                {amt}
-              </button>
-            ))}
-          </div>
-          <input
-            onChange={(ev) => {
-              onFieldChanged(ev);
-            }}
-            className="text-light deposit-input form-control col-md-12 input-field"
-            id="amount"
-            name="amount"
-            type="number"
-            value={values.amount}
-            placeholder="Enter Amount"
-          />
-          {errors.amount && (
-            <div className="text-danger"> {errors.amount} </div>
-          )}
+      {/* Amount */}
+      <div style={{ marginBottom: 16 }}>
+        <label style={labelStyle}>Amount to Withdraw</label>
+        {/* Quick amounts */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
+          {[100, 200, 500, 1000].map((amt) => (
+            <button
+              key={amt}
+              type="button"
+              onClick={() => onFieldChanged({ target: { name: "amount", value: String(amt) } })}
+              style={{
+                flex: 1,
+                padding: "7px 0",
+                borderRadius: 8,
+                border: `1px solid ${values.amount == amt ? "#fb8603" : "#334155"}`,
+                background: values.amount == amt ? "rgba(251,134,3,0.12)" : "transparent",
+                color: values.amount == amt ? "#fb8603" : "#94a3b8",
+                fontWeight: 700,
+                fontSize: 13,
+                cursor: "pointer",
+                fontFamily: "'Outfit', sans-serif",
+                transition: "all 0.15s",
+              }}
+            >
+              {amt}
+            </button>
+          ))}
+        </div>
+        <input
+          onChange={onFieldChanged}
+          style={inputStyle}
+          id="amount"
+          name="amount"
+          type="number"
+          value={values.amount}
+          placeholder="Enter amount"
+        />
+        {errors.amount && (
+          <div style={{ color: "#f87171", fontSize: 12, marginTop: 4 }}>{errors.amount}</div>
+        )}
 
-          {values.amount > 0 && (
-            <div className="px-1 mt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "8px" }}>
-              <div className="d-flex justify-content-between" style={{ fontSize: "12px", color: "#a3a3a3" }}>
-                <span>Withholding Tax (5%):</span>
-                <span>- KES {(values.amount * 0.05).toFixed(2)}</span>
-              </div>
-              <div className="d-flex justify-content-between mt-1" style={{ fontSize: "14px", fontWeight: 700, color: "#fb8603" }}>
-                <span>Net Amount to Receive:</span>
-                <span>KES {(values.amount * 0.95).toFixed(2)}</span>
-              </div>
+        {values.amount > 0 && (
+          <div style={{
+            background: "rgba(255,255,255,0.03)",
+            borderRadius: 8,
+            padding: "10px 12px",
+            marginTop: 10,
+            display: "flex",
+            flexDirection: "column",
+            gap: 4,
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#64748b" }}>
+              <span>Withholding Tax (5%)</span>
+              <span>- KES {(values.amount * 0.05).toFixed(2)}</span>
             </div>
-          )}
-        </div>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 14, fontWeight: 700, color: "#fb8603" }}>
+              <span>You will receive</span>
+              <span>KES {(values.amount * 0.95).toFixed(2)}</span>
+            </div>
+          </div>
+        )}
       </div>
-      <div className="form-group row d-flex justify-content-left mb-4">
-        <div className=" d-flex align-items-start deposit-withdraw-button-desktop px-3">
-          <button
-            type={"submit"}
-            className="btn btn-lg w-100 deposit-button button-radius input-field btn-font cg login-button2 btn bold d-flex justify-content-center align-items-center"
-            style={{ marginTop: "30px" }}
-            disabled={values?.amount == ""}
-          >
-            {loading ? (
-              <div className="loader"></div>
-            ) : (
-              `WITHDRAW ${values?.amount}`
-            )}
-          </button>
-        </div>
-      </div>
+
+      {/* Submit */}
+      <button
+        type="submit"
+        disabled={!values.amount || loading}
+        style={{
+          width: "100%",
+          padding: "14px",
+          borderRadius: 10,
+          border: "none",
+          background: !values.amount || loading
+            ? "rgba(251,134,3,0.3)"
+            : "linear-gradient(135deg, #fb8603, #cc3366)",
+          color: "#fff",
+          fontWeight: 700,
+          fontSize: 15,
+          cursor: !values.amount || loading ? "not-allowed" : "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 8,
+          fontFamily: "'Outfit', sans-serif",
+          marginTop: 8,
+          marginBottom: 16,
+        }}
+      >
+        {loading ? (
+          <div className="loader" />
+        ) : (
+          `WITHDRAW KES ${values.amount || 0}`
+        )}
+      </button>
     </>
   );
 };
@@ -310,60 +330,48 @@ const MyWithdrawForm = (props) => {
 
     if (field === "amount") {
       value = value.replace(/[^\d]/g, "");
-      let newValue = value;
-      let minWithdrawalAmount = {
-        message: `Minimum allowed withdrawal amount is ${withdrawalLimits?.minimumAmount} KSH`,
-      };
-      let maxWithdrawalAmount = {
-        message: `Maximum allowed withdrawal amount is ${withdrawalLimits?.maximumAmount} KSH`,
-      };
-
       const minWithdrawal = withdrawalLimits?.minimumAmount;
       const maxWithdrawal = withdrawalLimits?.maximumAmount;
+      let newValue = value;
+
       if (Number(value) < Number(minWithdrawal)) {
-        // Notify(minWithdrawalAmount);
         notification.open({
           message: "Warning",
-          description: minWithdrawalAmount.message,
+          description: `Minimum withdrawal amount is ${minWithdrawal} KES`,
           className: "ant-notification",
-          placement: "top", // Set the placement
+          placement: "top",
         });
         newValue = value;
       } else if (Number(value) > Number(maxWithdrawal)) {
         notification.open({
           message: "Warning",
           className: "ant-notification",
-          description: maxWithdrawalAmount.message,
-          placement: "top", // Set the placement
+          description: `Maximum withdrawal amount is ${maxWithdrawal} KES`,
+          placement: "top",
         });
         newValue = maxWithdrawal;
-      } else {
-        newValue = value;
       }
       setFieldValue(field, newValue);
     }
   };
 
   return (
-    <Form className="shadow-sm rounded border-0">
-      <div className="pt-0">
-        <div className="row d-flex align-items-center justify-content-center px-4">
-          <div className="col-md-7 text-center">
-            <div className={`col-md-7 text-center`}>
-              <LazyLoadImage src={mpesa} alt="" />
-            </div>
-          </div>
+    <Form>
+      {/* M-PESA header */}
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "16px 20px 8px",
+      }}>
+        <LazyLoadImage src={mpesa} alt="M-PESA" style={{ height: 40, objectFit: "contain" }} />
+      </div>
 
-          <WithdrawFormFields
-            onFieldChanged={onFieldChanged}
-            values={values}
-            errors={errors}
-          />
-
-          <div className={``}>
-            <PaymentInstructions />
-          </div>
-        </div>
+      <div style={{ padding: "0 20px 24px" }}>
+        <WithdrawFormFields
+          onFieldChanged={onFieldChanged}
+          values={values}
+          errors={errors}
+        />
+        <PaymentInstructions />
       </div>
     </Form>
   );

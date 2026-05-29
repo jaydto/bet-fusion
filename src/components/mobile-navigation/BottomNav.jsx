@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdAccountCircle } from "react-icons/md";
 import { BsGift } from "react-icons/bs";
-import { ReactComponent as SportsIcon } from "../../assets/icons/sports.svg";
+import { ReactComponent as CrashIcon } from "../../assets/icons/crash.svg";
 import { ReactComponent as DepositIcon } from "../../assets/icons/deposit.svg";
 import homePng from "../../assets/icons/home.png";
 import "./bottomNav.css";
@@ -25,10 +25,10 @@ const regularItems = [
     ),
   },
   {
-    label: "Sports",
-    path: "/sports",
+    label: "Crash",
+    path: "/casino?categoryId=crash",
     icon: (active) => (
-      <SportsIcon width={22} height={22} style={{ filter: active ? activeFilter : "none" }} />
+      <CrashIcon width={22} height={22} style={{ filter: active ? activeFilter : "none" }} />
     ),
   },
   null, // centre FAB — Deposit
@@ -48,8 +48,12 @@ const BottomNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isActive = (path) =>
-    path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
+  const isActive = (path) => {
+    if (path === "/") return location.pathname === "/";
+    const [pathname, search] = path.split("?");
+    if (search) return location.pathname.startsWith(pathname) && location.search.includes(search);
+    return location.pathname.startsWith(pathname);
+  };
 
   return (
     <nav className="bottom-nav">
@@ -63,7 +67,7 @@ const BottomNav = () => {
               aria-label="Deposit"
             >
               <span className="bottom-nav-fab-icon">
-                <DepositIcon width={28} height={28} />
+                <DepositIcon width={40} height={40} />
               </span>
               <span className="bottom-nav-label" style={{ color: "#fff", WebkitTextFillColor: "#fff" }}>
                 Deposit

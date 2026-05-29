@@ -93,23 +93,23 @@ const NewProfile = React.memo(() => {
           </button>
         </div>
 
-        <div style={{ padding: "24px 20px" }}>
+        <div style={{ padding: "16px 20px" }}>
           {/* Avatar + phone + balance */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "24px" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "16px" }}>
             {/* Avatar circle */}
             <div
               style={{
-                width: "80px",
-                height: "80px",
+                width: "72px",
+                height: "72px",
                 borderRadius: "50%",
                 backgroundColor: "#334155",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                marginBottom: "14px",
+                marginBottom: "10px",
               }}
             >
-              <FontAwesomeIcon icon={faUser} style={{ fontSize: "36px", color: "#94a3b8" }} />
+              <FontAwesomeIcon icon={faUser} style={{ fontSize: "32px", color: "#94a3b8" }} />
             </div>
 
             {/* Phone */}
@@ -119,33 +119,34 @@ const NewProfile = React.memo(() => {
 
             {/* User ID */}
             {user?.profile_id && (
-              <div style={{ color: "#64748b", fontSize: "13px", marginBottom: "12px" }}>
+              <div style={{ color: "#64748b", fontSize: "13px", marginBottom: "10px" }}>
                 ID: {user.profile_id}
               </div>
             )}
+
+            {/* Wallet Balance label */}
+            <div style={{ color: "#94a3b8", fontSize: "13px", marginBottom: "6px" }}>
+              Wallet Balance
+            </div>
 
             {/* Balance box with gradient border */}
             <div
               style={{
                 background: "linear-gradient(135deg, #e53e3e, #fb8603)",
-                borderRadius: "14px",
+                borderRadius: "10px",
                 padding: "2px",
-                width: "100%",
-                maxWidth: "280px",
+                display: "inline-block",
               }}
             >
               <div
                 style={{
                   backgroundColor: "#0f172a",
-                  borderRadius: "12px",
-                  padding: "12px 24px",
+                  borderRadius: "8px",
+                  padding: "10px 32px",
                   textAlign: "center",
                 }}
               >
-                <div style={{ color: "#94a3b8", fontSize: "12px", marginBottom: "4px" }}>
-                  Wallet Balance
-                </div>
-                <div style={{ color: "#fff", fontSize: "26px", fontWeight: "700" }}>
+                <div style={{ color: "#fff", fontSize: "22px", fontWeight: "700" }}>
                   KES {formatNumber(balance)}
                 </div>
               </div>
@@ -153,19 +154,19 @@ const NewProfile = React.memo(() => {
           </div>
 
           {/* Withdraw + Deposit buttons */}
-          <div style={{ display: "flex", gap: "12px", marginBottom: "12px" }}>
+          <div style={{ display: "flex", gap: "10px", marginBottom: "8px" }}>
             <button
               onClick={handleWithdrawClick}
               disabled={!user}
               style={{
                 flex: 1,
-                background: "linear-gradient(135deg, #c53030, #e53e3e)",
+                background: "var(--bet-fusion-btn-gradient)",
                 border: "none",
                 borderRadius: "10px",
                 color: "#fff",
                 fontWeight: "700",
                 fontSize: "15px",
-                padding: "12px",
+                padding: "13px",
                 cursor: user ? "pointer" : "not-allowed",
                 opacity: user ? 1 : 0.6,
               }}
@@ -177,13 +178,13 @@ const NewProfile = React.memo(() => {
               disabled={!user}
               style={{
                 flex: 1,
-                backgroundColor: "#ffffff",
+                background: "var(--bet-fusion-btn-gradient)",
                 border: "none",
                 borderRadius: "10px",
-                color: "#0f172a",
+                color: "#fff",
                 fontWeight: "700",
                 fontSize: "15px",
-                padding: "12px",
+                padding: "13px",
                 cursor: user ? "pointer" : "not-allowed",
                 opacity: user ? 1 : 0.6,
               }}
@@ -192,30 +193,11 @@ const NewProfile = React.memo(() => {
             </button>
           </div>
 
-          {/* Sort missing Deposit */}
-          <button
-            onClick={() => navigate("/profile/deposit-history")}
-            style={{
-              width: "100%",
-              backgroundColor: "#1e293b",
-              border: "1px solid #334155",
-              borderRadius: "10px",
-              color: "#94a3b8",
-              fontWeight: "600",
-              fontSize: "14px",
-              padding: "12px",
-              cursor: "pointer",
-              marginBottom: "20px",
-            }}
-          >
-            Sort missing Deposit
-          </button>
-
           {/* Menu items */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px", marginBottom: "20px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "16px" }}>
             <MenuItem
-              label="Bet Infinity Betslip"
-              onClick={() => navigate("/profile/betslip")}
+              label="Sort missing Deposit"
+              onClick={() => navigate("/profile/deposit-history")}
             />
             <MenuItem
               label="Responsible Gaming"
@@ -224,7 +206,7 @@ const NewProfile = React.memo(() => {
           </div>
 
           {/* Deactivate Account + Logout side by side */}
-          <div style={{ display: "flex", gap: "12px" }}>
+          <div style={{ display: "flex", gap: "10px" }}>
             <button
               onClick={() => navigate("/responsible-gambling", { state: { activeTab: "self_exclusion" } })}
               style={{
@@ -245,7 +227,7 @@ const NewProfile = React.memo(() => {
               onClick={() => navigate("/auth/logout")}
               style={{
                 flex: 1,
-                background: "linear-gradient(135deg, #c53030, #e53e3e)",
+                background: "var(--bet-fusion-btn-gradient)",
                 border: "none",
                 borderRadius: "10px",
                 color: "#fff",

@@ -178,12 +178,6 @@ const LandingPage = () => {
                 height: "auto",
                 background: "transparent",
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.querySelector(".tab-icon").style.color = "#fb8603";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.querySelector(".tab-icon").style.color = isActive ? "#fb8603" : "#64748b";
-              }}
             >
               <span
                 className="tab-icon"

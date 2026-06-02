@@ -188,6 +188,15 @@
   position: relative;
 }
 
+/* Hover: recolor the tab icon orange (react-icons via color, SVG icons via filter) */
+.category-tab-item:hover .tab-icon {
+  color: #fb8603 !important;
+}
+
+.category-tab-item:hover .tab-icon svg {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%) !important;
+}
+
 .category-tab-item.active::after {
   content: '';
   position: absolute;

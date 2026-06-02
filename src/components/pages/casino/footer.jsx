@@ -127,7 +127,7 @@ export default function Footer() {
             }}
           >
             <StopOutlined style={{ color: "#ff4d4f", fontSize: 16 }} />
-            <b style={{ color: "#94a3b8" }}>Betfusion</b> does not support underage gambling.
+            <b style={{ color: "#94a3b8", whiteSpace:'nowrap' }}>Betfusion</b> does not support underage gambling.
             You must be 18 years of age or older to register or play.
           </Paragraph>
 

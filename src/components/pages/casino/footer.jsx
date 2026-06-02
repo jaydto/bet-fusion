@@ -161,7 +161,7 @@ export default function Footer() {
           </Row>
 
           <Paragraph style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginTop: 8 }}>
-            &copy; 2025 Betfusion. All rights reserved.
+            &copy; 2026 <span style={{ whiteSpace: "nowrap" }}>Betfusion</span>. All rights reserved.
           </Paragraph>
         </Col>
       </Row>

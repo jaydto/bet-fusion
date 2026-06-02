@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/logo.png";
 import { Form, Formik } from "formik";
 import { ToastContainer } from "react-toastify";
-import { notification } from "antd";
+import { notification, Grid } from "antd";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,8 @@ import { clearTrackingData, getFromLocalStorage, setTrackingData } from "../../u
 import useAnalyticsEventTracker from "../../analytics/useAnalyticsEventTracker";
 import "../../../assets/css/auth.css";
 
+const { useBreakpoint } = Grid;
+
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,6 +23,8 @@ const Register = () => {
   const errorMessage = useSelector((s) => s.auth.error);
   const gaEventTracker = useAnalyticsEventTracker("SignUp");
   const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
 
   useEffect(() => {
     dispatch(configSettings());
@@ -103,7 +107,8 @@ const Register = () => {
       });
   };
 
-  const RegisterForm = ({ errors, values, handleChange }) => {
+  // ── Mobile form (Figma .bfa-* design) ──
+  const MobileForm = ({ errors, values, handleChange }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
 
@@ -113,14 +118,7 @@ const Register = () => {
           <label className="bfa-label"><span className="bfa-req">*</span>Phone Number</label>
           <div className="bfa-input-wrap">
             <span className="bfa-prefix">+254</span>
-            <input
-              type="tel"
-              name="msisdn"
-              className="bfa-input"
-              placeholder="712 345 678"
-              onChange={handleChange}
-              value={values.msisdn}
-            />
+            <input type="tel" name="msisdn" className="bfa-input" placeholder="712 345 678" onChange={handleChange} value={values.msisdn} />
           </div>
           {errors.msisdn && <span className="bfa-error">{errors.msisdn}</span>}
         </div>
@@ -128,20 +126,8 @@ const Register = () => {
         <div className="bfa-field">
           <label className="bfa-label"><span className="bfa-req">*</span>Password</label>
           <div className="bfa-input-wrap">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              className="bfa-input"
-              placeholder="Enter password"
-              onChange={handleChange}
-              value={values.password}
-            />
-            <button
-              type="button"
-              className="bfa-eye"
-              onClick={() => setShowPassword(!showPassword)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-            >
+            <input type={showPassword ? "text" : "password"} name="password" className="bfa-input" placeholder="Enter password" onChange={handleChange} value={values.password} />
+            <button type="button" className="bfa-eye" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"}>
               <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
             </button>
           </div>
@@ -151,20 +137,8 @@ const Register = () => {
         <div className="bfa-field">
           <label className="bfa-label"><span className="bfa-req">*</span>Confirm Password</label>
           <div className="bfa-input-wrap">
-            <input
-              type={showConfirm ? "text" : "password"}
-              name="repeat_password"
-              className="bfa-input"
-              placeholder="Enter password"
-              onChange={handleChange}
-              value={values.repeat_password}
-            />
-            <button
-              type="button"
-              className="bfa-eye"
-              onClick={() => setShowConfirm(!showConfirm)}
-              aria-label={showConfirm ? "Hide password" : "Show password"}
-            >
+            <input type={showConfirm ? "text" : "password"} name="repeat_password" className="bfa-input" placeholder="Enter password" onChange={handleChange} value={values.repeat_password} />
+            <button type="button" className="bfa-eye" onClick={() => setShowConfirm(!showConfirm)} aria-label={showConfirm ? "Hide password" : "Show password"}>
               <FontAwesomeIcon icon={showConfirm ? faEyeSlash : faEye} />
             </button>
           </div>
@@ -172,13 +146,7 @@ const Register = () => {
         </div>
 
         <div className="bfa-agree">
-          <input
-            type="checkbox"
-            id="agreementCheckbox"
-            name="agreementCheckbox"
-            checked={values.agreementCheckbox}
-            onChange={handleChange}
-          />
+          <input type="checkbox" id="agreementCheckbox" name="agreementCheckbox" checked={values.agreementCheckbox} onChange={handleChange} />
           <label htmlFor="agreementCheckbox" className="bfa-agree-text">
             By clicking Register, you confirm to have read in detail, understood and agreed to our{" "}
             <Link to="/terms-and-conditions" className="bfa-link">Terms and Conditions</Link>,{" "}
@@ -188,43 +156,150 @@ const Register = () => {
         </div>
         {errors.agreementCheckbox && <span className="bfa-error" style={{ marginBottom: 8 }}>{errors.agreementCheckbox}</span>}
 
-        <button type="submit" className="bfa-submit" disabled={!values.agreementCheckbox}>
-          Register
-        </button>
+        <button type="submit" className="bfa-submit" disabled={!values.agreementCheckbox}>Register</button>
 
         <p className="bfa-footer">
           Already have an account?{" "}
-          <Link to="/auth/login" className="bfa-link" onClick={() => gaEventTracker("Login")}>
-            Sign In
-          </Link>
+          <Link to="/auth/login" className="bfa-link" onClick={() => gaEventTracker("Login")}>Sign In</Link>
         </p>
       </Form>
     );
   };
 
-  return (
-    <div className="bfa-page">
-      <ToastContainer />
-      <div className="bfa-shell">
-        <div className="bfa-topbar">
-          <img src={logo} alt="BetFusion" className="bfa-logo" onClick={() => navigate("/")} />
-          <div className="bfa-topbar-actions">
-            <Link to="/auth/login" className="bfa-btn-login">Login</Link>
-            <Link to="/auth/signup" className="bfa-btn-register">Register</Link>
+  // ── Desktop form (two-panel card design) ──
+  const DesktopForm = ({ errors, values, handleChange }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
+
+    return (
+      <Form>
+        <div className="auth-field">
+          <label className="auth-field-label">Mobile Number</label>
+          <div className="auth-input-wrap">
+            <input type="text" name="msisdn" className="auth-input" placeholder="07XXXXXXXX" onChange={handleChange} value={values.msisdn} />
+          </div>
+          {errors.msisdn && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.msisdn}</span>}
+        </div>
+
+        <div className="auth-field">
+          <label className="auth-field-label">Password</label>
+          <div className="auth-input-wrap">
+            <input type={showPassword ? "text" : "password"} name="password" className="auth-input" placeholder="Enter your password" onChange={handleChange} value={values.password} style={{ paddingRight: 40 }} />
+            <button type="button" className="auth-input-icon" onClick={() => setShowPassword(!showPassword)}>
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </button>
+          </div>
+          {errors.password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.password}</span>}
+        </div>
+
+        <div className="auth-field">
+          <label className="auth-field-label">Confirm Password</label>
+          <div className="auth-input-wrap">
+            <input type={showConfirm ? "text" : "password"} name="repeat_password" className="auth-input" placeholder="Confirm your password" onChange={handleChange} value={values.repeat_password} style={{ paddingRight: 40 }} />
+            <button type="button" className="auth-input-icon" onClick={() => setShowConfirm(!showConfirm)}>
+              <FontAwesomeIcon icon={showConfirm ? faEyeSlash : faEye} />
+            </button>
+          </div>
+          {errors.repeat_password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.repeat_password}</span>}
+        </div>
+
+        <div className="auth-field">
+          <label className="auth-field-label">Referral Code <span style={{ color: "#64748b", fontWeight: 400 }}>(Optional)</span></label>
+          <div className="auth-input-wrap">
+            <input type="text" name="promo_code" className="auth-input" placeholder="Enter referral code" onChange={handleChange} value={values.promo_code} />
           </div>
         </div>
 
-        <div className="bfa-card">
-          <h2 className="bfa-title">Register</h2>
-          <Formik
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            validate={validate}
-            validateOnChange={false}
-            validateOnBlur={false}
-          >
-            {(props) => <RegisterForm {...props} />}
-          </Formik>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 16 }}>
+          <input type="checkbox" id="agreementCheckboxDesktop" name="agreementCheckbox" checked={values.agreementCheckbox} onChange={handleChange} className="auth-checkbox" />
+          <label htmlFor="agreementCheckboxDesktop" style={{ fontSize: 12, color: "#94a3b8", cursor: "pointer", lineHeight: 1.5 }}>
+            Accept{" "}
+            <Link to="/terms-and-conditions" className="auth-link">Terms &amp; Conditions</Link>
+          </label>
+        </div>
+        {errors.agreementCheckbox && <span style={{ color: "#ef4444", fontSize: 12, display: "block", marginBottom: 8 }}>{errors.agreementCheckbox}</span>}
+
+        <button type="submit" className="auth-submit-btn" disabled={!values.agreementCheckbox}>Register</button>
+
+        <p className="auth-footer-text" style={{ marginTop: 16 }}>
+          Already have an account?{" "}
+          <Link to="/auth/login" className="auth-link" onClick={() => gaEventTracker("Login")}>Log In</Link>
+        </p>
+      </Form>
+    );
+  };
+
+  // ── Mobile layout (Figma) ──
+  if (isMobile) {
+    return (
+      <div className="bfa-page">
+        <ToastContainer />
+        <div className="bfa-shell">
+          <div className="bfa-topbar">
+            <img src={logo} alt="BetFusion" className="bfa-logo" onClick={() => navigate("/")} />
+            <div className="bfa-topbar-actions">
+              <Link to="/auth/login" className="bfa-btn-login">Login</Link>
+              <Link to="/auth/signup" className="bfa-btn-register">Register</Link>
+            </div>
+          </div>
+          <div className="bfa-card">
+            <h2 className="bfa-title">Register</h2>
+            <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={validate} validateOnChange={false} validateOnBlur={false}>
+              {(props) => <MobileForm {...props} />}
+            </Formik>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Desktop layout (two-panel card, like undabet) ──
+  return (
+    <div className="auth-page-outer">
+      <ToastContainer />
+      <div className="auth-page-center">
+        <div className="auth-card">
+          <div className="auth-card-grid">
+            {/* Left branding panel */}
+            <div className="auth-card-image">
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #020617 0%, #0f172a 60%, #1e293b 100%)",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: 32,
+                  gap: 16,
+                }}
+              >
+                <img src={logo} alt="BetFusion" style={{ height: "40px", width: "auto" }} />
+                <div style={{ textAlign: "center" }}>
+                  <p style={{ fontSize: 24, fontWeight: 800, margin: "0 0 4px", lineHeight: 1.2 }}>
+                    <span style={{ color: "#f8fafc" }}>JOIN </span>
+                    <span style={{ color: "#fb8603" }}>TODAY</span>
+                  </p>
+                  <p style={{ color: "#94a3b8", fontSize: 13, margin: 0 }}>
+                    Create your account and start winning
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right form panel */}
+            <div className="auth-card-body">
+              <div className="auth-card-header">
+                <h2 className="auth-card-title">Create an account</h2>
+                <p className="auth-card-desc">Register to start playing on the best online casino</p>
+              </div>
+              <div className="auth-separator" />
+              <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={validate} validateOnChange={false} validateOnBlur={false}>
+                {(props) => <DesktopForm {...props} />}
+              </Formik>
+            </div>
+          </div>
         </div>
       </div>
     </div>

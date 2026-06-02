@@ -591,3 +591,46 @@
   margin-top: 6px;
   display: block;
 }
+
+/* Mobile auth: slight breathing room above the inputs */
+.bfa-card form {
+  margin-top: 10px;
+}
+
+/* Visible custom checkbox for the desktop register T&C agreement */
+.auth-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  border: 1.5px solid #64748b;
+  border-radius: 4px;
+  background: #0f172a;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.auth-checkbox:checked {
+  background: #fb8603;
+  border-color: #fb8603;
+}
+
+.auth-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.auth-checkbox:focus-visible {
+  outline: 2px solid rgba(251, 134, 3, 0.5);
+  outline-offset: 1px;
+}

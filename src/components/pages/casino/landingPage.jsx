@@ -123,8 +123,8 @@ const LandingPage = () => {
   const aviatorInactiveFilter = "brightness(0) saturate(100%) invert(57%)";
 
   const NAV_TABS = [
-    { label: "Sports",      icon: <SportsIcon   width={iconSize} height={iconSize} style={{ filter: activeTab === "Sports"   ? activeFilter : "none" }} /> },
     { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} style={{ filter: activeTab === "Aviator" ? activeFilter : aviatorInactiveFilter }} /> },
+    { label: "Sports",      icon: <SportsIcon   width={iconSize} height={iconSize} style={{ filter: activeTab === "Sports"   ? activeFilter : "none" }} /> },
     { label: "Crash",       icon: <CrashIcon    width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash"    ? activeFilter : "none" }} /> },
     { label: "Casino",      icon: <CasinoIcon   width={iconSize} height={iconSize} style={{ filter: !activeTab             ? activeFilter : "none" }} /> },
     { label: "Slots",       icon: <GiLever      size={iconSize} /> },

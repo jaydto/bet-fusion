@@ -77,7 +77,7 @@ const DepositModal = React.memo(() => {
     color: "#e2e8f0",
     fontSize: 15,
     outline: "none",
-    fontFamily: "'Outfit', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     boxSizing: "border-box",
   };
 
@@ -218,7 +218,7 @@ const DepositModal = React.memo(() => {
                     fontWeight: 600,
                     fontSize: 13,
                     cursor: "pointer",
-                    fontFamily: "'Outfit', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     transition: "all 0.15s",
                   }}
                 >
@@ -252,7 +252,7 @@ const DepositModal = React.memo(() => {
               justifyContent: "center",
               letterSpacing: 0.3,
               marginBottom: 14,
-              fontFamily: "'Outfit', sans-serif",
+              fontFamily: "'Inter', sans-serif",
             }}
           >
             {loadingDeposit ? <div className="loader" /> : "Deposit"}

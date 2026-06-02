@@ -161,7 +161,7 @@ const SearchModal = () => {
                 fontSize: 15,
                 padding: "10px 14px 10px 38px",
                 outline: "none",
-                fontFamily: "'Outfit', sans-serif",
+                fontFamily: "'Inter', sans-serif",
               }}
             />
           </div>

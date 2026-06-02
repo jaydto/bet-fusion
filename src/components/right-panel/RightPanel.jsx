@@ -30,7 +30,7 @@ const RightPanel = () => {
           </svg>
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 12, color: "#64748b", fontFamily: "'Outfit', sans-serif" }}>My Account</div>
+          <div style={{ fontSize: 12, color: "#64748b", fontFamily: "'Inter', sans-serif" }}>My Account</div>
           <div className="rp-profile-label" style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
             {user ? (user.msisdn || user.email || "Profile") : "Sign In"}
           </div>

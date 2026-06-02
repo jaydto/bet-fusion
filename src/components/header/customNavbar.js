@@ -90,7 +90,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
                     padding: "7px 10px 7px 32px",
                     outline: "none",
                     cursor: "pointer",
-                    fontFamily: "'Outfit', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                   }}
                 />
               </div>
@@ -128,7 +128,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
                   fontSize: "14px",
                   padding: "10px 16px 10px 44px",
                   outline: "none",
-                  fontFamily: "'Outfit', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   transition: "border-color 0.15s",
                   cursor: "pointer",
                 }}

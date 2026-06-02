@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdAccountCircle } from "react-icons/md";
 import { BsGift } from "react-icons/bs";
-import { ReactComponent as CrashIcon } from "../../assets/icons/crash.svg";
+import { ReactComponent as SportsIcon } from "../../assets/icons/sports.svg";
 import { ReactComponent as DepositIcon } from "../../assets/icons/deposit.svg";
 import homePng from "../../assets/icons/home.png";
 import "./bottomNav.css";
@@ -25,10 +25,10 @@ const regularItems = [
     ),
   },
   {
-    label: "Crash",
-    path: "/casino?categoryId=crash",
+    label: "Sports",
+    path: "/sports",
     icon: (active) => (
-      <CrashIcon width={22} height={22} style={{ filter: active ? activeFilter : "none" }} />
+      <SportsIcon width={22} height={22} style={{ filter: active ? activeFilter : "none" }} />
     ),
   },
   null, // centre FAB — Deposit

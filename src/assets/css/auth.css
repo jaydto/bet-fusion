@@ -474,10 +474,7 @@
 }
 
 .bfa-check input {
-  width: 16px;
-  height: 16px;
-  accent-color: #fb8603;
-  cursor: pointer;
+  margin: 0;
 }
 
 .bfa-agree {
@@ -488,12 +485,49 @@
 }
 
 .bfa-agree input {
-  width: 16px;
-  height: 16px;
-  margin-top: 2px;
-  accent-color: #fb8603;
+  margin: 2px 0 0;
   flex-shrink: 0;
+}
+
+/* Custom-styled checkboxes so the empty box is visible on dark bg */
+.bfa-check input[type="checkbox"],
+.bfa-agree input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #4a515e;
+  border-radius: 4px;
+  background: #0a0d13;
   cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.bfa-check input[type="checkbox"]:checked,
+.bfa-agree input[type="checkbox"]:checked {
+  background: #fb8603;
+  border-color: #fb8603;
+}
+
+.bfa-check input[type="checkbox"]:checked::after,
+.bfa-agree input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.bfa-check input[type="checkbox"]:focus-visible,
+.bfa-agree input[type="checkbox"]:focus-visible {
+  outline: 2px solid rgba(251, 134, 3, 0.5);
+  outline-offset: 1px;
 }
 
 .bfa-agree-text {

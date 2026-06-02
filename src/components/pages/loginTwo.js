@@ -69,7 +69,7 @@ const LoginTwo = React.memo(() => {
     }
   }, []);
 
-  const initialValues = { msisdn: "", password: "", countryCode: "254" };
+  const initialValues = { msisdn: "", password: "", countryCode: "254", remember: true };
 
   const validate = (values) => {
     const errors = {};
@@ -96,123 +96,102 @@ const LoginTwo = React.memo(() => {
 
     return (
       <Form>
-        <div className="auth-field">
-          <label className="auth-field-label">Mobile Number</label>
-          <div className="auth-input-wrap">
+        <div className="bfa-field">
+          <label className="bfa-label"><span className="bfa-req">*</span>Phone Number</label>
+          <div className="bfa-input-wrap">
+            <span className="bfa-prefix">+254</span>
             <input
-              type="text"
+              type="tel"
               name="msisdn"
-              className="auth-input"
-              placeholder="07XXXXXXXX"
+              className="bfa-input"
+              placeholder="712 345 678"
               onChange={set}
               value={values.msisdn}
             />
           </div>
-          {errors.msisdn && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.msisdn}</span>}
+          {errors.msisdn && <span className="bfa-error">{errors.msisdn}</span>}
         </div>
 
-        <div className="auth-field">
-          <label className="auth-field-label">Password</label>
-          <div className="auth-input-wrap">
+        <div className="bfa-field">
+          <label className="bfa-label"><span className="bfa-req">*</span>Password</label>
+          <div className="bfa-input-wrap">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
-              className="auth-input"
-              placeholder="Enter your password"
+              className="bfa-input"
+              placeholder="Enter password"
               autoComplete="current-password"
               onChange={set}
               value={values.password}
-              style={{ paddingRight: 40 }}
             />
             <button
               type="button"
-              className="auth-input-icon"
+              className="bfa-eye"
               onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
             >
               <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
             </button>
           </div>
-          {errors.password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.password}</span>}
+          {errors.password && <span className="bfa-error">{errors.password}</span>}
         </div>
 
-        <button type="submit" className="auth-submit-btn" disabled={loading}>
-          {loading ? "Logging in…" : "Log In"}
-        </button>
-
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16 }}>
-          <p className="auth-footer-text" style={{ margin: 0 }}>
-            New?{" "}
-            <Link to="/auth/signup" className="auth-link" onClick={() => gaEventTracker("Register")}>
-              Register
-            </Link>
-          </p>
-          <Link to="/auth/reset-password" className="auth-link" onClick={() => gaEventTracker("Reset Password")}>
-            Forgot Password?
+        <div className="bfa-row-between">
+          <label className="bfa-check">
+            <input
+              type="checkbox"
+              name="remember"
+              checked={values.remember}
+              onChange={(e) => setFieldValue("remember", e.target.checked)}
+            />
+            Remember for 30 days
+          </label>
+          <Link
+            to="/auth/reset-password"
+            className="bfa-link"
+            onClick={() => gaEventTracker("Reset Password")}
+          >
+            Forgot password
           </Link>
         </div>
+
+        <button type="submit" className="bfa-submit" disabled={loading}>
+          {loading ? "Signing in…" : "Sign in"}
+        </button>
+
+        <p className="bfa-footer">
+          Don't have an account?{" "}
+          <Link to="/auth/signup" className="bfa-link" onClick={() => gaEventTracker("Register")}>
+            Register
+          </Link>
+        </p>
       </Form>
     );
   };
 
   return (
-    <div className="auth-page-outer">
+    <div className="bfa-page">
       <ToastContainer />
-      <div className="auth-page-center">
-        <div className="auth-card">
-          <div className="auth-card-grid">
-            {/* Left branding panel */}
-            <div className="auth-card-image">
-              <div
-                style={{
-                  background: "linear-gradient(135deg, #020617 0%, #0f172a 60%, #1e293b 100%)",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 32,
-                  gap: 12,
-                }}
-              >
-                <img src={logo} alt="BetFusion" style={{ height: "40px", width: "auto" }} />
-                <p style={{ color: "#94a3b8", fontSize: 13, textAlign: "center", margin: 0 }}>
-                  Play. Win. Repeat.
-                </p>
-              </div>
-            </div>
-
-            {/* Right form panel */}
-            <div className="auth-card-body">
-              <div className="auth-card-header">
-                <h2 className="auth-card-title">Log in to your account</h2>
-                <p className="auth-card-desc">Login to continue playing on the best online casino</p>
-              </div>
-              <div className="auth-separator" />
-              {errorMessage && (
-                <div style={{
-                  padding: "10px 12px",
-                  borderRadius: 8,
-                  background: "rgba(239,68,68,0.12)",
-                  border: "1px solid #ef4444",
-                  color: "#ef4444",
-                  fontSize: 13,
-                  marginBottom: 12,
-                }}>
-                  {errorMessage}
-                </div>
-              )}
-              <Formik
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                validate={validate}
-                validateOnChange={false}
-                validateOnBlur={false}
-              >
-                {(props) => <LoginForm {...props} />}
-              </Formik>
-            </div>
+      <div className="bfa-shell">
+        <div className="bfa-topbar">
+          <img src={logo} alt="BetFusion" className="bfa-logo" onClick={() => navigate("/")} />
+          <div className="bfa-topbar-actions">
+            <Link to="/auth/login" className="bfa-btn-login">Login</Link>
+            <Link to="/auth/signup" className="bfa-btn-register">Register</Link>
           </div>
+        </div>
+
+        <div className="bfa-card">
+          <h2 className="bfa-title">Login</h2>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validate={validate}
+            validateOnChange={false}
+            validateOnBlur={false}
+          >
+            {(props) => <LoginForm {...props} />}
+          </Formik>
         </div>
       </div>
     </div>

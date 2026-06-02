@@ -109,96 +109,93 @@ const Register = () => {
 
     return (
       <Form>
-        <div className="auth-field">
-          <label className="auth-field-label">Mobile Number</label>
-          <div className="auth-input-wrap">
+        <div className="bfa-field">
+          <label className="bfa-label"><span className="bfa-req">*</span>Phone Number</label>
+          <div className="bfa-input-wrap">
+            <span className="bfa-prefix">+254</span>
             <input
-              type="text"
+              type="tel"
               name="msisdn"
-              className="auth-input"
-              placeholder="07XXXXXXXX"
+              className="bfa-input"
+              placeholder="712 345 678"
               onChange={handleChange}
               value={values.msisdn}
             />
           </div>
-          {errors.msisdn && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.msisdn}</span>}
+          {errors.msisdn && <span className="bfa-error">{errors.msisdn}</span>}
         </div>
 
-        <div className="auth-field">
-          <label className="auth-field-label">Password</label>
-          <div className="auth-input-wrap">
+        <div className="bfa-field">
+          <label className="bfa-label"><span className="bfa-req">*</span>Password</label>
+          <div className="bfa-input-wrap">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
-              className="auth-input"
-              placeholder="Enter your password"
+              className="bfa-input"
+              placeholder="Enter password"
               onChange={handleChange}
               value={values.password}
-              style={{ paddingRight: 40 }}
             />
-            <button type="button" className="auth-input-icon" onClick={() => setShowPassword(!showPassword)}>
+            <button
+              type="button"
+              className="bfa-eye"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
               <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
             </button>
           </div>
-          {errors.password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.password}</span>}
+          {errors.password && <span className="bfa-error">{errors.password}</span>}
         </div>
 
-        <div className="auth-field">
-          <label className="auth-field-label">Confirm Password</label>
-          <div className="auth-input-wrap">
+        <div className="bfa-field">
+          <label className="bfa-label"><span className="bfa-req">*</span>Confirm Password</label>
+          <div className="bfa-input-wrap">
             <input
               type={showConfirm ? "text" : "password"}
               name="repeat_password"
-              className="auth-input"
-              placeholder="Confirm your password"
+              className="bfa-input"
+              placeholder="Enter password"
               onChange={handleChange}
               value={values.repeat_password}
-              style={{ paddingRight: 40 }}
             />
-            <button type="button" className="auth-input-icon" onClick={() => setShowConfirm(!showConfirm)}>
+            <button
+              type="button"
+              className="bfa-eye"
+              onClick={() => setShowConfirm(!showConfirm)}
+              aria-label={showConfirm ? "Hide password" : "Show password"}
+            >
               <FontAwesomeIcon icon={showConfirm ? faEyeSlash : faEye} />
             </button>
           </div>
-          {errors.repeat_password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.repeat_password}</span>}
+          {errors.repeat_password && <span className="bfa-error">{errors.repeat_password}</span>}
         </div>
 
-        <div className="auth-field">
-          <label className="auth-field-label">Referral Code <span style={{ color: "#64748b", fontWeight: 400 }}>(Optional)</span></label>
-          <div className="auth-input-wrap">
-            <input
-              type="text"
-              name="promo_code"
-              className="auth-input"
-              placeholder="Enter referral code"
-              onChange={handleChange}
-              value={values.promo_code}
-            />
-          </div>
-        </div>
-
-        <div style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 16 }}>
+        <div className="bfa-agree">
           <input
             type="checkbox"
             id="agreementCheckbox"
             name="agreementCheckbox"
+            checked={values.agreementCheckbox}
             onChange={handleChange}
-            style={{ marginTop: 2, accentColor: "#fb8603", width: 16, height: 16, flexShrink: 0 }}
           />
-          <label htmlFor="agreementCheckbox" style={{ fontSize: 12, color: "#94a3b8", cursor: "pointer", lineHeight: 1.5 }}>
-            Accept{" "}
-            <Link to="/terms-and-conditions" className="auth-link">Terms &amp; Conditions</Link>
+          <label htmlFor="agreementCheckbox" className="bfa-agree-text">
+            By clicking Register, you confirm to have read in detail, understood and agreed to our{" "}
+            <Link to="/terms-and-conditions" className="bfa-link">Terms and Conditions</Link>,{" "}
+            <Link to="/privacy-policy" className="bfa-link">Privacy Policy</Link>{" "}
+            and also that you are over 18 years of age.
           </label>
         </div>
-        {errors.agreementCheckbox && <span style={{ color: "#ef4444", fontSize: 12, display: "block", marginBottom: 8 }}>{errors.agreementCheckbox}</span>}
+        {errors.agreementCheckbox && <span className="bfa-error" style={{ marginBottom: 8 }}>{errors.agreementCheckbox}</span>}
 
-        <button type="submit" className="auth-submit-btn" disabled={!values.agreementCheckbox}>
+        <button type="submit" className="bfa-submit" disabled={!values.agreementCheckbox}>
           Register
         </button>
 
-        <p className="auth-footer-text" style={{ marginTop: 16 }}>
+        <p className="bfa-footer">
           Already have an account?{" "}
-          <Link to="/auth/login" className="auth-link" onClick={() => gaEventTracker("Login")}>
-            Log In
+          <Link to="/auth/login" className="bfa-link" onClick={() => gaEventTracker("Login")}>
+            Sign In
           </Link>
         </p>
       </Form>
@@ -206,57 +203,28 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-page-outer">
+    <div className="bfa-page">
       <ToastContainer />
-      <div className="auth-page-center">
-        <div className="auth-card">
-          <div className="auth-card-grid">
-            {/* Left branding panel */}
-            <div className="auth-card-image">
-              <div
-                style={{
-                  background: "linear-gradient(135deg, #020617 0%, #0f172a 60%, #1e293b 100%)",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 32,
-                  gap: 16,
-                }}
-              >
-                <img src={logo} alt="BetFusion" style={{ height: "40px", width: "auto" }} />
-                <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: 24, fontWeight: 800, margin: "0 0 4px", lineHeight: 1.2 }}>
-                    <span style={{ color: "#f8fafc" }}>JOIN </span>
-                    <span style={{ color: "#fb8603" }}>TODAY</span>
-                  </p>
-                  <p style={{ color: "#94a3b8", fontSize: 13, margin: 0 }}>
-                    Create your account and start winning
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right form panel */}
-            <div className="auth-card-body">
-              <div className="auth-card-header">
-                <h2 className="auth-card-title">Create an account</h2>
-                <p className="auth-card-desc">Register to start playing on the best online casino</p>
-              </div>
-              <div className="auth-separator" />
-              <Formik
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                validate={validate}
-                validateOnChange={false}
-                validateOnBlur={false}
-              >
-                {(props) => <RegisterForm {...props} />}
-              </Formik>
-            </div>
+      <div className="bfa-shell">
+        <div className="bfa-topbar">
+          <img src={logo} alt="BetFusion" className="bfa-logo" onClick={() => navigate("/")} />
+          <div className="bfa-topbar-actions">
+            <Link to="/auth/login" className="bfa-btn-login">Login</Link>
+            <Link to="/auth/signup" className="bfa-btn-register">Register</Link>
           </div>
+        </div>
+
+        <div className="bfa-card">
+          <h2 className="bfa-title">Register</h2>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validate={validate}
+            validateOnChange={false}
+            validateOnBlur={false}
+          >
+            {(props) => <RegisterForm {...props} />}
+          </Formik>
         </div>
       </div>
     </div>

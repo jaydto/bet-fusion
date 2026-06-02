@@ -165,7 +165,7 @@ const WithdrawFormFields = (props) => {
     color: "#e2e8f0",
     fontSize: 15,
     outline: "none",
-    fontFamily: "'Outfit', sans-serif",
+    fontFamily: "'Inter', sans-serif",
   };
 
   const labelStyle = {
@@ -234,7 +234,7 @@ const WithdrawFormFields = (props) => {
                 fontWeight: 700,
                 fontSize: 13,
                 cursor: "pointer",
-                fontFamily: "'Outfit', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 transition: "all 0.15s",
               }}
             >
@@ -297,7 +297,7 @@ const WithdrawFormFields = (props) => {
           alignItems: "center",
           justifyContent: "center",
           gap: 8,
-          fontFamily: "'Outfit', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           marginTop: 8,
           marginBottom: 16,
         }}

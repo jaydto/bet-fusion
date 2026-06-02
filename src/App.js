@@ -120,6 +120,7 @@ const App = () => {
     "/anti-money-laundering",
     "/terms-and-conditions",
     "/casino",
+    "/sports",
     "/auth/login",
     "/casino/game-play",
     "/auth/signup",
@@ -194,12 +195,14 @@ const App = () => {
                 />
               </Route>
               
-              <Route path="/sports" element={
-                <ProtectedRoute>
-                  <SportsPage />
-                </ProtectedRoute>
-              }>
-              </Route>
+              <Route
+                path="/sports"
+                element={
+                  <ProtectedRoute>
+                    <SportsPage />
+                  </ProtectedRoute>
+                }
+              />
 
               <Route path="/404" element={<PageNotFound />} />
               <Route path="/smart-play" element={<SmartPlay />} />

@@ -8,6 +8,7 @@ import { ReactComponent as AviatorIcon } from "../../../assets/icons/aviator.svg
 import { ReactComponent as CrashIcon } from "../../../assets/icons/crash.svg";
 import { ReactComponent as CasinoIcon } from "../../../assets/icons/casiono.svg";
 import { ReactComponent as VirtualsIcon } from "../../../assets/icons/virtuals.svg";
+import { ReactComponent as SportsIcon } from "../../../assets/icons/sports.svg";
 import CasinoCarouselLoader from "./carousel";
 import SectionHeader from "./sectionHeader";
 import HorizontalGameRow from "./horizontalGameRow";
@@ -24,6 +25,7 @@ const GameRowSkeleton = ({ count = 6 }) => (
 
 // Tab → route/section mapping
 const TAB_MAP = {
+  "Sports":      { route: "/sports" },
   "Aviator":     { route: "/casino/game-play?game=58630&status=0&game_name=AVIATOR" },
   "Crash":       { section: "crash" },
   "Casino":      { section: "" },
@@ -118,6 +120,7 @@ const LandingPage = () => {
     "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%)";
 
   const NAV_TABS = [
+    { label: "Sports",      icon: <SportsIcon   width={iconSize} height={iconSize} style={{ filter: activeTab === "Sports"   ? activeFilter : "none" }} /> },
     { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} /> },
     { label: "Crash",       icon: <CrashIcon    width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash"    ? activeFilter : "none" }} /> },
     { label: "Casino",      icon: <CasinoIcon   width={iconSize} height={iconSize} style={{ filter: !activeTab             ? activeFilter : "none" }} /> },
@@ -142,7 +145,7 @@ const LandingPage = () => {
           overflowX: "auto",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          fontSize: isMobile ? "10px" : "13px",
+          fontSize: "16px",
           fontWeight: 600,
           borderBottom: "1px solid #1e2235",
           background: "#0F111A",

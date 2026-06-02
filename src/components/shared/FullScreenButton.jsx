@@ -19,7 +19,7 @@ const FullscreenButton = ({ onClick, isCustomFullScreen }) => {
       className={`height-max-custom d-flex align-items-center justify-content-between ${
         isCustomFullScreen ? "full-screen-component" : ""
       }`}
-      style={{ padding: "0 1rem", marginTop: isSportsPage ? "6rem" : 0, }}
+      style={{ padding: "0 1rem", marginTop: 0 }}
     >
       <HeaderBreadCrumb />
 

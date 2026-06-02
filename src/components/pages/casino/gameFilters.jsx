@@ -50,7 +50,7 @@ const GameFilters = ({ activeCategory, onFilterChange }) => {
             onClick={() => onFilterChange(cat.label, cat.label)}
             style={{
               cursor: "pointer",
-              fontFamily: "'Outfit', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
               fontSize: 13,
               padding: "5px 14px",

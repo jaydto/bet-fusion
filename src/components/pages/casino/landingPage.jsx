@@ -183,7 +183,7 @@ const LandingPage = () => {
                 className="tab-icon"
                 style={{ display: "flex", alignItems: "center", lineHeight: 1, color: isActive ? "#fb8603" : "#64748b", transition: "color 0.2s" }}
               >{icon}</span>
-              <span style={{ color: "#64748b" }}>{label}</span>
+              <span className="tab-label">{label}</span>
             </div>
           );
         })}

@@ -1471,7 +1471,7 @@ input.search-cat:focus {
   width: 100%;
   padding: 10px 6px 6px;
   background: linear-gradient(to top, rgba(2, 6, 23, 0.95), transparent);
-  font-size: 0.68rem;
+  font-size: 16px;
   font-weight: 700;
   color: white;
   text-align: center;

@@ -178,10 +178,10 @@ const NewProfile = React.memo(() => {
               disabled={!user}
               style={{
                 flex: 1,
-                background: "var(--bet-fusion-btn-gradient)",
+                background: "#fff",
                 border: "none",
                 borderRadius: "10px",
-                color: "#fff",
+                color: "#000",
                 fontWeight: "700",
                 fontSize: "15px",
                 padding: "13px",

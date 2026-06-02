@@ -8,6 +8,7 @@ import { ReactComponent as AviatorIcon } from "../../../assets/icons/aviator.svg
 import { ReactComponent as CrashIcon } from "../../../assets/icons/crash.svg";
 import { ReactComponent as CasinoIcon } from "../../../assets/icons/casiono.svg";
 import { ReactComponent as VirtualsIcon } from "../../../assets/icons/virtuals.svg";
+import { ReactComponent as SportsIcon } from "../../../assets/icons/sports.svg";
 import CasinoCarouselLoader from "./carousel";
 import SectionHeader from "./sectionHeader";
 import HorizontalGameRow from "./horizontalGameRow";
@@ -24,6 +25,7 @@ const GameRowSkeleton = ({ count = 6 }) => (
 
 // Tab → route/section mapping
 const TAB_MAP = {
+  "Sports":      { route: "/sports" },
   "Aviator":     { route: "/casino/game-play?game=58630&status=0&game_name=AVIATOR" },
   "Crash":       { section: "crash" },
   "Casino":      { section: "" },
@@ -116,9 +118,13 @@ const LandingPage = () => {
   const iconSize = isMobile ? 20 : 14;
   const activeFilter =
     "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%)";
+  // Aviator's art is red; when inactive, tint it to ~#8e8d94 to match the
+  // other inactive tab icons. When active it goes orange like the rest.
+  const aviatorInactiveFilter = "brightness(0) saturate(100%) invert(57%)";
 
   const NAV_TABS = [
-    { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} /> },
+    { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} style={{ filter: activeTab === "Aviator" ? activeFilter : aviatorInactiveFilter }} /> },
+    { label: "Sports",      icon: <SportsIcon   width={iconSize} height={iconSize} style={{ filter: activeTab === "Sports"   ? activeFilter : "none" }} /> },
     { label: "Crash",       icon: <CrashIcon    width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash"    ? activeFilter : "none" }} /> },
     { label: "Casino",      icon: <CasinoIcon   width={iconSize} height={iconSize} style={{ filter: !activeTab             ? activeFilter : "none" }} /> },
     { label: "Slots",       icon: <GiLever      size={iconSize} /> },
@@ -142,7 +148,7 @@ const LandingPage = () => {
           overflowX: "auto",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          fontSize: isMobile ? "10px" : "13px",
+          fontSize: "16px",
           fontWeight: 600,
           borderBottom: "1px solid #1e2235",
           background: "#0F111A",
@@ -172,18 +178,12 @@ const LandingPage = () => {
                 height: "auto",
                 background: "transparent",
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.querySelector(".tab-icon").style.color = "#fb8603";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.querySelector(".tab-icon").style.color = isActive ? "#fb8603" : "#64748b";
-              }}
             >
               <span
                 className="tab-icon"
                 style={{ display: "flex", alignItems: "center", lineHeight: 1, color: isActive ? "#fb8603" : "#64748b", transition: "color 0.2s" }}
               >{icon}</span>
-              <span style={{ color: "#64748b" }}>{label}</span>
+              <span className="tab-label">{label}</span>
             </div>
           );
         })}

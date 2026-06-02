@@ -106,7 +106,7 @@ const WithdrawalModal = React.memo(() => {
     color: "#e2e8f0",
     fontSize: 15,
     outline: "none",
-    fontFamily: "'Outfit', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     boxSizing: "border-box",
   };
 
@@ -231,7 +231,7 @@ const WithdrawalModal = React.memo(() => {
                     fontWeight: 600,
                     fontSize: 13,
                     cursor: "pointer",
-                    fontFamily: "'Outfit', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     transition: "all 0.15s",
                   }}
                 >
@@ -289,7 +289,7 @@ const WithdrawalModal = React.memo(() => {
               justifyContent: "center",
               letterSpacing: 0.3,
               marginBottom: 14,
-              fontFamily: "'Outfit', sans-serif",
+              fontFamily: "'Inter', sans-serif",
             }}
           >
             {loadingWithdraw ? <div className="loader" /> : "Withdraw"}

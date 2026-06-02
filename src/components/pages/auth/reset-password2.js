@@ -12,6 +12,7 @@ import "../../../assets/css/auth.css";
 const OtpRequestForm = React.memo(({ errors, values, setFieldValue }) => {
   const dispatchRedux = useDispatch();
   const otpSentFromState = useSelector((s) => s.auth.otp_sent);
+  const loading = useSelector((s) => s.auth.loading);
   const code = new URL(window.location).searchParams.get("code");
   const otpSent = code ? true : otpSentFromState;
 
@@ -36,8 +37,8 @@ const OtpRequestForm = React.memo(({ errors, values, setFieldValue }) => {
         {errors.mobile && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.mobile}</span>}
       </div>
 
-      <button type="submit" className="auth-submit-btn" disabled={!values.mobile}>
-        Send OTP
+      <button type="submit" className="auth-submit-btn" disabled={!values.mobile || loading}>
+        {loading ? <div className="loader" style={{ width: 18, height: 18 }} /> : "Send OTP"}
       </button>
 
       <button
@@ -77,6 +78,7 @@ const OtpRequestFormikWrapper = React.memo(() => {
 // ── Step 2: Set new password ─────────────────────────────────────────────────
 const PasswordResetInnerForm = React.memo(({ errors, values, setFieldValue }) => {
   const dispatchRedux = useDispatch();
+  const loading = useSelector((s) => s.auth.loading);
   const [showPassword, setShowPassword] = useState(false);
   const set = (e) => setFieldValue(e.target.name, e.target.value);
 
@@ -135,7 +137,9 @@ const PasswordResetInnerForm = React.memo(({ errors, values, setFieldValue }) =>
         {errors.repeat_password && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.repeat_password}</span>}
       </div>
 
-      <button type="submit" className="auth-submit-btn">Reset Password</button>
+      <button type="submit" className="auth-submit-btn" disabled={loading}>
+        {loading ? <div className="loader" style={{ width: 18, height: 18 }} /> : "Reset Password"}
+      </button>
 
       <button
         type="button"

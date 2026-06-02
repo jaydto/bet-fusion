@@ -6,13 +6,15 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { notification } from "antd";
+import { notification, Grid } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, resetState } from "../../redux/authSlice";
 import { StoreContext } from "../../context/store";
 import { getFromLocalStorage, setLocalStorage } from "../utils/local-storage";
 import useAnalyticsEventTracker from "../analytics/useAnalyticsEventTracker";
 import "../../assets/css/auth.css";
+
+const { useBreakpoint } = Grid;
 
 const LoginTwo = React.memo(() => {
   const navigate = useNavigate();
@@ -23,6 +25,8 @@ const LoginTwo = React.memo(() => {
   const loading = useSelector((s) => s.auth.loading);
   const [user, setUser] = useState(getFromLocalStorage("user"));
   const gaEventTracker = useAnalyticsEventTracker("Login");
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
 
   useEffect(() => {
     dispatchRedux(resetState("user_sign_up"));
@@ -69,7 +73,7 @@ const LoginTwo = React.memo(() => {
     }
   }, []);
 
-  const initialValues = { msisdn: "", password: "", countryCode: "254" };
+  const initialValues = { msisdn: "", password: "", countryCode: "254", remember: true };
 
   const validate = (values) => {
     const errors = {};
@@ -90,7 +94,63 @@ const LoginTwo = React.memo(() => {
     gaEventTracker("Login");
   };
 
-  const LoginForm = ({ errors, values, setFieldValue }) => {
+  // ── Mobile form (Figma .bfa-* design) ──
+  const MobileForm = ({ errors, values, setFieldValue }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const set = (e) => setFieldValue(e.target.name, e.target.value);
+
+    return (
+      <Form>
+        <div className="bfa-field">
+          <label className="bfa-label"><span className="bfa-req">*</span>Phone Number</label>
+          <div className="bfa-input-wrap">
+            <span className="bfa-prefix">+254</span>
+            <input type="tel" name="msisdn" className="bfa-input" placeholder="712 345 678" onChange={set} value={values.msisdn} />
+          </div>
+          {errors.msisdn && <span className="bfa-error">{errors.msisdn}</span>}
+        </div>
+
+        <div className="bfa-field">
+          <label className="bfa-label"><span className="bfa-req">*</span>Password</label>
+          <div className="bfa-input-wrap">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="bfa-input"
+              placeholder="Enter password"
+              autoComplete="current-password"
+              onChange={set}
+              value={values.password}
+            />
+            <button type="button" className="bfa-eye" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"}>
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </button>
+          </div>
+          {errors.password && <span className="bfa-error">{errors.password}</span>}
+        </div>
+
+        <div className="bfa-row-between">
+          <label className="bfa-check">
+            <input type="checkbox" name="remember" checked={values.remember} onChange={(e) => setFieldValue("remember", e.target.checked)} />
+            Remember for 30 days
+          </label>
+          <Link to="/auth/reset-password" className="bfa-link" onClick={() => gaEventTracker("Reset Password")}>Forgot password</Link>
+        </div>
+
+        <button type="submit" className="bfa-submit" disabled={loading}>
+          {loading ? "Signing in…" : "Sign in"}
+        </button>
+
+        <p className="bfa-footer">
+          Don't have an account?{" "}
+          <Link to="/auth/signup" className="bfa-link" onClick={() => gaEventTracker("Register")}>Register</Link>
+        </p>
+      </Form>
+    );
+  };
+
+  // ── Desktop form (two-panel card design) ──
+  const DesktopForm = ({ errors, values, setFieldValue }) => {
     const [showPassword, setShowPassword] = useState(false);
     const set = (e) => setFieldValue(e.target.name, e.target.value);
 
@@ -99,14 +159,7 @@ const LoginTwo = React.memo(() => {
         <div className="auth-field">
           <label className="auth-field-label">Mobile Number</label>
           <div className="auth-input-wrap">
-            <input
-              type="text"
-              name="msisdn"
-              className="auth-input"
-              placeholder="07XXXXXXXX"
-              onChange={set}
-              value={values.msisdn}
-            />
+            <input type="text" name="msisdn" className="auth-input" placeholder="07XXXXXXXX" onChange={set} value={values.msisdn} />
           </div>
           {errors.msisdn && <span style={{ color: "#ef4444", fontSize: 12 }}>{errors.msisdn}</span>}
         </div>
@@ -124,11 +177,7 @@ const LoginTwo = React.memo(() => {
               value={values.password}
               style={{ paddingRight: 40 }}
             />
-            <button
-              type="button"
-              className="auth-input-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            >
+            <button type="button" className="auth-input-icon" onClick={() => setShowPassword(!showPassword)}>
               <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
             </button>
           </div>
@@ -142,18 +191,39 @@ const LoginTwo = React.memo(() => {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16 }}>
           <p className="auth-footer-text" style={{ margin: 0 }}>
             New?{" "}
-            <Link to="/auth/signup" className="auth-link" onClick={() => gaEventTracker("Register")}>
-              Register
-            </Link>
+            <Link to="/auth/signup" className="auth-link" onClick={() => gaEventTracker("Register")}>Register</Link>
           </p>
-          <Link to="/auth/reset-password" className="auth-link" onClick={() => gaEventTracker("Reset Password")}>
-            Forgot Password?
-          </Link>
+          <Link to="/auth/reset-password" className="auth-link" onClick={() => gaEventTracker("Reset Password")}>Forgot Password?</Link>
         </div>
       </Form>
     );
   };
 
+  // ── Mobile layout (Figma) ──
+  if (isMobile) {
+    return (
+      <div className="bfa-page">
+        <ToastContainer />
+        <div className="bfa-shell">
+          <div className="bfa-topbar">
+            <img src={logo} alt="BetFusion" className="bfa-logo" onClick={() => navigate("/")} />
+            <div className="bfa-topbar-actions">
+              <Link to="/auth/login" className="bfa-btn-login">Login</Link>
+              <Link to="/auth/signup" className="bfa-btn-register">Register</Link>
+            </div>
+          </div>
+          <div className="bfa-card">
+            <h2 className="bfa-title">Login</h2>
+            <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={validate} validateOnChange={false} validateOnBlur={false}>
+              {(props) => <MobileForm {...props} />}
+            </Formik>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Desktop layout (two-panel card, like undabet) ──
   return (
     <div className="auth-page-outer">
       <ToastContainer />
@@ -189,27 +259,8 @@ const LoginTwo = React.memo(() => {
                 <p className="auth-card-desc">Login to continue playing on the best online casino</p>
               </div>
               <div className="auth-separator" />
-              {errorMessage && (
-                <div style={{
-                  padding: "10px 12px",
-                  borderRadius: 8,
-                  background: "rgba(239,68,68,0.12)",
-                  border: "1px solid #ef4444",
-                  color: "#ef4444",
-                  fontSize: 13,
-                  marginBottom: 12,
-                }}>
-                  {errorMessage}
-                </div>
-              )}
-              <Formik
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                validate={validate}
-                validateOnChange={false}
-                validateOnBlur={false}
-              >
-                {(props) => <LoginForm {...props} />}
+              <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={validate} validateOnChange={false} validateOnBlur={false}>
+                {(props) => <DesktopForm {...props} />}
               </Formik>
             </div>
           </div>

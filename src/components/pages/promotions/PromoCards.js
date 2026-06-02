@@ -184,7 +184,7 @@ const PromoCards = () => {
                     fontSize: 12,
                     padding: "8px 16px",
                     cursor: isExpired ? "not-allowed" : "pointer",
-                    fontFamily: "'Outfit', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     whiteSpace: "nowrap",
                   }}
                 >

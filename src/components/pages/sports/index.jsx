@@ -151,7 +151,7 @@ const SportsPage = () => {
           allow="fullscreen"
           style={{
             ...iframeStyle,
-            marginTop: isCustomFullscreen?"3rem":"2.1rem",
+            marginTop: isCustomFullscreen?"1rem":"0.5rem",
             height: `${Math.min(iframeHeight, maxIframeHeight)}svh`,
             color: 'var(--bet-fusion-red)'
           }}

@@ -118,10 +118,13 @@ const LandingPage = () => {
   const iconSize = isMobile ? 20 : 14;
   const activeFilter =
     "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%)";
+  // Aviator's art is red; when inactive, tint it to ~#8e8d94 to match the
+  // other inactive tab icons. When active it goes orange like the rest.
+  const aviatorInactiveFilter = "brightness(0) saturate(100%) invert(57%)";
 
   const NAV_TABS = [
     { label: "Sports",      icon: <SportsIcon   width={iconSize} height={iconSize} style={{ filter: activeTab === "Sports"   ? activeFilter : "none" }} /> },
-    { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} /> },
+    { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} style={{ filter: activeTab === "Aviator" ? activeFilter : aviatorInactiveFilter }} /> },
     { label: "Crash",       icon: <CrashIcon    width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash"    ? activeFilter : "none" }} /> },
     { label: "Casino",      icon: <CasinoIcon   width={iconSize} height={iconSize} style={{ filter: !activeTab             ? activeFilter : "none" }} /> },
     { label: "Slots",       icon: <GiLever      size={iconSize} /> },

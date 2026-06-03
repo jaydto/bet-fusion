@@ -190,12 +190,12 @@ const LandingPage = () => {
       </div>
 
       {/* Carousel */}
-      <div style={{ marginTop: 0, padding: isMobile ? "0 4px 6px" : "0 12px 12px", overflow: "hidden" }}>
+      <div style={{ marginTop: 0, padding: isMobile ? "0 10px 6px" : "0 12px 12px", overflow: "hidden" }}>
         <CasinoCarouselLoader />
       </div>
 
       {/* Game sections — filtered by activeSection */}
-      <div className="landing-v2" style={{ padding: isMobile ? "4px 6px 0" : "0 12px" }}>
+      <div className="landing-v2" style={{ padding: isMobile ? "4px 10px 0" : "0 12px" }}>
         {showSection("popular") && (
           <div className="landing-section">
             <SectionHeader title="Most played" actionLabel="SHOW ALL" onAction={() => navigate("/casino")} />

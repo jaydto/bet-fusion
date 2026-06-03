@@ -17,7 +17,7 @@ const SportsPage = () => {
   const url = useSelector((state) => state.data.sports_data);
   const [isCustomFullscreen, setCustomFullscreen] = useState(false);
 
-  const [iframeHeight, setIframeHeight] = useState(width < 991 ? 95 : 85); // Initial height
+  const [iframeHeight, setIframeHeight] = useState(width < 991 ? 86 : 85); // Initial height
 
   const navigate=useNavigate()
 
@@ -40,11 +40,11 @@ const SportsPage = () => {
     if (isCustomFullscreen) {
       console.log("customFullscrren now", maxIframeHeight);
 
-      setIframeHeight(95); // Set the fixed height here
-      dispatch(setState("iframeHeight", 95));
+      setIframeHeight(86); // Set the fixed height here
+      dispatch(setState("iframeHeight", 86));
     } else {
-      setIframeHeight(width < 991 ? 95 : 85);
-      dispatch(setState("iframeHeight", width < 991 ? 95 : 85));
+      setIframeHeight(width < 991 ? 86 : 85);
+      dispatch(setState("iframeHeight", width < 991 ? 86 : 85));
     }
   }, [isCustomFullscreen]);
 

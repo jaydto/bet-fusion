@@ -132,7 +132,7 @@ const CasinoCarouselLoader = React.memo(() => {
                                 style={{
                                     width: "100%",
                                     height: "100%",
-                                    objectFit: "cover",
+                                    // objectFit: "cover",
                                     display: "block",
                                     borderRadius: 10,
                                 }}

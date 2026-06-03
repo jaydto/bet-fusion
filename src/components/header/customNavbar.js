@@ -55,7 +55,7 @@ const CustomNavbarBrand = ({ toggleMenu, user, checkDesktop }) => {
           {/* Row 1: logo + login/register */}
           <div style={{ display: "flex", alignItems: "center", padding: "6px 12px" }}>
             <div style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
-              <img src={logo} alt="BetFusion" style={{ height: "22px", width: "auto" }} />
+              <img src={logo} alt="BetFusion" style={{ height: "18px", width: "auto" }} />
             </div>
             <div style={{ marginLeft: "auto" }}>
               <UserInfo profile={checkDesktop} />

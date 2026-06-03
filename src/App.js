@@ -128,6 +128,7 @@ const App = () => {
     "/auth/reset-password",
     "/auth/verify",
     "/profile",
+
   ];
 
   const ignoreMobileHeader = [
@@ -194,7 +195,7 @@ const App = () => {
                   }
                 />
               </Route>
-              
+
               <Route
                 path="/sports"
                 element={
@@ -273,7 +274,7 @@ const App = () => {
       {/* Right Panel — desktop only, shown alongside sidebar routes */}
       {showSidebar && !isGamePlayRoute && <RightPanel />}
 
-      {!isGamePlayRoute && isMobile && <BottomNav />}
+        {!isGamePlayRoute && location.pathname !== "/sports" && isMobile && <BottomNav />}
     </div>
   ); // </ConfigProvider>
 };

@@ -23,7 +23,7 @@
 @media (min-width: 1200px) {
   .app-navbar.navbar {
     left: var(--sidebar-width, 256px) !important;
-    width: calc(100vw - var(--sidebar-width, 256px) - 280px) !important;
+    width: calc(100vw - var(--sidebar-width, 256px) - 226px) !important;
   }
 }
 

@@ -140,7 +140,7 @@
 
 .sidebar-nav-item--active {
   background: rgba(251, 134, 3, 0.1) !important;
-  color: #f8fafc !important;
+  color: var(--footer-color)!important;
   border-right: 3px solid #fb8603 !important;
 }
 

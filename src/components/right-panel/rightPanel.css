@@ -84,7 +84,7 @@
 
 .rp-btn-secondary {
   background: transparent;
-  color: #f8fafc;
+  color: var(--footer-color);
   border: 1px solid #334155;
 }
 

@@ -1452,7 +1452,7 @@ input.search-cat:focus {
 .landing-section-title {
   font-size: 15px;
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--footer-color);
   font-family: 'Inter', sans-serif;
   letter-spacing: 0;
   margin: 0;

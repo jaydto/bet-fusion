@@ -10095,7 +10095,7 @@ button.close {
 
 .modal-content {
     position: relative;
-    background-color: #ffffff;
+    background-color: var(--bet-fusion-primary);
     border: 1px solid #9da9b0;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 6px;

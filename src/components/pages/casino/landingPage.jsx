@@ -115,87 +115,88 @@ const LandingPage = () => {
     }
   };
 
-  const iconSize = isMobile ? 20 : 14;
-  const activeFilter =
-    "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%)";
-  // Aviator's art is red; when inactive, tint it to ~#8e8d94 to match the
-  // other inactive tab icons. When active it goes orange like the rest.
-  const aviatorInactiveFilter = "brightness(0) saturate(100%) invert(57%)";
+    const iconSize = isMobile ? 20 : 14;
+    const activeFilter =
+        "brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(2000%) hue-rotate(5deg) brightness(102%)";
+// Aviator's art is red; when inactive, tint it to ~#8e8d94 to match the
+// other inactive tab icons. When active it goes orange like the rest.
+    const aviatorInactiveFilter = "brightness(0) saturate(100%) invert(57%)";
 
-  const NAV_TABS = [
-    { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} style={{ filter: activeTab === "Aviator" ? activeFilter : aviatorInactiveFilter }} /> },
-    { label: "Sports",      icon: <SportsIcon   width={iconSize} height={iconSize} style={{ filter: activeTab === "Sports"   ? activeFilter : "none" }} /> },
-    { label: "Crash",       icon: <CrashIcon    width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash"    ? activeFilter : "none" }} /> },
-    { label: "Casino",      icon: <CasinoIcon   width={iconSize} height={iconSize} style={{ filter: !activeTab             ? activeFilter : "none" }} /> },
-    { label: "Slots",       icon: <GiLever      size={iconSize} /> },
-    { label: "Virtuals",    icon: <VirtualsIcon width={iconSize} height={iconSize} style={{ filter: activeTab === "Virtuals" ? activeFilter : "none" }} /> },
-    { label: "Live",        icon: <MdLiveTv     size={iconSize} /> },
-    { label: "Tournaments", icon: <GiTrophyCup  size={iconSize} /> },
-  ];
+    const NAV_TABS = [
+        { label: "Aviator",     icon: <AviatorIcon  width={iconSize} height={iconSize} style={{ filter: activeTab === "Aviator" ? activeFilter : aviatorInactiveFilter }} /> },
+        { label: "Sports",      icon: <SportsIcon   width={iconSize} height={iconSize} style={{ filter: activeTab === "Sports"   ? activeFilter : "none" }} /> },
+        { label: "Crash",       icon: <CrashIcon    width={iconSize} height={iconSize} style={{ filter: activeTab === "Crash"    ? activeFilter : "none" }} /> },
+        { label: "Casino",      icon: <CasinoIcon   width={iconSize} height={iconSize} style={{ filter: !activeTab             ? activeFilter : "none" }} /> },
+        { label: "Slots",       icon: <GiLever      size={iconSize} /> },
+        { label: "Virtuals",    icon: <VirtualsIcon width={iconSize} height={iconSize} style={{ filter: activeTab === "Virtuals" ? activeFilter : "none" }} /> },
+        { label: "Live",        icon: <MdLiveTv     size={iconSize} /> },
+        { label: "Tournaments", icon: <GiTrophyCup  size={iconSize} /> },
+    ];
 
-  return (
-    <div style={{ width: "100%", marginBottom: isMobile ? "5rem" : "2rem" }}>
-      {/* Category navigation tabs */}
-      <div
-        className="category-nav-tabs"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          padding: isMobile ? "0" : "0 8px",
-          height: "auto",
-          overflowX: "auto",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          fontSize: "16px",
-          fontWeight: 600,
-          borderBottom: "1px solid #1e2235",
-          background: "#0F111A",
-          gap: isMobile ? "0" : "2px",
-        }}
-      >
-        {NAV_TABS.map(({ label, icon }) => {
-          const isActive = activeTab === label || (label === "Casino" && !activeTab);
-          return (
+    return (
+        <div style={{ width: "100%", marginBottom: isMobile ? "5rem" : "2rem" }}>
+            {/* Category navigation tabs */}
             <div
-              key={label}
-              onClick={() => handleTabClick(label)}
-              className={`category-tab-item${isActive ? " active" : ""}`}
-              style={{
-                cursor: "pointer",
-                padding: isMobile ? "6px 4px 8px" : "8px 12px",
-                whiteSpace: "nowrap",
-                borderRadius: "0",
-                flexShrink: 0,
-                flexGrow: 0,
-                minWidth: isMobile ? "calc(100% / 6)" : "unset",
-                display: "flex",
-                flexDirection: isMobile ? "column" : "row",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: isMobile ? "2px" : "5px",
-                height: "auto",
-                background: "transparent",
-              }}
+                className="category-nav-tabs"
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    padding: isMobile ? "0" : "0 8px",
+                    height: "auto",
+                    overflowX: "auto",
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none",
+                    fontSize: "16px",
+                    fontWeight: 600,
+                    borderBottom: "1px solid var(--bet-fusion-shadow-borders)",
+                    background: "var(--bet-fusion-primary)",
+                    gap: isMobile ? "0" : "2px",
+                }}
             >
-              <span
+                {NAV_TABS.map(({ label, icon }) => {
+                    const isActive = activeTab === label || (label === "Casino" && !activeTab);
+                    return (
+                        <div
+                            key={label}
+                            onClick={() => handleTabClick(label)}
+                            className={`category-tab-item${isActive ? " active" : ""}`}
+                            style={{
+                                cursor: "pointer",
+                                padding: isMobile ? "6px 4px 8px" : "8px 12px",
+                                whiteSpace: "nowrap",
+                                borderRadius: "0",
+                                flexShrink: 0,
+                                flexGrow: 0,
+                                minWidth: isMobile ? "calc(100% / 6)" : "unset",
+                                display: "flex",
+                                flexDirection: isMobile ? "column" : "row",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: isMobile ? "2px" : "5px",
+                                height: "auto",
+                                background: "transparent",
+                                color: isActive ? "var(--blue)" : "var(--grey)",
+                            }}
+                        >
+            <span
                 className="tab-icon"
-                style={{ display: "flex", alignItems: "center", lineHeight: 1, color: isActive ? "#fb8603" : "#64748b", transition: "color 0.2s" }}
-              >{icon}</span>
-              <span className="tab-label">{label}</span>
+                style={{ display: "flex", alignItems: "center", lineHeight: 1, color: isActive ? "var(--blue)" : "var(--grey)", transition: "color 0.2s" }}
+            >{icon}</span>
+                            <span className="tab-label">{label}</span>
+                        </div>
+                    );
+                })}
             </div>
-          );
-        })}
-      </div>
 
       {/* Carousel */}
-      <div style={{ marginTop: 0, padding: isMobile ? "0 4px 6px" : "0 12px 12px", overflow: "hidden" }}>
+      <div style={{ marginTop: 0, padding: isMobile ? "0 10px 6px" : "0 12px 12px", overflow: "hidden" }}>
         <CasinoCarouselLoader />
       </div>
 
       {/* Game sections — filtered by activeSection */}
-      <div className="landing-v2" style={{ padding: isMobile ? "4px 6px 0" : "0 12px" }}>
+      <div className="landing-v2" style={{ padding: isMobile ? "4px 10px 0" : "0 12px" }}>
         {showSection("popular") && (
           <div className="landing-section">
             <SectionHeader title="Most played" actionLabel="SHOW ALL" onAction={() => navigate("/casino")} />

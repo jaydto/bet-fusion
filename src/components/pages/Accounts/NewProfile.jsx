@@ -22,7 +22,6 @@ const NewProfile = React.memo(() => {
   const screens = useBreakpoint();
   const isMobile = !screens.md;
   const casinoSearchModal = useSelector((state) => state.virtuals.casino_search_modal);
-  const showJisortModal = useSelector((state) => state.data.show_jisort_modal);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,9 +39,22 @@ const NewProfile = React.memo(() => {
     return () => abort.abort();
   }, []);
 
+    const hideJisortModal = () =>
+        dispatchRedux(setState("show_jisort_modal", false));
+
+    const showJisortModal = useSelector(
+        (state) => state.data.show_jisort_modal
+    );
+
+    {showJisortModal && (
+        <JisortModal
+            visible={showJisortModal}
+            setShowJisortModal={hideJisortModal}
+        />
+    )}
+
   const showDepModal = () => dispatchRedux(setState("show_deposit_modal", true));
   const handleWithdrawClick = () => dispatchRedux(setState("show_withdraw_modal", true));
-  const hideJisortModal = () => dispatchRedux(setState("show_jisort_modal", false));
 
   const balance = user?.balance || 0;
 
@@ -195,10 +207,12 @@ const NewProfile = React.memo(() => {
 
           {/* Menu items */}
           <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "16px" }}>
-            <MenuItem
-              label="Sort missing Deposit"
-              onClick={() => navigate("/profile/deposit-history")}
-            />
+              <MenuItem
+                  label="Sort missing Deposit"
+                  onClick={() =>
+                      dispatchRedux(setState("show_jisort_modal", true))
+                  }
+              />
             <MenuItem
               label="Responsible Gaming"
               onClick={() => navigate("/responsible-gambling")}

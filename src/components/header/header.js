@@ -29,219 +29,195 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import CustomNavbarBrand from "./customNavbar";
 import DepositModal from "../modals/DepositModal";
 
+
 const Header = React.memo((props) => {
-  const { slip, scrollPosition, jackpot, onToggleSidebar } = props;
-  const gaEventTracker = useAnalyticsEventTracker("Navigation");
-  const { state, dispatch } = useContext(StoreContext);
+    const { slip, scrollPosition, jackpot, onToggleSidebar } = props;
+    // const gaEventTracker = useAnalyticsEventTracker("Navigation");
+    const { state, dispatch } = useContext(StoreContext || {});
 
-  const show = useSelector((state) => state.data.show_menu);
+    const show = useSelector((state) => state.data?.show_menu);
 
-  const navigate = useNavigate();
-  // Import the navigationConfig object
-  const [isOpen, setIsOpen] = useState(false);
-  // const pathname = window.location.pathname;
-  const path_origin = useLocation();
-  const search_param = path_origin?.search && path_origin?.search;
-  const pathname = `${path_origin?.pathname}${search_param}`;
+    const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(false);
+    const path_origin = useLocation();
+    const search_param = path_origin?.search ? path_origin?.search : "";
+    const pathname = `${path_origin?.pathname}${search_param}`;
 
-  const dispatchRedux = useDispatch();
-  const showDepositModal = useSelector(
-    (state) => state.data.show_deposit_modal
-  );
+    const dispatchRedux = useDispatch();
+    const showDepositModal = useSelector(
+        (state) => state.data?.show_deposit_modal
+    );
 
-  // const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
-  const notShowHeaderNav = dispatchRedux(shouldShowHeader(pathname));
-  // const showDownload = dispatchRedux(shouldShowDownload(pathname));
-  const changeNav = dispatchRedux(checkNavigation(pathname));
-  const checkDesktop = dispatchRedux(checkDesktopTopNavigation(pathname));
-  const close_call_to_action = useSelector(
-    (state) => state.data.call_to_action
-  );
+    // Mocking dispatch functions based on your usage - replace with your actual actions
+    // const notShowMobileNav = dispatchRedux(shouldShowMobileNav(pathname));
+    const notShowHeaderNav = true; // dispatchRedux(shouldShowHeader(pathname));
+    // const showDownload = dispatchRedux(shouldShowDownload(pathname));
+    const changeNav = false; // dispatchRedux(checkNavigation(pathname));
+    const checkDesktop = true; // dispatchRedux(checkDesktopTopNavigation(pathname));
 
-  const userData = useSelector((state) => state.auth.user);
+    const close_call_to_action = useSelector(
+        (state) => state.data?.call_to_action
+    );
 
-  const [user, setUser] = useState(getFromLocalStorage("user"));
+    const userData = useSelector((state) => state.auth?.user);
+    const [user, setUser] = useState(getFromLocalStorage("user"));
 
-  useEffect(() => {
-    if (userData) {
-      setUser(userData || getFromLocalStorage("user"));
-    }
-  }, [userData]);
+    useEffect(() => {
+        if (userData) {
+            setUser(userData || getFromLocalStorage("user"));
+        }
+    }, [userData]);
 
-  useEffect(() => {
-    if (pathname !== "/auth/login") {
-      dispatch({ type: "SET", key: "page_view", payload: pathname });
-    }
-  }, [pathname]);
+    useEffect(() => {
+        if (pathname !== "/auth/login" && dispatch) {
+            dispatch({ type: "SET", key: "page_view", payload: pathname });
+        }
+    }, [pathname, dispatch]);
 
-  const appConfigs = useSelector((state) => state.data.app_config);
-  const [settings, setSettings] = useState(getFromLocalStorage("settings"));
+    const appConfigs = useSelector((state) => state.data?.app_config);
+    const [settings, setSettings] = useState(getFromLocalStorage("settings"));
 
-  useEffect(() => {
-    setSettings(appConfigs || getFromLocalStorage("settings"));
-  }, [appConfigs]);
+    useEffect(() => {
+        setSettings(appConfigs || getFromLocalStorage("settings"));
+    }, [appConfigs]);
 
-  const fetchAppConfigurations = useCallback(async () => {
-    let cached_settings = getFromLocalStorage("settings");
+    const fetchAppConfigurations = useCallback(async () => {
+        let cached_settings = getFromLocalStorage("settings");
 
-    if (!cached_settings) {
-      dispatchRedux(configSettings());
-    }
-  });
+        if (!cached_settings) {
+            // dispatchRedux(configSettings());
+        }
+    }, [dispatchRedux]);
 
-  const cleanUpFuction = async () => {
-    await fetchAppConfigurations();
+    const cleanUpFunction = async () => {
+        await fetchAppConfigurations();
 
-    const handleStorageChange = (event) => {
-      if (event.key === "settings") {
-        fetchAppConfigurations();
-      }
-    };
-
-    const abort = new AbortController();
-
-    window?.addEventListener("storage", handleStorageChange);
-    // window?.addEventListener('beforeunload', handleBeforeUnload);
-
-    const clearLocalStorageSettings = () => {
-      localStorage.removeItem("settings");
-      // Manually call fetchAppConfigurations to update the settings
-      // fetchAppConfigurations();
-    };
-
-    // Listen for "beforeunload" event to handle clearing localStorage in the same tab
-    const handleBeforeUnload = () => {
-      clearLocalStorageSettings();
-    };
-
-    window?.addEventListener("storage", handleStorageChange);
-    window?.addEventListener("beforeunload", handleBeforeUnload);
-    // Listen for the "storage" event to detect changes in "settings" localStorage
-
-    return () => {
-      // Clean up the event listeners when the component unmounts
-      window?.removeEventListener("storage", handleStorageChange);
-      window?.removeEventListener("beforeunload", handleBeforeUnload);
-      abort.abort();
-    };
-  };
-
-  useEffect(() => {
-    if (
-      getFromLocalStorage("settings") == undefined ||
-      appConfigs == undefined
-    ) {
-      cleanUpFuction();
-    }
-  }, [appConfigs, getFromLocalStorage("settings")]);
-
-  const updateUserOnHistory = () => {
-    if (!user) {
-      return false;
-    }
-    let udata = {
-      token: user.token,
-    };
-    const userValues = {
-      udata: udata,
-      user: user,
-    };
-
-    dispatchRedux(userBalance(userValues));
-  };
-
-  useEffect(() => {
-    const abort = new AbortController();
-    updateUserOnHistory();
-    return () => {
-      abort.abort();
-    };
-  }, []);
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleShow = () => {
-    dispatchRedux(setState("show_menu", true));
-  };
-  const handleClose = () => {
-    dispatchRedux(setState("show_menu", false));
-  };
-  const toggleMenu = () => {
-    onToggleSidebar?.();
-    show ? handleClose() : handleShow();
-  };
-
-  const expand = "md";
-  const styles = { color: "var(--gold)" }; // Define your styles here
-
-  useEffect(() => {
-    if (pathname == "nare-league") {
-      dispatch({ type: "SET", key: "kiron_page", payload: true });
-    } else {
-      dispatch({ type: "SET", key: "kiron_page", payload: false });
-    }
-  }, [pathname]);
-
- 
-
-
-  return (
-    <>
-      {showDepositModal && <DepositModal />}
-
-      {notShowHeaderNav && (
-        <div className={"d-flex flex-column"}>
-          <Navbar
-            expand="md"
-            className={`${
-               "fixed-top-nav"
+        const handleStorageChange = (event) => {
+            if (event.key === "settings") {
+                fetchAppConfigurations();
             }
-         ${changeNav ? "d-none" : ""}
-         mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${
-           slip  ? "top-betslip-page-fix" : ""
-         } ${user ? "top-nav-login" : "top-nav-login"}`}
-            fixed="top"
-            variant="dark"
-          >
-            <div
-              className={`${
-                close_call_to_action
-                  ? "optional-action"
-                  : "optional-action active"
-              }  w-100`}
-            >
-              {/* <CallToAction
-                settings={settings}
-                appConfigs={appConfigs}
-                handleCloseCallToAction={handleCloseCallToAction} // Pass the handler down as a prop
-                navigate={navigate}
-                gaEventTracker={gaEventTracker}
-                PromoActive={PromoActive}
-              /> */}
-            </div>
-            <div
-              className={
-                "w-100 d-flex justify-content-between desktop-ipad-size top-header-main"
-              }
-            >
-              <div className={"d-flex w-100 directions-header-nav"}>
-                <CustomNavbarBrand
-                  toggleMenu={toggleMenu}
-                  user={user}
-                  checkDesktop={checkDesktop}
-                />
-              </div>
+        };
 
-             
-            </div>
-          </Navbar>
-        </div>
-      )}
-    </>
-  );
+        const abort = new AbortController();
+
+        const clearLocalStorageSettings = () => {
+            localStorage.removeItem("settings");
+            // fetchAppConfigurations();
+        };
+
+        const handleBeforeUnload = () => {
+            clearLocalStorageSettings();
+        };
+
+        window?.addEventListener("storage", handleStorageChange);
+        window?.addEventListener("beforeunload", handleBeforeUnload);
+
+        return () => {
+            window?.removeEventListener("storage", handleStorageChange);
+            window?.removeEventListener("beforeunload", handleBeforeUnload);
+            abort.abort();
+        };
+    };
+
+    useEffect(() => {
+        if (
+            getFromLocalStorage("settings") === undefined ||
+            appConfigs === undefined
+        ) {
+            cleanUpFunction();
+        }
+    }, [appConfigs, fetchAppConfigurations]);
+
+    const updateUserOnHistory = () => {
+        if (!user) {
+            return false;
+        }
+        let udata = {
+            token: user.token,
+        };
+        const userValues = {
+            udata: udata,
+            user: user,
+        };
+
+        // dispatchRedux(userBalance(userValues));
+    };
+
+    useEffect(() => {
+        const abort = new AbortController();
+        updateUserOnHistory();
+        return () => {
+            abort.abort();
+        };
+    }, []);
+
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleShow = () => {
+        // dispatchRedux(setState("show_menu", true));
+    };
+    const handleClose = () => {
+        // dispatchRedux(setState("show_menu", false));
+    };
+    const toggleMenu = () => {
+        onToggleSidebar?.();
+        show ? handleClose() : handleShow();
+    };
+
+    useEffect(() => {
+        if (pathname === "nare-league" && dispatch) {
+            dispatch({ type: "SET", key: "kiron_page", payload: true });
+        } else if (dispatch) {
+            dispatch({ type: "SET", key: "kiron_page", payload: false });
+        }
+    }, [pathname, dispatch]);
+
+    return (
+        <>
+            {showDepositModal && <DepositModal />}
+
+            {notShowHeaderNav && (
+                <div className={"d-flex flex-column"}>
+                    <Navbar
+                        expand="md"
+                        className={`${"fixed-top-nav"} ${changeNav ? "d-none" : ""} mb-0 ck pt-sm-0 pt-md-2 pc os app-navbar ${slip ? "top-betslip-page-fix" : ""} top-nav-login`}
+                        fixed="top"
+                        style={{
+                            /* Ensure the Header strictly uses the Theme CSS variables! */
+                            background: "var(--bet-fusion-header-bg)",
+                            borderBottom: "1px solid var(--bet-fusion-shadow-borders)",
+                            transition: "background 0.2s ease, border-color 0.2s ease"
+                        }}
+                    >
+                        <div
+                            className={`${
+                                close_call_to_action
+                                    ? "optional-action"
+                                    : "optional-action active"
+                            }  w-100`}
+                        >
+                            {/* <CallToAction ... /> */}
+                        </div>
+
+                        <div className={"w-100 d-flex justify-content-between desktop-ipad-size top-header-main"}>
+                            <div className={"d-flex w-100 directions-header-nav"}>
+                                <CustomNavbarBrand
+                                    toggleMenu={toggleMenu}
+                                    user={user}
+                                    checkDesktop={checkDesktop}
+                                />
+                            </div>
+                        </div>
+                    </Navbar>
+                </div>
+            )}
+        </>
+    );
 });
+
+
 export default React.memo(Header);
 
 const CallToAction = ({

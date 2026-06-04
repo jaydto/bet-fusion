@@ -1,5 +1,5 @@
 :root {
-  --bet-fusion-primary: #0F111A;
+  --bet-fusion-primary: #0f111a;
   --bet-fusion-secondary: #0F111A;
   --bet-fusion-footer: #0F111A;
   --footer-nav: #0F111A;
@@ -91,14 +91,14 @@
   --bet-fusion-live: red;
   --slip-separator-color: rgb(51, 76, 92);
   --color-site: #ce3d10;
-  --bet-fusion-side-bg: #121a23;
+  --bet-fusion-side-bg: #0f111a;
   --betslip-header: #4c372a;
   --betslip-mybets: #cd28ec;
   --mybets-slip: #1e2d3b;
   --button-radius: 3px;
   --bet-fusion-odds-body: #2d3641;
-  --bet-fusion-input: #030d41;
-  --bet-fusion-shadow-borders: #2c3c44;
+    --bet-fusion-input: rgba(255, 255, 255, 0.06);
+  --bet-fusion-shadow-borders: rgba(255, 255, 255, 0.06);
   --bet-fusion-font-size-nav: 14px;
   --bet-fusion-font-size-small: 12px;
   --font-size-side: 1.5rem;
@@ -197,7 +197,7 @@
   --bet-fusion-secondary: #fff;
   --bet-fusion-button-login: #fb8603;
   --bet-fusion-btn-gradient: linear-gradient(270.35deg, #fb8603 10.81%, #E4010D 64.67%);
-  --bet-fusion-footer: #adadad;
+  --bet-fusion-footer: #fff;
   --mybets-slip: #f0f0f0;
   --jackpot-header: #f0f0f0;
   --bet-fusion-button-register: #ffffff;
